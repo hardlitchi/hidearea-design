@@ -1,0 +1,180 @@
+# 基本カラートークン - hidearea-design
+# プリミティブカラー（色の基礎）
+
+color:
+  # グレースケール
+  white:
+    value: '#ffffff'
+    comment: '白'
+
+  black:
+    value: '#000000'
+    comment: '黒'
+
+  gray:
+    50:
+      value: '#fafafa'
+      comment: '最も明るいグレー'
+    100:
+      value: '#f5f5f5'
+    200:
+      value: '#e5e5e5'
+    300:
+      value: '#d4d4d4'
+    400:
+      value: '#a3a3a3'
+    500:
+      value: '#737373'
+    600:
+      value: '#525252'
+    700:
+      value: '#404040'
+    800:
+      value: '#262626'
+    900:
+      value: '#171717'
+      comment: '最も暗いグレー'
+
+  # プライマリカラー（ブルー系）
+  blue:
+    50:
+      value: '#eff6ff'
+    100:
+      value: '#dbeafe'
+    200:
+      value: '#bfdbfe'
+    300:
+      value: '#93c5fd'
+    400:
+      value: '#60a5fa'
+    500:
+      value: '#3b82f6'
+      comment: 'プライマリカラーのベース'
+    600:
+      value: '#2563eb'
+    700:
+      value: '#1d4ed8'
+    800:
+      value: '#1e40af'
+    900:
+      value: '#1e3a8a'
+
+  # セカンダリカラー（パープル系）
+  purple:
+    50:
+      value: '#faf5ff'
+    100:
+      value: '#f3e8ff'
+    200:
+      value: '#e9d5ff'
+    300:
+      value: '#d8b4fe'
+    400:
+      value: '#c084fc'
+    500:
+      value: '#a855f7'
+      comment: 'セカンダリカラーのベース'
+    600:
+      value: '#9333ea'
+    700:
+      value: '#7e22ce'
+    800:
+      value: '#6b21a8'
+    900:
+      value: '#581c87'
+
+  # セマンティックカラー - Success（成功）
+  green:
+    50:
+      value: '#f0fdf4'
+    100:
+      value: '#dcfce7'
+    200:
+      value: '#bbf7d0'
+    300:
+      value: '#86efac'
+    400:
+      value: '#4ade80'
+    500:
+      value: '#22c55e'
+      comment: '成功を表す緑'
+    600:
+      value: '#16a34a'
+    700:
+      value: '#15803d'
+    800:
+      value: '#166534'
+    900:
+      value: '#14532d'
+
+  # セマンティックカラー - Warning（警告）
+  yellow:
+    50:
+      value: '#fefce8'
+    100:
+      value: '#fef9c3'
+    200:
+      value: '#fef08a'
+    300:
+      value: '#fde047'
+    400:
+      value: '#facc15'
+    500:
+      value: '#eab308'
+      comment: '警告を表す黄色'
+    600:
+      value: '#ca8a04'
+    700:
+      value: '#a16207'
+    800:
+      value: '#854d0e'
+    900:
+      value: '#713f12'
+
+  # セマンティックカラー - Error（エラー）
+  red:
+    50:
+      value: '#fef2f2'
+    100:
+      value: '#fee2e2'
+    200:
+      value: '#fecaca'
+    300:
+      value: '#fca5a5'
+    400:
+      value: '#f87171'
+    500:
+      value: '#ef4444'
+      comment: 'エラーを表す赤'
+    600:
+      value: '#dc2626'
+    700:
+      value: '#b91c1c'
+    800:
+      value: '#991b1b'
+    900:
+      value: '#7f1d1d'
+
+  # セマンティックカラー - Info（情報）
+  cyan:
+    50:
+      value: '#ecfeff'
+    100:
+      value: '#cffafe'
+    200:
+      value: '#a5f3fc'
+    300:
+      value: '#67e8f9'
+    400:
+      value: '#22d3ee'
+    500:
+      value: '#06b6d4'
+      comment: '情報を表すシアン'
+    600:
+      value: '#0891b2'
+    700:
+      value: '#0e7490'
+    800:
+      value: '#155e75'
+    900:
+      value: '#164e63'

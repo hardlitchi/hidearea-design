@@ -1,0 +1,58 @@
+{
+  "theme": {
+    "light": {
+      "background": {
+        "primary": { "value": "{color.white.value}" },
+        "secondary": { "value": "{color.gray.50.value}" },
+        "tertiary": { "value": "{color.gray.100.value}" }
+      },
+      "foreground": {
+        "primary": { "value": "{color.gray.900.value}" },
+        "secondary": { "value": "{color.gray.600.value}" },
+        "tertiary": { "value": "{color.gray.400.value}" },
+        "inverse": { "value": "{color.white.value}" }
+      },
+      "border": {
+        "default": { "value": "{color.gray.200.value}" },
+        "subtle": { "value": "{color.gray.100.value}" },
+        "strong": { "value": "{color.gray.300.value}" }
+      },
+      "primary": {
+        "default": { "value": "{color.blue.500.value}" },
+        "hover": { "value": "{color.blue.600.value}" },
+        "active": { "value": "{color.blue.700.value}" },
+        "subtle": { "value": "{color.blue.50.value}" }
+      },
+      "secondary": {
+        "default": { "value": "{color.purple.500.value}" },
+        "hover": { "value": "{color.purple.600.value}" },
+        "active": { "value": "{color.purple.700.value}" },
+        "subtle": { "value": "{color.purple.50.value}" }
+      },
+      "success": {
+        "default": { "value": "{color.green.500.value}" },
+        "hover": { "value": "{color.green.600.value}" },
+        "active": { "value": "{color.green.700.value}" },
+        "subtle": { "value": "{color.green.50.value}" }
+      },
+      "warning": {
+        "default": { "value": "{color.yellow.500.value}" },
+        "hover": { "value": "{color.yellow.600.value}" },
+        "active": { "value": "{color.yellow.700.value}" },
+        "subtle": { "value": "{color.yellow.50.value}" }
+      },
+      "error": {
+        "default": { "value": "{color.red.500.value}" },
+        "hover": { "value": "{color.red.600.value}" },
+        "active": { "value": "{color.red.700.value}" },
+        "subtle": { "value": "{color.red.50.value}" }
+      },
+      "info": {
+        "default": { "value": "{color.cyan.500.value}" },
+        "hover": { "value": "{color.cyan.600.value}" },
+        "active": { "value": "{color.cyan.700.value}" },
+        "subtle": { "value": "{color.cyan.50.value}" }
+      }
+    }
+  }
+}
