@@ -62,21 +62,23 @@ MIT
 
 ## ドキュメント
 
+📖 [English](./docs/) | [日本語](./docs/ja/)
+
 ### Getting Started
 
-- **[インストールガイド](./docs/getting-started/installation.md)** - パッケージのインストール方法と基本セットアップ
+- **[インストールガイド](./docs/getting-started/installation.md)** ([日本語](./docs/ja/getting-started/installation.md)) - パッケージのインストール方法と基本セットアップ
 - **[クイックスタート](./docs/getting-started/installation.md#quick-start)** - Vanilla JS、React、Vueでの使用方法
 
 ### Components
 
-- **[Button](./docs/components/button.md)** - ボタンコンポーネントのAPI とサンプル
-- **[Input](./docs/components/input.md)** - インプットコンポーネントのAPI とサンプル
-- **[Checkbox](./docs/components/checkbox.md)** - チェックボックスコンポーネントのAPI とサンプル
+- **[Button](./docs/components/button.md)** ([日本語](./docs/ja/components/button.md)) - ボタンコンポーネントのAPI とサンプル
+- **[Input](./docs/components/input.md)** ([日本語](./docs/ja/components/input.md)) - インプットコンポーネントのAPI とサンプル
+- **[Checkbox](./docs/components/checkbox.md)** ([日本語](./docs/ja/components/checkbox.md)) - チェックボックスコンポーネントのAPI とサンプル
 
 ### Guides
 
-- **[使用例](./docs/guides/examples.md)** - ログインフォーム、検索、設定パネルなどの実装例
-- **[コントリビューティング](./CONTRIBUTING.md)** - プロジェクトへの貢献方法
+- **[使用例](./docs/guides/examples.md)** ([日本語](./docs/ja/guides/examples.md)) - ログインフォーム、検索、設定パネルなどの実装例
+- **[コントリビューティング](./CONTRIBUTING.md)** ([日本語](./CONTRIBUTING.ja.md)) - プロジェクトへの貢献方法
 
 ### プロジェクトメモ
 
