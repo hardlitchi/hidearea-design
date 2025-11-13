@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import '@hidearea-design/core';
 
@@ -273,60 +273,62 @@ export const FormExample: Story = {
 };
 
 export const IndeterminateExample: Story = {
-  render: () => html`
-    <div style="max-width: 400px;">
-      <ha-checkbox
-        id="parent"
-        indeterminate
-        @change="${(e: CustomEvent) => {
-          const parent = e.target as any;
-          const children = document.querySelectorAll('.child-checkbox') as any;
-          children.forEach((child: any) => {
-            child.checked = parent.checked;
-          });
-          parent.indeterminate = false;
-        }}"
-      >
-        Select all
-      </ha-checkbox>
+  render: () => {
+    const updateParent = () => {
+      const children = Array.from(document.querySelectorAll('.child-checkbox')) as any[];
+      const parent = document.querySelector('#parent') as any;
+      if (!parent) return;
 
-      <div style="margin-left: 1.5rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-        <ha-checkbox
-          class="child-checkbox"
-          label="Option 1"
-          checked
-          @change="${updateParent}"
-        ></ha-checkbox>
-        <ha-checkbox
-          class="child-checkbox"
-          label="Option 2"
-          @change="${updateParent}"
-        ></ha-checkbox>
-        <ha-checkbox
-          class="child-checkbox"
-          label="Option 3"
-          @change="${updateParent}"
-        ></ha-checkbox>
-      </div>
-    </div>
+      const checkedCount = children.filter(child => child.checked).length;
 
-    <script>
-      function updateParent() {
-        const children = Array.from(document.querySelectorAll('.child-checkbox'));
-        const parent = document.querySelector('#parent');
-        const checkedCount = children.filter(child => child.checked).length;
-
-        if (checkedCount === 0) {
-          parent.checked = false;
-          parent.indeterminate = false;
-        } else if (checkedCount === children.length) {
-          parent.checked = true;
-          parent.indeterminate = false;
-        } else {
-          parent.checked = false;
-          parent.indeterminate = true;
-        }
+      if (checkedCount === 0) {
+        parent.checked = false;
+        parent.indeterminate = false;
+      } else if (checkedCount === children.length) {
+        parent.checked = true;
+        parent.indeterminate = false;
+      } else {
+        parent.checked = false;
+        parent.indeterminate = true;
       }
-    </script>
-  `,
+    };
+
+    return html`
+      <div style="max-width: 400px;">
+        <ha-checkbox
+          id="parent"
+          indeterminate
+          @change="${(e: CustomEvent) => {
+            const parent = e.target as any;
+            const children = document.querySelectorAll('.child-checkbox') as any;
+            children.forEach((child: any) => {
+              child.checked = parent.checked;
+            });
+            parent.indeterminate = false;
+          }}"
+        >
+          Select all
+        </ha-checkbox>
+
+        <div style="margin-left: 1.5rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+          <ha-checkbox
+            class="child-checkbox"
+            label="Option 1"
+            checked
+            @change="${updateParent}"
+          ></ha-checkbox>
+          <ha-checkbox
+            class="child-checkbox"
+            label="Option 2"
+            @change="${updateParent}"
+          ></ha-checkbox>
+          <ha-checkbox
+            class="child-checkbox"
+            label="Option 3"
+            @change="${updateParent}"
+          ></ha-checkbox>
+        </div>
+      </div>
+    `;
+  },
 };
