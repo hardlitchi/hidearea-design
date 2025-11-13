@@ -62,7 +62,25 @@ MIT
 
 ## ドキュメント
 
-詳細なドキュメントは [./notes/](./notes/) を参照してください。
+### Getting Started
+
+- **[インストールガイド](./docs/getting-started/installation.md)** - パッケージのインストール方法と基本セットアップ
+- **[クイックスタート](./docs/getting-started/installation.md#quick-start)** - Vanilla JS、React、Vueでの使用方法
+
+### Components
+
+- **[Button](./docs/components/button.md)** - ボタンコンポーネントのAPI とサンプル
+- **[Input](./docs/components/input.md)** - インプットコンポーネントのAPI とサンプル
+- **[Checkbox](./docs/components/checkbox.md)** - チェックボックスコンポーネントのAPI とサンプル
+
+### Guides
+
+- **[使用例](./docs/guides/examples.md)** - ログインフォーム、検索、設定パネルなどの実装例
+- **[コントリビューティング](./CONTRIBUTING.md)** - プロジェクトへの貢献方法
+
+### プロジェクトメモ
+
+開発プロセスの詳細は [./notes/](./notes/) を参照してください。
 
 - [確認事項](./notes/00_確認事項.md)
 - [質問への回答と推奨事項](./notes/01_質問への回答と推奨事項.md)
