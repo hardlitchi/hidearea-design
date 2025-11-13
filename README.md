@@ -1,5 +1,9 @@
 # hidearea-design
 
+[![CI](https://github.com/hardlitchi/hidearea-design/actions/workflows/ci.yml/badge.svg)](https://github.com/hardlitchi/hidearea-design/actions/workflows/ci.yml)
+[![Storybook](https://github.com/hardlitchi/hidearea-design/actions/workflows/storybook.yml/badge.svg)](https://github.com/hardlitchi/hidearea-design/actions/workflows/storybook.yml)
+[![codecov](https://codecov.io/gh/hardlitchi/hidearea-design/branch/main/graph/badge.svg)](https://codecov.io/gh/hardlitchi/hidearea-design)
+
 Web Componentベースのマルチフレームワーク対応デザインシステム
 
 ## パッケージ
