@@ -1,0 +1,50 @@
+# ボーダートークン - hidearea-design
+
+border:
+  # ボーダー幅
+  width:
+    0:
+      value: '0'
+      comment: 'なし'
+    1:
+      value: '1px'
+      comment: '標準'
+    2:
+      value: '2px'
+      comment: '太い'
+    4:
+      value: '4px'
+      comment: 'とても太い'
+    8:
+      value: '8px'
+      comment: '極太'
+
+  # ボーダー半径（角丸）
+  radius:
+    none:
+      value: '0'
+      comment: '角丸なし'
+    sm:
+      value: '0.125rem'
+      comment: '2px - 小'
+    base:
+      value: '0.25rem'
+      comment: '4px - 標準'
+    md:
+      value: '0.375rem'
+      comment: '6px - 中'
+    lg:
+      value: '0.5rem'
+      comment: '8px - 大'
+    xl:
+      value: '0.75rem'
+      comment: '12px - 特大'
+    '2xl':
+      value: '1rem'
+      comment: '16px'
+    '3xl':
+      value: '1.5rem'
+      comment: '24px'
+    full:
+      value: '9999px'
+      comment: '完全な円形'

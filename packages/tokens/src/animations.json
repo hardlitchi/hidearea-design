@@ -1,0 +1,17 @@
+{
+  "animation": {
+    "duration": {
+      "fast": { "value": "150ms" },
+      "base": { "value": "200ms" },
+      "slow": { "value": "300ms" },
+      "slower": { "value": "500ms" }
+    },
+    "easing": {
+      "linear": { "value": "linear" },
+      "ease": { "value": "ease" },
+      "easeIn": { "value": "ease-in" },
+      "easeOut": { "value": "ease-out" },
+      "easeInOut": { "value": "ease-in-out" }
+    }
+  }
+}

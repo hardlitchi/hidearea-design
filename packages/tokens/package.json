@@ -1,0 +1,34 @@
+{
+  "name": "@hidearea-design/tokens",
+  "version": "0.0.0",
+  "description": "Design tokens for hidearea-design",
+  "type": "module",
+  "main": "./build/js/index.js",
+  "module": "./build/js/index.js",
+  "types": "./build/js/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./build/js/index.d.ts",
+      "import": "./build/js/index.js"
+    },
+    "./css": "./build/css/variables.css",
+    "./scss": "./build/scss/variables.scss"
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "node config.mjs",
+    "clean": "rm -rf build node_modules"
+  },
+  "keywords": [
+    "design-tokens",
+    "design-system",
+    "style-dictionary"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "style-dictionary": "^4.0.0",
+    "yaml": "^2.8.1"
+  }
+}

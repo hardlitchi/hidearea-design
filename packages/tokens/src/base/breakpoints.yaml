@@ -1,0 +1,18 @@
+# ブレークポイントトークン - hidearea-design
+
+breakpoint:
+  sm:
+    value: '640px'
+    comment: 'スマートフォン（横向き）'
+  md:
+    value: '768px'
+    comment: 'タブレット'
+  lg:
+    value: '1024px'
+    comment: 'デスクトップ（小）'
+  xl:
+    value: '1280px'
+    comment: 'デスクトップ（中）'
+  '2xl':
+    value: '1536px'
+    comment: 'デスクトップ（大）'

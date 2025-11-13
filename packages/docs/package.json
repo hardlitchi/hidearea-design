@@ -1,0 +1,23 @@
+{
+  "name": "@hidearea-design/docs",
+  "version": "0.0.0",
+  "description": "Documentation site for hidearea-design",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "clean": "rm -rf .vitepress/dist .vitepress/cache node_modules"
+  },
+  "devDependencies": {
+    "vitepress": "^1.0.0"
+  },
+  "dependencies": {
+    "@hidearea-design/core": "workspace:*",
+    "@hidearea-design/react": "workspace:*",
+    "@hidearea-design/vue": "workspace:*",
+    "@hidearea-design/tokens": "workspace:*",
+    "vue": "^3.4.21"
+  }
+}

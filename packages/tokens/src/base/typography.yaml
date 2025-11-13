@@ -1,0 +1,128 @@
+# タイポグラフィトークン - hidearea-design
+
+font:
+  # フォントファミリー
+  family:
+    sans:
+      value: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+      comment: 'サンセリフフォント（システムフォント）'
+    serif:
+      value: "Georgia, Cambria, 'Times New Roman', Times, serif"
+      comment: 'セリフフォント'
+    mono:
+      value: "'Courier New', Courier, monospace"
+      comment: '等幅フォント'
+
+  # フォントサイズ
+  size:
+    xs:
+      value: '0.75rem'
+      comment: '12px - 極小'
+    sm:
+      value: '0.875rem'
+      comment: '14px - 小'
+    base:
+      value: '1rem'
+      comment: '16px - 基本'
+    lg:
+      value: '1.125rem'
+      comment: '18px - 大'
+    xl:
+      value: '1.25rem'
+      comment: '20px - 特大'
+    '2xl':
+      value: '1.5rem'
+      comment: '24px'
+    '3xl':
+      value: '1.875rem'
+      comment: '30px'
+    '4xl':
+      value: '2.25rem'
+      comment: '36px'
+    '5xl':
+      value: '3rem'
+      comment: '48px'
+    '6xl':
+      value: '3.75rem'
+      comment: '60px'
+    '7xl':
+      value: '4.5rem'
+      comment: '72px'
+    '8xl':
+      value: '6rem'
+      comment: '96px'
+    '9xl':
+      value: '8rem'
+      comment: '128px'
+
+  # フォントウェイト
+  weight:
+    thin:
+      value: '100'
+      comment: '極細'
+    extralight:
+      value: '200'
+      comment: 'とても細い'
+    light:
+      value: '300'
+      comment: '細い'
+    normal:
+      value: '400'
+      comment: '通常'
+    medium:
+      value: '500'
+      comment: '中'
+    semibold:
+      value: '600'
+      comment: 'やや太い'
+    bold:
+      value: '700'
+      comment: '太い'
+    extrabold:
+      value: '800'
+      comment: 'とても太い'
+    black:
+      value: '900'
+      comment: '極太'
+
+  # 行の高さ
+  lineHeight:
+    none:
+      value: '1'
+      comment: '行間なし'
+    tight:
+      value: '1.25'
+      comment: '狭い'
+    snug:
+      value: '1.375'
+      comment: 'やや狭い'
+    normal:
+      value: '1.5'
+      comment: '通常'
+    relaxed:
+      value: '1.625'
+      comment: 'やや広い'
+    loose:
+      value: '2'
+      comment: '広い'
+
+  # レターススペーシング
+  letterSpacing:
+    tighter:
+      value: '-0.05em'
+      comment: 'とても狭い'
+    tight:
+      value: '-0.025em'
+      comment: '狭い'
+    normal:
+      value: '0'
+      comment: '通常'
+    wide:
+      value: '0.025em'
+      comment: '広い'
+    wider:
+      value: '0.05em'
+      comment: 'やや広い'
+    widest:
+      value: '0.1em'
+      comment: '最も広い'

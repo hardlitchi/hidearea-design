@@ -1,0 +1,49 @@
+{
+  "name": "@hidearea-design/react",
+  "version": "0.0.0",
+  "description": "React wrapper for hidearea-design components",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "tsc && vite build",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts,.tsx",
+    "clean": "rm -rf dist node_modules"
+  },
+  "keywords": [
+    "react",
+    "web-components",
+    "design-system",
+    "ui-components"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.73",
+    "@types/react-dom": "^18.2.23",
+    "eslint": "^8.57.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.0",
+    "vitest": "^1.4.0"
+  },
+  "dependencies": {
+    "@hidearea-design/core": "workspace:*"
+  }
+}
