@@ -67,7 +67,7 @@ export const Default: Story = {
     label: 'Accept terms and conditions',
     description: '',
   },
-  render: (args) => html`
+  render: (args, { updateArgs }) => html`
     <ha-checkbox
       size="${args.size}"
       ?checked="${args.checked}"
@@ -77,7 +77,10 @@ export const Default: Story = {
       ?error="${args.error}"
       label="${args.label}"
       description="${args.description}"
-      @change="${(e: CustomEvent) => console.log('Change:', e.detail.checked)}"
+      @change="${(e: CustomEvent) => {
+        console.log('Change:', e.detail.checked);
+        updateArgs({ checked: e.detail.checked, indeterminate: false });
+      }}"
     >
     </ha-checkbox>
   `,
