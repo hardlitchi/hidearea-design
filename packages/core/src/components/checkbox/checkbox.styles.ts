@@ -1,0 +1,178 @@
+import { baseStyles } from '../../styles/base';
+
+export const checkboxStyles = `
+  ${baseStyles}
+
+  :host {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2, 0.5rem);
+    cursor: pointer;
+    font-family: var(--font-family-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  }
+
+  :host([disabled]) {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .checkbox-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  input[type="checkbox"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .checkbox-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--border-width-2, 2px) solid var(--color-gray-300, #d1d5db);
+    border-radius: var(--border-radius-base, 0.25rem);
+    background-color: var(--color-white, #ffffff);
+    transition:
+      border-color var(--animation-duration-base, 200ms) var(--animation-easing-ease, ease),
+      background-color var(--animation-duration-base, 200ms) var(--animation-easing-ease, ease),
+      box-shadow var(--animation-duration-base, 200ms) var(--animation-easing-ease, ease);
+  }
+
+  .checkbox-icon {
+    display: none;
+    color: var(--color-white, #ffffff);
+  }
+
+  /* Focus state */
+  input[type="checkbox"]:focus-visible + .checkbox-box {
+    outline: 2px solid var(--theme-light-primary-default, #3b82f6);
+    outline-offset: 2px;
+  }
+
+  /* Hover state */
+  :host(:not([disabled])) input[type="checkbox"]:not(:checked):hover + .checkbox-box {
+    border-color: var(--color-gray-400, #9ca3af);
+  }
+
+  /* Checked state */
+  input[type="checkbox"]:checked + .checkbox-box {
+    background-color: var(--theme-light-primary-default, #3b82f6);
+    border-color: var(--theme-light-primary-default, #3b82f6);
+  }
+
+  input[type="checkbox"]:checked + .checkbox-box .checkbox-icon {
+    display: block;
+  }
+
+  input[type="checkbox"]:checked:hover + .checkbox-box {
+    background-color: var(--theme-light-primary-hover, #2563eb);
+    border-color: var(--theme-light-primary-hover, #2563eb);
+  }
+
+  /* Indeterminate state */
+  input[type="checkbox"]:indeterminate + .checkbox-box {
+    background-color: var(--theme-light-primary-default, #3b82f6);
+    border-color: var(--theme-light-primary-default, #3b82f6);
+  }
+
+  input[type="checkbox"]:indeterminate + .checkbox-box .checkbox-icon {
+    display: block;
+  }
+
+  /* Error state */
+  :host([error]) .checkbox-box {
+    border-color: var(--theme-light-error-default, #ef4444);
+  }
+
+  :host([error]) input[type="checkbox"]:checked + .checkbox-box {
+    background-color: var(--theme-light-error-default, #ef4444);
+    border-color: var(--theme-light-error-default, #ef4444);
+  }
+
+  :host([error]) input[type="checkbox"]:focus-visible + .checkbox-box {
+    outline-color: var(--theme-light-error-default, #ef4444);
+  }
+
+  /* Size: Small */
+  :host([size="sm"]) .checkbox-box {
+    width: 16px;
+    height: 16px;
+  }
+
+  :host([size="sm"]) .checkbox-icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  :host([size="sm"]) .label {
+    font-size: var(--font-size-sm, 0.875rem);
+  }
+
+  /* Size: Medium (default) */
+  :host([size="md"]) .checkbox-box,
+  .checkbox-box {
+    width: 20px;
+    height: 20px;
+  }
+
+  :host([size="md"]) .checkbox-icon,
+  .checkbox-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  :host([size="md"]) .label,
+  .label {
+    font-size: var(--font-size-base, 1rem);
+  }
+
+  /* Size: Large */
+  :host([size="lg"]) .checkbox-box {
+    width: 24px;
+    height: 24px;
+  }
+
+  :host([size="lg"]) .checkbox-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  :host([size="lg"]) .label {
+    font-size: var(--font-size-lg, 1.125rem);
+  }
+
+  /* Label */
+  .label {
+    font-weight: var(--font-weight-regular, 400);
+    line-height: var(--font-line-height-normal, 1.5);
+    color: var(--color-gray-900, #111827);
+    user-select: none;
+  }
+
+  :host([disabled]) .label {
+    color: var(--color-gray-500, #6b7280);
+  }
+
+  /* Description */
+  .description {
+    display: block;
+    font-size: var(--font-size-sm, 0.875rem);
+    color: var(--color-gray-500, #6b7280);
+    margin-top: var(--spacing-1, 0.25rem);
+  }
+
+  :host([error]) .description {
+    color: var(--theme-light-error-default, #ef4444);
+  }
+`;

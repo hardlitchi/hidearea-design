@@ -17,5 +17,6 @@ export default defineConfig({
     },
     sourcemap: true,
     outDir: 'dist',
+    emptyOutDir: false, // Don't clear the dist folder to preserve TypeScript declaration files
   },
 });

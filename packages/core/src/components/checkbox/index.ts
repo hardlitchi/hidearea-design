@@ -1,0 +1,1 @@
+export { HaCheckbox } from './checkbox';

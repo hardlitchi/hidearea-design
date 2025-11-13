@@ -11,6 +11,7 @@
       "types": "./build/js/index.d.ts",
       "import": "./build/js/index.js"
     },
+    "./build/css/variables.css": "./build/css/variables.css",
     "./css": "./build/css/variables.css",
     "./scss": "./build/scss/variables.scss"
   },
