@@ -28,7 +28,7 @@
     "docs:deploy": "pm2 stop DesignDocs | pm2 delete DesignDocs | pm2 serve ./packages/docs/.vitepress/dist 5174 --name DesignDocs"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.1",
+    "@changesets/cli": "^2.29.7",
     "prettier": "^3.2.5",
     "turbo": "^2.0.0",
     "typescript": "^5.4.5"
