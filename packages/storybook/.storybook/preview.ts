@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/web-components';
+import type { Preview } from '@storybook/web-components-vite';
 import '@hidearea-design/tokens/build/css/variables.css';
 
 const preview: Preview = {
