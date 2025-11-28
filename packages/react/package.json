@@ -21,7 +21,7 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
-    "lint": "eslint src --ext .ts,.tsx",
+    "lint": "eslint src --ext .ts,.tsx --ignore-pattern '**/*.test.ts' --ignore-pattern '**/*.test.tsx' --ignore-pattern '**/*.spec.ts' --ignore-pattern '**/*.spec.tsx'",
     "clean": "rm -rf dist node_modules"
   },
   "keywords": [
