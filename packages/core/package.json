@@ -24,7 +24,8 @@
     "build": "tsc && vite build",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "lint": "eslint src --ext .ts",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src --ext .ts --ignore-pattern '**/*.test.ts' --ignore-pattern '**/*.spec.ts'",
     "clean": "rm -rf dist node_modules"
   },
   "keywords": [
@@ -35,11 +36,15 @@
   "license": "MIT",
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.9.0",
+    "@testing-library/dom": "^10.4.1",
     "@types/node": "^20.11.30",
+    "@vitest/coverage-v8": "^4.0.8",
+    "@vitest/ui": "^4.0.8",
     "eslint": "^8.57.0",
+    "happy-dom": "^20.0.10",
     "typescript": "^5.4.5",
     "vite": "^5.2.0",
-    "vitest": "^1.4.0"
+    "vitest": "^4.0.8"
   },
   "dependencies": {
     "@hidearea-design/tokens": "workspace:*"

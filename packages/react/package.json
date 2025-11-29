@@ -19,7 +19,9 @@
     "dev": "vite build --watch",
     "build": "tsc && vite build",
     "test": "vitest",
-    "lint": "eslint src --ext .ts,.tsx",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src --ext .ts,.tsx --ignore-pattern '**/*.test.ts' --ignore-pattern '**/*.test.tsx' --ignore-pattern '**/*.spec.ts' --ignore-pattern '**/*.spec.tsx'",
     "clean": "rm -rf dist node_modules"
   },
   "keywords": [
@@ -34,15 +36,20 @@
     "react-dom": ">=18.0.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
     "@types/react": "^18.2.73",
     "@types/react-dom": "^18.2.23",
     "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^4.0.8",
+    "@vitest/ui": "^4.0.8",
     "eslint": "^8.57.0",
+    "happy-dom": "^20.0.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.4.5",
     "vite": "^5.2.0",
-    "vitest": "^1.4.0"
+    "vitest": "^4.0.8"
   },
   "dependencies": {
     "@hidearea-design/core": "workspace:*"

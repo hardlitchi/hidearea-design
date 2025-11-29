@@ -1,0 +1,117 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build core package
+        run: pnpm --filter @hidearea-design/core build
+
+      - name: Run tests (Core)
+        run: pnpm --filter @hidearea-design/core test:coverage
+
+      - name: Run tests (React)
+        run: pnpm --filter @hidearea-design/react test:coverage
+
+      - name: Upload coverage reports to Codecov (Core)
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./packages/core/coverage/coverage-final.json
+          flags: core
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+
+      - name: Upload coverage reports to Codecov (React)
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./packages/react/coverage/coverage-final.json
+          flags: react
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run lint (Core)
+        run: pnpm --filter @hidearea-design/core lint
+
+      - name: Run lint (React)
+        run: pnpm --filter @hidearea-design/react lint
+
+      - name: Run lint (Vue)
+        run: pnpm --filter @hidearea-design/vue lint
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build all packages
+        run: pnpm build
+
+      - name: Check build artifacts
+        run: |
+          test -d packages/core/dist || exit 1
+          test -d packages/react/dist || exit 1
+          test -d packages/vue/dist || exit 1
+          test -d packages/tokens/build || exit 1
+          echo "All build artifacts present"
