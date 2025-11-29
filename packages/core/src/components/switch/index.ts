@@ -1,0 +1,1 @@
+export { HaSwitch } from './switch';
