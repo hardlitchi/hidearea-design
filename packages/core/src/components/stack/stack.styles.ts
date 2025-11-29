@@ -1,0 +1,67 @@
+export const stackStyles = `
+  :host {
+    display: block;
+  }
+
+  [part="stack"] {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Direction */
+  :host([direction="vertical"]) [part="stack"] {
+    flex-direction: column;
+  }
+
+  :host([direction="horizontal"]) [part="stack"] {
+    flex-direction: row;
+  }
+
+  /* Wrap */
+  :host([wrap]) [part="stack"] {
+    flex-wrap: wrap;
+  }
+
+  /* Align */
+  :host([align="start"]) [part="stack"] {
+    align-items: flex-start;
+  }
+
+  :host([align="center"]) [part="stack"] {
+    align-items: center;
+  }
+
+  :host([align="end"]) [part="stack"] {
+    align-items: flex-end;
+  }
+
+  :host([align="stretch"]) [part="stack"] {
+    align-items: stretch;
+  }
+
+  /* Justify */
+  :host([justify="start"]) [part="stack"] {
+    justify-content: flex-start;
+  }
+
+  :host([justify="center"]) [part="stack"] {
+    justify-content: center;
+  }
+
+  :host([justify="end"]) [part="stack"] {
+    justify-content: flex-end;
+  }
+
+  :host([justify="space-between"]) [part="stack"] {
+    justify-content: space-between;
+  }
+
+  :host([justify="space-around"]) [part="stack"] {
+    justify-content: space-around;
+  }
+
+  :host([justify="space-evenly"]) [part="stack"] {
+    justify-content: space-evenly;
+  }
+`;

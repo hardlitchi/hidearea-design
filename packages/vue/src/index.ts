@@ -2,9 +2,19 @@ import type { App } from 'vue';
 import Button from './Button.vue';
 import Input from './Input.vue';
 import Checkbox from './Checkbox.vue';
+import Container from './Container.vue';
+import Grid from './Grid.vue';
+import Stack from './Stack.vue';
 
-export { Button, Input, Checkbox };
-export type { ButtonProps, InputProps, CheckboxProps } from './types';
+export { Button, Input, Checkbox, Container, Grid, Stack };
+export type {
+  ButtonProps,
+  InputProps,
+  CheckboxProps,
+  ContainerProps,
+  GridProps,
+  StackProps,
+} from './types';
 
 // Vue plugin for installing all components
 export default {
@@ -12,5 +22,8 @@ export default {
     app.component('HaButton', Button);
     app.component('HaInput', Input);
     app.component('HaCheckbox', Checkbox);
+    app.component('HaContainer', Container);
+    app.component('HaGrid', Grid);
+    app.component('HaStack', Stack);
   },
 };
