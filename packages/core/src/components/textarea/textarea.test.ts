@@ -149,6 +149,48 @@ describe('HaTextarea', () => {
       const internalTextarea = queryShadow(textarea, 'textarea') as HTMLTextAreaElement;
       expect(internalTextarea.name).toBe('test-name');
     });
+
+    it('should remove readonly attribute when set to false', () => {
+      textarea.readonly = true;
+      expect(textarea.hasAttribute('readonly')).toBe(true);
+      textarea.readonly = false;
+      expect(textarea.hasAttribute('readonly')).toBe(false);
+    });
+
+    it('should remove required attribute when set to false', () => {
+      textarea.required = true;
+      expect(textarea.hasAttribute('required')).toBe(true);
+      textarea.required = false;
+      expect(textarea.hasAttribute('required')).toBe(false);
+    });
+
+    it('should remove error attribute when set to false', () => {
+      textarea.error = true;
+      expect(textarea.hasAttribute('error')).toBe(true);
+      textarea.error = false;
+      expect(textarea.hasAttribute('error')).toBe(false);
+    });
+
+    it('should remove fullWidth attribute when set to false', () => {
+      textarea.fullWidth = true;
+      expect(textarea.hasAttribute('full-width')).toBe(true);
+      textarea.fullWidth = false;
+      expect(textarea.hasAttribute('full-width')).toBe(false);
+    });
+
+    it('should remove name attribute when set to null', () => {
+      textarea.name = 'test-name';
+      expect(textarea.hasAttribute('name')).toBe(true);
+      textarea.name = null;
+      expect(textarea.hasAttribute('name')).toBe(false);
+    });
+
+    it('should remove disabled attribute when set to false', () => {
+      textarea.disabled = true;
+      expect(textarea.hasAttribute('disabled')).toBe(true);
+      textarea.disabled = false;
+      expect(textarea.hasAttribute('disabled')).toBe(false);
+    });
   });
 
   describe('Events', () => {

@@ -124,6 +124,62 @@ describe('HaRadio', () => {
       expect(radio.description).toBe('Test Description');
       expect(radio.getAttribute('description')).toBe('Test Description');
     });
+
+    it('should remove name attribute when set to null', () => {
+      radio.name = 'test-name';
+      expect(radio.hasAttribute('name')).toBe(true);
+      radio.name = null;
+      expect(radio.hasAttribute('name')).toBe(false);
+    });
+
+    it('should remove value attribute when set to null', () => {
+      radio.value = 'test-value';
+      expect(radio.hasAttribute('value')).toBe(true);
+      radio.value = null;
+      expect(radio.hasAttribute('value')).toBe(false);
+    });
+
+    it('should remove label attribute when set to null', () => {
+      radio.label = 'Test Label';
+      expect(radio.hasAttribute('label')).toBe(true);
+      radio.label = null;
+      expect(radio.hasAttribute('label')).toBe(false);
+    });
+
+    it('should remove description attribute when set to null', () => {
+      radio.description = 'Test Description';
+      expect(radio.hasAttribute('description')).toBe(true);
+      radio.description = null;
+      expect(radio.hasAttribute('description')).toBe(false);
+    });
+
+    it('should remove error attribute when set to false', () => {
+      radio.error = true;
+      expect(radio.hasAttribute('error')).toBe(true);
+      radio.error = false;
+      expect(radio.hasAttribute('error')).toBe(false);
+    });
+
+    it('should remove disabled attribute when set to false', () => {
+      radio.disabled = true;
+      expect(radio.hasAttribute('disabled')).toBe(true);
+      radio.disabled = false;
+      expect(radio.hasAttribute('disabled')).toBe(false);
+    });
+
+    it('should remove required attribute when set to false', () => {
+      radio.required = true;
+      expect(radio.hasAttribute('required')).toBe(true);
+      radio.required = false;
+      expect(radio.hasAttribute('required')).toBe(false);
+    });
+
+    it('should remove checked attribute when set to false', () => {
+      radio.checked = true;
+      expect(radio.hasAttribute('checked')).toBe(true);
+      radio.checked = false;
+      expect(radio.hasAttribute('checked')).toBe(false);
+    });
   });
 
   describe('Radio Group Behavior', () => {

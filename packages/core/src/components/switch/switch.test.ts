@@ -124,6 +124,62 @@ describe('HaSwitch', () => {
       expect(switchElem.description).toBe('Test Description');
       expect(switchElem.getAttribute('description')).toBe('Test Description');
     });
+
+    it('should remove name attribute when set to null', () => {
+      switchElem.name = 'test-name';
+      expect(switchElem.hasAttribute('name')).toBe(true);
+      switchElem.name = null;
+      expect(switchElem.hasAttribute('name')).toBe(false);
+    });
+
+    it('should remove value attribute when set to null', () => {
+      switchElem.value = 'test-value';
+      expect(switchElem.hasAttribute('value')).toBe(true);
+      switchElem.value = null;
+      expect(switchElem.hasAttribute('value')).toBe(false);
+    });
+
+    it('should remove label attribute when set to null', () => {
+      switchElem.label = 'Test Label';
+      expect(switchElem.hasAttribute('label')).toBe(true);
+      switchElem.label = null;
+      expect(switchElem.hasAttribute('label')).toBe(false);
+    });
+
+    it('should remove description attribute when set to null', () => {
+      switchElem.description = 'Test Description';
+      expect(switchElem.hasAttribute('description')).toBe(true);
+      switchElem.description = null;
+      expect(switchElem.hasAttribute('description')).toBe(false);
+    });
+
+    it('should remove error attribute when set to false', () => {
+      switchElem.error = true;
+      expect(switchElem.hasAttribute('error')).toBe(true);
+      switchElem.error = false;
+      expect(switchElem.hasAttribute('error')).toBe(false);
+    });
+
+    it('should remove disabled attribute when set to false', () => {
+      switchElem.disabled = true;
+      expect(switchElem.hasAttribute('disabled')).toBe(true);
+      switchElem.disabled = false;
+      expect(switchElem.hasAttribute('disabled')).toBe(false);
+    });
+
+    it('should remove required attribute when set to false', () => {
+      switchElem.required = true;
+      expect(switchElem.hasAttribute('required')).toBe(true);
+      switchElem.required = false;
+      expect(switchElem.hasAttribute('required')).toBe(false);
+    });
+
+    it('should remove checked attribute when set to false', () => {
+      switchElem.checked = true;
+      expect(switchElem.hasAttribute('checked')).toBe(true);
+      switchElem.checked = false;
+      expect(switchElem.hasAttribute('checked')).toBe(false);
+    });
   });
 
   describe('Toggle Behavior', () => {
