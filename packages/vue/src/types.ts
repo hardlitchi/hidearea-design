@@ -40,3 +40,32 @@ export interface CheckboxProps {
   label?: string;
   description?: string;
 }
+
+export interface ContainerProps {
+  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
+  centered?: boolean;
+  padding?: 'none' | 'sm' | 'md' | 'lg';
+}
+
+export interface GridProps {
+  columns?: string;
+  gap?: string;
+  rowGap?: string;
+  columnGap?: string;
+  alignItems?: 'start' | 'center' | 'end' | 'stretch';
+  justifyItems?: 'start' | 'center' | 'end' | 'stretch';
+}
+
+export interface StackProps {
+  direction?: 'vertical' | 'horizontal';
+  gap?: string;
+  align?: 'start' | 'center' | 'end' | 'stretch';
+  justify?:
+    | 'start'
+    | 'center'
+    | 'end'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly';
+  wrap?: boolean;
+}
