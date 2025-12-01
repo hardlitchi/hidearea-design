@@ -81,11 +81,11 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 | # | コンポーネント | バリアント | サイズ | Storybook | テスト | React | Vue |
 |---|--------------|-----------|--------|-----------|--------|-------|-----|
-| 7 | **FormGroup** | - | - | 10個 | ✅ | ⏳ | ⏳ |
-| 8 | **Select** | 3種類 | 3種類 | 12個 | ✅ | ⏳ | ⏳ |
-| 9 | **Radio** | - | 3種類 | 15個 | ✅ | ⏳ | ⏳ |
-| 10 | **Textarea** | 3種類 | 3種類 | 12個 | ✅ | ⏳ | ⏳ |
-| 11 | **Switch** | - | 3種類 | 14個 | ✅ | ⏳ | ⏳ |
+| 7 | **FormGroup** | - | - | 10個 | ✅ | ✅ | ✅ |
+| 8 | **Select** | 3種類 | 3種類 | 12個 | ✅ | ✅ | ✅ |
+| 9 | **Radio** | - | 3種類 | 15個 | ✅ | ✅ | ✅ |
+| 10 | **Textarea** | 3種類 | 3種類 | 12個 | ✅ | ✅ | ✅ |
+| 11 | **Switch** | - | 3種類 | 14個 | ✅ | ✅ | ✅ |
 
 #### FormGroup
 - **機能**: label、helper-text、error-text表示、required表示
@@ -159,25 +159,21 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ## フレームワークサポート状況
 
-### React ラッパー: 11/16 コンポーネント
+### React ラッパー: 16/16 コンポーネント ✅ **100%完了**
 
 **実装済み**:
 - ✅ Button, Input, Checkbox (Phase 1)
 - ✅ Container, Grid, Stack (Phase 2)
+- ✅ FormGroup, Select, Radio, Textarea, Switch (Phase 3) ✨
 - ✅ Alert, Badge, Card, Progress, Spinner (Phase 4)
 
-**未実装**:
-- ⏳ FormGroup, Select, Radio, Textarea, Switch (Phase 3)
-
-### Vue ラッパー: 11/16 コンポーネント
+### Vue ラッパー: 16/16 コンポーネント ✅ **100%完了**
 
 **実装済み**:
 - ✅ Button, Input, Checkbox (Phase 1)
 - ✅ Container, Grid, Stack (Phase 2)
+- ✅ FormGroup, Select, Radio, Textarea, Switch (Phase 3) ✨
 - ✅ Alert, Badge, Card, Progress, Spinner (Phase 4)
-
-**未実装**:
-- ⏳ FormGroup, Select, Radio, Textarea, Switch (Phase 3)
 
 ---
 
@@ -263,8 +259,9 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 10. `09_Phase2_Phase3コンポーネント完了.md` - Phase 2/3完了
 11. `10_不足コンポーネント分析.md` - 不足コンポーネント分析
 12. `11_Phase4_Part1_Alert_Badge完了.md` - Phase 4 Part 1完了
-13. **`12_Phase4_Part2_Card_Progress_Spinner完了.md`** - Phase 4 Part 2完了 ✨ 新規
-14. **`README.md`** - このファイル（実装状況サマリー）
+13. `12_Phase4_Part2_Card_Progress_Spinner完了.md` - Phase 4 Part 2完了
+14. **`13_Phase3.5_React_Vue_Wrappers完了.md`** - Phase 3.5完了 ✨ 新規
+15. **`README.md`** - このファイル（実装状況サマリー）
 
 ---
 
@@ -304,13 +301,16 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 - `main` - 本番リリース用
 
 ### 作業ブランチ（現在）
-- **`feature/phase4-card-progress-components`** - Phase 4 Part 2実装 ✨
-  - Card コンポーネント実装済み
-  - Progress コンポーネント実装済み
-  - Spinner コンポーネント実装済み
-  - PR #9: https://github.com/hardlitchi/hidearea-design/pull/9
+- **`feature/phase3-react-vue-wrappers`** - Phase 3.5実装 ✨
+  - FormGroup React/Vue ラッパー実装済み
+  - Select React/Vue ラッパー実装済み
+  - Radio React/Vue ラッパー実装済み
+  - Textarea React/Vue ラッパー実装済み
+  - Switch React/Vue ラッパー実装済み
+  - PR #10: https://github.com/hardlitchi/hidearea-design/pull/10
 
 ### 過去のフィーチャーブランチ（マージ済み）
+- `feature/phase4-card-progress-components` - Phase 4 Part 2 (Card, Progress, Spinner)
 - `feature/phase4-feedback-display-components` - Phase 4 Part 1 (Alert, Badge)
 - `feature/additional-form-components` - Phase 3
 - `feature/button-component` - Phase 1
@@ -365,15 +365,7 @@ packages/
 
 ## 次のステップ
 
-### 短期（Phase 3.5: ラッパー補完） - 推奨
-**React/Vue ラッパー追加** - Phase 3の5コンポーネント
-- FormGroup
-- Select
-- Radio
-- Textarea
-- Switch
-
-### 中期（Phase 5: ナビゲーション）
+### 短期（Phase 5: ナビゲーション） - 推奨
 **ナビゲーションコンポーネント** - 4コンポーネント
 - Tabs
 - Menu/Dropdown
@@ -392,10 +384,12 @@ packages/
 - ✅ **Phase 1 完了**: 基本フォームコンポーネント (2025-11-13)
 - ✅ **Phase 2 完了**: レイアウトコンポーネント (2025-11-30)
 - ✅ **Phase 3 完了**: 追加フォームコンポーネント (2025-11-30)
-- ✅ **Phase 4 完了**: フィードバック・表示コンポーネント (2025-12-01) ✨
+- ✅ **Phase 4 完了**: フィードバック・表示コンポーネント (2025-12-01)
   - ✅ Part 1: Alert & Badge
   - ✅ Part 2: Card, Progress, Spinner
-- ⏳ **Phase 3.5**: React/Vueラッパー補完
+- ✅ **Phase 3.5 完了**: React/Vueラッパー補完 (2025-12-01) ✨
+  - ✅ FormGroup, Select, Radio, Textarea, Switch
+  - ✅ フレームワークサポート率 100%達成
 - ⏳ **Phase 5**: ナビゲーションコンポーネント
 - ⏳ **Phase 6**: モーダル・高度なフィードバック
 - ⏳ **Phase 7**: データ表示・レイアウト拡張
@@ -412,5 +406,6 @@ packages/
 
 **最終更新日**: 2025-12-01
 **総コンポーネント数**: 16/30 (53%)
-**Phase 4進捗**: 5/5 (100%) ✅ **完了**
 **Phase 1-4完了**: 16/16 (100%) ✅
+**React/Vueラッパー**: 16/16 (100%) ✅ **完了** ✨
+**Phase 3.5完了**: フレームワークサポート率 100%達成 ✨
