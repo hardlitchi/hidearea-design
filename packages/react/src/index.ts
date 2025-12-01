@@ -30,3 +30,18 @@ export type { ProgressProps } from './Progress';
 
 export { Spinner } from './Spinner';
 export type { SpinnerProps } from './Spinner';
+
+export { FormGroup } from './FormGroup';
+export type { FormGroupProps } from './FormGroup';
+
+export { Select } from './Select';
+export type { SelectProps } from './Select';
+
+export { Radio } from './Radio';
+export type { RadioProps } from './Radio';
+
+export { Textarea } from './Textarea';
+export type { TextareaProps } from './Textarea';
+
+export { Switch } from './Switch';
+export type { SwitchProps } from './Switch';
