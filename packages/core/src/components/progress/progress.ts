@@ -32,7 +32,8 @@ export class HaProgress extends HTMLElement {
   }
 
   get variant(): 'default' | 'striped' | 'animated' {
-    return (this.getAttribute('variant') as any) || 'default';
+    const value = this.getAttribute('variant');
+    return (value as 'default' | 'striped' | 'animated') || 'default';
   }
 
   set variant(val: 'default' | 'striped' | 'animated') {
@@ -40,7 +41,8 @@ export class HaProgress extends HTMLElement {
   }
 
   get color(): 'primary' | 'success' | 'warning' | 'error' | 'info' {
-    return (this.getAttribute('color') as any) || 'primary';
+    const value = this.getAttribute('color');
+    return (value as 'primary' | 'success' | 'warning' | 'error' | 'info') || 'primary';
   }
 
   set color(val: 'primary' | 'success' | 'warning' | 'error' | 'info') {
@@ -48,7 +50,8 @@ export class HaProgress extends HTMLElement {
   }
 
   get size(): 'sm' | 'md' | 'lg' {
-    return (this.getAttribute('size') as any) || 'md';
+    const value = this.getAttribute('size');
+    return (value as 'sm' | 'md' | 'lg') || 'md';
   }
 
   set size(val: 'sm' | 'md' | 'lg') {

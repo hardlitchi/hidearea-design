@@ -13,7 +13,8 @@ export class HaSpinner extends HTMLElement {
   }
 
   get size(): 'xs' | 'sm' | 'md' | 'lg' | 'xl' {
-    return (this.getAttribute('size') as any) || 'md';
+    const value = this.getAttribute('size');
+    return (value as 'xs' | 'sm' | 'md' | 'lg' | 'xl') || 'md';
   }
 
   set size(val: 'xs' | 'sm' | 'md' | 'lg' | 'xl') {
@@ -27,7 +28,8 @@ export class HaSpinner extends HTMLElement {
     | 'error'
     | 'info'
     | 'neutral' {
-    return (this.getAttribute('color') as any) || 'primary';
+    const value = this.getAttribute('color');
+    return (value as 'primary' | 'success' | 'warning' | 'error' | 'info' | 'neutral') || 'primary';
   }
 
   set color(
@@ -37,7 +39,8 @@ export class HaSpinner extends HTMLElement {
   }
 
   get variant(): 'circular' | 'dots' | 'pulse' {
-    return (this.getAttribute('variant') as any) || 'circular';
+    const value = this.getAttribute('variant');
+    return (value as 'circular' | 'dots' | 'pulse') || 'circular';
   }
 
   set variant(val: 'circular' | 'dots' | 'pulse') {
