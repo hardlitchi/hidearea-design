@@ -10,6 +10,8 @@ export { HaGrid } from './components/grid';
 export { HaStack } from './components/stack';
 export { HaFormGroup } from './components/form-group';
 export { HaSelect } from './components/select';
+export { HaAlert } from './components/alert';
+export { HaBadge } from './components/badge';
 
 // Export types if needed
 export type { HaButton as HaButtonElement } from './components/button/button';
@@ -23,3 +25,5 @@ export type { HaGrid as HaGridElement } from './components/grid/grid';
 export type { HaStack as HaStackElement } from './components/stack/stack';
 export type { HaFormGroup as HaFormGroupElement } from './components/form-group/form-group';
 export type { HaSelect as HaSelectElement } from './components/select/select';
+export type { HaAlert as HaAlertElement } from './components/alert/alert';
+export type { HaBadge as HaBadgeElement } from './components/badge/badge';

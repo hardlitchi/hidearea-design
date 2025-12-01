@@ -15,3 +15,9 @@ export type { GridProps } from './Grid';
 
 export { Stack } from './Stack';
 export type { StackProps } from './Stack';
+
+export { Alert } from './Alert';
+export type { AlertProps, AlertRef } from './Alert';
+
+export { Badge } from './Badge';
+export type { BadgeProps, BadgeRef } from './Badge';

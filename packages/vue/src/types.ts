@@ -69,3 +69,20 @@ export interface StackProps {
     | 'space-evenly';
   wrap?: boolean;
 }
+
+export interface AlertProps {
+  variant?: 'info' | 'success' | 'warning' | 'error';
+  styleVariant?: 'filled' | 'outlined' | 'soft';
+  title?: string;
+  closable?: boolean;
+  showIcon?: boolean;
+}
+
+export interface BadgeProps {
+  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
+  styleVariant?: 'filled' | 'outlined' | 'soft';
+  size?: 'sm' | 'md' | 'lg';
+  pill?: boolean;
+  dot?: boolean;
+  removable?: boolean;
+}

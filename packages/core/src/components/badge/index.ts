@@ -1,0 +1,1 @@
+export { HaBadge } from './badge';
