@@ -51,3 +51,5 @@ export type { TooltipProps } from './Tooltip';
 
 export { Tabs } from './Tabs';
 export type { TabsProps } from './Tabs';
+export { Breadcrumb } from './Breadcrumb';
+export type { BreadcrumbProps } from './Breadcrumb';

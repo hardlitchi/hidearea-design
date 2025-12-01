@@ -200,3 +200,8 @@ export interface TabsProps {
   size?: 'sm' | 'md' | 'lg';
   align?: 'start' | 'center' | 'end';
 }
+
+export interface BreadcrumbProps {
+  separator?: 'slash' | 'chevron' | 'arrow' | 'dot';
+  size?: 'sm' | 'md' | 'lg';
+}

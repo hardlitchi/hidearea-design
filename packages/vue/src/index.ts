@@ -17,8 +17,9 @@ import Textarea from './Textarea.vue';
 import Switch from './Switch.vue';
 import Tooltip from './Tooltip.vue';
 import Tabs from './Tabs.vue';
+import Breadcrumb from './Breadcrumb.vue';
 
-export { Button, Input, Checkbox, Container, Grid, Stack, Alert, Badge, Card, Progress, Spinner, FormGroup, Select, Radio, Textarea, Switch, Tooltip, Tabs };
+export { Button, Input, Checkbox, Container, Grid, Stack, Alert, Badge, Card, Progress, Spinner, FormGroup, Select, Radio, Textarea, Switch, Tooltip, Tabs, Breadcrumb };
 export type {
   ButtonProps,
   InputProps,
@@ -38,6 +39,7 @@ export type {
   SwitchProps,
   TooltipProps,
   TabsProps,
+  BreadcrumbProps,
 } from './types';
 
 // Vue plugin for installing all components
@@ -61,5 +63,6 @@ export default {
     app.component('HaSwitch', Switch);
     app.component('HaTooltip', Tooltip);
     app.component('HaTabs', Tabs);
+    app.component('HaBreadcrumb', Breadcrumb);
   },
 };
