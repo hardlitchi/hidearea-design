@@ -109,3 +109,64 @@ export interface SpinnerProps {
   variant?: 'circular' | 'dots' | 'pulse';
   speed?: string;
 }
+
+export interface FormGroupProps {
+  label?: string;
+  helperText?: string;
+  errorText?: string;
+  required?: boolean;
+  error?: boolean;
+  disabled?: boolean;
+}
+
+export interface SelectProps {
+  variant?: 'default' | 'filled' | 'outlined';
+  size?: 'sm' | 'md' | 'lg';
+  modelValue?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  required?: boolean;
+  error?: boolean;
+  fullWidth?: boolean;
+  name?: string;
+}
+
+export interface RadioProps {
+  size?: 'sm' | 'md' | 'lg';
+  checked?: boolean;
+  disabled?: boolean;
+  required?: boolean;
+  error?: boolean;
+  name?: string;
+  value?: string;
+  label?: string;
+  description?: string;
+}
+
+export interface TextareaProps {
+  variant?: 'default' | 'filled' | 'outlined';
+  size?: 'sm' | 'md' | 'lg';
+  modelValue?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  readonly?: boolean;
+  required?: boolean;
+  error?: boolean;
+  rows?: number;
+  resize?: 'none' | 'both' | 'horizontal' | 'vertical';
+  name?: string;
+  maxlength?: number;
+  minlength?: number;
+}
+
+export interface SwitchProps {
+  size?: 'sm' | 'md' | 'lg';
+  checked?: boolean;
+  disabled?: boolean;
+  required?: boolean;
+  error?: boolean;
+  name?: string;
+  value?: string;
+  label?: string;
+  description?: string;
+}
