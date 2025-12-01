@@ -12,6 +12,9 @@ export { HaFormGroup } from './components/form-group';
 export { HaSelect } from './components/select';
 export { HaAlert } from './components/alert';
 export { HaBadge } from './components/badge';
+export { HaCard } from './components/card';
+export { HaProgress } from './components/progress';
+export { HaSpinner } from './components/spinner';
 
 // Export types if needed
 export type { HaButton as HaButtonElement } from './components/button/button';
@@ -27,3 +30,6 @@ export type { HaFormGroup as HaFormGroupElement } from './components/form-group/
 export type { HaSelect as HaSelectElement } from './components/select/select';
 export type { HaAlert as HaAlertElement } from './components/alert/alert';
 export type { HaBadge as HaBadgeElement } from './components/badge/badge';
+export type { HaCard as HaCardElement } from './components/card/card';
+export type { HaProgress as HaProgressElement } from './components/progress/progress';
+export type { HaSpinner as HaSpinnerElement } from './components/spinner/spinner';

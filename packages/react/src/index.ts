@@ -21,3 +21,12 @@ export type { AlertProps, AlertRef } from './Alert';
 
 export { Badge } from './Badge';
 export type { BadgeProps, BadgeRef } from './Badge';
+
+export { Card } from './Card';
+export type { CardProps } from './Card';
+
+export { Progress } from './Progress';
+export type { ProgressProps } from './Progress';
+
+export { Spinner } from './Spinner';
+export type { SpinnerProps } from './Spinner';

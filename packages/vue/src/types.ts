@@ -86,3 +86,26 @@ export interface BadgeProps {
   dot?: boolean;
   removable?: boolean;
 }
+
+export interface CardProps {
+  variant?: 'default' | 'outlined' | 'elevated';
+  padding?: 'none' | 'sm' | 'md' | 'lg';
+  hoverable?: boolean;
+  clickable?: boolean;
+}
+
+export interface ProgressProps {
+  value?: number;
+  max?: number;
+  variant?: 'default' | 'striped' | 'animated';
+  color?: 'primary' | 'success' | 'warning' | 'error' | 'info';
+  size?: 'sm' | 'md' | 'lg';
+  showLabel?: boolean;
+}
+
+export interface SpinnerProps {
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  color?: 'primary' | 'success' | 'warning' | 'error' | 'info' | 'neutral';
+  variant?: 'circular' | 'dots' | 'pulse';
+  speed?: string;
+}
