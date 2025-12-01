@@ -170,3 +170,26 @@ export interface SwitchProps {
   label?: string;
   description?: string;
 }
+
+export interface TooltipProps {
+  content?: string;
+  placement?:
+    | 'top'
+    | 'top-start'
+    | 'top-end'
+    | 'bottom'
+    | 'bottom-start'
+    | 'bottom-end'
+    | 'left'
+    | 'left-start'
+    | 'left-end'
+    | 'right'
+    | 'right-start'
+    | 'right-end';
+  trigger?: 'hover' | 'focus' | 'click';
+  variant?: 'default' | 'dark' | 'light';
+  size?: 'sm' | 'md' | 'lg';
+  showArrow?: boolean;
+  delay?: number;
+  disabled?: boolean;
+}

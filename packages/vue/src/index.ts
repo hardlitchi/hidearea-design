@@ -15,8 +15,9 @@ import Select from './Select.vue';
 import Radio from './Radio.vue';
 import Textarea from './Textarea.vue';
 import Switch from './Switch.vue';
+import Tooltip from './Tooltip.vue';
 
-export { Button, Input, Checkbox, Container, Grid, Stack, Alert, Badge, Card, Progress, Spinner, FormGroup, Select, Radio, Textarea, Switch };
+export { Button, Input, Checkbox, Container, Grid, Stack, Alert, Badge, Card, Progress, Spinner, FormGroup, Select, Radio, Textarea, Switch, Tooltip };
 export type {
   ButtonProps,
   InputProps,
@@ -34,6 +35,7 @@ export type {
   RadioProps,
   TextareaProps,
   SwitchProps,
+  TooltipProps,
 } from './types';
 
 // Vue plugin for installing all components
@@ -55,5 +57,6 @@ export default {
     app.component('HaRadio', Radio);
     app.component('HaTextarea', Textarea);
     app.component('HaSwitch', Switch);
+    app.component('HaTooltip', Tooltip);
   },
 };

@@ -15,6 +15,7 @@ export { HaBadge } from './components/badge';
 export { HaCard } from './components/card';
 export { HaProgress } from './components/progress';
 export { HaSpinner } from './components/spinner';
+export { HaTooltip } from './components/tooltip';
 
 // Export types if needed
 export type { HaButton as HaButtonElement } from './components/button/button';
@@ -33,3 +34,4 @@ export type { HaBadge as HaBadgeElement } from './components/badge/badge';
 export type { HaCard as HaCardElement } from './components/card/card';
 export type { HaProgress as HaProgressElement } from './components/progress/progress';
 export type { HaSpinner as HaSpinnerElement } from './components/spinner/spinner';
+export type { HaTooltip as HaTooltipElement } from './components/tooltip/tooltip';
