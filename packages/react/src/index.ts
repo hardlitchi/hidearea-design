@@ -48,3 +48,6 @@ export type { SwitchProps } from './Switch';
 
 export { Tooltip } from './Tooltip';
 export type { TooltipProps } from './Tooltip';
+
+export { Tabs } from './Tabs';
+export type { TabsProps } from './Tabs';

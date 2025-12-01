@@ -193,3 +193,10 @@ export interface TooltipProps {
   delay?: number;
   disabled?: boolean;
 }
+
+export interface TabsProps {
+  value?: string;
+  variant?: 'default' | 'outlined' | 'pills';
+  size?: 'sm' | 'md' | 'lg';
+  align?: 'start' | 'center' | 'end';
+}
