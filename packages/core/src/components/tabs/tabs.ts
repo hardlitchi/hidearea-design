@@ -123,12 +123,14 @@ export class HaTabs extends HTMLElement {
     this.updateActiveTabs();
   }
 
-  private getTabItems(): any[] {
+  private getTabItems(): Array<HTMLElement & { value: string; disabled: boolean; active: boolean }> {
     const slot = this.shadowRoot?.querySelector('slot');
     if (!slot) return [];
 
     const elements = slot.assignedElements();
-    return elements.filter((el) => el.tagName === 'HA-TAB-ITEM');
+    return elements.filter((el) => el.tagName === 'HA-TAB-ITEM') as Array<
+      HTMLElement & { value: string; disabled: boolean; active: boolean }
+    >;
   }
 
   private updateActiveTabs() {
@@ -145,8 +147,9 @@ export class HaTabs extends HTMLElement {
   private updatePanels() {
     // Find all tab panels in the document
     const panels = document.querySelectorAll('ha-tab-panel');
-    panels.forEach((panel: any) => {
-      panel.active = panel.value === this.value;
+    panels.forEach((panel) => {
+      const tabPanel = panel as HTMLElement & { value: string; active: boolean };
+      tabPanel.active = tabPanel.value === this.value;
     });
   }
 

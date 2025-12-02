@@ -60,12 +60,15 @@ export class HaMenu extends HTMLElement {
     this.menu.className = `menu size-${this.size}`;
   }
 
-  private getMenuItems(): any[] {
+  private getMenuItems(): Element[] {
     const slot = this.shadowRoot?.querySelector('slot');
     if (!slot) return [];
 
     const elements = slot.assignedElements();
-    return elements.filter((el) => el.tagName === 'HA-MENU-ITEM' && !(el as any).disabled);
+    return elements.filter((el) => {
+      const menuItem = el as HTMLElement & { disabled?: boolean };
+      return el.tagName === 'HA-MENU-ITEM' && !menuItem.disabled;
+    });
   }
 
   private handleKeydown(e: KeyboardEvent) {

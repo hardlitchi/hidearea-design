@@ -116,7 +116,7 @@ export class HaBreadcrumb extends HTMLElement {
     });
   }
 
-  private getItems(): any[] {
+  private getItems(): Element[] {
     const slot = this.shadowRoot?.querySelector('slot');
     if (!slot) return [];
 
