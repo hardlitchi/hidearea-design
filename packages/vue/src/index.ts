@@ -22,6 +22,12 @@ import Dropdown from "./Dropdown.vue";
 import Menu from "./Menu.vue";
 import MenuItem from "./MenuItem.vue";
 import MenuDivider from "./MenuDivider.vue";
+import Modal from "./Modal.vue";
+import Toast from "./Toast.vue";
+import ToastContainer from "./ToastContainer.vue";
+import Pagination from "./Pagination.vue";
+import Avatar from "./Avatar.vue";
+import AvatarGroup from "./AvatarGroup.vue";
 
 export {
   Button,
@@ -47,6 +53,12 @@ export {
   Menu,
   MenuItem,
   MenuDivider,
+  Modal,
+  Toast,
+  ToastContainer,
+  Pagination,
+  Avatar,
+  AvatarGroup,
 };
 export type {
   ButtonProps,
@@ -72,6 +84,12 @@ export type {
   MenuProps,
   MenuItemProps,
   MenuDividerProps,
+  ModalProps,
+  ToastProps,
+  ToastContainerProps,
+  PaginationProps,
+  AvatarProps,
+  AvatarGroupProps,
 } from "./types";
 
 // Vue plugin for installing all components
@@ -100,5 +118,11 @@ export default {
     app.component("HaMenu", Menu);
     app.component("HaMenuItem", MenuItem);
     app.component("HaMenuDivider", MenuDivider);
+    app.component("HaModal", Modal);
+    app.component("HaToast", Toast);
+    app.component("HaToastContainer", ToastContainer);
+    app.component("HaPagination", Pagination);
+    app.component("HaAvatar", Avatar);
+    app.component("HaAvatarGroup", AvatarGroup);
   },
 };
