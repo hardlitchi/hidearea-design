@@ -53,3 +53,6 @@ export { Tabs } from './Tabs';
 export type { TabsProps } from './Tabs';
 export { Breadcrumb } from './Breadcrumb';
 export type { BreadcrumbProps } from './Breadcrumb';
+
+export { Dropdown, Menu, MenuItem, MenuDivider } from './Dropdown';
+export type { DropdownProps, MenuProps, MenuItemProps, MenuDividerProps } from './Dropdown';

@@ -205,3 +205,26 @@ export interface BreadcrumbProps {
   separator?: 'slash' | 'chevron' | 'arrow' | 'dot';
   size?: 'sm' | 'md' | 'lg';
 }
+
+export interface DropdownProps {
+  placement?: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'right';
+  trigger?: 'click' | 'hover';
+  open?: boolean;
+  className?: string;
+}
+
+export interface MenuProps {
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}
+
+export interface MenuItemProps {
+  value?: string;
+  disabled?: boolean;
+  danger?: boolean;
+  className?: string;
+}
+
+export interface MenuDividerProps {
+  className?: string;
+}

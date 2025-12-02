@@ -18,6 +18,7 @@ export { HaSpinner } from './components/spinner';
 export { HaTooltip } from './components/tooltip';
 export { HaTabs, HaTabItem, HaTabPanel } from './components/tabs';
 export { HaBreadcrumb, HaBreadcrumbItem } from './components/breadcrumb';
+export { HaDropdown, HaMenu, HaMenuItem, HaMenuDivider } from './components/menu';
 
 // Export types if needed
 export type { HaButton as HaButtonElement } from './components/button/button';
@@ -42,3 +43,7 @@ export type { HaTabItem as HaTabItemElement } from './components/tabs/tab-item';
 export type { HaTabPanel as HaTabPanelElement } from './components/tabs/tab-panel';
 export type { HaBreadcrumb as HaBreadcrumbElement } from './components/breadcrumb/breadcrumb';
 export type { HaBreadcrumbItem as HaBreadcrumbItemElement } from './components/breadcrumb/breadcrumb-item';
+export type { HaDropdown as HaDropdownElement } from './components/menu/dropdown';
+export type { HaMenu as HaMenuElement } from './components/menu/menu';
+export type { HaMenuItem as HaMenuItemElement } from './components/menu/menu-item';
+export type { HaMenuDivider as HaMenuDividerElement } from './components/menu/menu-divider';
