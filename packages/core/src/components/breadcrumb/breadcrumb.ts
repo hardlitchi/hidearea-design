@@ -41,7 +41,7 @@ export class HaBreadcrumb extends HTMLElement {
 
     // Create slot for items
     this.itemsSlot = document.createElement("slot");
-    this.list.appendChild(this.itemsSlot);
+    this.list.appendChild(this.itemsSlot); // slot を直接 ol の子にする
 
     // Append to nav
     this.nav.appendChild(this.list);
@@ -87,32 +87,16 @@ export class HaBreadcrumb extends HTMLElement {
     const items = this.getItems();
 
     items.forEach((item, index) => {
-      // Set separator on all items except last
+      // Set separator on all items
+      // 親から明示的に設定されたseparatorを常に適用
       const breadcrumbItem = item as HTMLElement & { separator: string };
-      if (!item.hasAttribute("separator")) {
-        breadcrumbItem.separator = this.separator;
-      }
-
-      // Wrap in <li> if not already wrapped
-      if (item.parentElement?.tagName !== "LI") {
-        const li = document.createElement("li");
-        li.setAttribute("part", "list-item");
-
-        // Insert li before the item
-        item.parentElement?.insertBefore(li, item);
-
-        // Move item into li
-        li.appendChild(item);
-      }
+      breadcrumbItem.separator = this.separator;
 
       // Update ARIA
-      const li = item.parentElement as HTMLLIElement;
-      if (li) {
-        if (index === items.length - 1) {
-          li.setAttribute("aria-current", "page");
-        } else {
-          li.removeAttribute("aria-current");
-        }
+      if (index === items.length - 1) {
+        item.setAttribute("aria-current", "page");
+      } else {
+        item.removeAttribute("aria-current");
       }
     });
   }
