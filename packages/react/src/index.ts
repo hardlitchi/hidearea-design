@@ -45,3 +45,14 @@ export type { TextareaProps } from './Textarea';
 
 export { Switch } from './Switch';
 export type { SwitchProps } from './Switch';
+
+export { Tooltip } from './Tooltip';
+export type { TooltipProps } from './Tooltip';
+
+export { Tabs } from './Tabs';
+export type { TabsProps } from './Tabs';
+export { Breadcrumb } from './Breadcrumb';
+export type { BreadcrumbProps } from './Breadcrumb';
+
+export { Dropdown, Menu, MenuItem, MenuDivider } from './Dropdown';
+export type { DropdownProps, MenuProps, MenuItemProps, MenuDividerProps } from './Dropdown';

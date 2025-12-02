@@ -15,8 +15,15 @@ import Select from './Select.vue';
 import Radio from './Radio.vue';
 import Textarea from './Textarea.vue';
 import Switch from './Switch.vue';
+import Tooltip from './Tooltip.vue';
+import Tabs from './Tabs.vue';
+import Breadcrumb from './Breadcrumb.vue';
+import Dropdown from './Dropdown.vue';
+import Menu from './Menu.vue';
+import MenuItem from './MenuItem.vue';
+import MenuDivider from './MenuDivider.vue';
 
-export { Button, Input, Checkbox, Container, Grid, Stack, Alert, Badge, Card, Progress, Spinner, FormGroup, Select, Radio, Textarea, Switch };
+export { Button, Input, Checkbox, Container, Grid, Stack, Alert, Badge, Card, Progress, Spinner, FormGroup, Select, Radio, Textarea, Switch, Tooltip, Tabs, Breadcrumb, Dropdown, Menu, MenuItem, MenuDivider };
 export type {
   ButtonProps,
   InputProps,
@@ -34,6 +41,13 @@ export type {
   RadioProps,
   TextareaProps,
   SwitchProps,
+  TooltipProps,
+  TabsProps,
+  BreadcrumbProps,
+  DropdownProps,
+  MenuProps,
+  MenuItemProps,
+  MenuDividerProps,
 } from './types';
 
 // Vue plugin for installing all components
@@ -55,5 +69,12 @@ export default {
     app.component('HaRadio', Radio);
     app.component('HaTextarea', Textarea);
     app.component('HaSwitch', Switch);
+    app.component('HaTooltip', Tooltip);
+    app.component('HaTabs', Tabs);
+    app.component('HaBreadcrumb', Breadcrumb);
+    app.component('HaDropdown', Dropdown);
+    app.component('HaMenu', Menu);
+    app.component('HaMenuItem', MenuItem);
+    app.component('HaMenuDivider', MenuDivider);
   },
 };

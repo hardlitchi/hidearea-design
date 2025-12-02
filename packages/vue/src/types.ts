@@ -170,3 +170,61 @@ export interface SwitchProps {
   label?: string;
   description?: string;
 }
+
+export interface TooltipProps {
+  content?: string;
+  placement?:
+    | 'top'
+    | 'top-start'
+    | 'top-end'
+    | 'bottom'
+    | 'bottom-start'
+    | 'bottom-end'
+    | 'left'
+    | 'left-start'
+    | 'left-end'
+    | 'right'
+    | 'right-start'
+    | 'right-end';
+  trigger?: 'hover' | 'focus' | 'click';
+  variant?: 'default' | 'dark' | 'light';
+  size?: 'sm' | 'md' | 'lg';
+  showArrow?: boolean;
+  delay?: number;
+  disabled?: boolean;
+}
+
+export interface TabsProps {
+  value?: string;
+  variant?: 'default' | 'outlined' | 'pills';
+  size?: 'sm' | 'md' | 'lg';
+  align?: 'start' | 'center' | 'end';
+}
+
+export interface BreadcrumbProps {
+  separator?: 'slash' | 'chevron' | 'arrow' | 'dot';
+  size?: 'sm' | 'md' | 'lg';
+}
+
+export interface DropdownProps {
+  placement?: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'right';
+  trigger?: 'click' | 'hover';
+  open?: boolean;
+  className?: string;
+}
+
+export interface MenuProps {
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}
+
+export interface MenuItemProps {
+  value?: string;
+  disabled?: boolean;
+  danger?: boolean;
+  className?: string;
+}
+
+export interface MenuDividerProps {
+  className?: string;
+}
