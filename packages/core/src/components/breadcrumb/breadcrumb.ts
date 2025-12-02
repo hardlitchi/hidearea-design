@@ -88,8 +88,9 @@ export class HaBreadcrumb extends HTMLElement {
 
     items.forEach((item, index) => {
       // Set separator on all items except last
+      const breadcrumbItem = item as HTMLElement & { separator: string };
       if (!item.hasAttribute('separator')) {
-        item.separator = this.separator;
+        breadcrumbItem.separator = this.separator;
       }
 
       // Wrap in <li> if not already wrapped

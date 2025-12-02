@@ -123,13 +123,13 @@ export class HaTabs extends HTMLElement {
     this.updateActiveTabs();
   }
 
-  private getTabItems(): Array<HTMLElement & { value: string; disabled: boolean; active: boolean }> {
+  private getTabItems(): Array<HTMLElement & { value: string; disabled: boolean; active: boolean; size: string; variant: string }> {
     const slot = this.shadowRoot?.querySelector('slot');
     if (!slot) return [];
 
     const elements = slot.assignedElements();
     return elements.filter((el) => el.tagName === 'HA-TAB-ITEM') as Array<
-      HTMLElement & { value: string; disabled: boolean; active: boolean }
+      HTMLElement & { value: string; disabled: boolean; active: boolean; size: string; variant: string }
     >;
   }
 

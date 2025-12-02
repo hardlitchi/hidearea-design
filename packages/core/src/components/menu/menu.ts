@@ -101,7 +101,8 @@ export class HaMenu extends HTMLElement {
     }
 
     if (items[newIndex]) {
-      items[newIndex].focus();
+      const menuItem = items[newIndex] as HTMLElement & { focus: () => void };
+      menuItem.focus();
     }
   }
 
