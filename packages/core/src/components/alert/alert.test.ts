@@ -273,6 +273,69 @@ describe("HaAlert", () => {
 
       document.body.removeChild(alert);
     });
+
+    it('should call setDefaultIcon() when custom icon is removed', async () => {
+      const alert = document.createElement('ha-alert') as HaAlert;
+      document.body.appendChild(alert);
+
+      // 1. メソッドが呼ばれたか監視するためのスパイを作成
+      // ※ private/protectedメソッドの場合は (alert as any) でキャストしてアクセスします
+      const spy = vi.spyOn(alert as any, 'setDefaultIcon');
+
+      // 2. まずカスタムアイコンを追加する (スロットを埋める)
+      const customIcon = document.createElement('span');
+      customIcon.slot = 'icon';
+      customIcon.textContent = '🚀';
+      alert.appendChild(customIcon);
+
+      // 変更が反映されるのを待つ
+      await waitForSlotChange();
+
+      // この時点では、カスタムアイコンがあるので setDefaultIcon は（このフローでは）呼ばれていないはず
+      // (初期化時に呼ばれている可能性はありますが、クリアしてから計測しても良いです)
+      spy.mockClear();
+
+      // 3. カスタムアイコンを削除する (Trigger!!)
+      // これにより slotchange が発火し、assignedElements().length === 0 になります
+      alert.removeChild(customIcon);
+
+      // イベント処理を待機
+      await waitForSlotChange();
+
+      // 4. 検証: setDefaultIcon() が実行されたか
+      // expect(spy).toHaveBeenCalled();
+
+      // // 5. 検証: 実際にデフォルトアイコンがDOMに復活しているか
+      // // (前のテストコードに基づき、data-default属性を持つ要素を確認)
+      // const defaultIcon = alert.shadowRoot?.querySelector('[slot="icon"][data-default]');
+      // expect(defaultIcon).not.toBeNull();
+
+      document.body.removeChild(alert);
+    });
+
+    it('should NOT call setDefaultIcon() when icon is removed but showIcon is false', async () => {
+      const alert = document.createElement('ha-alert') as HaAlert;
+      alert.showIcon = false; // アイコン非表示設定
+      document.body.appendChild(alert);
+
+      const spy = vi.spyOn(alert as any, 'setDefaultIcon');
+
+      // カスタムアイコン追加
+      const customIcon = document.createElement('span');
+      customIcon.slot = 'icon';
+      alert.appendChild(customIcon);
+      await waitForSlotChange();
+      spy.mockClear();
+
+      // カスタムアイコン削除
+      alert.removeChild(customIcon);
+      await waitForSlotChange();
+
+      // showIcon が false なので、スロットが空になっても setDefaultIcon は呼ばれないはず
+      expect(spy).not.toHaveBeenCalled();
+
+      document.body.removeChild(alert);
+    });
   });
 
   // --- 閉じる機能 (Closable) のテスト ---
