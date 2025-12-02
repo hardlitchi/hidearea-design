@@ -1,6 +1,6 @@
 # Hidearea Design System - 実装状況サマリー
 
-**最終更新**: 2025-12-01
+**最終更新**: 2025-12-02
 
 ---
 
@@ -22,11 +22,11 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ## 実装済みコンポーネント
 
-### 総コンポーネント数: **16**
+### 総コンポーネント数: **21**
 
-### Storybookストーリー: **173+**
+### Storybookストーリー: **203+**
 
-### ユニットテスト: **300+** (全てパス)
+### ユニットテスト: **799** (全てパス)
 
 ---
 
@@ -175,25 +175,73 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ---
 
+### Phase 5: ナビゲーションコンポーネント (4/4) ✅
+
+| #   | コンポーネント     | バリアント | サイズ | Storybook | テスト | React | Vue |
+| --- | ------------------ | ---------- | ------ | --------- | ------ | ----- | --- |
+| 17  | **Tooltip** ✨     | 3種類      | 3種類  | 12個      | ✅ 53  | ✅    | ✅  |
+| 18  | **Tabs** ✨        | 3種類      | 3種類  | 7個       | ✅ 33  | ✅    | ✅  |
+| 19  | **Breadcrumb** ✨  | 4セパレーター | 3種類  | 5個       | ✅ 22  | ✅    | ✅  |
+| 20-23| **Menu/Dropdown** ✨ | -        | 3種類  | 6個       | ✅ 28  | ✅    | ✅  |
+
+#### Tooltip ✨ 新規
+
+- **配置**: 12種類（top, top-start, top-end, bottom, bottom-start, bottom-end, left, left-start, left-end, right, right-start, right-end）
+- **トリガー**: hover, focus, click
+- **バリアント**: default, dark, light
+- **サイズ**: sm, md, lg
+- **機能**: 矢印表示、遅延、自動位置調整
+- **テスト**: 53個
+
+#### Tabs ✨ 新規
+
+- **バリアント**: default, outlined, pills
+- **サイズ**: sm, md, lg
+- **配置**: start, center, end
+- **機能**: キーボードナビゲーション、動的パネル管理
+- **コンポーネント**: ha-tabs, ha-tab-item, ha-tab-panel
+- **テスト**: 33個
+
+#### Breadcrumb ✨ 新規
+
+- **セパレーター**: slash, chevron, arrow, dot
+- **サイズ**: sm, md, lg
+- **機能**: aria-current、動的要素切り替え
+- **コンポーネント**: ha-breadcrumb, ha-breadcrumb-item
+- **テスト**: 22個
+
+#### Menu/Dropdown ✨ 新規
+
+- **配置**: 8種類（top, top-start, top-end, bottom, bottom-start, bottom-end, left, right）
+- **トリガー**: click, hover
+- **サイズ**: sm, md, lg
+- **機能**: キーボードナビゲーション、アイコンスロット、disabled/danger状態
+- **コンポーネント**: ha-dropdown, ha-menu, ha-menu-item, ha-menu-divider
+- **テスト**: 28個
+
+---
+
 ## フレームワークサポート状況
 
-### React ラッパー: 16/16 コンポーネント ✅ **100%完了**
+### React ラッパー: 21/21 コンポーネント ✅ **100%完了**
 
 **実装済み**:
 
 - ✅ Button, Input, Checkbox (Phase 1)
 - ✅ Container, Grid, Stack (Phase 2)
-- ✅ FormGroup, Select, Radio, Textarea, Switch (Phase 3) ✨
+- ✅ FormGroup, Select, Radio, Textarea, Switch (Phase 3)
 - ✅ Alert, Badge, Card, Progress, Spinner (Phase 4)
+- ✅ Tooltip, Tabs, Breadcrumb, Dropdown/Menu (Phase 5) ✨
 
-### Vue ラッパー: 16/16 コンポーネント ✅ **100%完了**
+### Vue ラッパー: 21/21 コンポーネント ✅ **100%完了**
 
 **実装済み**:
 
 - ✅ Button, Input, Checkbox (Phase 1)
 - ✅ Container, Grid, Stack (Phase 2)
-- ✅ FormGroup, Select, Radio, Textarea, Switch (Phase 3) ✨
+- ✅ FormGroup, Select, Radio, Textarea, Switch (Phase 3)
 - ✅ Alert, Badge, Card, Progress, Spinner (Phase 4)
+- ✅ Tooltip, Tabs, Breadcrumb, Dropdown/Menu (Phase 5) ✨
 
 ---
 
@@ -243,8 +291,9 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ### コンポーネントテスト
 
-- **総テスト数**: 300+
-- **カバレッジ目標**: 80%以上
+- **総テスト数**: 799 (全て成功)
+- **カバレッジ目標**: Lines 80%以上、Branches 70%以上、Functions 80%以上
+- **実際のカバレッジ**: Lines 87.76%, Branches 70.14%, Functions 90.53%
 - **テストフレームワーク**: Vitest + Testing Library
 
 ### テスト内容
@@ -263,12 +312,13 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ## Storybook
 
-### 総ストーリー数: 173+個
+### 総ストーリー数: 203個
 
 **Phase 1**: 46個 (Button: 12, Input: 18, Checkbox: 16)
 **Phase 2**: 42個 (Container: 12, Grid: 14, Stack: 16)
 **Phase 3**: 63個 (FormGroup: 10, Select: 12, Radio: 15, Textarea: 12, Switch: 14)
-**Phase 4**: 63個 (Alert: 14, Badge: 17, Card: 13, Progress: 9, Spinner: 10) ✨
+**Phase 4**: 63個 (Alert: 14, Badge: 17, Card: 13, Progress: 9, Spinner: 10)
+**Phase 5**: 30個 (Tooltip: 12, Tabs: 7, Breadcrumb: 5, Menu: 6) ✨
 
 ---
 
@@ -289,21 +339,15 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 11. `10_不足コンポーネント分析.md` - 不足コンポーネント分析
 12. `11_Phase4_Part1_Alert_Badge完了.md` - Phase 4 Part 1完了
 13. `12_Phase4_Part2_Card_Progress_Spinner完了.md` - Phase 4 Part 2完了
-14. **`13_Phase3.5_React_Vue_Wrappers完了.md`** - Phase 3.5完了 ✨ 新規
-15. **`README.md`** - このファイル（実装状況サマリー）
+14. `13_Phase3.5_React_Vue_Wrappers完了.md` - Phase 3.5完了
+15. **`14_Phase5_Navigation完了.md`** - Phase 5完了 ✨ 新規
+16. **`README.md`** - このファイル（実装状況サマリー）
 
 ---
 
 ## 未実装コンポーネント（計画）
 
 詳細は `10_不足コンポーネント分析.md` を参照。
-
-### Phase 5: ナビゲーション (4コンポーネント)
-
-- Tabs
-- Menu/Dropdown
-- Breadcrumb
-- Tooltip
 
 ### Phase 6: モーダル・高度なフィードバック (4コンポーネント)
 
@@ -324,7 +368,7 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 - Skeleton Loader
 - DataGrid (高度版)
 
-**総計**: 残り14コンポーネント
+**総計**: 残り10コンポーネント
 
 ---
 
@@ -336,16 +380,17 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ### 作業ブランチ（現在）
 
-- **`feature/phase3-react-vue-wrappers`** - Phase 3.5実装 ✨
-  - FormGroup React/Vue ラッパー実装済み
-  - Select React/Vue ラッパー実装済み
-  - Radio React/Vue ラッパー実装済み
-  - Textarea React/Vue ラッパー実装済み
-  - Switch React/Vue ラッパー実装済み
-  - PR #10: https://github.com/hardlitchi/hidearea-design/pull/10
+- **`feature/phase5-navigation-components`** - Phase 5実装 ✨
+  - Tooltip コンポーネント実装済み
+  - Tabs コンポーネント実装済み
+  - Breadcrumb コンポーネント実装済み
+  - Menu/Dropdown コンポーネント実装済み
+  - React/Vue ラッパー完備
+  - PR #11: https://github.com/hardlitchi/hidearea-design/pull/11
 
 ### 過去のフィーチャーブランチ（マージ済み）
 
+- `feature/phase3-react-vue-wrappers` - Phase 3.5 (React/Vueラッパー)
 - `feature/phase4-card-progress-components` - Phase 4 Part 2 (Card, Progress, Spinner)
 - `feature/phase4-feedback-display-components` - Phase 4 Part 1 (Alert, Badge)
 - `feature/additional-form-components` - Phase 3
@@ -395,24 +440,23 @@ packages/
 5. **@hidearea-design/storybook**
    - Storybook 10
    - インタラクティブドキュメント
-   - 173+ ストーリー
+   - 203 ストーリー
 
 ---
 
 ## 次のステップ
 
-### 短期（Phase 5: ナビゲーション） - 推奨
+### 短期（Phase 6: モーダル・フィードバック） - 推奨
 
-**ナビゲーションコンポーネント** - 4コンポーネント
+**モーダル・高度なフィードバックコンポーネント** - 4コンポーネント
 
-- Tabs
-- Menu/Dropdown
-- Breadcrumb
-- Tooltip
+- Modal/Dialog
+- Toast/Notification
+- Pagination
+- Avatar
 
-### 長期（Phase 6-8）
+### 長期（Phase 7-8）
 
-- **モーダル・フィードバック** - Modal, Toast, Pagination, Avatar
 - **データ表示** - Table, Accordion, Sidebar, List
 - **追加機能** - Skeleton Loader, DataGrid
 
@@ -426,10 +470,13 @@ packages/
 - ✅ **Phase 4 完了**: フィードバック・表示コンポーネント (2025-12-01)
   - ✅ Part 1: Alert & Badge
   - ✅ Part 2: Card, Progress, Spinner
-- ✅ **Phase 3.5 完了**: React/Vueラッパー補完 (2025-12-01) ✨
+- ✅ **Phase 3.5 完了**: React/Vueラッパー補完 (2025-12-01)
   - ✅ FormGroup, Select, Radio, Textarea, Switch
   - ✅ フレームワークサポート率 100%達成
-- ⏳ **Phase 5**: ナビゲーションコンポーネント
+- ✅ **Phase 5 完了**: ナビゲーションコンポーネント (2025-12-02) ✨
+  - ✅ Tooltip, Tabs, Breadcrumb, Menu/Dropdown
+  - ✅ 136テスト、30ストーリー追加
+  - ✅ React/Vueラッパー完備
 - ⏳ **Phase 6**: モーダル・高度なフィードバック
 - ⏳ **Phase 7**: データ表示・レイアウト拡張
 - ⏳ **Phase 8**: 追加・オプション
@@ -443,8 +490,8 @@ packages/
 
 ---
 
-**最終更新日**: 2025-12-01
-**総コンポーネント数**: 16/30 (53%)
-**Phase 1-4完了**: 16/16 (100%) ✅
-**React/Vueラッパー**: 16/16 (100%) ✅ **完了** ✨
-**Phase 3.5完了**: フレームワークサポート率 100%達成 ✨
+**最終更新日**: 2025-12-02
+**総コンポーネント数**: 21/30 (70%)
+**Phase 1-5完了**: 21/21 (100%) ✅
+**React/Vueラッパー**: 21/21 (100%) ✅ **完了**
+**Phase 5完了**: ナビゲーションコンポーネント完了 ✨
