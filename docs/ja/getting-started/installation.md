@@ -48,6 +48,7 @@ yarn add @hidearea-design/tokens
 コア Web Components パッケージ。任意の JavaScript フレームワークまたは Vanilla JS で動作します。
 
 **特徴：**
+
 - フレームワーク非依存の Web Components
 - Shadow DOM によるカプセル化
 - CSS カスタムプロパティによるカスタマイズ
@@ -59,6 +60,7 @@ yarn add @hidearea-design/tokens
 完全な TypeScript サポートを備えた React ラッパーコンポーネント。
 
 **特徴：**
+
 - ネイティブな React コンポーネント API
 - Forward refs サポート
 - 完全な TypeScript 型定義
@@ -69,6 +71,7 @@ yarn add @hidearea-design/tokens
 Composition API サポートを備えた Vue 3 ラッパーコンポーネント。
 
 **特徴：**
+
 - Vue 3 Composition API
 - v-model サポート
 - 完全な TypeScript 型定義
@@ -79,6 +82,7 @@ Composition API サポートを備えた Vue 3 ラッパーコンポーネント
 色、スペーシング、タイポグラフィなどのデザイントークン。
 
 **特徴：**
+
 - CSS カスタムプロパティ
 - JavaScript/TypeScript エクスポート
 - Style Dictionary ベース
@@ -91,33 +95,36 @@ Composition API サポートを備えた Vue 3 ラッパーコンポーネント
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <link rel="stylesheet" href="node_modules/@hidearea-design/tokens/dist/tokens.css">
-</head>
-<body>
-  <ha-button variant="primary">クリック</ha-button>
+  <head>
+    <link
+      rel="stylesheet"
+      href="node_modules/@hidearea-design/tokens/dist/tokens.css"
+    />
+  </head>
+  <body>
+    <ha-button variant="primary">クリック</ha-button>
 
-  <script type="module">
-    import '@hidearea-design/core';
+    <script type="module">
+      import "@hidearea-design/core";
 
-    const button = document.querySelector('ha-button');
-    button.addEventListener('click', () => {
-      console.log('ボタンがクリックされました！');
-    });
-  </script>
-</body>
+      const button = document.querySelector("ha-button");
+      button.addEventListener("click", () => {
+        console.log("ボタンがクリックされました！");
+      });
+    </script>
+  </body>
 </html>
 ```
 
 ### React
 
 ```tsx
-import '@hidearea-design/tokens/dist/tokens.css';
-import { Button } from '@hidearea-design/react';
+import "@hidearea-design/tokens/dist/tokens.css";
+import { Button } from "@hidearea-design/react";
 
 function App() {
   return (
-    <Button variant="primary" onClick={() => console.log('クリック！')}>
+    <Button variant="primary" onClick={() => console.log("クリック！")}>
       クリック
     </Button>
   );
@@ -130,17 +137,15 @@ export default App;
 
 ```vue
 <template>
-  <HaButton variant="primary" @click="handleClick">
-    クリック
-  </HaButton>
+  <HaButton variant="primary" @click="handleClick"> クリック </HaButton>
 </template>
 
 <script setup lang="ts">
-import '@hidearea-design/tokens/dist/tokens.css';
-import { HaButton } from '@hidearea-design/vue';
+import "@hidearea-design/tokens/dist/tokens.css";
+import { HaButton } from "@hidearea-design/vue";
 
 const handleClick = () => {
-  console.log('クリック！');
+  console.log("クリック！");
 };
 </script>
 ```
@@ -151,13 +156,13 @@ const handleClick = () => {
 
 ```js
 // メインエントリーファイルで
-import '@hidearea-design/tokens/dist/tokens.css';
+import "@hidearea-design/tokens/dist/tokens.css";
 ```
 
 または HTML でリンクします：
 
 ```html
-<link rel="stylesheet" href="path/to/@hidearea-design/tokens/dist/tokens.css">
+<link rel="stylesheet" href="path/to/@hidearea-design/tokens/dist/tokens.css" />
 ```
 
 ## TypeScript 設定
@@ -168,7 +173,11 @@ TypeScript を使用する場合、`tsconfig.json` に以下を含めてくだ�
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "types": ["@hidearea-design/core", "@hidearea-design/react", "@hidearea-design/vue"]
+    "types": [
+      "@hidearea-design/core",
+      "@hidearea-design/react",
+      "@hidearea-design/vue"
+    ]
   }
 }
 ```

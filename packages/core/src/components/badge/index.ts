@@ -1,1 +1,1 @@
-export { HaBadge } from './badge';
+export { HaBadge } from "./badge";

@@ -1,1 +1,1 @@
-export { HaProgress } from './progress';
+export { HaProgress } from "./progress";

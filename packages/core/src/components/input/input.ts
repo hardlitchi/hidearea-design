@@ -1,4 +1,4 @@
-import { inputStyles } from './input.styles';
+import { inputStyles } from "./input.styles";
 
 /**
  * Input component
@@ -43,24 +43,24 @@ export class HaInput extends HTMLElement {
 
   static get observedAttributes() {
     return [
-      'variant',
-      'size',
-      'type',
-      'value',
-      'placeholder',
-      'disabled',
-      'readonly',
-      'required',
-      'error',
-      'full-width',
-      'name',
-      'autocomplete',
-      'maxlength',
-      'minlength',
-      'pattern',
-      'min',
-      'max',
-      'step',
+      "variant",
+      "size",
+      "type",
+      "value",
+      "placeholder",
+      "disabled",
+      "readonly",
+      "required",
+      "error",
+      "full-width",
+      "name",
+      "autocomplete",
+      "maxlength",
+      "minlength",
+      "pattern",
+      "min",
+      "max",
+      "step",
     ];
   }
 
@@ -68,32 +68,32 @@ export class HaInput extends HTMLElement {
     super();
 
     // Attach shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create styles
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = inputStyles;
 
     // Create wrapper
-    this.wrapper = document.createElement('div');
-    this.wrapper.className = 'input-wrapper';
-    this.wrapper.setAttribute('part', 'input-wrapper');
+    this.wrapper = document.createElement("div");
+    this.wrapper.className = "input-wrapper";
+    this.wrapper.setAttribute("part", "input-wrapper");
 
     // Create prefix slot
-    const prefixSlot = document.createElement('slot');
-    prefixSlot.name = 'prefix';
-    prefixSlot.className = 'prefix';
-    prefixSlot.setAttribute('part', 'prefix');
+    const prefixSlot = document.createElement("slot");
+    prefixSlot.name = "prefix";
+    prefixSlot.className = "prefix";
+    prefixSlot.setAttribute("part", "prefix");
 
     // Create input element
-    this.input = document.createElement('input');
-    this.input.setAttribute('part', 'input');
+    this.input = document.createElement("input");
+    this.input.setAttribute("part", "input");
 
     // Create suffix slot
-    const suffixSlot = document.createElement('slot');
-    suffixSlot.name = 'suffix';
-    suffixSlot.className = 'suffix';
-    suffixSlot.setAttribute('part', 'suffix');
+    const suffixSlot = document.createElement("slot");
+    suffixSlot.name = "suffix";
+    suffixSlot.className = "suffix";
+    suffixSlot.setAttribute("part", "suffix");
 
     // Append elements
     this.wrapper.appendChild(prefixSlot);
@@ -104,64 +104,64 @@ export class HaInput extends HTMLElement {
     shadow.appendChild(this.wrapper);
 
     // Handle input events
-    this.input.addEventListener('input', (e) => {
+    this.input.addEventListener("input", (e) => {
       const inputEvent = e as InputEvent;
       this.dispatchEvent(
-        new CustomEvent('input', {
+        new CustomEvent("input", {
           bubbles: true,
           composed: true,
           detail: {
             value: this.input.value,
             originalEvent: inputEvent,
           },
-        })
+        }),
       );
     });
 
-    this.input.addEventListener('change', (e) => {
+    this.input.addEventListener("change", (e) => {
       this.dispatchEvent(
-        new CustomEvent('change', {
+        new CustomEvent("change", {
           bubbles: true,
           composed: true,
           detail: {
             value: this.input.value,
             originalEvent: e,
           },
-        })
+        }),
       );
     });
 
-    this.input.addEventListener('focus', (e) => {
+    this.input.addEventListener("focus", (e) => {
       this.dispatchEvent(
-        new CustomEvent('focus', {
+        new CustomEvent("focus", {
           bubbles: true,
           composed: true,
           detail: { originalEvent: e },
-        })
+        }),
       );
     });
 
-    this.input.addEventListener('blur', (e) => {
+    this.input.addEventListener("blur", (e) => {
       this.dispatchEvent(
-        new CustomEvent('blur', {
+        new CustomEvent("blur", {
           bubbles: true,
           composed: true,
           detail: { originalEvent: e },
-        })
+        }),
       );
     });
   }
 
   connectedCallback() {
     // Set default attributes if not present
-    if (!this.hasAttribute('variant')) {
-      this.setAttribute('variant', 'default');
+    if (!this.hasAttribute("variant")) {
+      this.setAttribute("variant", "default");
     }
-    if (!this.hasAttribute('size')) {
-      this.setAttribute('size', 'md');
+    if (!this.hasAttribute("size")) {
+      this.setAttribute("size", "md");
     }
-    if (!this.hasAttribute('type')) {
-      this.input.type = 'text';
+    if (!this.hasAttribute("type")) {
+      this.input.type = "text";
     }
 
     this.updateInputAttributes();
@@ -174,142 +174,142 @@ export class HaInput extends HTMLElement {
 
   private updateInputAttributes() {
     // Update input type
-    const type = this.getAttribute('type') || 'text';
+    const type = this.getAttribute("type") || "text";
     this.input.type = type;
 
     // Update value
-    const value = this.getAttribute('value');
+    const value = this.getAttribute("value");
     if (value !== null) {
       this.input.value = value;
     }
 
     // Update placeholder
-    const placeholder = this.getAttribute('placeholder');
+    const placeholder = this.getAttribute("placeholder");
     if (placeholder !== null) {
       this.input.placeholder = placeholder;
     } else {
-      this.input.removeAttribute('placeholder');
+      this.input.removeAttribute("placeholder");
     }
 
     // Update name
-    const name = this.getAttribute('name');
+    const name = this.getAttribute("name");
     if (name !== null) {
       this.input.name = name;
     } else {
-      this.input.removeAttribute('name');
+      this.input.removeAttribute("name");
     }
 
     // Update autocomplete
-    const autocomplete = this.getAttribute('autocomplete');
+    const autocomplete = this.getAttribute("autocomplete");
     if (autocomplete !== null) {
-      this.input.setAttribute('autocomplete', autocomplete);
+      this.input.setAttribute("autocomplete", autocomplete);
     } else {
-      this.input.removeAttribute('autocomplete');
+      this.input.removeAttribute("autocomplete");
     }
 
     // Update disabled state
-    const disabled = this.hasAttribute('disabled');
+    const disabled = this.hasAttribute("disabled");
     this.input.disabled = disabled;
-    this.input.setAttribute('aria-disabled', String(disabled));
+    this.input.setAttribute("aria-disabled", String(disabled));
 
     // Update readonly state
-    const readonly = this.hasAttribute('readonly');
+    const readonly = this.hasAttribute("readonly");
     this.input.readOnly = readonly;
     if (readonly) {
-      this.input.setAttribute('aria-readonly', 'true');
+      this.input.setAttribute("aria-readonly", "true");
     } else {
-      this.input.removeAttribute('aria-readonly');
+      this.input.removeAttribute("aria-readonly");
     }
 
     // Update required state
-    const required = this.hasAttribute('required');
+    const required = this.hasAttribute("required");
     this.input.required = required;
     if (required) {
-      this.input.setAttribute('aria-required', 'true');
+      this.input.setAttribute("aria-required", "true");
     } else {
-      this.input.removeAttribute('aria-required');
+      this.input.removeAttribute("aria-required");
     }
 
     // Update error state
-    const error = this.hasAttribute('error');
+    const error = this.hasAttribute("error");
     if (error) {
-      this.input.setAttribute('aria-invalid', 'true');
+      this.input.setAttribute("aria-invalid", "true");
     } else {
-      this.input.removeAttribute('aria-invalid');
+      this.input.removeAttribute("aria-invalid");
     }
 
     // Update maxlength
-    const maxlength = this.getAttribute('maxlength');
+    const maxlength = this.getAttribute("maxlength");
     if (maxlength !== null) {
       this.input.maxLength = parseInt(maxlength, 10);
     } else {
-      this.input.removeAttribute('maxlength');
+      this.input.removeAttribute("maxlength");
     }
 
     // Update minlength
-    const minlength = this.getAttribute('minlength');
+    const minlength = this.getAttribute("minlength");
     if (minlength !== null) {
       this.input.minLength = parseInt(minlength, 10);
     } else {
-      this.input.removeAttribute('minlength');
+      this.input.removeAttribute("minlength");
     }
 
     // Update pattern
-    const pattern = this.getAttribute('pattern');
+    const pattern = this.getAttribute("pattern");
     if (pattern !== null) {
       this.input.pattern = pattern;
     } else {
-      this.input.removeAttribute('pattern');
+      this.input.removeAttribute("pattern");
     }
 
     // Update min (for number type)
-    const min = this.getAttribute('min');
+    const min = this.getAttribute("min");
     if (min !== null) {
       this.input.min = min;
     } else {
-      this.input.removeAttribute('min');
+      this.input.removeAttribute("min");
     }
 
     // Update max (for number type)
-    const max = this.getAttribute('max');
+    const max = this.getAttribute("max");
     if (max !== null) {
       this.input.max = max;
     } else {
-      this.input.removeAttribute('max');
+      this.input.removeAttribute("max");
     }
 
     // Update step (for number type)
-    const step = this.getAttribute('step');
+    const step = this.getAttribute("step");
     if (step !== null) {
       this.input.step = step;
     } else {
-      this.input.removeAttribute('step');
+      this.input.removeAttribute("step");
     }
   }
 
   // Public API
   get variant(): string {
-    return this.getAttribute('variant') || 'default';
+    return this.getAttribute("variant") || "default";
   }
 
   set variant(value: string) {
-    this.setAttribute('variant', value);
+    this.setAttribute("variant", value);
   }
 
   get size(): string {
-    return this.getAttribute('size') || 'md';
+    return this.getAttribute("size") || "md";
   }
 
   set size(value: string) {
-    this.setAttribute('size', value);
+    this.setAttribute("size", value);
   }
 
   get type(): string {
-    return this.getAttribute('type') || 'text';
+    return this.getAttribute("type") || "text";
   }
 
   set type(value: string) {
-    this.setAttribute('type', value);
+    this.setAttribute("type", value);
   }
 
   get value(): string {
@@ -318,83 +318,83 @@ export class HaInput extends HTMLElement {
 
   set value(value: string) {
     this.input.value = value;
-    this.setAttribute('value', value);
+    this.setAttribute("value", value);
   }
 
   get placeholder(): string {
-    return this.getAttribute('placeholder') || '';
+    return this.getAttribute("placeholder") || "";
   }
 
   set placeholder(value: string) {
-    this.setAttribute('placeholder', value);
+    this.setAttribute("placeholder", value);
   }
 
   get disabled(): boolean {
-    return this.hasAttribute('disabled');
+    return this.hasAttribute("disabled");
   }
 
   set disabled(value: boolean) {
     if (value) {
-      this.setAttribute('disabled', '');
+      this.setAttribute("disabled", "");
     } else {
-      this.removeAttribute('disabled');
+      this.removeAttribute("disabled");
     }
   }
 
   get readonly(): boolean {
-    return this.hasAttribute('readonly');
+    return this.hasAttribute("readonly");
   }
 
   set readonly(value: boolean) {
     if (value) {
-      this.setAttribute('readonly', '');
+      this.setAttribute("readonly", "");
     } else {
-      this.removeAttribute('readonly');
+      this.removeAttribute("readonly");
     }
   }
 
   get required(): boolean {
-    return this.hasAttribute('required');
+    return this.hasAttribute("required");
   }
 
   set required(value: boolean) {
     if (value) {
-      this.setAttribute('required', '');
+      this.setAttribute("required", "");
     } else {
-      this.removeAttribute('required');
+      this.removeAttribute("required");
     }
   }
 
   get error(): boolean {
-    return this.hasAttribute('error');
+    return this.hasAttribute("error");
   }
 
   set error(value: boolean) {
     if (value) {
-      this.setAttribute('error', '');
+      this.setAttribute("error", "");
     } else {
-      this.removeAttribute('error');
+      this.removeAttribute("error");
     }
   }
 
   get fullWidth(): boolean {
-    return this.hasAttribute('full-width');
+    return this.hasAttribute("full-width");
   }
 
   set fullWidth(value: boolean) {
     if (value) {
-      this.setAttribute('full-width', '');
+      this.setAttribute("full-width", "");
     } else {
-      this.removeAttribute('full-width');
+      this.removeAttribute("full-width");
     }
   }
 
   get name(): string {
-    return this.getAttribute('name') || '';
+    return this.getAttribute("name") || "";
   }
 
   set name(value: string) {
-    this.setAttribute('name', value);
+    this.setAttribute("name", value);
   }
 
   // Focus management
@@ -411,7 +411,11 @@ export class HaInput extends HTMLElement {
     this.input.select();
   }
 
-  setSelectionRange(start: number, end: number, direction?: 'forward' | 'backward' | 'none') {
+  setSelectionRange(
+    start: number,
+    end: number,
+    direction?: "forward" | "backward" | "none",
+  ) {
     this.input.setSelectionRange(start, end, direction);
   }
 
@@ -430,6 +434,6 @@ export class HaInput extends HTMLElement {
 }
 
 // Register custom element
-if (!customElements.get('ha-input')) {
-  customElements.define('ha-input', HaInput);
+if (!customElements.get("ha-input")) {
+  customElements.define("ha-input", HaInput);
 }

@@ -1,27 +1,27 @@
-import React, { forwardRef, useEffect, useRef } from 'react';
-import type { HaSpinner as HaSpinnerElement } from '@hidearea-design/core';
+import React, { forwardRef, useEffect, useRef } from "react";
+import type { HaSpinner as HaSpinnerElement } from "@hidearea-design/core";
 
 // Import the web component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
 export interface SpinnerProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * Size of the spinner
    * @default "md"
    */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
 
   /**
    * Color variant
    * @default "primary"
    */
-  color?: 'primary' | 'success' | 'warning' | 'error' | 'info' | 'neutral';
+  color?: "primary" | "success" | "warning" | "error" | "info" | "neutral";
 
   /**
    * Spinner style
    * @default "circular"
    */
-  variant?: 'circular' | 'dots' | 'pulse';
+  variant?: "circular" | "dots" | "pulse";
 
   /**
    * Animation speed (e.g., "0.8s", "1s", "1.5s")
@@ -43,13 +43,13 @@ export interface SpinnerProps extends React.HTMLAttributes<HTMLElement> {
 export const Spinner = forwardRef<HTMLElement, SpinnerProps>(
   (
     {
-      size = 'md',
-      color = 'primary',
-      variant = 'circular',
-      speed = '0.8s',
+      size = "md",
+      color = "primary",
+      variant = "circular",
+      speed = "0.8s",
       ...props
     },
-    _ref
+    _ref,
   ) => {
     const elementRef = useRef<HaSpinnerElement>(null);
 
@@ -64,22 +64,17 @@ export const Spinner = forwardRef<HTMLElement, SpinnerProps>(
       element.speed = speed;
     }, [size, color, variant, speed]);
 
-    return (
-      <ha-spinner
-        ref={elementRef as any}
-        {...props}
-      />
-    );
-  }
+    return <ha-spinner ref={elementRef as any} {...props} />;
+  },
 );
 
-Spinner.displayName = 'Spinner';
+Spinner.displayName = "Spinner";
 
 // Add TypeScript support for JSX
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-spinner': React.DetailedHTMLProps<
+      "ha-spinner": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >;

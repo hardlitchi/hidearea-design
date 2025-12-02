@@ -1,21 +1,22 @@
-import React, { forwardRef, useEffect, useRef } from 'react';
-import type { HaTextarea as HaTextareaElement } from '@hidearea-design/core';
+import React, { forwardRef, useEffect, useRef } from "react";
+import type { HaTextarea as HaTextareaElement } from "@hidearea-design/core";
 
 // Import the web component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
-export interface TextareaProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange' | 'onInput'> {
+export interface TextareaProps
+  extends Omit<React.HTMLAttributes<HTMLElement>, "onChange" | "onInput"> {
   /**
    * Textarea variant
    * @default "default"
    */
-  variant?: 'default' | 'filled' | 'outlined';
+  variant?: "default" | "filled" | "outlined";
 
   /**
    * Textarea size
    * @default "md"
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 
   /**
    * Textarea value
@@ -61,7 +62,7 @@ export interface TextareaProps extends Omit<React.HTMLAttributes<HTMLElement>, '
    * Resize behavior
    * @default "vertical"
    */
-  resize?: 'none' | 'both' | 'horizontal' | 'vertical';
+  resize?: "none" | "both" | "horizontal" | "vertical";
 
   /**
    * Textarea name
@@ -102,8 +103,8 @@ export interface TextareaProps extends Omit<React.HTMLAttributes<HTMLElement>, '
 export const Textarea = forwardRef<HTMLElement, TextareaProps>(
   (
     {
-      variant = 'default',
-      size = 'md',
+      variant = "default",
+      size = "md",
       value,
       placeholder,
       disabled = false,
@@ -111,7 +112,7 @@ export const Textarea = forwardRef<HTMLElement, TextareaProps>(
       required = false,
       error = false,
       rows = 3,
-      resize = 'vertical',
+      resize = "vertical",
       name,
       maxlength,
       minlength,
@@ -119,7 +120,7 @@ export const Textarea = forwardRef<HTMLElement, TextareaProps>(
       onChange,
       ...props
     },
-    _ref
+    _ref,
   ) => {
     const elementRef = useRef<HaTextareaElement>(null);
 
@@ -140,18 +141,32 @@ export const Textarea = forwardRef<HTMLElement, TextareaProps>(
       element.readonly = readonly;
       element.required = required;
       element.error = error;
-      element.setAttribute('rows', rows.toString());
+      element.setAttribute("rows", rows.toString());
       element.resize = resize;
       if (name) {
         element.name = name;
       }
       if (maxlength !== undefined) {
-        element.setAttribute('maxlength', maxlength.toString());
+        element.setAttribute("maxlength", maxlength.toString());
       }
       if (minlength !== undefined) {
-        element.setAttribute('minlength', minlength.toString());
+        element.setAttribute("minlength", minlength.toString());
       }
-    }, [variant, size, value, placeholder, disabled, readonly, required, error, rows, resize, name, maxlength, minlength]);
+    }, [
+      variant,
+      size,
+      value,
+      placeholder,
+      disabled,
+      readonly,
+      required,
+      error,
+      rows,
+      resize,
+      name,
+      maxlength,
+      minlength,
+    ]);
 
     useEffect(() => {
       const element = elementRef.current;
@@ -172,38 +187,33 @@ export const Textarea = forwardRef<HTMLElement, TextareaProps>(
       };
 
       if (onInput) {
-        element.addEventListener('input', handleInput);
+        element.addEventListener("input", handleInput);
       }
       if (onChange) {
-        element.addEventListener('change', handleChange);
+        element.addEventListener("change", handleChange);
       }
 
       return () => {
         if (onInput) {
-          element.removeEventListener('input', handleInput);
+          element.removeEventListener("input", handleInput);
         }
         if (onChange) {
-          element.removeEventListener('change', handleChange);
+          element.removeEventListener("change", handleChange);
         }
       };
     }, [onInput, onChange]);
 
-    return (
-      <ha-textarea
-        ref={elementRef as any}
-        {...props}
-      />
-    );
-  }
+    return <ha-textarea ref={elementRef as any} {...props} />;
+  },
 );
 
-Textarea.displayName = 'Textarea';
+Textarea.displayName = "Textarea";
 
 // Add TypeScript support for JSX
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-textarea': React.DetailedHTMLProps<
+      "ha-textarea": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >;

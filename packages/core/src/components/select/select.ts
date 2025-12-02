@@ -1,4 +1,4 @@
-import { selectStyles } from './select.styles';
+import { selectStyles } from "./select.styles";
 
 /**
  * Select component
@@ -27,15 +27,15 @@ export class HaSelect extends HTMLElement {
 
   static get observedAttributes() {
     return [
-      'variant',
-      'size',
-      'value',
-      'placeholder',
-      'disabled',
-      'required',
-      'error',
-      'full-width',
-      'name',
+      "variant",
+      "size",
+      "value",
+      "placeholder",
+      "disabled",
+      "required",
+      "error",
+      "full-width",
+      "name",
     ];
   }
 
@@ -43,28 +43,28 @@ export class HaSelect extends HTMLElement {
     super();
 
     // Attach shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create styles
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = selectStyles;
 
     // Create wrapper
-    this.wrapper = document.createElement('div');
-    this.wrapper.className = 'select-wrapper';
-    this.wrapper.setAttribute('part', 'select-wrapper');
+    this.wrapper = document.createElement("div");
+    this.wrapper.className = "select-wrapper";
+    this.wrapper.setAttribute("part", "select-wrapper");
 
     // Create select element
-    this.select = document.createElement('select');
-    this.select.setAttribute('part', 'select');
+    this.select = document.createElement("select");
+    this.select.setAttribute("part", "select");
 
     // Create slot for options
-    const slot = document.createElement('slot');
+    const slot = document.createElement("slot");
     this.select.appendChild(slot);
 
     // Arrow icon
-    const arrow = document.createElement('span');
-    arrow.className = 'arrow';
+    const arrow = document.createElement("span");
+    arrow.className = "arrow";
     arrow.innerHTML = `
       <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -80,47 +80,47 @@ export class HaSelect extends HTMLElement {
     shadow.appendChild(this.wrapper);
 
     // Handle change events
-    this.select.addEventListener('change', () => {
-      this.setAttribute('value', this.select.value);
+    this.select.addEventListener("change", () => {
+      this.setAttribute("value", this.select.value);
       this.dispatchEvent(
-        new CustomEvent('change', {
+        new CustomEvent("change", {
           bubbles: true,
           composed: true,
           detail: { value: this.select.value },
-        })
+        }),
       );
     });
 
     // Handle focus events
-    this.select.addEventListener('focus', (e) => {
+    this.select.addEventListener("focus", (e) => {
       this.dispatchEvent(
-        new CustomEvent('focus', {
+        new CustomEvent("focus", {
           bubbles: true,
           composed: true,
           detail: { originalEvent: e },
-        })
+        }),
       );
     });
 
     // Handle blur events
-    this.select.addEventListener('blur', (e) => {
+    this.select.addEventListener("blur", (e) => {
       this.dispatchEvent(
-        new CustomEvent('blur', {
+        new CustomEvent("blur", {
           bubbles: true,
           composed: true,
           detail: { originalEvent: e },
-        })
+        }),
       );
     });
   }
 
   connectedCallback() {
     // Set default attributes if not present
-    if (!this.hasAttribute('variant')) {
-      this.setAttribute('variant', 'default');
+    if (!this.hasAttribute("variant")) {
+      this.setAttribute("variant", "default");
     }
-    if (!this.hasAttribute('size')) {
-      this.setAttribute('size', 'md');
+    if (!this.hasAttribute("size")) {
+      this.setAttribute("size", "md");
     }
 
     this.updateSelectAttributes();
@@ -129,8 +129,8 @@ export class HaSelect extends HTMLElement {
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (oldValue === newValue) return;
 
-    if (name === 'value') {
-      this.select.value = newValue || '';
+    if (name === "value") {
+      this.select.value = newValue || "";
     }
 
     this.updateSelectAttributes();
@@ -138,21 +138,21 @@ export class HaSelect extends HTMLElement {
 
   private updateSelectAttributes() {
     // Update name
-    const name = this.getAttribute('name');
+    const name = this.getAttribute("name");
     if (name) {
       this.select.name = name;
     }
 
     // Update disabled state
-    const disabled = this.hasAttribute('disabled');
+    const disabled = this.hasAttribute("disabled");
     this.select.disabled = disabled;
 
     // Update required state
-    const required = this.hasAttribute('required');
+    const required = this.hasAttribute("required");
     this.select.required = required;
 
     // Update value
-    const value = this.getAttribute('value');
+    const value = this.getAttribute("value");
     if (value) {
       this.select.value = value;
     }
@@ -160,19 +160,19 @@ export class HaSelect extends HTMLElement {
 
   // Public API
   get variant(): string {
-    return this.getAttribute('variant') || 'default';
+    return this.getAttribute("variant") || "default";
   }
 
   set variant(value: string) {
-    this.setAttribute('variant', value);
+    this.setAttribute("variant", value);
   }
 
   get size(): string {
-    return this.getAttribute('size') || 'md';
+    return this.getAttribute("size") || "md";
   }
 
   set size(value: string) {
-    this.setAttribute('size', value);
+    this.setAttribute("size", value);
   }
 
   get value(): string {
@@ -180,79 +180,79 @@ export class HaSelect extends HTMLElement {
   }
 
   set value(value: string) {
-    this.setAttribute('value', value);
+    this.setAttribute("value", value);
     this.select.value = value;
   }
 
   get placeholder(): string | null {
-    return this.getAttribute('placeholder');
+    return this.getAttribute("placeholder");
   }
 
   set placeholder(value: string | null) {
     if (value) {
-      this.setAttribute('placeholder', value);
+      this.setAttribute("placeholder", value);
     } else {
-      this.removeAttribute('placeholder');
+      this.removeAttribute("placeholder");
     }
   }
 
   get disabled(): boolean {
-    return this.hasAttribute('disabled');
+    return this.hasAttribute("disabled");
   }
 
   set disabled(value: boolean) {
     if (value) {
-      this.setAttribute('disabled', '');
+      this.setAttribute("disabled", "");
     } else {
-      this.removeAttribute('disabled');
+      this.removeAttribute("disabled");
     }
   }
 
   get required(): boolean {
-    return this.hasAttribute('required');
+    return this.hasAttribute("required");
   }
 
   set required(value: boolean) {
     if (value) {
-      this.setAttribute('required', '');
+      this.setAttribute("required", "");
     } else {
-      this.removeAttribute('required');
+      this.removeAttribute("required");
     }
   }
 
   get error(): boolean {
-    return this.hasAttribute('error');
+    return this.hasAttribute("error");
   }
 
   set error(value: boolean) {
     if (value) {
-      this.setAttribute('error', '');
+      this.setAttribute("error", "");
     } else {
-      this.removeAttribute('error');
+      this.removeAttribute("error");
     }
   }
 
   get fullWidth(): boolean {
-    return this.hasAttribute('full-width');
+    return this.hasAttribute("full-width");
   }
 
   set fullWidth(value: boolean) {
     if (value) {
-      this.setAttribute('full-width', '');
+      this.setAttribute("full-width", "");
     } else {
-      this.removeAttribute('full-width');
+      this.removeAttribute("full-width");
     }
   }
 
   get name(): string | null {
-    return this.getAttribute('name');
+    return this.getAttribute("name");
   }
 
   set name(value: string | null) {
     if (value) {
-      this.setAttribute('name', value);
+      this.setAttribute("name", value);
     } else {
-      this.removeAttribute('name');
+      this.removeAttribute("name");
     }
   }
 
@@ -267,6 +267,6 @@ export class HaSelect extends HTMLElement {
 }
 
 // Register custom element
-if (!customElements.get('ha-select')) {
-  customElements.define('ha-select', HaSelect);
+if (!customElements.get("ha-select")) {
+  customElements.define("ha-select", HaSelect);
 }

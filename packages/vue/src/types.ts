@@ -1,16 +1,16 @@
 export interface ButtonProps {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "danger";
+  size?: "sm" | "md" | "lg";
   disabled?: boolean;
   loading?: boolean;
   fullWidth?: boolean;
-  type?: 'button' | 'submit' | 'reset';
+  type?: "button" | "submit" | "reset";
 }
 
 export interface InputProps {
-  variant?: 'default' | 'filled' | 'outlined';
-  size?: 'sm' | 'md' | 'lg';
-  type?: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url' | 'search';
+  variant?: "default" | "filled" | "outlined";
+  size?: "sm" | "md" | "lg";
+  type?: "text" | "password" | "email" | "number" | "tel" | "url" | "search";
   modelValue?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -29,7 +29,7 @@ export interface InputProps {
 }
 
 export interface CheckboxProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   modelValue?: boolean;
   indeterminate?: boolean;
   disabled?: boolean;
@@ -42,9 +42,9 @@ export interface CheckboxProps {
 }
 
 export interface ContainerProps {
-  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
+  maxWidth?: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
   centered?: boolean;
-  padding?: 'none' | 'sm' | 'md' | 'lg';
+  padding?: "none" | "sm" | "md" | "lg";
 }
 
 export interface GridProps {
@@ -52,44 +52,44 @@ export interface GridProps {
   gap?: string;
   rowGap?: string;
   columnGap?: string;
-  alignItems?: 'start' | 'center' | 'end' | 'stretch';
-  justifyItems?: 'start' | 'center' | 'end' | 'stretch';
+  alignItems?: "start" | "center" | "end" | "stretch";
+  justifyItems?: "start" | "center" | "end" | "stretch";
 }
 
 export interface StackProps {
-  direction?: 'vertical' | 'horizontal';
+  direction?: "vertical" | "horizontal";
   gap?: string;
-  align?: 'start' | 'center' | 'end' | 'stretch';
+  align?: "start" | "center" | "end" | "stretch";
   justify?:
-    | 'start'
-    | 'center'
-    | 'end'
-    | 'space-between'
-    | 'space-around'
-    | 'space-evenly';
+    | "start"
+    | "center"
+    | "end"
+    | "space-between"
+    | "space-around"
+    | "space-evenly";
   wrap?: boolean;
 }
 
 export interface AlertProps {
-  variant?: 'info' | 'success' | 'warning' | 'error';
-  styleVariant?: 'filled' | 'outlined' | 'soft';
+  variant?: "info" | "success" | "warning" | "error";
+  styleVariant?: "filled" | "outlined" | "soft";
   title?: string;
   closable?: boolean;
   showIcon?: boolean;
 }
 
 export interface BadgeProps {
-  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
-  styleVariant?: 'filled' | 'outlined' | 'soft';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "primary" | "secondary" | "success" | "warning" | "error" | "info";
+  styleVariant?: "filled" | "outlined" | "soft";
+  size?: "sm" | "md" | "lg";
   pill?: boolean;
   dot?: boolean;
   removable?: boolean;
 }
 
 export interface CardProps {
-  variant?: 'default' | 'outlined' | 'elevated';
-  padding?: 'none' | 'sm' | 'md' | 'lg';
+  variant?: "default" | "outlined" | "elevated";
+  padding?: "none" | "sm" | "md" | "lg";
   hoverable?: boolean;
   clickable?: boolean;
 }
@@ -97,16 +97,16 @@ export interface CardProps {
 export interface ProgressProps {
   value?: number;
   max?: number;
-  variant?: 'default' | 'striped' | 'animated';
-  color?: 'primary' | 'success' | 'warning' | 'error' | 'info';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "default" | "striped" | "animated";
+  color?: "primary" | "success" | "warning" | "error" | "info";
+  size?: "sm" | "md" | "lg";
   showLabel?: boolean;
 }
 
 export interface SpinnerProps {
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  color?: 'primary' | 'success' | 'warning' | 'error' | 'info' | 'neutral';
-  variant?: 'circular' | 'dots' | 'pulse';
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  color?: "primary" | "success" | "warning" | "error" | "info" | "neutral";
+  variant?: "circular" | "dots" | "pulse";
   speed?: string;
 }
 
@@ -120,8 +120,8 @@ export interface FormGroupProps {
 }
 
 export interface SelectProps {
-  variant?: 'default' | 'filled' | 'outlined';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "default" | "filled" | "outlined";
+  size?: "sm" | "md" | "lg";
   modelValue?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -132,7 +132,7 @@ export interface SelectProps {
 }
 
 export interface RadioProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   checked?: boolean;
   disabled?: boolean;
   required?: boolean;
@@ -144,8 +144,8 @@ export interface RadioProps {
 }
 
 export interface TextareaProps {
-  variant?: 'default' | 'filled' | 'outlined';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "default" | "filled" | "outlined";
+  size?: "sm" | "md" | "lg";
   modelValue?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -153,14 +153,14 @@ export interface TextareaProps {
   required?: boolean;
   error?: boolean;
   rows?: number;
-  resize?: 'none' | 'both' | 'horizontal' | 'vertical';
+  resize?: "none" | "both" | "horizontal" | "vertical";
   name?: string;
   maxlength?: number;
   minlength?: number;
 }
 
 export interface SwitchProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   checked?: boolean;
   disabled?: boolean;
   required?: boolean;
@@ -174,21 +174,21 @@ export interface SwitchProps {
 export interface TooltipProps {
   content?: string;
   placement?:
-    | 'top'
-    | 'top-start'
-    | 'top-end'
-    | 'bottom'
-    | 'bottom-start'
-    | 'bottom-end'
-    | 'left'
-    | 'left-start'
-    | 'left-end'
-    | 'right'
-    | 'right-start'
-    | 'right-end';
-  trigger?: 'hover' | 'focus' | 'click';
-  variant?: 'default' | 'dark' | 'light';
-  size?: 'sm' | 'md' | 'lg';
+    | "top"
+    | "top-start"
+    | "top-end"
+    | "bottom"
+    | "bottom-start"
+    | "bottom-end"
+    | "left"
+    | "left-start"
+    | "left-end"
+    | "right"
+    | "right-start"
+    | "right-end";
+  trigger?: "hover" | "focus" | "click";
+  variant?: "default" | "dark" | "light";
+  size?: "sm" | "md" | "lg";
   showArrow?: boolean;
   delay?: number;
   disabled?: boolean;
@@ -196,25 +196,33 @@ export interface TooltipProps {
 
 export interface TabsProps {
   value?: string;
-  variant?: 'default' | 'outlined' | 'pills';
-  size?: 'sm' | 'md' | 'lg';
-  align?: 'start' | 'center' | 'end';
+  variant?: "default" | "outlined" | "pills";
+  size?: "sm" | "md" | "lg";
+  align?: "start" | "center" | "end";
 }
 
 export interface BreadcrumbProps {
-  separator?: 'slash' | 'chevron' | 'arrow' | 'dot';
-  size?: 'sm' | 'md' | 'lg';
+  separator?: "slash" | "chevron" | "arrow" | "dot";
+  size?: "sm" | "md" | "lg";
 }
 
 export interface DropdownProps {
-  placement?: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'right';
-  trigger?: 'click' | 'hover';
+  placement?:
+    | "top"
+    | "top-start"
+    | "top-end"
+    | "bottom"
+    | "bottom-start"
+    | "bottom-end"
+    | "left"
+    | "right";
+  trigger?: "click" | "hover";
   open?: boolean;
   className?: string;
 }
 
 export interface MenuProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   className?: string;
 }
 

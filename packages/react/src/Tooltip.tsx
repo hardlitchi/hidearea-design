@@ -1,10 +1,11 @@
-import React, { forwardRef, useEffect, useRef } from 'react';
-import type { HaTooltip as HaTooltipElement } from '@hidearea-design/core';
+import React, { forwardRef, useEffect, useRef } from "react";
+import type { HaTooltip as HaTooltipElement } from "@hidearea-design/core";
 
 // Import the web component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
-export interface TooltipProps extends Omit<React.HTMLAttributes<HTMLElement>, 'content'> {
+export interface TooltipProps
+  extends Omit<React.HTMLAttributes<HTMLElement>, "content"> {
   /**
    * Tooltip content text
    */
@@ -15,36 +16,36 @@ export interface TooltipProps extends Omit<React.HTMLAttributes<HTMLElement>, 'c
    * @default "top"
    */
   placement?:
-    | 'top'
-    | 'top-start'
-    | 'top-end'
-    | 'bottom'
-    | 'bottom-start'
-    | 'bottom-end'
-    | 'left'
-    | 'left-start'
-    | 'left-end'
-    | 'right'
-    | 'right-start'
-    | 'right-end';
+    | "top"
+    | "top-start"
+    | "top-end"
+    | "bottom"
+    | "bottom-start"
+    | "bottom-end"
+    | "left"
+    | "left-start"
+    | "left-end"
+    | "right"
+    | "right-start"
+    | "right-end";
 
   /**
    * Trigger type
    * @default "hover"
    */
-  trigger?: 'hover' | 'focus' | 'click';
+  trigger?: "hover" | "focus" | "click";
 
   /**
    * Tooltip variant
    * @default "default"
    */
-  variant?: 'default' | 'dark' | 'light';
+  variant?: "default" | "dark" | "light";
 
   /**
    * Tooltip size
    * @default "md"
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 
   /**
    * Show arrow indicator
@@ -101,10 +102,10 @@ export const Tooltip = forwardRef<HTMLElement, TooltipProps>(
   (
     {
       content,
-      placement = 'top',
-      trigger = 'hover',
-      variant = 'default',
-      size = 'md',
+      placement = "top",
+      trigger = "hover",
+      variant = "default",
+      size = "md",
       showArrow = false,
       delay = 200,
       disabled = false,
@@ -114,7 +115,7 @@ export const Tooltip = forwardRef<HTMLElement, TooltipProps>(
       children,
       ...props
     },
-    _ref
+    _ref,
   ) => {
     const elementRef = useRef<HaTooltipElement>(null);
 
@@ -133,7 +134,16 @@ export const Tooltip = forwardRef<HTMLElement, TooltipProps>(
       element.showArrow = showArrow;
       element.delay = delay;
       element.disabled = disabled;
-    }, [content, placement, trigger, variant, size, showArrow, delay, disabled]);
+    }, [
+      content,
+      placement,
+      trigger,
+      variant,
+      size,
+      showArrow,
+      delay,
+      disabled,
+    ]);
 
     useEffect(() => {
       const element = elementRef.current;
@@ -152,18 +162,18 @@ export const Tooltip = forwardRef<HTMLElement, TooltipProps>(
       };
 
       if (onShow) {
-        element.addEventListener('show', handleShow);
+        element.addEventListener("show", handleShow);
       }
       if (onHide) {
-        element.addEventListener('hide', handleHide);
+        element.addEventListener("hide", handleHide);
       }
 
       return () => {
         if (onShow) {
-          element.removeEventListener('show', handleShow);
+          element.removeEventListener("show", handleShow);
         }
         if (onHide) {
-          element.removeEventListener('hide', handleHide);
+          element.removeEventListener("hide", handleHide);
         }
       };
     }, [onShow, onHide]);
@@ -174,16 +184,19 @@ export const Tooltip = forwardRef<HTMLElement, TooltipProps>(
         {contentElement && <div slot="content">{contentElement}</div>}
       </ha-tooltip>
     );
-  }
+  },
 );
 
-Tooltip.displayName = 'Tooltip';
+Tooltip.displayName = "Tooltip";
 
 // Add TypeScript support for JSX
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-tooltip': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+      "ha-tooltip": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
     }
   }
 }

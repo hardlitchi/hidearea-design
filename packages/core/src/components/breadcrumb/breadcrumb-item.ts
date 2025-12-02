@@ -1,4 +1,4 @@
-import { breadcrumbItemStyles } from './breadcrumb.styles';
+import { breadcrumbItemStyles } from "./breadcrumb.styles";
 
 /**
  * Breadcrumb item component
@@ -20,44 +20,44 @@ export class HaBreadcrumbItem extends HTMLElement {
   private separatorElement: HTMLSpanElement;
 
   static get observedAttributes() {
-    return ['href', 'current', 'separator'];
+    return ["href", "current", "separator"];
   }
 
   constructor() {
     super();
 
     // Attach shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create styles
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = breadcrumbItemStyles;
 
     // Create item element (will be either <a> or <span>)
-    this.itemElement = document.createElement('span');
-    this.itemElement.className = 'breadcrumb-item';
-    this.itemElement.setAttribute('part', 'item');
+    this.itemElement = document.createElement("span");
+    this.itemElement.className = "breadcrumb-item";
+    this.itemElement.setAttribute("part", "item");
 
     // Create icon slot
-    const iconSlot = document.createElement('slot');
-    iconSlot.name = 'icon';
+    const iconSlot = document.createElement("slot");
+    iconSlot.name = "icon";
 
     // Create default slot
-    const defaultSlot = document.createElement('slot');
+    const defaultSlot = document.createElement("slot");
 
     // Append slots to item
     this.itemElement.appendChild(iconSlot);
     this.itemElement.appendChild(defaultSlot);
 
     // Create separator
-    this.separatorElement = document.createElement('span');
-    this.separatorElement.className = 'separator';
-    this.separatorElement.setAttribute('part', 'separator');
-    this.separatorElement.setAttribute('aria-hidden', 'true');
+    this.separatorElement = document.createElement("span");
+    this.separatorElement.className = "separator";
+    this.separatorElement.setAttribute("part", "separator");
+    this.separatorElement.setAttribute("aria-hidden", "true");
 
     // Create separator slot
-    const separatorSlot = document.createElement('slot');
-    separatorSlot.name = 'separator';
+    const separatorSlot = document.createElement("slot");
+    separatorSlot.name = "separator";
     this.separatorElement.appendChild(separatorSlot);
 
     // Append to shadow root
@@ -66,14 +66,14 @@ export class HaBreadcrumbItem extends HTMLElement {
     shadow.appendChild(this.separatorElement);
 
     // Handle click
-    this.itemElement.addEventListener('click', (e) => {
+    this.itemElement.addEventListener("click", (e) => {
       if (!this.current) {
         this.dispatchEvent(
-          new CustomEvent('item-click', {
+          new CustomEvent("item-click", {
             bubbles: true,
             composed: true,
             detail: { href: this.href },
-          })
+          }),
         );
 
         // If no href, prevent default
@@ -86,8 +86,8 @@ export class HaBreadcrumbItem extends HTMLElement {
 
   connectedCallback() {
     // Set default separator
-    if (!this.hasAttribute('separator')) {
-      this.setAttribute('separator', 'slash');
+    if (!this.hasAttribute("separator")) {
+      this.setAttribute("separator", "slash");
     }
 
     this.updateItem();
@@ -97,7 +97,7 @@ export class HaBreadcrumbItem extends HTMLElement {
   attributeChangedCallback(_name: string, oldValue: string, newValue: string) {
     if (oldValue === newValue) return;
 
-    if (_name === 'separator') {
+    if (_name === "separator") {
       this.updateSeparator();
     } else {
       this.updateItem();
@@ -113,15 +113,15 @@ export class HaBreadcrumbItem extends HTMLElement {
 
     // If element type needs to change
     if (
-      (needsLink && this.itemElement.tagName !== 'A') ||
-      (!needsLink && this.itemElement.tagName !== 'SPAN')
+      (needsLink && this.itemElement.tagName !== "A") ||
+      (!needsLink && this.itemElement.tagName !== "SPAN")
     ) {
       const newElement = needsLink
-        ? document.createElement('a')
-        : document.createElement('span');
+        ? document.createElement("a")
+        : document.createElement("span");
 
       newElement.className = this.itemElement.className;
-      newElement.setAttribute('part', 'item');
+      newElement.setAttribute("part", "item");
 
       // Move children
       while (this.itemElement.firstChild) {
@@ -133,14 +133,14 @@ export class HaBreadcrumbItem extends HTMLElement {
       this.itemElement = newElement;
 
       // Re-attach click listener
-      this.itemElement.addEventListener('click', (e) => {
+      this.itemElement.addEventListener("click", (e) => {
         if (!this.current) {
           this.dispatchEvent(
-            new CustomEvent('item-click', {
+            new CustomEvent("item-click", {
               bubbles: true,
               composed: true,
               detail: { href: this.href },
-            })
+            }),
           );
 
           if (!this.href) {
@@ -156,62 +156,68 @@ export class HaBreadcrumbItem extends HTMLElement {
     }
 
     // Update classes
-    const classes = ['breadcrumb-item'];
+    const classes = ["breadcrumb-item"];
     if (this.current) {
-      classes.push('current');
+      classes.push("current");
     }
-    this.itemElement.className = classes.join(' ');
+    this.itemElement.className = classes.join(" ");
 
     // Update ARIA
-    this.itemElement.setAttribute('aria-current', this.current ? 'page' : 'false');
+    this.itemElement.setAttribute(
+      "aria-current",
+      this.current ? "page" : "false",
+    );
   }
 
   private updateSeparator() {
-    const separatorSlot = this.separatorElement.querySelector('slot[name="separator"]') as HTMLSlotElement;
-    const hasCustomSeparator = separatorSlot && separatorSlot.assignedElements().length > 0;
+    const separatorSlot = this.separatorElement.querySelector(
+      'slot[name="separator"]',
+    ) as HTMLSlotElement;
+    const hasCustomSeparator =
+      separatorSlot && separatorSlot.assignedElements().length > 0;
 
     if (!hasCustomSeparator) {
       this.separatorElement.className = `separator separator-${this.separator}`;
     } else {
-      this.separatorElement.className = 'separator';
+      this.separatorElement.className = "separator";
     }
   }
 
   // Public API
   get href(): string {
-    return this.getAttribute('href') || '';
+    return this.getAttribute("href") || "";
   }
 
   set href(value: string) {
     if (value) {
-      this.setAttribute('href', value);
+      this.setAttribute("href", value);
     } else {
-      this.removeAttribute('href');
+      this.removeAttribute("href");
     }
   }
 
   get current(): boolean {
-    return this.hasAttribute('current');
+    return this.hasAttribute("current");
   }
 
   set current(value: boolean) {
     if (value) {
-      this.setAttribute('current', '');
+      this.setAttribute("current", "");
     } else {
-      this.removeAttribute('current');
+      this.removeAttribute("current");
     }
   }
 
   get separator(): string {
-    return this.getAttribute('separator') || 'slash';
+    return this.getAttribute("separator") || "slash";
   }
 
   set separator(value: string) {
-    this.setAttribute('separator', value);
+    this.setAttribute("separator", value);
   }
 }
 
 // Register custom element
-if (!customElements.get('ha-breadcrumb-item')) {
-  customElements.define('ha-breadcrumb-item', HaBreadcrumbItem);
+if (!customElements.get("ha-breadcrumb-item")) {
+  customElements.define("ha-breadcrumb-item", HaBreadcrumbItem);
 }

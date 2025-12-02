@@ -1,27 +1,32 @@
-import React, { forwardRef, useEffect, useRef, useImperativeHandle } from 'react';
-import type { HaBadge as HaBadgeElement } from '@hidearea-design/core';
+import React, {
+  forwardRef,
+  useEffect,
+  useRef,
+  useImperativeHandle,
+} from "react";
+import type { HaBadge as HaBadgeElement } from "@hidearea-design/core";
 
 // Import the web component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * Badge variant
    * @default "primary"
    */
-  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
+  variant?: "primary" | "secondary" | "success" | "warning" | "error" | "info";
 
   /**
    * Badge style variant
    * @default "filled"
    */
-  styleVariant?: 'filled' | 'outlined' | 'soft';
+  styleVariant?: "filled" | "outlined" | "soft";
 
   /**
    * Badge size
    * @default "md"
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 
   /**
    * Pill-shaped badge
@@ -70,9 +75,9 @@ export interface BadgeRef {
 export const Badge = forwardRef<BadgeRef, BadgeProps>(
   (
     {
-      variant = 'primary',
-      styleVariant = 'filled',
-      size = 'md',
+      variant = "primary",
+      styleVariant = "filled",
+      size = "md",
       pill = false,
       dot = false,
       removable = false,
@@ -80,7 +85,7 @@ export const Badge = forwardRef<BadgeRef, BadgeProps>(
       onRemove,
       ...props
     },
-    ref
+    ref,
   ) => {
     const elementRef = useRef<HaBadgeElement>(null);
 
@@ -109,31 +114,28 @@ export const Badge = forwardRef<BadgeRef, BadgeProps>(
         onRemove();
       };
 
-      element.addEventListener('badge-remove', handleRemove);
+      element.addEventListener("badge-remove", handleRemove);
 
       return () => {
-        element.removeEventListener('badge-remove', handleRemove);
+        element.removeEventListener("badge-remove", handleRemove);
       };
     }, [onRemove]);
 
     return (
-      <ha-badge
-        ref={elementRef}
-        {...props}
-      >
+      <ha-badge ref={elementRef} {...props}>
         {children}
       </ha-badge>
     );
-  }
+  },
 );
 
-Badge.displayName = 'Badge';
+Badge.displayName = "Badge";
 
 // Add TypeScript support for JSX
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-badge': React.DetailedHTMLProps<
+      "ha-badge": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >;

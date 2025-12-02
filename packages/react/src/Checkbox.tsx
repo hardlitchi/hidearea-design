@@ -1,15 +1,21 @@
-import React, { forwardRef, useEffect, useRef, useImperativeHandle } from 'react';
-import type { HaCheckbox as HaCheckboxElement } from '@hidearea-design/core';
+import React, {
+  forwardRef,
+  useEffect,
+  useRef,
+  useImperativeHandle,
+} from "react";
+import type { HaCheckbox as HaCheckboxElement } from "@hidearea-design/core";
 
 // Import the web component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
-export interface CheckboxProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange' | 'onInput'> {
+export interface CheckboxProps
+  extends Omit<React.HTMLAttributes<HTMLElement>, "onChange" | "onInput"> {
   /**
    * Checkbox size
    * @default "md"
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 
   /**
    * Checked state
@@ -112,7 +118,7 @@ export interface CheckboxRef {
 export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(
   (
     {
-      size = 'md',
+      size = "md",
       checked = false,
       indeterminate = false,
       disabled = false,
@@ -128,7 +134,7 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(
       descriptionSlot,
       ...props
     },
-    ref
+    ref,
   ) => {
     const elementRef = useRef<HaCheckboxElement>(null);
 
@@ -137,7 +143,8 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(
       blur: () => elementRef.current?.blur(),
       checkValidity: () => elementRef.current?.checkValidity() ?? false,
       reportValidity: () => elementRef.current?.reportValidity() ?? false,
-      setCustomValidity: (message: string) => elementRef.current?.setCustomValidity(message),
+      setCustomValidity: (message: string) =>
+        elementRef.current?.setCustomValidity(message),
       getChecked: () => elementRef.current?.checked ?? false,
       setChecked: (checked: boolean) => {
         if (elementRef.current) {
@@ -170,37 +177,57 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(
         element.value = value;
       }
       if (label !== undefined) {
-        element.setAttribute('label', label);
+        element.setAttribute("label", label);
       }
       if (description !== undefined) {
-        element.setAttribute('description', description);
+        element.setAttribute("description", description);
       }
-    }, [size, checked, indeterminate, disabled, required, error, name, value, label, description]);
+    }, [
+      size,
+      checked,
+      indeterminate,
+      disabled,
+      required,
+      error,
+      name,
+      value,
+      label,
+      description,
+    ]);
 
     useEffect(() => {
       const element = elementRef.current;
       if (!element) return;
 
       const handleChange = (e: Event) => {
-        const customEvent = e as CustomEvent<{ checked: boolean; originalEvent: Event }>;
-        onChange?.(customEvent.detail.checked, customEvent.detail.originalEvent);
+        const customEvent = e as CustomEvent<{
+          checked: boolean;
+          originalEvent: Event;
+        }>;
+        onChange?.(
+          customEvent.detail.checked,
+          customEvent.detail.originalEvent,
+        );
       };
 
       const handleInput = (e: Event) => {
-        const customEvent = e as CustomEvent<{ checked: boolean; originalEvent: Event }>;
+        const customEvent = e as CustomEvent<{
+          checked: boolean;
+          originalEvent: Event;
+        }>;
         onInput?.(customEvent.detail.checked, customEvent.detail.originalEvent);
       };
 
       if (onChange) {
-        element.addEventListener('change', handleChange);
+        element.addEventListener("change", handleChange);
       }
       if (onInput) {
-        element.addEventListener('input', handleInput);
+        element.addEventListener("input", handleInput);
       }
 
       return () => {
-        element.removeEventListener('change', handleChange);
-        element.removeEventListener('input', handleInput);
+        element.removeEventListener("change", handleChange);
+        element.removeEventListener("input", handleInput);
       };
     }, [onChange, onInput]);
 
@@ -210,16 +237,19 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(
         {descriptionSlot && <span slot="description">{descriptionSlot}</span>}
       </ha-checkbox>
     );
-  }
+  },
 );
 
-Checkbox.displayName = 'Checkbox';
+Checkbox.displayName = "Checkbox";
 
 // Add TypeScript support for JSX
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-checkbox': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+      "ha-checkbox": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
     }
   }
 }

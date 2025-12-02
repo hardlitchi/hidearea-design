@@ -1,4 +1,4 @@
-import { baseStyles } from '../../styles/base';
+import { baseStyles } from "../../styles/base";
 
 export const inputStyles = `
   ${baseStyles}

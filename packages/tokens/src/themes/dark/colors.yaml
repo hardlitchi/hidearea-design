@@ -5,128 +5,128 @@ theme:
     # 背景色
     background:
       primary:
-        value: '{color.gray.900.value}'
-        comment: '主要な背景色'
+        value: "{color.gray.900.value}"
+        comment: "主要な背景色"
       secondary:
-        value: '{color.gray.800.value}'
-        comment: '副次的な背景色'
+        value: "{color.gray.800.value}"
+        comment: "副次的な背景色"
       tertiary:
-        value: '{color.gray.700.value}'
-        comment: '第三の背景色'
+        value: "{color.gray.700.value}"
+        comment: "第三の背景色"
 
     # 前景色（テキスト）
     foreground:
       primary:
-        value: '{color.gray.50.value}'
-        comment: '主要なテキスト色'
+        value: "{color.gray.50.value}"
+        comment: "主要なテキスト色"
       secondary:
-        value: '{color.gray.400.value}'
-        comment: '副次的なテキスト色'
+        value: "{color.gray.400.value}"
+        comment: "副次的なテキスト色"
       tertiary:
-        value: '{color.gray.500.value}'
-        comment: '第三のテキスト色'
+        value: "{color.gray.500.value}"
+        comment: "第三のテキスト色"
       inverse:
-        value: '{color.gray.900.value}'
-        comment: '反転したテキスト色'
+        value: "{color.gray.900.value}"
+        comment: "反転したテキスト色"
 
     # ボーダー色
     border:
       default:
-        value: '{color.gray.700.value}'
-        comment: '標準のボーダー色'
+        value: "{color.gray.700.value}"
+        comment: "標準のボーダー色"
       subtle:
-        value: '{color.gray.800.value}'
-        comment: '控えめなボーダー色'
+        value: "{color.gray.800.value}"
+        comment: "控えめなボーダー色"
       strong:
-        value: '{color.gray.600.value}'
-        comment: '強いボーダー色'
+        value: "{color.gray.600.value}"
+        comment: "強いボーダー色"
 
     # プライマリカラー
     primary:
       default:
-        value: '{color.blue.500.value}'
-        comment: 'プライマリカラー'
+        value: "{color.blue.500.value}"
+        comment: "プライマリカラー"
       hover:
-        value: '{color.blue.400.value}'
-        comment: 'プライマリカラー（ホバー）'
+        value: "{color.blue.400.value}"
+        comment: "プライマリカラー（ホバー）"
       active:
-        value: '{color.blue.300.value}'
-        comment: 'プライマリカラー（アクティブ）'
+        value: "{color.blue.300.value}"
+        comment: "プライマリカラー（アクティブ）"
       subtle:
-        value: '{color.blue.900.value}'
-        comment: 'プライマリカラー（控えめ）'
+        value: "{color.blue.900.value}"
+        comment: "プライマリカラー（控えめ）"
 
     # セカンダリカラー
     secondary:
       default:
-        value: '{color.purple.500.value}'
-        comment: 'セカンダリカラー'
+        value: "{color.purple.500.value}"
+        comment: "セカンダリカラー"
       hover:
-        value: '{color.purple.400.value}'
-        comment: 'セカンダリカラー（ホバー）'
+        value: "{color.purple.400.value}"
+        comment: "セカンダリカラー（ホバー）"
       active:
-        value: '{color.purple.300.value}'
-        comment: 'セカンダリカラー（アクティブ）'
+        value: "{color.purple.300.value}"
+        comment: "セカンダリカラー（アクティブ）"
       subtle:
-        value: '{color.purple.900.value}'
-        comment: 'セカンダリカラー（控えめ）'
+        value: "{color.purple.900.value}"
+        comment: "セカンダリカラー（控えめ）"
 
     # セマンティックカラー - Success
     success:
       default:
-        value: '{color.green.500.value}'
-        comment: '成功'
+        value: "{color.green.500.value}"
+        comment: "成功"
       hover:
-        value: '{color.green.400.value}'
-        comment: '成功（ホバー）'
+        value: "{color.green.400.value}"
+        comment: "成功（ホバー）"
       active:
-        value: '{color.green.300.value}'
-        comment: '成功（アクティブ）'
+        value: "{color.green.300.value}"
+        comment: "成功（アクティブ）"
       subtle:
-        value: '{color.green.900.value}'
-        comment: '成功（控えめ）'
+        value: "{color.green.900.value}"
+        comment: "成功（控えめ）"
 
     # セマンティックカラー - Warning
     warning:
       default:
-        value: '{color.yellow.500.value}'
-        comment: '警告'
+        value: "{color.yellow.500.value}"
+        comment: "警告"
       hover:
-        value: '{color.yellow.400.value}'
-        comment: '警告（ホバー）'
+        value: "{color.yellow.400.value}"
+        comment: "警告（ホバー）"
       active:
-        value: '{color.yellow.300.value}'
-        comment: '警告（アクティブ）'
+        value: "{color.yellow.300.value}"
+        comment: "警告（アクティブ）"
       subtle:
-        value: '{color.yellow.900.value}'
-        comment: '警告（控えめ）'
+        value: "{color.yellow.900.value}"
+        comment: "警告（控えめ）"
 
     # セマンティックカラー - Error
     error:
       default:
-        value: '{color.red.500.value}'
-        comment: 'エラー'
+        value: "{color.red.500.value}"
+        comment: "エラー"
       hover:
-        value: '{color.red.400.value}'
-        comment: 'エラー（ホバー）'
+        value: "{color.red.400.value}"
+        comment: "エラー（ホバー）"
       active:
-        value: '{color.red.300.value}'
-        comment: 'エラー（アクティブ）'
+        value: "{color.red.300.value}"
+        comment: "エラー（アクティブ）"
       subtle:
-        value: '{color.red.900.value}'
-        comment: 'エラー（控えめ）'
+        value: "{color.red.900.value}"
+        comment: "エラー（控えめ）"
 
     # セマンティックカラー - Info
     info:
       default:
-        value: '{color.cyan.500.value}'
-        comment: '情報'
+        value: "{color.cyan.500.value}"
+        comment: "情報"
       hover:
-        value: '{color.cyan.400.value}'
-        comment: '情報（ホバー）'
+        value: "{color.cyan.400.value}"
+        comment: "情報（ホバー）"
       active:
-        value: '{color.cyan.300.value}'
-        comment: '情報（アクティブ）'
+        value: "{color.cyan.300.value}"
+        comment: "情報（アクティブ）"
       subtle:
-        value: '{color.cyan.900.value}'
-        comment: '情報（控えめ）'
+        value: "{color.cyan.900.value}"
+        comment: "情報（控えめ）"

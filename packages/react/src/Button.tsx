@@ -1,21 +1,26 @@
-import React, { forwardRef, useEffect, useRef, useImperativeHandle } from 'react';
-import type { HaButton as HaButtonElement } from '@hidearea-design/core';
+import React, {
+  forwardRef,
+  useEffect,
+  useRef,
+  useImperativeHandle,
+} from "react";
+import type { HaButton as HaButtonElement } from "@hidearea-design/core";
 
 // Import the web component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * Button variant
    * @default "primary"
    */
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "danger";
 
   /**
    * Button size
    * @default "md"
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 
   /**
    * Disabled state
@@ -39,7 +44,7 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLElement> {
    * Button type
    * @default "button"
    */
-  type?: 'button' | 'submit' | 'reset';
+  type?: "button" | "submit" | "reset";
 
   /**
    * Button content
@@ -67,16 +72,16 @@ export interface ButtonRef {
 export const Button = forwardRef<ButtonRef, ButtonProps>(
   (
     {
-      variant = 'primary',
-      size = 'md',
+      variant = "primary",
+      size = "md",
       disabled = false,
       loading = false,
       fullWidth = false,
-      type = 'button',
+      type = "button",
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const elementRef = useRef<HaButtonElement>(null);
 
@@ -95,27 +100,24 @@ export const Button = forwardRef<ButtonRef, ButtonProps>(
       element.disabled = disabled;
       element.loading = loading;
       element.fullWidth = fullWidth;
-      element.setAttribute('type', type);
+      element.setAttribute("type", type);
     }, [variant, size, disabled, loading, fullWidth, type]);
 
     return (
-      <ha-button
-        ref={elementRef}
-        {...props}
-      >
+      <ha-button ref={elementRef} {...props}>
         {children}
       </ha-button>
     );
-  }
+  },
 );
 
-Button.displayName = 'Button';
+Button.displayName = "Button";
 
 // Add TypeScript support for JSX
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-button': React.DetailedHTMLProps<
+      "ha-button": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >;

@@ -1,4 +1,4 @@
-import { progressStyles } from './progress.styles';
+import { progressStyles } from "./progress.styles";
 
 export class HaProgress extends HTMLElement {
   private progressElement!: HTMLDivElement;
@@ -7,66 +7,69 @@ export class HaProgress extends HTMLElement {
   private percentageElement!: HTMLSpanElement;
 
   static get observedAttributes() {
-    return ['value', 'max', 'variant', 'color', 'size', 'show-label'];
+    return ["value", "max", "variant", "color", "size", "show-label"];
   }
 
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
   }
 
   get value(): number {
-    return parseFloat(this.getAttribute('value') || '0');
+    return parseFloat(this.getAttribute("value") || "0");
   }
 
   set value(val: number) {
-    this.setAttribute('value', val.toString());
+    this.setAttribute("value", val.toString());
   }
 
   get max(): number {
-    return parseFloat(this.getAttribute('max') || '100');
+    return parseFloat(this.getAttribute("max") || "100");
   }
 
   set max(val: number) {
-    this.setAttribute('max', val.toString());
+    this.setAttribute("max", val.toString());
   }
 
-  get variant(): 'default' | 'striped' | 'animated' {
-    const value = this.getAttribute('variant');
-    return (value as 'default' | 'striped' | 'animated') || 'default';
+  get variant(): "default" | "striped" | "animated" {
+    const value = this.getAttribute("variant");
+    return (value as "default" | "striped" | "animated") || "default";
   }
 
-  set variant(val: 'default' | 'striped' | 'animated') {
-    this.setAttribute('variant', val);
+  set variant(val: "default" | "striped" | "animated") {
+    this.setAttribute("variant", val);
   }
 
-  get color(): 'primary' | 'success' | 'warning' | 'error' | 'info' {
-    const value = this.getAttribute('color');
-    return (value as 'primary' | 'success' | 'warning' | 'error' | 'info') || 'primary';
+  get color(): "primary" | "success" | "warning" | "error" | "info" {
+    const value = this.getAttribute("color");
+    return (
+      (value as "primary" | "success" | "warning" | "error" | "info") ||
+      "primary"
+    );
   }
 
-  set color(val: 'primary' | 'success' | 'warning' | 'error' | 'info') {
-    this.setAttribute('color', val);
+  set color(val: "primary" | "success" | "warning" | "error" | "info") {
+    this.setAttribute("color", val);
   }
 
-  get size(): 'sm' | 'md' | 'lg' {
-    const value = this.getAttribute('size');
-    return (value as 'sm' | 'md' | 'lg') || 'md';
+  get size(): "sm" | "md" | "lg" {
+    const value = this.getAttribute("size");
+    return (value as "sm" | "md" | "lg") || "md";
   }
 
-  set size(val: 'sm' | 'md' | 'lg') {
-    this.setAttribute('size', val);
+  set size(val: "sm" | "md" | "lg") {
+    this.setAttribute("size", val);
   }
 
   get showLabel(): boolean {
-    return this.hasAttribute('show-label');
+    return this.hasAttribute("show-label");
   }
 
   set showLabel(val: boolean) {
     if (val) {
-      this.setAttribute('show-label', '');
+      this.setAttribute("show-label", "");
     } else {
-      this.removeAttribute('show-label');
+      this.removeAttribute("show-label");
     }
   }
 
@@ -76,15 +79,15 @@ export class HaProgress extends HTMLElement {
   }
 
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
-    if (name === 'value' || name === 'max') {
+    if (name === "value" || name === "max") {
       this.updateProgress();
-    } else if (name === 'variant') {
+    } else if (name === "variant") {
       this.updateBarClasses();
-    } else if (name === 'color') {
+    } else if (name === "color") {
       this.updateBarClasses();
-    } else if (name === 'size') {
+    } else if (name === "size") {
       this.updateProgressClasses();
-    } else if (name === 'show-label') {
+    } else if (name === "show-label") {
       this.updateLabelVisibility();
     }
   }
@@ -103,10 +106,12 @@ export class HaProgress extends HTMLElement {
       </div>
     `;
 
-    this.progressElement = this.shadowRoot.querySelector('.progress')!;
-    this.barElement = this.shadowRoot.querySelector('.progress__bar')!;
-    this.labelElement = this.shadowRoot.querySelector('.progress__label')!;
-    this.percentageElement = this.shadowRoot.querySelector('.progress__percentage')!;
+    this.progressElement = this.shadowRoot.querySelector(".progress")!;
+    this.barElement = this.shadowRoot.querySelector(".progress__bar")!;
+    this.labelElement = this.shadowRoot.querySelector(".progress__label")!;
+    this.percentageElement = this.shadowRoot.querySelector(
+      ".progress__percentage",
+    )!;
 
     this.updateProgressClasses();
     this.updateBarClasses();
@@ -116,14 +121,17 @@ export class HaProgress extends HTMLElement {
   private updateProgress() {
     if (!this.progressElement || !this.barElement) return;
 
-    const percentage = Math.min(100, Math.max(0, (this.value / this.max) * 100));
+    const percentage = Math.min(
+      100,
+      Math.max(0, (this.value / this.max) * 100),
+    );
 
     // Update bar width
     this.barElement.style.width = `${percentage}%`;
 
     // Update ARIA attributes
-    this.progressElement.setAttribute('aria-valuenow', this.value.toString());
-    this.progressElement.setAttribute('aria-valuemax', this.max.toString());
+    this.progressElement.setAttribute("aria-valuenow", this.value.toString());
+    this.progressElement.setAttribute("aria-valuemax", this.max.toString());
 
     // Update percentage text
     if (this.percentageElement) {
@@ -146,10 +154,10 @@ export class HaProgress extends HTMLElement {
 
     let className = `progress__bar progress__bar--${color}`;
 
-    if (variant === 'striped') {
-      className += ' progress__bar--striped';
-    } else if (variant === 'animated') {
-      className += ' progress__bar--animated';
+    if (variant === "striped") {
+      className += " progress__bar--striped";
+    } else if (variant === "animated") {
+      className += " progress__bar--animated";
     }
 
     this.barElement.className = className;
@@ -159,14 +167,14 @@ export class HaProgress extends HTMLElement {
     if (!this.labelElement) return;
 
     if (this.showLabel) {
-      this.labelElement.style.display = 'flex';
+      this.labelElement.style.display = "flex";
     } else {
-      this.labelElement.style.display = 'none';
+      this.labelElement.style.display = "none";
     }
   }
 }
 
 // Register the custom element
-if (!customElements.get('ha-progress')) {
-  customElements.define('ha-progress', HaProgress);
+if (!customElements.get("ha-progress")) {
+  customElements.define("ha-progress", HaProgress);
 }

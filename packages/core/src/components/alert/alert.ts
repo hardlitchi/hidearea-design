@@ -1,4 +1,4 @@
-import { alertStyles } from './alert.styles';
+import { alertStyles } from "./alert.styles";
 
 /**
  * Alert component
@@ -38,62 +38,62 @@ export class HaAlert extends HTMLElement {
   private closeButton: HTMLButtonElement;
 
   static get observedAttributes() {
-    return ['variant', 'style-variant', 'title', 'closable', 'show-icon'];
+    return ["variant", "style-variant", "title", "closable", "show-icon"];
   }
 
   constructor() {
     super();
 
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create styles
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = alertStyles;
 
     // Create alert container
-    this.alertElement = document.createElement('div');
-    this.alertElement.className = 'alert';
-    this.alertElement.setAttribute('part', 'alert');
-    this.alertElement.setAttribute('role', 'alert');
+    this.alertElement = document.createElement("div");
+    this.alertElement.className = "alert";
+    this.alertElement.setAttribute("part", "alert");
+    this.alertElement.setAttribute("role", "alert");
 
     // Create icon container
-    const iconContainer = document.createElement('div');
-    iconContainer.className = 'alert__icon';
-    iconContainer.setAttribute('part', 'icon');
+    const iconContainer = document.createElement("div");
+    iconContainer.className = "alert__icon";
+    iconContainer.setAttribute("part", "icon");
 
-    this.iconSlot = document.createElement('slot');
-    this.iconSlot.name = 'icon';
+    this.iconSlot = document.createElement("slot");
+    this.iconSlot.name = "icon";
     iconContainer.appendChild(this.iconSlot);
 
     // Create content container
-    const contentContainer = document.createElement('div');
-    contentContainer.className = 'alert__content';
-    contentContainer.setAttribute('part', 'content');
+    const contentContainer = document.createElement("div");
+    contentContainer.className = "alert__content";
+    contentContainer.setAttribute("part", "content");
 
     // Create title
-    const titleContainer = document.createElement('div');
-    titleContainer.className = 'alert__title';
-    titleContainer.setAttribute('part', 'title');
+    const titleContainer = document.createElement("div");
+    titleContainer.className = "alert__title";
+    titleContainer.setAttribute("part", "title");
 
-    this.titleSlot = document.createElement('slot');
-    this.titleSlot.name = 'title';
+    this.titleSlot = document.createElement("slot");
+    this.titleSlot.name = "title";
     titleContainer.appendChild(this.titleSlot);
 
     // Create message
-    const messageContainer = document.createElement('div');
-    messageContainer.className = 'alert__message';
-    messageContainer.setAttribute('part', 'message');
+    const messageContainer = document.createElement("div");
+    messageContainer.className = "alert__message";
+    messageContainer.setAttribute("part", "message");
 
-    this.messageSlot = document.createElement('slot');
+    this.messageSlot = document.createElement("slot");
     messageContainer.appendChild(this.messageSlot);
 
     // Create actions
-    const actionsContainer = document.createElement('div');
-    actionsContainer.className = 'alert__actions';
-    actionsContainer.setAttribute('part', 'actions');
+    const actionsContainer = document.createElement("div");
+    actionsContainer.className = "alert__actions";
+    actionsContainer.setAttribute("part", "actions");
 
-    this.actionsSlot = document.createElement('slot');
-    this.actionsSlot.name = 'actions';
+    this.actionsSlot = document.createElement("slot");
+    this.actionsSlot.name = "actions";
     actionsContainer.appendChild(this.actionsSlot);
 
     contentContainer.appendChild(titleContainer);
@@ -101,18 +101,18 @@ export class HaAlert extends HTMLElement {
     contentContainer.appendChild(actionsContainer);
 
     // Create close button
-    this.closeButton = document.createElement('button');
-    this.closeButton.className = 'alert__close';
-    this.closeButton.setAttribute('part', 'close');
-    this.closeButton.setAttribute('type', 'button');
-    this.closeButton.setAttribute('aria-label', 'Close alert');
+    this.closeButton = document.createElement("button");
+    this.closeButton.className = "alert__close";
+    this.closeButton.setAttribute("part", "close");
+    this.closeButton.setAttribute("type", "button");
+    this.closeButton.setAttribute("aria-label", "Close alert");
     this.closeButton.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
         <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
       </svg>
     `;
 
-    this.closeButton.addEventListener('click', () => {
+    this.closeButton.addEventListener("click", () => {
       this.handleClose();
     });
 
@@ -125,30 +125,30 @@ export class HaAlert extends HTMLElement {
     shadow.appendChild(this.alertElement);
 
     // Set default icon based on variant
-    this.iconSlot.addEventListener('slotchange', () => {
+    this.iconSlot.addEventListener("slotchange", () => {
       if (this.iconSlot.assignedElements().length === 0 && this.showIcon) {
         this.setDefaultIcon();
       }
     });
 
     // Handle title slot
-    this.titleSlot.addEventListener('slotchange', () => {
+    this.titleSlot.addEventListener("slotchange", () => {
       const titleContainer = this.titleSlot.parentElement;
       if (this.titleSlot.assignedElements().length === 0 && !this.title) {
-        titleContainer!.style.display = 'none';
+        titleContainer!.style.display = "none";
       } else {
-        titleContainer!.style.display = 'block';
+        titleContainer!.style.display = "block";
       }
     });
   }
 
   connectedCallback() {
     // Set default attributes
-    if (!this.hasAttribute('variant')) {
-      this.setAttribute('variant', 'info');
+    if (!this.hasAttribute("variant")) {
+      this.setAttribute("variant", "info");
     }
-    if (!this.hasAttribute('style-variant')) {
-      this.setAttribute('style-variant', 'soft');
+    if (!this.hasAttribute("style-variant")) {
+      this.setAttribute("style-variant", "soft");
     }
 
     this.updateAlertClasses();
@@ -161,20 +161,20 @@ export class HaAlert extends HTMLElement {
     if (oldValue === newValue) return;
 
     switch (name) {
-      case 'variant':
-      case 'style-variant':
+      case "variant":
+      case "style-variant":
         this.updateAlertClasses();
-        if (name === 'variant') {
+        if (name === "variant") {
           this.updateIcon();
         }
         break;
-      case 'title':
+      case "title":
         this.updateTitle();
         break;
-      case 'closable':
+      case "closable":
         this.updateCloseButton();
         break;
-      case 'show-icon':
+      case "show-icon":
         this.updateIcon();
         break;
     }
@@ -193,12 +193,12 @@ export class HaAlert extends HTMLElement {
     if (!iconContainer) return;
 
     if (this.showIcon) {
-      iconContainer.style.display = 'flex';
+      iconContainer.style.display = "flex";
       if (this.iconSlot.assignedElements().length === 0) {
         this.setDefaultIcon();
       }
     } else {
-      iconContainer.style.display = 'none';
+      iconContainer.style.display = "none";
     }
   }
 
@@ -209,9 +209,9 @@ export class HaAlert extends HTMLElement {
       existingIcon.remove();
     }
 
-    const iconSvg = document.createElement('span');
-    iconSvg.setAttribute('slot', 'icon');
-    iconSvg.setAttribute('data-default', 'true');
+    const iconSvg = document.createElement("span");
+    iconSvg.setAttribute("slot", "icon");
+    iconSvg.setAttribute("data-default", "true");
 
     const icons = {
       info: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -239,7 +239,7 @@ export class HaAlert extends HTMLElement {
     if (this.title) {
       // Remove existing text node if any
       const existingText = Array.from(titleContainer.childNodes).find(
-        node => node.nodeType === Node.TEXT_NODE
+        (node) => node.nodeType === Node.TEXT_NODE,
       );
       if (existingText) {
         existingText.remove();
@@ -248,22 +248,22 @@ export class HaAlert extends HTMLElement {
       // Add title as text node
       const textNode = document.createTextNode(this.title);
       titleContainer.insertBefore(textNode, this.titleSlot);
-      titleContainer.style.display = 'block';
+      titleContainer.style.display = "block";
     } else if (this.titleSlot.assignedElements().length === 0) {
-      titleContainer.style.display = 'none';
+      titleContainer.style.display = "none";
     }
   }
 
   private updateCloseButton() {
-    this.closeButton.style.display = this.closable ? 'flex' : 'none';
+    this.closeButton.style.display = this.closable ? "flex" : "none";
   }
 
   private handleClose() {
     this.dispatchEvent(
-      new CustomEvent('alert-close', {
+      new CustomEvent("alert-close", {
         bubbles: true,
         composed: true,
-      })
+      }),
     );
 
     // Default behavior: remove element
@@ -272,54 +272,56 @@ export class HaAlert extends HTMLElement {
 
   // Public API
   get variant(): string {
-    return this.getAttribute('variant') || 'info';
+    return this.getAttribute("variant") || "info";
   }
 
   set variant(value: string) {
-    this.setAttribute('variant', value);
+    this.setAttribute("variant", value);
   }
 
   get styleVariant(): string {
-    return this.getAttribute('style-variant') || 'soft';
+    return this.getAttribute("style-variant") || "soft";
   }
 
   set styleVariant(value: string) {
-    this.setAttribute('style-variant', value);
+    this.setAttribute("style-variant", value);
   }
 
   get title(): string {
-    return this.getAttribute('title') || '';
+    return this.getAttribute("title") || "";
   }
 
   set title(value: string) {
     if (value) {
-      this.setAttribute('title', value);
+      this.setAttribute("title", value);
     } else {
-      this.removeAttribute('title');
+      this.removeAttribute("title");
     }
   }
 
   get closable(): boolean {
-    return this.hasAttribute('closable');
+    return this.hasAttribute("closable");
   }
 
   set closable(value: boolean) {
     if (value) {
-      this.setAttribute('closable', '');
+      this.setAttribute("closable", "");
     } else {
-      this.removeAttribute('closable');
+      this.removeAttribute("closable");
     }
   }
 
   get showIcon(): boolean {
-    return this.hasAttribute('show-icon') ? this.getAttribute('show-icon') !== 'false' : true;
+    return this.hasAttribute("show-icon")
+      ? this.getAttribute("show-icon") !== "false"
+      : true;
   }
 
   set showIcon(value: boolean) {
     if (value) {
-      this.setAttribute('show-icon', 'true');
+      this.setAttribute("show-icon", "true");
     } else {
-      this.setAttribute('show-icon', 'false');
+      this.setAttribute("show-icon", "false");
     }
   }
 
@@ -332,4 +334,4 @@ export class HaAlert extends HTMLElement {
 }
 
 // Register custom element
-customElements.define('ha-alert', HaAlert);
+customElements.define("ha-alert", HaAlert);

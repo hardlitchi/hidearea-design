@@ -1,4 +1,4 @@
-import { tabPanelStyles } from './tabs.styles';
+import { tabPanelStyles } from "./tabs.styles";
 
 /**
  * Tab panel component
@@ -12,27 +12,27 @@ import { tabPanelStyles } from './tabs.styles';
  */
 export class HaTabPanel extends HTMLElement {
   static get observedAttributes() {
-    return ['value', 'active'];
+    return ["value", "active"];
   }
 
   constructor() {
     super();
 
     // Attach shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create styles
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = tabPanelStyles;
 
     // Create panel wrapper
-    const panel = document.createElement('div');
-    panel.className = 'tab-panel';
-    panel.setAttribute('part', 'panel');
-    panel.setAttribute('role', 'tabpanel');
+    const panel = document.createElement("div");
+    panel.className = "tab-panel";
+    panel.setAttribute("part", "panel");
+    panel.setAttribute("role", "tabpanel");
 
     // Create slot
-    const slot = document.createElement('slot');
+    const slot = document.createElement("slot");
     panel.appendChild(slot);
 
     // Append to shadow root
@@ -50,40 +50,40 @@ export class HaTabPanel extends HTMLElement {
   }
 
   private updatePanel() {
-    const panel = this.shadowRoot?.querySelector('.tab-panel');
+    const panel = this.shadowRoot?.querySelector(".tab-panel");
     if (!panel) return;
 
     // Set ARIA attributes
     if (this.value) {
       panel.id = `panel-${this.value}`;
-      panel.setAttribute('aria-labelledby', `tab-${this.value}`);
+      panel.setAttribute("aria-labelledby", `tab-${this.value}`);
     }
-    panel.setAttribute('aria-hidden', (!this.active).toString());
+    panel.setAttribute("aria-hidden", (!this.active).toString());
   }
 
   // Public API
   get value(): string {
-    return this.getAttribute('value') || '';
+    return this.getAttribute("value") || "";
   }
 
   set value(value: string) {
-    this.setAttribute('value', value);
+    this.setAttribute("value", value);
   }
 
   get active(): boolean {
-    return this.hasAttribute('active');
+    return this.hasAttribute("active");
   }
 
   set active(value: boolean) {
     if (value) {
-      this.setAttribute('active', '');
+      this.setAttribute("active", "");
     } else {
-      this.removeAttribute('active');
+      this.removeAttribute("active");
     }
   }
 }
 
 // Register custom element
-if (!customElements.get('ha-tab-panel')) {
-  customElements.define('ha-tab-panel', HaTabPanel);
+if (!customElements.get("ha-tab-panel")) {
+  customElements.define("ha-tab-panel", HaTabPanel);
 }

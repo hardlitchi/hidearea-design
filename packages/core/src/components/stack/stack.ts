@@ -1,4 +1,4 @@
-import { stackStyles } from './stack.styles';
+import { stackStyles } from "./stack.styles";
 
 /**
  * Stack component - manages vertical or horizontal spacing between children
@@ -17,25 +17,25 @@ export class HaStack extends HTMLElement {
   private stack: HTMLDivElement;
 
   static get observedAttributes() {
-    return ['direction', 'gap', 'align', 'justify', 'wrap'];
+    return ["direction", "gap", "align", "justify", "wrap"];
   }
 
   constructor() {
     super();
 
     // Attach shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create styles
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = stackStyles;
 
     // Create stack element
-    this.stack = document.createElement('div');
-    this.stack.setAttribute('part', 'stack');
+    this.stack = document.createElement("div");
+    this.stack.setAttribute("part", "stack");
 
     // Create slot for content
-    const slot = document.createElement('slot');
+    const slot = document.createElement("slot");
     this.stack.appendChild(slot);
 
     // Append to shadow root
@@ -45,11 +45,11 @@ export class HaStack extends HTMLElement {
 
   connectedCallback() {
     // Set default attributes if not present
-    if (!this.hasAttribute('direction')) {
-      this.setAttribute('direction', 'vertical');
+    if (!this.hasAttribute("direction")) {
+      this.setAttribute("direction", "vertical");
     }
-    if (!this.hasAttribute('gap')) {
-      this.setAttribute('gap', '4');
+    if (!this.hasAttribute("gap")) {
+      this.setAttribute("gap", "4");
     }
     this.updateStackStyles();
   }
@@ -60,7 +60,7 @@ export class HaStack extends HTMLElement {
   }
 
   private updateStackStyles() {
-    const gap = this.getAttribute('gap') || '4';
+    const gap = this.getAttribute("gap") || "4";
 
     // Set gap using CSS variable
     this.stack.style.gap = `var(--spacing-${gap}, ${this.getSpacingValue(gap)})`;
@@ -68,78 +68,78 @@ export class HaStack extends HTMLElement {
 
   private getSpacingValue(key: string): string {
     const spacingMap: Record<string, string> = {
-      '0': '0',
-      '1': '0.25rem',
-      '2': '0.5rem',
-      '3': '0.75rem',
-      '4': '1rem',
-      '5': '1.25rem',
-      '6': '1.5rem',
-      '7': '1.75rem',
-      '8': '2rem',
-      '9': '2.25rem',
-      '10': '2.5rem',
-      '11': '2.75rem',
-      '12': '3rem',
+      "0": "0",
+      "1": "0.25rem",
+      "2": "0.5rem",
+      "3": "0.75rem",
+      "4": "1rem",
+      "5": "1.25rem",
+      "6": "1.5rem",
+      "7": "1.75rem",
+      "8": "2rem",
+      "9": "2.25rem",
+      "10": "2.5rem",
+      "11": "2.75rem",
+      "12": "3rem",
     };
-    return spacingMap[key] || '1rem';
+    return spacingMap[key] || "1rem";
   }
 
   // Public API
   get direction(): string {
-    return this.getAttribute('direction') || 'vertical';
+    return this.getAttribute("direction") || "vertical";
   }
 
   set direction(value: string) {
-    this.setAttribute('direction', value);
+    this.setAttribute("direction", value);
   }
 
   get gap(): string {
-    return this.getAttribute('gap') || '4';
+    return this.getAttribute("gap") || "4";
   }
 
   set gap(value: string) {
-    this.setAttribute('gap', value);
+    this.setAttribute("gap", value);
   }
 
   get align(): string | null {
-    return this.getAttribute('align');
+    return this.getAttribute("align");
   }
 
   set align(value: string | null) {
     if (value) {
-      this.setAttribute('align', value);
+      this.setAttribute("align", value);
     } else {
-      this.removeAttribute('align');
+      this.removeAttribute("align");
     }
   }
 
   get justify(): string | null {
-    return this.getAttribute('justify');
+    return this.getAttribute("justify");
   }
 
   set justify(value: string | null) {
     if (value) {
-      this.setAttribute('justify', value);
+      this.setAttribute("justify", value);
     } else {
-      this.removeAttribute('justify');
+      this.removeAttribute("justify");
     }
   }
 
   get wrap(): boolean {
-    return this.hasAttribute('wrap');
+    return this.hasAttribute("wrap");
   }
 
   set wrap(value: boolean) {
     if (value) {
-      this.setAttribute('wrap', '');
+      this.setAttribute("wrap", "");
     } else {
-      this.removeAttribute('wrap');
+      this.removeAttribute("wrap");
     }
   }
 }
 
 // Register custom element
-if (!customElements.get('ha-stack')) {
-  customElements.define('ha-stack', HaStack);
+if (!customElements.get("ha-stack")) {
+  customElements.define("ha-stack", HaStack);
 }

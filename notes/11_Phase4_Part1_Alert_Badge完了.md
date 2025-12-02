@@ -68,12 +68,14 @@ packages/storybook/src/stories/
 #### バリアント
 
 ##### カラーバリアント（4種類）
+
 - **info**: 情報メッセージ（青）
 - **success**: 成功メッセージ（緑）
 - **warning**: 警告メッセージ（黄）
 - **error**: エラーメッセージ（赤）
 
 ##### スタイルバリアント（3種類）
+
 - **filled**: 塗りつぶし（白文字）
 - **outlined**: アウトライン（透明背景）
 - **soft**: ソフト（薄い背景）
@@ -175,6 +177,7 @@ packages/storybook/src/stories/
 #### バリアント
 
 ##### カラーバリアント（6種類）
+
 - **primary**: プライマリー（青）
 - **secondary**: セカンダリー（グレー）
 - **success**: 成功（緑）
@@ -183,16 +186,19 @@ packages/storybook/src/stories/
 - **info**: 情報（シアン）
 
 ##### スタイルバリアント（3種類）
+
 - **filled**: 塗りつぶし（白文字）
 - **outlined**: アウトライン（透明背景）
 - **soft**: ソフト（薄い背景）
 
 ##### サイズ（3種類）
+
 - **sm**: 小（高さ 1.25rem）
 - **md**: 中（高さ 1.5rem）
 - **lg**: 大（高さ 1.75rem）
 
 ##### 形状オプション
+
 - **pill**: 丸薬型（完全に丸い角）
 - **dot**: ドットのみ（コンテンツなし、ステータス表示用）
 
@@ -291,6 +297,7 @@ Alert と Badge コンポーネントで使用するセマンティックカラ�
 ```
 
 **実装内容**:
+
 - Alert コンポーネント（Web Component + React/Vue）
 - Badge コンポーネント（Web Component + React/Vue）
 - 14個のAlertストーリー + 17個のBadgeストーリー
@@ -305,8 +312,9 @@ c4aabd2 fix: Add semantic color tokens for Alert and Badge components
 ```
 
 **実装内容**:
+
 - semantic/colors.json 作成
-- ha-color-* トークン定義（7カラー × 10階調）
+- ha-color-\* トークン定義（7カラー × 10階調）
 - トークンビルドとStorybook再ビルド
 
 ---
@@ -396,9 +404,7 @@ c4aabd2 fix: Add semantic color tokens for Alert and Badge components
 
 ```html
 <!-- 基本的な使用 -->
-<ha-alert variant="info" show-icon>
-  これは情報メッセージです
-</ha-alert>
+<ha-alert variant="info" show-icon> これは情報メッセージです </ha-alert>
 
 <!-- タイトルとクローズボタン付き -->
 <ha-alert
@@ -484,6 +490,7 @@ c4aabd2 fix: Add semantic color tokens for Alert and Badge components
 Phase 4 Part 1として、AlertとBadgeコンポーネントを完全に実装しました。
 
 **実装内容**:
+
 - ✅ Alert コンポーネント（4バリアント × 3スタイル）
 - ✅ Badge コンポーネント（6バリアント × 3スタイル × 3サイズ）
 - ✅ セマンティックカラートークン（7色 × 10階調）
@@ -495,6 +502,7 @@ Phase 4 Part 1として、AlertとBadgeコンポーネントを完全に実装�
 - ✅ デザイントークン統合
 
 **成果物**:
+
 - 2つの完成したコンポーネント
 - 31個のStorybookストーリー
 - 68個のユニットテスト
@@ -502,6 +510,7 @@ Phase 4 Part 1として、AlertとBadgeコンポーネントを完全に実装�
 - フィードバック表示の基本機能が利用可能
 
 **技術的ハイライト**:
+
 - セマンティックカラーシステムの確立
 - 一貫したバリアント設計（filled/outlined/soft）
 - 柔軟なスロットシステム

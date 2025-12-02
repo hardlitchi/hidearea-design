@@ -1,4 +1,4 @@
-import { formGroupStyles } from './form-group.styles';
+import { formGroupStyles } from "./form-group.styles";
 
 /**
  * FormGroup component - wraps form controls with label and helper text
@@ -24,59 +24,66 @@ export class HaFormGroup extends HTMLElement {
   private slotContainer: HTMLDivElement;
 
   static get observedAttributes() {
-    return ['label', 'helper-text', 'error-text', 'required', 'error', 'disabled'];
+    return [
+      "label",
+      "helper-text",
+      "error-text",
+      "required",
+      "error",
+      "disabled",
+    ];
   }
 
   constructor() {
     super();
 
     // Attach shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create styles
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = formGroupStyles;
 
     // Create label
-    this.labelElement = document.createElement('label');
-    this.labelElement.setAttribute('part', 'label');
-    this.labelElement.className = 'label';
+    this.labelElement = document.createElement("label");
+    this.labelElement.setAttribute("part", "label");
+    this.labelElement.className = "label";
 
     // Label slot or text
-    const labelSlot = document.createElement('slot');
-    labelSlot.name = 'label';
+    const labelSlot = document.createElement("slot");
+    labelSlot.name = "label";
     this.labelElement.appendChild(labelSlot);
 
     // Required indicator
-    const requiredIndicator = document.createElement('span');
-    requiredIndicator.className = 'required-indicator';
-    requiredIndicator.textContent = '*';
+    const requiredIndicator = document.createElement("span");
+    requiredIndicator.className = "required-indicator";
+    requiredIndicator.textContent = "*";
     this.labelElement.appendChild(requiredIndicator);
 
     // Slot container for form control
-    this.slotContainer = document.createElement('div');
-    this.slotContainer.className = 'slot-container';
-    this.slotContainer.setAttribute('part', 'slot-container');
+    this.slotContainer = document.createElement("div");
+    this.slotContainer.className = "slot-container";
+    this.slotContainer.setAttribute("part", "slot-container");
 
-    const defaultSlot = document.createElement('slot');
+    const defaultSlot = document.createElement("slot");
     this.slotContainer.appendChild(defaultSlot);
 
     // Helper text
-    this.helperTextElement = document.createElement('div');
-    this.helperTextElement.setAttribute('part', 'helper-text');
-    this.helperTextElement.className = 'helper-text';
+    this.helperTextElement = document.createElement("div");
+    this.helperTextElement.setAttribute("part", "helper-text");
+    this.helperTextElement.className = "helper-text";
 
-    const helperSlot = document.createElement('slot');
-    helperSlot.name = 'helper-text';
+    const helperSlot = document.createElement("slot");
+    helperSlot.name = "helper-text";
     this.helperTextElement.appendChild(helperSlot);
 
     // Error text
-    this.errorTextElement = document.createElement('div');
-    this.errorTextElement.setAttribute('part', 'error-text');
-    this.errorTextElement.className = 'error-text';
+    this.errorTextElement = document.createElement("div");
+    this.errorTextElement.setAttribute("part", "error-text");
+    this.errorTextElement.className = "error-text";
 
-    const errorSlot = document.createElement('slot');
-    errorSlot.name = 'error-text';
+    const errorSlot = document.createElement("slot");
+    errorSlot.name = "error-text";
     this.errorTextElement.appendChild(errorSlot);
 
     // Append to shadow root
@@ -98,8 +105,10 @@ export class HaFormGroup extends HTMLElement {
 
   private updateContent() {
     // Update label
-    const label = this.getAttribute('label');
-    const labelSlot = this.labelElement.querySelector('slot[name="label"]') as HTMLSlotElement | null;
+    const label = this.getAttribute("label");
+    const labelSlot = this.labelElement.querySelector(
+      'slot[name="label"]',
+    ) as HTMLSlotElement | null;
     if (label && labelSlot) {
       // Check if slot has content
       const hasSlotContent = labelSlot.assignedNodes().length > 0;
@@ -110,8 +119,10 @@ export class HaFormGroup extends HTMLElement {
     }
 
     // Update helper text
-    const helperText = this.getAttribute('helper-text');
-    const helperSlot = this.helperTextElement.querySelector('slot[name="helper-text"]') as HTMLSlotElement | null;
+    const helperText = this.getAttribute("helper-text");
+    const helperSlot = this.helperTextElement.querySelector(
+      'slot[name="helper-text"]',
+    ) as HTMLSlotElement | null;
     if (helperText && helperSlot) {
       const hasSlotContent = helperSlot.assignedNodes().length > 0;
       if (!hasSlotContent) {
@@ -121,8 +132,10 @@ export class HaFormGroup extends HTMLElement {
     }
 
     // Update error text
-    const errorText = this.getAttribute('error-text');
-    const errorSlot = this.errorTextElement.querySelector('slot[name="error-text"]') as HTMLSlotElement | null;
+    const errorText = this.getAttribute("error-text");
+    const errorSlot = this.errorTextElement.querySelector(
+      'slot[name="error-text"]',
+    ) as HTMLSlotElement | null;
     if (errorText && errorSlot) {
       const hasSlotContent = errorSlot.assignedNodes().length > 0;
       if (!hasSlotContent) {
@@ -132,88 +145,93 @@ export class HaFormGroup extends HTMLElement {
     }
 
     // Show/hide helper and error text based on state
-    const hasError = this.hasAttribute('error');
-    this.helperTextElement.style.display = hasError ? 'none' :
-      (helperText || helperSlot?.assignedNodes().length) ? 'block' : 'none';
-    this.errorTextElement.style.display = hasError &&
-      (errorText || errorSlot?.assignedNodes().length) ? 'block' : 'none';
+    const hasError = this.hasAttribute("error");
+    this.helperTextElement.style.display = hasError
+      ? "none"
+      : helperText || helperSlot?.assignedNodes().length
+        ? "block"
+        : "none";
+    this.errorTextElement.style.display =
+      hasError && (errorText || errorSlot?.assignedNodes().length)
+        ? "block"
+        : "none";
   }
 
   // Public API
   get label(): string | null {
-    return this.getAttribute('label');
+    return this.getAttribute("label");
   }
 
   set label(value: string | null) {
     if (value) {
-      this.setAttribute('label', value);
+      this.setAttribute("label", value);
     } else {
-      this.removeAttribute('label');
+      this.removeAttribute("label");
     }
   }
 
   get helperText(): string | null {
-    return this.getAttribute('helper-text');
+    return this.getAttribute("helper-text");
   }
 
   set helperText(value: string | null) {
     if (value) {
-      this.setAttribute('helper-text', value);
+      this.setAttribute("helper-text", value);
     } else {
-      this.removeAttribute('helper-text');
+      this.removeAttribute("helper-text");
     }
   }
 
   get errorText(): string | null {
-    return this.getAttribute('error-text');
+    return this.getAttribute("error-text");
   }
 
   set errorText(value: string | null) {
     if (value) {
-      this.setAttribute('error-text', value);
+      this.setAttribute("error-text", value);
     } else {
-      this.removeAttribute('error-text');
+      this.removeAttribute("error-text");
     }
   }
 
   get required(): boolean {
-    return this.hasAttribute('required');
+    return this.hasAttribute("required");
   }
 
   set required(value: boolean) {
     if (value) {
-      this.setAttribute('required', '');
+      this.setAttribute("required", "");
     } else {
-      this.removeAttribute('required');
+      this.removeAttribute("required");
     }
   }
 
   get error(): boolean {
-    return this.hasAttribute('error');
+    return this.hasAttribute("error");
   }
 
   set error(value: boolean) {
     if (value) {
-      this.setAttribute('error', '');
+      this.setAttribute("error", "");
     } else {
-      this.removeAttribute('error');
+      this.removeAttribute("error");
     }
   }
 
   get disabled(): boolean {
-    return this.hasAttribute('disabled');
+    return this.hasAttribute("disabled");
   }
 
   set disabled(value: boolean) {
     if (value) {
-      this.setAttribute('disabled', '');
+      this.setAttribute("disabled", "");
     } else {
-      this.removeAttribute('disabled');
+      this.removeAttribute("disabled");
     }
   }
 }
 
 // Register custom element
-if (!customElements.get('ha-form-group')) {
-  customElements.define('ha-form-group', HaFormGroup);
+if (!customElements.get("ha-form-group")) {
+  customElements.define("ha-form-group", HaFormGroup);
 }

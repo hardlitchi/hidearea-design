@@ -1,21 +1,26 @@
-import React, { forwardRef, useEffect, useRef, useImperativeHandle } from 'react';
-import type { HaAlert as HaAlertElement } from '@hidearea-design/core';
+import React, {
+  forwardRef,
+  useEffect,
+  useRef,
+  useImperativeHandle,
+} from "react";
+import type { HaAlert as HaAlertElement } from "@hidearea-design/core";
 
 // Import the web component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
 export interface AlertProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * Alert variant
    * @default "info"
    */
-  variant?: 'info' | 'success' | 'warning' | 'error';
+  variant?: "info" | "success" | "warning" | "error";
 
   /**
    * Alert style variant
    * @default "soft"
    */
-  styleVariant?: 'filled' | 'outlined' | 'soft';
+  styleVariant?: "filled" | "outlined" | "soft";
 
   /**
    * Alert title
@@ -64,8 +69,8 @@ export interface AlertRef {
 export const Alert = forwardRef<AlertRef, AlertProps>(
   (
     {
-      variant = 'info',
-      styleVariant = 'soft',
+      variant = "info",
+      styleVariant = "soft",
       title,
       closable = false,
       showIcon = true,
@@ -73,7 +78,7 @@ export const Alert = forwardRef<AlertRef, AlertProps>(
       onClose,
       ...props
     },
-    ref
+    ref,
   ) => {
     const elementRef = useRef<HaAlertElement>(null);
 
@@ -103,31 +108,28 @@ export const Alert = forwardRef<AlertRef, AlertProps>(
         onClose();
       };
 
-      element.addEventListener('alert-close', handleClose);
+      element.addEventListener("alert-close", handleClose);
 
       return () => {
-        element.removeEventListener('alert-close', handleClose);
+        element.removeEventListener("alert-close", handleClose);
       };
     }, [onClose]);
 
     return (
-      <ha-alert
-        ref={elementRef}
-        {...props}
-      >
+      <ha-alert ref={elementRef} {...props}>
         {children}
       </ha-alert>
     );
-  }
+  },
 );
 
-Alert.displayName = 'Alert';
+Alert.displayName = "Alert";
 
 // Add TypeScript support for JSX
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-alert': React.DetailedHTMLProps<
+      "ha-alert": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >;

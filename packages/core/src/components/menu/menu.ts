@@ -1,4 +1,4 @@
-import { menuStyles } from './menu.styles';
+import { menuStyles } from "./menu.styles";
 
 /**
  * Menu component
@@ -13,27 +13,27 @@ export class HaMenu extends HTMLElement {
   private menu: HTMLDivElement;
 
   static get observedAttributes() {
-    return ['size'];
+    return ["size"];
   }
 
   constructor() {
     super();
 
     // Attach shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create styles
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = menuStyles;
 
     // Create menu
-    this.menu = document.createElement('div');
-    this.menu.className = 'menu';
-    this.menu.setAttribute('part', 'menu');
-    this.menu.setAttribute('role', 'menu');
+    this.menu = document.createElement("div");
+    this.menu.className = "menu";
+    this.menu.setAttribute("part", "menu");
+    this.menu.setAttribute("role", "menu");
 
     // Create slot
-    const slot = document.createElement('slot');
+    const slot = document.createElement("slot");
     this.menu.appendChild(slot);
 
     // Append to shadow root
@@ -41,12 +41,12 @@ export class HaMenu extends HTMLElement {
     shadow.appendChild(this.menu);
 
     // Handle keyboard navigation
-    this.addEventListener('keydown', this.handleKeydown.bind(this));
+    this.addEventListener("keydown", this.handleKeydown.bind(this));
   }
 
   connectedCallback() {
-    if (!this.hasAttribute('size')) {
-      this.setAttribute('size', 'md');
+    if (!this.hasAttribute("size")) {
+      this.setAttribute("size", "md");
     }
     this.updateClasses();
   }
@@ -61,13 +61,13 @@ export class HaMenu extends HTMLElement {
   }
 
   private getMenuItems(): Element[] {
-    const slot = this.shadowRoot?.querySelector('slot');
+    const slot = this.shadowRoot?.querySelector("slot");
     if (!slot) return [];
 
     const elements = slot.assignedElements();
     return elements.filter((el) => {
       const menuItem = el as HTMLElement & { disabled?: boolean };
-      return el.tagName === 'HA-MENU-ITEM' && !menuItem.disabled;
+      return el.tagName === "HA-MENU-ITEM" && !menuItem.disabled;
     });
   }
 
@@ -75,24 +75,27 @@ export class HaMenu extends HTMLElement {
     const items = this.getMenuItems();
     if (items.length === 0) return;
 
-    const currentIndex = items.findIndex((item) => item === document.activeElement || item.shadowRoot?.activeElement);
+    const currentIndex = items.findIndex(
+      (item) =>
+        item === document.activeElement || item.shadowRoot?.activeElement,
+    );
 
     let newIndex = currentIndex;
 
     switch (e.key) {
-      case 'ArrowDown':
+      case "ArrowDown":
         e.preventDefault();
         newIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
         break;
-      case 'ArrowUp':
+      case "ArrowUp":
         e.preventDefault();
         newIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
         break;
-      case 'Home':
+      case "Home":
         e.preventDefault();
         newIndex = 0;
         break;
-      case 'End':
+      case "End":
         e.preventDefault();
         newIndex = items.length - 1;
         break;
@@ -108,15 +111,15 @@ export class HaMenu extends HTMLElement {
 
   // Public API
   get size(): string {
-    return this.getAttribute('size') || 'md';
+    return this.getAttribute("size") || "md";
   }
 
   set size(value: string) {
-    this.setAttribute('size', value);
+    this.setAttribute("size", value);
   }
 }
 
 // Register custom element
-if (!customElements.get('ha-menu')) {
-  customElements.define('ha-menu', HaMenu);
+if (!customElements.get("ha-menu")) {
+  customElements.define("ha-menu", HaMenu);
 }

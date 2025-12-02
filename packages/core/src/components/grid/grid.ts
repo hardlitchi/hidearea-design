@@ -1,4 +1,4 @@
-import { gridStyles } from './grid.styles';
+import { gridStyles } from "./grid.styles";
 
 /**
  * Grid component
@@ -19,12 +19,12 @@ export class HaGrid extends HTMLElement {
 
   static get observedAttributes() {
     return [
-      'columns',
-      'gap',
-      'row-gap',
-      'column-gap',
-      'align-items',
-      'justify-items',
+      "columns",
+      "gap",
+      "row-gap",
+      "column-gap",
+      "align-items",
+      "justify-items",
     ];
   }
 
@@ -32,18 +32,18 @@ export class HaGrid extends HTMLElement {
     super();
 
     // Attach shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create styles
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = gridStyles;
 
     // Create grid element
-    this.grid = document.createElement('div');
-    this.grid.setAttribute('part', 'grid');
+    this.grid = document.createElement("div");
+    this.grid.setAttribute("part", "grid");
 
     // Create slot for content
-    const slot = document.createElement('slot');
+    const slot = document.createElement("slot");
     this.grid.appendChild(slot);
 
     // Append to shadow root
@@ -53,11 +53,11 @@ export class HaGrid extends HTMLElement {
 
   connectedCallback() {
     // Set default attributes if not present
-    if (!this.hasAttribute('columns')) {
-      this.setAttribute('columns', '12');
+    if (!this.hasAttribute("columns")) {
+      this.setAttribute("columns", "12");
     }
-    if (!this.hasAttribute('gap')) {
-      this.setAttribute('gap', '4');
+    if (!this.hasAttribute("gap")) {
+      this.setAttribute("gap", "4");
     }
   }
 
@@ -67,13 +67,13 @@ export class HaGrid extends HTMLElement {
   }
 
   private updateGridStyles() {
-    const columns = this.getAttribute('columns') || '12';
-    const gap = this.getAttribute('gap');
-    const rowGap = this.getAttribute('row-gap');
-    const columnGap = this.getAttribute('column-gap');
+    const columns = this.getAttribute("columns") || "12";
+    const gap = this.getAttribute("gap");
+    const rowGap = this.getAttribute("row-gap");
+    const columnGap = this.getAttribute("column-gap");
 
     // Handle columns
-    if (columns === 'auto-fit' || columns === 'auto-fill') {
+    if (columns === "auto-fit" || columns === "auto-fill") {
       this.grid.style.gridTemplateColumns = `repeat(${columns}, minmax(0, 1fr))`;
     } else {
       this.grid.style.gridTemplateColumns = `repeat(${columns}, minmax(0, 1fr))`;
@@ -87,104 +87,104 @@ export class HaGrid extends HTMLElement {
     // Handle row-gap
     if (rowGap) {
       this.grid.style.rowGap = `var(--spacing-${rowGap}, ${this.getSpacingValue(
-        rowGap
+        rowGap,
       )})`;
     }
 
     // Handle column-gap
     if (columnGap) {
       this.grid.style.columnGap = `var(--spacing-${columnGap}, ${this.getSpacingValue(
-        columnGap
+        columnGap,
       )})`;
     }
   }
 
   private getSpacingValue(key: string): string {
     const spacingMap: Record<string, string> = {
-      '0': '0',
-      '1': '0.25rem',
-      '2': '0.5rem',
-      '3': '0.75rem',
-      '4': '1rem',
-      '5': '1.25rem',
-      '6': '1.5rem',
-      '7': '1.75rem',
-      '8': '2rem',
-      '9': '2.25rem',
-      '10': '2.5rem',
-      '11': '2.75rem',
-      '12': '3rem',
+      "0": "0",
+      "1": "0.25rem",
+      "2": "0.5rem",
+      "3": "0.75rem",
+      "4": "1rem",
+      "5": "1.25rem",
+      "6": "1.5rem",
+      "7": "1.75rem",
+      "8": "2rem",
+      "9": "2.25rem",
+      "10": "2.5rem",
+      "11": "2.75rem",
+      "12": "3rem",
     };
-    return spacingMap[key] || '1rem';
+    return spacingMap[key] || "1rem";
   }
 
   // Public API
   get columns(): string {
-    return this.getAttribute('columns') || '12';
+    return this.getAttribute("columns") || "12";
   }
 
   set columns(value: string) {
-    this.setAttribute('columns', value);
+    this.setAttribute("columns", value);
   }
 
   get gap(): string {
-    return this.getAttribute('gap') || '4';
+    return this.getAttribute("gap") || "4";
   }
 
   set gap(value: string) {
-    this.setAttribute('gap', value);
+    this.setAttribute("gap", value);
   }
 
   get rowGap(): string | null {
-    return this.getAttribute('row-gap');
+    return this.getAttribute("row-gap");
   }
 
   set rowGap(value: string | null) {
     if (value) {
-      this.setAttribute('row-gap', value);
+      this.setAttribute("row-gap", value);
     } else {
-      this.removeAttribute('row-gap');
+      this.removeAttribute("row-gap");
     }
   }
 
   get columnGap(): string | null {
-    return this.getAttribute('column-gap');
+    return this.getAttribute("column-gap");
   }
 
   set columnGap(value: string | null) {
     if (value) {
-      this.setAttribute('column-gap', value);
+      this.setAttribute("column-gap", value);
     } else {
-      this.removeAttribute('column-gap');
+      this.removeAttribute("column-gap");
     }
   }
 
   get alignItems(): string | null {
-    return this.getAttribute('align-items');
+    return this.getAttribute("align-items");
   }
 
   set alignItems(value: string | null) {
     if (value) {
-      this.setAttribute('align-items', value);
+      this.setAttribute("align-items", value);
     } else {
-      this.removeAttribute('align-items');
+      this.removeAttribute("align-items");
     }
   }
 
   get justifyItems(): string | null {
-    return this.getAttribute('justify-items');
+    return this.getAttribute("justify-items");
   }
 
   set justifyItems(value: string | null) {
     if (value) {
-      this.setAttribute('justify-items', value);
+      this.setAttribute("justify-items", value);
     } else {
-      this.removeAttribute('justify-items');
+      this.removeAttribute("justify-items");
     }
   }
 }
 
 // Register custom element
-if (!customElements.get('ha-grid')) {
-  customElements.define('ha-grid', HaGrid);
+if (!customElements.get("ha-grid")) {
+  customElements.define("ha-grid", HaGrid);
 }

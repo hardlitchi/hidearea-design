@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
-import '@hidearea-design/core';
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
+import { html } from "lit";
+import "@hidearea-design/core";
 
 interface SelectArgs {
-  variant: 'default' | 'filled' | 'outlined';
-  size: 'sm' | 'md' | 'lg';
+  variant: "default" | "filled" | "outlined";
+  size: "sm" | "md" | "lg";
   placeholder: string;
   disabled: boolean;
   required: boolean;
@@ -13,38 +13,38 @@ interface SelectArgs {
 }
 
 const meta: Meta<SelectArgs> = {
-  title: 'Forms/Select',
-  tags: ['autodocs'],
+  title: "Forms/Select",
+  tags: ["autodocs"],
   argTypes: {
     variant: {
-      control: { type: 'select' },
-      options: ['default', 'filled', 'outlined'],
-      description: 'Select variant style',
+      control: { type: "select" },
+      options: ["default", "filled", "outlined"],
+      description: "Select variant style",
     },
     size: {
-      control: { type: 'select' },
-      options: ['sm', 'md', 'lg'],
-      description: 'Select size',
+      control: { type: "select" },
+      options: ["sm", "md", "lg"],
+      description: "Select size",
     },
     placeholder: {
-      control: { type: 'text' },
-      description: 'Placeholder text',
+      control: { type: "text" },
+      description: "Placeholder text",
     },
     disabled: {
-      control: { type: 'boolean' },
-      description: 'Disabled state',
+      control: { type: "boolean" },
+      description: "Disabled state",
     },
     required: {
-      control: { type: 'boolean' },
-      description: 'Required state',
+      control: { type: "boolean" },
+      description: "Required state",
     },
     error: {
-      control: { type: 'boolean' },
-      description: 'Error state',
+      control: { type: "boolean" },
+      description: "Error state",
     },
     fullWidth: {
-      control: { type: 'boolean' },
-      description: 'Full width select',
+      control: { type: "boolean" },
+      description: "Full width select",
     },
   },
 };
@@ -68,9 +68,9 @@ const countryOptions = html`
 
 export const Default: Story = {
   args: {
-    variant: 'default',
-    size: 'md',
-    placeholder: 'Select an option',
+    variant: "default",
+    size: "md",
+    placeholder: "Select an option",
     disabled: false,
     required: false,
     error: false,
@@ -96,21 +96,15 @@ export const Variants: Story = {
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Default Variant</h4>
-        <ha-select variant="default">
-          ${countryOptions}
-        </ha-select>
+        <ha-select variant="default"> ${countryOptions} </ha-select>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Filled Variant</h4>
-        <ha-select variant="filled">
-          ${countryOptions}
-        </ha-select>
+        <ha-select variant="filled"> ${countryOptions} </ha-select>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Outlined Variant</h4>
-        <ha-select variant="outlined">
-          ${countryOptions}
-        </ha-select>
+        <ha-select variant="outlined"> ${countryOptions} </ha-select>
       </div>
     </div>
   `,
@@ -121,21 +115,15 @@ export const Sizes: Story = {
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Small</h4>
-        <ha-select size="sm">
-          ${countryOptions}
-        </ha-select>
+        <ha-select size="sm"> ${countryOptions} </ha-select>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Medium</h4>
-        <ha-select size="md">
-          ${countryOptions}
-        </ha-select>
+        <ha-select size="md"> ${countryOptions} </ha-select>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Large</h4>
-        <ha-select size="lg">
-          ${countryOptions}
-        </ha-select>
+        <ha-select size="lg"> ${countryOptions} </ha-select>
       </div>
     </div>
   `,
@@ -146,21 +134,15 @@ export const States: Story = {
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Normal</h4>
-        <ha-select>
-          ${countryOptions}
-        </ha-select>
+        <ha-select> ${countryOptions} </ha-select>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Error</h4>
-        <ha-select error>
-          ${countryOptions}
-        </ha-select>
+        <ha-select error> ${countryOptions} </ha-select>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Disabled</h4>
-        <ha-select disabled>
-          ${countryOptions}
-        </ha-select>
+        <ha-select disabled> ${countryOptions} </ha-select>
       </div>
     </div>
   `,
@@ -190,9 +172,7 @@ export const WithFormGroup: Story = {
         helper-text="Select your country of residence"
         required
       >
-        <ha-select full-width>
-          ${countryOptions}
-        </ha-select>
+        <ha-select full-width> ${countryOptions} </ha-select>
       </ha-form-group>
     </div>
   `,
@@ -207,9 +187,7 @@ export const WithFormGroupError: Story = {
         required
         error
       >
-        <ha-select full-width error>
-          ${countryOptions}
-        </ha-select>
+        <ha-select full-width error> ${countryOptions} </ha-select>
       </ha-form-group>
     </div>
   `,
@@ -255,10 +233,10 @@ export const CategorySelector: Story = {
 
 export const MultipleSelects: Story = {
   render: () => html`
-    <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 500px;">
-      <ha-form-group
-        label="Birth Date"
-      >
+    <div
+      style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 500px;"
+    >
+      <ha-form-group label="Birth Date">
         <div style="display: flex; gap: 0.75rem;">
           <ha-select style="flex: 2;">
             <option value="">Month</option>
@@ -277,9 +255,14 @@ export const MultipleSelects: Story = {
           </ha-select>
           <ha-select style="flex: 1;">
             <option value="">Day</option>
-            ${Array.from({ length: 31 }, (_, i) => html`
-              <option value="${String(i + 1).padStart(2, '0')}">${i + 1}</option>
-            `)}
+            ${Array.from(
+              { length: 31 },
+              (_, i) => html`
+                <option value="${String(i + 1).padStart(2, "0")}">
+                  ${i + 1}
+                </option>
+              `,
+            )}
           </ha-select>
           <ha-select style="flex: 1;">
             <option value="">Year</option>
@@ -296,7 +279,9 @@ export const MultipleSelects: Story = {
 
 export const SettingsForm: Story = {
   render: () => html`
-    <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 500px;">
+    <div
+      style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 500px;"
+    >
       <h3 style="margin: 0 0 1rem 0;">Settings</h3>
 
       <ha-form-group
@@ -312,10 +297,7 @@ export const SettingsForm: Story = {
         </ha-select>
       </ha-form-group>
 
-      <ha-form-group
-        label="Timezone"
-        helper-text="Select your timezone"
-      >
+      <ha-form-group label="Timezone" helper-text="Select your timezone">
         <ha-select full-width>
           <option value="">Select timezone</option>
           <optgroup label="North America">
@@ -337,10 +319,7 @@ export const SettingsForm: Story = {
         </ha-select>
       </ha-form-group>
 
-      <ha-form-group
-        label="Theme"
-        helper-text="Choose your color theme"
-      >
+      <ha-form-group label="Theme" helper-text="Choose your color theme">
         <ha-select full-width>
           <option value="light">Light</option>
           <option value="dark">Dark</option>
@@ -348,9 +327,7 @@ export const SettingsForm: Story = {
         </ha-select>
       </ha-form-group>
 
-      <ha-form-group
-        label="Items per page"
-      >
+      <ha-form-group label="Items per page">
         <ha-select>
           <option value="10">10</option>
           <option value="25" selected>25</option>
@@ -376,19 +353,31 @@ export const AllVariantsAndSizes: Story = {
         <h3 style="margin: 0 0 1rem 0;">Default Variant</h3>
         <div style="display: flex; gap: 1rem; align-items: flex-start;">
           <div style="flex: 1;">
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Small</p>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Small
+            </p>
             <ha-select variant="default" size="sm">
               ${countryOptions}
             </ha-select>
           </div>
           <div style="flex: 1;">
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Medium</p>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Medium
+            </p>
             <ha-select variant="default" size="md">
               ${countryOptions}
             </ha-select>
           </div>
           <div style="flex: 1;">
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Large</p>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Large
+            </p>
             <ha-select variant="default" size="lg">
               ${countryOptions}
             </ha-select>
@@ -400,19 +389,31 @@ export const AllVariantsAndSizes: Story = {
         <h3 style="margin: 0 0 1rem 0;">Filled Variant</h3>
         <div style="display: flex; gap: 1rem; align-items: flex-start;">
           <div style="flex: 1;">
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Small</p>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Small
+            </p>
             <ha-select variant="filled" size="sm">
               ${countryOptions}
             </ha-select>
           </div>
           <div style="flex: 1;">
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Medium</p>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Medium
+            </p>
             <ha-select variant="filled" size="md">
               ${countryOptions}
             </ha-select>
           </div>
           <div style="flex: 1;">
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Large</p>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Large
+            </p>
             <ha-select variant="filled" size="lg">
               ${countryOptions}
             </ha-select>
@@ -424,19 +425,31 @@ export const AllVariantsAndSizes: Story = {
         <h3 style="margin: 0 0 1rem 0;">Outlined Variant</h3>
         <div style="display: flex; gap: 1rem; align-items: flex-start;">
           <div style="flex: 1;">
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Small</p>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Small
+            </p>
             <ha-select variant="outlined" size="sm">
               ${countryOptions}
             </ha-select>
           </div>
           <div style="flex: 1;">
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Medium</p>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Medium
+            </p>
             <ha-select variant="outlined" size="md">
               ${countryOptions}
             </ha-select>
           </div>
           <div style="flex: 1;">
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Large</p>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Large
+            </p>
             <ha-select variant="outlined" size="lg">
               ${countryOptions}
             </ha-select>

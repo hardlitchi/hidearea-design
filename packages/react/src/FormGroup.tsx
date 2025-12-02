@@ -1,8 +1,8 @@
-import React, { forwardRef, useEffect, useRef } from 'react';
-import type { HaFormGroup as HaFormGroupElement } from '@hidearea-design/core';
+import React, { forwardRef, useEffect, useRef } from "react";
+import type { HaFormGroup as HaFormGroupElement } from "@hidearea-design/core";
 
 // Import the web component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
 export interface FormGroupProps extends React.HTMLAttributes<HTMLElement> {
   /**
@@ -86,7 +86,7 @@ export const FormGroup = forwardRef<HTMLElement, FormGroupProps>(
       children,
       ...props
     },
-    _ref
+    _ref,
   ) => {
     const elementRef = useRef<HaFormGroupElement>(null);
 
@@ -110,26 +110,25 @@ export const FormGroup = forwardRef<HTMLElement, FormGroupProps>(
     }, [label, helperText, errorText, required, error, disabled]);
 
     return (
-      <ha-form-group
-        ref={elementRef as any}
-        {...props}
-      >
+      <ha-form-group ref={elementRef as any} {...props}>
         {labelContent && <span slot="label">{labelContent}</span>}
         {children}
-        {helperTextContent && <span slot="helper-text">{helperTextContent}</span>}
+        {helperTextContent && (
+          <span slot="helper-text">{helperTextContent}</span>
+        )}
         {errorTextContent && <span slot="error-text">{errorTextContent}</span>}
       </ha-form-group>
     );
-  }
+  },
 );
 
-FormGroup.displayName = 'FormGroup';
+FormGroup.displayName = "FormGroup";
 
 // Add TypeScript support for JSX
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-form-group': React.DetailedHTMLProps<
+      "ha-form-group": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >;

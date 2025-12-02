@@ -66,6 +66,7 @@ git checkout -b fix/your-bug-fix
 ```
 
 ブランチ命名規則：
+
 - `feature/` - 新機能
 - `fix/` - バグ修正
 - `docs/` - ドキュメントの変更
@@ -150,12 +151,12 @@ hidearea-design/
 ```typescript
 export class HaMyComponent extends HTMLElement {
   static get observedAttributes() {
-    return ['prop1', 'prop2'];
+    return ["prop1", "prop2"];
   }
 
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
   }
 
   connectedCallback() {
@@ -169,11 +170,11 @@ export class HaMyComponent extends HTMLElement {
 
   // パブリック API
   get prop1(): string {
-    return this.getAttribute('prop1') || '';
+    return this.getAttribute("prop1") || "";
   }
 
   set prop1(value: string) {
-    this.setAttribute('prop1', value);
+    this.setAttribute("prop1", value);
   }
 
   // メソッド
@@ -227,8 +228,8 @@ export const MyComponent = forwardRef<MyComponentRef, MyComponentProps>(
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue';
-import '@hidearea-design/core';
+import { ref, watch, onMounted } from "vue";
+import "@hidearea-design/core";
 
 interface Props {
   prop1?: string;
@@ -236,17 +237,20 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  prop1: 'default',
-  prop2: false
+  prop1: "default",
+  prop2: false,
 });
 
 const componentRef = ref<HTMLElement | null>(null);
 
-watch(() => props.prop1, (newValue) => {
-  if (componentRef.value) {
-    (componentRef.value as any).prop1 = newValue;
-  }
-});
+watch(
+  () => props.prop1,
+  (newValue) => {
+    if (componentRef.value) {
+      (componentRef.value as any).prop1 = newValue;
+    }
+  },
+);
 </script>
 ```
 
@@ -273,14 +277,14 @@ pnpm format
 #### ユニットテスト（Core パッケージ）
 
 ```typescript
-import { describe, it, expect, beforeEach } from 'vitest';
-import { HaMyComponent } from './my-component';
+import { describe, it, expect, beforeEach } from "vitest";
+import { HaMyComponent } from "./my-component";
 
-describe('HaMyComponent', () => {
+describe("HaMyComponent", () => {
   let component: HaMyComponent;
 
   beforeEach(() => {
-    component = document.createElement('ha-my-component') as HaMyComponent;
+    component = document.createElement("ha-my-component") as HaMyComponent;
     document.body.appendChild(component);
   });
 
@@ -288,13 +292,13 @@ describe('HaMyComponent', () => {
     document.body.removeChild(component);
   });
 
-  it('デフォルトプロパティでレンダリングする', () => {
-    expect(component.prop1).toBe('default');
+  it("デフォルトプロパティでレンダリングする", () => {
+    expect(component.prop1).toBe("default");
   });
 
-  it('プロパティ変更時に更新する', () => {
-    component.prop1 = 'new value';
-    expect(component.prop1).toBe('new value');
+  it("プロパティ変更時に更新する", () => {
+    component.prop1 = "new value";
+    expect(component.prop1).toBe("new value");
   });
 });
 ```
@@ -351,6 +355,7 @@ type(scope): description
 ```
 
 タイプ：
+
 - `feat`: 新機能
 - `fix`: バグ修正
 - `docs`: ドキュメント変更
@@ -446,6 +451,7 @@ pnpm release
 ## 質問がありますか？
 
 質問がある場合は、お気軽に：
+
 - GitHub で issue を開く
 - GitHub Discussions でディスカッションを開始
 - メンテナーに連絡

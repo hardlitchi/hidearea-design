@@ -1,40 +1,40 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
-import '@hidearea-design/core';
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
+import { html } from "lit";
+import "@hidearea-design/core";
 
 interface CardArgs {
-  variant: 'default' | 'outlined' | 'elevated';
-  padding: 'none' | 'sm' | 'md' | 'lg';
+  variant: "default" | "outlined" | "elevated";
+  padding: "none" | "sm" | "md" | "lg";
   hoverable: boolean;
   clickable: boolean;
 }
 
 const meta: Meta<CardArgs> = {
-  title: 'Components/Card',
-  tags: ['autodocs'],
+  title: "Components/Card",
+  tags: ["autodocs"],
   argTypes: {
     variant: {
-      control: { type: 'select' },
-      options: ['default', 'outlined', 'elevated'],
-      description: 'Card variant',
+      control: { type: "select" },
+      options: ["default", "outlined", "elevated"],
+      description: "Card variant",
     },
     padding: {
-      control: { type: 'select' },
-      options: ['none', 'sm', 'md', 'lg'],
-      description: 'Card padding',
+      control: { type: "select" },
+      options: ["none", "sm", "md", "lg"],
+      description: "Card padding",
     },
     hoverable: {
-      control: { type: 'boolean' },
-      description: 'Enable hover effect',
+      control: { type: "boolean" },
+      description: "Enable hover effect",
     },
     clickable: {
-      control: { type: 'boolean' },
-      description: 'Enable clickable state',
+      control: { type: "boolean" },
+      description: "Enable clickable state",
     },
   },
   args: {
-    variant: 'default',
-    padding: 'md',
+    variant: "default",
+    padding: "md",
     hoverable: false,
     clickable: false,
   },
@@ -68,7 +68,9 @@ export const Default: Story = {};
  */
 export const AllVariants: Story = {
   render: () => html`
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+    <div
+      style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;"
+    >
       <ha-card variant="default">
         <h3 slot="header">Default</h3>
         <p>Default variant with border.</p>
@@ -90,7 +92,9 @@ export const AllVariants: Story = {
  */
 export const PaddingSizes: Story = {
   render: () => html`
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+    <div
+      style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;"
+    >
       <ha-card padding="sm">
         <h3 slot="header">Small Padding</h3>
         <p>Card with small padding.</p>
@@ -105,7 +109,9 @@ export const PaddingSizes: Story = {
       </ha-card>
       <ha-card padding="none">
         <h3 slot="header" style="padding: 1rem;">No Padding</h3>
-        <p style="padding: 0 1rem 1rem 1rem;">Card with no padding. You need to add padding manually.</p>
+        <p style="padding: 0 1rem 1rem 1rem;">
+          Card with no padding. You need to add padding manually.
+        </p>
       </ha-card>
     </div>
   `,
@@ -116,7 +122,9 @@ export const PaddingSizes: Story = {
  */
 export const Hoverable: Story = {
   render: () => html`
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+    <div
+      style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;"
+    >
       <ha-card variant="default" hoverable>
         <h3 slot="header">Hoverable Default</h3>
         <p>Hover over me to see the effect.</p>
@@ -138,16 +146,33 @@ export const Hoverable: Story = {
  */
 export const Clickable: Story = {
   render: () => html`
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
-      <ha-card variant="default" clickable hoverable @card-click="${() => alert('Card clicked!')}">
+    <div
+      style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;"
+    >
+      <ha-card
+        variant="default"
+        clickable
+        hoverable
+        @card-click="${() => alert("Card clicked!")}"
+      >
         <h3 slot="header">Clickable Card</h3>
         <p>Click me to trigger an event.</p>
       </ha-card>
-      <ha-card variant="outlined" clickable hoverable @card-click="${() => alert('Outlined card clicked!')}">
+      <ha-card
+        variant="outlined"
+        clickable
+        hoverable
+        @card-click="${() => alert("Outlined card clicked!")}"
+      >
         <h3 slot="header">Clickable Outlined</h3>
         <p>Click me to trigger an event.</p>
       </ha-card>
-      <ha-card variant="elevated" clickable hoverable @card-click="${() => alert('Elevated card clicked!')}">
+      <ha-card
+        variant="elevated"
+        clickable
+        hoverable
+        @card-click="${() => alert("Elevated card clicked!")}"
+      >
         <h3 slot="header">Clickable Elevated</h3>
         <p>Click me to trigger an event.</p>
       </ha-card>
@@ -160,7 +185,9 @@ export const Clickable: Story = {
  */
 export const WithMedia: Story = {
   render: () => html`
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+    <div
+      style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;"
+    >
       <ha-card variant="elevated">
         <img
           slot="media"
@@ -170,7 +197,9 @@ export const WithMedia: Story = {
         <h3 slot="header">Card with Image</h3>
         <p>This card includes an image in the media slot.</p>
         <div slot="footer">
-          <ha-button size="sm" variant="primary" full-width>View Details</ha-button>
+          <ha-button size="sm" variant="primary" full-width
+            >View Details</ha-button
+          >
         </div>
       </ha-card>
       <ha-card variant="elevated" padding="none">
@@ -203,11 +232,17 @@ export const WithMedia: Story = {
 export const HeaderAndFooter: Story = {
   render: () => html`
     <ha-card variant="outlined">
-      <div slot="header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+      <div
+        slot="header"
+        style="display: flex; align-items: center; justify-content: space-between; width: 100%;"
+      >
         <h3 style="margin: 0;">Settings</h3>
         <ha-badge variant="info" size="sm">3</ha-badge>
       </div>
-      <div slot="footer" style="display: flex; justify-content: flex-end; gap: 0.5rem; width: 100%;">
+      <div
+        slot="footer"
+        style="display: flex; justify-content: flex-end; gap: 0.5rem; width: 100%;"
+      >
         <ha-button size="sm" variant="outline">Cancel</ha-button>
         <ha-button size="sm" variant="primary">Save</ha-button>
       </div>
@@ -232,7 +267,9 @@ export const ProductCard: Story = {
           <p style="margin: 0 0 1rem 0; color: #666;">
             Short description of the product goes here.
           </p>
-          <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div
+            style="display: flex; align-items: center; justify-content: space-between;"
+          >
             <span style="font-size: 1.5rem; font-weight: bold;">$99.99</span>
             <ha-button size="sm" variant="primary">Add to Cart</ha-button>
           </div>
@@ -250,7 +287,8 @@ export const ProfileCard: Story = {
     <div style="max-width: 350px;">
       <ha-card variant="elevated" padding="lg">
         <div style="text-align: center;">
-          <div style="
+          <div
+            style="
             width: 80px;
             height: 80px;
             border-radius: 50%;
@@ -262,10 +300,15 @@ export const ProfileCard: Story = {
             color: white;
             font-size: 2rem;
             font-weight: bold;
-          ">JD</div>
+          "
+          >
+            JD
+          </div>
           <h3 style="margin: 0 0 0.25rem 0;">John Doe</h3>
           <p style="margin: 0 0 1rem 0; color: #666;">Software Engineer</p>
-          <div style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1rem;">
+          <div
+            style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1rem;"
+          >
             <ha-badge variant="primary" size="sm" pill>React</ha-badge>
             <ha-badge variant="primary" size="sm" pill>TypeScript</ha-badge>
             <ha-badge variant="primary" size="sm" pill>Vue</ha-badge>
@@ -282,22 +325,30 @@ export const ProfileCard: Story = {
  */
 export const StatsCard: Story = {
   render: () => html`
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+    <div
+      style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;"
+    >
       <ha-card variant="elevated" hoverable>
         <div style="text-align: center;">
-          <div style="font-size: 2rem; font-weight: bold; color: #3b82f6;">1,234</div>
+          <div style="font-size: 2rem; font-weight: bold; color: #3b82f6;">
+            1,234
+          </div>
           <div style="color: #666; margin-top: 0.5rem;">Total Users</div>
         </div>
       </ha-card>
       <ha-card variant="elevated" hoverable>
         <div style="text-align: center;">
-          <div style="font-size: 2rem; font-weight: bold; color: #10b981;">+12.5%</div>
+          <div style="font-size: 2rem; font-weight: bold; color: #10b981;">
+            +12.5%
+          </div>
           <div style="color: #666; margin-top: 0.5rem;">Growth</div>
         </div>
       </ha-card>
       <ha-card variant="elevated" hoverable>
         <div style="text-align: center;">
-          <div style="font-size: 2rem; font-weight: bold; color: #f59e0b;">$45.2K</div>
+          <div style="font-size: 2rem; font-weight: bold; color: #f59e0b;">
+            $45.2K
+          </div>
           <div style="color: #666; margin-top: 0.5rem;">Revenue</div>
         </div>
       </ha-card>
@@ -311,13 +362,19 @@ export const StatsCard: Story = {
 export const DashboardCard: Story = {
   render: () => html`
     <ha-card variant="elevated">
-      <div slot="header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+      <div
+        slot="header"
+        style="display: flex; align-items: center; justify-content: space-between; width: 100%;"
+      >
         <h3 style="margin: 0;">Recent Activity</h3>
         <ha-badge variant="success" size="sm" pill dot></ha-badge>
       </div>
       <div style="display: flex; flex-direction: column; gap: 1rem;">
-        <div style="display: flex; gap: 1rem; padding: 0.75rem; background: #f5f5f5; border-radius: 0.5rem;">
-          <div style="
+        <div
+          style="display: flex; gap: 1rem; padding: 0.75rem; background: #f5f5f5; border-radius: 0.5rem;"
+        >
+          <div
+            style="
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -327,14 +384,20 @@ export const DashboardCard: Story = {
             align-items: center;
             justify-content: center;
             font-weight: bold;
-          ">A</div>
+          "
+          >
+            A
+          </div>
           <div style="flex: 1;">
             <div style="font-weight: 500;">New user registered</div>
             <div style="font-size: 0.875rem; color: #666;">2 minutes ago</div>
           </div>
         </div>
-        <div style="display: flex; gap: 1rem; padding: 0.75rem; background: #f5f5f5; border-radius: 0.5rem;">
-          <div style="
+        <div
+          style="display: flex; gap: 1rem; padding: 0.75rem; background: #f5f5f5; border-radius: 0.5rem;"
+        >
+          <div
+            style="
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -344,14 +407,20 @@ export const DashboardCard: Story = {
             align-items: center;
             justify-content: center;
             font-weight: bold;
-          ">B</div>
+          "
+          >
+            B
+          </div>
           <div style="flex: 1;">
             <div style="font-weight: 500;">Payment received</div>
             <div style="font-size: 0.875rem; color: #666;">15 minutes ago</div>
           </div>
         </div>
-        <div style="display: flex; gap: 1rem; padding: 0.75rem; background: #f5f5f5; border-radius: 0.5rem;">
-          <div style="
+        <div
+          style="display: flex; gap: 1rem; padding: 0.75rem; background: #f5f5f5; border-radius: 0.5rem;"
+        >
+          <div
+            style="
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -361,7 +430,10 @@ export const DashboardCard: Story = {
             align-items: center;
             justify-content: center;
             font-weight: bold;
-          ">C</div>
+          "
+          >
+            C
+          </div>
           <div style="flex: 1;">
             <div style="font-weight: 500;">New comment posted</div>
             <div style="font-size: 0.875rem; color: #666;">1 hour ago</div>
@@ -369,7 +441,9 @@ export const DashboardCard: Story = {
         </div>
       </div>
       <div slot="footer" style="width: 100%;">
-        <ha-button variant="outline" size="sm" full-width>View All Activity</ha-button>
+        <ha-button variant="outline" size="sm" full-width
+          >View All Activity</ha-button
+        >
       </div>
     </ha-card>
   `,
@@ -380,7 +454,9 @@ export const DashboardCard: Story = {
  */
 export const CardGrid: Story = {
   render: () => html`
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
+    <div
+      style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;"
+    >
       <ha-card variant="elevated" hoverable clickable>
         <h3 slot="header">Card 1</h3>
         <p>Content for card 1.</p>

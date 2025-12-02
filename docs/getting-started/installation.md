@@ -48,6 +48,7 @@ yarn add @hidearea-design/tokens
 The core Web Components package. Works with any JavaScript framework or vanilla JS.
 
 **Features:**
+
 - Framework-agnostic Web Components
 - Shadow DOM encapsulation
 - Customizable via CSS custom properties
@@ -59,6 +60,7 @@ The core Web Components package. Works with any JavaScript framework or vanilla 
 React wrapper components with full TypeScript support.
 
 **Features:**
+
 - Native React component API
 - Forward refs support
 - Full TypeScript definitions
@@ -69,6 +71,7 @@ React wrapper components with full TypeScript support.
 Vue 3 wrapper components with Composition API support.
 
 **Features:**
+
 - Vue 3 Composition API
 - v-model support
 - Full TypeScript definitions
@@ -79,6 +82,7 @@ Vue 3 wrapper components with Composition API support.
 Design tokens for colors, spacing, typography, and more.
 
 **Features:**
+
 - CSS custom properties
 - JavaScript/TypeScript exports
 - Style Dictionary based
@@ -91,33 +95,36 @@ Design tokens for colors, spacing, typography, and more.
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <link rel="stylesheet" href="node_modules/@hidearea-design/tokens/dist/tokens.css">
-</head>
-<body>
-  <ha-button variant="primary">Click me</ha-button>
+  <head>
+    <link
+      rel="stylesheet"
+      href="node_modules/@hidearea-design/tokens/dist/tokens.css"
+    />
+  </head>
+  <body>
+    <ha-button variant="primary">Click me</ha-button>
 
-  <script type="module">
-    import '@hidearea-design/core';
+    <script type="module">
+      import "@hidearea-design/core";
 
-    const button = document.querySelector('ha-button');
-    button.addEventListener('click', () => {
-      console.log('Button clicked!');
-    });
-  </script>
-</body>
+      const button = document.querySelector("ha-button");
+      button.addEventListener("click", () => {
+        console.log("Button clicked!");
+      });
+    </script>
+  </body>
 </html>
 ```
 
 ### React
 
 ```tsx
-import '@hidearea-design/tokens/dist/tokens.css';
-import { Button } from '@hidearea-design/react';
+import "@hidearea-design/tokens/dist/tokens.css";
+import { Button } from "@hidearea-design/react";
 
 function App() {
   return (
-    <Button variant="primary" onClick={() => console.log('Clicked!')}>
+    <Button variant="primary" onClick={() => console.log("Clicked!")}>
       Click me
     </Button>
   );
@@ -130,17 +137,15 @@ export default App;
 
 ```vue
 <template>
-  <HaButton variant="primary" @click="handleClick">
-    Click me
-  </HaButton>
+  <HaButton variant="primary" @click="handleClick"> Click me </HaButton>
 </template>
 
 <script setup lang="ts">
-import '@hidearea-design/tokens/dist/tokens.css';
-import { HaButton } from '@hidearea-design/vue';
+import "@hidearea-design/tokens/dist/tokens.css";
+import { HaButton } from "@hidearea-design/vue";
 
 const handleClick = () => {
-  console.log('Clicked!');
+  console.log("Clicked!");
 };
 </script>
 ```
@@ -151,13 +156,13 @@ Import the design tokens CSS in your application:
 
 ```js
 // In your main entry file
-import '@hidearea-design/tokens/dist/tokens.css';
+import "@hidearea-design/tokens/dist/tokens.css";
 ```
 
 Or link it in your HTML:
 
 ```html
-<link rel="stylesheet" href="path/to/@hidearea-design/tokens/dist/tokens.css">
+<link rel="stylesheet" href="path/to/@hidearea-design/tokens/dist/tokens.css" />
 ```
 
 ## TypeScript Configuration
@@ -168,7 +173,11 @@ If using TypeScript, ensure your `tsconfig.json` includes:
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "types": ["@hidearea-design/core", "@hidearea-design/react", "@hidearea-design/vue"]
+    "types": [
+      "@hidearea-design/core",
+      "@hidearea-design/react",
+      "@hidearea-design/vue"
+    ]
   }
 }
 ```

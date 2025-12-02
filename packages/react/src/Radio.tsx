@@ -1,15 +1,16 @@
-import React, { forwardRef, useEffect, useRef } from 'react';
-import type { HaRadio as HaRadioElement } from '@hidearea-design/core';
+import React, { forwardRef, useEffect, useRef } from "react";
+import type { HaRadio as HaRadioElement } from "@hidearea-design/core";
 
 // Import the web component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
-export interface RadioProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> {
+export interface RadioProps
+  extends Omit<React.HTMLAttributes<HTMLElement>, "onChange"> {
   /**
    * Radio size
    * @default "md"
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 
   /**
    * Checked state
@@ -84,7 +85,7 @@ export interface RadioProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onC
 export const Radio = forwardRef<HTMLElement, RadioProps>(
   (
     {
-      size = 'md',
+      size = "md",
       checked = false,
       disabled = false,
       required = false,
@@ -98,7 +99,7 @@ export const Radio = forwardRef<HTMLElement, RadioProps>(
       onChange,
       ...props
     },
-    _ref
+    _ref,
   ) => {
     const elementRef = useRef<HaRadioElement>(null);
 
@@ -124,7 +125,17 @@ export const Radio = forwardRef<HTMLElement, RadioProps>(
       if (description) {
         element.description = description;
       }
-    }, [size, checked, disabled, required, error, name, value, label, description]);
+    }, [
+      size,
+      checked,
+      disabled,
+      required,
+      error,
+      name,
+      value,
+      label,
+      description,
+    ]);
 
     useEffect(() => {
       const element = elementRef.current;
@@ -135,32 +146,31 @@ export const Radio = forwardRef<HTMLElement, RadioProps>(
         onChange(customEvent.detail.checked);
       };
 
-      element.addEventListener('change', handleChange);
+      element.addEventListener("change", handleChange);
 
       return () => {
-        element.removeEventListener('change', handleChange);
+        element.removeEventListener("change", handleChange);
       };
     }, [onChange]);
 
     return (
-      <ha-radio
-        ref={elementRef as any}
-        {...props}
-      >
+      <ha-radio ref={elementRef as any} {...props}>
         {labelContent && <span slot="label">{labelContent}</span>}
-        {descriptionContent && <span slot="description">{descriptionContent}</span>}
+        {descriptionContent && (
+          <span slot="description">{descriptionContent}</span>
+        )}
       </ha-radio>
     );
-  }
+  },
 );
 
-Radio.displayName = 'Radio';
+Radio.displayName = "Radio";
 
 // Add TypeScript support for JSX
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-radio': React.DetailedHTMLProps<
+      "ha-radio": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >;

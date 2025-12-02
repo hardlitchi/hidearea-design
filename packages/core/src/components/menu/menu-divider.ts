@@ -1,4 +1,4 @@
-import { menuDividerStyles } from './menu.styles';
+import { menuDividerStyles } from "./menu.styles";
 
 /**
  * Menu divider component
@@ -10,17 +10,17 @@ export class HaMenuDivider extends HTMLElement {
     super();
 
     // Attach shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create styles
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = menuDividerStyles;
 
     // Create divider
-    const divider = document.createElement('div');
-    divider.className = 'divider';
-    divider.setAttribute('part', 'divider');
-    divider.setAttribute('role', 'separator');
+    const divider = document.createElement("div");
+    divider.className = "divider";
+    divider.setAttribute("part", "divider");
+    divider.setAttribute("role", "separator");
 
     // Append to shadow root
     shadow.appendChild(style);
@@ -29,6 +29,6 @@ export class HaMenuDivider extends HTMLElement {
 }
 
 // Register custom element
-if (!customElements.get('ha-menu-divider')) {
-  customElements.define('ha-menu-divider', HaMenuDivider);
+if (!customElements.get("ha-menu-divider")) {
+  customElements.define("ha-menu-divider", HaMenuDivider);
 }

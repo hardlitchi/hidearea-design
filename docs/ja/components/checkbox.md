@@ -6,13 +6,13 @@
 
 ```js
 // Web Component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
 // React
-import { Checkbox } from '@hidearea-design/react';
+import { Checkbox } from "@hidearea-design/react";
 
 // Vue
-import { HaCheckbox } from '@hidearea-design/vue';
+import { HaCheckbox } from "@hidearea-design/vue";
 ```
 
 ## 基本的な使い方
@@ -95,9 +95,7 @@ import { HaCheckbox } from '@hidearea-design/vue';
 
 <ha-checkbox>
   通知を有効にする
-  <span slot="description">
-    アカウントに関するメール更新を受け取る
-  </span>
+  <span slot="description"> アカウントに関するメール更新を受け取る </span>
 </ha-checkbox>
 ```
 
@@ -135,52 +133,52 @@ checkbox.addEventListener('input', (e) => {
 
 ### プロパティ
 
-| プロパティ | 型 | デフォルト | 説明 |
-|----------|------|---------|-------------|
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | チェックボックスのサイズ |
-| `checked` | `boolean` | `false` | チェック状態 |
-| `indeterminate` | `boolean` | `false` | 不確定状態 |
-| `disabled` | `boolean` | `false` | 無効状態 |
-| `required` | `boolean` | `false` | 必須フィールド |
-| `error` | `boolean` | `false` | エラー状態 |
-| `name` | `string` | `''` | チェックボックスの name 属性 |
-| `value` | `string` | `'on'` | チェックボックスの値 |
-| `label` | `string` | `''` | ラベルテキスト（スロットの代替） |
-| `description` | `string` | `''` | 説明テキスト（スロットの代替） |
+| プロパティ      | 型                     | デフォルト | 説明                             |
+| --------------- | ---------------------- | ---------- | -------------------------------- |
+| `size`          | `'sm' \| 'md' \| 'lg'` | `'md'`     | チェックボックスのサイズ         |
+| `checked`       | `boolean`              | `false`    | チェック状態                     |
+| `indeterminate` | `boolean`              | `false`    | 不確定状態                       |
+| `disabled`      | `boolean`              | `false`    | 無効状態                         |
+| `required`      | `boolean`              | `false`    | 必須フィールド                   |
+| `error`         | `boolean`              | `false`    | エラー状態                       |
+| `name`          | `string`               | `''`       | チェックボックスの name 属性     |
+| `value`         | `string`               | `'on'`     | チェックボックスの値             |
+| `label`         | `string`               | `''`       | ラベルテキスト（スロットの代替） |
+| `description`   | `string`               | `''`       | 説明テキスト（スロットの代替）   |
 
 ### メソッド
 
-| メソッド | 説明 |
-|--------|-------------|
-| `focus()` | チェックボックスにフォーカス |
-| `blur()` | チェックボックスからフォーカスを外す |
-| `checkValidity()` | チェックボックスが有効かチェック |
-| `reportValidity()` | ユーザーに妥当性を報告 |
+| メソッド                     | 説明                                   |
+| ---------------------------- | -------------------------------------- |
+| `focus()`                    | チェックボックスにフォーカス           |
+| `blur()`                     | チェックボックスからフォーカスを外す   |
+| `checkValidity()`            | チェックボックスが有効かチェック       |
+| `reportValidity()`           | ユーザーに妥当性を報告                 |
 | `setCustomValidity(message)` | カスタムバリデーションメッセージを設定 |
 
 ### スロット
 
-| スロット | 説明 |
-|------|-------------|
-| (デフォルト) | チェックボックスのラベル内容 |
-| `description` | 説明の内容 |
+| スロット      | 説明                         |
+| ------------- | ---------------------------- |
+| (デフォルト)  | チェックボックスのラベル内容 |
+| `description` | 説明の内容                   |
 
 ### イベント
 
-| イベント | Detail | 説明 |
-|-------|--------|-------------|
+| イベント | Detail                 | 説明                               |
+| -------- | ---------------------- | ---------------------------------- |
 | `change` | `{ checked: boolean }` | チェック状態が変更されたときに発火 |
-| `input` | `{ checked: boolean }` | チェック状態が変更されたときに発火 |
+| `input`  | `{ checked: boolean }` | チェック状態が変更されたときに発火 |
 
 ### CSS Parts
 
-| Part | 説明 |
-|------|-------------|
-| `checkbox-container` | コンテナ要素 |
-| `checkbox-box` | 視覚的なチェックボックスボックス |
-| `checkbox-icon` | チェック/不確定アイコン |
-| `label` | ラベル要素 |
-| `description` | 説明要素 |
+| Part                 | 説明                             |
+| -------------------- | -------------------------------- |
+| `checkbox-container` | コンテナ要素                     |
+| `checkbox-box`       | 視覚的なチェックボックスボックス |
+| `checkbox-icon`      | チェック/不確定アイコン          |
+| `label`              | ラベル要素                       |
+| `description`        | 説明要素                         |
 
 ## 使用例
 
@@ -188,25 +186,25 @@ checkbox.addEventListener('input', (e) => {
 
 ```tsx
 // React
-import { useState } from 'react';
-import { Checkbox } from '@hidearea-design/react';
+import { useState } from "react";
+import { Checkbox } from "@hidearea-design/react";
 
 function CheckboxGroup() {
   const [selected, setSelected] = useState<string[]>([]);
 
-  const options = ['オプション1', 'オプション2', 'オプション3'];
+  const options = ["オプション1", "オプション2", "オプション3"];
 
   const handleChange = (value: string, checked: boolean) => {
     if (checked) {
       setSelected([...selected, value]);
     } else {
-      setSelected(selected.filter(v => v !== value));
+      setSelected(selected.filter((v) => v !== value));
     }
   };
 
   return (
     <div>
-      {options.map(option => (
+      {options.map((option) => (
         <Checkbox
           key={option}
           value={option}
@@ -225,28 +223,30 @@ function CheckboxGroup() {
 
 ```tsx
 // React
-import { useState, useEffect } from 'react';
-import { Checkbox } from '@hidearea-design/react';
+import { useState, useEffect } from "react";
+import { Checkbox } from "@hidearea-design/react";
 
 function SelectAllExample() {
   const [items, setItems] = useState([
-    { id: 1, label: 'アイテム1', checked: false },
-    { id: 2, label: 'アイテム2', checked: false },
-    { id: 3, label: 'アイテム3', checked: false },
+    { id: 1, label: "アイテム1", checked: false },
+    { id: 2, label: "アイテム2", checked: false },
+    { id: 3, label: "アイテム3", checked: false },
   ]);
 
-  const allChecked = items.every(item => item.checked);
-  const someChecked = items.some(item => item.checked) && !allChecked;
+  const allChecked = items.every((item) => item.checked);
+  const someChecked = items.some((item) => item.checked) && !allChecked;
 
   const toggleAll = () => {
     const newChecked = !allChecked;
-    setItems(items.map(item => ({ ...item, checked: newChecked })));
+    setItems(items.map((item) => ({ ...item, checked: newChecked })));
   };
 
   const toggleItem = (id: number) => {
-    setItems(items.map(item =>
-      item.id === id ? { ...item, checked: !item.checked } : item
-    ));
+    setItems(
+      items.map((item) =>
+        item.id === id ? { ...item, checked: !item.checked } : item,
+      ),
+    );
   };
 
   return (
@@ -258,8 +258,8 @@ function SelectAllExample() {
       >
         すべて選択
       </Checkbox>
-      <div style={{ marginLeft: '24px' }}>
-        {items.map(item => (
+      <div style={{ marginLeft: "24px" }}>
+        {items.map((item) => (
           <Checkbox
             key={item.id}
             checked={item.checked}
@@ -278,17 +278,15 @@ function SelectAllExample() {
 
 ```html
 <form>
-  <ha-checkbox required name="terms">
-    利用規約に同意します
-  </ha-checkbox>
+  <ha-checkbox required name="terms"> 利用規約に同意します </ha-checkbox>
   <ha-button type="submit">送信</ha-button>
 </form>
 
 <script>
-  const form = document.querySelector('form');
-  const checkbox = form.querySelector('ha-checkbox');
+  const form = document.querySelector("form");
+  const checkbox = form.querySelector("ha-checkbox");
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     if (!checkbox.checkValidity()) {
@@ -296,7 +294,7 @@ function SelectAllExample() {
       return;
     }
 
-    console.log('フォーム送信');
+    console.log("フォーム送信");
   });
 </script>
 ```

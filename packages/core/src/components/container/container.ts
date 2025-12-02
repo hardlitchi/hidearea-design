@@ -1,4 +1,4 @@
-import { containerStyles } from './container.styles';
+import { containerStyles } from "./container.styles";
 
 /**
  * Container component
@@ -15,25 +15,25 @@ export class HaContainer extends HTMLElement {
   private container: HTMLDivElement;
 
   static get observedAttributes() {
-    return ['max-width', 'centered', 'padding'];
+    return ["max-width", "centered", "padding"];
   }
 
   constructor() {
     super();
 
     // Attach shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create styles
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = containerStyles;
 
     // Create container element
-    this.container = document.createElement('div');
-    this.container.setAttribute('part', 'container');
+    this.container = document.createElement("div");
+    this.container.setAttribute("part", "container");
 
     // Create slot for content
-    const slot = document.createElement('slot');
+    const slot = document.createElement("slot");
     this.container.appendChild(slot);
 
     // Append to shadow root
@@ -43,11 +43,11 @@ export class HaContainer extends HTMLElement {
 
   connectedCallback() {
     // Set default attributes if not present
-    if (!this.hasAttribute('max-width')) {
-      this.setAttribute('max-width', 'lg');
+    if (!this.hasAttribute("max-width")) {
+      this.setAttribute("max-width", "lg");
     }
-    if (!this.hasAttribute('padding')) {
-      this.setAttribute('padding', 'md');
+    if (!this.hasAttribute("padding")) {
+      this.setAttribute("padding", "md");
     }
   }
 
@@ -58,35 +58,35 @@ export class HaContainer extends HTMLElement {
 
   // Public API
   get maxWidth(): string {
-    return this.getAttribute('max-width') || 'lg';
+    return this.getAttribute("max-width") || "lg";
   }
 
   set maxWidth(value: string) {
-    this.setAttribute('max-width', value);
+    this.setAttribute("max-width", value);
   }
 
   get centered(): boolean {
-    return this.hasAttribute('centered');
+    return this.hasAttribute("centered");
   }
 
   set centered(value: boolean) {
     if (value) {
-      this.setAttribute('centered', '');
+      this.setAttribute("centered", "");
     } else {
-      this.removeAttribute('centered');
+      this.removeAttribute("centered");
     }
   }
 
   get padding(): string {
-    return this.getAttribute('padding') || 'md';
+    return this.getAttribute("padding") || "md";
   }
 
   set padding(value: string) {
-    this.setAttribute('padding', value);
+    this.setAttribute("padding", value);
   }
 }
 
 // Register custom element
-if (!customElements.get('ha-container')) {
-  customElements.define('ha-container', HaContainer);
+if (!customElements.get("ha-container")) {
+  customElements.define("ha-container", HaContainer);
 }

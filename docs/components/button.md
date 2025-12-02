@@ -6,13 +6,13 @@ A versatile button component with multiple variants and states.
 
 ```js
 // Web Component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
 // React
-import { Button } from '@hidearea-design/react';
+import { Button } from "@hidearea-design/react";
 
 // Vue
-import { HaButton } from '@hidearea-design/vue';
+import { HaButton } from "@hidearea-design/vue";
 ```
 
 ## Basic Usage
@@ -109,37 +109,37 @@ button.addEventListener('click', (event) => {
 
 ### Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `variant` | `'primary' \| 'secondary' \| 'outline' \| 'ghost' \| 'danger'` | `'primary'` | Visual style variant |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
-| `disabled` | `boolean` | `false` | Disabled state |
-| `loading` | `boolean` | `false` | Loading state |
-| `fullWidth` | `boolean` | `false` | Full width button |
-| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Button type |
+| Property    | Type                                                           | Default     | Description          |
+| ----------- | -------------------------------------------------------------- | ----------- | -------------------- |
+| `variant`   | `'primary' \| 'secondary' \| 'outline' \| 'ghost' \| 'danger'` | `'primary'` | Visual style variant |
+| `size`      | `'sm' \| 'md' \| 'lg'`                                         | `'md'`      | Button size          |
+| `disabled`  | `boolean`                                                      | `false`     | Disabled state       |
+| `loading`   | `boolean`                                                      | `false`     | Loading state        |
+| `fullWidth` | `boolean`                                                      | `false`     | Full width button    |
+| `type`      | `'button' \| 'submit' \| 'reset'`                              | `'button'`  | Button type          |
 
 ### Methods
 
-| Method | Description |
-|--------|-------------|
-| `focus()` | Focuses the button |
-| `blur()` | Removes focus from the button |
+| Method    | Description                   |
+| --------- | ----------------------------- |
+| `focus()` | Focuses the button            |
+| `blur()`  | Removes focus from the button |
 
 ### Slots
 
-| Slot | Description |
-|------|-------------|
+| Slot      | Description    |
+| --------- | -------------- |
 | (default) | Button content |
 
 ### CSS Custom Properties
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `--ha-button-padding-sm` | `0.5rem 1rem` | Small button padding |
-| `--ha-button-padding-md` | `0.75rem 1.5rem` | Medium button padding |
-| `--ha-button-padding-lg` | `1rem 2rem` | Large button padding |
-| `--ha-button-border-radius` | `0.375rem` | Button border radius |
-| `--ha-button-transition` | `all 0.2s ease` | Transition effect |
+| Property                    | Default          | Description           |
+| --------------------------- | ---------------- | --------------------- |
+| `--ha-button-padding-sm`    | `0.5rem 1rem`    | Small button padding  |
+| `--ha-button-padding-md`    | `0.75rem 1.5rem` | Medium button padding |
+| `--ha-button-padding-lg`    | `1rem 2rem`      | Large button padding  |
+| `--ha-button-border-radius` | `0.375rem`       | Button border radius  |
+| `--ha-button-transition`    | `all 0.2s ease`  | Transition effect     |
 
 ## Examples
 
@@ -175,7 +175,7 @@ const handleClick = async () => {
 
 <Button loading={loading} onClick={handleClick}>
   Save Changes
-</Button>
+</Button>;
 ```
 
 ## Accessibility

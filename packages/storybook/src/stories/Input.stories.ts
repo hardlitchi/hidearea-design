@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
-import '@hidearea-design/core';
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
+import { html } from "lit";
+import "@hidearea-design/core";
 
 interface InputArgs {
-  variant: 'default' | 'filled' | 'outlined';
-  size: 'sm' | 'md' | 'lg';
-  type: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url' | 'search';
+  variant: "default" | "filled" | "outlined";
+  size: "sm" | "md" | "lg";
+  type: "text" | "password" | "email" | "number" | "tel" | "url" | "search";
   value: string;
   placeholder: string;
   disabled: boolean;
@@ -17,55 +17,55 @@ interface InputArgs {
 }
 
 const meta: Meta<InputArgs> = {
-  title: 'Components/Input',
-  tags: ['autodocs'],
+  title: "Components/Input",
+  tags: ["autodocs"],
   argTypes: {
     variant: {
-      control: { type: 'select' },
-      options: ['default', 'filled', 'outlined'],
-      description: 'Input variant',
+      control: { type: "select" },
+      options: ["default", "filled", "outlined"],
+      description: "Input variant",
     },
     size: {
-      control: { type: 'select' },
-      options: ['sm', 'md', 'lg'],
-      description: 'Input size',
+      control: { type: "select" },
+      options: ["sm", "md", "lg"],
+      description: "Input size",
     },
     type: {
-      control: { type: 'select' },
-      options: ['text', 'password', 'email', 'number', 'tel', 'url', 'search'],
-      description: 'Input type',
+      control: { type: "select" },
+      options: ["text", "password", "email", "number", "tel", "url", "search"],
+      description: "Input type",
     },
     value: {
-      control: { type: 'text' },
-      description: 'Input value',
+      control: { type: "text" },
+      description: "Input value",
     },
     placeholder: {
-      control: { type: 'text' },
-      description: 'Input placeholder',
+      control: { type: "text" },
+      description: "Input placeholder",
     },
     disabled: {
-      control: { type: 'boolean' },
-      description: 'Disabled state',
+      control: { type: "boolean" },
+      description: "Disabled state",
     },
     readonly: {
-      control: { type: 'boolean' },
-      description: 'Readonly state',
+      control: { type: "boolean" },
+      description: "Readonly state",
     },
     required: {
-      control: { type: 'boolean' },
-      description: 'Required state',
+      control: { type: "boolean" },
+      description: "Required state",
     },
     error: {
-      control: { type: 'boolean' },
-      description: 'Error state',
+      control: { type: "boolean" },
+      description: "Error state",
     },
     fullWidth: {
-      control: { type: 'boolean' },
-      description: 'Full width input',
+      control: { type: "boolean" },
+      description: "Full width input",
     },
     name: {
-      control: { type: 'text' },
-      description: 'Input name',
+      control: { type: "text" },
+      description: "Input name",
     },
   },
 };
@@ -75,17 +75,17 @@ type Story = StoryObj<InputArgs>;
 
 export const Default: Story = {
   args: {
-    variant: 'default',
-    size: 'md',
-    type: 'text',
-    value: '',
-    placeholder: 'Enter text...',
+    variant: "default",
+    size: "md",
+    type: "text",
+    value: "",
+    placeholder: "Enter text...",
     disabled: false,
     readonly: false,
     required: false,
     error: false,
     fullWidth: false,
-    name: '',
+    name: "",
   },
   render: (args) => html`
     <ha-input
@@ -100,8 +100,8 @@ export const Default: Story = {
       ?error="${args.error}"
       ?full-width="${args.fullWidth}"
       name="${args.name}"
-      @input="${(e: CustomEvent) => console.log('Input:', e.detail.value)}"
-      @change="${(e: CustomEvent) => console.log('Change:', e.detail.value)}"
+      @input="${(e: CustomEvent) => console.log("Input:", e.detail.value)}"
+      @change="${(e: CustomEvent) => console.log("Change:", e.detail.value)}"
     >
     </ha-input>
   `,
@@ -110,7 +110,7 @@ export const Default: Story = {
 export const Filled: Story = {
   args: {
     ...Default.args,
-    variant: 'filled',
+    variant: "filled",
   },
   render: Default.render,
 };
@@ -118,7 +118,7 @@ export const Filled: Story = {
 export const Outlined: Story = {
   args: {
     ...Default.args,
-    variant: 'outlined',
+    variant: "outlined",
   },
   render: Default.render,
 };
@@ -126,7 +126,7 @@ export const Outlined: Story = {
 export const Small: Story = {
   args: {
     ...Default.args,
-    size: 'sm',
+    size: "sm",
   },
   render: Default.render,
 };
@@ -134,7 +134,7 @@ export const Small: Story = {
 export const Large: Story = {
   args: {
     ...Default.args,
-    size: 'lg',
+    size: "lg",
   },
   render: Default.render,
 };
@@ -142,7 +142,7 @@ export const Large: Story = {
 export const Disabled: Story = {
   args: {
     ...Default.args,
-    value: 'Disabled input',
+    value: "Disabled input",
     disabled: true,
   },
   render: Default.render,
@@ -151,7 +151,7 @@ export const Disabled: Story = {
 export const Readonly: Story = {
   args: {
     ...Default.args,
-    value: 'Readonly input',
+    value: "Readonly input",
     readonly: true,
   },
   render: Default.render,
@@ -160,7 +160,7 @@ export const Readonly: Story = {
 export const Required: Story = {
   args: {
     ...Default.args,
-    placeholder: 'Required field',
+    placeholder: "Required field",
     required: true,
   },
   render: Default.render,
@@ -169,7 +169,7 @@ export const Required: Story = {
 export const Error: Story = {
   args: {
     ...Default.args,
-    value: 'Invalid input',
+    value: "Invalid input",
     error: true,
   },
   render: Default.render,
@@ -211,8 +211,8 @@ export const WithBothPrefixAndSuffix: Story = {
 export const Password: Story = {
   args: {
     ...Default.args,
-    type: 'password',
-    placeholder: 'Enter password',
+    type: "password",
+    placeholder: "Enter password",
   },
   render: Default.render,
 };
@@ -220,8 +220,8 @@ export const Password: Story = {
 export const Email: Story = {
   args: {
     ...Default.args,
-    type: 'email',
-    placeholder: 'Enter email',
+    type: "email",
+    placeholder: "Enter email",
   },
   render: Default.render,
 };
@@ -229,25 +229,33 @@ export const Email: Story = {
 export const Number: Story = {
   args: {
     ...Default.args,
-    type: 'number',
-    placeholder: 'Enter number',
+    type: "number",
+    placeholder: "Enter number",
   },
   render: Default.render,
 };
 
 export const AllVariants: Story = {
   render: () => html`
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;">
+    <div
+      style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;"
+    >
       <div>
-        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Default</label>
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;"
+          >Default</label
+        >
         <ha-input variant="default" placeholder="Default variant"></ha-input>
       </div>
       <div>
-        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Filled</label>
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;"
+          >Filled</label
+        >
         <ha-input variant="filled" placeholder="Filled variant"></ha-input>
       </div>
       <div>
-        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Outlined</label>
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;"
+          >Outlined</label
+        >
         <ha-input variant="outlined" placeholder="Outlined variant"></ha-input>
       </div>
     </div>
@@ -256,17 +264,25 @@ export const AllVariants: Story = {
 
 export const AllSizes: Story = {
   render: () => html`
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;">
+    <div
+      style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;"
+    >
       <div>
-        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Small</label>
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;"
+          >Small</label
+        >
         <ha-input size="sm" placeholder="Small size"></ha-input>
       </div>
       <div>
-        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Medium</label>
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;"
+          >Medium</label
+        >
         <ha-input size="md" placeholder="Medium size"></ha-input>
       </div>
       <div>
-        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Large</label>
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;"
+          >Large</label
+        >
         <ha-input size="lg" placeholder="Large size"></ha-input>
       </div>
     </div>
@@ -275,17 +291,19 @@ export const AllSizes: Story = {
 
 export const FormExample: Story = {
   render: () => html`
-    <form style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 400px;">
+    <form
+      style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 400px;"
+    >
       <div>
-        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Name *</label>
-        <ha-input
-          required
-          placeholder="Enter your name"
-          name="name"
-        ></ha-input>
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;"
+          >Name *</label
+        >
+        <ha-input required placeholder="Enter your name" name="name"></ha-input>
       </div>
       <div>
-        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email *</label>
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;"
+          >Email *</label
+        >
         <ha-input
           required
           type="email"
@@ -294,7 +312,9 @@ export const FormExample: Story = {
         ></ha-input>
       </div>
       <div>
-        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Password *</label>
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;"
+          >Password *</label
+        >
         <ha-input
           required
           type="password"
@@ -303,12 +323,10 @@ export const FormExample: Story = {
         ></ha-input>
       </div>
       <div>
-        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Amount</label>
-        <ha-input
-          type="number"
-          placeholder="0.00"
-          name="amount"
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;"
+          >Amount</label
         >
+        <ha-input type="number" placeholder="0.00" name="amount">
           <span slot="prefix">$</span>
         </ha-input>
       </div>

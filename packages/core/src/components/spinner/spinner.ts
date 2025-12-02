@@ -1,58 +1,66 @@
-import { spinnerStyles } from './spinner.styles';
+import { spinnerStyles } from "./spinner.styles";
 
 export class HaSpinner extends HTMLElement {
   private spinnerElement!: HTMLDivElement;
 
   static get observedAttributes() {
-    return ['size', 'color', 'variant', 'speed'];
+    return ["size", "color", "variant", "speed"];
   }
 
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
   }
 
-  get size(): 'xs' | 'sm' | 'md' | 'lg' | 'xl' {
-    const value = this.getAttribute('size');
-    return (value as 'xs' | 'sm' | 'md' | 'lg' | 'xl') || 'md';
+  get size(): "xs" | "sm" | "md" | "lg" | "xl" {
+    const value = this.getAttribute("size");
+    return (value as "xs" | "sm" | "md" | "lg" | "xl") || "md";
   }
 
-  set size(val: 'xs' | 'sm' | 'md' | 'lg' | 'xl') {
-    this.setAttribute('size', val);
+  set size(val: "xs" | "sm" | "md" | "lg" | "xl") {
+    this.setAttribute("size", val);
   }
 
   get color():
-    | 'primary'
-    | 'success'
-    | 'warning'
-    | 'error'
-    | 'info'
-    | 'neutral' {
-    const value = this.getAttribute('color');
-    return (value as 'primary' | 'success' | 'warning' | 'error' | 'info' | 'neutral') || 'primary';
+    | "primary"
+    | "success"
+    | "warning"
+    | "error"
+    | "info"
+    | "neutral" {
+    const value = this.getAttribute("color");
+    return (
+      (value as
+        | "primary"
+        | "success"
+        | "warning"
+        | "error"
+        | "info"
+        | "neutral") || "primary"
+    );
   }
 
   set color(
-    val: 'primary' | 'success' | 'warning' | 'error' | 'info' | 'neutral'
+    val: "primary" | "success" | "warning" | "error" | "info" | "neutral",
   ) {
-    this.setAttribute('color', val);
+    this.setAttribute("color", val);
   }
 
-  get variant(): 'circular' | 'dots' | 'pulse' {
-    const value = this.getAttribute('variant');
-    return (value as 'circular' | 'dots' | 'pulse') || 'circular';
+  get variant(): "circular" | "dots" | "pulse" {
+    const value = this.getAttribute("variant");
+    return (value as "circular" | "dots" | "pulse") || "circular";
   }
 
-  set variant(val: 'circular' | 'dots' | 'pulse') {
-    this.setAttribute('variant', val);
+  set variant(val: "circular" | "dots" | "pulse") {
+    this.setAttribute("variant", val);
   }
 
   get speed(): string {
-    return this.getAttribute('speed') || '0.8s';
+    return this.getAttribute("speed") || "0.8s";
   }
 
   set speed(val: string) {
-    this.setAttribute('speed', val);
+    this.setAttribute("speed", val);
   }
 
   connectedCallback() {
@@ -60,9 +68,9 @@ export class HaSpinner extends HTMLElement {
   }
 
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
-    if (name === 'size' || name === 'color' || name === 'variant') {
+    if (name === "size" || name === "color" || name === "variant") {
       this.updateSpinnerClasses();
-    } else if (name === 'speed') {
+    } else if (name === "speed") {
       this.updateSpeed();
     }
   }
@@ -71,9 +79,9 @@ export class HaSpinner extends HTMLElement {
     if (!this.shadowRoot) return;
 
     const variant = this.variant;
-    let spinnerHTML = '';
+    let spinnerHTML = "";
 
-    if (variant === 'dots') {
+    if (variant === "dots") {
       spinnerHTML = `
         <div class="spinner__dot"></div>
         <div class="spinner__dot"></div>
@@ -88,7 +96,7 @@ export class HaSpinner extends HTMLElement {
       </div>
     `;
 
-    this.spinnerElement = this.shadowRoot.querySelector('.spinner')!;
+    this.spinnerElement = this.shadowRoot.querySelector(".spinner")!;
     this.updateSpinnerClasses();
     this.updateSpeed();
   }
@@ -106,11 +114,11 @@ export class HaSpinner extends HTMLElement {
   private updateSpeed() {
     if (!this.spinnerElement) return;
 
-    this.spinnerElement.style.setProperty('--spinner-speed', this.speed);
+    this.spinnerElement.style.setProperty("--spinner-speed", this.speed);
   }
 }
 
 // Register the custom element
-if (!customElements.get('ha-spinner')) {
-  customElements.define('ha-spinner', HaSpinner);
+if (!customElements.get("ha-spinner")) {
+  customElements.define("ha-spinner", HaSpinner);
 }

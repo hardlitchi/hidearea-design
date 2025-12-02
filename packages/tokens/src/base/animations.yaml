@@ -4,32 +4,32 @@ animation:
   # トランジション時間
   duration:
     fast:
-      value: '150ms'
-      comment: '高速'
+      value: "150ms"
+      comment: "高速"
     base:
-      value: '200ms'
-      comment: '標準'
+      value: "200ms"
+      comment: "標準"
     slow:
-      value: '300ms'
-      comment: '低速'
+      value: "300ms"
+      comment: "低速"
     slower:
-      value: '500ms'
-      comment: 'より低速'
+      value: "500ms"
+      comment: "より低速"
 
   # イージング関数
   easing:
     linear:
-      value: 'linear'
-      comment: '線形'
+      value: "linear"
+      comment: "線形"
     ease:
-      value: 'ease'
-      comment: '標準イージング'
+      value: "ease"
+      comment: "標準イージング"
     easeIn:
-      value: 'ease-in'
-      comment: 'イーズイン'
+      value: "ease-in"
+      comment: "イーズイン"
     easeOut:
-      value: 'ease-out'
-      comment: 'イーズアウト'
+      value: "ease-out"
+      comment: "イーズアウト"
     easeInOut:
-      value: 'ease-in-out'
-      comment: 'イーズインアウト'
+      value: "ease-in-out"
+      comment: "イーズインアウト"

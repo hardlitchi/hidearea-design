@@ -71,15 +71,11 @@ packages/react/src/
 #### 使用例
 
 ```tsx
-import { Button } from '@hidearea-design/react';
+import { Button } from "@hidearea-design/react";
 
 function App() {
   return (
-    <Button
-      variant="primary"
-      size="md"
-      onClick={() => console.log('clicked')}
-    >
+    <Button variant="primary" size="md" onClick={() => console.log("clicked")}>
       Click me
     </Button>
   );
@@ -110,20 +106,14 @@ packages/vue/src/
 
 ```vue
 <template>
-  <Button
-    variant="primary"
-    size="md"
-    @click="handleClick"
-  >
-    Click me
-  </Button>
+  <Button variant="primary" size="md" @click="handleClick"> Click me </Button>
 </template>
 
 <script setup>
-import { Button } from '@hidearea-design/vue';
+import { Button } from "@hidearea-design/vue";
 
 const handleClick = () => {
-  console.log('clicked');
+  console.log("clicked");
 };
 </script>
 ```
@@ -233,7 +223,7 @@ button.addEventListener('click', handler);
   type="button"
   onClick={handler}
   ref={buttonRef}
-/>
+/>;
 
 // refを使用
 buttonRef.current?.focus();
@@ -253,8 +243,7 @@ buttonRef.current?.focus();
   ref="buttonRef"
 />
 
-// refを使用
-buttonRef.value.focus();
+// refを使用 buttonRef.value.focus();
 ```
 
 ---
@@ -281,12 +270,12 @@ buttonRef.value.focus();
 ```typescript
 export class HaButton extends HTMLElement {
   static get observedAttributes() {
-    return ['variant', 'size', 'disabled', 'loading', 'full-width', 'type'];
+    return ["variant", "size", "disabled", "loading", "full-width", "type"];
   }
 
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
     // ...
   }
 
@@ -296,7 +285,7 @@ export class HaButton extends HTMLElement {
   }
 }
 
-customElements.define('ha-button', HaButton);
+customElements.define("ha-button", HaButton);
 ```
 
 ### Reactラッパーの実装パターン
@@ -314,9 +303,13 @@ export const Button = forwardRef<ButtonRef, ButtonProps>((props, ref) => {
     // プロパティの同期
     element.variant = variant;
     // ...
-  }, [variant, /* ... */]);
+  }, [variant /* ... */]);
 
-  return <ha-button ref={elementRef} {...props}>{children}</ha-button>;
+  return (
+    <ha-button ref={elementRef} {...props}>
+      {children}
+    </ha-button>
+  );
 });
 ```
 
@@ -387,6 +380,7 @@ defineExpose({
 最初のコンポーネントとしてButtonを完全実装しました：
 
 **実装内容**:
+
 - Web Component（Shadow DOM、Custom Element）
 - Reactラッパー（forwardRef、TypeScript）
 - Vueラッパー（Composition API、TypeScript）
@@ -395,6 +389,7 @@ defineExpose({
 - ビルド設定（Vite、TypeScript）
 
 **成果物**:
+
 - `@hidearea-design/core` パッケージ
 - `@hidearea-design/react` パッケージ
 - `@hidearea-design/vue` パッケージ

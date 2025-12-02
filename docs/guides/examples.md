@@ -15,15 +15,15 @@ Complete examples showing common patterns and use cases with hidearea-design com
 ### React Example
 
 ```tsx
-import { useState } from 'react';
-import '@hidearea-design/tokens/dist/tokens.css';
-import { Input, Button, Checkbox } from '@hidearea-design/react';
+import { useState } from "react";
+import "@hidearea-design/tokens/dist/tokens.css";
+import { Input, Button, Checkbox } from "@hidearea-design/react";
 
 function LoginForm() {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    remember: false
+    email: "",
+    password: "",
+    remember: false,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
@@ -32,15 +32,15 @@ function LoginForm() {
     const newErrors: Record<string, string> = {};
 
     if (!formData.email) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = "Email is invalid";
     }
 
     if (!formData.password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = "Password is required";
     } else if (formData.password.length < 8) {
-      newErrors.password = 'Password must be at least 8 characters';
+      newErrors.password = "Password must be at least 8 characters";
     }
 
     setErrors(newErrors);
@@ -55,24 +55,27 @@ function LoginForm() {
     setLoading(true);
     try {
       // API call
-      await fetch('/api/login', {
-        method: 'POST',
-        body: JSON.stringify(formData)
+      await fetch("/api/login", {
+        method: "POST",
+        body: JSON.stringify(formData),
       });
-      console.log('Login successful');
+      console.log("Login successful");
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error("Login failed:", error);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: '400px' }}>
+    <form onSubmit={handleSubmit} style={{ maxWidth: "400px" }}>
       <h2>Login</h2>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <label htmlFor="email" style={{ display: 'block', marginBottom: '0.5rem' }}>
+      <div style={{ marginBottom: "1rem" }}>
+        <label
+          htmlFor="email"
+          style={{ display: "block", marginBottom: "0.5rem" }}
+        >
           Email
         </label>
         <Input
@@ -85,18 +88,27 @@ function LoginForm() {
           value={formData.email}
           onInput={(e) => {
             setFormData({ ...formData, email: e.detail.value });
-            setErrors({ ...errors, email: '' });
+            setErrors({ ...errors, email: "" });
           }}
         />
         {errors.email && (
-          <p style={{ color: 'var(--ha-color-error)', fontSize: '0.875rem', marginTop: '0.25rem' }}>
+          <p
+            style={{
+              color: "var(--ha-color-error)",
+              fontSize: "0.875rem",
+              marginTop: "0.25rem",
+            }}
+          >
             {errors.email}
           </p>
         )}
       </div>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <label htmlFor="password" style={{ display: 'block', marginBottom: '0.5rem' }}>
+      <div style={{ marginBottom: "1rem" }}>
+        <label
+          htmlFor="password"
+          style={{ display: "block", marginBottom: "0.5rem" }}
+        >
           Password
         </label>
         <Input
@@ -109,20 +121,28 @@ function LoginForm() {
           value={formData.password}
           onInput={(e) => {
             setFormData({ ...formData, password: e.detail.value });
-            setErrors({ ...errors, password: '' });
+            setErrors({ ...errors, password: "" });
           }}
         />
         {errors.password && (
-          <p style={{ color: 'var(--ha-color-error)', fontSize: '0.875rem', marginTop: '0.25rem' }}>
+          <p
+            style={{
+              color: "var(--ha-color-error)",
+              fontSize: "0.875rem",
+              marginTop: "0.25rem",
+            }}
+          >
             {errors.password}
           </p>
         )}
       </div>
 
-      <div style={{ marginBottom: '1.5rem' }}>
+      <div style={{ marginBottom: "1.5rem" }}>
         <Checkbox
           checked={formData.remember}
-          onChange={(e) => setFormData({ ...formData, remember: e.detail.checked })}
+          onChange={(e) =>
+            setFormData({ ...formData, remember: e.detail.checked })
+          }
         >
           Remember me
         </Checkbox>
@@ -135,7 +155,7 @@ function LoginForm() {
         loading={loading}
         disabled={loading}
       >
-        {loading ? 'Logging in...' : 'Login'}
+        {loading ? "Logging in..." : "Login"}
       </Button>
     </form>
   );
@@ -182,9 +202,7 @@ export default LoginForm;
     </div>
 
     <div class="form-group">
-      <HaCheckbox v-model="formData.remember">
-        Remember me
-      </HaCheckbox>
+      <HaCheckbox v-model="formData.remember"> Remember me </HaCheckbox>
     </div>
 
     <HaButton
@@ -194,20 +212,20 @@ export default LoginForm;
       :loading="loading"
       :disabled="loading"
     >
-      {{ loading ? 'Logging in...' : 'Login' }}
+      {{ loading ? "Logging in..." : "Login" }}
     </HaButton>
   </form>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
-import '@hidearea-design/tokens/dist/tokens.css';
-import { HaInput, HaButton, HaCheckbox } from '@hidearea-design/vue';
+import { reactive, ref } from "vue";
+import "@hidearea-design/tokens/dist/tokens.css";
+import { HaInput, HaButton, HaCheckbox } from "@hidearea-design/vue";
 
 const formData = reactive({
-  email: '',
-  password: '',
-  remember: false
+  email: "",
+  password: "",
+  remember: false,
 });
 
 const errors = reactive<Record<string, string>>({});
@@ -217,15 +235,15 @@ const validate = () => {
   const newErrors: Record<string, string> = {};
 
   if (!formData.email) {
-    newErrors.email = 'Email is required';
+    newErrors.email = "Email is required";
   } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-    newErrors.email = 'Email is invalid';
+    newErrors.email = "Email is invalid";
   }
 
   if (!formData.password) {
-    newErrors.password = 'Password is required';
+    newErrors.password = "Password is required";
   } else if (formData.password.length < 8) {
-    newErrors.password = 'Password must be at least 8 characters';
+    newErrors.password = "Password must be at least 8 characters";
   }
 
   Object.assign(errors, newErrors);
@@ -237,13 +255,13 @@ const handleSubmit = async () => {
 
   loading.value = true;
   try {
-    await fetch('/api/login', {
-      method: 'POST',
-      body: JSON.stringify(formData)
+    await fetch("/api/login", {
+      method: "POST",
+      body: JSON.stringify(formData),
     });
-    console.log('Login successful');
+    console.log("Login successful");
   } catch (error) {
-    console.error('Login failed:', error);
+    console.error("Login failed:", error);
   } finally {
     loading.value = false;
   }
@@ -276,16 +294,16 @@ const handleSubmit = async () => {
 
 ```tsx
 // React
-import { useState } from 'react';
-import { Input, Button, Checkbox } from '@hidearea-design/react';
+import { useState } from "react";
+import { Input, Button, Checkbox } from "@hidearea-design/react";
 
 function RegistrationForm() {
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    terms: false
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    terms: false,
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -293,16 +311,16 @@ function RegistrationForm() {
   const validate = () => {
     const newErrors: Record<string, string> = {};
 
-    if (!formData.username) newErrors.username = 'Username is required';
-    if (!formData.email) newErrors.email = 'Email is required';
-    if (!formData.password) newErrors.password = 'Password is required';
+    if (!formData.username) newErrors.username = "Username is required";
+    if (!formData.email) newErrors.email = "Email is required";
+    if (!formData.password) newErrors.password = "Password is required";
 
     if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
+      newErrors.confirmPassword = "Passwords do not match";
     }
 
     if (!formData.terms) {
-      newErrors.terms = 'You must accept the terms';
+      newErrors.terms = "You must accept the terms";
     }
 
     setErrors(newErrors);
@@ -312,7 +330,7 @@ function RegistrationForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      console.log('Form submitted:', formData);
+      console.log("Form submitted:", formData);
     }
   };
 
@@ -346,7 +364,9 @@ function RegistrationForm() {
         placeholder="Confirm Password"
         fullWidth
         error={!!errors.confirmPassword}
-        onInput={(e) => setFormData({ ...formData, confirmPassword: e.detail.value })}
+        onInput={(e) =>
+          setFormData({ ...formData, confirmPassword: e.detail.value })
+        }
       />
 
       <Checkbox
@@ -370,11 +390,11 @@ function RegistrationForm() {
 
 ```tsx
 // React
-import { useState, useEffect } from 'react';
-import { Input, Button } from '@hidearea-design/react';
+import { useState, useEffect } from "react";
+import { Input, Button } from "@hidearea-design/react";
 
 function SearchInterface() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -387,11 +407,13 @@ function SearchInterface() {
     const timer = setTimeout(async () => {
       setLoading(true);
       try {
-        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+        const response = await fetch(
+          `/api/search?q=${encodeURIComponent(query)}`,
+        );
         const data = await response.json();
         setResults(data);
       } catch (error) {
-        console.error('Search failed:', error);
+        console.error("Search failed:", error);
       } finally {
         setLoading(false);
       }
@@ -417,7 +439,7 @@ function SearchInterface() {
       {loading && <p>Searching...</p>}
 
       <div>
-        {results.map(result => (
+        {results.map((result) => (
           <div key={result.id}>
             <h3>{result.title}</h3>
             <p>{result.description}</p>
@@ -433,8 +455,8 @@ function SearchInterface() {
 
 ```tsx
 // React
-import { useState } from 'react';
-import { Checkbox, Button } from '@hidearea-design/react';
+import { useState } from "react";
+import { Checkbox, Button } from "@hidearea-design/react";
 
 function SettingsPanel() {
   const [settings, setSettings] = useState({
@@ -442,11 +464,12 @@ function SettingsPanel() {
     pushNotifications: false,
     smsNotifications: false,
     newsletter: true,
-    updates: false
+    updates: false,
   });
 
   const allNotifications = Object.values(settings).every(Boolean);
-  const someNotifications = Object.values(settings).some(Boolean) && !allNotifications;
+  const someNotifications =
+    Object.values(settings).some(Boolean) && !allNotifications;
 
   const toggleAll = () => {
     const newValue = !allNotifications;
@@ -455,16 +478,16 @@ function SettingsPanel() {
       pushNotifications: newValue,
       smsNotifications: newValue,
       newsletter: newValue,
-      updates: newValue
+      updates: newValue,
     });
   };
 
   const handleSave = () => {
-    console.log('Saving settings:', settings);
+    console.log("Saving settings:", settings);
   };
 
   return (
-    <div style={{ maxWidth: '500px' }}>
+    <div style={{ maxWidth: "500px" }}>
       <h2>Notification Settings</h2>
 
       <Checkbox
@@ -476,10 +499,12 @@ function SettingsPanel() {
         <strong>Enable all notifications</strong>
       </Checkbox>
 
-      <div style={{ marginLeft: '2rem' }}>
+      <div style={{ marginLeft: "2rem" }}>
         <Checkbox
           checked={settings.emailNotifications}
-          onChange={(e) => setSettings({ ...settings, emailNotifications: e.detail.checked })}
+          onChange={(e) =>
+            setSettings({ ...settings, emailNotifications: e.detail.checked })
+          }
         >
           Email notifications
           <span slot="description">Receive updates via email</span>
@@ -487,7 +512,9 @@ function SettingsPanel() {
 
         <Checkbox
           checked={settings.pushNotifications}
-          onChange={(e) => setSettings({ ...settings, pushNotifications: e.detail.checked })}
+          onChange={(e) =>
+            setSettings({ ...settings, pushNotifications: e.detail.checked })
+          }
         >
           Push notifications
           <span slot="description">Get instant updates on your device</span>
@@ -495,15 +522,21 @@ function SettingsPanel() {
 
         <Checkbox
           checked={settings.smsNotifications}
-          onChange={(e) => setSettings({ ...settings, smsNotifications: e.detail.checked })}
+          onChange={(e) =>
+            setSettings({ ...settings, smsNotifications: e.detail.checked })
+          }
         >
           SMS notifications
-          <span slot="description">Receive text messages for important updates</span>
+          <span slot="description">
+            Receive text messages for important updates
+          </span>
         </Checkbox>
 
         <Checkbox
           checked={settings.newsletter}
-          onChange={(e) => setSettings({ ...settings, newsletter: e.detail.checked })}
+          onChange={(e) =>
+            setSettings({ ...settings, newsletter: e.detail.checked })
+          }
         >
           Newsletter
           <span slot="description">Weekly digest of updates and news</span>
@@ -511,20 +544,22 @@ function SettingsPanel() {
 
         <Checkbox
           checked={settings.updates}
-          onChange={(e) => setSettings({ ...settings, updates: e.detail.checked })}
+          onChange={(e) =>
+            setSettings({ ...settings, updates: e.detail.checked })
+          }
         >
           Product updates
-          <span slot="description">Learn about new features and improvements</span>
+          <span slot="description">
+            Learn about new features and improvements
+          </span>
         </Checkbox>
       </div>
 
-      <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem' }}>
+      <div style={{ marginTop: "2rem", display: "flex", gap: "1rem" }}>
         <Button variant="primary" onClick={handleSave}>
           Save Changes
         </Button>
-        <Button variant="outline">
-          Reset
-        </Button>
+        <Button variant="outline">Reset</Button>
       </div>
     </div>
   );

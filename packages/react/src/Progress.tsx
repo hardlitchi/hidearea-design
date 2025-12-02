@@ -1,8 +1,8 @@
-import React, { forwardRef, useEffect, useRef } from 'react';
-import type { HaProgress as HaProgressElement } from '@hidearea-design/core';
+import React, { forwardRef, useEffect, useRef } from "react";
+import type { HaProgress as HaProgressElement } from "@hidearea-design/core";
 
 // Import the web component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
 export interface ProgressProps extends React.HTMLAttributes<HTMLElement> {
   /**
@@ -21,19 +21,19 @@ export interface ProgressProps extends React.HTMLAttributes<HTMLElement> {
    * Progress bar style
    * @default "default"
    */
-  variant?: 'default' | 'striped' | 'animated';
+  variant?: "default" | "striped" | "animated";
 
   /**
    * Color variant
    * @default "primary"
    */
-  color?: 'primary' | 'success' | 'warning' | 'error' | 'info';
+  color?: "primary" | "success" | "warning" | "error" | "info";
 
   /**
    * Size of the progress bar
    * @default "md"
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 
   /**
    * Show percentage label
@@ -67,15 +67,15 @@ export const Progress = forwardRef<HTMLElement, ProgressProps>(
     {
       value = 0,
       max = 100,
-      variant = 'default',
-      color = 'primary',
-      size = 'md',
+      variant = "default",
+      color = "primary",
+      size = "md",
       showLabel = false,
       label,
       children,
       ...props
     },
-    _ref
+    _ref,
   ) => {
     const elementRef = useRef<HaProgressElement>(null);
 
@@ -93,24 +93,21 @@ export const Progress = forwardRef<HTMLElement, ProgressProps>(
     }, [value, max, variant, color, size, showLabel]);
 
     return (
-      <ha-progress
-        ref={elementRef as any}
-        {...props}
-      >
+      <ha-progress ref={elementRef as any} {...props}>
         {label && <span slot="label">{label}</span>}
         {children}
       </ha-progress>
     );
-  }
+  },
 );
 
-Progress.displayName = 'Progress';
+Progress.displayName = "Progress";
 
 // Add TypeScript support for JSX
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-progress': React.DetailedHTMLProps<
+      "ha-progress": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >;

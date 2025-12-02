@@ -16,13 +16,13 @@ Phase 3で実装した5つのフォームコンポーネントに対して、Rea
 
 ### 対象コンポーネント（Phase 3）
 
-| # | コンポーネント | React | Vue | 説明 |
-|---|--------------|-------|-----|------|
-| 7 | **FormGroup** | ✅ | ✅ | フォームフィールドコンテナ |
-| 8 | **Select** | ✅ | ✅ | ドロップダウン選択 |
-| 9 | **Radio** | ✅ | ✅ | ラジオボタン |
-| 10 | **Textarea** | ✅ | ✅ | 複数行テキスト入力 |
-| 11 | **Switch** | ✅ | ✅ | トグルスイッチ |
+| #   | コンポーネント | React | Vue | 説明                       |
+| --- | -------------- | ----- | --- | -------------------------- |
+| 7   | **FormGroup**  | ✅    | ✅  | フォームフィールドコンテナ |
+| 8   | **Select**     | ✅    | ✅  | ドロップダウン選択         |
+| 9   | **Radio**      | ✅    | ✅  | ラジオボタン               |
+| 10  | **Textarea**   | ✅    | ✅  | 複数行テキスト入力         |
+| 11  | **Switch**     | ✅    | ✅  | トグルスイッチ             |
 
 ---
 
@@ -70,6 +70,7 @@ export const ComponentName = forwardRef<HTMLElement, ComponentProps>(
 ### 実装ファイル
 
 #### 1. FormGroup.tsx
+
 - **ファイルサイズ**: 138行
 - **主要機能**:
   - label、helperText、errorText プロパティ
@@ -93,6 +94,7 @@ export interface FormGroupProps extends React.HTMLAttributes<HTMLElement> {
 ```
 
 #### 2. Select.tsx
+
 - **ファイルサイズ**: 164行
 - **主要機能**:
   - variant (default, filled, outlined)
@@ -102,9 +104,10 @@ export interface FormGroupProps extends React.HTMLAttributes<HTMLElement> {
   - CustomEvent<{ value: string }> 処理
 
 ```typescript
-export interface SelectProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> {
-  variant?: 'default' | 'filled' | 'outlined';
-  size?: 'sm' | 'md' | 'lg';
+export interface SelectProps
+  extends Omit<React.HTMLAttributes<HTMLElement>, "onChange"> {
+  variant?: "default" | "filled" | "outlined";
+  size?: "sm" | "md" | "lg";
   value?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -118,6 +121,7 @@ export interface SelectProps extends Omit<React.HTMLAttributes<HTMLElement>, 'on
 ```
 
 #### 3. Radio.tsx
+
 - **ファイルサイズ**: 169行
 - **主要機能**:
   - checked 状態管理
@@ -126,8 +130,9 @@ export interface SelectProps extends Omit<React.HTMLAttributes<HTMLElement>, 'on
   - size (sm, md, lg)
 
 ```typescript
-export interface RadioProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> {
-  size?: 'sm' | 'md' | 'lg';
+export interface RadioProps
+  extends Omit<React.HTMLAttributes<HTMLElement>, "onChange"> {
+  size?: "sm" | "md" | "lg";
   checked?: boolean;
   disabled?: boolean;
   required?: boolean;
@@ -143,6 +148,7 @@ export interface RadioProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onC
 ```
 
 #### 4. Textarea.tsx
+
 - **ファイルサイズ**: 212行
 - **主要機能**:
   - variant (default, filled, outlined)
@@ -153,9 +159,10 @@ export interface RadioProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onC
   - setAttribute による属性設定（rows、maxlength、minlength）
 
 ```typescript
-export interface TextareaProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange' | 'onInput'> {
-  variant?: 'default' | 'filled' | 'outlined';
-  size?: 'sm' | 'md' | 'lg';
+export interface TextareaProps
+  extends Omit<React.HTMLAttributes<HTMLElement>, "onChange" | "onInput"> {
+  variant?: "default" | "filled" | "outlined";
+  size?: "sm" | "md" | "lg";
   value?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -163,7 +170,7 @@ export interface TextareaProps extends Omit<React.HTMLAttributes<HTMLElement>, '
   required?: boolean;
   error?: boolean;
   rows?: number;
-  resize?: 'none' | 'both' | 'horizontal' | 'vertical';
+  resize?: "none" | "both" | "horizontal" | "vertical";
   name?: string;
   maxlength?: number;
   minlength?: number;
@@ -173,6 +180,7 @@ export interface TextareaProps extends Omit<React.HTMLAttributes<HTMLElement>, '
 ```
 
 #### 5. Switch.tsx
+
 - **ファイルサイズ**: 169行
 - **主要機能**:
   - checked 状態管理
@@ -181,8 +189,9 @@ export interface TextareaProps extends Omit<React.HTMLAttributes<HTMLElement>, '
   - size (sm, md, lg)
 
 ```typescript
-export interface SwitchProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> {
-  size?: 'sm' | 'md' | 'lg';
+export interface SwitchProps
+  extends Omit<React.HTMLAttributes<HTMLElement>, "onChange"> {
+  size?: "sm" | "md" | "lg";
   checked?: boolean;
   disabled?: boolean;
   required?: boolean;
@@ -202,20 +211,20 @@ export interface SwitchProps extends Omit<React.HTMLAttributes<HTMLElement>, 'on
 **packages/react/src/index.ts** を更新：
 
 ```typescript
-export { FormGroup } from './FormGroup';
-export type { FormGroupProps } from './FormGroup';
+export { FormGroup } from "./FormGroup";
+export type { FormGroupProps } from "./FormGroup";
 
-export { Select } from './Select';
-export type { SelectProps } from './Select';
+export { Select } from "./Select";
+export type { SelectProps } from "./Select";
 
-export { Radio } from './Radio';
-export type { RadioProps } from './Radio';
+export { Radio } from "./Radio";
+export type { RadioProps } from "./Radio";
 
-export { Textarea } from './Textarea';
-export type { TextareaProps } from './Textarea';
+export { Textarea } from "./Textarea";
+export type { TextareaProps } from "./Textarea";
 
-export { Switch } from './Switch';
-export type { SwitchProps } from './Switch';
+export { Switch } from "./Switch";
+export type { SwitchProps } from "./Switch";
 ```
 
 ---
@@ -228,8 +237,8 @@ export type { SwitchProps } from './Switch';
 
 ```vue
 <script setup lang="ts">
-import { ref, onMounted, withDefaults, defineEmits } from 'vue';
-import type { HaComponent as HaComponentElement } from '@hidearea-design/core';
+import { ref, onMounted, withDefaults, defineEmits } from "vue";
+import type { HaComponent as HaComponentElement } from "@hidearea-design/core";
 
 export interface ComponentProps {
   prop1?: string;
@@ -237,12 +246,12 @@ export interface ComponentProps {
 }
 
 const props = withDefaults(defineProps<ComponentProps>(), {
-  prop1: 'default',
+  prop1: "default",
   prop2: false,
 });
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string];
+  "update:modelValue": [value: string];
   event: [value: string];
 }>();
 
@@ -257,9 +266,9 @@ onMounted(() => {
   element.prop2 = props.prop2;
 
   // イベントリスナー
-  element.addEventListener('event', (e: Event) => {
+  element.addEventListener("event", (e: Event) => {
     const customEvent = e as CustomEvent<{ value: string }>;
-    emit('event', customEvent.detail.value);
+    emit("event", customEvent.detail.value);
   });
 });
 </script>
@@ -274,6 +283,7 @@ onMounted(() => {
 ### 実装ファイル
 
 #### 1. FormGroup.vue
+
 - **ファイルサイズ**: 96行
 - **主要機能**:
   - Composition API
@@ -281,6 +291,7 @@ onMounted(() => {
   - required、error、disabled 状態管理
 
 #### 2. Select.vue
+
 - **ファイルサイズ**: 127行
 - **主要機能**:
   - v-model 対応（modelValue prop + update:modelValue emit）
@@ -290,8 +301,8 @@ onMounted(() => {
 
 ```typescript
 export interface SelectProps {
-  variant?: 'default' | 'filled' | 'outlined';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "default" | "filled" | "outlined";
+  size?: "sm" | "md" | "lg";
   modelValue?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -302,12 +313,13 @@ export interface SelectProps {
 }
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string];
+  "update:modelValue": [value: string];
   change: [value: string];
 }>();
 ```
 
 #### 3. Radio.vue
+
 - **ファイルサイズ**: 77行
 - **主要機能**:
   - checked 状態
@@ -315,6 +327,7 @@ const emit = defineEmits<{
   - label、description スロット
 
 #### 4. Textarea.vue
+
 - **ファイルサイズ**: 96行
 - **主要機能**:
   - v-model 対応
@@ -324,8 +337,8 @@ const emit = defineEmits<{
 
 ```typescript
 export interface TextareaProps {
-  variant?: 'default' | 'filled' | 'outlined';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "default" | "filled" | "outlined";
+  size?: "sm" | "md" | "lg";
   modelValue?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -333,20 +346,21 @@ export interface TextareaProps {
   required?: boolean;
   error?: boolean;
   rows?: number;
-  resize?: 'none' | 'both' | 'horizontal' | 'vertical';
+  resize?: "none" | "both" | "horizontal" | "vertical";
   name?: string;
   maxlength?: number;
   minlength?: number;
 }
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string];
+  "update:modelValue": [value: string];
   input: [value: string];
   change: [value: string];
 }>();
 ```
 
 #### 5. Switch.vue
+
 - **ファイルサイズ**: 77行
 - **主要機能**:
   - checked 状態
@@ -358,28 +372,40 @@ const emit = defineEmits<{
 **packages/vue/src/index.ts** を更新：
 
 ```typescript
-import FormGroup from './FormGroup.vue';
-import Select from './Select.vue';
-import Radio from './Radio.vue';
-import Textarea from './Textarea.vue';
-import Switch from './Switch.vue';
+import FormGroup from "./FormGroup.vue";
+import Select from "./Select.vue";
+import Radio from "./Radio.vue";
+import Textarea from "./Textarea.vue";
+import Switch from "./Switch.vue";
 
 export {
-  Button, Input, Checkbox,
-  Container, Grid, Stack,
-  Alert, Badge, Card, Progress, Spinner,
-  FormGroup, Select, Radio, Textarea, Switch
+  Button,
+  Input,
+  Checkbox,
+  Container,
+  Grid,
+  Stack,
+  Alert,
+  Badge,
+  Card,
+  Progress,
+  Spinner,
+  FormGroup,
+  Select,
+  Radio,
+  Textarea,
+  Switch,
 };
 
 // Vue plugin
 export default {
   install(app: App) {
     // ... existing components ...
-    app.component('HaFormGroup', FormGroup);
-    app.component('HaSelect', Select);
-    app.component('HaRadio', Radio);
-    app.component('HaTextarea', Textarea);
-    app.component('HaSwitch', Switch);
+    app.component("HaFormGroup", FormGroup);
+    app.component("HaSelect", Select);
+    app.component("HaRadio", Radio);
+    app.component("HaTextarea", Textarea);
+    app.component("HaSwitch", Switch);
   },
 };
 ```
@@ -387,11 +413,21 @@ export default {
 **packages/vue/src/types.ts** を更新：
 
 ```typescript
-export interface FormGroupProps { /* ... */ }
-export interface SelectProps { /* ... */ }
-export interface RadioProps { /* ... */ }
-export interface TextareaProps { /* ... */ }
-export interface SwitchProps { /* ... */ }
+export interface FormGroupProps {
+  /* ... */
+}
+export interface SelectProps {
+  /* ... */
+}
+export interface RadioProps {
+  /* ... */
+}
+export interface TextareaProps {
+  /* ... */
+}
+export interface SwitchProps {
+  /* ... */
+}
 ```
 
 ---
@@ -431,11 +467,13 @@ dist/index.umd.js  20.32 kB │ gzip: 4.13 kB │ map: 53.58 kB
 ### イベント処理
 
 #### React
+
 - `CustomEvent<T>` 型キャスト
 - イベントハンドラーは値を直接受け取る（`onChange(value)` など）
 - `Omit<React.HTMLAttributes, 'onChange'>` で型競合回避
 
 #### Vue
+
 - `defineEmits` でイベント型定義
 - v-model 用に `update:modelValue` イベント
 - カスタムイベント（`change`、`input` など）も emission
@@ -443,11 +481,13 @@ dist/index.umd.js  20.32 kB │ gzip: 4.13 kB │ map: 53.58 kB
 ### スロット処理
 
 #### React
+
 - `children` prop でデフォルトスロット
 - 名前付きスロットは専用 prop（例: `labelContent`）
 - `<span slot="name">{content}</span>` で Web Component スロットへ渡す
 
 #### Vue
+
 - テンプレートの `<slot />` でデフォルトスロット
 - `<template #slot-name>` で名前付きスロット
 - `$slots['slot-name']` で条件付きレンダリング
@@ -457,11 +497,12 @@ dist/index.umd.js  20.32 kB │ gzip: 4.13 kB │ map: 53.58 kB
 一部の Web Component プロパティは setter がないため、`setAttribute` を使用：
 
 **Textarea の例**:
+
 ```typescript
 // React
-element.setAttribute('rows', rows.toString());
-element.setAttribute('maxlength', maxlength.toString());
-element.setAttribute('minlength', minlength.toString());
+element.setAttribute("rows", rows.toString());
+element.setAttribute("maxlength", maxlength.toString());
+element.setAttribute("minlength", minlength.toString());
 ```
 
 これは `HaTextarea` クラスに `rows`、`maxlength`、`minlength` の public setter がないためです。
@@ -471,9 +512,11 @@ element.setAttribute('minlength', minlength.toString());
 ## Git 履歴
 
 ### ブランチ
+
 - `feature/phase3-react-vue-wrappers`
 
 ### コミット
+
 ```
 43ed060 feat: Add React and Vue wrappers for Phase 3 form components
 
@@ -503,6 +546,7 @@ All wrappers follow established patterns:
 ```
 
 ### プルリクエスト
+
 **PR #10**: https://github.com/hardlitchi/hidearea-design/pull/10
 
 ---
@@ -510,16 +554,19 @@ All wrappers follow established patterns:
 ## 統計
 
 ### ファイル変更
+
 - **変更ファイル**: 13ファイル
 - **追加行**: 1,417行
 - **削除行**: 1行
 
 ### コンポーネント数
+
 - **React ラッパー追加**: 5コンポーネント
 - **Vue ラッパー追加**: 5コンポーネント
 - **総ラッパー数**: React 16/16、Vue 16/16（100%）
 
 ### コードサイズ
+
 - **React 平均**: 約170行/コンポーネント
 - **Vue 平均**: 約95行/コンポーネント
 - **総追加コード**: 約1,400行
@@ -538,6 +585,7 @@ All wrappers follow established patterns:
 4. **Tooltip** - ツールチップ
 
 各コンポーネントについて：
+
 - Web Component 実装
 - Storybook ストーリー
 - ユニットテスト
@@ -552,6 +600,7 @@ All wrappers follow established patterns:
 Phase 3.5 では、Phase 3 で実装した5つのフォームコンポーネントに対して React と Vue のフレームワークラッパーを追加実装しました。
 
 ### 成果
+
 - ✅ 5つの React ラッパー実装
 - ✅ 5つの Vue ラッパー実装
 - ✅ 完全な TypeScript サポート
@@ -560,6 +609,7 @@ Phase 3.5 では、Phase 3 で実装した5つのフォームコンポーネン�
 - ✅ **フレームワークサポート率 100%達成**
 
 ### 技術的ハイライト
+
 - forwardRef パターン（React）
 - Composition API パターン（Vue）
 - v-model サポート（Vue）

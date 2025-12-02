@@ -2,7 +2,7 @@
 // happy-dom は Custom Elements をサポートしているため、特別な設定は不要
 
 // グローバル型定義の追加
-import { expect } from 'vitest';
+import { expect } from "vitest";
 
 // カスタムマッチャーを追加する場合はここで定義
 // 例: expect.extend({ toBeInTheDocument })
@@ -22,7 +22,10 @@ export function getShadowRoot(element: Element): ShadowRoot | null {
 }
 
 // Shadow DOM 内の要素をクエリするヘルパー関数
-export function queryShadow(element: Element, selector: string): Element | null {
+export function queryShadow(
+  element: Element,
+  selector: string,
+): Element | null {
   const shadowRoot = getShadowRoot(element);
   return shadowRoot ? shadowRoot.querySelector(selector) : null;
 }

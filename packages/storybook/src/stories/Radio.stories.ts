@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
-import '@hidearea-design/core';
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
+import { html } from "lit";
+import "@hidearea-design/core";
 
 interface RadioArgs {
-  size: 'sm' | 'md' | 'lg';
+  size: "sm" | "md" | "lg";
   checked: boolean;
   disabled: boolean;
   required: boolean;
@@ -15,45 +15,45 @@ interface RadioArgs {
 }
 
 const meta: Meta<RadioArgs> = {
-  title: 'Forms/Radio',
-  tags: ['autodocs'],
+  title: "Forms/Radio",
+  tags: ["autodocs"],
   argTypes: {
     size: {
-      control: { type: 'select' },
-      options: ['sm', 'md', 'lg'],
-      description: 'Radio size',
+      control: { type: "select" },
+      options: ["sm", "md", "lg"],
+      description: "Radio size",
     },
     checked: {
-      control: { type: 'boolean' },
-      description: 'Checked state',
+      control: { type: "boolean" },
+      description: "Checked state",
     },
     disabled: {
-      control: { type: 'boolean' },
-      description: 'Disabled state',
+      control: { type: "boolean" },
+      description: "Disabled state",
     },
     required: {
-      control: { type: 'boolean' },
-      description: 'Required state',
+      control: { type: "boolean" },
+      description: "Required state",
     },
     error: {
-      control: { type: 'boolean' },
-      description: 'Error state',
+      control: { type: "boolean" },
+      description: "Error state",
     },
     name: {
-      control: { type: 'text' },
-      description: 'Radio group name',
+      control: { type: "text" },
+      description: "Radio group name",
     },
     value: {
-      control: { type: 'text' },
-      description: 'Radio value',
+      control: { type: "text" },
+      description: "Radio value",
     },
     label: {
-      control: { type: 'text' },
-      description: 'Radio label',
+      control: { type: "text" },
+      description: "Radio label",
     },
     description: {
-      control: { type: 'text' },
-      description: 'Radio description',
+      control: { type: "text" },
+      description: "Radio description",
     },
   },
 };
@@ -63,15 +63,15 @@ type Story = StoryObj<RadioArgs>;
 
 export const Default: Story = {
   args: {
-    size: 'md',
+    size: "md",
     checked: false,
     disabled: false,
     required: false,
     error: false,
-    name: 'example',
-    value: 'option1',
-    label: 'Option 1',
-    description: '',
+    name: "example",
+    value: "option1",
+    label: "Option 1",
+    description: "",
   },
   render: (args) => html`
     <ha-radio
@@ -132,8 +132,8 @@ export const Error: Story = {
 export const WithDescription: Story = {
   args: {
     ...Default.args,
-    label: 'Email notifications',
-    description: 'Receive email notifications about important updates',
+    label: "Email notifications",
+    description: "Receive email notifications about important updates",
   },
   render: Default.render,
 };
@@ -141,7 +141,7 @@ export const WithDescription: Story = {
 export const Small: Story = {
   args: {
     ...Default.args,
-    size: 'sm',
+    size: "sm",
   },
   render: Default.render,
 };
@@ -149,7 +149,7 @@ export const Small: Story = {
 export const Large: Story = {
   args: {
     ...Default.args,
-    size: 'lg',
+    size: "lg",
   },
   render: Default.render,
 };
@@ -159,15 +159,30 @@ export const AllSizes: Story = {
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Small</h4>
-        <ha-radio size="sm" name="size-demo-sm" value="small" label="Small radio"></ha-radio>
+        <ha-radio
+          size="sm"
+          name="size-demo-sm"
+          value="small"
+          label="Small radio"
+        ></ha-radio>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Medium</h4>
-        <ha-radio size="md" name="size-demo-md" value="medium" label="Medium radio"></ha-radio>
+        <ha-radio
+          size="md"
+          name="size-demo-md"
+          value="medium"
+          label="Medium radio"
+        ></ha-radio>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Large</h4>
-        <ha-radio size="lg" name="size-demo-lg" value="large" label="Large radio"></ha-radio>
+        <ha-radio
+          size="lg"
+          name="size-demo-lg"
+          value="large"
+          label="Large radio"
+        ></ha-radio>
       </div>
     </div>
   `,
@@ -178,23 +193,48 @@ export const AllStates: Story = {
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Normal</h4>
-        <ha-radio name="states-normal" value="normal" label="Normal radio"></ha-radio>
+        <ha-radio
+          name="states-normal"
+          value="normal"
+          label="Normal radio"
+        ></ha-radio>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Checked</h4>
-        <ha-radio name="states-checked" value="checked" label="Checked radio" checked></ha-radio>
+        <ha-radio
+          name="states-checked"
+          value="checked"
+          label="Checked radio"
+          checked
+        ></ha-radio>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Disabled</h4>
-        <ha-radio name="states-disabled" value="disabled" label="Disabled radio" disabled></ha-radio>
+        <ha-radio
+          name="states-disabled"
+          value="disabled"
+          label="Disabled radio"
+          disabled
+        ></ha-radio>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Disabled Checked</h4>
-        <ha-radio name="states-disabled-checked" value="disabled-checked" label="Disabled checked radio" disabled checked></ha-radio>
+        <ha-radio
+          name="states-disabled-checked"
+          value="disabled-checked"
+          label="Disabled checked radio"
+          disabled
+          checked
+        ></ha-radio>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Error</h4>
-        <ha-radio name="states-error" value="error" label="Error radio" error></ha-radio>
+        <ha-radio
+          name="states-error"
+          value="error"
+          label="Error radio"
+          error
+        ></ha-radio>
       </div>
     </div>
   `,
@@ -203,7 +243,8 @@ export const AllStates: Story = {
 export const WithSlots: Story = {
   render: () => html`
     <ha-radio name="slot-demo" value="custom">
-      <strong>Bold label</strong> with <em>italic text</em> and <a href="#">link</a>
+      <strong>Bold label</strong> with <em>italic text</em> and
+      <a href="#">link</a>
       <div slot="description">
         Custom description with <strong>HTML content</strong>
       </div>
@@ -215,17 +256,28 @@ export const RadioGroup: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: 1rem;">
       <h4 style="margin: 0;">Select your preferred contact method</h4>
-      <ha-radio name="contact-method" value="email" label="Email" checked></ha-radio>
+      <ha-radio
+        name="contact-method"
+        value="email"
+        label="Email"
+        checked
+      ></ha-radio>
       <ha-radio name="contact-method" value="phone" label="Phone"></ha-radio>
       <ha-radio name="contact-method" value="sms" label="SMS"></ha-radio>
-      <ha-radio name="contact-method" value="mail" label="Postal Mail"></ha-radio>
+      <ha-radio
+        name="contact-method"
+        value="mail"
+        label="Postal Mail"
+      ></ha-radio>
     </div>
   `,
 };
 
 export const RadioGroupWithDescriptions: Story = {
   render: () => html`
-    <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 500px;">
+    <div
+      style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 500px;"
+    >
       <h4 style="margin: 0;">Choose a subscription plan</h4>
       <ha-radio
         name="plan"
@@ -288,11 +340,7 @@ export const FormExample: Story = {
               label="Credit Card"
               checked
             ></ha-radio>
-            <ha-radio
-              name="payment"
-              value="paypal"
-              label="PayPal"
-            ></ha-radio>
+            <ha-radio name="payment" value="paypal" label="PayPal"></ha-radio>
             <ha-radio
               name="payment"
               value="bank"
@@ -303,7 +351,9 @@ export const FormExample: Story = {
 
         <ha-stack direction="horizontal" gap="3" justify="end">
           <ha-button variant="outline">Cancel</ha-button>
-          <ha-button variant="primary" type="submit">Continue to Payment</ha-button>
+          <ha-button variant="primary" type="submit"
+            >Continue to Payment</ha-button
+          >
         </ha-stack>
       </ha-stack>
     </form>
@@ -333,9 +383,24 @@ export const WithFormGroupError: Story = {
       error
     >
       <ha-stack direction="vertical" gap="2">
-        <ha-radio name="error-demo" value="option1" label="Option 1" error></ha-radio>
-        <ha-radio name="error-demo" value="option2" label="Option 2" error></ha-radio>
-        <ha-radio name="error-demo" value="option3" label="Option 3" error></ha-radio>
+        <ha-radio
+          name="error-demo"
+          value="option1"
+          label="Option 1"
+          error
+        ></ha-radio>
+        <ha-radio
+          name="error-demo"
+          value="option2"
+          label="Option 2"
+          error
+        ></ha-radio>
+        <ha-radio
+          name="error-demo"
+          value="option3"
+          label="Option 3"
+          error
+        ></ha-radio>
       </ha-stack>
     </ha-form-group>
   `,

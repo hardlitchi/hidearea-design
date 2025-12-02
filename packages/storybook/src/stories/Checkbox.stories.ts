@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
-import '@hidearea-design/core';
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
+import { html } from "lit";
+import "@hidearea-design/core";
 
 interface CheckboxArgs {
-  size: 'sm' | 'md' | 'lg';
+  size: "sm" | "md" | "lg";
   checked: boolean;
   indeterminate: boolean;
   disabled: boolean;
@@ -14,41 +14,41 @@ interface CheckboxArgs {
 }
 
 const meta: Meta<CheckboxArgs> = {
-  title: 'Components/Checkbox',
-  tags: ['autodocs'],
+  title: "Components/Checkbox",
+  tags: ["autodocs"],
   argTypes: {
     size: {
-      control: { type: 'select' },
-      options: ['sm', 'md', 'lg'],
-      description: 'Checkbox size',
+      control: { type: "select" },
+      options: ["sm", "md", "lg"],
+      description: "Checkbox size",
     },
     checked: {
-      control: { type: 'boolean' },
-      description: 'Checked state',
+      control: { type: "boolean" },
+      description: "Checked state",
     },
     indeterminate: {
-      control: { type: 'boolean' },
-      description: 'Indeterminate state',
+      control: { type: "boolean" },
+      description: "Indeterminate state",
     },
     disabled: {
-      control: { type: 'boolean' },
-      description: 'Disabled state',
+      control: { type: "boolean" },
+      description: "Disabled state",
     },
     required: {
-      control: { type: 'boolean' },
-      description: 'Required state',
+      control: { type: "boolean" },
+      description: "Required state",
     },
     error: {
-      control: { type: 'boolean' },
-      description: 'Error state',
+      control: { type: "boolean" },
+      description: "Error state",
     },
     label: {
-      control: { type: 'text' },
-      description: 'Checkbox label',
+      control: { type: "text" },
+      description: "Checkbox label",
     },
     description: {
-      control: { type: 'text' },
-      description: 'Checkbox description',
+      control: { type: "text" },
+      description: "Checkbox description",
     },
   },
 };
@@ -58,14 +58,14 @@ type Story = StoryObj<CheckboxArgs>;
 
 export const Default: Story = {
   args: {
-    size: 'md',
+    size: "md",
     checked: false,
     indeterminate: false,
     disabled: false,
     required: false,
     error: false,
-    label: 'Accept terms and conditions',
-    description: '',
+    label: "Accept terms and conditions",
+    description: "",
   },
   render: (args, { updateArgs }) => html`
     <ha-checkbox
@@ -78,7 +78,7 @@ export const Default: Story = {
       label="${args.label}"
       description="${args.description}"
       @change="${(e: CustomEvent) => {
-        console.log('Change:', e.detail.checked);
+        console.log("Change:", e.detail.checked);
         updateArgs({ checked: e.detail.checked, indeterminate: false });
       }}"
     >
@@ -131,7 +131,7 @@ export const Error: Story = {
   args: {
     ...Default.args,
     error: true,
-    description: 'You must accept the terms and conditions',
+    description: "You must accept the terms and conditions",
   },
   render: Default.render,
 };
@@ -139,7 +139,8 @@ export const Error: Story = {
 export const WithDescription: Story = {
   args: {
     ...Default.args,
-    description: 'By checking this box, you agree to our terms of service and privacy policy.',
+    description:
+      "By checking this box, you agree to our terms of service and privacy policy.",
   },
   render: Default.render,
 };
@@ -147,7 +148,7 @@ export const WithDescription: Story = {
 export const Small: Story = {
   args: {
     ...Default.args,
-    size: 'sm',
+    size: "sm",
   },
   render: Default.render,
 };
@@ -155,7 +156,7 @@ export const Small: Story = {
 export const Large: Story = {
   args: {
     ...Default.args,
-    size: 'lg',
+    size: "lg",
   },
   render: Default.render,
 };
@@ -187,7 +188,8 @@ export const WithSlots: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
       <ha-checkbox>
-        I agree to the <a href="#" style="color: #3b82f6;">terms and conditions</a>
+        I agree to the
+        <a href="#" style="color: #3b82f6;">terms and conditions</a>
       </ha-checkbox>
 
       <ha-checkbox>
@@ -210,13 +212,33 @@ export const WithSlots: Story = {
 export const CheckboxGroup: Story = {
   render: () => html`
     <form style="max-width: 400px;">
-      <fieldset style="border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 1rem;">
-        <legend style="font-weight: 600; padding: 0 0.5rem;">Select your interests</legend>
+      <fieldset
+        style="border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 1rem;"
+      >
+        <legend style="font-weight: 600; padding: 0 0.5rem;">
+          Select your interests
+        </legend>
         <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <ha-checkbox name="interests" value="design" label="Design"></ha-checkbox>
-          <ha-checkbox name="interests" value="development" label="Development"></ha-checkbox>
-          <ha-checkbox name="interests" value="marketing" label="Marketing"></ha-checkbox>
-          <ha-checkbox name="interests" value="sales" label="Sales"></ha-checkbox>
+          <ha-checkbox
+            name="interests"
+            value="design"
+            label="Design"
+          ></ha-checkbox>
+          <ha-checkbox
+            name="interests"
+            value="development"
+            label="Development"
+          ></ha-checkbox>
+          <ha-checkbox
+            name="interests"
+            value="marketing"
+            label="Marketing"
+          ></ha-checkbox>
+          <ha-checkbox
+            name="interests"
+            value="sales"
+            label="Sales"
+          ></ha-checkbox>
         </div>
       </fieldset>
     </form>
@@ -225,13 +247,19 @@ export const CheckboxGroup: Story = {
 
 export const FormExample: Story = {
   render: () => html`
-    <form style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 400px;">
+    <form
+      style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 400px;"
+    >
       <div>
-        <h3 style="margin: 0 0 1rem 0; font-size: 1.25rem; font-weight: 600;">Sign Up</h3>
+        <h3 style="margin: 0 0 1rem 0; font-size: 1.25rem; font-weight: 600;">
+          Sign Up
+        </h3>
       </div>
 
       <div>
-        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email</label>
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;"
+          >Email</label
+        >
         <ha-input
           type="email"
           placeholder="Enter your email"
@@ -241,7 +269,9 @@ export const FormExample: Story = {
       </div>
 
       <div>
-        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Password</label>
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;"
+          >Password</label
+        >
         <ha-input
           type="password"
           placeholder="Enter password"
@@ -262,9 +292,7 @@ export const FormExample: Story = {
       <div>
         <ha-checkbox>
           Subscribe to newsletter
-          <span slot="description">
-            Receive updates and special offers
-          </span>
+          <span slot="description"> Receive updates and special offers </span>
         </ha-checkbox>
       </div>
 
@@ -278,11 +306,13 @@ export const FormExample: Story = {
 export const IndeterminateExample: Story = {
   render: () => {
     const updateParent = () => {
-      const children = Array.from(document.querySelectorAll('.child-checkbox')) as any[];
-      const parent = document.querySelector('#parent') as any;
+      const children = Array.from(
+        document.querySelectorAll(".child-checkbox"),
+      ) as any[];
+      const parent = document.querySelector("#parent") as any;
       if (!parent) return;
 
-      const checkedCount = children.filter(child => child.checked).length;
+      const checkedCount = children.filter((child) => child.checked).length;
 
       if (checkedCount === 0) {
         parent.checked = false;
@@ -303,7 +333,9 @@ export const IndeterminateExample: Story = {
           indeterminate
           @change="${(e: CustomEvent) => {
             const parent = e.target as any;
-            const children = document.querySelectorAll('.child-checkbox') as any;
+            const children = document.querySelectorAll(
+              ".child-checkbox",
+            ) as any;
             children.forEach((child: any) => {
               child.checked = parent.checked;
             });
@@ -313,7 +345,9 @@ export const IndeterminateExample: Story = {
           Select all
         </ha-checkbox>
 
-        <div style="margin-left: 1.5rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+        <div
+          style="margin-left: 1.5rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;"
+        >
           <ha-checkbox
             class="child-checkbox"
             label="Option 1"

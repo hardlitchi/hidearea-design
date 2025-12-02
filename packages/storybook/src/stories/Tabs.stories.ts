@@ -1,36 +1,36 @@
-import type { Meta, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
-import '@hidearea-design/core';
+import type { Meta, StoryObj } from "@storybook/web-components";
+import { html } from "lit";
+import "@hidearea-design/core";
 
 const meta: Meta = {
-  title: 'Components/Tabs',
-  tags: ['autodocs'],
+  title: "Components/Tabs",
+  tags: ["autodocs"],
   argTypes: {
     value: {
-      control: 'text',
-      description: 'Currently active tab value',
+      control: "text",
+      description: "Currently active tab value",
     },
     variant: {
-      control: 'select',
-      options: ['default', 'outlined', 'pills'],
-      description: 'Tab variant',
+      control: "select",
+      options: ["default", "outlined", "pills"],
+      description: "Tab variant",
     },
     size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'Tab size',
+      control: "select",
+      options: ["sm", "md", "lg"],
+      description: "Tab size",
     },
     align: {
-      control: 'select',
-      options: ['start', 'center', 'end'],
-      description: 'Tab alignment',
+      control: "select",
+      options: ["start", "center", "end"],
+      description: "Tab alignment",
     },
   },
   args: {
-    value: 'tab1',
-    variant: 'default',
-    size: 'md',
-    align: 'start',
+    value: "tab1",
+    variant: "default",
+    size: "md",
+    align: "start",
   },
 };
 
@@ -40,7 +40,12 @@ type Story = StoryObj;
 export const Default: Story = {
   render: (args) => html`
     <div>
-      <ha-tabs value="${args.value}" variant="${args.variant}" size="${args.size}" align="${args.align}">
+      <ha-tabs
+        value="${args.value}"
+        variant="${args.variant}"
+        size="${args.size}"
+        align="${args.align}"
+      >
         <ha-tab-item value="tab1">Tab 1</ha-tab-item>
         <ha-tab-item value="tab2">Tab 2</ha-tab-item>
         <ha-tab-item value="tab3">Tab 3</ha-tab-item>
@@ -247,17 +252,27 @@ export const DynamicContent: Story = {
     <div style="margin-top: 16px;">
       <ha-tab-panel value="dashboard" active>
         <h3>Dashboard</h3>
-        <p>Welcome to your dashboard. Here you can see an overview of your data.</p>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px;">
-          <div style="padding: 16px; border: 1px solid #e0e0e0; border-radius: 8px;">
+        <p>
+          Welcome to your dashboard. Here you can see an overview of your data.
+        </p>
+        <div
+          style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px;"
+        >
+          <div
+            style="padding: 16px; border: 1px solid #e0e0e0; border-radius: 8px;"
+          >
             <strong>Total Users</strong>
             <p style="font-size: 24px; margin: 8px 0;">1,234</p>
           </div>
-          <div style="padding: 16px; border: 1px solid #e0e0e0; border-radius: 8px;">
+          <div
+            style="padding: 16px; border: 1px solid #e0e0e0; border-radius: 8px;"
+          >
             <strong>Active Sessions</strong>
             <p style="font-size: 24px; margin: 8px 0;">567</p>
           </div>
-          <div style="padding: 16px; border: 1px solid #e0e0e0; border-radius: 8px;">
+          <div
+            style="padding: 16px; border: 1px solid #e0e0e0; border-radius: 8px;"
+          >
             <strong>Revenue</strong>
             <p style="font-size: 24px; margin: 8px 0;">$12,345</p>
           </div>
@@ -279,8 +294,12 @@ export const DynamicContent: Story = {
         <h3>Reports</h3>
         <p>Generate and download various reports.</p>
         <div style="margin-top: 16px;">
-          <button style="padding: 8px 16px; margin-right: 8px;">Monthly Report</button>
-          <button style="padding: 8px 16px; margin-right: 8px;">Quarterly Report</button>
+          <button style="padding: 8px 16px; margin-right: 8px;">
+            Monthly Report
+          </button>
+          <button style="padding: 8px 16px; margin-right: 8px;">
+            Quarterly Report
+          </button>
           <button style="padding: 8px 16px;">Annual Report</button>
         </div>
       </ha-tab-panel>

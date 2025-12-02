@@ -230,6 +230,7 @@ bda6542 feat: Add Phase 2 layout components and Phase 3 form components
 ```
 
 **実装内容**:
+
 - Container、Grid、Stackレイアウトコンポーネント
 - FormGroup、Selectフォームコンポーネント
 
@@ -241,6 +242,7 @@ accfc0b feat: Add Storybook stories for layout components (Container, Grid, Stac
 ```
 
 **実装内容**:
+
 - Container: 12個のストーリー
 - Grid: 14個のストーリー
 - Stack: 16個のストーリー
@@ -253,6 +255,7 @@ accfc0b feat: Add Storybook stories for layout components (Container, Grid, Stac
 ```
 
 **実装内容**:
+
 - FormGroup: 10個のストーリー
 - Select: 12個のストーリー
 
@@ -265,12 +268,14 @@ accfc0b feat: Add Storybook stories for layout components (Container, Grid, Stac
 ### Phase 1: 基本コンポーネント
 
 #### 1. Button
+
 - **バリアント**: 5種類（primary, secondary, outline, ghost, danger）
 - **サイズ**: 3種類（sm, md, lg）
 - **状態**: disabled, loading, full-width
 - **Storybookストーリー**: 12個
 
 #### 2. Input
+
 - **バリアント**: 3種類（default, filled, outlined）
 - **サイズ**: 3種類（sm, md, lg）
 - **タイプ**: 7種類（text, password, email, number, tel, url, search）
@@ -279,6 +284,7 @@ accfc0b feat: Add Storybook stories for layout components (Container, Grid, Stac
 - **Storybookストーリー**: 18個
 
 #### 3. Checkbox
+
 - **サイズ**: 3種類（sm, md, lg）
 - **状態**: checked, indeterminate, disabled, required, error
 - **スロット**: label, description
@@ -287,12 +293,14 @@ accfc0b feat: Add Storybook stories for layout components (Container, Grid, Stac
 ### Phase 2: レイアウトコンポーネント
 
 #### 4. Container
+
 - **最大幅**: 6種類（sm, md, lg, xl, 2xl, full）
 - **オプション**: centered, padding
 - **用途**: ページレイアウト、コンテンツ幅の制限
 - **Storybookストーリー**: 12個
 
 #### 5. Grid
+
 - **カラム**: 1-12、auto-fit、auto-fill
 - **ギャップ**: 0-12（スペーシングトークンにマップ）
 - **配置**: align-items, justify-items
@@ -300,6 +308,7 @@ accfc0b feat: Add Storybook stories for layout components (Container, Grid, Stac
 - **Storybookストーリー**: 14個
 
 #### 6. Stack
+
 - **方向**: vertical, horizontal
 - **ギャップ**: 0-12（スペーシングトークンにマップ）
 - **配置**: align, justify
@@ -310,6 +319,7 @@ accfc0b feat: Add Storybook stories for layout components (Container, Grid, Stac
 ### Phase 3: フォームコンポーネント
 
 #### 7. FormGroup
+
 - **ラベル**: label属性またはスロット
 - **ヘルパーテキスト**: helper-text属性またはスロット
 - **エラーテキスト**: error-text属性またはスロット
@@ -318,6 +328,7 @@ accfc0b feat: Add Storybook stories for layout components (Container, Grid, Stac
 - **Storybookストーリー**: 10個
 
 #### 8. Select
+
 - **バリアント**: 3種類（default, filled, outlined）
 - **サイズ**: 3種類（sm, md, lg）
 - **状態**: disabled, required, error, full-width
@@ -362,16 +373,8 @@ info => Output directory: /home/neko/workspaces/design/packages/storybook/storyb
   <ha-stack direction="vertical" gap="6">
     <h2>登録フォーム</h2>
 
-    <ha-form-group
-      label="氏名"
-      helper-text="姓と名を入力してください"
-      required
-    >
-      <ha-input
-        type="text"
-        placeholder="山田 太郎"
-        full-width
-      ></ha-input>
+    <ha-form-group label="氏名" helper-text="姓と名を入力してください" required>
+      <ha-input type="text" placeholder="山田 太郎" full-width></ha-input>
     </ha-form-group>
 
     <ha-form-group
@@ -386,10 +389,7 @@ info => Output directory: /home/neko/workspaces/design/packages/storybook/storyb
       ></ha-input>
     </ha-form-group>
 
-    <ha-form-group
-      label="国"
-      required
-    >
+    <ha-form-group label="国" required>
       <ha-select full-width>
         <option value="">国を選択</option>
         <option value="jp">日本</option>
@@ -398,13 +398,8 @@ info => Output directory: /home/neko/workspaces/design/packages/storybook/storyb
       </ha-select>
     </ha-form-group>
 
-    <ha-form-group
-      label="利用規約"
-      required
-    >
-      <ha-checkbox>
-        利用規約に同意します
-      </ha-checkbox>
+    <ha-form-group label="利用規約" required>
+      <ha-checkbox> 利用規約に同意します </ha-checkbox>
     </ha-form-group>
 
     <ha-stack direction="horizontal" gap="3" justify="end">
@@ -467,6 +462,7 @@ info => Output directory: /home/neko/workspaces/design/packages/storybook/storyb
 Phase 2のレイアウトコンポーネント（Container, Grid, Stack）とPhase 3のフォームコンポーネント（FormGroup, Select）を実装し、全てのコンポーネントにStorybookストーリーを追加しました。
 
 **実装内容**:
+
 - ✅ Container コンポーネント（6種類の最大幅、パディングオプション）
 - ✅ Grid コンポーネント（12カラムシステム、レスポンシブグリッド）
 - ✅ Stack コンポーネント（vertical/horizontal、flexboxベース）
@@ -478,11 +474,13 @@ Phase 2のレイアウトコンポーネント（Container, Grid, Stack）とPha
 - ✅ レスポンシブ対応
 
 **成果物**:
+
 - 8つの完成したコンポーネント
 - 110個のStorybookストーリー
 - 実用的なレイアウトとフォーム構築が可能
 
 **次のステップ**:
+
 - React/Vueラッパーの追加（FormGroup, Selectなど）
 - 追加のフォームコンポーネント（Radio, Textarea, Switch）
 - ユニットテスト・E2Eテストの追加

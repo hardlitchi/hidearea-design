@@ -1,18 +1,29 @@
-import React, { forwardRef, useEffect, useRef } from 'react';
-import type { HaTabs as HaTabsElement } from '@hidearea-design/core';
-import '@hidearea-design/core';
+import React, { forwardRef, useEffect, useRef } from "react";
+import type { HaTabs as HaTabsElement } from "@hidearea-design/core";
+import "@hidearea-design/core";
 
 export interface TabsProps extends React.HTMLAttributes<HTMLElement> {
   value?: string;
-  variant?: 'default' | 'outlined' | 'pills';
-  size?: 'sm' | 'md' | 'lg';
-  align?: 'start' | 'center' | 'end';
+  variant?: "default" | "outlined" | "pills";
+  size?: "sm" | "md" | "lg";
+  align?: "start" | "center" | "end";
   onTabChange?: (value: string, oldValue: string) => void;
   children?: React.ReactNode;
 }
 
 export const Tabs = forwardRef<HTMLElement, TabsProps>(
-  ({ value, variant = 'default', size = 'md', align = 'start', onTabChange, children, ...props }, _ref) => {
+  (
+    {
+      value,
+      variant = "default",
+      size = "md",
+      align = "start",
+      onTabChange,
+      children,
+      ...props
+    },
+    _ref,
+  ) => {
     const elementRef = useRef<HaTabsElement>(null);
 
     useEffect(() => {
@@ -30,19 +41,22 @@ export const Tabs = forwardRef<HTMLElement, TabsProps>(
       if (!element) return;
 
       const handleChange = (e: Event) => {
-        const customEvent = e as CustomEvent<{ value: string; oldValue: string }>;
+        const customEvent = e as CustomEvent<{
+          value: string;
+          oldValue: string;
+        }>;
         if (onTabChange) {
           onTabChange(customEvent.detail.value, customEvent.detail.oldValue);
         }
       };
 
       if (onTabChange) {
-        element.addEventListener('tab-change', handleChange);
+        element.addEventListener("tab-change", handleChange);
       }
 
       return () => {
         if (onTabChange) {
-          element.removeEventListener('tab-change', handleChange);
+          element.removeEventListener("tab-change", handleChange);
         }
       };
     }, [onTabChange]);
@@ -52,17 +66,26 @@ export const Tabs = forwardRef<HTMLElement, TabsProps>(
         {children}
       </ha-tabs>
     );
-  }
+  },
 );
 
-Tabs.displayName = 'Tabs';
+Tabs.displayName = "Tabs";
 
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-tabs': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-      'ha-tab-item': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-      'ha-tab-panel': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+      "ha-tabs": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
+      "ha-tab-item": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
+      "ha-tab-panel": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
     }
   }
 }

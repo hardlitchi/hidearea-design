@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
-import '@hidearea-design/core';
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
+import { html } from "lit";
+import "@hidearea-design/core";
 
 interface SwitchArgs {
-  size: 'sm' | 'md' | 'lg';
+  size: "sm" | "md" | "lg";
   checked: boolean;
   disabled: boolean;
   required: boolean;
@@ -15,45 +15,45 @@ interface SwitchArgs {
 }
 
 const meta: Meta<SwitchArgs> = {
-  title: 'Forms/Switch',
-  tags: ['autodocs'],
+  title: "Forms/Switch",
+  tags: ["autodocs"],
   argTypes: {
     size: {
-      control: { type: 'select' },
-      options: ['sm', 'md', 'lg'],
-      description: 'Switch size',
+      control: { type: "select" },
+      options: ["sm", "md", "lg"],
+      description: "Switch size",
     },
     checked: {
-      control: { type: 'boolean' },
-      description: 'Checked state',
+      control: { type: "boolean" },
+      description: "Checked state",
     },
     disabled: {
-      control: { type: 'boolean' },
-      description: 'Disabled state',
+      control: { type: "boolean" },
+      description: "Disabled state",
     },
     required: {
-      control: { type: 'boolean' },
-      description: 'Required state',
+      control: { type: "boolean" },
+      description: "Required state",
     },
     error: {
-      control: { type: 'boolean' },
-      description: 'Error state',
+      control: { type: "boolean" },
+      description: "Error state",
     },
     name: {
-      control: { type: 'text' },
-      description: 'Switch name',
+      control: { type: "text" },
+      description: "Switch name",
     },
     value: {
-      control: { type: 'text' },
-      description: 'Switch value',
+      control: { type: "text" },
+      description: "Switch value",
     },
     label: {
-      control: { type: 'text' },
-      description: 'Switch label',
+      control: { type: "text" },
+      description: "Switch label",
     },
     description: {
-      control: { type: 'text' },
-      description: 'Switch description',
+      control: { type: "text" },
+      description: "Switch description",
     },
   },
 };
@@ -63,15 +63,15 @@ type Story = StoryObj<SwitchArgs>;
 
 export const Default: Story = {
   args: {
-    size: 'md',
+    size: "md",
     checked: false,
     disabled: false,
     required: false,
     error: false,
-    name: 'example',
-    value: 'on',
-    label: 'Enable feature',
-    description: '',
+    name: "example",
+    value: "on",
+    label: "Enable feature",
+    description: "",
   },
   render: (args) => html`
     <ha-switch
@@ -132,8 +132,8 @@ export const Error: Story = {
 export const WithDescription: Story = {
   args: {
     ...Default.args,
-    label: 'Enable notifications',
-    description: 'Receive email notifications about updates and changes',
+    label: "Enable notifications",
+    description: "Receive email notifications about updates and changes",
   },
   render: Default.render,
 };
@@ -141,7 +141,7 @@ export const WithDescription: Story = {
 export const Small: Story = {
   args: {
     ...Default.args,
-    size: 'sm',
+    size: "sm",
   },
   render: Default.render,
 };
@@ -149,7 +149,7 @@ export const Small: Story = {
 export const Large: Story = {
   args: {
     ...Default.args,
-    size: 'lg',
+    size: "lg",
   },
   render: Default.render,
 };
@@ -213,7 +213,9 @@ export const WithSlots: Story = {
 
 export const SettingsList: Story = {
   render: () => html`
-    <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 500px;">
+    <div
+      style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 500px;"
+    >
       <h4 style="margin: 0;">Notification Settings</h4>
       <ha-switch
         name="email-notifications"
@@ -302,11 +304,20 @@ export const FormExample: Story = {
 
 export const DarkModeToggle: Story = {
   render: () => html`
-    <div style="padding: 2rem; background: var(--color-neutral-50, #f9fafb); border-radius: 0.5rem;">
-      <ha-stack direction="horizontal" gap="4" justify="space-between" align="center">
+    <div
+      style="padding: 2rem; background: var(--color-neutral-50, #f9fafb); border-radius: 0.5rem;"
+    >
+      <ha-stack
+        direction="horizontal"
+        gap="4"
+        justify="space-between"
+        align="center"
+      >
         <div>
           <h4 style="margin: 0 0 0.25rem 0;">Dark Mode</h4>
-          <p style="margin: 0; font-size: 0.875rem; color: var(--color-neutral-600, #4b5563);">
+          <p
+            style="margin: 0; font-size: 0.875rem; color: var(--color-neutral-600, #4b5563);"
+          >
             Enable dark theme across the application
           </p>
         </div>
@@ -322,16 +333,25 @@ export const FeatureToggles: Story = {
       <ha-stack direction="vertical" gap="5">
         <h3 style="margin: 0;">Feature Toggles</h3>
 
-        <div style="
+        <div
+          style="
           padding: 1.5rem;
           background: white;
           border: 1px solid var(--color-neutral-200, #e5e7eb);
           border-radius: 0.5rem;
-        ">
-          <ha-stack direction="horizontal" gap="4" justify="space-between" align="center">
+        "
+        >
+          <ha-stack
+            direction="horizontal"
+            gap="4"
+            justify="space-between"
+            align="center"
+          >
             <div>
               <h4 style="margin: 0 0 0.5rem 0;">Auto-save</h4>
-              <p style="margin: 0; font-size: 0.875rem; color: var(--color-neutral-600, #4b5563);">
+              <p
+                style="margin: 0; font-size: 0.875rem; color: var(--color-neutral-600, #4b5563);"
+              >
                 Automatically save your work every 30 seconds
               </p>
             </div>
@@ -339,16 +359,25 @@ export const FeatureToggles: Story = {
           </ha-stack>
         </div>
 
-        <div style="
+        <div
+          style="
           padding: 1.5rem;
           background: white;
           border: 1px solid var(--color-neutral-200, #e5e7eb);
           border-radius: 0.5rem;
-        ">
-          <ha-stack direction="horizontal" gap="4" justify="space-between" align="center">
+        "
+        >
+          <ha-stack
+            direction="horizontal"
+            gap="4"
+            justify="space-between"
+            align="center"
+          >
             <div>
               <h4 style="margin: 0 0 0.5rem 0;">Spell Check</h4>
-              <p style="margin: 0; font-size: 0.875rem; color: var(--color-neutral-600, #4b5563);">
+              <p
+                style="margin: 0; font-size: 0.875rem; color: var(--color-neutral-600, #4b5563);"
+              >
                 Enable real-time spell checking
               </p>
             </div>
@@ -356,16 +385,25 @@ export const FeatureToggles: Story = {
           </ha-stack>
         </div>
 
-        <div style="
+        <div
+          style="
           padding: 1.5rem;
           background: white;
           border: 1px solid var(--color-neutral-200, #e5e7eb);
           border-radius: 0.5rem;
-        ">
-          <ha-stack direction="horizontal" gap="4" justify="space-between" align="center">
+        "
+        >
+          <ha-stack
+            direction="horizontal"
+            gap="4"
+            justify="space-between"
+            align="center"
+          >
             <div>
               <h4 style="margin: 0 0 0.5rem 0;">Smart Suggestions</h4>
-              <p style="margin: 0; font-size: 0.875rem; color: var(--color-neutral-600, #4b5563);">
+              <p
+                style="margin: 0; font-size: 0.875rem; color: var(--color-neutral-600, #4b5563);"
+              >
                 Get AI-powered suggestions while typing
               </p>
             </div>
@@ -373,16 +411,25 @@ export const FeatureToggles: Story = {
           </ha-stack>
         </div>
 
-        <div style="
+        <div
+          style="
           padding: 1.5rem;
           background: white;
           border: 1px solid var(--color-neutral-200, #e5e7eb);
           border-radius: 0.5rem;
-        ">
-          <ha-stack direction="horizontal" gap="4" justify="space-between" align="center">
+        "
+        >
+          <ha-stack
+            direction="horizontal"
+            gap="4"
+            justify="space-between"
+            align="center"
+          >
             <div>
               <h4 style="margin: 0 0 0.5rem 0;">Keyboard Shortcuts</h4>
-              <p style="margin: 0; font-size: 0.875rem; color: var(--color-neutral-600, #4b5563);">
+              <p
+                style="margin: 0; font-size: 0.875rem; color: var(--color-neutral-600, #4b5563);"
+              >
                 Enable keyboard shortcuts for faster navigation
               </p>
             </div>

@@ -6,13 +6,13 @@ A customizable checkbox component with support for indeterminate state.
 
 ```js
 // Web Component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
 // React
-import { Checkbox } from '@hidearea-design/react';
+import { Checkbox } from "@hidearea-design/react";
 
 // Vue
-import { HaCheckbox } from '@hidearea-design/vue';
+import { HaCheckbox } from "@hidearea-design/vue";
 ```
 
 ## Basic Usage
@@ -95,9 +95,7 @@ import { HaCheckbox } from '@hidearea-design/vue';
 
 <ha-checkbox>
   Enable notifications
-  <span slot="description">
-    Get email updates about your account
-  </span>
+  <span slot="description"> Get email updates about your account </span>
 </ha-checkbox>
 ```
 
@@ -135,52 +133,52 @@ checkbox.addEventListener('input', (e) => {
 
 ### Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Checkbox size |
-| `checked` | `boolean` | `false` | Checked state |
-| `indeterminate` | `boolean` | `false` | Indeterminate state |
-| `disabled` | `boolean` | `false` | Disabled state |
-| `required` | `boolean` | `false` | Required field |
-| `error` | `boolean` | `false` | Error state |
-| `name` | `string` | `''` | Checkbox name attribute |
-| `value` | `string` | `'on'` | Checkbox value |
-| `label` | `string` | `''` | Label text (alternative to slot) |
-| `description` | `string` | `''` | Description text (alternative to slot) |
+| Property        | Type                   | Default | Description                            |
+| --------------- | ---------------------- | ------- | -------------------------------------- |
+| `size`          | `'sm' \| 'md' \| 'lg'` | `'md'`  | Checkbox size                          |
+| `checked`       | `boolean`              | `false` | Checked state                          |
+| `indeterminate` | `boolean`              | `false` | Indeterminate state                    |
+| `disabled`      | `boolean`              | `false` | Disabled state                         |
+| `required`      | `boolean`              | `false` | Required field                         |
+| `error`         | `boolean`              | `false` | Error state                            |
+| `name`          | `string`               | `''`    | Checkbox name attribute                |
+| `value`         | `string`               | `'on'`  | Checkbox value                         |
+| `label`         | `string`               | `''`    | Label text (alternative to slot)       |
+| `description`   | `string`               | `''`    | Description text (alternative to slot) |
 
 ### Methods
 
-| Method | Description |
-|--------|-------------|
-| `focus()` | Focuses the checkbox |
-| `blur()` | Removes focus from the checkbox |
-| `checkValidity()` | Checks if checkbox is valid |
-| `reportValidity()` | Reports validity to user |
-| `setCustomValidity(message)` | Sets custom validation message |
+| Method                       | Description                     |
+| ---------------------------- | ------------------------------- |
+| `focus()`                    | Focuses the checkbox            |
+| `blur()`                     | Removes focus from the checkbox |
+| `checkValidity()`            | Checks if checkbox is valid     |
+| `reportValidity()`           | Reports validity to user        |
+| `setCustomValidity(message)` | Sets custom validation message  |
 
 ### Slots
 
-| Slot | Description |
-|------|-------------|
-| (default) | Checkbox label content |
-| `description` | Description content |
+| Slot          | Description            |
+| ------------- | ---------------------- |
+| (default)     | Checkbox label content |
+| `description` | Description content    |
 
 ### Events
 
-| Event | Detail | Description |
-|-------|--------|-------------|
+| Event    | Detail                 | Description                      |
+| -------- | ---------------------- | -------------------------------- |
 | `change` | `{ checked: boolean }` | Fired when checked state changes |
-| `input` | `{ checked: boolean }` | Fired when checked state changes |
+| `input`  | `{ checked: boolean }` | Fired when checked state changes |
 
 ### CSS Parts
 
-| Part | Description |
-|------|-------------|
-| `checkbox-container` | Container element |
-| `checkbox-box` | Visual checkbox box |
-| `checkbox-icon` | Check/indeterminate icon |
-| `label` | Label element |
-| `description` | Description element |
+| Part                 | Description              |
+| -------------------- | ------------------------ |
+| `checkbox-container` | Container element        |
+| `checkbox-box`       | Visual checkbox box      |
+| `checkbox-icon`      | Check/indeterminate icon |
+| `label`              | Label element            |
+| `description`        | Description element      |
 
 ## Examples
 
@@ -188,25 +186,25 @@ checkbox.addEventListener('input', (e) => {
 
 ```tsx
 // React
-import { useState } from 'react';
-import { Checkbox } from '@hidearea-design/react';
+import { useState } from "react";
+import { Checkbox } from "@hidearea-design/react";
 
 function CheckboxGroup() {
   const [selected, setSelected] = useState<string[]>([]);
 
-  const options = ['Option 1', 'Option 2', 'Option 3'];
+  const options = ["Option 1", "Option 2", "Option 3"];
 
   const handleChange = (value: string, checked: boolean) => {
     if (checked) {
       setSelected([...selected, value]);
     } else {
-      setSelected(selected.filter(v => v !== value));
+      setSelected(selected.filter((v) => v !== value));
     }
   };
 
   return (
     <div>
-      {options.map(option => (
+      {options.map((option) => (
         <Checkbox
           key={option}
           value={option}
@@ -225,28 +223,30 @@ function CheckboxGroup() {
 
 ```tsx
 // React
-import { useState, useEffect } from 'react';
-import { Checkbox } from '@hidearea-design/react';
+import { useState, useEffect } from "react";
+import { Checkbox } from "@hidearea-design/react";
 
 function SelectAllExample() {
   const [items, setItems] = useState([
-    { id: 1, label: 'Item 1', checked: false },
-    { id: 2, label: 'Item 2', checked: false },
-    { id: 3, label: 'Item 3', checked: false },
+    { id: 1, label: "Item 1", checked: false },
+    { id: 2, label: "Item 2", checked: false },
+    { id: 3, label: "Item 3", checked: false },
   ]);
 
-  const allChecked = items.every(item => item.checked);
-  const someChecked = items.some(item => item.checked) && !allChecked;
+  const allChecked = items.every((item) => item.checked);
+  const someChecked = items.some((item) => item.checked) && !allChecked;
 
   const toggleAll = () => {
     const newChecked = !allChecked;
-    setItems(items.map(item => ({ ...item, checked: newChecked })));
+    setItems(items.map((item) => ({ ...item, checked: newChecked })));
   };
 
   const toggleItem = (id: number) => {
-    setItems(items.map(item =>
-      item.id === id ? { ...item, checked: !item.checked } : item
-    ));
+    setItems(
+      items.map((item) =>
+        item.id === id ? { ...item, checked: !item.checked } : item,
+      ),
+    );
   };
 
   return (
@@ -258,8 +258,8 @@ function SelectAllExample() {
       >
         Select All
       </Checkbox>
-      <div style={{ marginLeft: '24px' }}>
-        {items.map(item => (
+      <div style={{ marginLeft: "24px" }}>
+        {items.map((item) => (
           <Checkbox
             key={item.id}
             checked={item.checked}
@@ -285,10 +285,10 @@ function SelectAllExample() {
 </form>
 
 <script>
-  const form = document.querySelector('form');
-  const checkbox = form.querySelector('ha-checkbox');
+  const form = document.querySelector("form");
+  const checkbox = form.querySelector("ha-checkbox");
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     if (!checkbox.checkValidity()) {
@@ -296,7 +296,7 @@ function SelectAllExample() {
       return;
     }
 
-    console.log('Form submitted');
+    console.log("Form submitted");
   });
 </script>
 ```

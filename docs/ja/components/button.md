@@ -6,13 +6,13 @@
 
 ```js
 // Web Component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
 // React
-import { Button } from '@hidearea-design/react';
+import { Button } from "@hidearea-design/react";
 
 // Vue
-import { HaButton } from '@hidearea-design/vue';
+import { HaButton } from "@hidearea-design/vue";
 ```
 
 ## 基本的な使い方
@@ -109,37 +109,37 @@ button.addEventListener('click', (event) => {
 
 ### プロパティ
 
-| プロパティ | 型 | デフォルト | 説明 |
-|----------|------|---------|-------------|
-| `variant` | `'primary' \| 'secondary' \| 'outline' \| 'ghost' \| 'danger'` | `'primary'` | 視覚的スタイルのバリエーション |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | ボタンサイズ |
-| `disabled` | `boolean` | `false` | 無効状態 |
-| `loading` | `boolean` | `false` | ローディング状態 |
-| `fullWidth` | `boolean` | `false` | フル幅ボタン |
-| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | ボタンタイプ |
+| プロパティ  | 型                                                             | デフォルト  | 説明                           |
+| ----------- | -------------------------------------------------------------- | ----------- | ------------------------------ |
+| `variant`   | `'primary' \| 'secondary' \| 'outline' \| 'ghost' \| 'danger'` | `'primary'` | 視覚的スタイルのバリエーション |
+| `size`      | `'sm' \| 'md' \| 'lg'`                                         | `'md'`      | ボタンサイズ                   |
+| `disabled`  | `boolean`                                                      | `false`     | 無効状態                       |
+| `loading`   | `boolean`                                                      | `false`     | ローディング状態               |
+| `fullWidth` | `boolean`                                                      | `false`     | フル幅ボタン                   |
+| `type`      | `'button' \| 'submit' \| 'reset'`                              | `'button'`  | ボタンタイプ                   |
 
 ### メソッド
 
-| メソッド | 説明 |
-|--------|-------------|
+| メソッド  | 説明                       |
+| --------- | -------------------------- |
 | `focus()` | ボタンにフォーカスを当てる |
-| `blur()` | ボタンからフォーカスを外す |
+| `blur()`  | ボタンからフォーカスを外す |
 
 ### スロット
 
-| スロット | 説明 |
-|------|-------------|
+| スロット     | 説明         |
+| ------------ | ------------ |
 | (デフォルト) | ボタンの内容 |
 
 ### CSS カスタムプロパティ
 
-| プロパティ | デフォルト | 説明 |
-|----------|---------|-------------|
-| `--ha-button-padding-sm` | `0.5rem 1rem` | 小ボタンのパディング |
-| `--ha-button-padding-md` | `0.75rem 1.5rem` | 中ボタンのパディング |
-| `--ha-button-padding-lg` | `1rem 2rem` | 大ボタンのパディング |
-| `--ha-button-border-radius` | `0.375rem` | ボタンの角丸 |
-| `--ha-button-transition` | `all 0.2s ease` | トランジション効果 |
+| プロパティ                  | デフォルト       | 説明                 |
+| --------------------------- | ---------------- | -------------------- |
+| `--ha-button-padding-sm`    | `0.5rem 1rem`    | 小ボタンのパディング |
+| `--ha-button-padding-md`    | `0.75rem 1.5rem` | 中ボタンのパディング |
+| `--ha-button-padding-lg`    | `1rem 2rem`      | 大ボタンのパディング |
+| `--ha-button-border-radius` | `0.375rem`       | ボタンの角丸         |
+| `--ha-button-transition`    | `all 0.2s ease`  | トランジション効果   |
 
 ## 使用例
 
@@ -175,7 +175,7 @@ const handleClick = async () => {
 
 <Button loading={loading} onClick={handleClick}>
   変更を保存
-</Button>
+</Button>;
 ```
 
 ## アクセシビリティ

@@ -1,4 +1,4 @@
-import { tabsStyles } from './tabs.styles';
+import { tabsStyles } from "./tabs.styles";
 
 /**
  * Tabs component
@@ -19,32 +19,32 @@ export class HaTabs extends HTMLElement {
   private tabsSlot: HTMLSlotElement;
 
   static get observedAttributes() {
-    return ['value', 'variant', 'size', 'align'];
+    return ["value", "variant", "size", "align"];
   }
 
   constructor() {
     super();
 
     // Attach shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create styles
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = tabsStyles;
 
     // Create container
-    const container = document.createElement('div');
-    container.className = 'tabs-container';
-    container.setAttribute('part', 'container');
+    const container = document.createElement("div");
+    container.className = "tabs-container";
+    container.setAttribute("part", "container");
 
     // Create tabs list
-    this.tabsList = document.createElement('div');
-    this.tabsList.className = 'tabs-list';
-    this.tabsList.setAttribute('part', 'list');
-    this.tabsList.setAttribute('role', 'tablist');
+    this.tabsList = document.createElement("div");
+    this.tabsList.className = "tabs-list";
+    this.tabsList.setAttribute("part", "list");
+    this.tabsList.setAttribute("role", "tablist");
 
     // Create slot for tab items
-    this.tabsSlot = document.createElement('slot');
+    this.tabsSlot = document.createElement("slot");
     this.tabsList.appendChild(this.tabsSlot);
 
     // Append to container
@@ -55,24 +55,24 @@ export class HaTabs extends HTMLElement {
     shadow.appendChild(container);
 
     // Listen for slotchange to set up tab items
-    this.tabsSlot.addEventListener('slotchange', () => {
+    this.tabsSlot.addEventListener("slotchange", () => {
       this.setupTabs();
     });
 
     // Handle keyboard navigation
-    this.addEventListener('keydown', this.handleKeydown.bind(this));
+    this.addEventListener("keydown", this.handleKeydown.bind(this));
   }
 
   connectedCallback() {
     // Set default attributes
-    if (!this.hasAttribute('variant')) {
-      this.setAttribute('variant', 'default');
+    if (!this.hasAttribute("variant")) {
+      this.setAttribute("variant", "default");
     }
-    if (!this.hasAttribute('size')) {
-      this.setAttribute('size', 'md');
+    if (!this.hasAttribute("size")) {
+      this.setAttribute("size", "md");
     }
-    if (!this.hasAttribute('align')) {
-      this.setAttribute('align', 'start');
+    if (!this.hasAttribute("align")) {
+      this.setAttribute("align", "start");
     }
 
     this.updateClasses();
@@ -81,7 +81,7 @@ export class HaTabs extends HTMLElement {
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (oldValue === newValue) return;
 
-    if (name === 'value') {
+    if (name === "value") {
       this.updateActiveTabs();
     } else {
       this.updateClasses();
@@ -90,12 +90,12 @@ export class HaTabs extends HTMLElement {
 
   private updateClasses() {
     const classes = [
-      'tabs-list',
+      "tabs-list",
       `variant-${this.variant}`,
       `align-${this.align}`,
     ];
 
-    this.tabsList.className = classes.join(' ');
+    this.tabsList.className = classes.join(" ");
   }
 
   private setupTabs() {
@@ -107,7 +107,7 @@ export class HaTabs extends HTMLElement {
       tab.variant = this.variant;
 
       // Add click listener
-      tab.addEventListener('tab-click', ((e: CustomEvent) => {
+      tab.addEventListener("tab-click", ((e: CustomEvent) => {
         this.selectTab(e.detail.value);
       }) as EventListener);
     });
@@ -123,13 +123,27 @@ export class HaTabs extends HTMLElement {
     this.updateActiveTabs();
   }
 
-  private getTabItems(): Array<HTMLElement & { value: string; disabled: boolean; active: boolean; size: string; variant: string }> {
-    const slot = this.shadowRoot?.querySelector('slot');
+  private getTabItems(): Array<
+    HTMLElement & {
+      value: string;
+      disabled: boolean;
+      active: boolean;
+      size: string;
+      variant: string;
+    }
+  > {
+    const slot = this.shadowRoot?.querySelector("slot");
     if (!slot) return [];
 
     const elements = slot.assignedElements();
-    return elements.filter((el) => el.tagName === 'HA-TAB-ITEM') as Array<
-      HTMLElement & { value: string; disabled: boolean; active: boolean; size: string; variant: string }
+    return elements.filter((el) => el.tagName === "HA-TAB-ITEM") as Array<
+      HTMLElement & {
+        value: string;
+        disabled: boolean;
+        active: boolean;
+        size: string;
+        variant: string;
+      }
     >;
   }
 
@@ -146,9 +160,12 @@ export class HaTabs extends HTMLElement {
 
   private updatePanels() {
     // Find all tab panels in the document
-    const panels = document.querySelectorAll('ha-tab-panel');
+    const panels = document.querySelectorAll("ha-tab-panel");
     panels.forEach((panel) => {
-      const tabPanel = panel as HTMLElement & { value: string; active: boolean };
+      const tabPanel = panel as HTMLElement & {
+        value: string;
+        active: boolean;
+      };
       tabPanel.active = tabPanel.value === this.value;
     });
   }
@@ -160,14 +177,14 @@ export class HaTabs extends HTMLElement {
     this.value = value;
 
     this.dispatchEvent(
-      new CustomEvent('tab-change', {
+      new CustomEvent("tab-change", {
         bubbles: true,
         composed: true,
         detail: {
           value,
           oldValue,
         },
-      })
+      }),
     );
   }
 
@@ -178,21 +195,21 @@ export class HaTabs extends HTMLElement {
     let newIndex = currentIndex;
 
     switch (e.key) {
-      case 'ArrowLeft':
-      case 'ArrowUp':
+      case "ArrowLeft":
+      case "ArrowUp":
         e.preventDefault();
         newIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
         break;
-      case 'ArrowRight':
-      case 'ArrowDown':
+      case "ArrowRight":
+      case "ArrowDown":
         e.preventDefault();
         newIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
         break;
-      case 'Home':
+      case "Home":
         e.preventDefault();
         newIndex = 0;
         break;
-      case 'End':
+      case "End":
         e.preventDefault();
         newIndex = tabs.length - 1;
         break;
@@ -208,39 +225,39 @@ export class HaTabs extends HTMLElement {
 
   // Public API
   get value(): string {
-    return this.getAttribute('value') || '';
+    return this.getAttribute("value") || "";
   }
 
   set value(value: string) {
-    this.setAttribute('value', value);
+    this.setAttribute("value", value);
   }
 
   get variant(): string {
-    return this.getAttribute('variant') || 'default';
+    return this.getAttribute("variant") || "default";
   }
 
   set variant(value: string) {
-    this.setAttribute('variant', value);
+    this.setAttribute("variant", value);
   }
 
   get size(): string {
-    return this.getAttribute('size') || 'md';
+    return this.getAttribute("size") || "md";
   }
 
   set size(value: string) {
-    this.setAttribute('size', value);
+    this.setAttribute("size", value);
   }
 
   get align(): string {
-    return this.getAttribute('align') || 'start';
+    return this.getAttribute("align") || "start";
   }
 
   set align(value: string) {
-    this.setAttribute('align', value);
+    this.setAttribute("align", value);
   }
 }
 
 // Register custom element
-if (!customElements.get('ha-tabs')) {
-  customElements.define('ha-tabs', HaTabs);
+if (!customElements.get("ha-tabs")) {
+  customElements.define("ha-tabs", HaTabs);
 }

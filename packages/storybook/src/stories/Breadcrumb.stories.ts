@@ -1,25 +1,25 @@
-import type { Meta, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
-import '@hidearea-design/core';
+import type { Meta, StoryObj } from "@storybook/web-components";
+import { html } from "lit";
+import "@hidearea-design/core";
 
 const meta: Meta = {
-  title: 'Components/Breadcrumb',
-  tags: ['autodocs'],
+  title: "Components/Breadcrumb",
+  tags: ["autodocs"],
   argTypes: {
     separator: {
-      control: 'select',
-      options: ['slash', 'chevron', 'arrow', 'dot'],
-      description: 'Separator type',
+      control: "select",
+      options: ["slash", "chevron", "arrow", "dot"],
+      description: "Separator type",
     },
     size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'Breadcrumb size',
+      control: "select",
+      options: ["sm", "md", "lg"],
+      description: "Breadcrumb size",
     },
   },
   args: {
-    separator: 'slash',
-    size: 'md',
+    separator: "slash",
+    size: "md",
   },
 };
 
@@ -31,7 +31,9 @@ export const Default: Story = {
     <ha-breadcrumb separator="${args.separator}" size="${args.size}">
       <ha-breadcrumb-item href="/">Home</ha-breadcrumb-item>
       <ha-breadcrumb-item href="/products">Products</ha-breadcrumb-item>
-      <ha-breadcrumb-item href="/products/electronics">Electronics</ha-breadcrumb-item>
+      <ha-breadcrumb-item href="/products/electronics"
+        >Electronics</ha-breadcrumb-item
+      >
       <ha-breadcrumb-item current>Laptop</ha-breadcrumb-item>
     </ha-breadcrumb>
   `,
@@ -117,10 +119,18 @@ export const LongPath: Story = {
     <ha-breadcrumb>
       <ha-breadcrumb-item href="/">Home</ha-breadcrumb-item>
       <ha-breadcrumb-item href="/company">Company</ha-breadcrumb-item>
-      <ha-breadcrumb-item href="/company/departments">Departments</ha-breadcrumb-item>
-      <ha-breadcrumb-item href="/company/departments/engineering">Engineering</ha-breadcrumb-item>
-      <ha-breadcrumb-item href="/company/departments/engineering/teams">Teams</ha-breadcrumb-item>
-      <ha-breadcrumb-item href="/company/departments/engineering/teams/frontend">Frontend</ha-breadcrumb-item>
+      <ha-breadcrumb-item href="/company/departments"
+        >Departments</ha-breadcrumb-item
+      >
+      <ha-breadcrumb-item href="/company/departments/engineering"
+        >Engineering</ha-breadcrumb-item
+      >
+      <ha-breadcrumb-item href="/company/departments/engineering/teams"
+        >Teams</ha-breadcrumb-item
+      >
+      <ha-breadcrumb-item href="/company/departments/engineering/teams/frontend"
+        >Frontend</ha-breadcrumb-item
+      >
       <ha-breadcrumb-item current>Members</ha-breadcrumb-item>
     </ha-breadcrumb>
   `,

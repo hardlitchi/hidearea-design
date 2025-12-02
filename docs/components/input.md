@@ -6,13 +6,13 @@ A flexible input component with multiple types, variants, and validation support
 
 ```js
 // Web Component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
 // React
-import { Input } from '@hidearea-design/react';
+import { Input } from "@hidearea-design/react";
 
 // Vue
-import { HaInput } from '@hidearea-design/vue';
+import { HaInput } from "@hidearea-design/vue";
 ```
 
 ## Basic Usage
@@ -124,12 +124,7 @@ import { HaInput } from '@hidearea-design/vue';
 ### Number Validation
 
 ```html
-<ha-input
-  type="number"
-  min="0"
-  max="100"
-  step="5"
-></ha-input>
+<ha-input type="number" min="0" max="100" step="5"></ha-input>
 ```
 
 ## Events
@@ -176,54 +171,54 @@ input.addEventListener('blur', (e) => {
 
 ### Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `variant` | `'default' \| 'filled' \| 'outlined'` | `'default'` | Visual style variant |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Input size |
-| `type` | `'text' \| 'email' \| 'password' \| 'number' \| 'tel' \| 'url' \| 'search'` | `'text'` | Input type |
-| `value` | `string` | `''` | Input value |
-| `placeholder` | `string` | `''` | Placeholder text |
-| `disabled` | `boolean` | `false` | Disabled state |
-| `readonly` | `boolean` | `false` | Readonly state |
-| `required` | `boolean` | `false` | Required field |
-| `error` | `boolean` | `false` | Error state |
-| `fullWidth` | `boolean` | `false` | Full width input |
-| `name` | `string` | `''` | Input name attribute |
-| `autocomplete` | `string` | `''` | Autocomplete attribute |
-| `maxlength` | `number` | - | Maximum length |
-| `minlength` | `number` | - | Minimum length |
-| `pattern` | `string` | - | Validation pattern |
-| `min` | `number` | - | Minimum value (number type) |
-| `max` | `number` | - | Maximum value (number type) |
-| `step` | `number` | - | Step value (number type) |
+| Property       | Type                                                                        | Default     | Description                 |
+| -------------- | --------------------------------------------------------------------------- | ----------- | --------------------------- |
+| `variant`      | `'default' \| 'filled' \| 'outlined'`                                       | `'default'` | Visual style variant        |
+| `size`         | `'sm' \| 'md' \| 'lg'`                                                      | `'md'`      | Input size                  |
+| `type`         | `'text' \| 'email' \| 'password' \| 'number' \| 'tel' \| 'url' \| 'search'` | `'text'`    | Input type                  |
+| `value`        | `string`                                                                    | `''`        | Input value                 |
+| `placeholder`  | `string`                                                                    | `''`        | Placeholder text            |
+| `disabled`     | `boolean`                                                                   | `false`     | Disabled state              |
+| `readonly`     | `boolean`                                                                   | `false`     | Readonly state              |
+| `required`     | `boolean`                                                                   | `false`     | Required field              |
+| `error`        | `boolean`                                                                   | `false`     | Error state                 |
+| `fullWidth`    | `boolean`                                                                   | `false`     | Full width input            |
+| `name`         | `string`                                                                    | `''`        | Input name attribute        |
+| `autocomplete` | `string`                                                                    | `''`        | Autocomplete attribute      |
+| `maxlength`    | `number`                                                                    | -           | Maximum length              |
+| `minlength`    | `number`                                                                    | -           | Minimum length              |
+| `pattern`      | `string`                                                                    | -           | Validation pattern          |
+| `min`          | `number`                                                                    | -           | Minimum value (number type) |
+| `max`          | `number`                                                                    | -           | Maximum value (number type) |
+| `step`         | `number`                                                                    | -           | Step value (number type)    |
 
 ### Methods
 
-| Method | Description |
-|--------|-------------|
-| `focus()` | Focuses the input |
-| `blur()` | Removes focus from the input |
-| `select()` | Selects all input text |
-| `setSelectionRange(start, end, direction?)` | Sets text selection range |
-| `checkValidity()` | Checks if input is valid |
-| `reportValidity()` | Reports validity to user |
-| `setCustomValidity(message)` | Sets custom validation message |
+| Method                                      | Description                    |
+| ------------------------------------------- | ------------------------------ |
+| `focus()`                                   | Focuses the input              |
+| `blur()`                                    | Removes focus from the input   |
+| `select()`                                  | Selects all input text         |
+| `setSelectionRange(start, end, direction?)` | Sets text selection range      |
+| `checkValidity()`                           | Checks if input is valid       |
+| `reportValidity()`                          | Reports validity to user       |
+| `setCustomValidity(message)`                | Sets custom validation message |
 
 ### Slots
 
-| Slot | Description |
-|------|-------------|
+| Slot     | Description          |
+| -------- | -------------------- |
 | `prefix` | Content before input |
-| `suffix` | Content after input |
+| `suffix` | Content after input  |
 
 ### Events
 
-| Event | Detail | Description |
-|-------|--------|-------------|
-| `input` | `{ value: string }` | Fired when value changes |
+| Event    | Detail              | Description                                     |
+| -------- | ------------------- | ----------------------------------------------- |
+| `input`  | `{ value: string }` | Fired when value changes                        |
 | `change` | `{ value: string }` | Fired when input loses focus after value change |
-| `focus` | - | Fired when input gains focus |
-| `blur` | - | Fired when input loses focus |
+| `focus`  | -                   | Fired when input gains focus                    |
+| `blur`   | -                   | Fired when input loses focus                    |
 
 ## Examples
 
@@ -231,16 +226,16 @@ input.addEventListener('blur', (e) => {
 
 ```tsx
 // React
-import { useState } from 'react';
-import { Input, Button } from '@hidearea-design/react';
+import { useState } from "react";
+import { Input, Button } from "@hidearea-design/react";
 
 function LoginForm() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const input = e.target.querySelector('ha-input');
+    const input = e.target.querySelector("ha-input");
 
     if (!input.checkValidity()) {
       setError(true);
@@ -248,7 +243,7 @@ function LoginForm() {
       return;
     }
 
-    console.log('Valid email:', email);
+    console.log("Valid email:", email);
   };
 
   return (

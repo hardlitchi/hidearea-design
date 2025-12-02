@@ -1,21 +1,22 @@
-import React, { forwardRef, useEffect, useRef } from 'react';
-import type { HaSelect as HaSelectElement } from '@hidearea-design/core';
+import React, { forwardRef, useEffect, useRef } from "react";
+import type { HaSelect as HaSelectElement } from "@hidearea-design/core";
 
 // Import the web component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
-export interface SelectProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> {
+export interface SelectProps
+  extends Omit<React.HTMLAttributes<HTMLElement>, "onChange"> {
   /**
    * Select variant
    * @default "default"
    */
-  variant?: 'default' | 'filled' | 'outlined';
+  variant?: "default" | "filled" | "outlined";
 
   /**
    * Select size
    * @default "md"
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 
   /**
    * Selected value
@@ -83,8 +84,8 @@ export interface SelectProps extends Omit<React.HTMLAttributes<HTMLElement>, 'on
 export const Select = forwardRef<HTMLElement, SelectProps>(
   (
     {
-      variant = 'default',
-      size = 'md',
+      variant = "default",
+      size = "md",
       value,
       placeholder,
       disabled = false,
@@ -96,7 +97,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
       onChange,
       ...props
     },
-    _ref
+    _ref,
   ) => {
     const elementRef = useRef<HaSelectElement>(null);
 
@@ -120,7 +121,17 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
       if (name) {
         element.name = name;
       }
-    }, [variant, size, value, placeholder, disabled, required, error, fullWidth, name]);
+    }, [
+      variant,
+      size,
+      value,
+      placeholder,
+      disabled,
+      required,
+      error,
+      fullWidth,
+      name,
+    ]);
 
     useEffect(() => {
       const element = elementRef.current;
@@ -131,31 +142,28 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
         onChange(customEvent.detail.value);
       };
 
-      element.addEventListener('change', handleChange);
+      element.addEventListener("change", handleChange);
 
       return () => {
-        element.removeEventListener('change', handleChange);
+        element.removeEventListener("change", handleChange);
       };
     }, [onChange]);
 
     return (
-      <ha-select
-        ref={elementRef as any}
-        {...props}
-      >
+      <ha-select ref={elementRef as any} {...props}>
         {children}
       </ha-select>
     );
-  }
+  },
 );
 
-Select.displayName = 'Select';
+Select.displayName = "Select";
 
 // Add TypeScript support for JSX
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-select': React.DetailedHTMLProps<
+      "ha-select": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >;

@@ -1,4 +1,4 @@
-import { dropdownStyles } from './menu.styles';
+import { dropdownStyles } from "./menu.styles";
 
 /**
  * Dropdown component
@@ -21,34 +21,34 @@ export class HaDropdown extends HTMLElement {
   private isOpen = false;
 
   static get observedAttributes() {
-    return ['placement', 'trigger', 'open'];
+    return ["placement", "trigger", "open"];
   }
 
   constructor() {
     super();
 
     // Attach shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create styles
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = dropdownStyles;
 
     // Create trigger
-    this.triggerSlot = document.createElement('div');
-    this.triggerSlot.className = 'trigger';
-    this.triggerSlot.setAttribute('part', 'trigger');
+    this.triggerSlot = document.createElement("div");
+    this.triggerSlot.className = "trigger";
+    this.triggerSlot.setAttribute("part", "trigger");
 
-    const triggerSlotElement = document.createElement('slot');
-    triggerSlotElement.name = 'trigger';
+    const triggerSlotElement = document.createElement("slot");
+    triggerSlotElement.name = "trigger";
     this.triggerSlot.appendChild(triggerSlotElement);
 
     // Create menu container
-    this.menuContainer = document.createElement('div');
-    this.menuContainer.className = 'menu-container';
-    this.menuContainer.setAttribute('part', 'menu-container');
+    this.menuContainer = document.createElement("div");
+    this.menuContainer.className = "menu-container";
+    this.menuContainer.setAttribute("part", "menu-container");
 
-    const menuSlot = document.createElement('slot');
+    const menuSlot = document.createElement("slot");
     this.menuContainer.appendChild(menuSlot);
 
     // Append to shadow root
@@ -57,21 +57,21 @@ export class HaDropdown extends HTMLElement {
     shadow.appendChild(this.menuContainer);
 
     // Handle trigger click
-    this.triggerSlot.addEventListener('click', () => {
-      if (this.triggerMode === 'click') {
+    this.triggerSlot.addEventListener("click", () => {
+      if (this.triggerMode === "click") {
         this.toggle();
       }
     });
 
     // Handle trigger hover
-    this.triggerSlot.addEventListener('mouseenter', () => {
-      if (this.triggerMode === 'hover') {
+    this.triggerSlot.addEventListener("mouseenter", () => {
+      if (this.triggerMode === "hover") {
         this.show();
       }
     });
 
-    this.addEventListener('mouseleave', () => {
-      if (this.triggerMode === 'hover') {
+    this.addEventListener("mouseleave", () => {
+      if (this.triggerMode === "hover") {
         this.hide();
       }
     });
@@ -84,11 +84,11 @@ export class HaDropdown extends HTMLElement {
   }
 
   connectedCallback() {
-    if (!this.hasAttribute('placement')) {
-      this.setAttribute('placement', 'bottom-start');
+    if (!this.hasAttribute("placement")) {
+      this.setAttribute("placement", "bottom-start");
     }
-    if (!this.hasAttribute('trigger')) {
-      this.setAttribute('trigger', 'click');
+    if (!this.hasAttribute("trigger")) {
+      this.setAttribute("trigger", "click");
     }
 
     if (this.open) {
@@ -103,7 +103,7 @@ export class HaDropdown extends HTMLElement {
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (oldValue === newValue) return;
 
-    if (name === 'open') {
+    if (name === "open") {
       if (this.open) {
         this.show();
       } else {
@@ -116,20 +116,20 @@ export class HaDropdown extends HTMLElement {
     if (this.isOpen) return;
 
     this.isOpen = true;
-    this.menuContainer.classList.add('open');
+    this.menuContainer.classList.add("open");
     this.updatePosition();
 
     // Add event listeners
     setTimeout(() => {
-      document.addEventListener('click', this.handleDocumentClick);
-      document.addEventListener('keydown', this.handleEscapeKey);
+      document.addEventListener("click", this.handleDocumentClick);
+      document.addEventListener("keydown", this.handleEscapeKey);
     }, 0);
 
     this.dispatchEvent(
-      new CustomEvent('open', {
+      new CustomEvent("open", {
         bubbles: true,
         composed: true,
-      })
+      }),
     );
   }
 
@@ -137,16 +137,16 @@ export class HaDropdown extends HTMLElement {
     if (!this.isOpen) return;
 
     this.isOpen = false;
-    this.menuContainer.classList.remove('open');
+    this.menuContainer.classList.remove("open");
 
     // Remove event listeners
     this.removeEventListeners();
 
     this.dispatchEvent(
-      new CustomEvent('close', {
+      new CustomEvent("close", {
         bubbles: true,
         composed: true,
-      })
+      }),
     );
   }
 
@@ -168,35 +168,35 @@ export class HaDropdown extends HTMLElement {
     let left = 0;
 
     switch (placement) {
-      case 'top':
+      case "top":
         top = triggerRect.top - menuRect.height - offset;
         left = triggerRect.left + (triggerRect.width - menuRect.width) / 2;
         break;
-      case 'top-start':
+      case "top-start":
         top = triggerRect.top - menuRect.height - offset;
         left = triggerRect.left;
         break;
-      case 'top-end':
+      case "top-end":
         top = triggerRect.top - menuRect.height - offset;
         left = triggerRect.right - menuRect.width;
         break;
-      case 'bottom':
+      case "bottom":
         top = triggerRect.bottom + offset;
         left = triggerRect.left + (triggerRect.width - menuRect.width) / 2;
         break;
-      case 'bottom-start':
+      case "bottom-start":
         top = triggerRect.bottom + offset;
         left = triggerRect.left;
         break;
-      case 'bottom-end':
+      case "bottom-end":
         top = triggerRect.bottom + offset;
         left = triggerRect.right - menuRect.width;
         break;
-      case 'left':
+      case "left":
         top = triggerRect.top + (triggerRect.height - menuRect.height) / 2;
         left = triggerRect.left - menuRect.width - offset;
         break;
-      case 'right':
+      case "right":
         top = triggerRect.top + (triggerRect.height - menuRect.height) / 2;
         left = triggerRect.right + offset;
         break;
@@ -224,42 +224,42 @@ export class HaDropdown extends HTMLElement {
   }
 
   private handleEscapeKey(e: KeyboardEvent) {
-    if (e.key === 'Escape') {
+    if (e.key === "Escape") {
       this.hide();
     }
   }
 
   private removeEventListeners() {
-    document.removeEventListener('click', this.handleDocumentClick);
-    document.removeEventListener('keydown', this.handleEscapeKey);
+    document.removeEventListener("click", this.handleDocumentClick);
+    document.removeEventListener("keydown", this.handleEscapeKey);
   }
 
   // Public API
   get placement(): string {
-    return this.getAttribute('placement') || 'bottom-start';
+    return this.getAttribute("placement") || "bottom-start";
   }
 
   set placement(value: string) {
-    this.setAttribute('placement', value);
+    this.setAttribute("placement", value);
   }
 
   get triggerMode(): string {
-    return this.getAttribute('trigger') || 'click';
+    return this.getAttribute("trigger") || "click";
   }
 
   set triggerMode(value: string) {
-    this.setAttribute('trigger', value);
+    this.setAttribute("trigger", value);
   }
 
   get open(): boolean {
-    return this.hasAttribute('open');
+    return this.hasAttribute("open");
   }
 
   set open(value: boolean) {
     if (value) {
-      this.setAttribute('open', '');
+      this.setAttribute("open", "");
     } else {
-      this.removeAttribute('open');
+      this.removeAttribute("open");
     }
   }
 
@@ -277,6 +277,6 @@ export class HaDropdown extends HTMLElement {
 }
 
 // Register custom element
-if (!customElements.get('ha-dropdown')) {
-  customElements.define('ha-dropdown', HaDropdown);
+if (!customElements.get("ha-dropdown")) {
+  customElements.define("ha-dropdown", HaDropdown);
 }

@@ -1,21 +1,21 @@
-import React, { forwardRef, useEffect, useRef } from 'react';
-import type { HaCard as HaCardElement } from '@hidearea-design/core';
+import React, { forwardRef, useEffect, useRef } from "react";
+import type { HaCard as HaCardElement } from "@hidearea-design/core";
 
 // Import the web component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
 export interface CardProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * Card variant
    * @default "default"
    */
-  variant?: 'default' | 'outlined' | 'elevated';
+  variant?: "default" | "outlined" | "elevated";
 
   /**
    * Card padding size
    * @default "md"
    */
-  padding?: 'none' | 'sm' | 'md' | 'lg';
+  padding?: "none" | "sm" | "md" | "lg";
 
   /**
    * Enable hover effect
@@ -56,15 +56,15 @@ export interface CardProps extends React.HTMLAttributes<HTMLElement> {
 export const Card = forwardRef<HTMLElement, CardProps>(
   (
     {
-      variant = 'default',
-      padding = 'md',
+      variant = "default",
+      padding = "md",
       hoverable = false,
       clickable = false,
       children,
       onClick,
       ...props
     },
-    _ref
+    _ref,
   ) => {
     const elementRef = useRef<HaCardElement>(null);
 
@@ -87,31 +87,28 @@ export const Card = forwardRef<HTMLElement, CardProps>(
         onClick();
       };
 
-      element.addEventListener('card-click', handleClick);
+      element.addEventListener("card-click", handleClick);
 
       return () => {
-        element.removeEventListener('card-click', handleClick);
+        element.removeEventListener("card-click", handleClick);
       };
     }, [onClick]);
 
     return (
-      <ha-card
-        ref={elementRef as any}
-        {...props}
-      >
+      <ha-card ref={elementRef as any} {...props}>
         {children}
       </ha-card>
     );
-  }
+  },
 );
 
-Card.displayName = 'Card';
+Card.displayName = "Card";
 
 // Add TypeScript support for JSX
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-card': React.DetailedHTMLProps<
+      "ha-card": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >;

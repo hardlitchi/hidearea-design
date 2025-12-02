@@ -1,1 +1,1 @@
-export { HaSpinner } from './spinner';
+export { HaSpinner } from "./spinner";

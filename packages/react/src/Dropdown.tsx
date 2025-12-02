@@ -1,9 +1,9 @@
-import React, { forwardRef, useRef, useEffect, ReactNode } from 'react';
+import React, { forwardRef, useRef, useEffect, ReactNode } from "react";
 
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-dropdown': React.DetailedHTMLProps<
+      "ha-dropdown": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement> & {
           placement?: string;
           trigger?: string;
@@ -11,13 +11,13 @@ declare global {
         },
         HTMLElement
       >;
-      'ha-menu': React.DetailedHTMLProps<
+      "ha-menu": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement> & {
           size?: string;
         },
         HTMLElement
       >;
-      'ha-menu-item': React.DetailedHTMLProps<
+      "ha-menu-item": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement> & {
           value?: string;
           disabled?: boolean;
@@ -25,7 +25,7 @@ declare global {
         },
         HTMLElement
       >;
-      'ha-menu-divider': React.DetailedHTMLProps<
+      "ha-menu-divider": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >;
@@ -83,7 +83,19 @@ export interface MenuDividerProps {
 }
 
 export const Dropdown = forwardRef<HTMLElement, DropdownProps>(
-  ({ placement, trigger, open, onOpen, onClose, className, children, ...props }, _ref) => {
+  (
+    {
+      placement,
+      trigger,
+      open,
+      onOpen,
+      onClose,
+      className,
+      children,
+      ...props
+    },
+    _ref,
+  ) => {
     const elementRef = useRef<HaDropdownElement>(null);
 
     useEffect(() => {
@@ -98,12 +110,12 @@ export const Dropdown = forwardRef<HTMLElement, DropdownProps>(
         onClose?.();
       };
 
-      element.addEventListener('open', handleOpen);
-      element.addEventListener('close', handleClose);
+      element.addEventListener("open", handleOpen);
+      element.addEventListener("close", handleClose);
 
       return () => {
-        element.removeEventListener('open', handleOpen);
-        element.removeEventListener('close', handleClose);
+        element.removeEventListener("open", handleOpen);
+        element.removeEventListener("close", handleClose);
       };
     }, [onOpen, onClose]);
 
@@ -113,7 +125,7 @@ export const Dropdown = forwardRef<HTMLElement, DropdownProps>(
 
       if (placement) element.placement = placement;
       if (trigger) element.triggerMode = trigger;
-      if (typeof open === 'boolean') element.open = open;
+      if (typeof open === "boolean") element.open = open;
     }, [placement, trigger, open]);
 
     return (
@@ -121,10 +133,10 @@ export const Dropdown = forwardRef<HTMLElement, DropdownProps>(
         {children}
       </ha-dropdown>
     );
-  }
+  },
 );
 
-Dropdown.displayName = 'Dropdown';
+Dropdown.displayName = "Dropdown";
 
 export const Menu = forwardRef<HTMLElement, MenuProps>(
   ({ size, onItemClick, className, children, ...props }, _ref) => {
@@ -139,10 +151,10 @@ export const Menu = forwardRef<HTMLElement, MenuProps>(
         onItemClick(customEvent.detail.value);
       };
 
-      element.addEventListener('item-click', handleItemClick);
+      element.addEventListener("item-click", handleItemClick);
 
       return () => {
-        element.removeEventListener('item-click', handleItemClick);
+        element.removeEventListener("item-click", handleItemClick);
       };
     }, [onItemClick]);
 
@@ -158,13 +170,16 @@ export const Menu = forwardRef<HTMLElement, MenuProps>(
         {children}
       </ha-menu>
     );
-  }
+  },
 );
 
-Menu.displayName = 'Menu';
+Menu.displayName = "Menu";
 
 export const MenuItem = forwardRef<HTMLElement, MenuItemProps>(
-  ({ value, disabled, danger, onClick, className, children, ...props }, _ref) => {
+  (
+    { value, disabled, danger, onClick, className, children, ...props },
+    _ref,
+  ) => {
     const elementRef = useRef<HaMenuItemElement>(null);
 
     useEffect(() => {
@@ -175,10 +190,10 @@ export const MenuItem = forwardRef<HTMLElement, MenuItemProps>(
         onClick();
       };
 
-      element.addEventListener('item-click', handleClick);
+      element.addEventListener("item-click", handleClick);
 
       return () => {
-        element.removeEventListener('item-click', handleClick);
+        element.removeEventListener("item-click", handleClick);
       };
     }, [onClick]);
 
@@ -187,8 +202,8 @@ export const MenuItem = forwardRef<HTMLElement, MenuItemProps>(
       if (!element) return;
 
       if (value) element.value = value;
-      if (typeof disabled === 'boolean') element.disabled = disabled;
-      if (typeof danger === 'boolean') element.danger = danger;
+      if (typeof disabled === "boolean") element.disabled = disabled;
+      if (typeof danger === "boolean") element.danger = danger;
     }, [value, disabled, danger]);
 
     return (
@@ -196,15 +211,15 @@ export const MenuItem = forwardRef<HTMLElement, MenuItemProps>(
         {children}
       </ha-menu-item>
     );
-  }
+  },
 );
 
-MenuItem.displayName = 'MenuItem';
+MenuItem.displayName = "MenuItem";
 
 export const MenuDivider = forwardRef<HTMLElement, MenuDividerProps>(
   ({ className, ...props }, _ref) => {
     return <ha-menu-divider className={className} {...props} />;
-  }
+  },
 );
 
-MenuDivider.displayName = 'MenuDivider';
+MenuDivider.displayName = "MenuDivider";

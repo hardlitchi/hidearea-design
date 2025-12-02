@@ -76,10 +76,10 @@ packages/react/src/Input.tsx
 ##### 使用例
 
 ```tsx
-import { Input } from '@hidearea-design/react';
+import { Input } from "@hidearea-design/react";
 
 function App() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
 
   return (
     <Input
@@ -126,10 +126,10 @@ packages/vue/src/Input.vue
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { Input } from '@hidearea-design/vue';
+import { ref } from "vue";
+import { Input } from "@hidearea-design/vue";
 
-const email = ref('');
+const email = ref("");
 </script>
 ```
 
@@ -201,7 +201,7 @@ packages/react/src/Checkbox.tsx
 ##### 使用例
 
 ```tsx
-import { Checkbox } from '@hidearea-design/react';
+import { Checkbox } from "@hidearea-design/react";
 
 function App() {
   const [accepted, setAccepted] = useState(false);
@@ -247,8 +247,8 @@ packages/vue/src/Checkbox.vue
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { Checkbox } from '@hidearea-design/vue';
+import { ref } from "vue";
+import { Checkbox } from "@hidearea-design/vue";
 
 const subscribe = ref(false);
 </script>
@@ -302,16 +302,19 @@ const subscribe = ref(false);
 ### パッケージサイズ
 
 #### @hidearea-design/core
+
 - **ES**: 31.09 kB (gzip: 5.20 kB)
 - **UMD**: 27.96 kB (gzip: 5.11 kB)
 - **型定義**: あり
 
 #### @hidearea-design/react
+
 - **ES**: 27.89 kB (gzip: 7.82 kB)
 - **UMD**: 18.43 kB (gzip: 6.73 kB)
 - **型定義**: あり
 
 #### @hidearea-design/vue
+
 - **ES**: 9.29 kB (gzip: 2.11 kB)
 - **UMD**: 6.90 kB (gzip: 2.00 kB)
 - **型定義**: あり
@@ -400,16 +403,19 @@ Props インターフェースから競合するプロパティを除外：
 
 ```typescript
 // Input
-export interface InputProps extends Omit<
-  React.HTMLAttributes<HTMLElement>,
-  'onChange' | 'onInput' | 'onFocus' | 'onBlur' | 'prefix' | 'suffix'
-> { /* ... */ }
+export interface InputProps
+  extends Omit<
+    React.HTMLAttributes<HTMLElement>,
+    "onChange" | "onInput" | "onFocus" | "onBlur" | "prefix" | "suffix"
+  > {
+  /* ... */
+}
 
 // Checkbox
-export interface CheckboxProps extends Omit<
-  React.HTMLAttributes<HTMLElement>,
-  'onChange' | 'onInput'
-> { /* ... */ }
+export interface CheckboxProps
+  extends Omit<React.HTMLAttributes<HTMLElement>, "onChange" | "onInput"> {
+  /* ... */
+}
 ```
 
 ### 5. Vue パッケージ
@@ -419,15 +425,19 @@ export interface CheckboxProps extends Omit<
 `src/types.ts` ファイルを作成し、Props インターフェースを分離：
 
 ```typescript
-export interface InputProps { /* ... */ }
-export interface CheckboxProps { /* ... */ }
+export interface InputProps {
+  /* ... */
+}
+export interface CheckboxProps {
+  /* ... */
+}
 ```
 
 #### vue-shim.d.ts の作成
 
 ```typescript
-declare module '*.vue' {
-  import type { DefineComponent } from 'vue';
+declare module "*.vue" {
+  import type { DefineComponent } from "vue";
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
@@ -442,12 +452,14 @@ TypeScript で `.vue` ファイルをインポートできるようにしまし�
 現在、以下の3つの基本コンポーネントが完成しました：
 
 ### 1. Button
+
 - **バリアント**: 5種類（primary, secondary, outline, ghost, danger）
 - **サイズ**: 3種類（sm, md, lg）
 - **状態**: disabled, loading, full-width
 - **用途**: プライマリアクション、フォーム送信
 
 ### 2. Input
+
 - **バリアント**: 3種類（default, filled, outlined）
 - **サイズ**: 3種類（sm, md, lg）
 - **タイプ**: 7種類（text, password, email, number, tel, url, search）
@@ -456,6 +468,7 @@ TypeScript で `.vue` ファイルをインポートできるようにしまし�
 - **用途**: テキスト入力、フォームフィールド
 
 ### 3. Checkbox
+
 - **サイズ**: 3種類（sm, md, lg）
 - **状態**: checked, indeterminate, disabled, required, error
 - **スロット**: label, description
@@ -469,36 +482,18 @@ TypeScript で `.vue` ファイルをインポートできるようにしまし�
 
 ```tsx
 <form onSubmit={handleSubmit}>
-  <Input
-    type="email"
-    placeholder="Enter your email"
-    required
-    full-width
-  />
+  <Input type="email" placeholder="Enter your email" required full-width />
 
-  <Input
-    type="password"
-    placeholder="Enter password"
-    required
-    full-width
-  />
+  <Input type="password" placeholder="Enter password" required full-width />
 
-  <Input
-    type="number"
-    placeholder="0.00"
-    prefix="$"
-  />
+  <Input type="number" placeholder="0.00" prefix="$" />
 
   <Checkbox required>
     I agree to the terms and conditions
-    <span slot="description">
-      Please read our terms before continuing
-    </span>
+    <span slot="description">Please read our terms before continuing</span>
   </Checkbox>
 
-  <Checkbox>
-    Subscribe to newsletter
-  </Checkbox>
+  <Checkbox>Subscribe to newsletter</Checkbox>
 
   <Button type="submit" full-width>
     Create Account
@@ -511,6 +506,7 @@ TypeScript で `.vue` ファイルをインポートできるようにしまし�
 ## アクセシビリティ機能
 
 ### Input
+
 - ✅ ARIA属性（disabled, readonly, required, invalid）
 - ✅ ラベルとの関連付け
 - ✅ キーボードナビゲーション
@@ -519,6 +515,7 @@ TypeScript で `.vue` ファイルをインポートできるようにしまし�
 - ✅ ネイティブバリデーションAPI
 
 ### Checkbox
+
 - ✅ ARIA属性（disabled, required, invalid）
 - ✅ ラベルとの自動関連付け
 - ✅ キーボード操作（Space キーでトグル）
@@ -527,6 +524,7 @@ TypeScript で `.vue` ファイルをインポートできるようにしまし�
 - ✅ ネイティブバリデーションAPI
 
 ### Button
+
 - ✅ ARIA属性（disabled, busy）
 - ✅ キーボード操作
 - ✅ フォーカス表示
@@ -537,14 +535,17 @@ TypeScript で `.vue` ファイルをインポートできるようにしまし�
 ## パフォーマンス最適化
 
 ### Shadow DOM
+
 - スタイルのカプセル化により、グローバルCSSとの衝突を防止
 - 再レンダリングの最適化
 
 ### Constructable Stylesheets
+
 - スタイルの効率的な共有と適用
 - メモリ使用量の削減
 
 ### デザイントークン
+
 - CSS Custom Properties による動的テーマ変更
 - ランタイムでの色変更が可能
 
@@ -581,6 +582,7 @@ TypeScript で `.vue` ファイルをインポートできるようにしまし�
 Input と Checkbox コンポーネントを実装し、フォーム構築の基盤が完成しました：
 
 **実装内容**:
+
 - ✅ Input コンポーネント（3バリアント、3サイズ、7タイプ）
 - ✅ Checkbox コンポーネント（3サイズ、indeterminate対応）
 - ✅ Web Component（Shadow DOM、Custom Element）
@@ -592,11 +594,13 @@ Input と Checkbox コンポーネントを実装し、フォーム構築の基�
 - ✅ バリデーションAPI対応
 
 **成果物**:
+
 - Button, Input, Checkbox の3コンポーネント
 - 全パッケージのビルド成功
 - Storybook ドキュメント
 
 **プロジェクト統計**:
+
 - **Web Components**: 3コンポーネント
 - **Storybook ストーリー**: 46個
 - **サポートフレームワーク**: Vanilla JS, React, Vue 3

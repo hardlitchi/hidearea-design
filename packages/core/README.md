@@ -15,21 +15,24 @@ npm install @hidearea-design/core @hidearea-design/tokens
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <link rel="stylesheet" href="node_modules/@hidearea-design/tokens/build/css/variables.css">
-</head>
-<body>
-  <ha-button variant="primary" size="md">Click me</ha-button>
+  <head>
+    <link
+      rel="stylesheet"
+      href="node_modules/@hidearea-design/tokens/build/css/variables.css"
+    />
+  </head>
+  <body>
+    <ha-button variant="primary" size="md">Click me</ha-button>
 
-  <script type="module">
-    import '@hidearea-design/core';
+    <script type="module">
+      import "@hidearea-design/core";
 
-    const button = document.querySelector('ha-button');
-    button.addEventListener('click', () => {
-      console.log('Button clicked!');
-    });
-  </script>
-</body>
+      const button = document.querySelector("ha-button");
+      button.addEventListener("click", () => {
+        console.log("Button clicked!");
+      });
+    </script>
+  </body>
 </html>
 ```
 
@@ -85,11 +88,11 @@ A customizable button component with multiple variants and sizes.
 #### JavaScript API
 
 ```javascript
-const button = document.querySelector('ha-button');
+const button = document.querySelector("ha-button");
 
 // Properties
-button.variant = 'secondary';
-button.size = 'lg';
+button.variant = "secondary";
+button.size = "lg";
 button.disabled = true;
 button.loading = true;
 button.fullWidth = true;
@@ -99,8 +102,8 @@ button.focus();
 button.blur();
 
 // Events
-button.addEventListener('click', (e) => {
-  console.log('Clicked!', e.detail);
+button.addEventListener("click", (e) => {
+  console.log("Clicked!", e.detail);
 });
 ```
 

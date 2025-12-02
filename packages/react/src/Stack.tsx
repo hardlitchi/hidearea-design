@@ -1,15 +1,15 @@
-import React, { forwardRef } from 'react';
-import type { HaStack as HaStackElement } from '@hidearea-design/core';
+import React, { forwardRef } from "react";
+import type { HaStack as HaStackElement } from "@hidearea-design/core";
 
 // Import the web component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
 export interface StackProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * Stack direction
    * @default "vertical"
    */
-  direction?: 'vertical' | 'horizontal';
+  direction?: "vertical" | "horizontal";
 
   /**
    * Gap size (0-12)
@@ -20,18 +20,18 @@ export interface StackProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * Align items
    */
-  align?: 'start' | 'center' | 'end' | 'stretch';
+  align?: "start" | "center" | "end" | "stretch";
 
   /**
    * Justify content
    */
   justify?:
-    | 'start'
-    | 'center'
-    | 'end'
-    | 'space-between'
-    | 'space-around'
-    | 'space-evenly';
+    | "start"
+    | "center"
+    | "end"
+    | "space-between"
+    | "space-around"
+    | "space-evenly";
 
   /**
    * Whether to wrap items
@@ -74,16 +74,16 @@ export const Stack = forwardRef<HaStackElement, StackProps>(
         {children}
       </ha-stack>
     );
-  }
+  },
 );
 
-Stack.displayName = 'Stack';
+Stack.displayName = "Stack";
 
 // Add TypeScript support for JSX
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-stack': React.DetailedHTMLProps<
+      "ha-stack": React.DetailedHTMLProps<
         React.HTMLAttributes<HaStackElement>,
         HaStackElement
       > & {

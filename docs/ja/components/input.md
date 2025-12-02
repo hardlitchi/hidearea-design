@@ -6,13 +6,13 @@
 
 ```js
 // Web Component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
 // React
-import { Input } from '@hidearea-design/react';
+import { Input } from "@hidearea-design/react";
 
 // Vue
-import { HaInput } from '@hidearea-design/vue';
+import { HaInput } from "@hidearea-design/vue";
 ```
 
 ## 基本的な使い方
@@ -124,12 +124,7 @@ import { HaInput } from '@hidearea-design/vue';
 ### 数値バリデーション
 
 ```html
-<ha-input
-  type="number"
-  min="0"
-  max="100"
-  step="5"
-></ha-input>
+<ha-input type="number" min="0" max="100" step="5"></ha-input>
 ```
 
 ## イベント
@@ -176,54 +171,54 @@ input.addEventListener('blur', (e) => {
 
 ### プロパティ
 
-| プロパティ | 型 | デフォルト | 説明 |
-|----------|------|---------|-------------|
-| `variant` | `'default' \| 'filled' \| 'outlined'` | `'default'` | 視覚的スタイルのバリエーション |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 入力フィールドのサイズ |
-| `type` | `'text' \| 'email' \| 'password' \| 'number' \| 'tel' \| 'url' \| 'search'` | `'text'` | 入力タイプ |
-| `value` | `string` | `''` | 入力値 |
-| `placeholder` | `string` | `''` | プレースホルダーテキスト |
-| `disabled` | `boolean` | `false` | 無効状態 |
-| `readonly` | `boolean` | `false` | 読み取り専用状態 |
-| `required` | `boolean` | `false` | 必須フィールド |
-| `error` | `boolean` | `false` | エラー状態 |
-| `fullWidth` | `boolean` | `false` | フル幅入力 |
-| `name` | `string` | `''` | 入力の name 属性 |
-| `autocomplete` | `string` | `''` | オートコンプリート属性 |
-| `maxlength` | `number` | - | 最大文字数 |
-| `minlength` | `number` | - | 最小文字数 |
-| `pattern` | `string` | - | バリデーションパターン |
-| `min` | `number` | - | 最小値（number タイプ） |
-| `max` | `number` | - | 最大値（number タイプ） |
-| `step` | `number` | - | ステップ値（number タイプ） |
+| プロパティ     | 型                                                                          | デフォルト  | 説明                           |
+| -------------- | --------------------------------------------------------------------------- | ----------- | ------------------------------ |
+| `variant`      | `'default' \| 'filled' \| 'outlined'`                                       | `'default'` | 視覚的スタイルのバリエーション |
+| `size`         | `'sm' \| 'md' \| 'lg'`                                                      | `'md'`      | 入力フィールドのサイズ         |
+| `type`         | `'text' \| 'email' \| 'password' \| 'number' \| 'tel' \| 'url' \| 'search'` | `'text'`    | 入力タイプ                     |
+| `value`        | `string`                                                                    | `''`        | 入力値                         |
+| `placeholder`  | `string`                                                                    | `''`        | プレースホルダーテキスト       |
+| `disabled`     | `boolean`                                                                   | `false`     | 無効状態                       |
+| `readonly`     | `boolean`                                                                   | `false`     | 読み取り専用状態               |
+| `required`     | `boolean`                                                                   | `false`     | 必須フィールド                 |
+| `error`        | `boolean`                                                                   | `false`     | エラー状態                     |
+| `fullWidth`    | `boolean`                                                                   | `false`     | フル幅入力                     |
+| `name`         | `string`                                                                    | `''`        | 入力の name 属性               |
+| `autocomplete` | `string`                                                                    | `''`        | オートコンプリート属性         |
+| `maxlength`    | `number`                                                                    | -           | 最大文字数                     |
+| `minlength`    | `number`                                                                    | -           | 最小文字数                     |
+| `pattern`      | `string`                                                                    | -           | バリデーションパターン         |
+| `min`          | `number`                                                                    | -           | 最小値（number タイプ）        |
+| `max`          | `number`                                                                    | -           | 最大値（number タイプ）        |
+| `step`         | `number`                                                                    | -           | ステップ値（number タイプ）    |
 
 ### メソッド
 
-| メソッド | 説明 |
-|--------|-------------|
-| `focus()` | 入力フィールドにフォーカス |
-| `blur()` | 入力フィールドからフォーカスを外す |
-| `select()` | すべてのテキストを選択 |
-| `setSelectionRange(start, end, direction?)` | テキスト選択範囲を設定 |
-| `checkValidity()` | 入力が有効かチェック |
-| `reportValidity()` | ユーザーに妥当性を報告 |
-| `setCustomValidity(message)` | カスタムバリデーションメッセージを設定 |
+| メソッド                                    | 説明                                   |
+| ------------------------------------------- | -------------------------------------- |
+| `focus()`                                   | 入力フィールドにフォーカス             |
+| `blur()`                                    | 入力フィールドからフォーカスを外す     |
+| `select()`                                  | すべてのテキストを選択                 |
+| `setSelectionRange(start, end, direction?)` | テキスト選択範囲を設定                 |
+| `checkValidity()`                           | 入力が有効かチェック                   |
+| `reportValidity()`                          | ユーザーに妥当性を報告                 |
+| `setCustomValidity(message)`                | カスタムバリデーションメッセージを設定 |
 
 ### スロット
 
-| スロット | 説明 |
-|------|-------------|
+| スロット | 説明                     |
+| -------- | ------------------------ |
 | `prefix` | 入力フィールドの前の内容 |
 | `suffix` | 入力フィールドの後の内容 |
 
 ### イベント
 
-| イベント | Detail | 説明 |
-|-------|--------|-------------|
-| `input` | `{ value: string }` | 値が変更されたときに発火 |
+| イベント | Detail              | 説明                                   |
+| -------- | ------------------- | -------------------------------------- |
+| `input`  | `{ value: string }` | 値が変更されたときに発火               |
 | `change` | `{ value: string }` | 値変更後にフォーカスを失ったときに発火 |
-| `focus` | - | フォーカス取得時に発火 |
-| `blur` | - | フォーカス喪失時に発火 |
+| `focus`  | -                   | フォーカス取得時に発火                 |
+| `blur`   | -                   | フォーカス喪失時に発火                 |
 
 ## 使用例
 
@@ -231,16 +226,16 @@ input.addEventListener('blur', (e) => {
 
 ```tsx
 // React
-import { useState } from 'react';
-import { Input, Button } from '@hidearea-design/react';
+import { useState } from "react";
+import { Input, Button } from "@hidearea-design/react";
 
 function LoginForm() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const input = e.target.querySelector('ha-input');
+    const input = e.target.querySelector("ha-input");
 
     if (!input.checkValidity()) {
       setError(true);
@@ -248,7 +243,7 @@ function LoginForm() {
       return;
     }
 
-    console.log('有効なメール:', email);
+    console.log("有効なメール:", email);
   };
 
   return (

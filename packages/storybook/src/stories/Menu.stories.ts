@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
-import '@hidearea-design/core';
+import type { Meta, StoryObj } from "@storybook/web-components";
+import { html } from "lit";
+import "@hidearea-design/core";
 
 const meta: Meta = {
-  title: 'Components/Menu',
-  tags: ['autodocs'],
+  title: "Components/Menu",
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -13,7 +13,9 @@ type Story = StoryObj;
 export const Default: Story = {
   render: () => html`
     <ha-dropdown placement="bottom-start">
-      <button slot="trigger" style="padding: 8px 16px; cursor: pointer;">Open Menu</button>
+      <button slot="trigger" style="padding: 8px 16px; cursor: pointer;">
+        Open Menu
+      </button>
       <ha-menu>
         <ha-menu-item value="new">New File</ha-menu-item>
         <ha-menu-item value="open">Open</ha-menu-item>
@@ -28,7 +30,9 @@ export const Default: Story = {
 export const WithIcons: Story = {
   render: () => html`
     <ha-dropdown placement="bottom-start">
-      <button slot="trigger" style="padding: 8px 16px; cursor: pointer;">Actions</button>
+      <button slot="trigger" style="padding: 8px 16px; cursor: pointer;">
+        Actions
+      </button>
       <ha-menu>
         <ha-menu-item value="edit">
           <span slot="icon">✏️</span>
@@ -54,7 +58,9 @@ export const WithIcons: Story = {
 
 export const Placements: Story = {
   render: () => html`
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 100px; padding: 100px; text-align: center;">
+    <div
+      style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 100px; padding: 100px; text-align: center;"
+    >
       <ha-dropdown placement="top-start">
         <button slot="trigger" style="padding: 8px 16px;">Top Start</button>
         <ha-menu>
@@ -148,7 +154,9 @@ export const Sizes: Story = {
 export const WithDisabled: Story = {
   render: () => html`
     <ha-dropdown>
-      <button slot="trigger" style="padding: 8px 16px;">Menu with Disabled</button>
+      <button slot="trigger" style="padding: 8px 16px;">
+        Menu with Disabled
+      </button>
       <ha-menu>
         <ha-menu-item value="1">Enabled Item</ha-menu-item>
         <ha-menu-item value="2" disabled>Disabled Item</ha-menu-item>

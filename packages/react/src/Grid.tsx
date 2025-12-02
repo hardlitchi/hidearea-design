@@ -1,8 +1,8 @@
-import React, { forwardRef } from 'react';
-import type { HaGrid as HaGridElement } from '@hidearea-design/core';
+import React, { forwardRef } from "react";
+import type { HaGrid as HaGridElement } from "@hidearea-design/core";
 
 // Import the web component
-import '@hidearea-design/core';
+import "@hidearea-design/core";
 
 export interface GridProps extends React.HTMLAttributes<HTMLElement> {
   /**
@@ -30,12 +30,12 @@ export interface GridProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * Align items
    */
-  alignItems?: 'start' | 'center' | 'end' | 'stretch';
+  alignItems?: "start" | "center" | "end" | "stretch";
 
   /**
    * Justify items
    */
-  justifyItems?: 'start' | 'center' | 'end' | 'stretch';
+  justifyItems?: "start" | "center" | "end" | "stretch";
 
   /**
    * Grid items
@@ -59,8 +59,17 @@ export interface GridProps extends React.HTMLAttributes<HTMLElement> {
  */
 export const Grid = forwardRef<HaGridElement, GridProps>(
   (
-    { columns, gap, rowGap, columnGap, alignItems, justifyItems, children, ...props },
-    ref
+    {
+      columns,
+      gap,
+      rowGap,
+      columnGap,
+      alignItems,
+      justifyItems,
+      children,
+      ...props
+    },
+    ref,
   ) => {
     return (
       <ha-grid
@@ -76,25 +85,25 @@ export const Grid = forwardRef<HaGridElement, GridProps>(
         {children}
       </ha-grid>
     );
-  }
+  },
 );
 
-Grid.displayName = 'Grid';
+Grid.displayName = "Grid";
 
 // Add TypeScript support for JSX
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'ha-grid': React.DetailedHTMLProps<
+      "ha-grid": React.DetailedHTMLProps<
         React.HTMLAttributes<HaGridElement>,
         HaGridElement
       > & {
         columns?: string;
         gap?: string;
-        'row-gap'?: string;
-        'column-gap'?: string;
-        'align-items'?: string;
-        'justify-items'?: string;
+        "row-gap"?: string;
+        "column-gap"?: string;
+        "align-items"?: string;
+        "justify-items"?: string;
         ref?: React.Ref<HaGridElement>;
       };
     }

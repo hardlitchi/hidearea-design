@@ -1,66 +1,66 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite';
-import { html } from 'lit';
-import '@hidearea-design/core';
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
+import { html } from "lit";
+import "@hidearea-design/core";
 
 interface TextareaArgs {
-  variant: 'default' | 'filled' | 'outlined';
-  size: 'sm' | 'md' | 'lg';
+  variant: "default" | "filled" | "outlined";
+  size: "sm" | "md" | "lg";
   placeholder: string;
   disabled: boolean;
   readonly: boolean;
   required: boolean;
   error: boolean;
   fullWidth: boolean;
-  resize: 'none' | 'both' | 'horizontal' | 'vertical';
+  resize: "none" | "both" | "horizontal" | "vertical";
   rows: number;
 }
 
 const meta: Meta<TextareaArgs> = {
-  title: 'Forms/Textarea',
-  tags: ['autodocs'],
+  title: "Forms/Textarea",
+  tags: ["autodocs"],
   argTypes: {
     variant: {
-      control: { type: 'select' },
-      options: ['default', 'filled', 'outlined'],
-      description: 'Textarea variant style',
+      control: { type: "select" },
+      options: ["default", "filled", "outlined"],
+      description: "Textarea variant style",
     },
     size: {
-      control: { type: 'select' },
-      options: ['sm', 'md', 'lg'],
-      description: 'Textarea size',
+      control: { type: "select" },
+      options: ["sm", "md", "lg"],
+      description: "Textarea size",
     },
     placeholder: {
-      control: { type: 'text' },
-      description: 'Placeholder text',
+      control: { type: "text" },
+      description: "Placeholder text",
     },
     disabled: {
-      control: { type: 'boolean' },
-      description: 'Disabled state',
+      control: { type: "boolean" },
+      description: "Disabled state",
     },
     readonly: {
-      control: { type: 'boolean' },
-      description: 'Readonly state',
+      control: { type: "boolean" },
+      description: "Readonly state",
     },
     required: {
-      control: { type: 'boolean' },
-      description: 'Required state',
+      control: { type: "boolean" },
+      description: "Required state",
     },
     error: {
-      control: { type: 'boolean' },
-      description: 'Error state',
+      control: { type: "boolean" },
+      description: "Error state",
     },
     fullWidth: {
-      control: { type: 'boolean' },
-      description: 'Full width textarea',
+      control: { type: "boolean" },
+      description: "Full width textarea",
     },
     resize: {
-      control: { type: 'select' },
-      options: ['none', 'both', 'horizontal', 'vertical'],
-      description: 'Resize behavior',
+      control: { type: "select" },
+      options: ["none", "both", "horizontal", "vertical"],
+      description: "Resize behavior",
     },
     rows: {
-      control: { type: 'number' },
-      description: 'Number of visible rows',
+      control: { type: "number" },
+      description: "Number of visible rows",
     },
   },
 };
@@ -70,15 +70,15 @@ type Story = StoryObj<TextareaArgs>;
 
 export const Default: Story = {
   args: {
-    variant: 'default',
-    size: 'md',
-    placeholder: 'Enter your message...',
+    variant: "default",
+    size: "md",
+    placeholder: "Enter your message...",
     disabled: false,
     readonly: false,
     required: false,
     error: false,
     fullWidth: false,
-    resize: 'vertical',
+    resize: "vertical",
     rows: 4,
   },
   render: (args) => html`
@@ -102,15 +102,27 @@ export const Variants: Story = {
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Default Variant</h4>
-        <ha-textarea variant="default" placeholder="Default textarea" full-width></ha-textarea>
+        <ha-textarea
+          variant="default"
+          placeholder="Default textarea"
+          full-width
+        ></ha-textarea>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Filled Variant</h4>
-        <ha-textarea variant="filled" placeholder="Filled textarea" full-width></ha-textarea>
+        <ha-textarea
+          variant="filled"
+          placeholder="Filled textarea"
+          full-width
+        ></ha-textarea>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Outlined Variant</h4>
-        <ha-textarea variant="outlined" placeholder="Outlined textarea" full-width></ha-textarea>
+        <ha-textarea
+          variant="outlined"
+          placeholder="Outlined textarea"
+          full-width
+        ></ha-textarea>
       </div>
     </div>
   `,
@@ -121,15 +133,27 @@ export const Sizes: Story = {
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Small</h4>
-        <ha-textarea size="sm" placeholder="Small textarea" full-width></ha-textarea>
+        <ha-textarea
+          size="sm"
+          placeholder="Small textarea"
+          full-width
+        ></ha-textarea>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Medium</h4>
-        <ha-textarea size="md" placeholder="Medium textarea" full-width></ha-textarea>
+        <ha-textarea
+          size="md"
+          placeholder="Medium textarea"
+          full-width
+        ></ha-textarea>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Large</h4>
-        <ha-textarea size="lg" placeholder="Large textarea" full-width></ha-textarea>
+        <ha-textarea
+          size="lg"
+          placeholder="Large textarea"
+          full-width
+        ></ha-textarea>
       </div>
     </div>
   `,
@@ -144,11 +168,19 @@ export const States: Story = {
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Error</h4>
-        <ha-textarea placeholder="Error textarea" error full-width></ha-textarea>
+        <ha-textarea
+          placeholder="Error textarea"
+          error
+          full-width
+        ></ha-textarea>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Disabled</h4>
-        <ha-textarea placeholder="Disabled textarea" disabled full-width></ha-textarea>
+        <ha-textarea
+          placeholder="Disabled textarea"
+          disabled
+          full-width
+        ></ha-textarea>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Readonly</h4>
@@ -175,19 +207,34 @@ export const ResizeBehaviors: Story = {
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Vertical (default)</h4>
-        <ha-textarea placeholder="Resize vertically" resize="vertical" full-width></ha-textarea>
+        <ha-textarea
+          placeholder="Resize vertically"
+          resize="vertical"
+          full-width
+        ></ha-textarea>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Horizontal</h4>
-        <ha-textarea placeholder="Resize horizontally" resize="horizontal"></ha-textarea>
+        <ha-textarea
+          placeholder="Resize horizontally"
+          resize="horizontal"
+        ></ha-textarea>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Both</h4>
-        <ha-textarea placeholder="Resize both directions" resize="both" full-width></ha-textarea>
+        <ha-textarea
+          placeholder="Resize both directions"
+          resize="both"
+          full-width
+        ></ha-textarea>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">None</h4>
-        <ha-textarea placeholder="No resize" resize="none" full-width></ha-textarea>
+        <ha-textarea
+          placeholder="No resize"
+          resize="none"
+          full-width
+        ></ha-textarea>
       </div>
     </div>
   `,
@@ -256,11 +303,7 @@ export const CommentForm: Story = {
         <h3 style="margin: 0;">Leave a Comment</h3>
 
         <ha-form-group label="Your Name" required>
-          <ha-input
-            type="text"
-            placeholder="John Doe"
-            full-width
-          ></ha-input>
+          <ha-input type="text" placeholder="John Doe" full-width></ha-input>
         </ha-form-group>
 
         <ha-form-group label="Email" required>
@@ -301,11 +344,7 @@ export const FeedbackForm: Story = {
 
         <ha-grid columns="2" gap="4">
           <ha-form-group label="Name" required>
-            <ha-input
-              type="text"
-              placeholder="Your name"
-              full-width
-            ></ha-input>
+            <ha-input type="text" placeholder="Your name" full-width></ha-input>
           </ha-form-group>
 
           <ha-form-group label="Email" required>
@@ -362,54 +401,132 @@ export const AllVariantsAndSizes: Story = {
     <div style="display: flex; flex-direction: column; gap: 2rem;">
       <div>
         <h3 style="margin: 0 0 1rem 0;">Default Variant</h3>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+        <div
+          style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;"
+        >
           <div>
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Small</p>
-            <ha-textarea variant="default" size="sm" placeholder="Small"></ha-textarea>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Small
+            </p>
+            <ha-textarea
+              variant="default"
+              size="sm"
+              placeholder="Small"
+            ></ha-textarea>
           </div>
           <div>
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Medium</p>
-            <ha-textarea variant="default" size="md" placeholder="Medium"></ha-textarea>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Medium
+            </p>
+            <ha-textarea
+              variant="default"
+              size="md"
+              placeholder="Medium"
+            ></ha-textarea>
           </div>
           <div>
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Large</p>
-            <ha-textarea variant="default" size="lg" placeholder="Large"></ha-textarea>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Large
+            </p>
+            <ha-textarea
+              variant="default"
+              size="lg"
+              placeholder="Large"
+            ></ha-textarea>
           </div>
         </div>
       </div>
 
       <div>
         <h3 style="margin: 0 0 1rem 0;">Filled Variant</h3>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+        <div
+          style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;"
+        >
           <div>
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Small</p>
-            <ha-textarea variant="filled" size="sm" placeholder="Small"></ha-textarea>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Small
+            </p>
+            <ha-textarea
+              variant="filled"
+              size="sm"
+              placeholder="Small"
+            ></ha-textarea>
           </div>
           <div>
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Medium</p>
-            <ha-textarea variant="filled" size="md" placeholder="Medium"></ha-textarea>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Medium
+            </p>
+            <ha-textarea
+              variant="filled"
+              size="md"
+              placeholder="Medium"
+            ></ha-textarea>
           </div>
           <div>
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Large</p>
-            <ha-textarea variant="filled" size="lg" placeholder="Large"></ha-textarea>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Large
+            </p>
+            <ha-textarea
+              variant="filled"
+              size="lg"
+              placeholder="Large"
+            ></ha-textarea>
           </div>
         </div>
       </div>
 
       <div>
         <h3 style="margin: 0 0 1rem 0;">Outlined Variant</h3>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+        <div
+          style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;"
+        >
           <div>
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Small</p>
-            <ha-textarea variant="outlined" size="sm" placeholder="Small"></ha-textarea>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Small
+            </p>
+            <ha-textarea
+              variant="outlined"
+              size="sm"
+              placeholder="Small"
+            ></ha-textarea>
           </div>
           <div>
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Medium</p>
-            <ha-textarea variant="outlined" size="md" placeholder="Medium"></ha-textarea>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Medium
+            </p>
+            <ha-textarea
+              variant="outlined"
+              size="md"
+              placeholder="Medium"
+            ></ha-textarea>
           </div>
           <div>
-            <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Large</p>
-            <ha-textarea variant="outlined" size="lg" placeholder="Large"></ha-textarea>
+            <p
+              style="margin: 0 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;"
+            >
+              Large
+            </p>
+            <ha-textarea
+              variant="outlined"
+              size="lg"
+              placeholder="Large"
+            ></ha-textarea>
           </div>
         </div>
       </div>

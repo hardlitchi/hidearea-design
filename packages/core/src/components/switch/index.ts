@@ -1,1 +1,1 @@
-export { HaSwitch } from './switch';
+export { HaSwitch } from "./switch";

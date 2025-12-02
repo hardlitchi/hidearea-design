@@ -1,4 +1,4 @@
-import { breadcrumbStyles } from './breadcrumb.styles';
+import { breadcrumbStyles } from "./breadcrumb.styles";
 
 /**
  * Breadcrumb component
@@ -16,31 +16,31 @@ export class HaBreadcrumb extends HTMLElement {
   private itemsSlot: HTMLSlotElement;
 
   static get observedAttributes() {
-    return ['separator', 'size'];
+    return ["separator", "size"];
   }
 
   constructor() {
     super();
 
     // Attach shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create styles
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = breadcrumbStyles;
 
     // Create nav
-    this.nav = document.createElement('nav');
-    this.nav.setAttribute('part', 'nav');
-    this.nav.setAttribute('aria-label', 'breadcrumb');
+    this.nav = document.createElement("nav");
+    this.nav.setAttribute("part", "nav");
+    this.nav.setAttribute("aria-label", "breadcrumb");
 
     // Create ordered list
-    this.list = document.createElement('ol');
-    this.list.className = 'breadcrumb';
-    this.list.setAttribute('part', 'list');
+    this.list = document.createElement("ol");
+    this.list.className = "breadcrumb";
+    this.list.setAttribute("part", "list");
 
     // Create slot for items
-    this.itemsSlot = document.createElement('slot');
+    this.itemsSlot = document.createElement("slot");
     this.list.appendChild(this.itemsSlot);
 
     // Append to nav
@@ -51,18 +51,18 @@ export class HaBreadcrumb extends HTMLElement {
     shadow.appendChild(this.nav);
 
     // Listen for slotchange to update items
-    this.itemsSlot.addEventListener('slotchange', () => {
+    this.itemsSlot.addEventListener("slotchange", () => {
       this.updateItems();
     });
   }
 
   connectedCallback() {
     // Set default attributes
-    if (!this.hasAttribute('separator')) {
-      this.setAttribute('separator', 'slash');
+    if (!this.hasAttribute("separator")) {
+      this.setAttribute("separator", "slash");
     }
-    if (!this.hasAttribute('size')) {
-      this.setAttribute('size', 'md');
+    if (!this.hasAttribute("size")) {
+      this.setAttribute("size", "md");
     }
 
     this.updateClasses();
@@ -72,7 +72,7 @@ export class HaBreadcrumb extends HTMLElement {
   attributeChangedCallback(_name: string, oldValue: string, newValue: string) {
     if (oldValue === newValue) return;
 
-    if (_name === 'separator') {
+    if (_name === "separator") {
       this.updateItems();
     } else {
       this.updateClasses();
@@ -89,14 +89,14 @@ export class HaBreadcrumb extends HTMLElement {
     items.forEach((item, index) => {
       // Set separator on all items except last
       const breadcrumbItem = item as HTMLElement & { separator: string };
-      if (!item.hasAttribute('separator')) {
+      if (!item.hasAttribute("separator")) {
         breadcrumbItem.separator = this.separator;
       }
 
       // Wrap in <li> if not already wrapped
-      if (item.parentElement?.tagName !== 'LI') {
-        const li = document.createElement('li');
-        li.setAttribute('part', 'list-item');
+      if (item.parentElement?.tagName !== "LI") {
+        const li = document.createElement("li");
+        li.setAttribute("part", "list-item");
 
         // Insert li before the item
         item.parentElement?.insertBefore(li, item);
@@ -109,41 +109,41 @@ export class HaBreadcrumb extends HTMLElement {
       const li = item.parentElement as HTMLLIElement;
       if (li) {
         if (index === items.length - 1) {
-          li.setAttribute('aria-current', 'page');
+          li.setAttribute("aria-current", "page");
         } else {
-          li.removeAttribute('aria-current');
+          li.removeAttribute("aria-current");
         }
       }
     });
   }
 
   private getItems(): Element[] {
-    const slot = this.shadowRoot?.querySelector('slot');
+    const slot = this.shadowRoot?.querySelector("slot");
     if (!slot) return [];
 
     const elements = slot.assignedElements();
-    return elements.filter((el) => el.tagName === 'HA-BREADCRUMB-ITEM');
+    return elements.filter((el) => el.tagName === "HA-BREADCRUMB-ITEM");
   }
 
   // Public API
   get separator(): string {
-    return this.getAttribute('separator') || 'slash';
+    return this.getAttribute("separator") || "slash";
   }
 
   set separator(value: string) {
-    this.setAttribute('separator', value);
+    this.setAttribute("separator", value);
   }
 
   get size(): string {
-    return this.getAttribute('size') || 'md';
+    return this.getAttribute("size") || "md";
   }
 
   set size(value: string) {
-    this.setAttribute('size', value);
+    this.setAttribute("size", value);
   }
 }
 
 // Register custom element
-if (!customElements.get('ha-breadcrumb')) {
-  customElements.define('ha-breadcrumb', HaBreadcrumb);
+if (!customElements.get("ha-breadcrumb")) {
+  customElements.define("ha-breadcrumb", HaBreadcrumb);
 }

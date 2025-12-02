@@ -1,4 +1,4 @@
-import { tooltipStyles } from './tooltip.styles';
+import { tooltipStyles } from "./tooltip.styles";
 
 /**
  * Tooltip component
@@ -31,14 +31,14 @@ export class HaTooltip extends HTMLElement {
 
   static get observedAttributes() {
     return [
-      'content',
-      'placement',
-      'trigger',
-      'variant',
-      'size',
-      'show-arrow',
-      'delay',
-      'disabled',
+      "content",
+      "placement",
+      "trigger",
+      "variant",
+      "size",
+      "show-arrow",
+      "delay",
+      "disabled",
     ];
   }
 
@@ -49,32 +49,32 @@ export class HaTooltip extends HTMLElement {
     this.tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
 
     // Attach shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create styles
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = tooltipStyles;
 
     // Create trigger wrapper
-    this.trigger = document.createElement('div');
-    this.trigger.className = 'tooltip-trigger';
-    this.trigger.setAttribute('part', 'trigger');
+    this.trigger = document.createElement("div");
+    this.trigger.className = "tooltip-trigger";
+    this.trigger.setAttribute("part", "trigger");
 
     // Create trigger slot
-    const triggerSlot = document.createElement('slot');
+    const triggerSlot = document.createElement("slot");
     this.trigger.appendChild(triggerSlot);
 
     // Create tooltip content
-    this.tooltipContent = document.createElement('div');
-    this.tooltipContent.className = 'tooltip-content';
-    this.tooltipContent.setAttribute('part', 'content');
-    this.tooltipContent.setAttribute('role', 'tooltip');
+    this.tooltipContent = document.createElement("div");
+    this.tooltipContent.className = "tooltip-content";
+    this.tooltipContent.setAttribute("part", "content");
+    this.tooltipContent.setAttribute("role", "tooltip");
     this.tooltipContent.id = this.tooltipId;
 
     // Create content slot
-    const contentSlot = document.createElement('slot');
-    contentSlot.name = 'content';
-    contentSlot.addEventListener('slotchange', () => {
+    const contentSlot = document.createElement("slot");
+    contentSlot.name = "content";
+    contentSlot.addEventListener("slotchange", () => {
       this.updateContent();
     });
     this.tooltipContent.appendChild(contentSlot);
@@ -97,20 +97,20 @@ export class HaTooltip extends HTMLElement {
 
   connectedCallback() {
     // Set default attributes
-    if (!this.hasAttribute('placement')) {
-      this.setAttribute('placement', 'top');
+    if (!this.hasAttribute("placement")) {
+      this.setAttribute("placement", "top");
     }
-    if (!this.hasAttribute('trigger')) {
-      this.setAttribute('trigger', 'hover');
+    if (!this.hasAttribute("trigger")) {
+      this.setAttribute("trigger", "hover");
     }
-    if (!this.hasAttribute('variant')) {
-      this.setAttribute('variant', 'default');
+    if (!this.hasAttribute("variant")) {
+      this.setAttribute("variant", "default");
     }
-    if (!this.hasAttribute('size')) {
-      this.setAttribute('size', 'md');
+    if (!this.hasAttribute("size")) {
+      this.setAttribute("size", "md");
     }
-    if (!this.hasAttribute('delay')) {
-      this.setAttribute('delay', '200');
+    if (!this.hasAttribute("delay")) {
+      this.setAttribute("delay", "200");
     }
 
     this.updateContent();
@@ -119,9 +119,11 @@ export class HaTooltip extends HTMLElement {
     this.attachEventListeners();
 
     // Set ARIA attributes
-    const triggerElement = this.trigger.querySelector('slot')?.assignedElements()[0] as HTMLElement;
+    const triggerElement = this.trigger
+      .querySelector("slot")
+      ?.assignedElements()[0] as HTMLElement;
     if (triggerElement) {
-      triggerElement.setAttribute('aria-describedby', this.tooltipId);
+      triggerElement.setAttribute("aria-describedby", this.tooltipId);
     }
   }
 
@@ -134,25 +136,25 @@ export class HaTooltip extends HTMLElement {
     if (oldValue === newValue) return;
 
     switch (name) {
-      case 'content':
+      case "content":
         this.updateContent();
         break;
-      case 'placement':
-      case 'variant':
-      case 'size':
+      case "placement":
+      case "variant":
+      case "size":
         this.updateClasses();
         if (this.isVisible) {
           this.updatePosition();
         }
         break;
-      case 'show-arrow':
+      case "show-arrow":
         this.updateArrow();
         break;
-      case 'trigger':
+      case "trigger":
         this.detachEventListeners();
         this.attachEventListeners();
         break;
-      case 'disabled':
+      case "disabled":
         if (this.disabled) {
           this.hide();
         }
@@ -161,14 +163,17 @@ export class HaTooltip extends HTMLElement {
   }
 
   private updateContent() {
-    const contentSlot = this.tooltipContent.querySelector('slot[name="content"]') as HTMLSlotElement;
-    const hasSlottedContent = contentSlot && contentSlot.assignedElements().length > 0;
+    const contentSlot = this.tooltipContent.querySelector(
+      'slot[name="content"]',
+    ) as HTMLSlotElement;
+    const hasSlottedContent =
+      contentSlot && contentSlot.assignedElements().length > 0;
 
     if (!hasSlottedContent && this.content) {
       // Use content attribute
       const textNode = document.createTextNode(this.content);
       // Clear existing text nodes
-      Array.from(this.tooltipContent.childNodes).forEach(node => {
+      Array.from(this.tooltipContent.childNodes).forEach((node) => {
         if (node.nodeType === Node.TEXT_NODE) {
           this.tooltipContent.removeChild(node);
         }
@@ -180,9 +185,9 @@ export class HaTooltip extends HTMLElement {
   private updateArrow() {
     if (this.showArrow) {
       if (!this.arrow) {
-        this.arrow = document.createElement('div');
-        this.arrow.className = 'tooltip-arrow';
-        this.arrow.setAttribute('part', 'arrow');
+        this.arrow = document.createElement("div");
+        this.arrow.className = "tooltip-arrow";
+        this.arrow.setAttribute("part", "arrow");
         this.tooltipContent.appendChild(this.arrow);
       }
     } else {
@@ -195,46 +200,58 @@ export class HaTooltip extends HTMLElement {
 
   private updateClasses() {
     const classes = [
-      'tooltip-content',
+      "tooltip-content",
       `variant-${this.variant}`,
       `size-${this.size}`,
     ];
 
     if (this.isVisible) {
-      classes.push('visible');
+      classes.push("visible");
     }
 
-    this.tooltipContent.className = classes.join(' ');
-    this.tooltipContent.setAttribute('data-placement', this.placement);
+    this.tooltipContent.className = classes.join(" ");
+    this.tooltipContent.setAttribute("data-placement", this.placement);
   }
 
   private attachEventListeners() {
     switch (this.triggerMode) {
-      case 'hover':
-        this.trigger.addEventListener('mouseenter', this.handleTriggerMouseEnter);
-        this.trigger.addEventListener('mouseleave', this.handleTriggerMouseLeave);
-        this.trigger.addEventListener('focus', this.handleTriggerFocus);
-        this.trigger.addEventListener('blur', this.handleTriggerBlur);
+      case "hover":
+        this.trigger.addEventListener(
+          "mouseenter",
+          this.handleTriggerMouseEnter,
+        );
+        this.trigger.addEventListener(
+          "mouseleave",
+          this.handleTriggerMouseLeave,
+        );
+        this.trigger.addEventListener("focus", this.handleTriggerFocus);
+        this.trigger.addEventListener("blur", this.handleTriggerBlur);
         break;
-      case 'focus':
-        this.trigger.addEventListener('focus', this.handleTriggerFocus);
-        this.trigger.addEventListener('blur', this.handleTriggerBlur);
+      case "focus":
+        this.trigger.addEventListener("focus", this.handleTriggerFocus);
+        this.trigger.addEventListener("blur", this.handleTriggerBlur);
         break;
-      case 'click':
-        this.trigger.addEventListener('click', this.handleTriggerClick);
+      case "click":
+        this.trigger.addEventListener("click", this.handleTriggerClick);
         break;
     }
   }
 
   private detachEventListeners() {
-    this.trigger.removeEventListener('mouseenter', this.handleTriggerMouseEnter);
-    this.trigger.removeEventListener('mouseleave', this.handleTriggerMouseLeave);
-    this.trigger.removeEventListener('focus', this.handleTriggerFocus);
-    this.trigger.removeEventListener('blur', this.handleTriggerBlur);
-    this.trigger.removeEventListener('click', this.handleTriggerClick);
-    document.removeEventListener('click', this.handleDocumentClick);
-    window.removeEventListener('resize', this.handleWindowResize);
-    window.removeEventListener('scroll', this.handleWindowScroll, true);
+    this.trigger.removeEventListener(
+      "mouseenter",
+      this.handleTriggerMouseEnter,
+    );
+    this.trigger.removeEventListener(
+      "mouseleave",
+      this.handleTriggerMouseLeave,
+    );
+    this.trigger.removeEventListener("focus", this.handleTriggerFocus);
+    this.trigger.removeEventListener("blur", this.handleTriggerBlur);
+    this.trigger.removeEventListener("click", this.handleTriggerClick);
+    document.removeEventListener("click", this.handleDocumentClick);
+    window.removeEventListener("resize", this.handleWindowResize);
+    window.removeEventListener("scroll", this.handleWindowScroll, true);
   }
 
   private handleTriggerMouseEnter() {
@@ -266,7 +283,7 @@ export class HaTooltip extends HTMLElement {
       this.show();
       // Listen for clicks outside to close
       setTimeout(() => {
-        document.addEventListener('click', this.handleDocumentClick);
+        document.addEventListener("click", this.handleDocumentClick);
       }, 0);
     }
   }
@@ -274,7 +291,7 @@ export class HaTooltip extends HTMLElement {
   private handleDocumentClick(e: Event) {
     if (!this.contains(e.target as Node)) {
       this.hide();
-      document.removeEventListener('click', this.handleDocumentClick);
+      document.removeEventListener("click", this.handleDocumentClick);
     }
   }
 
@@ -314,14 +331,14 @@ export class HaTooltip extends HTMLElement {
       this.updatePosition();
 
       // Add resize and scroll listeners
-      window.addEventListener('resize', this.handleWindowResize);
-      window.addEventListener('scroll', this.handleWindowScroll, true);
+      window.addEventListener("resize", this.handleWindowResize);
+      window.addEventListener("scroll", this.handleWindowScroll, true);
 
       this.dispatchEvent(
-        new CustomEvent('show', {
+        new CustomEvent("show", {
           bubbles: true,
           composed: true,
-        })
+        }),
       );
     }, delay);
   }
@@ -336,14 +353,14 @@ export class HaTooltip extends HTMLElement {
       this.updateClasses();
 
       // Remove resize and scroll listeners
-      window.removeEventListener('resize', this.handleWindowResize);
-      window.removeEventListener('scroll', this.handleWindowScroll, true);
+      window.removeEventListener("resize", this.handleWindowResize);
+      window.removeEventListener("scroll", this.handleWindowScroll, true);
 
       this.dispatchEvent(
-        new CustomEvent('hide', {
+        new CustomEvent("hide", {
           bubbles: true,
           composed: true,
-        })
+        }),
       );
     }, 0);
   }
@@ -359,51 +376,51 @@ export class HaTooltip extends HTMLElement {
 
     // Calculate position based on placement
     switch (placement) {
-      case 'top':
+      case "top":
         top = triggerRect.top - tooltipRect.height - offset;
         left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
         break;
-      case 'top-start':
+      case "top-start":
         top = triggerRect.top - tooltipRect.height - offset;
         left = triggerRect.left;
         break;
-      case 'top-end':
+      case "top-end":
         top = triggerRect.top - tooltipRect.height - offset;
         left = triggerRect.right - tooltipRect.width;
         break;
-      case 'bottom':
+      case "bottom":
         top = triggerRect.bottom + offset;
         left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
         break;
-      case 'bottom-start':
+      case "bottom-start":
         top = triggerRect.bottom + offset;
         left = triggerRect.left;
         break;
-      case 'bottom-end':
+      case "bottom-end":
         top = triggerRect.bottom + offset;
         left = triggerRect.right - tooltipRect.width;
         break;
-      case 'left':
+      case "left":
         top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2;
         left = triggerRect.left - tooltipRect.width - offset;
         break;
-      case 'left-start':
+      case "left-start":
         top = triggerRect.top;
         left = triggerRect.left - tooltipRect.width - offset;
         break;
-      case 'left-end':
+      case "left-end":
         top = triggerRect.bottom - tooltipRect.height;
         left = triggerRect.left - tooltipRect.width - offset;
         break;
-      case 'right':
+      case "right":
         top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2;
         left = triggerRect.right + offset;
         break;
-      case 'right-start':
+      case "right-start":
         top = triggerRect.top;
         left = triggerRect.right + offset;
         break;
-      case 'right-end':
+      case "right-end":
         top = triggerRect.bottom - tooltipRect.height;
         left = triggerRect.right + offset;
         break;
@@ -434,74 +451,74 @@ export class HaTooltip extends HTMLElement {
 
   // Public API
   get content(): string {
-    return this.getAttribute('content') || '';
+    return this.getAttribute("content") || "";
   }
 
   set content(value: string) {
-    this.setAttribute('content', value);
+    this.setAttribute("content", value);
   }
 
   get placement(): string {
-    return this.getAttribute('placement') || 'top';
+    return this.getAttribute("placement") || "top";
   }
 
   set placement(value: string) {
-    this.setAttribute('placement', value);
+    this.setAttribute("placement", value);
   }
 
   get triggerMode(): string {
-    return this.getAttribute('trigger') || 'hover';
+    return this.getAttribute("trigger") || "hover";
   }
 
   set triggerMode(value: string) {
-    this.setAttribute('trigger', value);
+    this.setAttribute("trigger", value);
   }
 
   get variant(): string {
-    return this.getAttribute('variant') || 'default';
+    return this.getAttribute("variant") || "default";
   }
 
   set variant(value: string) {
-    this.setAttribute('variant', value);
+    this.setAttribute("variant", value);
   }
 
   get size(): string {
-    return this.getAttribute('size') || 'md';
+    return this.getAttribute("size") || "md";
   }
 
   set size(value: string) {
-    this.setAttribute('size', value);
+    this.setAttribute("size", value);
   }
 
   get showArrow(): boolean {
-    return this.hasAttribute('show-arrow');
+    return this.hasAttribute("show-arrow");
   }
 
   set showArrow(value: boolean) {
     if (value) {
-      this.setAttribute('show-arrow', '');
+      this.setAttribute("show-arrow", "");
     } else {
-      this.removeAttribute('show-arrow');
+      this.removeAttribute("show-arrow");
     }
   }
 
   get delay(): number {
-    return parseInt(this.getAttribute('delay') || '200', 10);
+    return parseInt(this.getAttribute("delay") || "200", 10);
   }
 
   set delay(value: number) {
-    this.setAttribute('delay', value.toString());
+    this.setAttribute("delay", value.toString());
   }
 
   get disabled(): boolean {
-    return this.hasAttribute('disabled');
+    return this.hasAttribute("disabled");
   }
 
   set disabled(value: boolean) {
     if (value) {
-      this.setAttribute('disabled', '');
+      this.setAttribute("disabled", "");
     } else {
-      this.removeAttribute('disabled');
+      this.removeAttribute("disabled");
     }
   }
 
@@ -524,6 +541,6 @@ export class HaTooltip extends HTMLElement {
 }
 
 // Register custom element
-if (!customElements.get('ha-tooltip')) {
-  customElements.define('ha-tooltip', HaTooltip);
+if (!customElements.get("ha-tooltip")) {
+  customElements.define("ha-tooltip", HaTooltip);
 }

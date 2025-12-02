@@ -1,67 +1,67 @@
-import type { Meta, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
-import '@hidearea-design/core';
+import type { Meta, StoryObj } from "@storybook/web-components";
+import { html } from "lit";
+import "@hidearea-design/core";
 
 const meta: Meta = {
-  title: 'Components/Tooltip',
-  tags: ['autodocs'],
+  title: "Components/Tooltip",
+  tags: ["autodocs"],
   argTypes: {
     content: {
-      control: 'text',
-      description: 'Tooltip content text',
+      control: "text",
+      description: "Tooltip content text",
     },
     placement: {
-      control: 'select',
+      control: "select",
       options: [
-        'top',
-        'top-start',
-        'top-end',
-        'bottom',
-        'bottom-start',
-        'bottom-end',
-        'left',
-        'left-start',
-        'left-end',
-        'right',
-        'right-start',
-        'right-end',
+        "top",
+        "top-start",
+        "top-end",
+        "bottom",
+        "bottom-start",
+        "bottom-end",
+        "left",
+        "left-start",
+        "left-end",
+        "right",
+        "right-start",
+        "right-end",
       ],
-      description: 'Tooltip placement',
+      description: "Tooltip placement",
     },
     trigger: {
-      control: 'select',
-      options: ['hover', 'focus', 'click'],
-      description: 'Trigger type',
+      control: "select",
+      options: ["hover", "focus", "click"],
+      description: "Trigger type",
     },
     variant: {
-      control: 'select',
-      options: ['default', 'dark', 'light'],
-      description: 'Tooltip variant',
+      control: "select",
+      options: ["default", "dark", "light"],
+      description: "Tooltip variant",
     },
     size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'Tooltip size',
+      control: "select",
+      options: ["sm", "md", "lg"],
+      description: "Tooltip size",
     },
     showArrow: {
-      control: 'boolean',
-      description: 'Show arrow indicator',
+      control: "boolean",
+      description: "Show arrow indicator",
     },
     delay: {
-      control: 'number',
-      description: 'Show delay in milliseconds',
+      control: "number",
+      description: "Show delay in milliseconds",
     },
     disabled: {
-      control: 'boolean',
-      description: 'Disabled state',
+      control: "boolean",
+      description: "Disabled state",
     },
   },
   args: {
-    content: 'This is a tooltip',
-    placement: 'top',
-    trigger: 'hover',
-    variant: 'default',
-    size: 'md',
+    content: "This is a tooltip",
+    placement: "top",
+    trigger: "hover",
+    variant: "default",
+    size: "md",
     showArrow: true,
     delay: 200,
     disabled: false,
@@ -84,9 +84,7 @@ export const Default: Story = {
         delay="${args.delay}"
         ?disabled="${args.disabled}"
       >
-        <button style="padding: 8px 16px; cursor: pointer;">
-          Hover me
-        </button>
+        <button style="padding: 8px 16px; cursor: pointer;">Hover me</button>
       </ha-tooltip>
     </div>
   `,
@@ -94,7 +92,9 @@ export const Default: Story = {
 
 export const Placements: Story = {
   render: () => html`
-    <div style="padding: 150px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center;">
+    <div
+      style="padding: 150px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center;"
+    >
       <ha-tooltip content="Top start" placement="top-start" show-arrow>
         <button style="padding: 8px 16px;">Top Start</button>
       </ha-tooltip>
@@ -144,7 +144,9 @@ export const Placements: Story = {
 
 export const Triggers: Story = {
   render: () => html`
-    <div style="padding: 100px; display: flex; gap: 24px; justify-content: center;">
+    <div
+      style="padding: 100px; display: flex; gap: 24px; justify-content: center;"
+    >
       <ha-tooltip content="Appears on hover" trigger="hover" show-arrow>
         <button style="padding: 8px 16px;">Hover</button>
       </ha-tooltip>
@@ -160,7 +162,9 @@ export const Triggers: Story = {
 
 export const Variants: Story = {
   render: () => html`
-    <div style="padding: 100px; display: flex; gap: 24px; justify-content: center;">
+    <div
+      style="padding: 100px; display: flex; gap: 24px; justify-content: center;"
+    >
       <ha-tooltip content="Default variant" variant="default" show-arrow>
         <button style="padding: 8px 16px;">Default</button>
       </ha-tooltip>
@@ -176,14 +180,20 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => html`
-    <div style="padding: 100px; display: flex; gap: 24px; justify-content: center;">
+    <div
+      style="padding: 100px; display: flex; gap: 24px; justify-content: center;"
+    >
       <ha-tooltip content="Small tooltip" size="sm" show-arrow>
         <button style="padding: 8px 16px;">Small</button>
       </ha-tooltip>
       <ha-tooltip content="Medium tooltip" size="md" show-arrow>
         <button style="padding: 8px 16px;">Medium</button>
       </ha-tooltip>
-      <ha-tooltip content="Large tooltip with more content to demonstrate the larger size" size="lg" show-arrow>
+      <ha-tooltip
+        content="Large tooltip with more content to demonstrate the larger size"
+        size="lg"
+        show-arrow
+      >
         <button style="padding: 8px 16px;">Large</button>
       </ha-tooltip>
     </div>
@@ -192,7 +202,9 @@ export const Sizes: Story = {
 
 export const WithArrow: Story = {
   render: () => html`
-    <div style="padding: 100px; display: flex; gap: 24px; justify-content: center;">
+    <div
+      style="padding: 100px; display: flex; gap: 24px; justify-content: center;"
+    >
       <ha-tooltip content="With arrow" show-arrow>
         <button style="padding: 8px 16px;">With Arrow</button>
       </ha-tooltip>
@@ -205,7 +217,9 @@ export const WithArrow: Story = {
 
 export const Delay: Story = {
   render: () => html`
-    <div style="padding: 100px; display: flex; gap: 24px; justify-content: center;">
+    <div
+      style="padding: 100px; display: flex; gap: 24px; justify-content: center;"
+    >
       <ha-tooltip content="No delay" delay="0" show-arrow>
         <button style="padding: 8px 16px;">No Delay</button>
       </ha-tooltip>
@@ -224,7 +238,9 @@ export const Delay: Story = {
 
 export const Disabled: Story = {
   render: () => html`
-    <div style="padding: 100px; display: flex; gap: 24px; justify-content: center;">
+    <div
+      style="padding: 100px; display: flex; gap: 24px; justify-content: center;"
+    >
       <ha-tooltip content="This tooltip works" show-arrow>
         <button style="padding: 8px 16px;">Enabled</button>
       </ha-tooltip>
@@ -265,19 +281,27 @@ export const CustomSlotContent: Story = {
 
 export const WithIcons: Story = {
   render: () => html`
-    <div style="padding: 100px; display: flex; gap: 24px; justify-content: center;">
+    <div
+      style="padding: 100px; display: flex; gap: 24px; justify-content: center;"
+    >
       <ha-tooltip content="Information" show-arrow>
-        <button style="padding: 8px; cursor: help; border: none; background: var(--ha-color-primary-500); color: white; border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;">
+        <button
+          style="padding: 8px; cursor: help; border: none; background: var(--ha-color-primary-500); color: white; border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;"
+        >
           i
         </button>
       </ha-tooltip>
       <ha-tooltip content="Help" show-arrow>
-        <button style="padding: 8px; cursor: help; border: none; background: var(--ha-color-success-500); color: white; border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;">
+        <button
+          style="padding: 8px; cursor: help; border: none; background: var(--ha-color-success-500); color: white; border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;"
+        >
           ?
         </button>
       </ha-tooltip>
       <ha-tooltip content="Warning" variant="dark" show-arrow>
-        <button style="padding: 8px; cursor: help; border: none; background: var(--ha-color-warning-500); color: white; border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;">
+        <button
+          style="padding: 8px; cursor: help; border: none; background: var(--ha-color-warning-500); color: white; border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;"
+        >
           !
         </button>
       </ha-tooltip>
