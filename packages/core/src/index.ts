@@ -24,6 +24,7 @@ export {
   HaMenuItem,
   HaMenuDivider,
 } from "./components/menu";
+export { HaModal } from "./components/modal";
 
 // Export types if needed
 export type { HaButton as HaButtonElement } from "./components/button/button";
