@@ -73,3 +73,27 @@ export type { PaginationProps } from "./Pagination";
 
 export { Avatar, AvatarGroup } from "./Avatar";
 export type { AvatarProps, AvatarGroupProps } from "./Avatar";
+
+export { Table } from "./Table";
+export type { TableProps, TableRef } from "./Table";
+
+export { Accordion, AccordionItem } from "./Accordion";
+export type {
+  AccordionProps,
+  AccordionRef,
+  AccordionItemProps,
+  AccordionItemRef,
+} from "./Accordion";
+
+export { Drawer } from "./Drawer";
+export type { DrawerProps, DrawerRef } from "./Drawer";
+
+export { List, ListItem, ListDivider } from "./List";
+export type {
+  ListProps,
+  ListRef,
+  ListItemProps,
+  ListItemRef,
+  ListDividerProps,
+  ListDividerRef,
+} from "./List";
