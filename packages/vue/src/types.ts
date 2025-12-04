@@ -327,6 +327,5 @@ export interface ListItemProps {
   active?: boolean;
 }
 
-export interface ListDividerProps {
-  // No props
-}
+// ListDivider has no props, using empty object type
+export type ListDividerProps = Record<string, never>;
