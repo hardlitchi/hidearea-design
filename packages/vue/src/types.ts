@@ -287,3 +287,45 @@ export interface AvatarGroupProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
   layout?: "stack" | "grid" | "list";
 }
+
+export interface TableProps {
+  striped?: boolean;
+  bordered?: boolean;
+  hoverable?: boolean;
+  compact?: boolean;
+  fullWidth?: boolean;
+}
+
+export interface AccordionProps {
+  allowMultiple?: boolean;
+  collapsible?: boolean;
+}
+
+export interface AccordionItemProps {
+  open?: boolean;
+  disabled?: boolean;
+  header?: string;
+}
+
+export interface DrawerProps {
+  open?: boolean;
+  placement?: "left" | "right" | "top" | "bottom";
+  size?: "sm" | "md" | "lg";
+  overlay?: boolean;
+  closeOnBackdrop?: boolean;
+  closeOnEscape?: boolean;
+}
+
+export interface ListProps {
+  bordered?: boolean;
+  hoverable?: boolean;
+  divided?: boolean;
+}
+
+export interface ListItemProps {
+  disabled?: boolean;
+  active?: boolean;
+}
+
+// ListDivider has no props, using empty object type
+export type ListDividerProps = Record<string, never>;

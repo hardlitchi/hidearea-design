@@ -28,6 +28,13 @@ import ToastContainer from "./ToastContainer.vue";
 import Pagination from "./Pagination.vue";
 import Avatar from "./Avatar.vue";
 import AvatarGroup from "./AvatarGroup.vue";
+import Table from "./Table.vue";
+import Accordion from "./Accordion.vue";
+import AccordionItem from "./AccordionItem.vue";
+import Drawer from "./Drawer.vue";
+import List from "./List.vue";
+import ListItem from "./ListItem.vue";
+import ListDivider from "./ListDivider.vue";
 
 export {
   Button,
@@ -59,6 +66,13 @@ export {
   Pagination,
   Avatar,
   AvatarGroup,
+  Table,
+  Accordion,
+  AccordionItem,
+  Drawer,
+  List,
+  ListItem,
+  ListDivider,
 };
 export type {
   ButtonProps,
@@ -90,6 +104,13 @@ export type {
   PaginationProps,
   AvatarProps,
   AvatarGroupProps,
+  TableProps,
+  AccordionProps,
+  AccordionItemProps,
+  DrawerProps,
+  ListProps,
+  ListItemProps,
+  ListDividerProps,
 } from "./types";
 
 // Vue plugin for installing all components
@@ -124,5 +145,12 @@ export default {
     app.component("HaPagination", Pagination);
     app.component("HaAvatar", Avatar);
     app.component("HaAvatarGroup", AvatarGroup);
+    app.component("HaTable", Table);
+    app.component("HaAccordion", Accordion);
+    app.component("HaAccordionItem", AccordionItem);
+    app.component("HaDrawer", Drawer);
+    app.component("HaList", List);
+    app.component("HaListItem", ListItem);
+    app.component("HaListDivider", ListDivider);
   },
 };

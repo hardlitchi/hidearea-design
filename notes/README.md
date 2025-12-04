@@ -1,6 +1,6 @@
 # Hidearea Design System - 実装状況サマリー
 
-**最終更新**: 2025-12-02
+**最終更新**: 2025-12-04
 
 ---
 
@@ -22,11 +22,11 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ## 実装済みコンポーネント
 
-### 総コンポーネント数: **25**
+### 総コンポーネント数: **29**
 
-### Storybookストーリー: **203+**
+### Storybookストーリー: **272+**
 
-### ユニットテスト: **799** (全てパス)
+### ユニットテスト: **1,094** (全てパス)
 
 ---
 
@@ -259,11 +259,58 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 - **機能**: Image/initials/icon support, status indicators (online, offline, away, busy), group layouts (stack, grid, list), max count display
 - **コンポーネント**: ha-avatar, ha-avatar-group
 
+### Phase 7: データ表示・レイアウト拡張 (4/4) ✅
+
+| #   | コンポーネント     | バリアント | サイズ | Storybook | テスト | React | Vue |
+| --- | ------------------ | ---------- | ------ | --------- | ------ | ----- | --- |
+| 26  | **Table** ✨       | 5機能      | -      | 8個       | ✅ 23  | ✅    | ✅  |
+| 27-28| **Accordion** ✨  | 2機能      | -      | 7個       | ✅ 34  | ✅    | ✅  |
+| 29  | **Drawer** ✨      | 4配置      | 3種類  | 6個       | ✅ 37  | ✅    | ✅  |
+| 30-32| **List** ✨       | 3機能      | -      | 9個       | ✅ 38  | ✅    | ✅  |
+
+#### Table ✨ 新規
+
+- **機能**: striped, bordered, hoverable, compact, full-width
+- **スロット**: default (thead, tbody, tfoot)
+- **CSS Parts**: wrapper, table
+- **テスト**: 23個
+
+#### Accordion ✨ 新規
+
+- **機能**: Single/multiple open, collapsible, animated expand/collapse
+- **属性 (Accordion)**: allow-multiple, collapsible
+- **属性 (Item)**: open, disabled, header
+- **スロット (Item)**: header, default, icon
+- **イベント**: accordion-toggle, accordion-open, accordion-close
+- **コンポーネント**: ha-accordion, ha-accordion-item
+- **テスト**: 34個
+
+#### Drawer ✨ 新規
+
+- **配置**: left, right, top, bottom
+- **サイズ**: sm (256px), md (320px), lg (400px)
+- **機能**: Overlay backdrop, keyboard handling (Esc), scroll lock
+- **属性**: open, placement, size, overlay, close-on-backdrop, close-on-escape
+- **スロット**: header, default, footer
+- **イベント**: drawer-open, drawer-close, backdrop-click
+- **コンポーネント**: ha-drawer
+- **テスト**: 37個
+
+#### List ✨ 新規
+
+- **機能**: Bordered, hoverable, divided, prefix/suffix slots
+- **属性 (List)**: bordered, hoverable, divided
+- **属性 (Item)**: disabled, active
+- **スロット (Item)**: prefix, default, suffix
+- **イベント**: list-item-click
+- **コンポーネント**: ha-list, ha-list-item, ha-list-divider
+- **テスト**: 38個
+
 ---
 
 ## フレームワークサポート状況
 
-### React ラッパー: 25/25 コンポーネント ✅ **100%完了**
+### React ラッパー: 29/29 コンポーネント ✅ **100%完了**
 
 **実装済み**:
 
@@ -272,9 +319,10 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 - ✅ FormGroup, Select, Radio, Textarea, Switch (Phase 3)
 - ✅ Alert, Badge, Card, Progress, Spinner (Phase 4)
 - ✅ Tooltip, Tabs, Breadcrumb, Dropdown/Menu (Phase 5)
-- ✅ Modal, Toast, Pagination, Avatar (Phase 6) ✨
+- ✅ Modal, Toast, Pagination, Avatar (Phase 6)
+- ✅ Table, Accordion, Drawer, List (Phase 7) ✨
 
-### Vue ラッパー: 25/25 コンポーネント ✅ **100%完了**
+### Vue ラッパー: 29/29 コンポーネント ✅ **100%完了**
 
 **実装済み**:
 
@@ -283,7 +331,8 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 - ✅ FormGroup, Select, Radio, Textarea, Switch (Phase 3)
 - ✅ Alert, Badge, Card, Progress, Spinner (Phase 4)
 - ✅ Tooltip, Tabs, Breadcrumb, Dropdown/Menu (Phase 5)
-- ✅ Modal, Toast, Pagination, Avatar (Phase 6) ✨
+- ✅ Modal, Toast, Pagination, Avatar (Phase 6)
+- ✅ Table, Accordion, Drawer, List (Phase 7) ✨
 
 ---
 
@@ -333,9 +382,9 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ### コンポーネントテスト
 
-- **総テスト数**: 799 (全て成功)
+- **総テスト数**: 1,094 (全て成功)
 - **カバレッジ目標**: Lines 80%以上、Branches 70%以上、Functions 80%以上
-- **実際のカバレッジ**: Lines 87.76%, Branches 70.14%, Functions 90.53%
+- **実際のカバレッジ**: Lines 87%+, Branches 70%+, Functions 90%+
 - **テストフレームワーク**: Vitest + Testing Library
 
 ### テスト内容
@@ -354,13 +403,15 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ## Storybook
 
-### 総ストーリー数: 203個
+### 総ストーリー数: 272個
 
 **Phase 1**: 46個 (Button: 12, Input: 18, Checkbox: 16)
 **Phase 2**: 42個 (Container: 12, Grid: 14, Stack: 16)
 **Phase 3**: 63個 (FormGroup: 10, Select: 12, Radio: 15, Textarea: 12, Switch: 14)
 **Phase 4**: 63個 (Alert: 14, Badge: 17, Card: 13, Progress: 9, Spinner: 10)
-**Phase 5**: 30個 (Tooltip: 12, Tabs: 7, Breadcrumb: 5, Menu: 6) ✨
+**Phase 5**: 30個 (Tooltip: 12, Tabs: 7, Breadcrumb: 5, Menu: 6)
+**Phase 6**: 38個 (Modal: 10, Toast: 11, Pagination: 9, Avatar: 8)
+**Phase 7**: 30個 (Table: 8, Accordion: 7, Drawer: 6, List: 9) ✨
 
 ---
 
@@ -382,8 +433,9 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 12. `11_Phase4_Part1_Alert_Badge完了.md` - Phase 4 Part 1完了
 13. `12_Phase4_Part2_Card_Progress_Spinner完了.md` - Phase 4 Part 2完了
 14. `13_Phase3.5_React_Vue_Wrappers完了.md` - Phase 3.5完了
-15. **`14_Phase5_Navigation完了.md`** - Phase 5完了 ✨ 新規
-16. **`README.md`** - このファイル（実装状況サマリー）
+15. `14_Phase5_Navigation完了.md` - Phase 5完了
+16. `15_Phase6_Modal_Feedback完了.md` - Phase 6完了
+17. **`README.md`** - このファイル（実装状況サマリー）
 
 ---
 
@@ -391,19 +443,12 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 詳細は `10_不足コンポーネント分析.md` を参照。
 
-### Phase 7: データ表示・レイアウト拡張 (4コンポーネント)
-
-- Table (基本版)
-- Accordion
-- Sidebar/Drawer
-- List
-
 ### Phase 8: 追加・オプション (2コンポーネント)
 
 - Skeleton Loader
 - DataGrid (高度版)
 
-**総計**: 残り6コンポーネント
+**総計**: 残り2コンポーネント
 
 ---
 
@@ -415,15 +460,17 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ### 作業ブランチ（現在）
 
-- **`feature/phase6-modal-feedback-components`** - Phase 6実装 ✨
-  - Modal コンポーネント実装済み
-  - Toast/ToastContainer コンポーネント実装済み
-  - Pagination コンポーネント実装済み
-  - Avatar/AvatarGroup コンポーネント実装済み
+- **`feature/phase7-data-display-components`** - Phase 7実装 ✨
+  - Table コンポーネント実装済み
+  - Accordion コンポーネント実装済み
+  - Drawer コンポーネント実装済み
+  - List コンポーネント実装済み
   - React/Vue ラッパー完備
+  - 132テスト、30ストーリー追加
 
 ### 過去のフィーチャーブランチ（マージ済み）
 
+- `feature/phase6-modal-feedback-components` - Phase 6 (Modal, Toast, Pagination, Avatar)
 - `feature/phase5-navigation-components` - Phase 5 (Tooltip, Tabs, Breadcrumb, Menu/Dropdown)
 - `feature/phase3-react-vue-wrappers` - Phase 3.5 (React/Vueラッパー)
 - `feature/phase4-card-progress-components` - Phase 4 Part 2 (Card, Progress, Spinner)
@@ -481,18 +528,18 @@ packages/
 
 ## 次のステップ
 
-### 短期（Phase 7: データ表示・レイアウト拡張） - 推奨
+### 短期（Phase 8: 追加・オプション） - 推奨
 
-**データ表示・レイアウト拡張コンポーネント** - 4コンポーネント
+**追加・オプションコンポーネント** - 2コンポーネント
 
-- Table (基本版)
-- Accordion
-- Sidebar/Drawer
-- List
+- Skeleton Loader
+- DataGrid (高度版)
 
-### 長期（Phase 8）
+### 長期
 
-- **追加機能** - Skeleton Loader, DataGrid
+- **パフォーマンス最適化**
+- **アクセシビリティ改善**
+- **ドキュメント拡充**
 
 ---
 
@@ -511,11 +558,14 @@ packages/
   - ✅ Tooltip, Tabs, Breadcrumb, Menu/Dropdown
   - ✅ 136テスト、30ストーリー追加
   - ✅ React/Vueラッパー完備
-- ✅ **Phase 6 完了**: モーダル・高度なフィードバック (2025-12-02) ✨
+- ✅ **Phase 6 完了**: モーダル・高度なフィードバック (2025-12-02)
   - ✅ Modal, Toast/ToastContainer, Pagination, Avatar/AvatarGroup
   - ✅ Web Components実装完了
   - ✅ React/Vueラッパー完備
-- ⏳ **Phase 7**: データ表示・レイアウト拡張
+- ✅ **Phase 7 完了**: データ表示・レイアウト拡張 (2025-12-04) ✨
+  - ✅ Table, Accordion, Drawer, List
+  - ✅ 132テスト、30ストーリー追加
+  - ✅ React/Vueラッパー完備
 - ⏳ **Phase 8**: 追加・オプション
 
 ---
@@ -527,8 +577,8 @@ packages/
 
 ---
 
-**最終更新日**: 2025-12-02
-**総コンポーネント数**: 25/30 (83%)
-**Phase 1-6完了**: 25/25 (100%) ✅
-**React/Vueラッパー**: 25/25 (100%) ✅ **完了**
-**Phase 6完了**: モーダル・高度なフィードバックコンポーネント完了 ✨
+**最終更新日**: 2025-12-04
+**総コンポーネント数**: 29/30 (97%)
+**Phase 1-7完了**: 29/29 (100%) ✅
+**React/Vueラッパー**: 29/29 (100%) ✅ **完了**
+**Phase 7完了**: データ表示・レイアウト拡張コンポーネント完了 ✨
