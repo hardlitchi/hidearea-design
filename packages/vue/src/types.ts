@@ -336,3 +336,25 @@ export interface SkeletonProps {
   width?: string;
   height?: string;
 }
+
+export interface DataGridColumn {
+  key: string;
+  label: string;
+  sortable?: boolean;
+  width?: string;
+}
+
+export interface DataGridRow {
+  [key: string]: unknown;
+}
+
+export interface DataGridProps {
+  columns?: DataGridColumn[];
+  data?: DataGridRow[];
+  striped?: boolean;
+  bordered?: boolean;
+  hoverable?: boolean;
+  selectable?: boolean;
+  pageSize?: number;
+  currentPage?: number;
+}

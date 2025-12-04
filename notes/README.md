@@ -1,6 +1,6 @@
 # Hidearea Design System - 実装状況サマリー
 
-**最終更新**: 2025-12-04 (Phase 8 Part 1)
+**最終更新**: 2025-12-04 (Phase 8 完了)
 
 ---
 
@@ -22,11 +22,11 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ## 実装済みコンポーネント
 
-### 総コンポーネント数: **30**
+### 総コンポーネント数: **31**
 
-### Storybookストーリー: **282+**
+### Storybookストーリー: **294**
 
-### ユニットテスト: **1,117** (全てパス)
+### ユニットテスト: **1,182** (全てパス)
 
 ---
 
@@ -306,12 +306,12 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 - **コンポーネント**: ha-list, ha-list-item, ha-list-divider
 - **テスト**: 38個
 
-### Phase 8: 追加・オプション (1/2) 🚧
+### Phase 8: 追加・オプション ✅ 完了
 
 | #   | コンポーネント     | バリアント | サイズ | Storybook | テスト | React | Vue |
 | --- | ------------------ | ---------- | ------ | --------- | ------ | ----- | --- |
-| 30  | **Skeleton** ✨    | 3種類      | -      | 10個      | ✅ 23  | ✅    | ✅  |
-| -   | **DataGrid** ⏳    | -          | -      | -         | ⏳     | ⏳    | ⏳  |
+| 30  | **Skeleton** ✅    | 3種類      | -      | 10個      | ✅ 23  | ✅    | ✅  |
+| 31  | **DataGrid** ✅ ✨ | 4種類      | -      | 12個      | ✅ 65  | ✅    | ✅  |
 
 #### Skeleton ✨ 新規
 
@@ -324,9 +324,19 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 - **テスト**: 23個
 - **用途**: コンテンツローディング中のプレースホルダー、UX向上
 
-#### DataGrid ⏳ 未実装
+#### DataGrid ✅ 新規
 
-- 高度なデータグリッド機能（次期実装予定）
+- **機能**: ソート、ページネーション、行選択
+- **バリアント**: striped, bordered, hoverable, selectable
+- **ページネーション**: 自動ページング、カスタマイズ可能なページサイズ
+- **ソート**: カラムヘッダークリックでソート（昇順→降順→クリア）
+- **選択**: チェックボックスで行選択、全選択/全解除
+- **API**: setColumns(), setData(), getSelectedRows(), clearSelection()
+- **イベント**: sort-change, selection-change, page-change
+- **アクセシビリティ**: キーボードナビゲーション対応
+- **CSS Parts**: table, header, body, row, cell, pagination
+- **テスト**: 65個
+- **用途**: 大量データの管理、ユーザー管理、在庫管理、売上レポート
 
 ---
 

@@ -33,6 +33,8 @@ export { HaAccordion, HaAccordionItem } from "./components/accordion";
 export { HaDrawer } from "./components/drawer";
 export { HaList, HaListItem, HaListDivider } from "./components/list";
 export { HaSkeleton } from "./components/skeleton";
+export { HaDataGrid } from "./components/datagrid";
+export type { DataGridColumn, DataGridRow } from "./components/datagrid";
 
 // Export types if needed
 export type { HaButton as HaButtonElement } from "./components/button/button";
@@ -75,3 +77,4 @@ export type { HaList as HaListElement } from "./components/list/list";
 export type { HaListItem as HaListItemElement } from "./components/list/list";
 export type { HaListDivider as HaListDividerElement } from "./components/list/list";
 export type { HaSkeleton as HaSkeletonElement } from "./components/skeleton/skeleton";
+export type { HaDataGrid as HaDataGridElement } from "./components/datagrid/datagrid";

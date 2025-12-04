@@ -100,3 +100,6 @@ export type {
 
 export { Skeleton } from "./Skeleton";
 export type { SkeletonProps, SkeletonRef } from "./Skeleton";
+
+export { DataGrid } from "./DataGrid";
+export type { DataGridProps, DataGridRef } from "./DataGrid";

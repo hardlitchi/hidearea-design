@@ -36,6 +36,7 @@ import List from "./List.vue";
 import ListItem from "./ListItem.vue";
 import ListDivider from "./ListDivider.vue";
 import Skeleton from "./Skeleton.vue";
+import DataGrid from "./DataGrid.vue";
 
 export {
   Button,
@@ -75,6 +76,7 @@ export {
   ListItem,
   ListDivider,
   Skeleton,
+  DataGrid,
 };
 export type {
   ButtonProps,
@@ -114,6 +116,7 @@ export type {
   ListItemProps,
   ListDividerProps,
   SkeletonProps,
+  DataGridProps,
 } from "./types";
 
 // Vue plugin for installing all components
@@ -156,5 +159,6 @@ export default {
     app.component("HaListItem", ListItem);
     app.component("HaListDivider", ListDivider);
     app.component("HaSkeleton", Skeleton);
+    app.component("HaDataGrid", DataGrid);
   },
 };
