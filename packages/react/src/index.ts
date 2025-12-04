@@ -97,3 +97,6 @@ export type {
   ListDividerProps,
   ListDividerRef,
 } from "./List";
+
+export { Skeleton } from "./Skeleton";
+export type { SkeletonProps, SkeletonRef } from "./Skeleton";

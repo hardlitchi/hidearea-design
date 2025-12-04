@@ -329,3 +329,10 @@ export interface ListItemProps {
 
 // ListDivider has no props, using empty object type
 export type ListDividerProps = Record<string, never>;
+
+export interface SkeletonProps {
+  variant?: "text" | "circular" | "rectangular";
+  animation?: "pulse" | "wave" | "none";
+  width?: string;
+  height?: string;
+}

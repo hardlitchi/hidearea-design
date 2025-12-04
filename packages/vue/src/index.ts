@@ -35,6 +35,7 @@ import Drawer from "./Drawer.vue";
 import List from "./List.vue";
 import ListItem from "./ListItem.vue";
 import ListDivider from "./ListDivider.vue";
+import Skeleton from "./Skeleton.vue";
 
 export {
   Button,
@@ -73,6 +74,7 @@ export {
   List,
   ListItem,
   ListDivider,
+  Skeleton,
 };
 export type {
   ButtonProps,
@@ -111,6 +113,7 @@ export type {
   ListProps,
   ListItemProps,
   ListDividerProps,
+  SkeletonProps,
 } from "./types";
 
 // Vue plugin for installing all components
@@ -152,5 +155,6 @@ export default {
     app.component("HaList", List);
     app.component("HaListItem", ListItem);
     app.component("HaListDivider", ListDivider);
+    app.component("HaSkeleton", Skeleton);
   },
 };
