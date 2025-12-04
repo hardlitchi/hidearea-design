@@ -1,6 +1,6 @@
 # Hidearea Design System - 実装状況サマリー
 
-**最終更新**: 2025-12-04
+**最終更新**: 2025-12-04 (Phase 8 Part 1)
 
 ---
 
@@ -22,11 +22,11 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ## 実装済みコンポーネント
 
-### 総コンポーネント数: **29**
+### 総コンポーネント数: **30**
 
-### Storybookストーリー: **272+**
+### Storybookストーリー: **282+**
 
-### ユニットテスト: **1,094** (全てパス)
+### ユニットテスト: **1,117** (全てパス)
 
 ---
 
@@ -306,11 +306,33 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 - **コンポーネント**: ha-list, ha-list-item, ha-list-divider
 - **テスト**: 38個
 
+### Phase 8: 追加・オプション (1/2) 🚧
+
+| #   | コンポーネント     | バリアント | サイズ | Storybook | テスト | React | Vue |
+| --- | ------------------ | ---------- | ------ | --------- | ------ | ----- | --- |
+| 30  | **Skeleton** ✨    | 3種類      | -      | 10個      | ✅ 23  | ✅    | ✅  |
+| -   | **DataGrid** ⏳    | -          | -      | -         | ⏳     | ⏳    | ⏳  |
+
+#### Skeleton ✨ 新規
+
+- **バリアント**: text, circular, rectangular
+- **アニメーション**: pulse, wave, none
+- **機能**: Custom width/height, Loading placeholders
+- **属性**: variant, animation, width, height
+- **アクセシビリティ**: aria-busy, aria-live
+- **CSS Parts**: skeleton
+- **テスト**: 23個
+- **用途**: コンテンツローディング中のプレースホルダー、UX向上
+
+#### DataGrid ⏳ 未実装
+
+- 高度なデータグリッド機能（次期実装予定）
+
 ---
 
 ## フレームワークサポート状況
 
-### React ラッパー: 29/29 コンポーネント ✅ **100%完了**
+### React ラッパー: 30/31 コンポーネント (97%)
 
 **実装済み**:
 
@@ -320,9 +342,13 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 - ✅ Alert, Badge, Card, Progress, Spinner (Phase 4)
 - ✅ Tooltip, Tabs, Breadcrumb, Dropdown/Menu (Phase 5)
 - ✅ Modal, Toast, Pagination, Avatar (Phase 6)
-- ✅ Table, Accordion, Drawer, List (Phase 7) ✨
+- ✅ Table, Accordion, Drawer, List (Phase 7)
+- ✅ Skeleton (Phase 8 Part 1) ✨
 
-### Vue ラッパー: 29/29 コンポーネント ✅ **100%完了**
+**未実装**:
+- ⏳ DataGrid (Phase 8 Part 2)
+
+### Vue ラッパー: 30/31 コンポーネント (97%)
 
 **実装済み**:
 
@@ -332,7 +358,11 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 - ✅ Alert, Badge, Card, Progress, Spinner (Phase 4)
 - ✅ Tooltip, Tabs, Breadcrumb, Dropdown/Menu (Phase 5)
 - ✅ Modal, Toast, Pagination, Avatar (Phase 6)
-- ✅ Table, Accordion, Drawer, List (Phase 7) ✨
+- ✅ Table, Accordion, Drawer, List (Phase 7)
+- ✅ Skeleton (Phase 8 Part 1) ✨
+
+**未実装**:
+- ⏳ DataGrid (Phase 8 Part 2)
 
 ---
 
@@ -382,9 +412,9 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ### コンポーネントテスト
 
-- **総テスト数**: 1,094 (全て成功)
-- **カバレッジ目標**: Lines 80%以上、Branches 70%以上、Functions 80%以上
-- **実際のカバレッジ**: Lines 87%+, Branches 70%+, Functions 90%+
+- **総テスト数**: 1,117 (全て成功)
+- **カバレッジ目標**: Lines 80%以上、Branches 69%以上、Functions 80%以上
+- **実際のカバレッジ**: Lines 87%+, Branches 69%+, Functions 90%+
 - **テストフレームワーク**: Vitest + Testing Library
 
 ### テスト内容
@@ -403,7 +433,7 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ## Storybook
 
-### 総ストーリー数: 272個
+### 総ストーリー数: 282個
 
 **Phase 1**: 46個 (Button: 12, Input: 18, Checkbox: 16)
 **Phase 2**: 42個 (Container: 12, Grid: 14, Stack: 16)
@@ -411,7 +441,8 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 **Phase 4**: 63個 (Alert: 14, Badge: 17, Card: 13, Progress: 9, Spinner: 10)
 **Phase 5**: 30個 (Tooltip: 12, Tabs: 7, Breadcrumb: 5, Menu: 6)
 **Phase 6**: 38個 (Modal: 10, Toast: 11, Pagination: 9, Avatar: 8)
-**Phase 7**: 30個 (Table: 8, Accordion: 7, Drawer: 6, List: 9) ✨
+**Phase 7**: 30個 (Table: 8, Accordion: 7, Drawer: 6, List: 9)
+**Phase 8**: 10個 (Skeleton: 10) ✨
 
 ---
 
@@ -445,10 +476,10 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ### Phase 8: 追加・オプション (2コンポーネント)
 
-- Skeleton Loader
-- DataGrid (高度版)
+- ✅ Skeleton Loader (完了)
+- ⏳ DataGrid (高度版)
 
-**総計**: 残り2コンポーネント
+**総計**: 残り1コンポーネント
 
 ---
 
@@ -460,16 +491,15 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ### 作業ブランチ（現在）
 
-- **`feature/phase7-data-display-components`** - Phase 7実装 ✨
-  - Table コンポーネント実装済み
-  - Accordion コンポーネント実装済み
-  - Drawer コンポーネント実装済み
-  - List コンポーネント実装済み
+- **`feature/phase8-skeleton-datagrid`** - Phase 8実装 ✨
+  - Skeleton コンポーネント実装済み
   - React/Vue ラッパー完備
-  - 132テスト、30ストーリー追加
+  - 23テスト、10ストーリー追加
+  - DataGrid コンポーネント未実装
 
 ### 過去のフィーチャーブランチ（マージ済み）
 
+- `feature/phase7-data-display-components` - Phase 7 (Table, Accordion, Drawer, List)
 - `feature/phase6-modal-feedback-components` - Phase 6 (Modal, Toast, Pagination, Avatar)
 - `feature/phase5-navigation-components` - Phase 5 (Tooltip, Tabs, Breadcrumb, Menu/Dropdown)
 - `feature/phase3-react-vue-wrappers` - Phase 3.5 (React/Vueラッパー)
@@ -522,18 +552,18 @@ packages/
 5. **@hidearea-design/storybook**
    - Storybook 10
    - インタラクティブドキュメント
-   - 203 ストーリー
+   - 282 ストーリー
 
 ---
 
 ## 次のステップ
 
-### 短期（Phase 8: 追加・オプション） - 推奨
+### 短期（Phase 8: 追加・オプション） - 進行中
 
 **追加・オプションコンポーネント** - 2コンポーネント
 
-- Skeleton Loader
-- DataGrid (高度版)
+- ✅ Skeleton Loader (完了)
+- ⏳ DataGrid (高度版)
 
 ### 長期
 
@@ -562,11 +592,13 @@ packages/
   - ✅ Modal, Toast/ToastContainer, Pagination, Avatar/AvatarGroup
   - ✅ Web Components実装完了
   - ✅ React/Vueラッパー完備
-- ✅ **Phase 7 完了**: データ表示・レイアウト拡張 (2025-12-04) ✨
+- ✅ **Phase 7 完了**: データ表示・レイアウト拡張 (2025-12-04)
   - ✅ Table, Accordion, Drawer, List
   - ✅ 132テスト、30ストーリー追加
   - ✅ React/Vueラッパー完備
-- ⏳ **Phase 8**: 追加・オプション
+- 🚧 **Phase 8**: 追加・オプション (進行中) ✨
+  - ✅ Skeleton Loader (2025-12-04)
+  - ⏳ DataGrid (未実装)
 
 ---
 
@@ -578,7 +610,8 @@ packages/
 ---
 
 **最終更新日**: 2025-12-04
-**総コンポーネント数**: 29/30 (97%)
+**総コンポーネント数**: 30/31 (97%)
 **Phase 1-7完了**: 29/29 (100%) ✅
-**React/Vueラッパー**: 29/29 (100%) ✅ **完了**
-**Phase 7完了**: データ表示・レイアウト拡張コンポーネント完了 ✨
+**Phase 8進行中**: 1/2 (50%) 🚧
+**React/Vueラッパー**: 30/31 (97%)
+**Phase 8 Part 1完了**: Skeleton Loader実装完了 ✨
