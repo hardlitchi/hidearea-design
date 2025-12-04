@@ -31,7 +31,7 @@ features:
     details: ARIA属性とキーボード操作をサポート
   - icon: 🧪
     title: 高品質
-    details: 811のユニットテストで品質を保証
+    details: 1,117のユニットテストで品質を保証
 ---
 
 ## クイックスタート
@@ -89,11 +89,11 @@ import { Button as HaButton } from '@hidearea-design/vue';
 
 ## プロジェクト統計
 
-- **コンポーネント数**: 21個
-- **テスト数**: 811個（全て成功）
-- **Storybookストーリー**: 203個
-- **フレームワークサポート**: React、Vue（100%）
-- **テストカバレッジ**: Lines 87.76%, Branches 70.14%, Functions 90.53%
+- **コンポーネント数**: 30個
+- **テスト数**: 1,117個（全て成功）
+- **Storybookストーリー**: 282個
+- **フレームワークサポート**: React、Vue（97% - 30/31コンポーネント）
+- **テストカバレッジ**: Lines 87%+, Branches 69%+, Functions 90%+
 
 ## コンポーネントカテゴリ
 
@@ -103,11 +103,17 @@ Button, Input, Checkbox, FormGroup, Select, Radio, Textarea, Switch
 ### レイアウト（3コンポーネント）
 Container, Grid, Stack
 
-### フィードバック（5コンポーネント）
-Alert, Badge, Card, Progress, Spinner
+### フィードバック（6コンポーネント）
+Alert, Badge, Card, Progress, Spinner, **Skeleton** ✨
 
 ### ナビゲーション（4コンポーネント）
 Tooltip, Tabs, Breadcrumb, Menu/Dropdown
 
+### モーダル・通知（4コンポーネント）
+Modal, Toast, Pagination, Avatar
+
+### データ表示（4コンポーネント）
+Table, Accordion, Drawer, List
+
 ### 次のフェーズ（予定）
-Modal/Dialog, Toast/Notification, Pagination, Avatar, Table, Accordion, Drawer, List
+DataGrid（高度なデータグリッド）
