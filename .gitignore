@@ -64,9 +64,11 @@ Thumbs.db
 # Storybook
 storybook-static/
 
-# Documentation build
+# Documentation build (VitePress)
 docs/.vitepress/dist/**
 docs/.vitepress/cache/**
+**/.vitepress/cache/
+**/.vitepress/dist/
 
 # Style Dictionary output
 packages/tokens/build/
