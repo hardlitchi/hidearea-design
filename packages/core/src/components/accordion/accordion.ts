@@ -83,7 +83,7 @@ export class HaAccordion extends HTMLElement {
 
     items.forEach((item) => {
       // Set accordion reference on item
-      (item as any).__accordion = this;
+      (item as HaAccordionItem & { __accordion?: HaAccordion }).__accordion = this;
 
       // Handle item toggle
       item.addEventListener("accordion-toggle", ((e: CustomEvent) => {
@@ -246,7 +246,7 @@ export class HaAccordionItem extends HTMLElement {
     }
   }
 
-  private updateState(animate: boolean = true) {
+  private updateState(_animate: boolean = true) {
     const isOpen = this.hasAttribute("open");
     this.headerElement.setAttribute("aria-expanded", String(isOpen));
 
@@ -297,7 +297,13 @@ export class HaAccordionItem extends HTMLElement {
   open() {
     if (!this.hasAttribute("open")) {
       this.setAttribute("open", "");
-      this.dispatchToggleEvent(true);
+      this.dispatchEvent(
+        new CustomEvent("accordion-toggle", {
+          detail: { open: true },
+          bubbles: true,
+          composed: true,
+        })
+      );
       // 'accordion-open' は冗長かもしれないが元の仕様通り残す
       this.dispatchEvent(
         new CustomEvent("accordion-open", {
