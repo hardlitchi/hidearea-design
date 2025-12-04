@@ -1,0 +1,1 @@
+export { HaTable } from "./table";

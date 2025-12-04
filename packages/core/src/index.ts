@@ -28,6 +28,10 @@ export { HaModal } from "./components/modal";
 export { HaToast, HaToastContainer } from "./components/toast";
 export { HaPagination } from "./components/pagination";
 export { HaAvatar, HaAvatarGroup } from "./components/avatar";
+export { HaTable } from "./components/table";
+export { HaAccordion, HaAccordionItem } from "./components/accordion";
+export { HaDrawer } from "./components/drawer";
+export { HaList, HaListItem, HaListDivider } from "./components/list";
 
 // Export types if needed
 export type { HaButton as HaButtonElement } from "./components/button/button";
