@@ -236,3 +236,54 @@ export interface MenuItemProps {
 export interface MenuDividerProps {
   className?: string;
 }
+
+export interface ModalProps {
+  open?: boolean;
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  variant?: "default" | "centered" | "fullscreen";
+  closable?: boolean;
+  closeOnBackdrop?: boolean;
+  closeOnEscape?: boolean;
+}
+
+export interface ToastProps {
+  variant?: "info" | "success" | "warning" | "error";
+  message?: string;
+  closable?: boolean;
+  duration?: number;
+  showProgress?: boolean;
+}
+
+export interface ToastContainerProps {
+  position?:
+    | "top-left"
+    | "top-center"
+    | "top-right"
+    | "bottom-left"
+    | "bottom-center"
+    | "bottom-right";
+}
+
+export interface PaginationProps {
+  current?: number;
+  total: number;
+  pageSize?: number;
+  variant?: "default" | "rounded" | "simple";
+  size?: "sm" | "md" | "lg";
+  showQuickJumper?: boolean;
+}
+
+export interface AvatarProps {
+  src?: string;
+  alt?: string;
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  variant?: "circle" | "square" | "rounded";
+  initials?: string;
+  status?: "online" | "offline" | "away" | "busy";
+}
+
+export interface AvatarGroupProps {
+  max?: number;
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  layout?: "stack" | "grid" | "list";
+}

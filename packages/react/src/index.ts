@@ -61,3 +61,15 @@ export type {
   MenuItemProps,
   MenuDividerProps,
 } from "./Dropdown";
+
+export { Modal } from "./Modal";
+export type { ModalProps, ModalRef } from "./Modal";
+
+export { Toast, ToastContainer } from "./Toast";
+export type { ToastProps, ToastRef, ToastContainerProps } from "./Toast";
+
+export { Pagination } from "./Pagination";
+export type { PaginationProps } from "./Pagination";
+
+export { Avatar, AvatarGroup } from "./Avatar";
+export type { AvatarProps, AvatarGroupProps } from "./Avatar";

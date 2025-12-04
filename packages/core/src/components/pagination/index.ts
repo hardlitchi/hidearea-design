@@ -1,0 +1,1 @@
+export { HaPagination } from './pagination';

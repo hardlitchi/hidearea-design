@@ -24,6 +24,10 @@ export {
   HaMenuItem,
   HaMenuDivider,
 } from "./components/menu";
+export { HaModal } from "./components/modal";
+export { HaToast, HaToastContainer } from "./components/toast";
+export { HaPagination } from "./components/pagination";
+export { HaAvatar, HaAvatarGroup } from "./components/avatar";
 
 // Export types if needed
 export type { HaButton as HaButtonElement } from "./components/button/button";
