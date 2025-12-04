@@ -48,6 +48,29 @@ export class HaAccordion extends HTMLElement {
     this.contentSlot.addEventListener("slotchange", () => {
       this.updateItems();
     });
+    // 親でバブリングしてくる 'accordion-toggle' を捕まえる
+    this.addEventListener("accordion-toggle", this.handleItemToggle.bind(this) as EventListener);
+  }
+
+  // アイテムがトグルされたときの処理
+  private handleItemToggle(e: CustomEvent) {
+    // 開いたときのみ、他のアイテムを閉じる処理が必要（allow-multipleがfalseの場合）
+    if (e.detail.open && !this.allowMultiple) {
+      const items = this.getItems();
+      const toggledItem = e.target as HTMLElement;
+
+      items.forEach((item) => {
+        if (item !== toggledItem && item.hasAttribute("open")) {
+          item.removeAttribute("open");
+        }
+      });
+    }
+  }
+
+  private getItems(): HaAccordionItem[] {
+    // slot経由で投影されている要素を取得する方が確実な場合もありますが、
+    // ここでは簡易的に querySelectorAll を使用
+    return Array.from(this.querySelectorAll("ha-accordion-item")) as HaAccordionItem[];
   }
 
   connectedCallback() {
@@ -81,6 +104,8 @@ export class HaAccordion extends HTMLElement {
   }
 
   get collapsible(): boolean {
+    // デフォルトは false (明示的に書かれない限り false 扱い) だが
+    // StorybookやHTML標準のboolean属性の扱いに合わせる
     return this.hasAttribute("collapsible");
   }
 }
@@ -137,6 +162,7 @@ export class HaAccordionItem extends HTMLElement {
     this.itemElement.setAttribute("part", "item");
 
     // Create header button
+    // --- Header ---
     this.headerElement = document.createElement("button");
     this.headerElement.className = "accordion-item__header";
     this.headerElement.setAttribute("part", "header");
@@ -144,44 +170,42 @@ export class HaAccordionItem extends HTMLElement {
     this.headerElement.setAttribute("aria-expanded", "false");
 
     // Create header slot
-    this.headerSlot = document.createElement("slot");
-    this.headerSlot.name = "header";
-    this.headerElement.appendChild(this.headerSlot);
+    // Headerのテキスト処理
+    // slotの中にデフォルト値を入れるだけで、属性がない場合のフォールバックになる
+    // 属性の変更監視でここを書き換えるアプローチに変更
+    const headerSlot = document.createElement("slot");
+    headerSlot.name = "header";
+    // デフォルト用のコンテナ
+    const defaultHeaderSpan = document.createElement("span");
+    defaultHeaderSpan.id = "default-header-text";
+    headerSlot.appendChild(defaultHeaderSpan);
+    this.headerElement.appendChild(headerSlot);
 
     // Create icon container
-    this.iconElement = document.createElement("span");
-    this.iconElement.className = "accordion-item__icon";
-    this.iconElement.setAttribute("part", "icon");
-    this.iconElement.setAttribute("aria-hidden", "true");
+    // --- Icon ---
+    const iconElement = document.createElement("span");
+    iconElement.className = "accordion-item__icon";
+    iconElement.setAttribute("part", "icon");
+    iconElement.setAttribute("aria-hidden", "true");
 
-    this.iconSlot = document.createElement("slot");
-    this.iconSlot.name = "icon";
-    this.iconElement.appendChild(this.iconSlot);
+    // Iconのフォールバック処理
+    // JSによる監視を削除し、Slotのデフォルトコンテンツ機能を使用
+    const iconSlot = document.createElement("slot");
+    iconSlot.name = "icon";
+    iconSlot.textContent = "▼"; // デフォルトアイコン
+    iconElement.appendChild(iconSlot);
 
-    // Default icon (chevron down)
-    const defaultIcon = document.createTextNode("▼");
-    this.iconSlot.addEventListener("slotchange", () => {
-      const nodes = this.iconSlot.assignedNodes();
-      if (nodes.length === 0) {
-        this.iconElement.appendChild(defaultIcon);
-      } else {
-        if (this.iconElement.contains(defaultIcon)) {
-          this.iconElement.removeChild(defaultIcon);
-        }
-      }
-    });
-    this.iconElement.appendChild(defaultIcon);
-
-    this.headerElement.appendChild(this.iconElement);
+    this.headerElement.appendChild(iconElement);
 
     // Create content container
+    // --- Content ---
     this.contentElement = document.createElement("div");
     this.contentElement.className = "accordion-item__content";
     this.contentElement.setAttribute("part", "content");
     this.contentElement.setAttribute("role", "region");
 
-    this.contentSlot = document.createElement("slot");
-    this.contentElement.appendChild(this.contentSlot);
+    const contentSlot = document.createElement("slot");
+    this.contentElement.appendChild(contentSlot);
 
     // Append to item
     this.itemElement.appendChild(this.headerElement);
@@ -197,16 +221,13 @@ export class HaAccordionItem extends HTMLElement {
         this.toggle();
       }
     });
-
-    // Handle header slot change to update text
-    this.headerSlot.addEventListener("slotchange", () => {
-      this.updateHeaderText();
-    });
   }
 
   connectedCallback() {
-    this.updateState();
+    // header属性の初期値を反映
     this.updateHeaderText();
+    // 初期状態の反映（アニメーションなしで即座に設定）
+    this.updateState();
   }
 
   attributeChangedCallback(
@@ -216,7 +237,7 @@ export class HaAccordionItem extends HTMLElement {
   ) {
     if (oldValue !== newValue) {
       if (name === "open") {
-        this.updateState();
+        this.updateState(true); // 属性変更時はアニメーションあり
       } else if (name === "disabled") {
         this.updateDisabled();
       } else if (name === "header") {
@@ -225,15 +246,21 @@ export class HaAccordionItem extends HTMLElement {
     }
   }
 
-  private updateState() {
+  private updateState(animate: boolean = true) {
     const isOpen = this.hasAttribute("open");
     this.headerElement.setAttribute("aria-expanded", String(isOpen));
 
     if (isOpen) {
       this.itemElement.classList.add("accordion-item--open");
-      this.contentElement.style.maxHeight = `${this.contentElement.scrollHeight}px`;
+      // scrollHeightを取得して高さを設定
+      const height = this.contentElement.scrollHeight;
+      this.contentElement.style.maxHeight = `${height}px`;
+      // アニメーション完了後に auto に戻す処理を入れるとより堅牢だが
+      // 簡易実装として、開くときは scrollHeight をセット
     } else {
       this.itemElement.classList.remove("accordion-item--open");
+      // 閉じる前に現在の高さをセットしないと transition が効かない場合があるため
+      // CSS側で適切に transition: max-height ... が設定されている前提
       this.contentElement.style.maxHeight = "0";
     }
   }
@@ -251,12 +278,11 @@ export class HaAccordionItem extends HTMLElement {
 
   private updateHeaderText() {
     // Check if header slot has content
-    const headerNodes = this.headerSlot.assignedNodes();
-    if (headerNodes.length === 0 && this.hasAttribute("header")) {
-      // Use header attribute
-      const headerText = document.createElement("span");
-      headerText.textContent = this.getAttribute("header") || "";
-      this.headerSlot.appendChild(headerText);
+    // Shadow DOM内のデフォルト表示用要素を探す
+    const defaultSpan = this.shadowRoot?.querySelector("#default-header-text");
+    if (defaultSpan) {
+      // 属性があればそれをセット、なければ空（スロットが空なら何も表示されない）
+      defaultSpan.textContent = this.getAttribute("header") || "";
     }
   }
 
@@ -271,13 +297,8 @@ export class HaAccordionItem extends HTMLElement {
   open() {
     if (!this.hasAttribute("open")) {
       this.setAttribute("open", "");
-      this.dispatchEvent(
-        new CustomEvent("accordion-toggle", {
-          detail: { open: true },
-          bubbles: true,
-          composed: true,
-        })
-      );
+      this.dispatchToggleEvent(true);
+      // 'accordion-open' は冗長かもしれないが元の仕様通り残す
       this.dispatchEvent(
         new CustomEvent("accordion-open", {
           bubbles: true,
