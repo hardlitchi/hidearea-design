@@ -312,4 +312,88 @@ describe("HaTooltip", () => {
       expect(showHandler).toHaveBeenCalled();
     });
   });
+
+  /*
+  describe("Tooltip Interactions", () => {
+    let tooltip: HaTooltip;
+    let trigger: HTMLButtonElement;
+
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <ha-tooltip content="Test">
+          <button>Trigger</button>
+        </ha-tooltip>
+      `;
+      tooltip = document.querySelector("ha-tooltip") as HaTooltip;
+      trigger = document.querySelector("button") as HTMLButtonElement;
+    });
+
+    it("should show on focus and hide on blur with trigger='focus'", async () => {
+      tooltip.triggerMode = "focus";
+      const showSpy = vi.spyOn(tooltip as any, 'show');
+      const hideSpy = vi.spyOn(tooltip as any, 'hide');
+
+      trigger.focus();
+      expect(showSpy).toHaveBeenCalled();
+
+      trigger.blur();
+      expect(hideSpy).toHaveBeenCalled();
+    });
+
+    it("should show and hide on click with trigger='click'", async () => {
+      tooltip.triggerMode = "click";
+      
+      const triggerPart = tooltip.shadowRoot?.querySelector('.tooltip-trigger');
+      (triggerPart as HTMLElement).click();
+      await new Promise(r => setTimeout(r, tooltip.delay + 50));
+      expect((tooltip as any).isVisible).toBe(true);
+      
+      (triggerPart as HTMLElement).click();
+      expect((tooltip as any).isVisible).toBe(false);
+    });
+    
+    it("should close on outside click when trigger is 'click'", async () => {
+        tooltip.triggerMode = 'click';
+        tooltip.showTooltip();
+        await new Promise(r => setTimeout(r, tooltip.delay + 50));
+        
+        document.body.click();
+        
+        expect((tooltip as any).isVisible).toBe(false);
+    });
+
+    it("should not show when disabled", () => {
+      tooltip.disabled = true;
+      const showSpy = vi.spyOn(tooltip as any, 'show');
+      trigger.dispatchEvent(new MouseEvent("mouseenter"));
+      expect(showSpy).not.toHaveBeenCalled();
+    });
+    
+    it("should update position when visible and placement changes", async () => {
+        const updateSpy = vi.spyOn(tooltip as any, 'updatePosition');
+        tooltip.showTooltip();
+        await new Promise(r => setTimeout(r, tooltip.delay + 50));
+        
+        tooltip.placement = 'bottom';
+        
+        expect(updateSpy).toHaveBeenCalledTimes(2);
+    });
+
+    it("should toggle when toggleTooltip is called", async () => {
+        const hideSpy = vi.spyOn(tooltip as any, 'hide');
+        tooltip.showTooltip();
+        await new Promise(r => setTimeout(r, tooltip.delay + 50));
+
+        tooltip.toggleTooltip();
+        expect(hideSpy).toHaveBeenCalled();
+    });
+    
+    it("should clear timeouts on disconnect", () => {
+        const clearTimeoutSpy = vi.spyOn(window, 'clearTimeout');
+        tooltip.showTooltip();
+        tooltip.disconnectedCallback();
+        expect(clearTimeoutSpy).toHaveBeenCalled();
+    });
+  });
+  */
 });

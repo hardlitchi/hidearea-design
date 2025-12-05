@@ -18,7 +18,6 @@ import { dropdownStyles } from "./menu.styles";
 export class HaDropdown extends HTMLElement {
   private triggerSlot: HTMLDivElement;
   private menuContainer: HTMLDivElement;
-  private isOpen = false;
 
   static get observedAttributes() {
     return ["placement", "trigger", "open"];
@@ -105,49 +104,29 @@ export class HaDropdown extends HTMLElement {
 
     if (name === "open") {
       if (this.open) {
-        this.show();
+        this.menuContainer.classList.add("open");
+        this.updatePosition();
+        setTimeout(() => {
+          document.addEventListener("click", this.handleDocumentClick);
+          document.addEventListener("keydown", this.handleEscapeKey);
+        }, 0);
+        this.dispatchEvent(new CustomEvent("open", { bubbles: true, composed: true }));
       } else {
-        this.hide();
+        this.menuContainer.classList.remove("open");
+        this.removeEventListeners();
+        this.dispatchEvent(new CustomEvent("close", { bubbles: true, composed: true }));
       }
     }
   }
 
   private show() {
-    if (this.isOpen) return;
-
-    this.isOpen = true;
-    this.menuContainer.classList.add("open");
-    this.updatePosition();
-
-    // Add event listeners
-    setTimeout(() => {
-      document.addEventListener("click", this.handleDocumentClick);
-      document.addEventListener("keydown", this.handleEscapeKey);
-    }, 0);
-
-    this.dispatchEvent(
-      new CustomEvent("open", {
-        bubbles: true,
-        composed: true,
-      }),
-    );
+    if (this.open) return;
+    this.setAttribute("open", "");
   }
 
   private hide() {
-    if (!this.isOpen) return;
-
-    this.isOpen = false;
-    this.menuContainer.classList.remove("open");
-
-    // Remove event listeners
-    this.removeEventListeners();
-
-    this.dispatchEvent(
-      new CustomEvent("close", {
-        bubbles: true,
-        composed: true,
-      }),
-    );
+    if (!this.open) return;
+    this.removeAttribute("open");
   }
 
   private toggle() {

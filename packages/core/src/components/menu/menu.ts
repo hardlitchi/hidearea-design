@@ -75,10 +75,8 @@ export class HaMenu extends HTMLElement {
     const items = this.getMenuItems();
     if (items.length === 0) return;
 
-    const currentIndex = items.findIndex(
-      (item) =>
-        item === document.activeElement || item.shadowRoot?.activeElement,
-    );
+    const activeItem = document.activeElement?.closest("ha-menu-item");
+    const currentIndex = activeItem ? items.indexOf(activeItem) : -1;
 
     let newIndex = currentIndex;
 

@@ -333,4 +333,77 @@ describe("HaAccordionItem", () => {
       expect(header?.getAttribute("type")).toBe("button");
     });
   });
+
+  describe("AccordionItem without parent", () => {
+    it("should close even if not in an accordion", () => {
+      const item = document.createElement("ha-accordion-item") as HaAccordionItem;
+      document.body.appendChild(item);
+      item.setAttribute("open", "");
+      
+      item.close();
+      expect(item.hasAttribute("open")).toBe(false);
+      document.body.removeChild(item);
+    });
+  });
+  
+  describe("Accordion Interaction", () => {
+    let accordion: HaAccordion;
+    let item1: HaAccordionItem;
+    let item2: HaAccordionItem;
+    let item3: HaAccordionItem;
+
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <ha-accordion>
+          <ha-accordion-item header="Item 1">Content 1</ha-accordion-item>
+          <ha-accordion-item header="Item 2" open>Content 2</ha-accordion-item>
+          <ha-accordion-item header="Item 3" disabled>Content 3</ha-accordion-item>
+        </ha-accordion>
+      `;
+      accordion = document.querySelector("ha-accordion") as HaAccordion;
+      item1 = accordion.children[0] as HaAccordionItem;
+      item2 = accordion.children[1] as HaAccordionItem;
+      item3 = accordion.children[2] as HaAccordionItem;
+    });
+
+    it("should only allow one item to be open by default", async () => {
+      const header1 = item1.shadowRoot?.querySelector(".accordion-item__header");
+      (header1 as HTMLElement)?.click();
+      await new Promise(resolve => setTimeout(resolve, 0));
+      expect(item1.hasAttribute("open")).toBe(true);
+      expect(item2.hasAttribute("open")).toBe(false);
+    });
+
+    it("should allow multiple items to be open if allow-multiple is set", async () => {
+      accordion.setAttribute("allow-multiple", "");
+      await new Promise(resolve => setTimeout(resolve, 0));
+      const header1 = item1.shadowRoot?.querySelector(".accordion-item__header");
+      (header1 as HTMLElement)?.click();
+      await new Promise(resolve => setTimeout(resolve, 0));
+      expect(item1.hasAttribute("open")).toBe(true);
+      expect(item2.hasAttribute("open")).toBe(true);
+    });
+    
+    it("should not close the last item if not collapsible", async () => {
+      const header2 = item2.shadowRoot?.querySelector(".accordion-item__header");
+      (header2 as HTMLElement)?.click();
+      await new Promise(resolve => setTimeout(resolve, 0));
+      expect(item2.hasAttribute("open")).toBe(true);
+    });
+
+    it("should close the last item if collapsible is set", async () => {
+      accordion.setAttribute("collapsible", "");
+      await new Promise(resolve => setTimeout(resolve, 0));
+      const header2 = item2.shadowRoot?.querySelector(".accordion-item__header");
+      (header2 as HTMLElement)?.click();
+      await new Promise(resolve => setTimeout(resolve, 0));
+      expect(item2.hasAttribute("open")).toBe(false);
+    });
+    
+    it("should not open disabled items", () => {
+      const header3 = item3.shadowRoot?.querySelector(".accordion-item__header");
+      (header3 as HTMLElement)?.click();
+      expect(item3.hasAttribute("open")).toBe(false);
+    });
+  });
 });

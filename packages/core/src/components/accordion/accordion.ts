@@ -77,25 +77,19 @@ export class HaAccordion extends HTMLElement {
     this.updateItems();
   }
 
-  private updateItems() {
-    const items = this.querySelectorAll("ha-accordion-item");
-    const allowMultiple = this.hasAttribute("allow-multiple");
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    if (oldValue === newValue) return;
 
+    if (name === "allow-multiple" || name === "collapsible") {
+      this.updateItems();
+    }
+  }
+
+  private updateItems() {
+    const items = this.getItems();
     items.forEach((item) => {
       // Set accordion reference on item
       (item as HaAccordionItem & { __accordion?: HaAccordion }).__accordion = this;
-
-      // Handle item toggle
-      item.addEventListener("accordion-toggle", ((e: CustomEvent) => {
-        if (!allowMultiple && e.detail.open) {
-          // Close other items
-          items.forEach((otherItem) => {
-            if (otherItem !== item && otherItem.hasAttribute("open")) {
-              otherItem.removeAttribute("open");
-            }
-          });
-        }
-      }) as EventListener);
     });
   }
 

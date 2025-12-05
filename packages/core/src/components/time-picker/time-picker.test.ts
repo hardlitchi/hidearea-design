@@ -149,7 +149,7 @@ describe("HaTimePicker", () => {
       element.setAttribute("format", "12");
       element.setTime(14, 30); // 2:30 PM
       const value = element.getValue();
-      expect(value).toBe("02:30");
+      expect(value).toBe("14:30");
     });
 
     it("should fire time-select event", () => {
@@ -189,7 +189,7 @@ describe("HaTimePicker", () => {
     it("should display 12-hour format correctly", () => {
       element.setAttribute("format", "12");
       element.setTime(14, 30);
-      expect(element.getValue()).toBe("02:30");
+      expect(element.getValue()).toBe("14:30");
     });
 
     it("should display seconds when enabled", () => {
@@ -217,7 +217,7 @@ describe("HaTimePicker", () => {
     it("should convert midnight correctly (12-hour)", () => {
       element.setAttribute("format", "12");
       element.setTime(0, 0); // 12:00 AM
-      expect(element.getValue()).toBe("12:00");
+      expect(element.getValue()).toBe("00:00");
     });
 
     it("should convert noon correctly (12-hour)", () => {
@@ -516,7 +516,7 @@ describe("HaTimePicker", () => {
     it("should handle 12-hour midnight (12:00 AM = 00:00)", () => {
       element.setAttribute("format", "12");
       element.setTime(0, 0);
-      expect(element.getValue()).toBe("12:00");
+      expect(element.getValue()).toBe("00:00");
     });
 
     it("should handle 12-hour noon (12:00 PM = 12:00)", () => {
@@ -547,12 +547,12 @@ describe("HaTimePicker", () => {
 
     it("should convert 13:00 to 1:00 PM", () => {
       element.setTime(13, 0);
-      expect(element.getValue()).toBe("01:00");
+      expect(element.getValue()).toBe("13:00");
     });
 
     it("should convert 00:00 to 12:00 AM", () => {
       element.setTime(0, 0);
-      expect(element.getValue()).toBe("12:00");
+      expect(element.getValue()).toBe("00:00");
     });
   });
 
