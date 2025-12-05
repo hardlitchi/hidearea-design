@@ -63,16 +63,13 @@ export class HaDatePicker extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    this.attachEventListeners();
     if (this.inline) {
       this._isOpen = true;
       this.updateCalendarVisibility();
     }
   }
 
-  disconnectedCallback() {
-    this.detachEventListeners();
-  }
+  disconnectedCallback() {}
 
   attributeChangedCallback(
     _name: string,
@@ -287,17 +284,22 @@ export class HaDatePicker extends HTMLElement {
   }
 
   open(): void {
-    if (this.disabled || this.readonly || this.inline) return;
+    if (this.disabled || this.readonly || this.inline || this._isOpen) return;
     this._isOpen = true;
     this.updateCalendarVisibility();
     this.dispatchCalendarOpen();
+
+    setTimeout(() => {
+      document.addEventListener("click", this.handleClickOutside);
+    }, 0);
   }
 
   close(): void {
-    if (this.inline) return;
+    if (this.inline || !this._isOpen) return;
     this._isOpen = false;
     this.updateCalendarVisibility();
     this.dispatchCalendarClose();
+    document.removeEventListener("click", this.handleClickOutside);
   }
 
   toggle(): void {
@@ -505,14 +507,6 @@ export class HaDatePicker extends HTMLElement {
       this.close();
     }
   };
-
-  private attachEventListeners() {
-    document.addEventListener("click", this.handleClickOutside);
-  }
-
-  private detachEventListeners() {
-    document.removeEventListener("click", this.handleClickOutside);
-  }
 
   // Event dispatchers
   private dispatchDateSelect() {
