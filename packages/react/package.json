@@ -52,6 +52,7 @@
     "vitest": "^4.0.8"
   },
   "dependencies": {
-    "@hidearea-design/core": "workspace:*"
+    "@hidearea-design/core": "workspace:*",
+    "@lit/react": "^1.0.8"
   }
 }

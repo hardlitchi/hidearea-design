@@ -127,3 +127,5 @@ export type {
   TimePickerFormat,
   TimePickerPeriod,
 } from "./TimePicker";
+
+export { Slider } from "./Slider";
