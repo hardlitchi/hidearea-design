@@ -681,7 +681,7 @@ export class HaTimePicker extends HTMLElement {
     // If current hour is disabled with new period, find the first valid hour
     if (this.isHourDisabled(this._hour)) {
       const hourOptions = this.getHourOptions();
-      let validHour = hourOptions.find((h) => !this.isHourDisabled(h));
+      const validHour = hourOptions.find((h) => !this.isHourDisabled(h));
 
       if (validHour !== undefined) {
         this._hour = validHour;
@@ -695,7 +695,7 @@ export class HaTimePicker extends HTMLElement {
     // If current minute is disabled with new period and hour, find the first valid minute
     if (this.isMinuteDisabled(this._minute)) {
       const minuteOptions = this.getMinuteOptions();
-      let validMinute = minuteOptions.find((m) => !this.isMinuteDisabled(m));
+      const validMinute = minuteOptions.find((m) => !this.isMinuteDisabled(m));
 
       if (validMinute !== undefined) {
         this._minute = validMinute;
@@ -709,7 +709,7 @@ export class HaTimePicker extends HTMLElement {
     // If showing seconds and current second is disabled, find the first valid second
     if (this.showSeconds && this.isSecondDisabled(this._second)) {
       const secondOptions = this.getSecondOptions();
-      let validSecond = secondOptions.find((s) => !this.isSecondDisabled(s));
+      const validSecond = secondOptions.find((s) => !this.isSecondDisabled(s));
 
       if (validSecond !== undefined) {
         this._second = validSecond;
