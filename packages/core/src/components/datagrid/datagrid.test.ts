@@ -190,7 +190,10 @@ describe("HaDataGrid", () => {
     it("should deselect row when clicked again", () => {
       const firstCheckbox = queryShadow(datagrid, "tbody tr:first-child .datagrid-cell--checkbox input") as HTMLInputElement;
       firstCheckbox?.click();
-      firstCheckbox?.click();
+
+      // After first click, table is re-rendered, so we need to get the checkbox again
+      const firstCheckboxAgain = queryShadow(datagrid, "tbody tr:first-child .datagrid-cell--checkbox input") as HTMLInputElement;
+      firstCheckboxAgain?.click();
 
       expect(datagrid.getSelectedRows()).not.toContain(0);
     });
