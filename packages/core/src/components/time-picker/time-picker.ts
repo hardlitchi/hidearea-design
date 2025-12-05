@@ -53,6 +53,7 @@ export class HaTimePicker extends HTMLElement {
   private _period: TimePickerPeriod = "AM";
   private _isOpen = false;
   private _shadowRoot: ShadowRoot;
+  private _hasValue = false; // Track if a value has been set
 
   // Attribute properties
   public format: TimePickerFormat = "24";
@@ -126,6 +127,9 @@ export class HaTimePicker extends HTMLElement {
       case "value":
         if (newValue) {
           this.parseValue(newValue);
+          this._hasValue = true;
+        } else {
+          this._hasValue = false;
         }
         break;
       case "format":
@@ -202,6 +206,9 @@ export class HaTimePicker extends HTMLElement {
    * Get the current time value
    */
   getValue(): string | null {
+    if (!this._hasValue) {
+      return null;
+    }
     return this.formatValue();
   }
 
@@ -210,6 +217,7 @@ export class HaTimePicker extends HTMLElement {
    */
   setValue(value: string): void {
     this.parseValue(value);
+    this._hasValue = true;
     this.setAttribute("value", value);
     this.render();
   }
@@ -222,6 +230,7 @@ export class HaTimePicker extends HTMLElement {
     this._minute = 0;
     this._second = 0;
     this._period = "AM";
+    this._hasValue = false;
     this.removeAttribute("value");
     this.dispatchEvent(
       new CustomEvent("time-clear", {
@@ -305,6 +314,7 @@ export class HaTimePicker extends HTMLElement {
     }
     this._minute = minute;
     this._second = second;
+    this._hasValue = true;
 
     this.setAttribute("value", this.formatValue());
     this.emitTimeSelect();
@@ -515,6 +525,7 @@ export class HaTimePicker extends HTMLElement {
   private handleHourSelect(hour: number): void {
     if (this.disabled || this.readonly) return;
     this._hour = hour;
+    this._hasValue = true;
     this.setAttribute("value", this.formatValue());
     this.emitTimeSelect();
     this.render();
@@ -523,6 +534,7 @@ export class HaTimePicker extends HTMLElement {
   private handleMinuteSelect(minute: number): void {
     if (this.disabled || this.readonly) return;
     this._minute = minute;
+    this._hasValue = true;
     this.setAttribute("value", this.formatValue());
     this.emitTimeSelect();
     this.render();
@@ -531,6 +543,7 @@ export class HaTimePicker extends HTMLElement {
   private handleSecondSelect(second: number): void {
     if (this.disabled || this.readonly) return;
     this._second = second;
+    this._hasValue = true;
     this.setAttribute("value", this.formatValue());
     this.emitTimeSelect();
     this.render();
@@ -539,6 +552,7 @@ export class HaTimePicker extends HTMLElement {
   private handlePeriodToggle(period: TimePickerPeriod): void {
     if (this.disabled || this.readonly) return;
     this._period = period;
+    this._hasValue = true;
     this.setAttribute("value", this.formatValue());
     this.emitTimeSelect();
     this.render();

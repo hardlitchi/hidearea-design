@@ -55,7 +55,7 @@ export interface DatePickerProps
   /**
    * Locale for date formatting
    * @default "en"
-   */
+  */
   locale?: string;
 
   /**
@@ -221,7 +221,7 @@ export const DatePicker = forwardRef<DatePickerRef, DatePickerProps>(
       onMonthChange,
       onCalendarOpen,
       onCalendarClose,
-      ...props
+      ...restProps
     },
     ref
   ) => {
@@ -262,6 +262,12 @@ export const DatePicker = forwardRef<DatePickerRef, DatePickerProps>(
       element.error = error;
       element.readonly = readonly;
 
+      if (value !== undefined) {
+        element.setAttribute(
+          "value",
+          typeof value === "string" ? value : value.toISOString()
+        );
+      }
       if (minDate !== undefined) {
         element.minDate =
           typeof minDate === "string" ? new Date(minDate) : minDate;
@@ -348,7 +354,7 @@ export const DatePicker = forwardRef<DatePickerRef, DatePickerProps>(
       placeholder={placeholder}
       helper-text={helperText}
       error-text={errorText}
-      {...props}
+      {...restProps}
     />;
   }
 );
