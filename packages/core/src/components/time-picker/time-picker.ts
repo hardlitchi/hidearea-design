@@ -403,17 +403,16 @@ export class HaTimePicker extends HTMLElement {
   }
 
   private formatValue(): string {
-    const hour = this._hour;
-
+    let hour24 = this._hour;
     if (this.format === "12") {
-      // Keep hour as is for 12-hour format (already in 1-12 range)
-      // No conversion needed
-    } else {
-      // For 24-hour format, hour is already in 0-23 range
-      // No conversion needed
+      if (this._period === "PM" && this._hour !== 12) {
+        hour24 = this._hour + 12;
+      } else if (this._period === "AM" && this._hour === 12) {
+        hour24 = 0;
+      }
     }
 
-    const hourStr = String(hour).padStart(2, "0");
+    const hourStr = String(hour24).padStart(2, "0");
     const minuteStr = String(this._minute).padStart(2, "0");
 
     if (this.showSeconds) {
@@ -425,14 +424,36 @@ export class HaTimePicker extends HTMLElement {
   }
 
   private getDisplayValue(): string {
-    const value = this.getValue();
-    if (!value) return this.placeholder;
+    const value24 = this.getValue();
+    if (!value24) return this.placeholder;
 
     if (this.format === "12") {
-      return `${value} ${this._period}`;
+      const parts = value24.split(":");
+      let hour = parseInt(parts[0], 10);
+      const minute = parts[1];
+
+      let period = "AM";
+      if (hour === 0) {
+        hour = 12;
+      } else if (hour === 12) {
+        period = "PM";
+      } else if (hour > 12) {
+        hour = hour - 12;
+        period = "PM";
+      }
+
+      const hourStr = String(hour);
+      const minuteStr = String(minute).padStart(2, "0");
+
+      if (this.showSeconds && parts[2]) {
+        const secondStr = String(parts[2]).padStart(2, "0");
+        return `${hourStr}:${minuteStr}:${secondStr} ${period}`;
+      }
+
+      return `${hourStr}:${minuteStr} ${period}`;
     }
 
-    return value;
+    return value24;
   }
 
   private emitTimeSelect(): void {
