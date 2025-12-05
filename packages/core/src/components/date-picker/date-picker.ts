@@ -500,8 +500,8 @@ export class HaDatePicker extends HTMLElement {
 
   private handleClickOutside = (e: MouseEvent) => {
     if (!this._isOpen || this.inline) return;
-    const target = e.target as Node;
-    if (!this.shadowRoot?.contains(target)) {
+    const path = e.composedPath();
+    if (!path.includes(this)) {
       this.close();
     }
   };
