@@ -129,3 +129,5 @@ export type {
 } from "./TimePicker";
 
 export { Slider } from "./Slider";
+
+export { ColorPicker } from "./ColorPicker";

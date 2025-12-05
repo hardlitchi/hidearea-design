@@ -438,3 +438,14 @@ export interface SliderProps {
   showTooltip?: boolean;
   marks?: number[];
 }
+
+export interface ColorPickerProps {
+  value?: string;
+  format?: 'hex' | 'rgb' | 'hsl';
+  showAlpha?: boolean;
+  showInput?: boolean;
+  showSwatches?: boolean;
+  swatches?: string[];
+  disabled?: boolean;
+  readonly?: boolean;
+}

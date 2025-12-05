@@ -95,3 +95,7 @@ export type { HaTimePicker as HaTimePickerElement } from "./components/time-pick
 // Slider
 export { HaSlider } from "./components/slider";
 export type { HaSlider as HaSliderElement } from "./components/slider/slider";
+
+// ColorPicker
+export { HaColorPicker } from "./components/color-picker";
+export type { HaColorPicker as HaColorPickerElement } from "./components/color-picker/color-picker";
