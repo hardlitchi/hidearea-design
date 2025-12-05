@@ -1,6 +1,6 @@
 # Hidearea Design System - 実装状況サマリー
 
-**最終更新**: 2025-12-04 (Phase 8 完了)
+**最終更新**: 2025-12-05 (Phase 9 完了)
 
 ---
 
@@ -22,11 +22,11 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ## 実装済みコンポーネント
 
-### 総コンポーネント数: **31**
+### 総コンポーネント数: **34** ✨
 
-### Storybookストーリー: **294**
+### Storybookストーリー: **316** ✨
 
-### ユニットテスト: **1,182** (全てパス)
+### ユニットテスト: **1,546** (全てパス) ✨
 
 ---
 
@@ -313,6 +313,14 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 | 30  | **Skeleton** ✅    | 3種類      | -      | 10個      | ✅ 23  | ✅    | ✅  |
 | 31  | **DataGrid** ✅ ✨ | 4種類      | -      | 12個      | ✅ 65  | ✅    | ✅  |
 
+### Phase 9: 高度な入力コンポーネント (3/5) ✅ Part 1完了 ✨
+
+| #   | コンポーネント     | バリアント | サイズ | Storybook | テスト | React | Vue |
+| --- | ------------------ | ---------- | ------ | --------- | ------ | ----- | --- |
+| 32  | **FileUpload** ✅ ✨ | -        | -      | 6個       | ✅ 60  | ✅    | ✅  |
+| 33  | **DatePicker** ✅ ✨ | 3モード   | -      | 8個       | ✅ 85  | ✅    | ✅  |
+| 34  | **TimePicker** ✅ ✨ | 2形式     | -      | 8個       | ✅ 109 | ✅    | ✅  |
+
 #### Skeleton ✨ 新規
 
 - **バリアント**: text, circular, rectangular
@@ -338,11 +346,43 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 - **テスト**: 65個
 - **用途**: 大量データの管理、ユーザー管理、在庫管理、売上レポート
 
+#### FileUpload ✅ ✨ 新規
+
+- **機能**: ドラッグ&ドロップ、複数ファイル選択、ファイル制限、バリデーション、プレビュー
+- **属性**: accept（ファイルタイプ制限）, multiple（複数選択）, max-size（サイズ制限）
+- **メソッド**: getFiles(), clear(), removeFile(index)
+- **イベント**: file-select, file-remove, file-error
+- **用途**: プロフィール画像、ドキュメントアップロード、複数画像選択
+- **テスト**: 60個
+
+#### DatePicker ✅ ✨ 新規
+
+- **選択モード**: single（単一）, range（範囲）, multiple（複数）
+- **機能**: カレンダーUI、日付制限、無効日指定、ローカライゼーション、キーボードナビゲーション
+- **属性**: min-date, max-date, disabled-dates, disabled-days-of-week, locale, first-day-of-week
+- **メソッド**: getValue(), setValue(), clear(), open/close/toggle(), goToToday(), goToMonth()
+- **イベント**: date-select, date-clear, month-change, calendar-open, calendar-close
+- **テスト**: 85個
+- **バグ修正**: readonly時のテキスト入力防止（PR #17）
+
+#### TimePicker ✅ ✨ 新規
+
+- **表示形式**: 12時間制/24時間制切替
+- **機能**: 時刻制限、無効時刻指定、ステップ設定、秒表示、AM/PM切替、動的検証
+- **属性**: min-time, max-time, disabled-hours, disabled-minutes, format, show-seconds
+- **メソッド**: getValue(), setValue(), clear(), setNow(), setTime(), isTimeDisabled()
+- **イベント**: time-select, time-clear, picker-open, picker-close
+- **テスト**: 109個
+- **バグ修正**:
+  - デフォルト値null対応（PR #17）
+  - 時刻制限の完全実装（3段階アプローチ）
+  - AM/PM選択優先度の改善（自動時刻調整）
+
 ---
 
 ## フレームワークサポート状況
 
-### React ラッパー: 30/31 コンポーネント (97%)
+### React ラッパー: 34/34 コンポーネント (100%) ✅ ✨
 
 **実装済み**:
 
@@ -353,12 +393,10 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 - ✅ Tooltip, Tabs, Breadcrumb, Dropdown/Menu (Phase 5)
 - ✅ Modal, Toast, Pagination, Avatar (Phase 6)
 - ✅ Table, Accordion, Drawer, List (Phase 7)
-- ✅ Skeleton (Phase 8 Part 1) ✨
+- ✅ Skeleton, DataGrid (Phase 8) ✨
+- ✅ FileUpload, DatePicker, TimePicker (Phase 9) ✨
 
-**未実装**:
-- ⏳ DataGrid (Phase 8 Part 2)
-
-### Vue ラッパー: 30/31 コンポーネント (97%)
+### Vue ラッパー: 34/34 コンポーネント (100%) ✅ ✨
 
 **実装済み**:
 
@@ -369,10 +407,8 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 - ✅ Tooltip, Tabs, Breadcrumb, Dropdown/Menu (Phase 5)
 - ✅ Modal, Toast, Pagination, Avatar (Phase 6)
 - ✅ Table, Accordion, Drawer, List (Phase 7)
-- ✅ Skeleton (Phase 8 Part 1) ✨
-
-**未実装**:
-- ⏳ DataGrid (Phase 8 Part 2)
+- ✅ Skeleton, DataGrid (Phase 8) ✨
+- ✅ FileUpload, DatePicker, TimePicker (Phase 9) ✨
 
 ---
 
@@ -422,7 +458,10 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ### コンポーネントテスト
 
-- **総テスト数**: 1,117 (全て成功)
+- **総テスト数**: 1,546 (全て成功) ✨
+  - Core: 1,441テスト
+  - React: 61テスト
+  - Vue: 44テスト
 - **カバレッジ目標**: Lines 80%以上、Branches 69%以上、Functions 80%以上
 - **実際のカバレッジ**: Lines 87%+, Branches 69%+, Functions 90%+
 - **テストフレームワーク**: Vitest + Testing Library
@@ -443,7 +482,7 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 ## Storybook
 
-### 総ストーリー数: 282個
+### 総ストーリー数: 316個 ✨
 
 **Phase 1**: 46個 (Button: 12, Input: 18, Checkbox: 16)
 **Phase 2**: 42個 (Container: 12, Grid: 14, Stack: 16)
@@ -452,7 +491,8 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 **Phase 5**: 30個 (Tooltip: 12, Tabs: 7, Breadcrumb: 5, Menu: 6)
 **Phase 6**: 38個 (Modal: 10, Toast: 11, Pagination: 9, Avatar: 8)
 **Phase 7**: 30個 (Table: 8, Accordion: 7, Drawer: 6, List: 9)
-**Phase 8**: 10個 (Skeleton: 10) ✨
+**Phase 8**: 22個 (Skeleton: 10, DataGrid: 12) ✨
+**Phase 9**: 22個 (FileUpload: 6, DatePicker: 8, TimePicker: 8) ✨
 
 ---
 
@@ -475,21 +515,25 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 13. `12_Phase4_Part2_Card_Progress_Spinner完了.md` - Phase 4 Part 2完了
 14. `13_Phase3.5_React_Vue_Wrappers完了.md` - Phase 3.5完了
 15. `14_Phase5_Navigation完了.md` - Phase 5完了
-16. `15_Phase6_Modal_Feedback完了.md` - Phase 6完了
+16. `15_Phase9_FileUpload_DatePicker_TimePicker完了.md` - Phase 9完了 ✨
 17. **`README.md`** - このファイル（実装状況サマリー）
+18. **`ROADMAP.md`** - 今後のロードマップ
 
 ---
 
 ## 未実装コンポーネント（計画）
 
-詳細は `10_不足コンポーネント分析.md` を参照。
+詳細は `10_不足コンポーネント分析.md` および `ROADMAP.md` を参照。
 
-### Phase 8: 追加・オプション (2コンポーネント)
+### Phase 9: 高度な入力コンポーネント (5コンポーネント)
 
-- ✅ Skeleton Loader (完了)
-- ⏳ DataGrid (高度版)
+- ✅ FileUpload (完了) ✨
+- ✅ DatePicker (完了) ✨
+- ✅ TimePicker (完了) ✨
+- ⏳ ColorPicker (計画中)
+- ⏳ Slider/RangeSlider (計画中)
 
-**総計**: 残り1コンポーネント
+**総計**: 3/5完了、残り2コンポーネント
 
 ---
 
@@ -499,16 +543,24 @@ Web Componentをベースにした、Vanilla JS、React、Vue.js対応のデザ�
 
 - `main` - 本番リリース用
 
-### 作業ブランチ（現在）
+### 最新のフィーチャーブランチ（マージ済み）
 
-- **`feature/phase8-skeleton-datagrid`** - Phase 8実装 ✨
-  - Skeleton コンポーネント実装済み
+- **`fix/datepicker-timepicker-issues`** - Phase 9バグ修正 (PR #17 merged) ✨
+  - DatePicker/TimePicker クリティカルバグ修正
+  - 時刻制限の完全実装（3段階アプローチ）
+  - AM/PM選択優先度改善
+  - Vue警告解消
+  - Turbo設定最適化
+  - ESLint修正
+
+- **`feature/phase9-improvements`** - Phase 9実装 (PR #16 merged) ✨
+  - FileUpload, DatePicker, TimePicker 実装
   - React/Vue ラッパー完備
-  - 23テスト、10ストーリー追加
-  - DataGrid コンポーネント未実装
+  - 254テスト、22ストーリー追加
 
 ### 過去のフィーチャーブランチ（マージ済み）
 
+- `feature/phase8-skeleton-datagrid` - Phase 8 (Skeleton, DataGrid)
 - `feature/phase7-data-display-components` - Phase 7 (Table, Accordion, Drawer, List)
 - `feature/phase6-modal-feedback-components` - Phase 6 (Modal, Toast, Pagination, Avatar)
 - `feature/phase5-navigation-components` - Phase 5 (Tooltip, Tabs, Breadcrumb, Menu/Dropdown)
@@ -606,9 +658,16 @@ packages/
   - ✅ Table, Accordion, Drawer, List
   - ✅ 132テスト、30ストーリー追加
   - ✅ React/Vueラッパー完備
-- 🚧 **Phase 8**: 追加・オプション (進行中) ✨
-  - ✅ Skeleton Loader (2025-12-04)
-  - ⏳ DataGrid (未実装)
+- ✅ **Phase 8 完了**: 追加・オプション (2025-12-04)
+  - ✅ Skeleton Loader
+  - ✅ DataGrid
+  - ✅ 88テスト、22ストーリー追加
+- ✅ **Phase 9 完了**: 高度な入力コンポーネント Part 1 (2025-12-05) ✨
+  - ✅ FileUpload, DatePicker, TimePicker
+  - ✅ 254テスト、22ストーリー追加
+  - ✅ React/Vueラッパー完備
+  - ✅ 複数バグ修正（7コミット）
+  - ✅ フレームワークサポート率 100%維持
 
 ---
 
@@ -619,9 +678,12 @@ packages/
 
 ---
 
-**最終更新日**: 2025-12-04
-**総コンポーネント数**: 30/31 (97%)
-**Phase 1-7完了**: 29/29 (100%) ✅
-**Phase 8進行中**: 1/2 (50%) 🚧
-**React/Vueラッパー**: 30/31 (97%)
-**Phase 8 Part 1完了**: Skeleton Loader実装完了 ✨
+**最終更新日**: 2025-12-05
+**総コンポーネント数**: 34/34 (100%) ✅ ✨
+**Phase 1-8完了**: 31/31 (100%) ✅
+**Phase 9 Part 1完了**: 3/5 (60%) ✅ ✨
+**React/Vueラッパー**: 34/34 (100%) ✅ ✨
+**総テスト数**: 1,546 (Core: 1,441, React: 61, Vue: 44) ✅
+**Storybookストーリー**: 316 ✅
+**Phase 9実装完了**: FileUpload, DatePicker, TimePicker ✨
+**バグ修正完了**: 7コミット（DatePicker/TimePicker品質向上）✨
