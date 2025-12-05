@@ -403,7 +403,7 @@ export class HaTimePicker extends HTMLElement {
   }
 
   private formatValue(): string {
-    let hour = this._hour;
+    const hour = this._hour;
 
     if (this.format === "12") {
       // Keep hour as is for 12-hour format (already in 1-12 range)
@@ -702,12 +702,29 @@ export class HaTimePicker extends HTMLElement {
           ${options
             .map((value) => {
               const isSelected = value === selected;
-              const isDisabled =
-                type === "hour"
-                  ? this.disabledHours.includes(value)
-                  : type === "minute"
-                    ? this.disabledMinutes.includes(value)
-                    : false;
+              let isDisabled = false;
+
+              if (type === "hour") {
+                if (this.format === "12") {
+                  // For 12-hour format, check if BOTH AM and PM versions are disabled
+                  // Convert to 24-hour format for both AM and PM
+                  let hour24AM = value;
+                  if (value === 12) {
+                    hour24AM = 0; // 12 AM = 0
+                  }
+                  let hour24PM = value;
+                  if (value !== 12) {
+                    hour24PM = value + 12; // 1 PM = 13, etc.
+                  }
+                  // Only disable if both AM and PM are disabled
+                  isDisabled = this.disabledHours.includes(hour24AM) && this.disabledHours.includes(hour24PM);
+                } else {
+                  // For 24-hour format, check directly
+                  isDisabled = this.disabledHours.includes(value);
+                }
+              } else if (type === "minute") {
+                isDisabled = this.disabledMinutes.includes(value);
+              }
 
               const classes = ["item"];
               if (isSelected) classes.push("selected");
