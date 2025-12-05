@@ -305,20 +305,6 @@ export class HaAccordionItem extends HTMLElement {
   }
 
   close() {
-    // 【修正3】Collapsible チェック
-    // 親要素が collapsible ではない (必ず1つは開いておく) 場合のチェック
-    const parent = this.closest("ha-accordion") as HaAccordion;
-    
-    if (parent && !parent.collapsible) {
-      // 親が collapsible=false の場合、自分以外に開いているアイテムがあるか確認
-      // 注意: 自分自身はまだ open 属性を持っているので、開いている数は「自分を含めて1つだけ」なら閉じてはいけない
-      const openItems = parent.querySelectorAll("ha-accordion-item[open]");
-      if (openItems.length <= 1 && openItems[0] === this) {
-        // 最後の1つなので閉じない
-        return;
-      }
-    }
-
     if (this.hasAttribute("open")) {
       this.removeAttribute("open");
       this.dispatchToggleEvent(false);
