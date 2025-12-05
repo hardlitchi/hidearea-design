@@ -23,6 +23,8 @@ export class HaDatePicker extends HTMLElement {
   private _currentMonth: number;
   private _isOpen = false;
   private _tempStartDate: Date | null = null; // For range selection
+  private _disabledDates: Date[] = [];
+  private _disabledDaysOfWeek: number[] = [];
 
   private inputElement!: HTMLInputElement;
   private calendarElement!: HTMLDivElement;
@@ -50,6 +52,8 @@ export class HaDatePicker extends HTMLElement {
       "label",
       "helper-text",
       "error-text",
+      "disabled-dates",
+      "disabled-days-of-week",
     ];
   }
 
@@ -246,12 +250,36 @@ export class HaDatePicker extends HTMLElement {
   }
 
   get placeholder(): string {
-    return this.getAttribute("placeholder") || "Select date";
+    return this.getAttribute("placeholder") || "Select Date";
   }
 
-  set placeholder(value: string) {
-    this.setAttribute("placeholder", value);
+  get errorText(): string {
+    return this.getAttribute("error-text") || "";
   }
+
+  set errorText(value: string) {
+    this.setAttribute("error-text", value);
+  }
+
+  get disabledDates(): Date[] {
+    return this._disabledDates;
+  }
+
+  set disabledDates(value: Date[]) {
+    this._disabledDates = value.map((d) => new Date(d));
+    this.renderCalendar();
+  }
+
+  get disabledDaysOfWeek(): number[] {
+    return this._disabledDaysOfWeek;
+  }
+
+  set disabledDaysOfWeek(value: number[]) {
+    this._disabledDaysOfWeek = value;
+    this.renderCalendar();
+  }
+
+
 
   // Public API
   getValue(): Date | null {
@@ -364,6 +392,8 @@ export class HaDatePicker extends HTMLElement {
   isDateDisabled(date: Date): boolean {
     if (this.minDate && date < this.minDate) return true;
     if (this.maxDate && date > this.maxDate) return true;
+    if (this._disabledDates.some((d) => this.isSameDay(d, date))) return true;
+    if (this._disabledDaysOfWeek.includes(date.getDay())) return true;
     return false;
   }
 

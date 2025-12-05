@@ -202,10 +202,6 @@ export class HaTimePicker extends HTMLElement {
    * Get the current time value
    */
   getValue(): string | null {
-    if (this._hour === 0 && this._minute === 0 && this._second === 0) {
-      const value = this.getAttribute("value");
-      if (!value) return null;
-    }
     return this.formatValue();
   }
 
