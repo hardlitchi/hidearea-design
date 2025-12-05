@@ -425,7 +425,7 @@ export class HaDatePicker extends HTMLElement {
 
   // Event handlers
   private handleInputClick = () => {
-    this.toggle();
+    this.open();
   };
 
   private handleInputFocus = () => {
