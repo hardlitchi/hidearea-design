@@ -134,18 +134,21 @@ export class HaTimePicker extends HTMLElement {
       case "show-seconds":
         this.showSeconds = newValue !== null;
         break;
-      case "hour-step":
+      case "hour-step": {
         const newHourStep = parseInt(newValue || "", 10);
         this.hourStep = isNaN(newHourStep) ? 1 : newHourStep;
         break;
-      case "minute-step":
+      }
+      case "minute-step": {
         const newMinuteStep = parseInt(newValue || "", 10);
         this.minuteStep = isNaN(newMinuteStep) ? 1 : newMinuteStep;
         break;
-      case "second-step":
+      }
+      case "second-step": {
         const newSecondStep = parseInt(newValue || "", 10);
         this.secondStep = isNaN(newSecondStep) ? 1 : newSecondStep;
         break;
+      }
       case "min-time":
         this.minTime = newValue;
         break;
@@ -816,15 +819,18 @@ export class HaTimePicker extends HTMLElement {
         if (disabled) return;
 
         switch (type) {
-          case "hour":
+          case "hour": {
             this.handleHourSelect(value);
             break;
-          case "minute":
+          }
+          case "minute": {
             this.handleMinuteSelect(value);
             break;
-          case "second":
+          }
+          case "second": {
             this.handleSecondSelect(value);
             break;
+          }
         }
       });
     });
