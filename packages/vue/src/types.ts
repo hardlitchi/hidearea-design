@@ -358,3 +358,67 @@ export interface DataGridProps {
   pageSize?: number;
   currentPage?: number;
 }
+
+export interface FileUploadProps {
+  variant?: 'default' | 'compact' | 'button';
+  multiple?: boolean;
+  accept?: string;
+  maxSize?: number;
+  maxFiles?: number;
+  disabled?: boolean;
+  required?: boolean;
+  error?: boolean;
+  showFileList?: boolean;
+  showPreview?: boolean;
+  label?: string;
+  placeholder?: string;
+  dragDropText?: string;
+  helperText?: string;
+  errorText?: string;
+}
+
+export interface DatePickerProps {
+  mode?: 'single' | 'range' | 'multiple';
+  value?: string | Date;
+  format?: string;
+  minDate?: string | Date;
+  maxDate?: string | Date;
+  locale?: string;
+  firstDayOfWeek?: 0 | 1;
+  inline?: boolean;
+  showWeekNumbers?: boolean;
+  showTodayButton?: boolean;
+  showClearButton?: boolean;
+  disabled?: boolean;
+  required?: boolean;
+  error?: boolean;
+  readonly?: boolean;
+  placeholder?: string;
+  label?: string;
+  helperText?: string;
+  errorText?: string;
+}
+
+export interface TimePickerProps {
+  value?: string;
+  format?: '12' | '24';
+  showSeconds?: boolean;
+  hourStep?: number;
+  minuteStep?: number;
+  secondStep?: number;
+  minTime?: string;
+  maxTime?: string;
+  disabledHours?: number[];
+  disabledMinutes?: number[];
+  inline?: boolean;
+  placeholder?: string;
+  label?: string;
+  helperText?: string;
+  disabled?: boolean;
+  required?: boolean;
+  error?: boolean;
+  readonly?: boolean;
+  errorText?: string;
+  showNowButton?: boolean;
+  showClearButton?: boolean;
+}

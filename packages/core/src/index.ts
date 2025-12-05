@@ -35,6 +35,8 @@ export { HaList, HaListItem, HaListDivider } from "./components/list";
 export { HaSkeleton } from "./components/skeleton";
 export { HaDataGrid } from "./components/datagrid";
 export type { DataGridColumn, DataGridRow } from "./components/datagrid";
+export { HaFileUpload } from "./components/file-upload";
+export type { FileUploadFile, FileUploadVariant } from "./components/file-upload";
 
 // Export types if needed
 export type { HaButton as HaButtonElement } from "./components/button/button";
@@ -78,3 +80,14 @@ export type { HaListItem as HaListItemElement } from "./components/list/list";
 export type { HaListDivider as HaListDividerElement } from "./components/list/list";
 export type { HaSkeleton as HaSkeletonElement } from "./components/skeleton/skeleton";
 export type { HaDataGrid as HaDataGridElement } from "./components/datagrid/datagrid";
+export type { HaFileUpload as HaFileUploadElement } from "./components/file-upload/file-upload";
+
+// DatePicker
+export { HaDatePicker } from "./components/date-picker";
+export type { DatePickerMode, DatePickerDate } from "./components/date-picker";
+export type { HaDatePicker as HaDatePickerElement } from "./components/date-picker/date-picker";
+
+// TimePicker
+export { HaTimePicker } from "./components/time-picker";
+export type { TimePickerFormat, TimePickerPeriod, TimePickerDate } from "./components/time-picker";
+export type { HaTimePicker as HaTimePickerElement } from "./components/time-picker/time-picker";
