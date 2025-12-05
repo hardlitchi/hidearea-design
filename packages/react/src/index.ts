@@ -103,3 +103,11 @@ export type { SkeletonProps, SkeletonRef } from "./Skeleton";
 
 export { DataGrid } from "./DataGrid";
 export type { DataGridProps, DataGridRef } from "./DataGrid";
+
+export { FileUpload } from "./FileUpload";
+export type {
+  FileUploadProps,
+  FileUploadRef,
+  FileUploadFile,
+  FileUploadVariant,
+} from "./FileUpload";

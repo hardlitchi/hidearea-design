@@ -358,3 +358,21 @@ export interface DataGridProps {
   pageSize?: number;
   currentPage?: number;
 }
+
+export interface FileUploadProps {
+  variant?: 'default' | 'compact' | 'button';
+  multiple?: boolean;
+  accept?: string;
+  maxSize?: number;
+  maxFiles?: number;
+  disabled?: boolean;
+  required?: boolean;
+  error?: boolean;
+  showFileList?: boolean;
+  showPreview?: boolean;
+  label?: string;
+  placeholder?: string;
+  dragDropText?: string;
+  helperText?: string;
+  errorText?: string;
+}
