@@ -130,7 +130,7 @@ export class HaDropdown extends HTMLElement {
   }
 
   private toggle() {
-    if (this.isOpen) {
+    if (this.open) {
       this.hide();
     } else {
       this.show();
