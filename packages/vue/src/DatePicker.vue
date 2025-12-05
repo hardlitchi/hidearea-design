@@ -6,6 +6,8 @@
     :format="format"
     :min-date="minDate"
     :max-date="maxDate"
+    :disabled-dates="disabledDates"
+    :disabled-days-of-week="disabledDaysOfWeek"
     :locale="locale"
     :first-day-of-week="firstDayOfWeek"
     :inline="inline"
@@ -16,10 +18,6 @@
     :required="required"
     :error="error"
     :readonly="readonly"
-    :placeholder="placeholder"
-    :label="label"
-    :helper-text="helperText"
-    :error-text="errorText"
     @date-select="handleDateSelect"
     @date-clear="handleDateClear"
     @month-change="handleMonthChange"
@@ -69,6 +67,16 @@ export interface DatePickerProps {
    * Maximum selectable date
    */
   maxDate?: string | Date;
+
+  /**
+   * Disabled dates
+   */
+  disabledDates?: (string | Date)[];
+
+  /**
+   * Disabled days of week (0=Sunday, 6=Saturday)
+   */
+  disabledDaysOfWeek?: number[];
 
   /**
    * Locale for date formatting
@@ -164,6 +172,8 @@ const props = withDefaults(defineProps<DatePickerProps>(), {
   required: false,
   error: false,
   readonly: false,
+  disabledDates: () => [],
+  disabledDaysOfWeek: () => [],
 });
 
 const emit = defineEmits<{
@@ -225,6 +235,12 @@ onMounted(() => {
   if (props.errorText) {
     element.setAttribute('error-text', props.errorText);
   }
+  if (props.disabledDates) {
+    element.disabledDates = props.disabledDates;
+  }
+  if (props.disabledDaysOfWeek) {
+    element.disabledDaysOfWeek = props.disabledDaysOfWeek;
+  }
 });
 
 // Watch for prop changes
@@ -280,6 +296,26 @@ watch(
       elementRef.value.inline = newValue;
     }
   }
+);
+
+watch(
+  () => props.disabledDates,
+  (newValue) => {
+    if (elementRef.value) {
+      elementRef.value.disabledDates = newValue;
+    }
+  },
+  { deep: true }
+);
+
+watch(
+  () => props.disabledDaysOfWeek,
+  (newValue) => {
+    if (elementRef.value) {
+      elementRef.value.disabledDaysOfWeek = newValue;
+    }
+  },
+  { deep: true }
 );
 
 // Event handlers

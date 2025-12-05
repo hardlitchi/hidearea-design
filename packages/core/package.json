@@ -22,7 +22,7 @@
   "scripts": {
     "dev": "vite build --watch",
     "build": "tsc && vite build",
-    "test": "vitest",
+    "test": "vitest run",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint src --ext .ts --ignore-pattern '**/*.test.ts' --ignore-pattern '**/*.spec.ts'",

@@ -8,6 +8,8 @@ interface DatePickerArgs {
   format: string;
   minDate: string;
   maxDate: string;
+  disabledDates: string[];
+  disabledDaysOfWeek: number[];
   locale: string;
   firstDayOfWeek: 0 | 1;
   inline: boolean;
@@ -106,6 +108,14 @@ const meta: Meta<DatePickerArgs> = {
       control: { type: "text" },
       description: "Error message",
     },
+    disabledDates: {
+      control: { type: "array" },
+      description: "Dates to disable",
+    },
+    disabledDaysOfWeek: {
+      control: { type: "array" },
+      description: "Days of week to disable (0=Sunday, 6=Saturday)",
+    },
   },
 };
 
@@ -133,6 +143,8 @@ export const Default: Story = {
     label: "",
     helperText: "",
     errorText: "",
+    disabledDates: [],
+    disabledDaysOfWeek: [],
   },
   render: (args) => html`
     <ha-date-picker
@@ -155,9 +167,36 @@ export const Default: Story = {
       label="${args.label}"
       helper-text="${args.helperText}"
       error-text="${args.errorText}"
+      .disabledDates="${args.disabledDates}"
+      .disabledDaysOfWeek="${args.disabledDaysOfWeek}"
     ></ha-date-picker>
   `,
 };
+
+export const WithDisabledDates: Story = {
+  args: {
+    ...Default.args,
+    label: "Disabled Specific Dates",
+    disabledDates: [
+      new Date(2025, 0, 10), // Jan 10, 2025
+      new Date(2025, 0, 15), // Jan 15, 2025
+      new Date(2025, 0, 20), // Jan 20, 2025
+    ],
+    value: "2025-01-01",
+  },
+  render: Default.render,
+};
+
+export const WithDisabledDaysOfWeek: Story = {
+  args: {
+    ...Default.args,
+    label: "Disabled Weekends",
+    disabledDaysOfWeek: [0, 6], // Sunday and Saturday
+    value: "2025-01-01",
+  },
+  render: Default.render,
+};
+
 
 export const WithLabel: Story = {
   args: {
@@ -332,6 +371,8 @@ export const WithEvents: Story = {
       @calendar-close="${() => {
         console.log("Calendar closed");
       }}"
+      .disabledDates="${args.disabledDates}"
+      .disabledDaysOfWeek="${args.disabledDaysOfWeek}"
     ></ha-date-picker>
   `,
 };

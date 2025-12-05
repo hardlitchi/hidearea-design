@@ -55,7 +55,7 @@ export interface DatePickerProps
   /**
    * Locale for date formatting
    * @default "en"
-   */
+  */
   locale?: string;
 
   /**
@@ -221,7 +221,7 @@ export const DatePicker = forwardRef<DatePickerRef, DatePickerProps>(
       onMonthChange,
       onCalendarOpen,
       onCalendarClose,
-      ...props
+      ...restProps
     },
     ref
   ) => {
@@ -276,17 +276,11 @@ export const DatePicker = forwardRef<DatePickerRef, DatePickerProps>(
         element.maxDate =
           typeof maxDate === "string" ? new Date(maxDate) : maxDate;
       }
-      if (placeholder) {
-        element.setAttribute("placeholder", placeholder);
+      if (disabledDates) {
+        element.disabledDates = disabledDates.map(d => typeof d === 'string' ? new Date(d) : d);
       }
-      if (label) {
-        element.setAttribute("label", label);
-      }
-      if (helperText) {
-        element.setAttribute("helper-text", helperText);
-      }
-      if (errorText) {
-        element.setAttribute("error-text", errorText);
+      if (disabledDaysOfWeek) {
+        element.disabledDaysOfWeek = disabledDaysOfWeek;
       }
     }, [
       mode,
@@ -294,6 +288,8 @@ export const DatePicker = forwardRef<DatePickerRef, DatePickerProps>(
       format,
       minDate,
       maxDate,
+      disabledDates,
+      disabledDaysOfWeek,
       locale,
       firstDayOfWeek,
       inline,
@@ -304,10 +300,6 @@ export const DatePicker = forwardRef<DatePickerRef, DatePickerProps>(
       required,
       error,
       readonly,
-      placeholder,
-      label,
-      helperText,
-      errorText,
     ]);
 
     useEffect(() => {
@@ -356,7 +348,14 @@ export const DatePicker = forwardRef<DatePickerRef, DatePickerProps>(
       };
     }, [onDateSelect, onDateClear, onMonthChange, onCalendarOpen, onCalendarClose]);
 
-    return <ha-date-picker ref={elementRef} {...props} />;
+    return <ha-date-picker
+      ref={elementRef}
+      label={label}
+      placeholder={placeholder}
+      helper-text={helperText}
+      error-text={errorText}
+      {...restProps}
+    />;
   }
 );
 
