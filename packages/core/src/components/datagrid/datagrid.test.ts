@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { HaDataGrid } from "./datagrid";
 import type { DataGridColumn, DataGridRow } from "./datagrid";
-import { waitForCustomElement, queryShadow } from "../../../vitest.setup";
+import { waitForCustomElement, queryShadow, queryShadowAll } from "../../../vitest.setup";
 
 describe("HaDataGrid", () => {
   let datagrid: HaDataGrid;
@@ -22,14 +22,20 @@ describe("HaDataGrid", () => {
   ];
 
   beforeEach(async () => {
+    document.body.innerHTML = "";
+    // カスタム要素が未登録の場合のみ登録を行う（二重登録エラーを防ぐため）
+    if (!customElements.get("ha-datagrid")) {
+      customElements.define("ha-datagrid", HaDataGrid);
+    }
     datagrid = document.createElement("ha-datagrid") as HaDataGrid;
     document.body.appendChild(datagrid);
+    // コンポーネントが DOM で使用可能になるまで待機（テストヘルパー関数）
     await waitForCustomElement("ha-datagrid");
-  }, 30000);
+  }, 3000);
 
   describe("Component Registration", () => {
     it("should be defined", () => {
-      expect(customElements.get("ha-datagrid")).toBeDefined();
+      expect(customElements.get("ha-datagrid")).toBe(HaDataGrid);
     });
 
     it("should create shadow root", () => {
@@ -56,14 +62,14 @@ describe("HaDataGrid", () => {
   describe("Columns and Data", () => {
     it("should render columns", () => {
       datagrid.setColumns(sampleColumns);
-      const headers = queryShadow(datagrid, "thead th", true);
+      const headers = queryShadowAll(datagrid, "thead th");
       expect(headers.length).toBe(4); // 4 data columns
     });
 
     it("should render data rows", () => {
       datagrid.setColumns(sampleColumns);
       datagrid.setData(sampleData);
-      const rows = queryShadow(datagrid, "tbody tr", true);
+      const rows = queryShadowAll(datagrid, "tbody tr");
       expect(rows.length).toBe(5);
     });
 
@@ -88,7 +94,7 @@ describe("HaDataGrid", () => {
     });
 
     it("should mark sortable columns", () => {
-      const sortableHeaders = queryShadow(datagrid, ".datagrid-header-cell--sortable", true);
+      const sortableHeaders = queryShadowAll(datagrid, ".datagrid-header-cell--sortable");
       expect(sortableHeaders.length).toBe(3); // id, name, age are sortable
     });
 
@@ -158,7 +164,7 @@ describe("HaDataGrid", () => {
     });
 
     it("should show checkbox column when selectable", () => {
-      const checkboxCells = queryShadow(datagrid, ".datagrid-cell--checkbox", true);
+      const checkboxCells = queryShadowAll(datagrid, ".datagrid-cell--checkbox");
       expect(checkboxCells.length).toBeGreaterThan(0);
     });
 
@@ -246,7 +252,7 @@ describe("HaDataGrid", () => {
     });
 
     it("should display only page size items", () => {
-      const rows = queryShadow(datagrid, "tbody tr", true);
+      const rows = queryShadowAll(datagrid, "tbody tr");
       expect(rows.length).toBe(10);
     });
 
@@ -320,7 +326,7 @@ describe("HaDataGrid", () => {
 
     it("should respect custom page size", () => {
       datagrid.setAttribute("page-size", "5");
-      const rows = queryShadow(datagrid, "tbody tr", true);
+      const rows = queryShadowAll(datagrid, "tbody tr");
       expect(rows.length).toBe(5);
     });
 
@@ -392,14 +398,14 @@ describe("HaDataGrid", () => {
     it("should handle empty data", () => {
       datagrid.setColumns(sampleColumns);
       datagrid.setData([]);
-      const rows = queryShadow(datagrid, "tbody tr", true);
+      const rows = queryShadowAll(datagrid, "tbody tr");
       expect(rows.length).toBe(0);
     });
 
     it("should handle null values", () => {
       datagrid.setColumns(sampleColumns);
       datagrid.setData([{ id: 1, name: null, email: undefined, age: 0 }]);
-      const cells = queryShadow(datagrid, "tbody tr:first-child td", true);
+      const cells = queryShadowAll(datagrid, "tbody tr:first-child td");
       expect(cells.length).toBe(4);
     });
 
@@ -414,7 +420,7 @@ describe("HaDataGrid", () => {
       const nameHeader = queryShadow(datagrid, "thead th:nth-child(2)") as HTMLElement;
       nameHeader?.click();
 
-      const rows = queryShadow(datagrid, "tbody tr", true);
+      const rows = queryShadowAll(datagrid, "tbody tr");
       expect(rows.length).toBe(3);
     });
 

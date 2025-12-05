@@ -55,6 +55,9 @@ export class HaDataGrid extends HTMLElement {
   private _pageSize: number = 10;
   private _currentPage: number = 1;
 
+  private _isDataSorted = false;
+  private _sortedData: DataGridRow[] = [];
+
   static get observedAttributes() {
     return ["striped", "bordered", "hoverable", "selectable", "page-size", "current-page"];
   }
@@ -126,6 +129,8 @@ export class HaDataGrid extends HTMLElement {
   setData(data: DataGridRow[]) {
     this._data = data;
     this._currentPage = 1; // Reset to first page
+    this._selectedRows.clear();
+    this._isDataSorted = false;
     this.updateTable();
   }
 
@@ -332,7 +337,11 @@ export class HaDataGrid extends HTMLElement {
       return [...this._data];
     }
 
-    return [...this._data].sort((a, b) => {
+    if (this._isDataSorted) {
+      return this._sortedData;
+    }
+
+    this._sortedData = [...this._data].sort((a, b) => {
       const aVal = a[this._sortKey!];
       const bVal = b[this._sortKey!];
 
@@ -351,6 +360,9 @@ export class HaDataGrid extends HTMLElement {
 
       return this._sortDirection === "asc" ? comparison : -comparison;
     });
+
+    this._isDataSorted = true;
+    return this._sortedData;
   }
 
   private getPaginatedData(data: DataGridRow[]): DataGridRow[] {
@@ -373,6 +385,7 @@ export class HaDataGrid extends HTMLElement {
       this._sortDirection = "asc";
     }
 
+    this._isDataSorted = false;
     this.updateTable();
     this.dispatchSortChange();
   }
