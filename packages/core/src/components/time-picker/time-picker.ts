@@ -672,30 +672,52 @@ export class HaTimePicker extends HTMLElement {
   private handlePeriodToggle(period: TimePickerPeriod): void {
     if (this.disabled || this.readonly) return;
 
-    // Phase 3: Validate before accepting period change
-    // Temporarily set the period to check if the time would be valid
-    const oldPeriod = this._period;
+    // Change period first (higher priority than hour/minute selection)
     this._period = period;
 
-    // Check if the current hour would be disabled with the new period
+    // Phase 3: Auto-adjust hour/minute/second if the new period makes them invalid
+    // Try to keep the current time if possible, otherwise adjust to the nearest valid time
+
+    // If current hour is disabled with new period, find the first valid hour
     if (this.isHourDisabled(this._hour)) {
-      // Revert to old period and don't allow the change
-      this._period = oldPeriod;
-      return;
+      const hourOptions = this.getHourOptions();
+      let validHour = hourOptions.find((h) => !this.isHourDisabled(h));
+
+      if (validHour !== undefined) {
+        this._hour = validHour;
+      } else {
+        // No valid hours available with this period, don't allow the change
+        this._period = period === "AM" ? "PM" : "AM";
+        return;
+      }
     }
 
-    // Check if the current minute would be disabled with the new period
+    // If current minute is disabled with new period and hour, find the first valid minute
     if (this.isMinuteDisabled(this._minute)) {
-      // Revert to old period and don't allow the change
-      this._period = oldPeriod;
-      return;
+      const minuteOptions = this.getMinuteOptions();
+      let validMinute = minuteOptions.find((m) => !this.isMinuteDisabled(m));
+
+      if (validMinute !== undefined) {
+        this._minute = validMinute;
+      } else {
+        // No valid minutes available, revert period change
+        this._period = period === "AM" ? "PM" : "AM";
+        return;
+      }
     }
 
-    // Check if the current second would be disabled with the new period (if showing seconds)
+    // If showing seconds and current second is disabled, find the first valid second
     if (this.showSeconds && this.isSecondDisabled(this._second)) {
-      // Revert to old period and don't allow the change
-      this._period = oldPeriod;
-      return;
+      const secondOptions = this.getSecondOptions();
+      let validSecond = secondOptions.find((s) => !this.isSecondDisabled(s));
+
+      if (validSecond !== undefined) {
+        this._second = validSecond;
+      } else {
+        // No valid seconds available, revert period change
+        this._period = period === "AM" ? "PM" : "AM";
+        return;
+      }
     }
 
     this._hasValue = true;
