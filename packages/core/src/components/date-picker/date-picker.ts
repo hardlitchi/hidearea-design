@@ -655,6 +655,7 @@ export class HaDatePicker extends HTMLElement {
     button.textContent = String(date.getDate());
     button.setAttribute("type", "button");
     button.setAttribute("part", "day");
+    button.setAttribute("data-day", `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`);
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);

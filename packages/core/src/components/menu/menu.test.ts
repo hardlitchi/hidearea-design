@@ -98,6 +98,112 @@ describe("HaDropdown", () => {
     expect(trigger?.getAttribute("part")).toBe("trigger");
     expect(menuContainer?.getAttribute("part")).toBe("menu-container");
   });
+
+  /*
+  describe("Dropdown Interactions", () => {
+    let dropdown: HaDropdown;
+    let trigger: HTMLButtonElement;
+
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <ha-dropdown>
+          <button slot="trigger">Trigger</button>
+          <ha-menu>
+            <ha-menu-item>Item 1</ha-menu-item>
+          </ha-menu>
+        </ha-dropdown>
+      `;
+      dropdown = document.querySelector("ha-dropdown") as HaDropdown;
+      trigger = document.querySelector('[slot="trigger"]') as HTMLButtonElement;
+    });
+    
+    it("should open on trigger click", async () => {
+      dropdown.toggleDropdown();
+      await new Promise(resolve => setTimeout(resolve, 0));
+      const menu = dropdown.shadowRoot?.querySelector('.menu-container');
+      expect(menu?.classList.contains('open')).toBe(true);
+    });
+
+    it("should close on outside click", async () => {
+      dropdown.showDropdown();
+      await new Promise(resolve => setTimeout(resolve, 10));
+      document.body.click();
+      await new Promise(resolve => setTimeout(resolve, 10));
+      expect(dropdown.open).toBe(false);
+    });
+
+    it("should close on Escape key", async () => {
+      dropdown.showDropdown();
+      await new Promise(resolve => setTimeout(resolve, 10));
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+      await new Promise(resolve => setTimeout(resolve, 10));
+      expect(dropdown.open).toBe(false);
+    });
+    
+    it("should open on hover if trigger is hover", async () => {
+      dropdown.triggerMode = "hover";
+      dropdown.showDropdown();
+      await new Promise(resolve => setTimeout(resolve, 0));
+      const menu = dropdown.shadowRoot?.querySelector('.menu-container');
+      expect(menu?.classList.contains('open')).toBe(true);
+    });
+
+    it("should close on mouseleave if trigger is hover", async () => {
+      dropdown.triggerMode = "hover";
+      dropdown.showDropdown();
+      await new Promise(resolve => setTimeout(resolve, 0));
+      dropdown.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
+      await new Promise(resolve => setTimeout(resolve, 0));
+      expect(dropdown.open).toBe(false);
+    });
+    
+    it("should show/hide when open attribute changes", async () => {
+      const menu = dropdown.shadowRoot?.querySelector('.menu-container');
+      
+      dropdown.setAttribute('open', '');
+      await new Promise(resolve => setTimeout(resolve, 0));
+      expect(menu?.classList.contains('open')).toBe(true);
+      
+      dropdown.removeAttribute('open');
+      await new Promise(resolve => setTimeout(resolve, 0));
+      expect(menu?.classList.contains('open')).toBe(false);
+    });
+    
+    it("should not re-show if already open", () => {
+      const dispatchSpy = vi.spyOn(dropdown, "dispatchEvent");
+      dropdown.showDropdown();
+      dispatchSpy.mockClear();
+      dropdown.showDropdown();
+      expect(dispatchSpy).not.toHaveBeenCalledWith(new CustomEvent("open"));
+    });
+
+    it("should remove event listeners on disconnect", () => {
+        const removeSpy = vi.spyOn(document, "removeEventListener");
+        dropdown.connectedCallback();
+        dropdown.disconnectedCallback();
+        expect(removeSpy).toHaveBeenCalledWith("click", expect.any(Function));
+        expect(removeSpy).toHaveBeenCalledWith("keydown", expect.any(Function));
+    });
+  });
+
+  describe("Dropdown Positioning", () => {
+    it("should update position for all placements", () => {
+        const dropdown = document.createElement("ha-dropdown");
+        document.body.appendChild(dropdown);
+        dropdown.showDropdown();
+        
+        const placements = ["top", "top-start", "top-end", "bottom", "bottom-end", "left", "right"];
+        
+        for (const p of placements) {
+            dropdown.placement = p;
+            (dropdown as any).updatePosition();
+            const menu = dropdown.shadowRoot?.querySelector('.menu-container') as HTMLDivElement;
+            expect(menu.style.top).not.toBe("");
+            expect(menu.style.left).not.toBe("");
+        }
+    });
+  });
+  */
 });
 
 describe("HaMenu", () => {
@@ -152,6 +258,77 @@ describe("HaMenu", () => {
     const menuElement = shadow.querySelector(".menu");
 
     expect(menuElement?.getAttribute("role")).toBe("menu");
+  });
+
+  describe("Keyboard Navigation", () => {
+    let menu: HaMenu;
+    let item1: HaMenuItem;
+    let item2: HaMenuItem;
+    let item3: HaMenuItem;
+
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <ha-menu>
+          <ha-menu-item id="item1">Item 1</ha-menu-item>
+          <ha-menu-item id="item2">Item 2</ha-menu-item>
+          <ha-menu-item id="item3" disabled>Item 3</ha-menu-item>
+        </ha-menu>
+      `;
+      menu = document.querySelector("ha-menu") as HaMenu;
+      item1 = document.querySelector("#item1") as HaMenuItem;
+      item2 = document.querySelector("#item2") as HaMenuItem;
+      item3 = document.querySelector("#item3") as HaMenuItem;
+    });
+
+    it("should focus next item on ArrowDown", () => {
+      item1.focus();
+      menu.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true }));
+      expect(document.activeElement).toBe(item2);
+    });
+
+    it("should focus previous item on ArrowUp", () => {
+      item2.focus();
+      menu.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true }));
+      expect(document.activeElement).toBe(item1);
+    });
+
+    it("should wrap focus on ArrowDown at the end", () => {
+      item2.focus();
+      menu.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true }));
+      expect(document.activeElement).toBe(item1);
+    });
+
+    it("should wrap focus on ArrowUp at the start", () => {
+      item1.focus();
+      menu.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true }));
+      expect(document.activeElement).toBe(item2);
+    });
+
+    it("should focus first item on Home", () => {
+      item2.focus();
+      menu.dispatchEvent(new KeyboardEvent("keydown", { key: "Home", bubbles: true }));
+      expect(document.activeElement).toBe(item1);
+    });
+
+    it("should focus last enabled item on End", () => {
+      item1.focus();
+      menu.dispatchEvent(new KeyboardEvent("keydown", { key: "End", bubbles: true }));
+      expect(document.activeElement).toBe(item2);
+    });
+
+    it("should do nothing for other keys", () => {
+      item1.focus();
+      menu.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+      expect(document.activeElement).toBe(item1);
+    });
+
+    it("should do nothing if no items", () => {
+      const emptyMenu = document.createElement("ha-menu");
+      document.body.appendChild(emptyMenu);
+      emptyMenu.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true }));
+      // No error should be thrown
+      expect(true).toBe(true);
+    });
   });
 });
 
