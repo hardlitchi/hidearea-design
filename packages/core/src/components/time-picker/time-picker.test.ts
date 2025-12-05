@@ -608,4 +608,141 @@ describe("HaTimePicker", () => {
       expect(helperText).toBeFalsy();
     });
   });
+
+  describe("Attribute Edge Cases", () => {
+    it("should handle null value attribute", () => {
+      element.setAttribute("value", "");
+      (element as any).parseValue(null);
+      expect(element.getValue()).toBeNull();
+    });
+
+    it("should handle invalid number for steps", () => {
+      element.setAttribute("hour-step", "abc");
+      expect(element.hourStep).toBe(1);
+    });
+
+    it("should handle null for disabled-hours", () => {
+        element.attributeChangedCallback("disabled-hours", "", null);
+        expect(element.disabledHours).toEqual([]);
+    });
+
+    it("should handle null for disabled-minutes", () => {
+        element.attributeChangedCallback("disabled-minutes", "", null);
+        expect(element.disabledMinutes).toEqual([]);
+    });
+  });
+
+  describe("Event Handlers under restriction", () => {
+    beforeEach(() => {
+        element.setAttribute("readonly", "");
+        element.setAttribute("disabled", "");
+    });
+    
+    it("handleHourSelect should do nothing if disabled or readonly", () => {
+      const spy = vi.spyOn(element, "setAttribute");
+      element.open();
+      const hourItem = element.shadowRoot?.querySelector('[data-type="hour"]');
+      (hourItem as HTMLElement)?.click();
+      expect(spy).not.toHaveBeenCalledWith("value", expect.any(String));
+    });
+
+    it("handlePeriodToggle should do nothing if disabled or readonly", () => {
+      const privatePeriod = "_period";
+      element.setAttribute("format", "12");
+      element.open();
+      const initialPeriod = (element as any)[privatePeriod];
+      
+      const pmButton = element.shadowRoot?.querySelector('[data-period="PM"]');
+      (pmButton as HTMLElement)?.click();
+      
+      expect((element as any)[privatePeriod]).toBe(initialPeriod);
+    });
+  });
+
+  describe("Outside Click Behavior", () => {
+    it("should close picker when clicking outside", async () => {
+      const closeSpy = vi.spyOn(element, "close");
+      element.open();
+      
+      await new Promise(resolve => setTimeout(resolve, 0));
+      
+      document.body.click();
+      
+      expect(closeSpy).toHaveBeenCalledTimes(1);
+      closeSpy.mockRestore();
+    });
+
+     it("should not close if inline", async () => {
+      element.setAttribute("inline", "");
+      const closeSpy = vi.spyOn(element, "close");
+      element.open();
+      await new Promise(resolve => setTimeout(resolve, 0));
+      
+      document.body.click();
+      
+      expect(closeSpy).not.toHaveBeenCalled();
+      closeSpy.mockRestore();
+    });
+  });
+
+  describe("12-Hour Format Edge Cases", () => {
+    beforeEach(() => {
+        element.setAttribute("format", "12");
+    });
+
+    it('isTimeDisabled should handle 12 PM correctly', () => {
+        (element as any)._period = 'PM';
+        element.disabledHours = [12];
+        expect(element.isTimeDisabled(12, 0)).toBe(true);
+    });
+
+    it('isTimeDisabled should handle 12 AM correctly', () => {
+        (element as any)._period = 'AM';
+        element.disabledHours = [0];
+        expect(element.isTimeDisabled(12, 0)).toBe(true);
+    });
+    
+    it('emitTimeSelect should handle 12 PM correctly', () => {
+        const handler = vi.fn();
+        element.addEventListener("time-select", handler);
+        element.setTime(12, 0); // 12 PM
+        const event = handler.mock.calls[0][0];
+        expect(event.detail.hour24).toBe(12);
+    });
+  });
+
+  describe("Panel Interaction", () => {
+    it("should select minute from panel", () => {
+        element.open();
+        const minuteItem = element.shadowRoot?.querySelector('[data-type="minute"][data-value="30"]');
+        (minuteItem as HTMLElement)?.click();
+        expect(element.getValue()).toContain(":30");
+    });
+    
+    it("should select second from panel", () => {
+        element.setAttribute("show-seconds", "");
+        element.open();
+        const secondItem = element.shadowRoot?.querySelector('[data-type="second"][data-value="45"]');
+        (secondItem as HTMLElement)?.click();
+        expect(element.getValue()).toContain(":45");
+    });
+
+    it("should call setNow on Now button click", () => {
+        element.setAttribute("show-now-button", "");
+        element.open();
+        const spy = vi.spyOn(element, "setNow");
+        const nowButton = element.shadowRoot?.querySelector(".now-button");
+        (nowButton as HTMLElement)?.click();
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it("should call clear on Clear button click", () => {
+        element.setAttribute("show-clear-button", "");
+        element.open();
+        const spy = vi.spyOn(element, "clear");
+        const clearButton = element.shadowRoot?.querySelector(".clear-button");
+        (clearButton as HTMLElement)?.click();
+        expect(spy).toHaveBeenCalled();
+    });
+  });
 });

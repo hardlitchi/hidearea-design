@@ -218,14 +218,63 @@ describe("HaDatePicker", () => {
     it("should emit date-select event with range dates", () => {
       const handler = vi.fn();
       datePicker.addEventListener("date-select", handler);
+      datePicker.goToMonth(2025, 0);
 
-      const startDate = new Date(2025, 0, 10);
-      const endDate = new Date(2025, 0, 20);
+      const day10 = queryShadow(datePicker, '[data-day="2025-0-10"]');
+      const day20 = queryShadow(datePicker, '[data-day="2025-0-20"]');
+      
+      // First click (sets start date, should not emit yet)
+      (day10 as HTMLElement)?.click();
+      
+      // Second click (sets end date, should emit)
+      (day20 as HTMLElement)?.click();
 
-      // Simulate selecting start and end dates
-      datePicker.setValue(startDate);
+      expect(handler).toHaveBeenCalledTimes(1);
+      const detail = handler.mock.calls[0][0].detail;
+      expect(detail.startDate.getDate()).toBe(10);
+      expect(detail.endDate.getDate()).toBe(20);
+    });
 
-      expect(handler).toHaveBeenCalled();
+    it("should handle selecting end date before start date", () => {
+      datePicker.goToMonth(2025, 0);
+
+      const day10 = queryShadow(datePicker, '[data-day="2025-0-10"]');
+      const day20 = queryShadow(datePicker, '[data-day="2025-0-20"]');
+
+      (day20 as HTMLElement)?.click(); // Set temp start date
+      (day10 as HTMLElement)?.click(); // Set end date (before temp start)
+
+      expect((datePicker as any)._startDate.getDate()).toBe(10);
+      expect((datePicker as any)._endDate.getDate()).toBe(20);
+    });
+  });
+
+  describe("Date Selection - Multiple Mode", () => {
+    let datePicker: HaDatePicker;
+
+    beforeEach(() => {
+      datePicker = document.createElement("ha-date-picker") as HaDatePicker;
+      datePicker.mode = "multiple";
+      document.body.appendChild(datePicker);
+    });
+
+    afterEach(() => {
+      document.body.removeChild(datePicker);
+    });
+
+    it("should select and deselect multiple dates", () => {
+        datePicker.goToMonth(2025, 0);
+        const day10 = queryShadow(datePicker, '[data-day="2025-0-10"]');
+        const day15 = queryShadow(datePicker, '[data-day="2025-0-15"]');
+
+        (day10 as HTMLElement)?.click();
+        expect((datePicker as any)._selectedDates.length).toBe(1);
+
+        (day15 as HTMLElement)?.click();
+        expect((datePicker as any)._selectedDates.length).toBe(2);
+
+        (day10 as HTMLElement)?.click();
+        expect((datePicker as any)._selectedDates.length).toBe(1);
     });
   });
 
@@ -393,6 +442,25 @@ describe("HaDatePicker", () => {
       datePicker.maxDate = new Date(2025, 0, 31);
       const validDate = new Date(2025, 0, 15);
       expect(datePicker.isDateDisabled(validDate)).toBe(false);
+    });
+
+    it("should handle setting minDate to null", () => {
+      datePicker.minDate = new Date(2025, 0, 1);
+      datePicker.minDate = null;
+      expect(datePicker.getAttribute("min-date")).toBeNull();
+    });
+
+    it("should handle setting maxDate to null", () => {
+      datePicker.maxDate = new Date(2025, 0, 31);
+      datePicker.maxDate = null;
+      expect(datePicker.getAttribute("max-date")).toBeNull();
+    });
+
+    it("should return false from isDateDisabled when min/max are null", () => {
+      datePicker.minDate = null;
+      datePicker.maxDate = null;
+      const date = new Date();
+      expect(datePicker.isDateDisabled(date)).toBe(false);
     });
   });
 
@@ -603,6 +671,161 @@ describe("HaDatePicker", () => {
       expect(datePicker.getValue()).toBeNull();
       datePicker.clear();
       expect(datePicker.getValue()).toBeNull();
+    });
+  });
+
+  describe("Outside Click Behavior", () => {
+    let datePicker: HaDatePicker;
+
+    beforeEach(() => {
+      datePicker = document.createElement("ha-date-picker") as HaDatePicker;
+      document.body.appendChild(datePicker);
+    });
+
+    afterEach(() => {
+      document.body.removeChild(datePicker);
+    });
+
+    it("should close calendar when clicking outside", async () => {
+      const closeSpy = vi.spyOn(datePicker, "close");
+      datePicker.open();
+
+      await new Promise(resolve => setTimeout(resolve, 0));
+
+      document.body.click();
+
+      expect(closeSpy).toHaveBeenCalledTimes(1);
+      closeSpy.mockRestore();
+    });
+
+    it("should not close calendar when clicking inside", async () => {
+      const closeSpy = vi.spyOn(datePicker, "close");
+      datePicker.open();
+      await new Promise(resolve => setTimeout(resolve, 0));
+
+      const calendar = queryShadow(datePicker, ".date-picker__calendar");
+      calendar?.dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true }));
+
+      expect(closeSpy).not.toHaveBeenCalled();
+      closeSpy.mockRestore();
+    });
+
+    it("should not close if inline", async () => {
+      datePicker.inline = true;
+      document.body.removeChild(datePicker); // Re-append to apply inline
+      document.body.appendChild(datePicker);
+
+      const closeSpy = vi.spyOn(datePicker, "close");
+      datePicker.open();
+      await new Promise(resolve => setTimeout(resolve, 0));
+
+      document.body.click();
+
+      expect(closeSpy).not.toHaveBeenCalled();
+      closeSpy.mockRestore();
+    });
+  });
+
+  describe("Input Display", () => {
+    let datePicker: HaDatePicker;
+
+    beforeEach(() => {
+      datePicker = document.createElement("ha-date-picker") as HaDatePicker;
+      document.body.appendChild(datePicker);
+    });
+
+    afterEach(() => {
+      document.body.removeChild(datePicker);
+    });
+
+    it('should display only start date for range mode if end date is not set', () => {
+      datePicker.mode = 'range';
+      const startDate = new Date(2025, 0, 10);
+      (datePicker as any)._startDate = startDate;
+      (datePicker as any).updateInput();
+      const input = queryShadow(datePicker, '.date-picker__input') as HTMLInputElement;
+      expect(input.value).toBe('2025-01-10');
+    });
+
+    it('should display number of selected dates for multiple mode', () => {
+      datePicker.mode = 'multiple';
+      (datePicker as any)._selectedDates = [new Date(2025, 0, 10), new Date(2025, 0, 12)];
+      (datePicker as any).updateInput();
+      const input = queryShadow(datePicker, '.date-picker__input') as HTMLInputElement;
+      expect(input.value).toBe('2 dates selected');
+    });
+  });
+
+  describe("Date Rendering States", () => {
+    let datePicker: HaDatePicker;
+
+    beforeEach(() => {
+      datePicker = document.createElement("ha-date-picker") as HaDatePicker;
+      document.body.appendChild(datePicker);
+    });
+
+    afterEach(() => {
+      document.body.removeChild(datePicker);
+    });
+
+    it('should apply range classes correctly', () => {
+      datePicker.mode = 'range';
+      (datePicker as any)._startDate = new Date(2025, 0, 10);
+      (datePicker as any)._endDate = new Date(2025, 0, 20);
+      datePicker.goToMonth(2025, 0); // Go to January 2025
+      (datePicker as any).renderCalendar();
+      const startDay = queryShadow(datePicker, '[data-day="2025-0-10"]');
+      const endDay = queryShadow(datePicker, '[data-day="2025-0-20"]');
+      const inRangeDay = queryShadow(datePicker, '[data-day="2025-0-15"]');
+      
+      expect(startDay?.classList.contains('date-picker__day--range-start')).toBe(true);
+      expect(endDay?.classList.contains('date-picker__day--range-end')).toBe(true);
+      expect(inRangeDay?.classList.contains('date-picker__day--in-range')).toBe(true);
+    });
+
+    it('should apply selected class for multiple mode', () => {
+      datePicker.mode = 'multiple';
+      (datePicker as any)._selectedDates = [new Date(2025, 0, 15)];
+      datePicker.goToMonth(2025, 0); // Go to January 2025
+      (datePicker as any).renderCalendar();
+      const selectedDay = queryShadow(datePicker, '[data-day="2025-0-15"]');
+      expect(selectedDay?.classList.contains('date-picker__day--selected')).toBe(true);
+    });
+  });
+
+  describe("Button Visibility", () => {
+    let datePicker: HaDatePicker;
+
+    beforeEach(() => {
+      datePicker = document.createElement("ha-date-picker") as HaDatePicker;
+    });
+
+    afterEach(() => {
+      if (document.body.contains(datePicker)) {
+        document.body.removeChild(datePicker);
+      }
+    });
+
+    it('should not render footer buttons if showTodayButton and showClearButton are false', () => {
+      datePicker.showTodayButton = false;
+      datePicker.showClearButton = false;
+      document.body.appendChild(datePicker);
+      const footer = queryShadow(datePicker, '.date-picker__footer');
+      expect(footer).toBeNull();
+    });
+
+    it('should render Today button if showTodayButton is true', () => {
+      datePicker.showTodayButton = true;
+      document.body.appendChild(datePicker);
+      const todayButton = queryShadow(datePicker, '[part="today-button"]');
+      expect(todayButton).not.toBeNull();
+    });
+
+    it('should render Clear button if showClearButton is true', () => {
+      datePicker.showClearButton = true;
+      document.body.appendChild(datePicker);
+      const clearButton = queryShadow(datePicker, '[part="clear-button"]');
+      expect(clearButton).not.toBeNull();
     });
   });
 });

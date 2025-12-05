@@ -135,13 +135,16 @@ export class HaTimePicker extends HTMLElement {
         this.showSeconds = newValue !== null;
         break;
       case "hour-step":
-        this.hourStep = newValue ? parseInt(newValue, 10) : 1;
+        const newHourStep = parseInt(newValue || "", 10);
+        this.hourStep = isNaN(newHourStep) ? 1 : newHourStep;
         break;
       case "minute-step":
-        this.minuteStep = newValue ? parseInt(newValue, 10) : 1;
+        const newMinuteStep = parseInt(newValue || "", 10);
+        this.minuteStep = isNaN(newMinuteStep) ? 1 : newMinuteStep;
         break;
       case "second-step":
-        this.secondStep = newValue ? parseInt(newValue, 10) : 1;
+        const newSecondStep = parseInt(newValue || "", 10);
+        this.secondStep = isNaN(newSecondStep) ? 1 : newSecondStep;
         break;
       case "min-time":
         this.minTime = newValue;
