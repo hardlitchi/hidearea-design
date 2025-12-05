@@ -33,6 +33,7 @@ declare global {
       'ha-table': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
       'ha-tabs': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
       'ha-textarea': React.DetailedHTMLProps<React.TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>;
+      'ha-time-picker': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
       'ha-toast': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
       'ha-tooltip': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
     }

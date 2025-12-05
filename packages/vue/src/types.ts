@@ -398,3 +398,27 @@ export interface DatePickerProps {
   helperText?: string;
   errorText?: string;
 }
+
+export interface TimePickerProps {
+  value?: string;
+  format?: '12' | '24';
+  showSeconds?: boolean;
+  hourStep?: number;
+  minuteStep?: number;
+  secondStep?: number;
+  minTime?: string;
+  maxTime?: string;
+  disabledHours?: number[];
+  disabledMinutes?: number[];
+  inline?: boolean;
+  placeholder?: string;
+  label?: string;
+  helperText?: string;
+  disabled?: boolean;
+  required?: boolean;
+  error?: boolean;
+  readonly?: boolean;
+  errorText?: string;
+  showNowButton?: boolean;
+  showClearButton?: boolean;
+}

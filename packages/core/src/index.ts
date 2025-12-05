@@ -86,3 +86,8 @@ export type { HaFileUpload as HaFileUploadElement } from "./components/file-uplo
 export { HaDatePicker } from "./components/date-picker";
 export type { DatePickerMode, DatePickerDate } from "./components/date-picker";
 export type { HaDatePicker as HaDatePickerElement } from "./components/date-picker/date-picker";
+
+// TimePicker
+export { HaTimePicker } from "./components/time-picker";
+export type { TimePickerFormat, TimePickerPeriod, TimePickerDate } from "./components/time-picker";
+export type { HaTimePicker as HaTimePickerElement } from "./components/time-picker/time-picker";

@@ -1,3 +1,8 @@
+type DateSelectDetail =
+  | { value: Date | null }
+  | { startDate: Date | null; endDate: Date | null }
+  | { dates: Date[] };
+
 import { datePickerStyles } from "./date-picker.styles";
 
 export type DatePickerMode = "single" | "range" | "multiple";
@@ -511,15 +516,14 @@ export class HaDatePicker extends HTMLElement {
 
   // Event dispatchers
   private dispatchDateSelect() {
-    const detail: any = {};
+    let detail: DateSelectDetail;
 
     if (this.mode === "single") {
-      detail.value = this._value;
+      detail = { value: this._value };
     } else if (this.mode === "range") {
-      detail.startDate = this._startDate;
-      detail.endDate = this._endDate;
-    } else if (this.mode === "multiple") {
-      detail.dates = [...this._selectedDates];
+      detail = { startDate: this._startDate, endDate: this._endDate };
+    } else {
+      detail = { dates: [...this._selectedDates] };
     }
 
     this.dispatchEvent(

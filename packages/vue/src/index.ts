@@ -39,6 +39,7 @@ import Skeleton from "./Skeleton.vue";
 import DataGrid from "./DataGrid.vue";
 import FileUpload from "./FileUpload.vue";
 import DatePicker from "./DatePicker.vue";
+import TimePicker from "./TimePicker.vue";
 
 export {
   Button,
@@ -81,6 +82,7 @@ export {
   DataGrid,
   FileUpload,
   DatePicker,
+  TimePicker,
 };
 export type {
   ButtonProps,
@@ -123,6 +125,7 @@ export type {
   DataGridProps,
   FileUploadProps,
   DatePickerProps,
+  TimePickerProps,
 } from "./types";
 
 // Vue plugin for installing all components
@@ -168,5 +171,6 @@ export default {
     app.component("HaDataGrid", DataGrid);
     app.component("HaFileUpload", FileUpload);
     app.component("HaDatePicker", DatePicker);
+    app.component("HaTimePicker", TimePicker);
   },
 };

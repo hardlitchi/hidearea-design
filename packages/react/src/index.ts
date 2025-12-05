@@ -119,3 +119,11 @@ export type {
   DatePickerMode,
   DatePickerDate,
 } from "./DatePicker";
+
+export { TimePicker } from "./TimePicker";
+export type {
+  TimePickerProps,
+  TimePickerRef,
+  TimePickerFormat,
+  TimePickerPeriod,
+} from "./TimePicker";
