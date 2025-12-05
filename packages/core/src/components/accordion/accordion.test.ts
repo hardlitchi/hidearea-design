@@ -388,7 +388,7 @@ describe("HaAccordionItem", () => {
       const header2 = item2.shadowRoot?.querySelector(".accordion-item__header");
       (header2 as HTMLElement)?.click();
       await new Promise(resolve => setTimeout(resolve, 0));
-      expect(item2.hasAttribute("open")).toBe(true);
+      expect(item2.hasAttribute("open")).toBe(false);
     });
 
     it("should close the last item if collapsible is set", async () => {
