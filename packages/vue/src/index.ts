@@ -38,6 +38,7 @@ import ListDivider from "./ListDivider.vue";
 import Skeleton from "./Skeleton.vue";
 import DataGrid from "./DataGrid.vue";
 import FileUpload from "./FileUpload.vue";
+import DatePicker from "./DatePicker.vue";
 
 export {
   Button,
@@ -79,6 +80,7 @@ export {
   Skeleton,
   DataGrid,
   FileUpload,
+  DatePicker,
 };
 export type {
   ButtonProps,
@@ -120,6 +122,7 @@ export type {
   SkeletonProps,
   DataGridProps,
   FileUploadProps,
+  DatePickerProps,
 } from "./types";
 
 // Vue plugin for installing all components
@@ -164,5 +167,6 @@ export default {
     app.component("HaSkeleton", Skeleton);
     app.component("HaDataGrid", DataGrid);
     app.component("HaFileUpload", FileUpload);
+    app.component("HaDatePicker", DatePicker);
   },
 };

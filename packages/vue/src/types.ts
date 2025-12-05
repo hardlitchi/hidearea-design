@@ -376,3 +376,25 @@ export interface FileUploadProps {
   helperText?: string;
   errorText?: string;
 }
+
+export interface DatePickerProps {
+  mode?: 'single' | 'range' | 'multiple';
+  value?: string | Date;
+  format?: string;
+  minDate?: string | Date;
+  maxDate?: string | Date;
+  locale?: string;
+  firstDayOfWeek?: 0 | 1;
+  inline?: boolean;
+  showWeekNumbers?: boolean;
+  showTodayButton?: boolean;
+  showClearButton?: boolean;
+  disabled?: boolean;
+  required?: boolean;
+  error?: boolean;
+  readonly?: boolean;
+  placeholder?: string;
+  label?: string;
+  helperText?: string;
+  errorText?: string;
+}

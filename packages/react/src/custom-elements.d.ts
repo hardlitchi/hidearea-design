@@ -13,6 +13,7 @@ declare global {
       'ha-checkbox': React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
       'ha-container': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
       'ha-datagrid': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+      'ha-date-picker': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
       'ha-drawer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
       'ha-file-upload': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
       'ha-form-group': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;

@@ -111,3 +111,11 @@ export type {
   FileUploadFile,
   FileUploadVariant,
 } from "./FileUpload";
+
+export { DatePicker } from "./DatePicker";
+export type {
+  DatePickerProps,
+  DatePickerRef,
+  DatePickerMode,
+  DatePickerDate,
+} from "./DatePicker";

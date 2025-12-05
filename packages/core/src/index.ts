@@ -81,3 +81,8 @@ export type { HaListDivider as HaListDividerElement } from "./components/list/li
 export type { HaSkeleton as HaSkeletonElement } from "./components/skeleton/skeleton";
 export type { HaDataGrid as HaDataGridElement } from "./components/datagrid/datagrid";
 export type { HaFileUpload as HaFileUploadElement } from "./components/file-upload/file-upload";
+
+// DatePicker
+export { HaDatePicker } from "./components/date-picker";
+export type { DatePickerMode, DatePickerDate } from "./components/date-picker";
+export type { HaDatePicker as HaDatePickerElement } from "./components/date-picker/date-picker";
