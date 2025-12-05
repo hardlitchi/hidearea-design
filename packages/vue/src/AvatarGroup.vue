@@ -1,6 +1,6 @@
 <template>
   <ha-avatar-group
-    :ref="elementRef"
+    ref="elementRef"
     :max="max"
     :size="size"
     :layout="layout"

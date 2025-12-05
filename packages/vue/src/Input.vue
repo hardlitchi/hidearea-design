@@ -1,6 +1,6 @@
 <template>
   <ha-input
-    :ref="elementRef"
+    ref="elementRef"
     :variant="variant"
     :size="size"
     :type="type"
@@ -24,14 +24,7 @@
     @focus="handleFocus"
     @blur="handleBlur"
     v-bind="$attrs"
-  >
-    <template v-if="$slots.prefix" #prefix>
-      <slot name="prefix" />
-    </template>
-    <template v-if="$slots.suffix" #suffix>
-      <slot name="suffix" />
-    </template>
-  </ha-input>
+  />
 </template>
 
 <script setup lang="ts">

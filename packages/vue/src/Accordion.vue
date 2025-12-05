@@ -1,6 +1,6 @@
 <template>
   <ha-accordion
-    :ref="elementRef"
+    ref="elementRef"
     :allow-multiple="allowMultiple"
     :collapsible="collapsible"
     v-bind="$attrs"

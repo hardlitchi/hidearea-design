@@ -41,7 +41,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <ha-tabs :ref="elementRef" :value="value" :variant="variant" :size="size" :align="align" v-bind="$attrs">
+  <ha-tabs ref="elementRef" :value="value" :variant="variant" :size="size" :align="align" v-bind="$attrs">
     <slot />
   </ha-tabs>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <ha-badge
-    :ref="elementRef"
+    ref="elementRef"
     :variant="variant"
     :style-variant="styleVariant"
     :size="size"

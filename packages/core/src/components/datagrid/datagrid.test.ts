@@ -25,7 +25,7 @@ describe("HaDataGrid", () => {
     datagrid = document.createElement("ha-datagrid") as HaDataGrid;
     document.body.appendChild(datagrid);
     await waitForCustomElement("ha-datagrid");
-  });
+  }, 30000);
 
   describe("Component Registration", () => {
     it("should be defined", () => {

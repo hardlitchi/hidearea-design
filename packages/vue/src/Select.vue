@@ -1,6 +1,6 @@
 <template>
   <ha-select
-    :ref="elementRef"
+    ref="elementRef"
     :variant="variant"
     :size="size"
     :value="modelValue"

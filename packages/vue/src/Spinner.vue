@@ -1,6 +1,6 @@
 <template>
   <ha-spinner
-    :ref="elementRef"
+    ref="elementRef"
     :size="size"
     :color="color"
     :variant="variant"

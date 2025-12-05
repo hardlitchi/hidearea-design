@@ -1,6 +1,6 @@
 <template>
   <ha-form-group
-    :ref="elementRef"
+    ref="elementRef"
     :label="label"
     :helper-text="helperText"
     :error-text="errorText"

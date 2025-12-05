@@ -1,6 +1,6 @@
 <template>
   <ha-modal
-    :ref="elementRef"
+    ref="elementRef"
     :open="open"
     :size="size"
     :variant="variant"

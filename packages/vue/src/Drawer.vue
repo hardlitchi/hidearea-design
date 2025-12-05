@@ -1,6 +1,6 @@
 <template>
   <ha-drawer
-    :ref="elementRef"
+    ref="elementRef"
     :open="open"
     :placement="placement"
     :size="size"

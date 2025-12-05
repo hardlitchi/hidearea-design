@@ -1,6 +1,6 @@
 <template>
   <ha-card
-    :ref="elementRef"
+    ref="elementRef"
     :variant="variant"
     :padding="padding"
     :hoverable="hoverable"

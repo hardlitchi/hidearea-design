@@ -1,6 +1,6 @@
 <template>
   <ha-alert
-    :ref="elementRef"
+    ref="elementRef"
     :variant="variant"
     :style-variant="styleVariant"
     :title="title"

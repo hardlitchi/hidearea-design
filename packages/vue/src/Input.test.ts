@@ -5,8 +5,9 @@ import HaInput from "./Input.vue";
 describe("HaInput", () => {
   it("should render input", () => {
     const wrapper = mount(HaInput);
-    const input = wrapper.element.querySelector("ha-input");
+    const input = wrapper.element as any;
     expect(input).toBeTruthy();
+    expect(input.tagName.toLowerCase()).toBe("ha-input");
   });
 
   it("should set variant prop", () => {
@@ -15,7 +16,7 @@ describe("HaInput", () => {
         variant: "filled",
       },
     });
-    const input = wrapper.element.querySelector("ha-input") as any;
+    const input = wrapper.element as any;
     expect(input.variant).toBe("filled");
   });
 
@@ -25,7 +26,7 @@ describe("HaInput", () => {
         size: "lg",
       },
     });
-    const input = wrapper.element.querySelector("ha-input") as any;
+    const input = wrapper.element as any;
     expect(input.size).toBe("lg");
   });
 
@@ -35,7 +36,7 @@ describe("HaInput", () => {
         type: "email",
       },
     });
-    const input = wrapper.element.querySelector("ha-input") as any;
+    const input = wrapper.element as any;
     expect(input.type).toBe("email");
   });
 
@@ -45,7 +46,7 @@ describe("HaInput", () => {
         modelValue: "test value",
       },
     });
-    const input = wrapper.element.querySelector("ha-input") as any;
+    const input = wrapper.element as any;
     expect(input.value).toBe("test value");
   });
 
@@ -55,7 +56,7 @@ describe("HaInput", () => {
         placeholder: "Enter text",
       },
     });
-    const input = wrapper.element.querySelector("ha-input") as any;
+    const input = wrapper.element as any;
     expect(input.placeholder).toBe("Enter text");
   });
 
@@ -65,7 +66,7 @@ describe("HaInput", () => {
         disabled: true,
       },
     });
-    const input = wrapper.element.querySelector("ha-input") as any;
+    const input = wrapper.element as any;
     expect(input.disabled).toBe(true);
   });
 
@@ -75,7 +76,7 @@ describe("HaInput", () => {
         readonly: true,
       },
     });
-    const input = wrapper.element.querySelector("ha-input") as any;
+    const input = wrapper.element as any;
     expect(input.readonly).toBe(true);
   });
 
@@ -85,7 +86,7 @@ describe("HaInput", () => {
         required: true,
       },
     });
-    const input = wrapper.element.querySelector("ha-input") as any;
+    const input = wrapper.element as any;
     expect(input.required).toBe(true);
   });
 
@@ -95,7 +96,7 @@ describe("HaInput", () => {
         error: true,
       },
     });
-    const input = wrapper.element.querySelector("ha-input") as any;
+    const input = wrapper.element as any;
     expect(input.error).toBe(true);
   });
 
@@ -108,7 +109,7 @@ describe("HaInput", () => {
       },
     });
 
-    const input = wrapper.element.querySelector("ha-input") as any;
+    const input = wrapper.element as any;
     input.value = "new value";
     input.dispatchEvent(
       new CustomEvent("input", { detail: { value: "new value" } }),

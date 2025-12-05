@@ -1,6 +1,6 @@
 <template>
   <ha-button
-    :ref="elementRef"
+    ref="elementRef"
     :variant="variant"
     :size="size"
     :disabled="disabled"

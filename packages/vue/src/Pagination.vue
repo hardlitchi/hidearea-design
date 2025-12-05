@@ -1,6 +1,6 @@
 <template>
   <ha-pagination
-    :ref="elementRef"
+    ref="elementRef"
     :current="current"
     :total="total"
     :page-size="pageSize"

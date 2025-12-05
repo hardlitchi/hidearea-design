@@ -1,6 +1,6 @@
 <template>
   <ha-progress
-    :ref="elementRef"
+    ref="elementRef"
     :value="value"
     :max="max"
     :variant="variant"

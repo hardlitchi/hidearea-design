@@ -1,6 +1,6 @@
 <template>
   <ha-toast
-    :ref="elementRef"
+    ref="elementRef"
     :variant="variant"
     :message="message"
     :closable="closable"

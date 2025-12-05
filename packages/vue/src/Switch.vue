@@ -1,6 +1,6 @@
 <template>
   <ha-switch
-    :ref="elementRef"
+    ref="elementRef"
     :size="size"
     :checked="checked"
     :disabled="disabled"

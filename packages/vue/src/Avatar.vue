@@ -1,6 +1,6 @@
 <template>
   <ha-avatar
-    :ref="elementRef"
+    ref="elementRef"
     :src="src"
     :alt="alt"
     :size="size"

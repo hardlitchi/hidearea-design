@@ -1,6 +1,6 @@
 <template>
   <ha-table
-    :ref="elementRef"
+    ref="elementRef"
     :striped="striped"
     :bordered="bordered"
     :hoverable="hoverable"

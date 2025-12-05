@@ -1,6 +1,6 @@
 <template>
   <ha-list-item
-    :ref="elementRef"
+    ref="elementRef"
     :disabled="disabled"
     :active="active"
     v-bind="$attrs"

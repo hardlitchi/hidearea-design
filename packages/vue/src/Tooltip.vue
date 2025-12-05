@@ -103,7 +103,7 @@ onMounted(() => {
 
 <template>
   <ha-tooltip
-    :ref="elementRef"
+    ref="elementRef"
     :content="content"
     :placement="placement"
     :trigger="trigger"

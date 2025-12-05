@@ -1,5 +1,5 @@
 <template>
-  <ha-list-divider :ref="elementRef" v-bind="$attrs" />
+  <ha-list-divider ref="elementRef" v-bind="$attrs" />
 </template>
 
 <script setup lang="ts">

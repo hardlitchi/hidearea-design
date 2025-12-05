@@ -25,7 +25,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <ha-breadcrumb :ref="elementRef" :separator="separator" :size="size" v-bind="$attrs">
+  <ha-breadcrumb ref="elementRef" :separator="separator" :size="size" v-bind="$attrs">
     <slot />
   </ha-breadcrumb>
 </template>

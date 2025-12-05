@@ -1,6 +1,6 @@
 <template>
   <ha-grid
-    :ref="elementRef"
+    ref="elementRef"
     :columns="columns"
     :gap="gap"
     :row-gap="rowGap"

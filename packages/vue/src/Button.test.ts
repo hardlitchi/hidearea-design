@@ -9,9 +9,10 @@ describe("HaButton", () => {
         default: "Click me",
       },
     });
-    const button = wrapper.element.querySelector("ha-button");
+    const button = wrapper.element as any;
     expect(button).toBeTruthy();
-    expect(button?.textContent).toContain("Click me");
+    expect(button.tagName.toLowerCase()).toBe("ha-button");
+    expect(button.textContent).toContain("Click me");
   });
 
   it("should set variant prop", () => {
@@ -20,7 +21,7 @@ describe("HaButton", () => {
         variant: "secondary",
       },
     });
-    const button = wrapper.element.querySelector("ha-button") as any;
+    const button = wrapper.element as any;
     expect(button.variant).toBe("secondary");
   });
 
@@ -30,7 +31,7 @@ describe("HaButton", () => {
         size: "lg",
       },
     });
-    const button = wrapper.element.querySelector("ha-button") as any;
+    const button = wrapper.element as any;
     expect(button.size).toBe("lg");
   });
 
@@ -40,7 +41,7 @@ describe("HaButton", () => {
         disabled: true,
       },
     });
-    const button = wrapper.element.querySelector("ha-button") as any;
+    const button = wrapper.element as any;
     expect(button.disabled).toBe(true);
   });
 
@@ -50,7 +51,7 @@ describe("HaButton", () => {
         loading: true,
       },
     });
-    const button = wrapper.element.querySelector("ha-button") as any;
+    const button = wrapper.element as any;
     expect(button.loading).toBe(true);
   });
 
@@ -60,7 +61,7 @@ describe("HaButton", () => {
         fullWidth: true,
       },
     });
-    const button = wrapper.element.querySelector("ha-button") as any;
+    const button = wrapper.element as any;
     expect(button.fullWidth).toBe(true);
   });
 
@@ -70,13 +71,13 @@ describe("HaButton", () => {
         type: "submit",
       },
     });
-    const button = wrapper.element.querySelector("ha-button") as any;
+    const button = wrapper.element as any;
     expect(button.getAttribute("type")).toBe("submit");
   });
 
   it("should apply default props", () => {
     const wrapper = mount(HaButton);
-    const button = wrapper.element.querySelector("ha-button") as any;
+    const button = wrapper.element as any;
     expect(button.variant).toBe("primary");
     expect(button.size).toBe("md");
     expect(button.disabled).toBe(false);
@@ -90,7 +91,7 @@ describe("HaButton", () => {
         variant: "primary",
       },
     });
-    const button = wrapper.element.querySelector("ha-button") as any;
+    const button = wrapper.element as any;
     expect(button.variant).toBe("primary");
 
     await wrapper.setProps({ variant: "secondary" });

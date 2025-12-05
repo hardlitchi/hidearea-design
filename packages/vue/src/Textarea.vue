@@ -1,6 +1,6 @@
 <template>
   <ha-textarea
-    :ref="elementRef"
+    ref="elementRef"
     :variant="variant"
     :size="size"
     :value="modelValue"

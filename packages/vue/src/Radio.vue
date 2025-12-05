@@ -1,6 +1,6 @@
 <template>
   <ha-radio
-    :ref="elementRef"
+    ref="elementRef"
     :size="size"
     :checked="checked"
     :disabled="disabled"

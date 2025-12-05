@@ -1,6 +1,6 @@
 <template>
   <ha-list
-    :ref="elementRef"
+    ref="elementRef"
     :bordered="bordered"
     :hoverable="hoverable"
     :divided="divided"

@@ -5,8 +5,9 @@ import HaCheckbox from "./Checkbox.vue";
 describe("HaCheckbox", () => {
   it("should render checkbox", () => {
     const wrapper = mount(HaCheckbox);
-    const checkbox = wrapper.element.querySelector("ha-checkbox");
+    const checkbox = wrapper.element as any;
     expect(checkbox).toBeTruthy();
+    expect(checkbox.tagName.toLowerCase()).toBe("ha-checkbox");
   });
 
   it("should set size prop", () => {
@@ -15,7 +16,7 @@ describe("HaCheckbox", () => {
         size: "lg",
       },
     });
-    const checkbox = wrapper.element.querySelector("ha-checkbox") as any;
+    const checkbox = wrapper.element as any;
     expect(checkbox.size).toBe("lg");
   });
 
@@ -25,7 +26,7 @@ describe("HaCheckbox", () => {
         modelValue: true,
       },
     });
-    const checkbox = wrapper.element.querySelector("ha-checkbox") as any;
+    const checkbox = wrapper.element as any;
     expect(checkbox.checked).toBe(true);
   });
 
@@ -35,7 +36,7 @@ describe("HaCheckbox", () => {
         indeterminate: true,
       },
     });
-    const checkbox = wrapper.element.querySelector("ha-checkbox") as any;
+    const checkbox = wrapper.element as any;
     expect(checkbox.indeterminate).toBe(true);
   });
 
@@ -45,7 +46,7 @@ describe("HaCheckbox", () => {
         disabled: true,
       },
     });
-    const checkbox = wrapper.element.querySelector("ha-checkbox") as any;
+    const checkbox = wrapper.element as any;
     expect(checkbox.disabled).toBe(true);
   });
 
@@ -55,7 +56,7 @@ describe("HaCheckbox", () => {
         required: true,
       },
     });
-    const checkbox = wrapper.element.querySelector("ha-checkbox") as any;
+    const checkbox = wrapper.element as any;
     expect(checkbox.required).toBe(true);
   });
 
@@ -65,7 +66,7 @@ describe("HaCheckbox", () => {
         error: true,
       },
     });
-    const checkbox = wrapper.element.querySelector("ha-checkbox") as any;
+    const checkbox = wrapper.element as any;
     expect(checkbox.error).toBe(true);
   });
 
@@ -75,7 +76,7 @@ describe("HaCheckbox", () => {
         name: "terms",
       },
     });
-    const checkbox = wrapper.element.querySelector("ha-checkbox") as any;
+    const checkbox = wrapper.element as any;
     expect(checkbox.name).toBe("terms");
   });
 
@@ -85,7 +86,7 @@ describe("HaCheckbox", () => {
         value: "yes",
       },
     });
-    const checkbox = wrapper.element.querySelector("ha-checkbox") as any;
+    const checkbox = wrapper.element as any;
     expect(checkbox.value).toBe("yes");
   });
 
@@ -95,8 +96,8 @@ describe("HaCheckbox", () => {
         default: "Accept terms",
       },
     });
-    const checkbox = wrapper.element.querySelector("ha-checkbox");
-    expect(checkbox?.textContent).toContain("Accept terms");
+    const checkbox = wrapper.element as any;
+    expect(checkbox.textContent).toContain("Accept terms");
   });
 
   it("should update modelValue when checkbox changes", async () => {
@@ -108,7 +109,7 @@ describe("HaCheckbox", () => {
       },
     });
 
-    const checkbox = wrapper.element.querySelector("ha-checkbox") as any;
+    const checkbox = wrapper.element as any;
     checkbox.checked = true;
     checkbox.dispatchEvent(
       new CustomEvent("change", { detail: { checked: true } }),

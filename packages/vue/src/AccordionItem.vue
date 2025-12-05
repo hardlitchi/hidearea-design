@@ -1,6 +1,6 @@
 <template>
   <ha-accordion-item
-    :ref="elementRef"
+    ref="elementRef"
     :open="open"
     :disabled="disabled"
     :header="header"

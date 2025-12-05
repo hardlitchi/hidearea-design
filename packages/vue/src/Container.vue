@@ -1,6 +1,6 @@
 <template>
   <ha-container
-    :ref="elementRef"
+    ref="elementRef"
     :max-width="maxWidth"
     :centered="centered"
     :padding="padding"

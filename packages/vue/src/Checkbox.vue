@@ -1,6 +1,6 @@
 <template>
   <ha-checkbox
-    :ref="elementRef"
+    ref="elementRef"
     :size="size"
     :checked="modelValue"
     :indeterminate="indeterminate"
@@ -16,9 +16,6 @@
     v-bind="$attrs"
   >
     <slot />
-    <template v-if="$slots.description" #description>
-      <slot name="description" />
-    </template>
   </ha-checkbox>
 </template>
 

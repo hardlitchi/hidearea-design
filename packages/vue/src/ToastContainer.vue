@@ -1,6 +1,6 @@
 <template>
   <ha-toast-container
-    :ref="elementRef"
+    ref="elementRef"
     :position="position"
     v-bind="$attrs"
   >

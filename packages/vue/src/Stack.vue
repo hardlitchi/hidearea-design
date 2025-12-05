@@ -1,6 +1,6 @@
 <template>
   <ha-stack
-    :ref="elementRef"
+    ref="elementRef"
     :direction="direction"
     :gap="gap"
     :align="align"
