@@ -706,20 +706,14 @@ export class HaTimePicker extends HTMLElement {
 
               if (type === "hour") {
                 if (this.format === "12") {
-                  // For 12-hour format, check if BOTH AM and PM versions are disabled
-                  // Convert to 24-hour format for both AM and PM
-                  let hour24AM = value;
-                  if (value === 12) {
-                    hour24AM = 0; // 12 AM = 0
+                  let hour24 = value;
+                  if (this._period === "PM" && value !== 12) {
+                    hour24 = value + 12;
+                  } else if (this._period === "AM" && value === 12) {
+                    hour24 = 0;
                   }
-                  let hour24PM = value;
-                  if (value !== 12) {
-                    hour24PM = value + 12; // 1 PM = 13, etc.
-                  }
-                  // Only disable if both AM and PM are disabled
-                  isDisabled = this.disabledHours.includes(hour24AM) && this.disabledHours.includes(hour24PM);
+                  isDisabled = this.disabledHours.includes(hour24);
                 } else {
-                  // For 24-hour format, check directly
                   isDisabled = this.disabledHours.includes(value);
                 }
               } else if (type === "minute") {
