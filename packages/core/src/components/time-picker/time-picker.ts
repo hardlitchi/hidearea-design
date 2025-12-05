@@ -340,6 +340,108 @@ export class HaTimePicker extends HTMLElement {
   }
 
   /**
+   * Check if a specific hour value is disabled in the hour column
+   */
+  private isHourDisabled(hourValue: number): boolean {
+    // Convert to 24-hour format based on current period
+    let hour24 = hourValue;
+    if (this.format === "12") {
+      if (this._period === "PM" && hourValue !== 12) {
+        hour24 = hourValue + 12;
+      } else if (this._period === "AM" && hourValue === 12) {
+        hour24 = 0;
+      }
+    }
+
+    // Check disabledHours
+    if (this.disabledHours.includes(hour24)) {
+      return true;
+    }
+
+    // Check minTime/maxTime (assume minute 0 for hour-only check)
+    if (this.minTime || this.maxTime) {
+      // For maxTime, check if this hour could have any valid minutes
+      if (this.maxTime) {
+        const maxHour = parseInt(this.maxTime.split(":")[0], 10);
+        if (hour24 > maxHour) {
+          return true;
+        }
+      }
+
+      // For minTime, check if this hour could have any valid minutes
+      if (this.minTime) {
+        const minHour = parseInt(this.minTime.split(":")[0], 10);
+        if (hour24 < minHour) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  /**
+   * Check if a specific minute value is disabled in the minute column
+   */
+  private isMinuteDisabled(minuteValue: number): boolean {
+    // Check disabledMinutes
+    if (this.disabledMinutes.includes(minuteValue)) {
+      return true;
+    }
+
+    // Check minTime/maxTime with current hour selection
+    if (this.minTime || this.maxTime) {
+      let hour24 = this._hour;
+      if (this.format === "12") {
+        if (this._period === "PM" && this._hour !== 12) {
+          hour24 = this._hour + 12;
+        } else if (this._period === "AM" && this._hour === 12) {
+          hour24 = 0;
+        }
+      }
+
+      const timeStr = `${String(hour24).padStart(2, "0")}:${String(minuteValue).padStart(2, "0")}`;
+
+      if (this.minTime && timeStr < this.minTime) {
+        return true;
+      }
+      if (this.maxTime && timeStr > this.maxTime) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  /**
+   * Check if a specific second value is disabled in the second column
+   */
+  private isSecondDisabled(secondValue: number): boolean {
+    // Check minTime/maxTime with current hour and minute selection
+    if (this.minTime || this.maxTime) {
+      let hour24 = this._hour;
+      if (this.format === "12") {
+        if (this._period === "PM" && this._hour !== 12) {
+          hour24 = this._hour + 12;
+        } else if (this._period === "AM" && this._hour === 12) {
+          hour24 = 0;
+        }
+      }
+
+      const timeStr = `${String(hour24).padStart(2, "0")}:${String(this._minute).padStart(2, "0")}:${String(secondValue).padStart(2, "0")}`;
+
+      if (this.minTime && timeStr < this.minTime) {
+        return true;
+      }
+      if (this.maxTime && timeStr > this.maxTime) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  /**
    * Check if a time is disabled
    */
   isTimeDisabled(hour: number, minute: number, second = 0): boolean {
@@ -524,6 +626,12 @@ export class HaTimePicker extends HTMLElement {
 
   private handleHourSelect(hour: number): void {
     if (this.disabled || this.readonly) return;
+
+    // Phase 3: Validate before accepting selection
+    if (this.isHourDisabled(hour)) {
+      return;
+    }
+
     this._hour = hour;
     this._hasValue = true;
     this.setAttribute("value", this.formatValue());
@@ -533,6 +641,12 @@ export class HaTimePicker extends HTMLElement {
 
   private handleMinuteSelect(minute: number): void {
     if (this.disabled || this.readonly) return;
+
+    // Phase 3: Validate before accepting selection
+    if (this.isMinuteDisabled(minute)) {
+      return;
+    }
+
     this._minute = minute;
     this._hasValue = true;
     this.setAttribute("value", this.formatValue());
@@ -542,6 +656,12 @@ export class HaTimePicker extends HTMLElement {
 
   private handleSecondSelect(second: number): void {
     if (this.disabled || this.readonly) return;
+
+    // Phase 3: Validate before accepting selection
+    if (this.isSecondDisabled(second)) {
+      return;
+    }
+
     this._second = second;
     this._hasValue = true;
     this.setAttribute("value", this.formatValue());
@@ -551,7 +671,33 @@ export class HaTimePicker extends HTMLElement {
 
   private handlePeriodToggle(period: TimePickerPeriod): void {
     if (this.disabled || this.readonly) return;
+
+    // Phase 3: Validate before accepting period change
+    // Temporarily set the period to check if the time would be valid
+    const oldPeriod = this._period;
     this._period = period;
+
+    // Check if the current hour would be disabled with the new period
+    if (this.isHourDisabled(this._hour)) {
+      // Revert to old period and don't allow the change
+      this._period = oldPeriod;
+      return;
+    }
+
+    // Check if the current minute would be disabled with the new period
+    if (this.isMinuteDisabled(this._minute)) {
+      // Revert to old period and don't allow the change
+      this._period = oldPeriod;
+      return;
+    }
+
+    // Check if the current second would be disabled with the new period (if showing seconds)
+    if (this.showSeconds && this.isSecondDisabled(this._second)) {
+      // Revert to old period and don't allow the change
+      this._period = oldPeriod;
+      return;
+    }
+
     this._hasValue = true;
     this.setAttribute("value", this.formatValue());
     this.emitTimeSelect();
@@ -742,19 +888,11 @@ export class HaTimePicker extends HTMLElement {
               let isDisabled = false;
 
               if (type === "hour") {
-                if (this.format === "12") {
-                  let hour24 = value;
-                  if (this._period === "PM" && value !== 12) {
-                    hour24 = value + 12;
-                  } else if (this._period === "AM" && value === 12) {
-                    hour24 = 0;
-                  }
-                  isDisabled = this.disabledHours.includes(hour24);
-                } else {
-                  isDisabled = this.disabledHours.includes(value);
-                }
+                isDisabled = this.isHourDisabled(value);
               } else if (type === "minute") {
-                isDisabled = this.disabledMinutes.includes(value);
+                isDisabled = this.isMinuteDisabled(value);
+              } else if (type === "second") {
+                isDisabled = this.isSecondDisabled(value);
               }
 
               const classes = ["item"];
