@@ -17,8 +17,8 @@
  */
 export class HaColorPicker extends HTMLElement {
   private _hue: number = 0;
-  private _saturation: number = 100;
-  private _lightness: number = 50;
+  private _saturation: number = 100; // HSV saturation (0-100)
+  private _value: number = 100; // HSV value/brightness (0-100)
   private _alpha: number = 1;
   private _format: "hex" | "rgb" | "hsl" = "hex";
   private _isDraggingPalette: boolean = false;
@@ -179,19 +179,33 @@ export class HaColorPicker extends HTMLElement {
   }
 
   getColor(): { h: number; s: number; l: number; a: number } {
+    // For backward compatibility, return HSL values
+    const rgb = this.hsvToRgb(this._hue, this._saturation, this._value);
+    const hsl = this.rgbToHsl(rgb.r, rgb.g, rgb.b);
     return {
-      h: this._hue,
-      s: this._saturation,
-      l: this._lightness,
+      h: hsl.h,
+      s: hsl.s,
+      l: hsl.l,
       a: this._alpha,
     };
   }
 
   setColor(h: number, s: number, l: number, a: number = 1): void {
-    this._hue = this.clamp(h, 0, 360);
-    this._saturation = this.clamp(s, 0, 100);
-    this._lightness = this.clamp(l, 0, 100);
+    // Clamp input values
+    h = this.clamp(h, 0, 360);
+    s = this.clamp(s, 0, 100);
+    l = this.clamp(l, 0, 100);
+
+    // Convert HSL input to HSV for internal storage
+    this._hue = h;
     this._alpha = this.clamp(a, 0, 1);
+
+    // Convert HSL to RGB to HSV
+    const rgb = this.hslToRgb(h, s, l);
+    const hsv = this.rgbToHsv(rgb.r, rgb.g, rgb.b);
+    this._saturation = hsv.s;
+    this._value = hsv.v;
+
     this.render();
     this.dispatchChangeEvent();
   }
@@ -223,10 +237,10 @@ export class HaColorPicker extends HTMLElement {
         }
       }
 
-      const hsl = this.rgbToHsl(r, g, b);
-      this._hue = hsl.h;
-      this._saturation = hsl.s;
-      this._lightness = hsl.l;
+      const hsv = this.rgbToHsv(r, g, b);
+      this._hue = hsv.h;
+      this._saturation = hsv.s;
+      this._value = hsv.v;
       this._alpha = a;
     }
     // Parse RGB/RGBA
@@ -240,23 +254,31 @@ export class HaColorPicker extends HTMLElement {
         const b = parseInt(match[3]);
         const a = match[4] ? parseFloat(match[4]) : 1;
 
-        const hsl = this.rgbToHsl(r, g, b);
-        this._hue = hsl.h;
-        this._saturation = hsl.s;
-        this._lightness = hsl.l;
+        const hsv = this.rgbToHsv(r, g, b);
+        this._hue = hsv.h;
+        this._saturation = hsv.s;
+        this._value = hsv.v;
         this._alpha = a;
       }
     }
-    // Parse HSL/HSLA
+    // Parse HSL/HSLA (convert to HSV)
     else if (value.startsWith("hsl")) {
       const match = value.match(
         /hsla?\((\d+),\s*(\d+)%,\s*(\d+)%(?:,\s*([\d.]+))?\)/,
       );
       if (match) {
-        this._hue = parseInt(match[1]);
-        this._saturation = parseInt(match[2]);
-        this._lightness = parseInt(match[3]);
-        this._alpha = match[4] ? parseFloat(match[4]) : 1;
+        const h = parseInt(match[1]);
+        const s = parseInt(match[2]);
+        const l = parseInt(match[3]);
+        const a = match[4] ? parseFloat(match[4]) : 1;
+
+        // Convert HSL to RGB to HSV
+        const rgb = this.hslToRgb(h, s, l);
+        const hsv = this.rgbToHsv(rgb.r, rgb.g, rgb.b);
+        this._hue = hsv.h;
+        this._saturation = hsv.s;
+        this._value = hsv.v;
+        this._alpha = a;
       }
     }
   }
@@ -275,7 +297,7 @@ export class HaColorPicker extends HTMLElement {
   }
 
   private toHex(): string {
-    const rgb = this.hslToRgb(this._hue, this._saturation, this._lightness);
+    const rgb = this.hsvToRgb(this._hue, this._saturation, this._value);
     const r = rgb.r.toString(16).padStart(2, "0");
     const g = rgb.g.toString(16).padStart(2, "0");
     const b = rgb.b.toString(16).padStart(2, "0");
@@ -291,7 +313,7 @@ export class HaColorPicker extends HTMLElement {
   }
 
   private toRgb(): string {
-    const rgb = this.hslToRgb(this._hue, this._saturation, this._lightness);
+    const rgb = this.hsvToRgb(this._hue, this._saturation, this._value);
 
     if (this.showAlpha && this._alpha < 1) {
       return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${this._alpha.toFixed(2)})`;
@@ -301,13 +323,129 @@ export class HaColorPicker extends HTMLElement {
   }
 
   private toHsl(): string {
+    // Convert HSV to RGB to HSL for output
+    const rgb = this.hsvToRgb(this._hue, this._saturation, this._value);
+    const hsl = this.rgbToHsl(rgb.r, rgb.g, rgb.b);
+
     if (this.showAlpha && this._alpha < 1) {
-      return `hsla(${this._hue}, ${this._saturation}%, ${this._lightness}%, ${this._alpha.toFixed(2)})`;
+      return `hsla(${hsl.h}, ${hsl.s}%, ${hsl.l}%, ${this._alpha.toFixed(2)})`;
     }
 
-    return `hsl(${this._hue}, ${this._saturation}%, ${this._lightness}%)`;
+    return `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
   }
 
+  // HSL to RGB conversion (for parsing HSL input)
+  private hslToRgb(
+    h: number,
+    s: number,
+    l: number,
+  ): { r: number; g: number; b: number } {
+    h /= 360;
+    s /= 100;
+    l /= 100;
+
+    let r: number, g: number, b: number;
+
+    if (s === 0) {
+      r = g = b = l;
+    } else {
+      const hue2rgb = (p: number, q: number, t: number) => {
+        if (t < 0) t += 1;
+        if (t > 1) t -= 1;
+        if (t < 1 / 6) return p + (q - p) * 6 * t;
+        if (t < 1 / 2) return q;
+        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+        return p;
+      };
+
+      const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      const p = 2 * l - q;
+
+      r = hue2rgb(p, q, h + 1 / 3);
+      g = hue2rgb(p, q, h);
+      b = hue2rgb(p, q, h - 1 / 3);
+    }
+
+    return {
+      r: Math.round(r * 255),
+      g: Math.round(g * 255),
+      b: Math.round(b * 255),
+    };
+  }
+
+  // RGB to HSV conversion
+  private rgbToHsv(
+    r: number,
+    g: number,
+    b: number,
+  ): { h: number; s: number; v: number } {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    const d = max - min;
+    let h = 0;
+    const s = max === 0 ? 0 : d / max;
+    const v = max;
+
+    if (max !== min) {
+      switch (max) {
+        case r:
+          h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+          break;
+        case g:
+          h = ((b - r) / d + 2) / 6;
+          break;
+        case b:
+          h = ((r - g) / d + 4) / 6;
+          break;
+      }
+    }
+
+    return {
+      h: Math.round(h * 360),
+      s: Math.round(s * 100),
+      v: Math.round(v * 100),
+    };
+  }
+
+  // HSV to RGB conversion
+  private hsvToRgb(
+    h: number,
+    s: number,
+    v: number,
+  ): { r: number; g: number; b: number } {
+    h /= 360;
+    s /= 100;
+    v /= 100;
+
+    const i = Math.floor(h * 6);
+    const f = h * 6 - i;
+    const p = v * (1 - s);
+    const q = v * (1 - f * s);
+    const t = v * (1 - (1 - f) * s);
+
+    let r = 0, g = 0, b = 0;
+
+    switch (i % 6) {
+      case 0: r = v; g = t; b = p; break;
+      case 1: r = q; g = v; b = p; break;
+      case 2: r = p; g = v; b = t; break;
+      case 3: r = p; g = q; b = v; break;
+      case 4: r = t; g = p; b = v; break;
+      case 5: r = v; g = p; b = q; break;
+    }
+
+    return {
+      r: Math.round(r * 255),
+      g: Math.round(g * 255),
+      b: Math.round(b * 255),
+    };
+  }
+
+  // RGB to HSL conversion (for HSL format output)
   private rgbToHsl(
     r: number,
     g: number,
@@ -347,44 +485,6 @@ export class HaColorPicker extends HTMLElement {
     };
   }
 
-  private hslToRgb(
-    h: number,
-    s: number,
-    l: number,
-  ): { r: number; g: number; b: number } {
-    h /= 360;
-    s /= 100;
-    l /= 100;
-
-    let r: number, g: number, b: number;
-
-    if (s === 0) {
-      r = g = b = l;
-    } else {
-      const hue2rgb = (p: number, q: number, t: number) => {
-        if (t < 0) t += 1;
-        if (t > 1) t -= 1;
-        if (t < 1 / 6) return p + (q - p) * 6 * t;
-        if (t < 1 / 2) return q;
-        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-        return p;
-      };
-
-      const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-      const p = 2 * l - q;
-
-      r = hue2rgb(p, q, h + 1 / 3);
-      g = hue2rgb(p, q, h);
-      b = hue2rgb(p, q, h - 1 / 3);
-    }
-
-    return {
-      r: Math.round(r * 255),
-      g: Math.round(g * 255),
-      b: Math.round(b * 255),
-    };
-  }
-
   private clamp(value: number, min: number, max: number): number {
     return Math.max(min, Math.min(max, value));
   }
@@ -418,11 +518,15 @@ export class HaColorPicker extends HTMLElement {
     const palette = e.currentTarget as HTMLElement;
     const rect = palette.getBoundingClientRect();
 
+    // Prevent NaN by checking for valid dimensions
+    if (rect.width === 0 || rect.height === 0) return;
+
     const x = this.clamp(e.clientX - rect.left, 0, rect.width);
     const y = this.clamp(e.clientY - rect.top, 0, rect.height);
 
+    // HSV palette: X = saturation (0-100), Y = value (100-0, inverted)
     this._saturation = (x / rect.width) * 100;
-    this._lightness = 100 - (y / rect.height) * 100;
+    this._value = 100 - (y / rect.height) * 100;
 
     this.render();
     this.dispatchInputEvent();
@@ -456,6 +560,9 @@ export class HaColorPicker extends HTMLElement {
   private updateHueFromPointer(e: PointerEvent): void {
     const slider = e.currentTarget as HTMLElement;
     const rect = slider.getBoundingClientRect();
+
+    // Prevent NaN by checking for valid dimensions
+    if (rect.width === 0) return;
 
     const x = this.clamp(e.clientX - rect.left, 0, rect.width);
     this._hue = (x / rect.width) * 360;
@@ -493,6 +600,9 @@ export class HaColorPicker extends HTMLElement {
     const slider = e.currentTarget as HTMLElement;
     const rect = slider.getBoundingClientRect();
 
+    // Prevent NaN by checking for valid dimensions
+    if (rect.width === 0) return;
+
     const x = this.clamp(e.clientX - rect.left, 0, rect.width);
     this._alpha = x / rect.width;
 
@@ -525,13 +635,17 @@ export class HaColorPicker extends HTMLElement {
   };
 
   private dispatchChangeEvent(): void {
+    // For backward compatibility, convert to HSL for event details
+    const rgb = this.hsvToRgb(this._hue, this._saturation, this._value);
+    const hsl = this.rgbToHsl(rgb.r, rgb.g, rgb.b);
+
     this.dispatchEvent(
       new CustomEvent("color-change", {
         detail: {
           value: this.getColorValue(),
-          h: this._hue,
-          s: this._saturation,
-          l: this._lightness,
+          h: hsl.h,
+          s: hsl.s,
+          l: hsl.l,
           a: this._alpha,
         },
         bubbles: true,
@@ -541,13 +655,17 @@ export class HaColorPicker extends HTMLElement {
   }
 
   private dispatchInputEvent(): void {
+    // For backward compatibility, convert to HSL for event details
+    const rgb = this.hsvToRgb(this._hue, this._saturation, this._value);
+    const hsl = this.rgbToHsl(rgb.r, rgb.g, rgb.b);
+
     this.dispatchEvent(
       new CustomEvent("color-input", {
         detail: {
           value: this.getColorValue(),
-          h: this._hue,
-          s: this._saturation,
-          l: this._lightness,
+          h: hsl.h,
+          s: hsl.s,
+          l: hsl.l,
           a: this._alpha,
         },
         bubbles: true,
@@ -717,12 +835,14 @@ export class HaColorPicker extends HTMLElement {
   private render(): void {
     if (!this.shadowRoot) return;
 
-    const currentColor = `hsl(${this._hue}, ${this._saturation}%, ${this._lightness}%)`;
-    const currentColorWithAlpha = `hsla(${this._hue}, ${this._saturation}%, ${this._lightness}%, ${this._alpha})`;
+    // Convert HSV to RGB for display
+    const rgb = this.hsvToRgb(this._hue, this._saturation, this._value);
+    const currentColor = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+    const currentColorWithAlpha = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${this._alpha})`;
     const hueColor = `hsl(${this._hue}, 100%, 50%)`;
 
     const paletteX = (this._saturation / 100) * 200;
-    const paletteY = ((100 - this._lightness) / 100) * 200;
+    const paletteY = ((100 - this._value) / 100) * 200;  // HSV: value from top to bottom
     const hueX = (this._hue / 360) * 100;
     const alphaX = this._alpha * 100;
 

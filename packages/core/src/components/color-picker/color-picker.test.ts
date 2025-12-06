@@ -557,7 +557,8 @@ describe("HaColorPicker", () => {
     it("should clamp hue to 0-360", () => {
       element.setColor(400, 100, 50);
       const color = element.getColor();
-      expect(color.h).toBe(360);
+      // Hue 360 and 0 are equivalent (red), so normalized to 0
+      expect(color.h).toBe(0);
     });
 
     it("should clamp saturation to 0-100", () => {
