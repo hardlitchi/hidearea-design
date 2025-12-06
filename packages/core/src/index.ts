@@ -91,3 +91,15 @@ export type { HaDatePicker as HaDatePickerElement } from "./components/date-pick
 export { HaTimePicker } from "./components/time-picker";
 export type { TimePickerFormat, TimePickerPeriod, TimePickerDate } from "./components/time-picker";
 export type { HaTimePicker as HaTimePickerElement } from "./components/time-picker/time-picker";
+
+// Slider
+export { HaSlider } from "./components/slider";
+export type { HaSlider as HaSliderElement } from "./components/slider/slider";
+
+// ColorPicker
+export { HaColorPicker } from "./components/color-picker";
+export type { HaColorPicker as HaColorPickerElement } from "./components/color-picker/color-picker";
+
+// Theme utilities
+export { getTheme, getEffectiveTheme, setTheme, toggleTheme, initTheme, onThemeChange } from "./utils/theme";
+export type { Theme } from "./utils/theme";

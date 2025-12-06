@@ -422,3 +422,30 @@ export interface TimePickerProps {
   showNowButton?: boolean;
   showClearButton?: boolean;
 }
+
+export interface SliderProps {
+  min?: number;
+  max?: number;
+  step?: number;
+  value?: number;
+  range?: boolean;
+  rangeStart?: number;
+  rangeEnd?: number;
+  orientation?: 'horizontal' | 'vertical';
+  disabled?: boolean;
+  readonly?: boolean;
+  showMarks?: boolean;
+  showTooltip?: boolean;
+  marks?: number[];
+}
+
+export interface ColorPickerProps {
+  value?: string;
+  format?: 'hex' | 'rgb' | 'hsl';
+  showAlpha?: boolean;
+  showInput?: boolean;
+  showSwatches?: boolean;
+  swatches?: string[];
+  disabled?: boolean;
+  readonly?: boolean;
+}

@@ -1,6 +1,12 @@
 import { spyOn } from "storybook/test";
 import type { Preview } from "@storybook/web-components-vite";
 import "@hidearea-design/tokens/build/css/variables.css";
+import { initTheme } from "@hidearea-design/core";
+
+// Initialize theme on load
+if (typeof window !== 'undefined') {
+  initTheme();
+}
 
 const preview: Preview = {
   parameters: {
@@ -9,6 +15,25 @@ const preview: Preview = {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
+      },
+    },
+    backgrounds: {
+      default: 'light',
+      values: [
+        { name: 'light', value: '#ffffff' },
+        { name: 'dark', value: '#171717' },
+      ],
+    },
+  },
+  globalTypes: {
+    theme: {
+      description: 'Global theme for components',
+      defaultValue: 'light',
+      toolbar: {
+        title: 'Theme',
+        icon: 'circlehollow',
+        items: ['light', 'dark'],
+        dynamicTitle: true,
       },
     },
   },

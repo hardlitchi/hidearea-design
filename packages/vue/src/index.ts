@@ -40,6 +40,8 @@ import DataGrid from "./DataGrid.vue";
 import FileUpload from "./FileUpload.vue";
 import DatePicker from "./DatePicker.vue";
 import TimePicker from "./TimePicker.vue";
+import Slider from "./Slider.vue";
+import ColorPicker from "./ColorPicker.vue";
 
 export {
   Button,
@@ -83,6 +85,8 @@ export {
   FileUpload,
   DatePicker,
   TimePicker,
+  Slider,
+  ColorPicker,
 };
 export type {
   ButtonProps,
@@ -126,6 +130,8 @@ export type {
   FileUploadProps,
   DatePickerProps,
   TimePickerProps,
+  SliderProps,
+  ColorPickerProps,
 } from "./types";
 
 // Vue plugin for installing all components
@@ -172,5 +178,10 @@ export default {
     app.component("HaFileUpload", FileUpload);
     app.component("HaDatePicker", DatePicker);
     app.component("HaTimePicker", TimePicker);
+    app.component("HaSlider", Slider);
+    app.component("HaColorPicker", ColorPicker);
   },
 };
+
+// Theme composable
+export { useTheme } from "./useTheme";

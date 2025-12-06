@@ -1,0 +1,32 @@
+{
+  "theme": {
+    "dark": {
+      "background": {
+        "primary": { "value": "{color.gray.900}" },
+        "secondary": { "value": "{color.gray.800}" },
+        "tertiary": { "value": "{color.gray.700}" },
+        "inverse": { "value": "{color.white}" }
+      },
+      "surface": {
+        "primary": { "value": "{color.gray.800}" },
+        "secondary": { "value": "{color.gray.700}" },
+        "tertiary": { "value": "{color.gray.600}" },
+        "hover": { "value": "{color.gray.700}" },
+        "active": { "value": "{color.gray.600}" }
+      },
+      "text": {
+        "primary": { "value": "{color.gray.50}" },
+        "secondary": { "value": "{color.gray.300}" },
+        "tertiary": { "value": "{color.gray.400}" },
+        "disabled": { "value": "{color.gray.600}" },
+        "inverse": { "value": "{color.gray.900}" }
+      },
+      "border": {
+        "primary": { "value": "{color.gray.700}" },
+        "secondary": { "value": "{color.gray.600}" },
+        "focus": { "value": "{color.blue.500}" },
+        "error": { "value": "{color.red.500}" }
+      }
+    }
+  }
+}
