@@ -93,7 +93,7 @@ export function hasValidAriaAttributes(element: HTMLElement): {
     switch (attr) {
       case 'aria-labelledby':
       case 'aria-describedby':
-      case 'aria-controls':
+      case 'aria-controls': {
         // Should reference valid IDs
         const ids = value!.split(' ');
         ids.forEach((id) => {
@@ -102,6 +102,7 @@ export function hasValidAriaAttributes(element: HTMLElement): {
           }
         });
         break;
+      }
 
       case 'aria-checked':
       case 'aria-pressed':
