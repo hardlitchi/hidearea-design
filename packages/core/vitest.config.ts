@@ -13,7 +13,12 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "json", "html"],
       include: ["src/**/*.ts"],
-      exclude: ["src/**/*.styles.ts", "src/**/index.ts", "src/**/*.d.ts"],
+      exclude: [
+        "src/**/*.styles.ts",
+        "src/**/index.ts",
+        "src/**/*.d.ts",
+        "src/test-utils/**",
+      ],
       // 目標カバレッジ
       thresholds: {
         lines: 80,
