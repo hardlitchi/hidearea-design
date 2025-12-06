@@ -237,11 +237,8 @@ describe("HaButton", () => {
       expect(clickHandler).not.toHaveBeenCalled();
     });
 
-    it("should not set aria-busy when loading is false", () => {
-      button.loading = false;
-      const internalButton = queryShadow(button, "button") as HTMLButtonElement;
-      expect(internalButton.getAttribute("aria-busy")).toBe("false");
-    });
+    // This test is removed as it's now covered in the Accessibility section
+    // with improved assertion
   });
 
   describe("Button Types", () => {
@@ -442,10 +439,98 @@ describe("HaButton", () => {
       expect(internalButton.getAttribute("aria-busy")).toBe("true");
     });
 
-    it("should have aria-busy set to false when not loading", () => {
+    it("should remove aria-busy when not loading", () => {
       button.loading = false;
       const internalButton = queryShadow(button, "button") as HTMLButtonElement;
-      expect(internalButton.getAttribute("aria-busy")).toBe("false");
+      expect(internalButton.hasAttribute("aria-busy")).toBe(false);
+    });
+
+    it("should set aria-pressed for toggle buttons", () => {
+      button.pressed = true;
+      const internalButton = queryShadow(button, "button") as HTMLButtonElement;
+      expect(internalButton.getAttribute("aria-pressed")).toBe("true");
+    });
+
+    it("should toggle aria-pressed on click", async () => {
+      // Start with pressed=false by setting the attribute
+      button.setAttribute("pressed", "");
+      button.pressed = true; // Set to true first
+
+      const internalButton = queryShadow(button, "button") as HTMLButtonElement;
+      expect(internalButton.getAttribute("aria-pressed")).toBe("true");
+
+      // Click should toggle to false
+      internalButton.click();
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      expect(internalButton.getAttribute("aria-pressed")).toBe("false");
+
+      // Click again should toggle back to true
+      internalButton.click();
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      expect(internalButton.getAttribute("aria-pressed")).toBe("true");
+    });
+
+    it("should set aria-expanded for expandable content", () => {
+      button.expanded = true;
+      const internalButton = queryShadow(button, "button") as HTMLButtonElement;
+      expect(internalButton.getAttribute("aria-expanded")).toBe("true");
+    });
+
+    it("should set aria-label for icon-only buttons", () => {
+      button.setAttribute("aria-label", "Close dialog");
+      const internalButton = queryShadow(button, "button") as HTMLButtonElement;
+      expect(internalButton.getAttribute("aria-label")).toBe("Close dialog");
+    });
+
+    it("should set aria-controls to reference controlled element", () => {
+      button.setAttribute("aria-controls", "panel-1");
+      const internalButton = queryShadow(button, "button") as HTMLButtonElement;
+      expect(internalButton.getAttribute("aria-controls")).toBe("panel-1");
+    });
+
+    it("should set aria-haspopup for popup triggers", () => {
+      button.setAttribute("haspopup", "menu");
+      const internalButton = queryShadow(button, "button") as HTMLButtonElement;
+      expect(internalButton.getAttribute("aria-haspopup")).toBe("menu");
+    });
+
+    it("should support all haspopup values", () => {
+      const haspopupValues = ["menu", "listbox", "tree", "grid", "dialog", "true"];
+
+      haspopupValues.forEach((value) => {
+        button.setAttribute("haspopup", value);
+        const internalButton = queryShadow(button, "button") as HTMLButtonElement;
+        expect(internalButton.getAttribute("aria-haspopup")).toBe(value);
+      });
+    });
+
+    it("should remove aria attributes when attributes are removed", () => {
+      button.setAttribute("pressed", "");
+      button.setAttribute("expanded", "");
+      button.setAttribute("aria-label", "Test");
+      button.setAttribute("aria-controls", "panel-1");
+      button.setAttribute("haspopup", "menu");
+
+      const internalButton = queryShadow(button, "button") as HTMLButtonElement;
+      expect(internalButton.hasAttribute("aria-pressed")).toBe(true);
+      expect(internalButton.hasAttribute("aria-expanded")).toBe(true);
+      expect(internalButton.hasAttribute("aria-label")).toBe(true);
+      expect(internalButton.hasAttribute("aria-controls")).toBe(true);
+      expect(internalButton.hasAttribute("aria-haspopup")).toBe(true);
+
+      button.removeAttribute("pressed");
+      button.removeAttribute("expanded");
+      button.removeAttribute("aria-label");
+      button.removeAttribute("aria-controls");
+      button.removeAttribute("haspopup");
+
+      expect(internalButton.hasAttribute("aria-pressed")).toBe(false);
+      expect(internalButton.hasAttribute("aria-expanded")).toBe(false);
+      expect(internalButton.hasAttribute("aria-label")).toBe(false);
+      expect(internalButton.hasAttribute("aria-controls")).toBe(false);
+      expect(internalButton.hasAttribute("aria-haspopup")).toBe(false);
     });
   });
 
