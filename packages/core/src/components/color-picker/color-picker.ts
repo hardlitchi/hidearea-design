@@ -835,6 +835,9 @@ export class HaColorPicker extends HTMLElement {
   private render(): void {
     if (!this.shadowRoot) return;
 
+    // Remove old event listeners before re-rendering
+    this.removeEventListeners();
+
     // Convert HSV to RGB for display
     const rgb = this.hsvToRgb(this._hue, this._saturation, this._value);
     const currentColor = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
@@ -890,10 +893,9 @@ export class HaColorPicker extends HTMLElement {
           border-radius: 50%;
           box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3),
                       0 2px 4px rgba(0, 0, 0, 0.2);
-          transform: translate(-50%, -50%);
           pointer-events: none;
-          left: ${paletteX}%;
-          top: ${paletteY}%;
+          left: calc(${paletteX}% - 6px);
+          top: calc(${paletteY}% - 6px);
         }
 
         .hue-slider,
