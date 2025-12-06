@@ -841,8 +841,9 @@ export class HaColorPicker extends HTMLElement {
     const currentColorWithAlpha = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${this._alpha})`;
     const hueColor = `hsl(${this._hue}, 100%, 50%)`;
 
-    const paletteX = (this._saturation / 100) * 200;
-    const paletteY = ((100 - this._value) / 100) * 200;  // HSV: value from top to bottom
+    // Use percentage for cursor positioning to match actual palette size
+    const paletteX = this._saturation; // 0-100%
+    const paletteY = 100 - this._value; // 0-100%, inverted (top=bright, bottom=dark)
     const hueX = (this._hue / 360) * 100;
     const alphaX = this._alpha * 100;
 
@@ -891,8 +892,8 @@ export class HaColorPicker extends HTMLElement {
                       0 2px 4px rgba(0, 0, 0, 0.2);
           transform: translate(-50%, -50%);
           pointer-events: none;
-          left: ${paletteX}px;
-          top: ${paletteY}px;
+          left: ${paletteX}%;
+          top: ${paletteY}%;
         }
 
         .hue-slider,
