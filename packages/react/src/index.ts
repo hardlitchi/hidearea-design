@@ -131,3 +131,5 @@ export type {
 export { Slider } from "./Slider";
 
 export { ColorPicker } from "./ColorPicker";
+export { useTheme } from "./useTheme";
+export type { UseThemeReturn } from "./useTheme";

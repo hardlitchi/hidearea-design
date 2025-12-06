@@ -182,3 +182,6 @@ export default {
     app.component("HaColorPicker", ColorPicker);
   },
 };
+
+// Theme composable
+export { useTheme } from "./useTheme";

@@ -14,6 +14,38 @@ StyleDictionary.registerParser({
 });
 
 /**
+ * カスタムフォーマット: ライトモードとダークモードのCSS変数
+ */
+StyleDictionary.registerFormat({
+  name: 'css/variables-themes',
+  format: function({ dictionary }) {
+    const lightTokens = [];
+    const darkTokens = [];
+    const baseTokens = [];
+
+    dictionary.allTokens.forEach(token => {
+      const cssVar = `--${token.name}`;
+      const value = token.value;
+
+      if (token.path[0] === 'theme' && token.path[1] === 'light') {
+        // ライトモードトークン
+        const varName = `--${token.path.slice(2).join('-')}`;
+        lightTokens.push(`  ${varName}: ${value};`);
+      } else if (token.path[0] === 'theme' && token.path[1] === 'dark') {
+        // ダークモードトークン
+        const varName = `--${token.path.slice(2).join('-')}`;
+        darkTokens.push(`  ${varName}: ${value};`);
+      } else if (token.path[0] !== 'theme') {
+        // ベーストークン
+        baseTokens.push(`  ${cssVar}: ${value};`);
+      }
+    });
+
+    return `:root {\n${baseTokens.join('\n')}\n}\n\n:root,\n[data-theme="light"] {\n${lightTokens.join('\n')}\n}\n\n[data-theme="dark"] {\n${darkTokens.join('\n')}\n}`;
+  }
+});
+
+/**
  * Style Dictionary設定
  */
 const sd = new StyleDictionary({
@@ -25,10 +57,7 @@ const sd = new StyleDictionary({
       files: [
         {
           destination: 'variables.css',
-          format: 'css/variables',
-          options: {
-            outputReferences: true,
-          },
+          format: 'css/variables-themes',
         },
       ],
     },

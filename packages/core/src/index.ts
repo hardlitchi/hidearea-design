@@ -99,3 +99,7 @@ export type { HaSlider as HaSliderElement } from "./components/slider/slider";
 // ColorPicker
 export { HaColorPicker } from "./components/color-picker";
 export type { HaColorPicker as HaColorPickerElement } from "./components/color-picker/color-picker";
+
+// Theme utilities
+export { getTheme, getEffectiveTheme, setTheme, toggleTheme, initTheme, onThemeChange } from "./utils/theme";
+export type { Theme } from "./utils/theme";
