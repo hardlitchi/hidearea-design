@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theme Switcher Example</title>
+  <style>
+    body {
+      background-color: var(--ha-background-primary);
+      color: var(--ha-text-primary);
+      font-family: sans-serif;
+      padding: 2rem;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .controls {
+      margin-bottom: 1.5rem;
+    }
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    ha-card {
+      margin-bottom: 1rem;
+    }
+    h1, h2 {
+      color: var(--ha-text-primary);
+    }
+  </style>
+  <script type="module" src="/main.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Theme Switcher Example</h1>
+    <div class="controls">
+      <ha-button id="light-theme-btn" variant="primary">Light Theme</ha-button>
+      <ha-button id="dark-theme-btn" variant="secondary">Dark Theme</ha-button>
+    </div>
+
+    <div class="component-grid">
+      <ha-card>
+        <div slot="header">
+          <h2>Components</h2>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <ha-button>Primary Button</ha-button>
+          <ha-button variant="secondary">Secondary Button</ha-button>
+          <ha-input label="Input" placeholder="Enter text..."></ha-input>
+          <ha-checkbox label="Checkbox"></ha-checkbox>
+        </div>
+      </ha-card>
+
+      <ha-card>
+        <div slot="header">
+          <h2>Alert</h2>
+        </div>
+        <ha-alert open>This is an alert.</ha-alert>
+      </ha-card>
+    </div>
+
+  </div>
+</body>
+</html>

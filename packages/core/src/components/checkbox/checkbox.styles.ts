@@ -40,9 +40,9 @@ export const checkboxStyles = `
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: var(--border-width-2, 2px) solid var(--color-gray-300, #d1d5db);
+    border: var(--border-width-2, 2px) solid var(--border-primary);
     border-radius: var(--border-radius-base, 0.25rem);
-    background-color: var(--color-white, #ffffff);
+    background-color: var(--surface-primary);
     transition:
       border-color var(--animation-duration-base, 200ms) var(--animation-easing-ease, ease),
       background-color var(--animation-duration-base, 200ms) var(--animation-easing-ease, ease),
@@ -51,24 +51,24 @@ export const checkboxStyles = `
 
   .checkbox-icon {
     display: none;
-    color: var(--color-white, #ffffff);
+    color: var(--text-inverse);
   }
 
   /* Focus state */
   input[type="checkbox"]:focus-visible + .checkbox-box {
-    outline: 2px solid var(--theme-light-primary-default, #3b82f6);
+    outline: 2px solid var(--primary-default);
     outline-offset: 2px;
   }
 
   /* Hover state */
   :host(:not([disabled])) input[type="checkbox"]:not(:checked):hover + .checkbox-box {
-    border-color: var(--color-gray-400, #9ca3af);
+    border-color: var(--border-strong);
   }
 
   /* Checked state */
   input[type="checkbox"]:checked + .checkbox-box {
-    background-color: var(--theme-light-primary-default, #3b82f6);
-    border-color: var(--theme-light-primary-default, #3b82f6);
+    background-color: var(--primary-default);
+    border-color: var(--primary-default);
   }
 
   input[type="checkbox"]:checked + .checkbox-box .checkbox-icon {
@@ -76,14 +76,14 @@ export const checkboxStyles = `
   }
 
   input[type="checkbox"]:checked:hover + .checkbox-box {
-    background-color: var(--theme-light-primary-hover, #2563eb);
-    border-color: var(--theme-light-primary-hover, #2563eb);
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
   }
 
   /* Indeterminate state */
   input[type="checkbox"]:indeterminate + .checkbox-box {
-    background-color: var(--theme-light-primary-default, #3b82f6);
-    border-color: var(--theme-light-primary-default, #3b82f6);
+    background-color: var(--primary-default);
+    border-color: var(--primary-default);
   }
 
   input[type="checkbox"]:indeterminate + .checkbox-box .checkbox-icon {
@@ -92,16 +92,16 @@ export const checkboxStyles = `
 
   /* Error state */
   :host([error]) .checkbox-box {
-    border-color: var(--theme-light-error-default, #ef4444);
+    border-color: var(--error-default);
   }
 
   :host([error]) input[type="checkbox"]:checked + .checkbox-box {
-    background-color: var(--theme-light-error-default, #ef4444);
-    border-color: var(--theme-light-error-default, #ef4444);
+    background-color: var(--error-default);
+    border-color: var(--error-default);
   }
 
   :host([error]) input[type="checkbox"]:focus-visible + .checkbox-box {
-    outline-color: var(--theme-light-error-default, #ef4444);
+    outline-color: var(--error-default);
   }
 
   /* Size: Small */
@@ -156,23 +156,23 @@ export const checkboxStyles = `
   .label {
     font-weight: var(--font-weight-regular, 400);
     line-height: var(--font-line-height-normal, 1.5);
-    color: var(--color-gray-900, #111827);
+    color: var(--text-primary);
     user-select: none;
   }
 
   :host([disabled]) .label {
-    color: var(--color-gray-500, #6b7280);
+    color: var(--text-secondary);
   }
 
   /* Description */
   .description {
     display: block;
     font-size: var(--font-size-sm, 0.875rem);
-    color: var(--color-gray-500, #6b7280);
+    color: var(--text-secondary);
     margin-top: var(--spacing-1, 0.25rem);
   }
 
   :host([error]) .description {
-    color: var(--theme-light-error-default, #ef4444);
+    color: var(--error-default);
   }
 `;

@@ -43,5 +43,8 @@
     "node": ">=18.0.0",
     "pnpm": ">=8.0.0"
   },
-  "packageManager": "pnpm@10.24.0"
+  "packageManager": "pnpm@10.24.0",
+  "dependencies": {
+    "@playwright/test": "^1.57.0"
+  }
 }

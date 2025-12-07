@@ -17,77 +17,77 @@ export const alertStyles = `
 
   /* Variants - Filled */
   .alert--filled.alert--info {
-    background-color: var(--ha-color-info-500);
-    color: white;
-    border: 1px solid var(--ha-color-info-600);
+    background-color: var(--info-default);
+    color: var(--text-inverse);
+    border: 1px solid var(--info-hover);
   }
 
   .alert--filled.alert--success {
-    background-color: var(--ha-color-success-500);
-    color: white;
-    border: 1px solid var(--ha-color-success-600);
+    background-color: var(--success-default);
+    color: var(--text-inverse);
+    border: 1px solid var(--success-hover);
   }
 
   .alert--filled.alert--warning {
-    background-color: var(--ha-color-warning-500);
-    color: white;
-    border: 1px solid var(--ha-color-warning-600);
+    background-color: var(--warning-default);
+    color: var(--text-inverse);
+    border: 1px solid var(--warning-hover);
   }
 
   .alert--filled.alert--error {
-    background-color: var(--ha-color-error-500);
-    color: white;
-    border: 1px solid var(--ha-color-error-600);
+    background-color: var(--error-default);
+    color: var(--text-inverse);
+    border: 1px solid var(--error-hover);
   }
 
   /* Variants - Outlined */
   .alert--outlined.alert--info {
     background-color: transparent;
-    color: var(--ha-color-info-700);
-    border: 1px solid var(--ha-color-info-500);
+    color: var(--info-default);
+    border: 1px solid var(--info-default);
   }
 
   .alert--outlined.alert--success {
     background-color: transparent;
-    color: var(--ha-color-success-700);
-    border: 1px solid var(--ha-color-success-500);
+    color: var(--success-default);
+    border: 1px solid var(--success-default);
   }
 
   .alert--outlined.alert--warning {
     background-color: transparent;
-    color: var(--ha-color-warning-700);
-    border: 1px solid var(--ha-color-warning-500);
+    color: var(--warning-default);
+    border: 1px solid var(--warning-default);
   }
 
   .alert--outlined.alert--error {
     background-color: transparent;
-    color: var(--ha-color-error-700);
-    border: 1px solid var(--ha-color-error-500);
+    color: var(--error-default);
+    border: 1px solid var(--error-default);
   }
 
   /* Variants - Soft */
   .alert--soft.alert--info {
-    background-color: var(--ha-color-info-50);
-    color: var(--ha-color-info-700);
-    border: 1px solid var(--ha-color-info-200);
+    background-color: var(--info-subtle);
+    color: var(--info-default);
+    border: 1px solid var(--info-default);
   }
 
   .alert--soft.alert--success {
-    background-color: var(--ha-color-success-50);
-    color: var(--ha-color-success-700);
-    border: 1px solid var(--ha-color-success-200);
+    background-color: var(--success-subtle);
+    color: var(--success-default);
+    border: 1px solid var(--success-default);
   }
 
   .alert--soft.alert--warning {
-    background-color: var(--ha-color-warning-50);
-    color: var(--ha-color-warning-700);
-    border: 1px solid var(--ha-color-warning-200);
+    background-color: var(--warning-subtle);
+    color: var(--warning-default);
+    border: 1px solid var(--warning-default);
   }
 
   .alert--soft.alert--error {
-    background-color: var(--ha-color-error-50);
-    color: var(--ha-color-error-700);
-    border: 1px solid var(--ha-color-error-200);
+    background-color: var(--error-subtle);
+    color: var(--error-default);
+    border: 1px solid var(--error-default);
   }
 
   /* Icon */
