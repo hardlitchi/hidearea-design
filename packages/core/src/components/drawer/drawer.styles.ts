@@ -1,15 +1,15 @@
 export const drawerStyles = `
   :host {
-    --ha-drawer-width-sm: 256px;
-    --ha-drawer-width-md: 320px;
-    --ha-drawer-width-lg: 400px;
-    --ha-drawer-height-sm: 256px;
-    --ha-drawer-height-md: 320px;
-    --ha-drawer-height-lg: 400px;
-    --ha-drawer-bg: var(--foreground-inverse);
-    --ha-drawer-shadow: var(--shadow-lg);
-    --ha-drawer-z-index: 1000;
-    --ha-drawer-backdrop-bg: rgba(0, 0, 0, 0.5);
+    --drawer-width-sm: 256px;
+    --drawer-width-md: 320px;
+    --drawer-width-lg: 400px;
+    --drawer-height-sm: 256px;
+    --drawer-height-md: 320px;
+    --drawer-height-lg: 400px;
+    --drawer-bg: var(--foreground-inverse);
+    --drawer-shadow: var(--shadow-lg);
+    --drawer-z-index: 1000;
+    --drawer-backdrop-bg: rgba(0, 0, 0, 0.5);
   }
 
   .drawer-backdrop {
@@ -18,8 +18,8 @@ export const drawerStyles = `
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--ha-drawer-backdrop-bg);
-    z-index: var(--ha-drawer-z-index);
+    background-color: var(--drawer-backdrop-bg);
+    z-index: var(--drawer-z-index);
     opacity: 0;
     visibility: hidden;
     transition: opacity var(--animation-duration-base) ease,
@@ -35,9 +35,9 @@ export const drawerStyles = `
 
   .drawer {
     position: fixed;
-    background-color: var(--ha-drawer-bg);
-    box-shadow: var(--ha-drawer-shadow);
-    z-index: calc(var(--ha-drawer-z-index) + 1);
+    background-color: var(--drawer-bg);
+    box-shadow: var(--drawer-shadow);
+    z-index: calc(var(--drawer-z-index) + 1);
     display: flex;
     flex-direction: column;
     transition: transform var(--animation-duration-slow) ease;
@@ -94,33 +94,33 @@ export const drawerStyles = `
   /* Sizes for left/right placement */
   .drawer--placement-left.drawer--size-sm,
   .drawer--placement-right.drawer--size-sm {
-    width: var(--ha-drawer-width-sm);
+    width: var(--drawer-width-sm);
   }
 
   .drawer--placement-left.drawer--size-md,
   .drawer--placement-right.drawer--size-md {
-    width: var(--ha-drawer-width-md);
+    width: var(--drawer-width-md);
   }
 
   .drawer--placement-left.drawer--size-lg,
   .drawer--placement-right.drawer--size-lg {
-    width: var(--ha-drawer-width-lg);
+    width: var(--drawer-width-lg);
   }
 
   /* Sizes for top/bottom placement */
   .drawer--placement-top.drawer--size-sm,
   .drawer--placement-bottom.drawer--size-sm {
-    height: var(--ha-drawer-height-sm);
+    height: var(--drawer-height-sm);
   }
 
   .drawer--placement-top.drawer--size-md,
   .drawer--placement-bottom.drawer--size-md {
-    height: var(--ha-drawer-height-md);
+    height: var(--drawer-height-md);
   }
 
   .drawer--placement-top.drawer--size-lg,
   .drawer--placement-bottom.drawer--size-lg {
-    height: var(--ha-drawer-height-lg);
+    height: var(--drawer-height-lg);
   }
 
   .drawer__header {

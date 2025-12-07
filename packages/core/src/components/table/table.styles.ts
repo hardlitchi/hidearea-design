@@ -1,12 +1,12 @@
 export const tableStyles = `
   :host {
     display: block;
-    --ha-table-border-color: var(--color-neutral-300);
-    --ha-table-header-bg: var(--foreground-inverse);
-    --ha-table-row-hover-bg: var(--foreground-inverse);
-    --ha-table-striped-bg: var(--foreground-inverse);
-    --ha-table-padding: var(--spacing-3);
-    --ha-table-padding-compact: var(--spacing-2);
+    --table-border-color: var(--color-neutral-300);
+    --table-header-bg: var(--foreground-inverse);
+    --table-row-hover-bg: var(--foreground-inverse);
+    --table-striped-bg: var(--foreground-inverse);
+    --table-padding: var(--spacing-3);
+    --table-padding-compact: var(--spacing-2);
   }
 
   .table-wrapper {
@@ -27,13 +27,13 @@ export const tableStyles = `
 
   /* Table cells */
   .table :slotted(thead) {
-    background-color: var(--ha-table-header-bg);
+    background-color: var(--table-header-bg);
     font-weight: var(--font-weight-semibold);
   }
 
   .table :slotted(th),
   .table :slotted(td) {
-    padding: var(--ha-table-padding);
+    padding: var(--table-padding);
     text-align: left;
     vertical-align: middle;
   }
@@ -41,27 +41,27 @@ export const tableStyles = `
   /* Compact mode */
   .table--compact :slotted(th),
   .table--compact :slotted(td) {
-    padding: var(--ha-table-padding-compact);
+    padding: var(--table-padding-compact);
   }
 
   /* Bordered */
   .table--bordered {
-    border: 1px solid var(--ha-table-border-color);
+    border: 1px solid var(--table-border-color);
   }
 
   .table--bordered :slotted(th),
   .table--bordered :slotted(td) {
-    border: 1px solid var(--ha-table-border-color);
+    border: 1px solid var(--table-border-color);
   }
 
   /* Striped */
   .table--striped :slotted(tbody tr:nth-child(even)) {
-    background-color: var(--ha-table-striped-bg);
+    background-color: var(--table-striped-bg);
   }
 
   /* Hoverable */
   .table--hoverable :slotted(tbody tr:hover) {
-    background-color: var(--ha-table-row-hover-bg);
+    background-color: var(--table-row-hover-bg);
     cursor: pointer;
   }
 `;

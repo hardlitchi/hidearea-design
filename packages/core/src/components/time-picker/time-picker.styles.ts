@@ -1,7 +1,7 @@
 export const styles = `
   :host {
     display: inline-block;
-    width: var(--ha-time-picker-width, 280px);
+    width: var(--time-picker-width, 280px);
     font-family: var(--font-family-sans);
     font-size: var(--font-size-base);
   }
@@ -29,11 +29,11 @@ export const styles = `
     display: flex;
     align-items: center;
     gap: var(--spacing-2);
-    height: var(--ha-time-picker-input-height, 40px);
-    padding: var(--ha-time-picker-input-padding, var(--spacing-2));
-    background: var(--ha-time-picker-input-bg, var(--background-primary));
-    border: var(--ha-time-picker-input-border, 1px solid var(--border-default));
-    border-radius: var(--ha-time-picker-border-radius, var(--ha-border-radius, 6px));
+    height: var(--time-picker-input-height, 40px);
+    padding: var(--time-picker-input-padding, var(--spacing-2));
+    background: var(--time-picker-input-bg, var(--background-primary));
+    border: var(--time-picker-input-border, 1px solid var(--border-default));
+    border-radius: var(--time-picker-border-radius, var(--border-radius-md));
     cursor: pointer;
     transition: all 0.2s;
   }
@@ -55,7 +55,7 @@ export const styles = `
   }
 
   .container.error .input-wrapper {
-    border-color: var(--ha-time-picker-error-border, var(--error-default));
+    border-color: var(--time-picker-error-border, var(--error-default));
   }
 
   .container.readonly .input-wrapper {
@@ -74,7 +74,7 @@ export const styles = `
     flex: 1;
     border: none;
     background: transparent;
-    color: var(--ha-time-picker-input-color, var(--foreground-primary));
+    color: var(--time-picker-input-color, var(--foreground-primary));
     font-size: inherit;
     font-family: inherit;
     outline: none;
@@ -103,12 +103,12 @@ export const styles = `
     top: calc(100% + 4px);
     left: 0;
     z-index: 1000;
-    width: var(--ha-time-picker-panel-width, 280px);
-    max-height: var(--ha-time-picker-panel-max-height, 300px);
-    background: var(--ha-time-picker-panel-bg, var(--background-primary));
+    width: var(--time-picker-panel-width, 280px);
+    max-height: var(--time-picker-panel-max-height, 300px);
+    background: var(--time-picker-panel-bg, var(--background-primary));
     border: 1px solid var(--border-default);
-    border-radius: var(--ha-time-picker-border-radius, var(--ha-border-radius, 6px));
-    box-shadow: var(--ha-time-picker-panel-shadow, var(--ha-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1)));
+    border-radius: var(--time-picker-border-radius, var(--border-radius-md));
+    box-shadow: var(--time-picker-panel-shadow, var(--shadow-lg));
     overflow: hidden;
   }
 
@@ -176,7 +176,7 @@ export const styles = `
 
   /* Item */
   .item {
-    padding: var(--ha-time-picker-item-padding, var(--spacing-2));
+    padding: var(--time-picker-item-padding, var(--spacing-2));
     text-align: center;
     cursor: pointer;
     transition: background-color 0.15s, color 0.15s;
@@ -184,18 +184,18 @@ export const styles = `
   }
 
   .item:hover:not(.disabled) {
-    background: var(--ha-time-picker-item-hover-bg, var(--primary-default));
+    background: var(--time-picker-item-hover-bg, var(--primary-default));
   }
 
   .item.selected {
-    background: var(--ha-time-picker-item-selected-bg, var(--primary-default));
-    color: var(--ha-time-picker-item-selected-color, var(--primary-default));
+    background: var(--time-picker-item-selected-bg, var(--primary-default));
+    color: var(--time-picker-item-selected-color, var(--primary-default));
     font-weight: var(--font-weight-medium);
   }
 
   .item.disabled {
-    color: var(--ha-time-picker-item-disabled-color, var(--foreground-primary));
-    background: var(--ha-time-picker-item-disabled-bg, transparent);
+    color: var(--time-picker-item-disabled-color, var(--foreground-primary));
+    background: var(--time-picker-item-disabled-bg, transparent);
     cursor: not-allowed;
     opacity: 0.5;
   }
@@ -277,7 +277,7 @@ export const styles = `
   .error-text {
     margin-top: var(--spacing-1);
     font-size: var(--font-size-xs);
-    color: var(--ha-time-picker-error-color, var(--error-default));
+    color: var(--time-picker-error-color, var(--error-default));
   }
 
   /* Disabled State */

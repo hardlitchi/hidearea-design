@@ -20,9 +20,9 @@ import { drawerStyles } from "./drawer.styles";
  * @fires drawer-close - Emitted when drawer is closed
  * @fires backdrop-click - Emitted when backdrop is clicked
  *
- * @cssprop --ha-drawer-width - Drawer width (for left/right placement)
- * @cssprop --ha-drawer-height - Drawer height (for top/bottom placement)
- * @cssprop --ha-drawer-bg - Drawer background color
+ * @cssprop --drawer-width - Drawer width (for left/right placement)
+ * @cssprop --drawer-height - Drawer height (for top/bottom placement)
+ * @cssprop --drawer-bg - Drawer background color
  *
  * @csspart drawer - The drawer container
  * @csspart backdrop - The backdrop overlay

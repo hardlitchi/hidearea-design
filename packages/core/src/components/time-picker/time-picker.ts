@@ -22,10 +22,10 @@ export interface TimePickerDate {
  * @fires {CustomEvent} picker-open - Fired when the picker opens
  * @fires {CustomEvent} picker-close - Fired when the picker closes
  *
- * @cssprop --ha-time-picker-width - Width of the component
- * @cssprop --ha-time-picker-input-height - Height of the input
- * @cssprop --ha-time-picker-panel-width - Width of the picker panel
- * @cssprop --ha-time-picker-panel-max-height - Maximum height of the picker panel
+ * @cssprop --time-picker-width - Width of the component
+ * @cssprop --time-picker-input-height - Height of the input
+ * @cssprop --time-picker-panel-width - Width of the picker panel
+ * @cssprop --time-picker-panel-max-height - Maximum height of the picker panel
  *
  * @csspart container - Main container
  * @csspart input-wrapper - Input wrapper

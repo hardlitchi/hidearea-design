@@ -13,9 +13,9 @@ import { tableStyles } from "./table.styles";
  *
  * @slot - Table content (thead, tbody, tfoot)
  *
- * @cssprop --ha-table-border-color - Table border color
- * @cssprop --ha-table-header-bg - Table header background
- * @cssprop --ha-table-row-hover-bg - Table row hover background
+ * @cssprop --table-border-color - Table border color
+ * @cssprop --table-header-bg - Table header background
+ * @cssprop --table-row-hover-bg - Table row hover background
  *
  * @csspart table - The table element
  * @csspart wrapper - The table wrapper

@@ -29,10 +29,10 @@ type SortDirection = "asc" | "desc" | null;
  * @fires selection-change - Fired when selection changes
  * @fires page-change - Fired when page changes
  *
- * @cssprop --ha-datagrid-border-color - DataGrid border color
- * @cssprop --ha-datagrid-header-bg - DataGrid header background
- * @cssprop --ha-datagrid-row-hover-bg - DataGrid row hover background
- * @cssprop --ha-datagrid-selected-bg - DataGrid selected row background
+ * @cssprop --datagrid-border-color - DataGrid border color
+ * @cssprop --datagrid-header-bg - DataGrid header background
+ * @cssprop --datagrid-row-hover-bg - DataGrid row hover background
+ * @cssprop --datagrid-selected-bg - DataGrid selected row background
  *
  * @csspart table - The table element
  * @csspart header - The table header
