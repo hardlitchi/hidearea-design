@@ -8,6 +8,16 @@ export default defineConfig({
     // グローバル API を有効化（describe, it, expect など）
     globals: true,
 
+    // テストタイムアウト設定（フォークランナーのタイムアウトを防ぐ）
+    pool: "forks",
+    poolOptions: {
+      forks: {
+        singleFork: true, // 単一フォークモードでメモリ問題を回避
+      },
+    },
+    testTimeout: 30000,
+    hookTimeout: 30000,
+
     // カバレッジ設定
     coverage: {
       provider: "v8",
