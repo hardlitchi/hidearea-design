@@ -7,21 +7,21 @@ export const datagridStyles = `
   .datagrid {
     width: 100%;
     border-collapse: collapse;
-    background-color: var(--ha-datagrid-bg, var(--color-neutral-50, #ffffff));
-    color: var(--ha-datagrid-color, var(--foreground-primary));
+    background-color: var(--datagrid-bg, var(--color-neutral-50, #ffffff));
+    color: var(--datagrid-color, var(--foreground-primary));
     font-size: var(--font-size-sm);
   }
 
   /* Header */
   .datagrid thead {
-    background-color: var(--ha-datagrid-header-bg, var(--foreground-inverse));
+    background-color: var(--datagrid-header-bg, var(--foreground-inverse));
     font-weight: var(--font-weight-semibold);
   }
 
   .datagrid-cell {
-    padding: var(--ha-datagrid-cell-padding, var(--spacing-3));
+    padding: var(--datagrid-cell-padding, var(--spacing-3));
     text-align: left;
-    border-bottom: 1px solid var(--ha-datagrid-border-color, var(--color-neutral-200, #e5e7eb));
+    border-bottom: 1px solid var(--datagrid-border-color, var(--color-neutral-200, #e5e7eb));
   }
 
   .datagrid-header-cell {
@@ -34,7 +34,7 @@ export const datagridStyles = `
   }
 
   .datagrid-header-cell--sortable:hover {
-    background-color: var(--ha-datagrid-header-hover-bg, var(--color-neutral-200, #e5e7eb));
+    background-color: var(--datagrid-header-hover-bg, var(--color-neutral-200, #e5e7eb));
   }
 
   .sort-icon {
@@ -49,29 +49,29 @@ export const datagridStyles = `
   }
 
   .datagrid--hoverable .datagrid-row:hover {
-    background-color: var(--ha-datagrid-row-hover-bg, var(--color-neutral-50, #f9fafb));
+    background-color: var(--datagrid-row-hover-bg, var(--color-neutral-50, #f9fafb));
   }
 
   .datagrid-row--selected {
-    background-color: var(--ha-datagrid-selected-bg, var(--primary-default));
+    background-color: var(--datagrid-selected-bg, var(--primary-default));
   }
 
   .datagrid--hoverable .datagrid-row--selected:hover {
-    background-color: var(--ha-datagrid-selected-hover-bg, var(--primary-default));
+    background-color: var(--datagrid-selected-hover-bg, var(--primary-default));
   }
 
   /* Striped */
   .datagrid--striped tbody tr:nth-child(even) {
-    background-color: var(--ha-datagrid-stripe-bg, var(--color-neutral-50, #f9fafb));
+    background-color: var(--datagrid-stripe-bg, var(--color-neutral-50, #f9fafb));
   }
 
   /* Bordered */
   .datagrid--bordered {
-    border: 1px solid var(--ha-datagrid-border-color, var(--color-neutral-200, #e5e7eb));
+    border: 1px solid var(--datagrid-border-color, var(--color-neutral-200, #e5e7eb));
   }
 
   .datagrid--bordered .datagrid-cell {
-    border-right: 1px solid var(--ha-datagrid-border-color, var(--color-neutral-200, #e5e7eb));
+    border-right: 1px solid var(--datagrid-border-color, var(--color-neutral-200, #e5e7eb));
   }
 
   .datagrid--bordered .datagrid-cell:last-child {
@@ -97,8 +97,8 @@ export const datagridStyles = `
     justify-content: space-between;
     align-items: center;
     padding: var(--spacing-3) var(--spacing-4);
-    border-top: 1px solid var(--ha-datagrid-border-color, var(--color-neutral-200, #e5e7eb));
-    background-color: var(--ha-datagrid-bg, var(--color-neutral-50, #ffffff));
+    border-top: 1px solid var(--datagrid-border-color, var(--color-neutral-200, #e5e7eb));
+    background-color: var(--datagrid-bg, var(--color-neutral-50, #ffffff));
     font-size: var(--font-size-sm);
   }
 
@@ -124,7 +124,7 @@ export const datagridStyles = `
     min-width: 32px;
     height: 32px;
     padding: 0 var(--spacing-2);
-    border: 1px solid var(--ha-datagrid-border-color, var(--color-neutral-200, #e5e7eb));
+    border: 1px solid var(--datagrid-border-color, var(--color-neutral-200, #e5e7eb));
     border-radius: var(--border-radius-md);
     background-color: var(--color-neutral-50, #ffffff);
     color: var(--color-neutral-700, #374151);

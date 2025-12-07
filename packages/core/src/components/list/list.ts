@@ -11,8 +11,8 @@ import { listStyles } from "./list.styles";
  *
  * @slot - List items (ha-list-item elements)
  *
- * @cssprop --ha-list-border-color - List border color
- * @cssprop --ha-list-item-padding - List item padding
+ * @cssprop --list-border-color - List border color
+ * @cssprop --list-item-padding - List item padding
  *
  * @csspart list - The list container
  */
@@ -95,7 +95,7 @@ export class HaList extends HTMLElement {
  *
  * @fires list-item-click - Emitted when item is clicked
  *
- * @cssprop --ha-list-item-padding - List item padding
+ * @cssprop --list-item-padding - List item padding
  *
  * @csspart item - The list item container
  * @csspart prefix - The prefix container

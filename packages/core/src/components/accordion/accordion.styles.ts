@@ -2,10 +2,10 @@ export const accordionStyles = `
   :host {
     display: block;
     box-sizing: border-box;
-    --ha-accordion-border-color: var(--color-neutral-3, #e5e5e5);
-    --ha-accordion-item-padding: var(--spacing-4);
-    --ha-accordion-header-bg: var(--foreground-inverse);
-    --ha-accordion-header-hover-bg: var(--color-neutral-2, #f5f5f5);
+    --accordion-border-color: var(--color-neutral-3, #e5e5e5);
+    --accordion-item-padding: var(--spacing-4);
+    --accordion-header-bg: var(--foreground-inverse);
+    --accordion-header-hover-bg: var(--color-neutral-2, #f5f5f5);
   }
 
   *, *:before, *:after {
@@ -13,14 +13,14 @@ export const accordionStyles = `
   }
 
   .accordion {
-    border: 1px solid var(--ha-accordion-border-color);
+    border: 1px solid var(--accordion-border-color);
     border-radius: var(--border-radius-md);
     overflow: hidden;
-    background-color: var(--ha-accordion-header-bg);
+    background-color: var(--accordion-header-bg);
   }
 
   .accordion-item {
-    border-bottom: 1px solid var(--ha-accordion-border-color);
+    border-bottom: 1px solid var(--accordion-border-color);
   }
 
   .accordion-item:last-child {
@@ -29,8 +29,8 @@ export const accordionStyles = `
 
   .accordion-item__header {
     width: 100%;
-    padding: var(--ha-accordion-item-padding);
-    background-color: var(--ha-accordion-header-bg);
+    padding: var(--accordion-item-padding);
+    background-color: var(--accordion-header-bg);
     border: none;
     text-align: left;
     cursor: pointer;
@@ -50,7 +50,7 @@ export const accordionStyles = `
   }
 
   .accordion-item__header:hover:not(:disabled) {
-    background-color: var(--ha-accordion-header-hover-bg);
+    background-color: var(--accordion-header-hover-bg);
   }
 
   /* アクセシビリティ: キーボード操作時のフォーカス表示 */
@@ -90,7 +90,7 @@ export const accordionStyles = `
 
   /* コンテンツ内のスロット要素へのスタイル */
   .accordion-item__content > ::slotted(*) {
-    padding: var(--ha-accordion-item-padding);
+    padding: var(--accordion-item-padding);
     margin: 0; /* 意図しない余白の重複を防ぐ */
     display: block;
   }

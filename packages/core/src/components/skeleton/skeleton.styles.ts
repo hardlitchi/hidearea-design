@@ -4,8 +4,8 @@ export const skeletonStyles = `
   }
 
   .skeleton {
-    background: var(--ha-skeleton-bg, var(--color-neutral-200, #e5e7eb));
-    border-radius: var(--ha-skeleton-border-radius, var(--border-radius-md));
+    background: var(--skeleton-bg, var(--color-neutral-200, #e5e7eb));
+    border-radius: var(--skeleton-border-radius, var(--border-radius-md));
     position: relative;
     overflow: hidden;
   }
@@ -24,7 +24,7 @@ export const skeletonStyles = `
     background: linear-gradient(
       90deg,
       transparent,
-      var(--ha-skeleton-wave-color, rgba(255, 255, 255, 0.4)),
+      var(--skeleton-wave-color, rgba(255, 255, 255, 0.4)),
       transparent
     );
     animation: skeleton-wave 2s linear infinite;

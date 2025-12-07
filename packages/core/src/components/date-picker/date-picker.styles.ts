@@ -2,41 +2,41 @@ export const datePickerStyles = `
   :host {
     display: inline-block;
     position: relative;
-    width: var(--ha-datepicker-width, 280px);
+    width: var(--datepicker-width, 280px);
     font-family: var(--font-family-sans);
 
     /* Base */
-    --ha-datepicker-bg: var(--foreground-inverse);
-    --ha-datepicker-border-color: var(--border-default);
-    --ha-datepicker-border-radius: var(--border-radius-md);
-    --ha-datepicker-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --datepicker-bg: var(--foreground-inverse);
+    --datepicker-border-color: var(--border-default);
+    --datepicker-border-radius: var(--border-radius-md);
+    --datepicker-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
     /* Input */
-    --ha-datepicker-input-padding: 0.5rem 0.75rem;
-    --ha-datepicker-input-font-size: var(--font-size-base);
-    --ha-datepicker-input-height: 40px;
+    --datepicker-input-padding: 0.5rem 0.75rem;
+    --datepicker-input-font-size: var(--font-size-base);
+    --datepicker-input-height: 40px;
 
     /* Calendar */
-    --ha-datepicker-calendar-padding: 1rem;
-    --ha-datepicker-calendar-gap: 0.25rem;
+    --datepicker-calendar-padding: 1rem;
+    --datepicker-calendar-gap: 0.25rem;
 
     /* Header */
-    --ha-datepicker-header-height: 40px;
-    --ha-datepicker-header-font-weight: 600;
+    --datepicker-header-height: 40px;
+    --datepicker-header-font-weight: 600;
 
     /* Day cells */
-    --ha-datepicker-day-size: 36px;
-    --ha-datepicker-day-font-size: 0.875rem;
-    --ha-datepicker-day-hover-bg: var(--border-default);
-    --ha-datepicker-day-selected-bg: var(--primary-default);
-    --ha-datepicker-day-selected-color: var(--foreground-inverse);
-    --ha-datepicker-day-today-border-color: var(--primary-default);
-    --ha-datepicker-day-disabled-opacity: 0.4;
-    --ha-datepicker-day-outside-opacity: 0.5;
+    --datepicker-day-size: 36px;
+    --datepicker-day-font-size: 0.875rem;
+    --datepicker-day-hover-bg: var(--border-default);
+    --datepicker-day-selected-bg: var(--primary-default);
+    --datepicker-day-selected-color: var(--foreground-inverse);
+    --datepicker-day-today-border-color: var(--primary-default);
+    --datepicker-day-disabled-opacity: 0.4;
+    --datepicker-day-outside-opacity: 0.5;
 
     /* Range */
-    --ha-datepicker-range-bg: var(--primary-default);
-    --ha-datepicker-range-color: var(--primary-default);
+    --datepicker-range-bg: var(--primary-default);
+    --datepicker-range-color: var(--primary-default);
   }
 
   :host([inline]) {
@@ -56,14 +56,14 @@ export const datePickerStyles = `
 
   .date-picker__input {
     width: 100%;
-    height: var(--ha-datepicker-input-height);
-    padding: var(--ha-datepicker-input-padding);
-    font-size: var(--ha-datepicker-input-font-size);
+    height: var(--datepicker-input-height);
+    padding: var(--datepicker-input-padding);
+    font-size: var(--datepicker-input-font-size);
     font-family: inherit;
     color: var(--border-default);
-    background-color: var(--ha-datepicker-bg);
-    border: 1px solid var(--ha-datepicker-border-color);
-    border-radius: var(--ha-datepicker-border-radius);
+    background-color: var(--datepicker-bg);
+    border: 1px solid var(--datepicker-border-color);
+    border-radius: var(--datepicker-border-radius);
     outline: none;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -114,11 +114,11 @@ export const datePickerStyles = `
     left: 0;
     z-index: 1000;
     min-width: 280px;
-    background-color: var(--ha-datepicker-bg);
-    border: 1px solid var(--ha-datepicker-border-color);
-    border-radius: var(--ha-datepicker-border-radius);
-    box-shadow: var(--ha-datepicker-shadow);
-    padding: var(--ha-datepicker-calendar-padding);
+    background-color: var(--datepicker-bg);
+    border: 1px solid var(--datepicker-border-color);
+    border-radius: var(--datepicker-border-radius);
+    box-shadow: var(--datepicker-shadow);
+    padding: var(--datepicker-calendar-padding);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
@@ -144,7 +144,7 @@ export const datePickerStyles = `
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: var(--ha-datepicker-header-height);
+    height: var(--datepicker-header-height);
     margin-bottom: 0.75rem;
   }
 
@@ -164,7 +164,7 @@ export const datePickerStyles = `
   }
 
   .date-picker__nav-button:hover {
-    background-color: var(--ha-datepicker-day-hover-bg);
+    background-color: var(--datepicker-day-hover-bg);
   }
 
   .date-picker__nav-button:disabled {
@@ -175,8 +175,8 @@ export const datePickerStyles = `
   .date-picker__month-year {
     flex: 1;
     text-align: center;
-    font-size: var(--ha-datepicker-input-font-size);
-    font-weight: var(--ha-datepicker-header-font-weight);
+    font-size: var(--datepicker-input-font-size);
+    font-weight: var(--datepicker-header-font-weight);
     color: var(--border-default);
   }
 
@@ -184,13 +184,13 @@ export const datePickerStyles = `
   .date-picker__weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: var(--ha-datepicker-calendar-gap);
+    gap: var(--datepicker-calendar-gap);
     margin-bottom: 0.5rem;
   }
 
   .date-picker__weekday {
-    width: var(--ha-datepicker-day-size);
-    height: var(--ha-datepicker-day-size);
+    width: var(--datepicker-day-size);
+    height: var(--datepicker-day-size);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -204,18 +204,18 @@ export const datePickerStyles = `
   .date-picker__days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: var(--ha-datepicker-calendar-gap);
+    gap: var(--datepicker-calendar-gap);
   }
 
   .date-picker__day {
-    width: var(--ha-datepicker-day-size);
-    height: var(--ha-datepicker-day-size);
+    width: var(--datepicker-day-size);
+    height: var(--datepicker-day-size);
     padding: 0;
     background: none;
     border: 2px solid transparent;
     border-radius: var(--border-radius-sm);
     color: var(--border-default);
-    font-size: var(--ha-datepicker-day-font-size);
+    font-size: var(--datepicker-day-font-size);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -224,7 +224,7 @@ export const datePickerStyles = `
   }
 
   .date-picker__day:hover:not(:disabled) {
-    background-color: var(--ha-datepicker-day-hover-bg);
+    background-color: var(--datepicker-day-hover-bg);
   }
 
   .date-picker__day:focus {
@@ -233,12 +233,12 @@ export const datePickerStyles = `
   }
 
   .date-picker__day--today {
-    border-color: var(--ha-datepicker-day-today-border-color);
+    border-color: var(--datepicker-day-today-border-color);
   }
 
   .date-picker__day--selected {
-    background-color: var(--ha-datepicker-day-selected-bg);
-    color: var(--ha-datepicker-day-selected-color);
+    background-color: var(--datepicker-day-selected-bg);
+    color: var(--datepicker-day-selected-color);
     font-weight: 600;
   }
 
@@ -247,8 +247,8 @@ export const datePickerStyles = `
   }
 
   .date-picker__day--in-range {
-    background-color: var(--ha-datepicker-range-bg);
-    color: var(--ha-datepicker-range-color);
+    background-color: var(--datepicker-range-bg);
+    color: var(--datepicker-range-color);
     border-radius: 0;
   }
 
@@ -263,11 +263,11 @@ export const datePickerStyles = `
   }
 
   .date-picker__day--outside {
-    opacity: var(--ha-datepicker-day-outside-opacity);
+    opacity: var(--datepicker-day-outside-opacity);
   }
 
   .date-picker__day--disabled {
-    opacity: var(--ha-datepicker-day-disabled-opacity);
+    opacity: var(--datepicker-day-disabled-opacity);
     cursor: not-allowed;
   }
 
@@ -281,7 +281,7 @@ export const datePickerStyles = `
     gap: 0.5rem;
     margin-top: 0.75rem;
     padding-top: 0.75rem;
-    border-top: 1px solid var(--ha-datepicker-border-color);
+    border-top: 1px solid var(--datepicker-border-color);
   }
 
   .date-picker__footer-button {

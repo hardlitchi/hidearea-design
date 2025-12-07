@@ -867,10 +867,10 @@ export class HaColorPicker extends HTMLElement {
           flex-direction: column;
           gap: 0.75rem;
           padding: 1rem;
-          background: var(--ha-color-picker-bg, #ffffff);
-          border: 1px solid var(--ha-color-picker-border, #e5e7eb);
-          border-radius: var(--ha-color-picker-radius, 0.5rem);
-          width: var(--ha-color-picker-width, 280px);
+          background: var(--color-picker-bg, #ffffff);
+          border: 1px solid var(--color-picker-border, #e5e7eb);
+          border-radius: var(--color-picker-radius, 0.5rem);
+          width: var(--color-picker-width, 280px);
         }
 
         .palette {
@@ -959,7 +959,7 @@ export class HaColorPicker extends HTMLElement {
           width: 40px;
           height: 40px;
           border-radius: 0.25rem;
-          border: 1px solid var(--ha-color-picker-border, #e5e7eb);
+          border: 1px solid var(--color-picker-border, #e5e7eb);
           background:
             ${currentColorWithAlpha},
             repeating-conic-gradient(#e5e7eb 0% 25%, #fff 0% 50%) 50% / 10px 10px;
@@ -969,7 +969,7 @@ export class HaColorPicker extends HTMLElement {
         input {
           flex: 1;
           padding: 0.5rem;
-          border: 1px solid var(--ha-color-picker-border, #e5e7eb);
+          border: 1px solid var(--color-picker-border, #e5e7eb);
           border-radius: 0.25rem;
           font-family: inherit;
           font-size: 0.875rem;
@@ -977,13 +977,13 @@ export class HaColorPicker extends HTMLElement {
         }
 
         input:focus {
-          border-color: var(--ha-color-picker-focus, #3b82f6);
+          border-color: var(--color-picker-focus, #3b82f6);
           box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         input:disabled,
         input:read-only {
-          background: var(--ha-color-picker-disabled-bg, #f3f4f6);
+          background: var(--color-picker-disabled-bg, #f3f4f6);
           cursor: not-allowed;
         }
 
@@ -997,7 +997,7 @@ export class HaColorPicker extends HTMLElement {
           width: 24px;
           height: 24px;
           border-radius: 0.25rem;
-          border: 1px solid var(--ha-color-picker-border, #e5e7eb);
+          border: 1px solid var(--color-picker-border, #e5e7eb);
           cursor: pointer;
           transition: transform 0.1s;
         }

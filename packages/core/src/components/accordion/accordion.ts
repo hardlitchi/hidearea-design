@@ -10,7 +10,7 @@ import { accordionStyles } from "./accordion.styles";
  *
  * @slot - Accordion items (ha-accordion-item elements)
  *
- * @cssprop --ha-accordion-border-color - Accordion border color
+ * @cssprop --accordion-border-color - Accordion border color
  *
  * @csspart accordion - The accordion container
  */
@@ -121,7 +121,7 @@ export class HaAccordion extends HTMLElement {
  * @fires accordion-open - Emitted when item is opened
  * @fires accordion-close - Emitted when item is closed
  *
- * @cssprop --ha-accordion-item-padding - Item padding
+ * @cssprop --accordion-item-padding - Item padding
  *
  * @csspart item - The accordion item container
  * @csspart header - The header container

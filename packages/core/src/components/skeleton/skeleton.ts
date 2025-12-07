@@ -10,9 +10,9 @@ import { skeletonStyles } from "./skeleton.styles";
  * @attr {string} width - Width of the skeleton
  * @attr {string} height - Height of the skeleton
  *
- * @cssprop --ha-skeleton-bg - Background color
- * @cssprop --ha-skeleton-border-radius - Border radius
- * @cssprop --ha-skeleton-wave-color - Wave animation color
+ * @cssprop --skeleton-bg - Background color
+ * @cssprop --skeleton-border-radius - Border radius
+ * @cssprop --skeleton-wave-color - Wave animation color
  *
  * @csspart skeleton - The skeleton element
  */
