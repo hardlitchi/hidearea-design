@@ -108,6 +108,21 @@ export class HaCard extends HTMLElement {
         );
       }
     });
+
+    // Handle keyboard events
+    this.addEventListener("keydown", this.handleKeydown.bind(this));
+  }
+
+  private handleKeydown(e: KeyboardEvent) {
+    if (!this.clickable) {
+      return;
+    }
+
+    // Enter or Space key triggers click
+    if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+      e.preventDefault();
+      this.cardElement.click();
+    }
   }
 
   connectedCallback() {
@@ -149,6 +164,13 @@ export class HaCard extends HTMLElement {
 
     if (clickable) {
       className += " card--clickable";
+      // Add role and tabindex for accessibility
+      this.setAttribute("role", "button");
+      this.setAttribute("tabindex", "0");
+    } else {
+      // Remove role and tabindex when not clickable
+      this.removeAttribute("role");
+      this.removeAttribute("tabindex");
     }
 
     this.cardElement.className = className;

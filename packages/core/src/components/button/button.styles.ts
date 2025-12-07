@@ -44,7 +44,7 @@ export const buttonStyles = `
   }
 
   button:focus-visible {
-    outline: 2px solid var(--theme-light-primary-default, #3b82f6);
+    outline: 2px solid var(--primary-default);
     outline-offset: 2px;
   }
 
@@ -59,77 +59,77 @@ export const buttonStyles = `
 
   /* Variant: Primary */
   :host([variant="primary"]) button {
-    background-color: var(--theme-light-primary-default, #3b82f6);
-    color: var(--color-white, #ffffff);
+    background-color: var(--primary-default);
+    color: var(--text-inverse);
     border: var(--border-width-1, 1px) solid transparent;
   }
 
   :host([variant="primary"]) button:hover:not(:disabled) {
-    background-color: var(--theme-light-primary-hover, #2563eb);
+    background-color: var(--primary-hover);
   }
 
   :host([variant="primary"]) button:active:not(:disabled) {
-    background-color: var(--theme-light-primary-active, #1d4ed8);
+    background-color: var(--primary-active);
   }
 
   /* Variant: Secondary */
   :host([variant="secondary"]) button {
-    background-color: var(--theme-light-secondary-default, #a855f7);
-    color: var(--color-white, #ffffff);
+    background-color: var(--secondary-default);
+    color: var(--text-inverse);
     border: var(--border-width-1, 1px) solid transparent;
   }
 
   :host([variant="secondary"]) button:hover:not(:disabled) {
-    background-color: var(--theme-light-secondary-hover, #9333ea);
+    background-color: var(--secondary-hover);
   }
 
   :host([variant="secondary"]) button:active:not(:disabled) {
-    background-color: var(--theme-light-secondary-active, #7e22ce);
+    background-color: var(--secondary-active);
   }
 
   /* Variant: Outline */
   :host([variant="outline"]) button {
     background-color: transparent;
-    color: var(--theme-light-primary-default, #3b82f6);
-    border: var(--border-width-1, 1px) solid var(--theme-light-primary-default, #3b82f6);
+    color: var(--primary-default);
+    border: var(--border-width-1, 1px) solid var(--primary-default);
   }
 
   :host([variant="outline"]) button:hover:not(:disabled) {
-    background-color: var(--theme-light-primary-subtle, #eff6ff);
+    background-color: var(--primary-subtle);
   }
 
   :host([variant="outline"]) button:active:not(:disabled) {
-    background-color: var(--color-blue-100, #dbeafe);
+    background-color: var(--primary-subtle);
   }
 
   /* Variant: Ghost */
   :host([variant="ghost"]) button {
     background-color: transparent;
-    color: var(--theme-light-primary-default, #3b82f6);
+    color: var(--primary-default);
     border: var(--border-width-1, 1px) solid transparent;
   }
 
   :host([variant="ghost"]) button:hover:not(:disabled) {
-    background-color: var(--theme-light-primary-subtle, #eff6ff);
+    background-color: var(--primary-subtle);
   }
 
   :host([variant="ghost"]) button:active:not(:disabled) {
-    background-color: var(--color-blue-100, #dbeafe);
+    background-color: var(--primary-subtle);
   }
 
   /* Variant: Danger */
   :host([variant="danger"]) button {
-    background-color: var(--theme-light-error-default, #ef4444);
-    color: var(--color-white, #ffffff);
+    background-color: var(--error-default);
+    color: var(--text-inverse);
     border: var(--border-width-1, 1px) solid transparent;
   }
 
   :host([variant="danger"]) button:hover:not(:disabled) {
-    background-color: var(--theme-light-error-hover, #dc2626);
+    background-color: var(--error-hover);
   }
 
   :host([variant="danger"]) button:active:not(:disabled) {
-    background-color: var(--theme-light-error-active, #b91c1c);
+    background-color: var(--error-active);
   }
 
   /* Size: Small */
@@ -192,6 +192,21 @@ export const buttonStyles = `
   @keyframes button-loading-spin {
     to {
       transform: rotate(360deg);
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    button {
+      transition: none;
+    }
+
+    button:active:not(:disabled) {
+      transform: none;
+    }
+
+    .button__spinner {
+      animation: none;
     }
   }
 `;

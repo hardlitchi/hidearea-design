@@ -33,7 +33,7 @@ export const inputStyles = `
     font-family: var(--font-family-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
     font-weight: var(--font-weight-regular, 400);
     line-height: var(--font-line-height-normal, 1.5);
-    color: var(--color-gray-900, #111827);
+    color: var(--text-primary);
 
     /* Transitions */
     transition:
@@ -42,13 +42,13 @@ export const inputStyles = `
   }
 
   input::placeholder {
-    color: var(--color-gray-400, #9ca3af);
+    color: var(--text-tertiary);
   }
 
   input:disabled {
     cursor: not-allowed;
     opacity: 0.6;
-    background-color: var(--color-gray-50, #f9fafb);
+    background-color: var(--surface-secondary);
   }
 
   input:read-only {
@@ -60,7 +60,7 @@ export const inputStyles = `
   .suffix {
     display: inline-flex;
     align-items: center;
-    color: var(--color-gray-500, #6b7280);
+    color: var(--text-secondary);
   }
 
   .prefix {
@@ -74,8 +74,8 @@ export const inputStyles = `
   /* Variant: Default (Outlined) */
   :host([variant="default"]) .input-wrapper,
   .input-wrapper {
-    border: var(--border-width-1, 1px) solid var(--color-gray-300, #d1d5db);
-    background-color: var(--color-white, #ffffff);
+    border: var(--border-width-1, 1px) solid var(--border-primary);
+    background-color: var(--surface-primary);
   }
 
   :host([variant="default"]) input:focus,
@@ -84,44 +84,44 @@ export const inputStyles = `
   }
 
   :host([variant="default"]) .input-wrapper:focus-within {
-    border-color: var(--theme-light-primary-default, #3b82f6);
-    box-shadow: 0 0 0 3px var(--theme-light-primary-subtle, rgba(59, 130, 246, 0.1));
+    border-color: var(--primary-default);
+    box-shadow: 0 0 0 3px var(--primary-subtle);
   }
 
   :host([variant="default"]) input:hover:not(:disabled):not(:focus) ~ .input-wrapper,
   :host([variant="default"]) .input-wrapper:has(input:hover:not(:disabled):not(:focus)) {
-    border-color: var(--color-gray-400, #9ca3af);
+    border-color: var(--text-tertiary);
   }
 
   /* Variant: Filled */
   :host([variant="filled"]) .input-wrapper {
     border: var(--border-width-1, 1px) solid transparent;
-    background-color: var(--color-gray-100, #f3f4f6);
+    background-color: var(--surface-secondary);
   }
 
   :host([variant="filled"]) .input-wrapper:focus-within {
-    border-color: var(--theme-light-primary-default, #3b82f6);
-    background-color: var(--color-white, #ffffff);
-    box-shadow: 0 0 0 3px var(--theme-light-primary-subtle, rgba(59, 130, 246, 0.1));
+    border-color: var(--primary-default);
+    background-color: var(--surface-primary);
+    box-shadow: 0 0 0 3px var(--primary-subtle);
   }
 
   :host([variant="filled"]) .input-wrapper:has(input:hover:not(:disabled):not(:focus)) {
-    background-color: var(--color-gray-200, #e5e7eb);
+    background-color: var(--surface-tertiary);
   }
 
   /* Variant: Outlined */
   :host([variant="outlined"]) .input-wrapper {
-    border: var(--border-width-2, 2px) solid var(--color-gray-300, #d1d5db);
-    background-color: var(--color-white, #ffffff);
+    border: var(--border-width-2, 2px) solid var(--border-primary);
+    background-color: var(--surface-primary);
   }
 
   :host([variant="outlined"]) .input-wrapper:focus-within {
-    border-color: var(--theme-light-primary-default, #3b82f6);
-    box-shadow: 0 0 0 3px var(--theme-light-primary-subtle, rgba(59, 130, 246, 0.1));
+    border-color: var(--primary-default);
+    box-shadow: 0 0 0 3px var(--primary-subtle);
   }
 
   :host([variant="outlined"]) .input-wrapper:has(input:hover:not(:disabled):not(:focus)) {
-    border-color: var(--color-gray-400, #9ca3af);
+    border-color: var(--text-tertiary);
   }
 
   /* Size: Small */
@@ -161,12 +161,12 @@ export const inputStyles = `
 
   /* Error state */
   :host([error]) .input-wrapper {
-    border-color: var(--theme-light-error-default, #ef4444);
+    border-color: var(--error-default);
   }
 
   :host([error]) .input-wrapper:focus-within {
-    border-color: var(--theme-light-error-default, #ef4444);
-    box-shadow: 0 0 0 3px var(--theme-light-error-subtle, rgba(239, 68, 68, 0.1));
+    border-color: var(--error-default);
+    box-shadow: 0 0 0 3px var(--error-subtle);
   }
 
   /* Full width */
@@ -181,6 +181,6 @@ export const inputStyles = `
   /* Required indicator */
   :host([required])::after {
     content: ' *';
-    color: var(--theme-light-error-default, #ef4444);
+    color: var(--error-default);
   }
 `;

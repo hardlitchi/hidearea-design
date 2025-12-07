@@ -402,4 +402,16 @@
   --theme-info-hover: #22d3ee;
   --theme-info-active: #67e8f9;
   --theme-info-subtle: #164e63;
+<<<<<<< HEAD
+=======
+}
+/* Reduced motion support for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --animation-duration-fast: 0ms;
+    --animation-duration-base: 0ms;
+    --animation-duration-slow: 0ms;
+    --animation-duration-slower: 0ms;
+  }
+>>>>>>> 2ddaa850762ff87614201370d6f90ec4db325b4c
 }

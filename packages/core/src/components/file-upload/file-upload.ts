@@ -256,7 +256,7 @@ export class HaFileUpload extends HTMLElement {
             ${this.disabled ? "disabled" : ""}
           />
           <div class="file-upload__content">
-            <svg class="file-upload__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="file-upload__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>
             <p class="file-upload__placeholder">${this._isDragging ? dragDropText : placeholder}</p>
@@ -457,7 +457,7 @@ export class HaFileUpload extends HTMLElement {
           fileObj.preview
             ? `<img src="${fileObj.preview}" alt="${fileObj.file.name}" class="file-upload__file-preview" part="file-preview" />`
             : `<div class="file-upload__file-icon" part="file-icon">
-                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                  </svg>
                </div>`
@@ -468,7 +468,7 @@ export class HaFileUpload extends HTMLElement {
           ${fileObj.error ? `<span class="file-upload__file-error">${fileObj.error}</span>` : ""}
         </div>
         <button type="button" class="file-upload__remove-button" part="remove-button" data-file-id="${fileObj.id}" aria-label="Remove ${fileObj.file.name}">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
