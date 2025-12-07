@@ -178,4 +178,88 @@ export const modalStyles = `
       transition: none;
     }
   }
+
+  /* Touch device optimization */
+  @media (pointer: coarse) {
+    /* Fullscreen on small touch devices for better UX */
+    .dialog {
+      max-width: 100vw;
+      max-height: 100vh;
+      border-radius: 0;
+    }
+
+    /* Increase padding for touch comfort */
+    .header {
+      padding: var(--spacing-4, 1rem) var(--spacing-4, 1rem);
+    }
+
+    .body {
+      padding: var(--spacing-4, 1rem);
+    }
+
+    .footer {
+      padding: var(--spacing-3, 0.75rem) var(--spacing-4, 1rem);
+    }
+
+    /* Ensure close button meets touch target size */
+    .close-button {
+      min-width: var(--touch-target-minimum, 44px);
+      min-height: var(--touch-target-minimum, 44px);
+      padding: var(--spacing-2, 0.5rem);
+    }
+
+    /* Remove overlay padding to maximize screen space */
+    .overlay {
+      padding: 0;
+    }
+
+    .container {
+      padding: 0;
+    }
+  }
+
+  /* Hover effects only for devices that support hover */
+  @media (hover: none) {
+    .close-button:hover {
+      background: transparent;
+    }
+  }
+
+  /* Larger screens - restore dialog layout */
+  @media (pointer: coarse) and (min-width: 768px) {
+    .dialog {
+      max-width: var(--modal-max-width, 600px);
+      max-height: calc(100vh - 32px);
+      border-radius: var(--modal-border-radius, var(--radius-lg, 8px));
+    }
+
+    .overlay {
+      padding: var(--modal-overlay-padding, 16px);
+    }
+
+    .container {
+      padding: var(--modal-container-padding, 16px 0);
+    }
+
+    :host([size="sm"]) .dialog {
+      max-width: 400px;
+    }
+
+    :host([size="md"]) .dialog {
+      max-width: 600px;
+    }
+
+    :host([size="lg"]) .dialog {
+      max-width: 800px;
+    }
+
+    :host([size="xl"]) .dialog {
+      max-width: 1200px;
+    }
+
+    :host([size="full"]) .dialog {
+      max-width: calc(100vw - 32px);
+      max-height: calc(100vh - 32px);
+    }
+  }
 `;

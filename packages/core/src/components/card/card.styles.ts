@@ -175,4 +175,88 @@ export const cardStyles = `
       transform: none;
     }
   }
+
+  /* Touch device optimization */
+  @media (pointer: coarse) {
+    /* Increase padding for touch comfort */
+    .card--padding-sm .card__header,
+    .card--padding-sm .card__body,
+    .card--padding-sm .card__footer {
+      padding: var(--spacing-4, 1rem);
+    }
+
+    .card--padding-md .card__header,
+    .card--padding-md .card__body,
+    .card--padding-md .card__footer {
+      padding: var(--spacing-5, 1.25rem);
+    }
+
+    .card--padding-lg .card__header,
+    .card--padding-lg .card__body,
+    .card--padding-lg .card__footer {
+      padding: var(--spacing-8, 2rem);
+    }
+
+    /* Ensure clickable cards have proper touch target */
+    .card--clickable {
+      min-height: var(--touch-target-minimum, 44px);
+    }
+
+    /* Remove hover transform on touch (causes flicker) */
+    .card--hoverable:hover {
+      transform: none;
+    }
+
+    /* Remove active transform on touch */
+    .card--clickable:active {
+      transform: none;
+    }
+
+    /* Increase gap for better touch spacing */
+    .card__header,
+    .card__footer {
+      gap: var(--spacing-4, 1rem);
+    }
+  }
+
+  /* Hover effects only for devices that support hover */
+  @media (hover: none) {
+    .card--hoverable:hover {
+      transform: none;
+      border-color: initial;
+      box-shadow: initial;
+    }
+
+    .card--hoverable.card--default:hover {
+      border-color: var(--border-subtle);
+      box-shadow: none;
+    }
+
+    .card--hoverable.card--outlined:hover {
+      border-color: var(--border-default);
+      box-shadow: none;
+    }
+
+    .card--hoverable.card--elevated:hover {
+      box-shadow: var(--shadow-md);
+    }
+  }
+
+  /* Responsive layout adjustments */
+  @media (max-width: 640px) {
+    /* Stack card content more aggressively on small screens */
+    .card__header,
+    .card__footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-responsive-sm, clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem));
+    }
+
+    /* Use responsive spacing */
+    .card--padding-md .card__header,
+    .card--padding-md .card__body,
+    .card--padding-md .card__footer {
+      padding: var(--spacing-responsive-md, clamp(1rem, 0.8rem + 1vw, 1.5rem));
+    }
+  }
 `;

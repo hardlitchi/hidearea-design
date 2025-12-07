@@ -53,4 +53,44 @@ export const formGroupStyles = `
   :host([disabled]) .helper-text {
     color: var(--color-text-disabled, #9ca3af);
   }
+
+  /* Touch device optimization */
+  @media (pointer: coarse) {
+    /* Increase label size for better readability */
+    .label {
+      font-size: var(--font-size-base, 1rem);
+      margin-bottom: var(--spacing-3, 0.75rem);
+    }
+
+    /* Increase helper and error text size */
+    .helper-text,
+    .error-text {
+      font-size: var(--font-size-sm, 0.875rem);
+      margin-top: var(--spacing-2, 0.5rem);
+    }
+
+    /* Increase form group spacing for touch comfort */
+    :host {
+      margin-bottom: var(--spacing-6, 1.5rem);
+    }
+
+    /* Ensure label is large enough for easy tapping */
+    .label {
+      min-height: var(--touch-target-minimum, 44px);
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  /* Responsive font sizes for better readability */
+  @media (max-width: 640px) {
+    .label {
+      font-size: var(--font-size-responsive-base, clamp(1rem, 0.9rem + 0.5vw, 1.125rem));
+    }
+
+    .helper-text,
+    .error-text {
+      font-size: var(--font-size-responsive-sm, clamp(0.875rem, 0.8rem + 0.375vw, 1rem));
+    }
+  }
 `;
