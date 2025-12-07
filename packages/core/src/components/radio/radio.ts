@@ -122,6 +122,9 @@ export class HaRadio extends HTMLElement {
       }
     });
 
+    // Handle keyboard events
+    this.addEventListener("keydown", this.handleKeydown.bind(this));
+
     // Handle input change
     this.input.addEventListener("change", () => {
       this.dispatchEvent(
@@ -146,6 +149,18 @@ export class HaRadio extends HTMLElement {
         }),
       );
     });
+  }
+
+  private handleKeydown(e: KeyboardEvent) {
+    if (this.disabled) {
+      return;
+    }
+
+    // Space key selects the radio
+    if (e.key === " " || e.key === "Spacebar") {
+      e.preventDefault();
+      this.checked = true;
+    }
   }
 
   connectedCallback() {

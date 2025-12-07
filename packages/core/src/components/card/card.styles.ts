@@ -7,7 +7,7 @@ export const cardStyles = `
   .card {
     display: flex;
     flex-direction: column;
-    background-color: var(--ha-color-white, #ffffff);
+    background-color: var(--surface-primary);
     border-radius: var(--ha-border-radius-lg);
     overflow: hidden;
     transition: all var(--ha-transition-duration-normal) var(--ha-transition-timing-default);
@@ -15,15 +15,15 @@ export const cardStyles = `
 
   /* Variants */
   .card--default {
-    border: 1px solid var(--ha-color-neutral-200);
+    border: 1px solid var(--border-secondary);
   }
 
   .card--outlined {
-    border: 2px solid var(--ha-color-neutral-300);
+    border: 2px solid var(--border-primary);
   }
 
   .card--elevated {
-    border: 1px solid var(--ha-color-neutral-100);
+    border: 1px solid var(--border-subtle);
     box-shadow: var(--ha-shadow-md);
   }
 
@@ -33,12 +33,12 @@ export const cardStyles = `
   }
 
   .card--hoverable.card--default:hover {
-    border-color: var(--ha-color-neutral-300);
+    border-color: var(--border-primary);
     box-shadow: var(--ha-shadow-sm);
   }
 
   .card--hoverable.card--outlined:hover {
-    border-color: var(--ha-color-neutral-400);
+    border-color: var(--border-strong);
     box-shadow: var(--ha-shadow-sm);
   }
 
@@ -53,6 +53,16 @@ export const cardStyles = `
 
   .card--clickable:active {
     transform: translateY(0);
+  }
+
+  /* Focus styles */
+  :host(:focus) {
+    outline: none;
+  }
+
+  :host(:focus-visible) .card {
+    outline: 2px solid var(--primary-default);
+    outline-offset: 2px;
   }
 
   /* Media */
@@ -149,5 +159,20 @@ export const cardStyles = `
 
   .card__media:not(:empty) + .card__body:not(:empty) {
     padding-top: var(--ha-spacing-4);
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      transition: none;
+    }
+
+    .card--hoverable:hover {
+      transform: none;
+    }
+
+    .card--clickable:active {
+      transform: none;
+    }
   }
 `;

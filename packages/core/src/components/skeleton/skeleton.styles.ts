@@ -67,4 +67,16 @@ export const skeletonStyles = `
       transform: translateX(200%);
     }
   }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .skeleton {
+      animation: none;
+    }
+
+    .skeleton::before {
+      animation: none;
+      opacity: 0.4;
+    }
+  }
 `;

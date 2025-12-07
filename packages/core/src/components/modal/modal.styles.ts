@@ -169,4 +169,13 @@ export const modalStyles = `
   .footer:empty {
     display: none;
   }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .modal-overlay,
+    .modal-content {
+      animation: none;
+      transition: none;
+    }
+  }
 `;
