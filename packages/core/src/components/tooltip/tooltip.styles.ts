@@ -12,17 +12,17 @@ export const tooltipStyles = `
   .tooltip-content {
     position: fixed;
     z-index: 9999;
-    padding: var(--ha-spacing-2) var(--ha-spacing-3);
-    border-radius: var(--ha-border-radius-base);
-    font-size: var(--ha-font-size-sm);
-    line-height: var(--ha-line-height-normal);
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--border-radius-base);
+    font-size: var(--font-size-sm);
+    line-height: var(--font-line-height-normal);
     white-space: normal;
     word-wrap: break-word;
     max-width: 300px;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity var(--ha-transition-base), visibility var(--ha-transition-base);
+    transition: opacity var(--animation-duration-base) ease, visibility var(--animation-duration-base) ease;
   }
 
   .tooltip-content.visible {
@@ -32,40 +32,40 @@ export const tooltipStyles = `
 
   /* Variants */
   .tooltip-content.variant-default {
-    background-color: var(--ha-color-neutral-800);
-    color: var(--ha-color-neutral-50);
-    box-shadow: var(--ha-shadow-md);
+    background-color: var(--color-neutral-800);
+    color: var(--color-neutral-50);
+    box-shadow: var(--shadow-md);
   }
 
   .tooltip-content.variant-dark {
-    background-color: var(--ha-color-neutral-900);
-    color: var(--ha-color-neutral-50);
-    box-shadow: var(--ha-shadow-lg);
+    background-color: var(--foreground-primary);
+    color: var(--color-neutral-50);
+    box-shadow: var(--shadow-lg);
   }
 
   .tooltip-content.variant-light {
-    background-color: var(--ha-color-neutral-50);
-    color: var(--ha-color-neutral-900);
-    border: 1px solid var(--ha-color-neutral-200);
-    box-shadow: var(--ha-shadow-md);
+    background-color: var(--color-neutral-50);
+    color: var(--foreground-primary);
+    border: 1px solid var(--color-neutral-200);
+    box-shadow: var(--shadow-md);
   }
 
   /* Sizes */
   .tooltip-content.size-sm {
-    padding: var(--ha-spacing-1) var(--ha-spacing-2);
-    font-size: var(--ha-font-size-xs);
+    padding: var(--spacing-1) var(--spacing-2);
+    font-size: var(--font-size-xs);
     max-width: 200px;
   }
 
   .tooltip-content.size-md {
-    padding: var(--ha-spacing-2) var(--ha-spacing-3);
-    font-size: var(--ha-font-size-sm);
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: var(--font-size-sm);
     max-width: 300px;
   }
 
   .tooltip-content.size-lg {
-    padding: var(--ha-spacing-3) var(--ha-spacing-4);
-    font-size: var(--ha-font-size-base);
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: var(--font-size-base);
     max-width: 400px;
   }
 
@@ -86,15 +86,15 @@ export const tooltipStyles = `
   }
 
   .tooltip-content[data-placement^="top"].variant-default .tooltip-arrow {
-    border-color: var(--ha-color-neutral-800) transparent transparent transparent;
+    border-color: var(--color-neutral-800) transparent transparent transparent;
   }
 
   .tooltip-content[data-placement^="top"].variant-dark .tooltip-arrow {
-    border-color: var(--ha-color-neutral-900) transparent transparent transparent;
+    border-color: var(--foreground-primary) transparent transparent transparent;
   }
 
   .tooltip-content[data-placement^="top"].variant-light .tooltip-arrow {
-    border-color: var(--ha-color-neutral-50) transparent transparent transparent;
+    border-color: var(--color-neutral-50) transparent transparent transparent;
   }
 
   /* Arrow positioning and colors - Bottom */
@@ -106,15 +106,15 @@ export const tooltipStyles = `
   }
 
   .tooltip-content[data-placement^="bottom"].variant-default .tooltip-arrow {
-    border-color: transparent transparent var(--ha-color-neutral-800) transparent;
+    border-color: transparent transparent var(--color-neutral-800) transparent;
   }
 
   .tooltip-content[data-placement^="bottom"].variant-dark .tooltip-arrow {
-    border-color: transparent transparent var(--ha-color-neutral-900) transparent;
+    border-color: transparent transparent var(--foreground-primary) transparent;
   }
 
   .tooltip-content[data-placement^="bottom"].variant-light .tooltip-arrow {
-    border-color: transparent transparent var(--ha-color-neutral-50) transparent;
+    border-color: transparent transparent var(--color-neutral-50) transparent;
   }
 
   /* Arrow positioning and colors - Left */
@@ -126,15 +126,15 @@ export const tooltipStyles = `
   }
 
   .tooltip-content[data-placement^="left"].variant-default .tooltip-arrow {
-    border-color: transparent transparent transparent var(--ha-color-neutral-800);
+    border-color: transparent transparent transparent var(--color-neutral-800);
   }
 
   .tooltip-content[data-placement^="left"].variant-dark .tooltip-arrow {
-    border-color: transparent transparent transparent var(--ha-color-neutral-900);
+    border-color: transparent transparent transparent var(--foreground-primary);
   }
 
   .tooltip-content[data-placement^="left"].variant-light .tooltip-arrow {
-    border-color: transparent transparent transparent var(--ha-color-neutral-50);
+    border-color: transparent transparent transparent var(--color-neutral-50);
   }
 
   /* Arrow positioning and colors - Right */
@@ -146,15 +146,15 @@ export const tooltipStyles = `
   }
 
   .tooltip-content[data-placement^="right"].variant-default .tooltip-arrow {
-    border-color: transparent var(--ha-color-neutral-800) transparent transparent;
+    border-color: transparent var(--color-neutral-800) transparent transparent;
   }
 
   .tooltip-content[data-placement^="right"].variant-dark .tooltip-arrow {
-    border-color: transparent var(--ha-color-neutral-900) transparent transparent;
+    border-color: transparent var(--foreground-primary) transparent transparent;
   }
 
   .tooltip-content[data-placement^="right"].variant-light .tooltip-arrow {
-    border-color: transparent var(--ha-color-neutral-50) transparent transparent;
+    border-color: transparent var(--color-neutral-50) transparent transparent;
   }
 
   /* Animation */
@@ -170,6 +170,6 @@ export const tooltipStyles = `
   }
 
   .tooltip-content.visible {
-    animation: tooltip-fade-in var(--ha-transition-base);
+    animation: tooltip-fade-in var(--animation-duration-base) ease;
   }
 `;

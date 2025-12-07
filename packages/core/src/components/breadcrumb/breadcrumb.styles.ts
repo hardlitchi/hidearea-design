@@ -7,7 +7,7 @@ export const breadcrumbStyles = `
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: var(--ha-spacing-2);
+    gap: var(--spacing-2);
     list-style: none;
     padding: 0;
     margin: 0;
@@ -15,18 +15,18 @@ export const breadcrumbStyles = `
 
   /* Sizes */
   .breadcrumb.size-sm {
-    font-size: var(--ha-font-size-sm);
-    gap: var(--ha-spacing-1);
+    font-size: var(--font-size-sm);
+    gap: var(--spacing-1);
   }
 
   .breadcrumb.size-md {
-    font-size: var(--ha-font-size-base);
-    gap: var(--ha-spacing-2);
+    font-size: var(--font-size-base);
+    gap: var(--spacing-2);
   }
 
   .breadcrumb.size-lg {
-    font-size: var(--ha-font-size-lg);
-    gap: var(--ha-spacing-3);
+    font-size: var(--font-size-lg);
+    gap: var(--spacing-3);
   }
 
   ::slotted(ha-breadcrumb-item:not(:last-child))::after {
@@ -38,25 +38,25 @@ export const breadcrumbItemStyles = `
   :host {
     display: inline-flex;
     align-items: center;
-    gap: var(--ha-spacing-2);
+    gap: var(--spacing-2);
   }
 
   .breadcrumb-item {
     display: inline-flex;
     align-items: center;
-    gap: var(--ha-spacing-2);
-    color: var(--ha-color-neutral-600);
+    gap: var(--spacing-2);
+    color: var(--color-neutral-600);
     text-decoration: none;
-    transition: color var(--ha-transition-base);
+    transition: color var(--animation-duration-base) ease;
   }
 
   .breadcrumb-item:hover:not(.current) {
-    color: var(--ha-color-primary-600);
+    color: var(--primary-default);
   }
 
   .breadcrumb-item.current {
-    color: var(--ha-color-neutral-900);
-    font-weight: var(--ha-font-weight-medium);
+    color: var(--foreground-primary);
+    font-weight: var(--font-weight-medium);
     cursor: default;
   }
 
@@ -65,15 +65,15 @@ export const breadcrumbItemStyles = `
   }
 
   a.breadcrumb-item:focus-visible {
-    outline: 2px solid var(--ha-color-primary-500);
+    outline: 2px solid var(--primary-default);
     outline-offset: 2px;
-    border-radius: var(--ha-border-radius-sm);
+    border-radius: var(--border-radius-sm);
   }
 
   .separator {
     display: inline-flex;
     align-items: center;
-    color: var(--ha-color-neutral-400);
+    color: var(--color-neutral-400);
     user-select: none;
   }
 

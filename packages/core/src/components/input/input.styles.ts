@@ -33,7 +33,7 @@ export const inputStyles = `
     font-family: var(--font-family-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
     font-weight: var(--font-weight-regular, 400);
     line-height: var(--font-line-height-normal, 1.5);
-    color: var(--text-primary);
+    color: var(--foreground-primary);
 
     /* Transitions */
     transition:
@@ -42,13 +42,13 @@ export const inputStyles = `
   }
 
   input::placeholder {
-    color: var(--text-tertiary);
+    color: var(--foreground-tertiary);
   }
 
   input:disabled {
     cursor: not-allowed;
     opacity: 0.6;
-    background-color: var(--surface-secondary);
+    background-color: var(--background-secondary);
   }
 
   input:read-only {
@@ -60,7 +60,7 @@ export const inputStyles = `
   .suffix {
     display: inline-flex;
     align-items: center;
-    color: var(--text-secondary);
+    color: var(--foreground-secondary);
   }
 
   .prefix {
@@ -74,8 +74,8 @@ export const inputStyles = `
   /* Variant: Default (Outlined) */
   :host([variant="default"]) .input-wrapper,
   .input-wrapper {
-    border: var(--border-width-1, 1px) solid var(--border-primary);
-    background-color: var(--surface-primary);
+    border: var(--border-width-1, 1px) solid var(--border-default);
+    background-color: var(--background-primary);
   }
 
   :host([variant="default"]) input:focus,
@@ -90,29 +90,29 @@ export const inputStyles = `
 
   :host([variant="default"]) input:hover:not(:disabled):not(:focus) ~ .input-wrapper,
   :host([variant="default"]) .input-wrapper:has(input:hover:not(:disabled):not(:focus)) {
-    border-color: var(--text-tertiary);
+    border-color: var(--foreground-tertiary);
   }
 
   /* Variant: Filled */
   :host([variant="filled"]) .input-wrapper {
     border: var(--border-width-1, 1px) solid transparent;
-    background-color: var(--surface-secondary);
+    background-color: var(--background-secondary);
   }
 
   :host([variant="filled"]) .input-wrapper:focus-within {
     border-color: var(--primary-default);
-    background-color: var(--surface-primary);
+    background-color: var(--background-primary);
     box-shadow: 0 0 0 3px var(--primary-subtle);
   }
 
   :host([variant="filled"]) .input-wrapper:has(input:hover:not(:disabled):not(:focus)) {
-    background-color: var(--surface-tertiary);
+    background-color: var(--background-tertiary);
   }
 
   /* Variant: Outlined */
   :host([variant="outlined"]) .input-wrapper {
-    border: var(--border-width-2, 2px) solid var(--border-primary);
-    background-color: var(--surface-primary);
+    border: var(--border-width-2, 2px) solid var(--border-default);
+    background-color: var(--background-primary);
   }
 
   :host([variant="outlined"]) .input-wrapper:focus-within {
@@ -121,7 +121,7 @@ export const inputStyles = `
   }
 
   :host([variant="outlined"]) .input-wrapper:has(input:hover:not(:disabled):not(:focus)) {
-    border-color: var(--text-tertiary);
+    border-color: var(--foreground-tertiary);
   }
 
   /* Size: Small */

@@ -40,9 +40,9 @@ export const checkboxStyles = `
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: var(--border-width-2, 2px) solid var(--border-primary);
+    border: var(--border-width-2, 2px) solid var(--border-default);
     border-radius: var(--border-radius-base, 0.25rem);
-    background-color: var(--surface-primary);
+    background-color: var(--background-primary);
     transition:
       border-color var(--animation-duration-base, 200ms) var(--animation-easing-ease, ease),
       background-color var(--animation-duration-base, 200ms) var(--animation-easing-ease, ease),
@@ -51,7 +51,7 @@ export const checkboxStyles = `
 
   .checkbox-icon {
     display: none;
-    color: var(--text-inverse);
+    color: var(--foreground-inverse);
   }
 
   /* Focus state */
@@ -156,19 +156,19 @@ export const checkboxStyles = `
   .label {
     font-weight: var(--font-weight-regular, 400);
     line-height: var(--font-line-height-normal, 1.5);
-    color: var(--text-primary);
+    color: var(--foreground-primary);
     user-select: none;
   }
 
   :host([disabled]) .label {
-    color: var(--text-secondary);
+    color: var(--foreground-secondary);
   }
 
   /* Description */
   .description {
     display: block;
     font-size: var(--font-size-sm, 0.875rem);
-    color: var(--text-secondary);
+    color: var(--foreground-secondary);
     margin-top: var(--spacing-1, 0.25rem);
   }
 

@@ -14,7 +14,7 @@ export const dropdownStyles = `
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity var(--ha-transition-base), visibility var(--ha-transition-base);
+    transition: opacity var(--animation-duration-base) ease, visibility var(--animation-duration-base) ease;
   }
 
   .menu-container.open {
@@ -35,7 +35,7 @@ export const dropdownStyles = `
   }
 
   .menu-container.open {
-    animation: menu-fade-in var(--ha-transition-base);
+    animation: menu-fade-in var(--animation-duration-base) ease;
   }
 `;
 
@@ -46,10 +46,10 @@ export const menuStyles = `
 
   .menu {
     background: white;
-    border: 1px solid var(--ha-color-neutral-200);
-    border-radius: var(--ha-border-radius-base);
-    box-shadow: var(--ha-shadow-lg);
-    padding: var(--ha-spacing-1) 0;
+    border: 1px solid var(--color-neutral-200);
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-1) 0;
     min-width: 200px;
     max-width: 320px;
   }
@@ -57,17 +57,17 @@ export const menuStyles = `
   /* Sizes */
   .menu.size-sm {
     min-width: 160px;
-    font-size: var(--ha-font-size-sm);
+    font-size: var(--font-size-sm);
   }
 
   .menu.size-md {
     min-width: 200px;
-    font-size: var(--ha-font-size-base);
+    font-size: var(--font-size-base);
   }
 
   .menu.size-lg {
     min-width: 240px;
-    font-size: var(--ha-font-size-base);
+    font-size: var(--font-size-base);
   }
 `;
 
@@ -79,11 +79,11 @@ export const menuItemStyles = `
   .menu-item {
     display: flex;
     align-items: center;
-    gap: var(--ha-spacing-2);
-    padding: var(--ha-spacing-2) var(--ha-spacing-4);
-    color: var(--ha-color-neutral-700);
+    gap: var(--spacing-2);
+    padding: var(--spacing-2) var(--spacing-4);
+    color: var(--color-neutral-700);
     cursor: pointer;
-    transition: all var(--ha-transition-base);
+    transition: all var(--animation-duration-base) ease;
     text-decoration: none;
     border: none;
     background: transparent;
@@ -94,30 +94,30 @@ export const menuItemStyles = `
   }
 
   .menu-item:hover:not(:disabled) {
-    background-color: var(--ha-color-primary-50);
-    color: var(--ha-color-primary-700);
+    background-color: var(--primary-default);
+    color: var(--primary-default);
   }
 
   .menu-item:focus-visible {
-    outline: 2px solid var(--ha-color-primary-500);
+    outline: 2px solid var(--primary-default);
     outline-offset: -2px;
-    background-color: var(--ha-color-primary-50);
-    color: var(--ha-color-primary-700);
+    background-color: var(--primary-default);
+    color: var(--primary-default);
   }
 
   .menu-item:disabled {
-    color: var(--ha-color-neutral-400);
+    color: var(--color-neutral-400);
     cursor: not-allowed;
     opacity: 0.6;
   }
 
   .menu-item.danger {
-    color: var(--ha-color-error-600);
+    color: var(--error-default);
   }
 
   .menu-item.danger:hover:not(:disabled) {
-    background-color: var(--ha-color-error-50);
-    color: var(--ha-color-error-700);
+    background-color: var(--error-default);
+    color: var(--error-default);
   }
 
   .icon-slot {
@@ -131,13 +131,13 @@ export const menuItemStyles = `
 
   /* Sizes */
   :host([size="sm"]) .menu-item {
-    padding: var(--ha-spacing-1) var(--ha-spacing-3);
-    font-size: var(--ha-font-size-sm);
+    padding: var(--spacing-1) var(--spacing-3);
+    font-size: var(--font-size-sm);
   }
 
   :host([size="lg"]) .menu-item {
-    padding: var(--ha-spacing-3) var(--ha-spacing-5);
-    font-size: var(--ha-font-size-base);
+    padding: var(--spacing-3) var(--spacing-5);
+    font-size: var(--font-size-base);
   }
 `;
 
@@ -148,7 +148,7 @@ export const menuDividerStyles = `
 
   .divider {
     height: 1px;
-    background-color: var(--ha-color-neutral-200);
-    margin: var(--ha-spacing-1) 0;
+    background-color: var(--color-neutral-200);
+    margin: var(--spacing-1) 0;
   }
 `;

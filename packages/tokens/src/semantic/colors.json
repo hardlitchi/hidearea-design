@@ -1,6 +1,5 @@
 {
-  "ha": {
-    "color": {
+  "color": {
       "primary": {
         "50": { "value": "{color.blue.50}" },
         "100": { "value": "{color.blue.100}" },
@@ -86,5 +85,4 @@
         "900": { "value": "{color.gray.900}" }
       }
     }
-  }
 }

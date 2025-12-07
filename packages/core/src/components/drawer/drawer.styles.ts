@@ -6,8 +6,8 @@ export const drawerStyles = `
     --ha-drawer-height-sm: 256px;
     --ha-drawer-height-md: 320px;
     --ha-drawer-height-lg: 400px;
-    --ha-drawer-bg: var(--ha-color-white, #ffffff);
-    --ha-drawer-shadow: var(--ha-shadow-lg);
+    --ha-drawer-bg: var(--foreground-inverse);
+    --ha-drawer-shadow: var(--shadow-lg);
     --ha-drawer-z-index: 1000;
     --ha-drawer-backdrop-bg: rgba(0, 0, 0, 0.5);
   }
@@ -22,14 +22,14 @@ export const drawerStyles = `
     z-index: var(--ha-drawer-z-index);
     opacity: 0;
     visibility: hidden;
-    transition: opacity var(--ha-transition-duration-base) var(--ha-transition-timing-ease),
-                visibility 0s linear var(--ha-transition-duration-base);
+    transition: opacity var(--animation-duration-base) ease,
+                visibility 0s linear var(--animation-duration-base);
   }
 
   .drawer-backdrop--show {
     opacity: 1;
     visibility: visible;
-    transition: opacity var(--ha-transition-duration-base) var(--ha-transition-timing-ease),
+    transition: opacity var(--animation-duration-base) ease,
                 visibility 0s linear 0s;
   }
 
@@ -40,7 +40,7 @@ export const drawerStyles = `
     z-index: calc(var(--ha-drawer-z-index) + 1);
     display: flex;
     flex-direction: column;
-    transition: transform var(--ha-transition-duration-slow) var(--ha-transition-timing-ease);
+    transition: transform var(--animation-duration-slow) ease;
   }
 
   /* Placement: Left */
@@ -127,8 +127,8 @@ export const drawerStyles = `
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--ha-spacing-4);
-    border-bottom: 1px solid var(--ha-color-neutral-3);
+    padding: var(--spacing-4);
+    border-bottom: 1px solid var(--color-neutral-300);
   }
 
   .drawer__close {
@@ -137,25 +137,25 @@ export const drawerStyles = `
     font-size: 1.5rem;
     line-height: 1;
     cursor: pointer;
-    color: var(--ha-color-neutral-6);
-    padding: var(--ha-spacing-1);
-    margin: calc(var(--ha-spacing-1) * -1);
-    transition: color var(--ha-transition-duration-fast) var(--ha-transition-timing-ease);
+    color: var(--color-neutral-600);
+    padding: var(--spacing-1);
+    margin: calc(var(--spacing-1) * -1);
+    transition: color var(--animation-duration-fast) ease;
   }
 
   .drawer__close:hover {
-    color: var(--ha-color-neutral-9);
+    color: var(--foreground-primary);
   }
 
   .drawer__body {
     flex: 1;
     overflow-y: auto;
-    padding: var(--ha-spacing-4);
+    padding: var(--spacing-4);
   }
 
   .drawer__footer {
-    padding: var(--ha-spacing-4);
-    border-top: 1px solid var(--ha-color-neutral-3);
+    padding: var(--spacing-4);
+    border-top: 1px solid var(--color-neutral-300);
   }
 
   /* Hide empty slots */

@@ -1,11 +1,11 @@
 export const listStyles = `
   :host {
     display: block;
-    --ha-list-border-color: var(--ha-color-neutral-3);
-    --ha-list-item-padding: var(--ha-spacing-3);
-    --ha-list-item-hover-bg: var(--ha-color-neutral-1);
-    --ha-list-item-active-bg: var(--ha-color-primary-1);
-    --ha-list-item-active-color: var(--ha-color-primary-6);
+    --ha-list-border-color: var(--color-neutral-300);
+    --ha-list-item-padding: var(--spacing-3);
+    --ha-list-item-hover-bg: var(--foreground-inverse);
+    --ha-list-item-active-bg: var(--primary-default);
+    --ha-list-item-active-color: var(--primary-default);
   }
 
   .list {
@@ -15,7 +15,7 @@ export const listStyles = `
 
   .list--bordered {
     border: 1px solid var(--ha-list-border-color);
-    border-radius: var(--ha-border-radius-base);
+    border-radius: var(--border-radius-base);
   }
 
   .list--divided .list-item:not(:last-child) {
@@ -26,8 +26,8 @@ export const listStyles = `
     display: flex;
     align-items: center;
     padding: var(--ha-list-item-padding);
-    color: var(--ha-color-neutral-9);
-    transition: background-color var(--ha-transition-duration-fast) var(--ha-transition-timing-ease);
+    color: var(--foreground-primary);
+    transition: background-color var(--animation-duration-fast) ease;
   }
 
   .list--hoverable .list-item:not(.list-item--disabled):hover {
@@ -48,7 +48,7 @@ export const listStyles = `
   .list-item__prefix {
     display: flex;
     align-items: center;
-    margin-right: var(--ha-spacing-3);
+    margin-right: var(--spacing-3);
   }
 
   .list-item__prefix:empty {
@@ -63,7 +63,7 @@ export const listStyles = `
   .list-item__suffix {
     display: flex;
     align-items: center;
-    margin-left: var(--ha-spacing-3);
+    margin-left: var(--spacing-3);
   }
 
   .list-item__suffix:empty {
@@ -73,6 +73,6 @@ export const listStyles = `
   .list-divider {
     height: 1px;
     background-color: var(--ha-list-border-color);
-    margin: var(--ha-spacing-2) 0;
+    margin: var(--spacing-2) 0;
   }
 `;

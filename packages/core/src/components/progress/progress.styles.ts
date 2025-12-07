@@ -6,8 +6,8 @@ export const progressStyles = `
 
   .progress {
     width: 100%;
-    background-color: var(--ha-color-neutral-200);
-    border-radius: var(--ha-radius-full);
+    background-color: var(--color-neutral-200);
+    border-radius: var(--border-radius-full);
     overflow: hidden;
     position: relative;
   }
@@ -28,31 +28,31 @@ export const progressStyles = `
   /* Progress bar */
   .progress__bar {
     height: 100%;
-    background-color: var(--ha-color-primary-500);
+    background-color: var(--primary-default);
     transition: width 0.3s ease;
-    border-radius: var(--ha-radius-full);
+    border-radius: var(--border-radius-full);
     position: relative;
   }
 
   /* Color variants */
   .progress__bar--primary {
-    background-color: var(--ha-color-primary-500);
+    background-color: var(--primary-default);
   }
 
   .progress__bar--success {
-    background-color: var(--ha-color-success-500);
+    background-color: var(--success-default);
   }
 
   .progress__bar--warning {
-    background-color: var(--ha-color-warning-500);
+    background-color: var(--warning-default);
   }
 
   .progress__bar--error {
-    background-color: var(--ha-color-error-500);
+    background-color: var(--error-default);
   }
 
   .progress__bar--info {
-    background-color: var(--ha-color-info-500);
+    background-color: var(--info-default);
   }
 
   /* Striped variant */
@@ -100,13 +100,13 @@ export const progressStyles = `
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: var(--ha-spacing-2);
-    font-size: var(--ha-font-size-sm);
-    color: var(--ha-color-neutral-700);
+    margin-bottom: var(--spacing-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-700);
   }
 
   .progress__percentage {
-    font-weight: var(--ha-font-weight-semibold);
-    color: var(--ha-color-neutral-900);
+    font-weight: var(--font-weight-semibold);
+    color: var(--foreground-primary);
   }
 `;

@@ -2,8 +2,8 @@ export const styles = `
   :host {
     display: inline-block;
     width: var(--ha-time-picker-width, 280px);
-    font-family: var(--ha-font-family, system-ui, -apple-system, sans-serif);
-    font-size: var(--ha-font-size-base, 14px);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
   }
 
   .container {
@@ -17,10 +17,10 @@ export const styles = `
   /* Label */
   label {
     display: block;
-    margin-bottom: var(--ha-spacing-1, 4px);
-    font-weight: var(--ha-font-weight-medium, 500);
-    color: var(--ha-color-text, #1f2937);
-    font-size: var(--ha-font-size-sm, 13px);
+    margin-bottom: var(--spacing-1);
+    font-weight: var(--font-weight-medium);
+    color: var(--foreground-primary);
+    font-size: var(--font-size-sm);
   }
 
   /* Input Wrapper */
@@ -28,38 +28,38 @@ export const styles = `
     position: relative;
     display: flex;
     align-items: center;
-    gap: var(--ha-spacing-2, 8px);
+    gap: var(--spacing-2);
     height: var(--ha-time-picker-input-height, 40px);
-    padding: var(--ha-time-picker-input-padding, var(--ha-spacing-2, 8px));
-    background: var(--ha-time-picker-input-bg, var(--ha-color-background, #ffffff));
-    border: var(--ha-time-picker-input-border, 1px solid var(--ha-color-border, #d1d5db));
+    padding: var(--ha-time-picker-input-padding, var(--spacing-2));
+    background: var(--ha-time-picker-input-bg, var(--background-primary));
+    border: var(--ha-time-picker-input-border, 1px solid var(--border-default));
     border-radius: var(--ha-time-picker-border-radius, var(--ha-border-radius, 6px));
     cursor: pointer;
     transition: all 0.2s;
   }
 
   .input-wrapper:hover {
-    border-color: var(--ha-color-primary, #3b82f6);
+    border-color: var(--primary-default);
   }
 
   .input-wrapper:focus-within {
-    outline: 2px solid var(--ha-color-primary-200, #bfdbfe);
+    outline: 2px solid var(--primary-default);
     outline-offset: 2px;
   }
 
   .container.disabled .input-wrapper {
-    background: var(--ha-color-background-disabled, #f3f4f6);
-    border-color: var(--ha-color-border-disabled, #e5e7eb);
+    background: var(--background-primary);
+    border-color: var(--border-default);
     cursor: not-allowed;
     opacity: 0.6;
   }
 
   .container.error .input-wrapper {
-    border-color: var(--ha-time-picker-error-border, var(--ha-color-error, #ef4444));
+    border-color: var(--ha-time-picker-error-border, var(--error-default));
   }
 
   .container.readonly .input-wrapper {
-    background: var(--ha-color-background-readonly, #f9fafb);
+    background: var(--background-primary);
     cursor: default;
   }
 
@@ -74,7 +74,7 @@ export const styles = `
     flex: 1;
     border: none;
     background: transparent;
-    color: var(--ha-time-picker-input-color, var(--ha-color-text, #1f2937));
+    color: var(--ha-time-picker-input-color, var(--foreground-primary));
     font-size: inherit;
     font-family: inherit;
     outline: none;
@@ -82,7 +82,7 @@ export const styles = `
   }
 
   .input::placeholder {
-    color: var(--ha-color-text-placeholder, #9ca3af);
+    color: var(--foreground-primary);
   }
 
   .container.disabled .input {
@@ -92,7 +92,7 @@ export const styles = `
   /* Toggle */
   .toggle {
     font-size: 12px;
-    color: var(--ha-color-text-secondary, #6b7280);
+    color: var(--foreground-primary);
     flex-shrink: 0;
     transition: transform 0.2s;
   }
@@ -105,8 +105,8 @@ export const styles = `
     z-index: 1000;
     width: var(--ha-time-picker-panel-width, 280px);
     max-height: var(--ha-time-picker-panel-max-height, 300px);
-    background: var(--ha-time-picker-panel-bg, var(--ha-color-surface, #ffffff));
-    border: 1px solid var(--ha-color-border, #d1d5db);
+    background: var(--ha-time-picker-panel-bg, var(--background-primary));
+    border: 1px solid var(--border-default);
     border-radius: var(--ha-time-picker-border-radius, var(--ha-border-radius, 6px));
     box-shadow: var(--ha-time-picker-panel-shadow, var(--ha-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1)));
     overflow: hidden;
@@ -120,7 +120,7 @@ export const styles = `
   /* Columns */
   .columns {
     display: flex;
-    border-bottom: 1px solid var(--ha-color-border, #d1d5db);
+    border-bottom: 1px solid var(--border-default);
   }
 
   .column {
@@ -131,7 +131,7 @@ export const styles = `
   }
 
   .column:not(:last-child) {
-    border-right: 1px solid var(--ha-color-border, #d1d5db);
+    border-right: 1px solid var(--border-default);
   }
 
   .period-column {
@@ -140,13 +140,13 @@ export const styles = `
 
   /* Column Header */
   .column-header {
-    padding: var(--ha-spacing-2, 8px);
+    padding: var(--spacing-2);
     text-align: center;
-    font-weight: var(--ha-font-weight-medium, 500);
-    font-size: var(--ha-font-size-xs, 12px);
-    color: var(--ha-color-text-secondary, #6b7280);
-    background: var(--ha-color-background, #f9fafb);
-    border-bottom: 1px solid var(--ha-color-border, #d1d5db);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-xs);
+    color: var(--foreground-primary);
+    background: var(--background-primary);
+    border-bottom: 1px solid var(--border-default);
     text-transform: uppercase;
   }
 
@@ -162,21 +162,21 @@ export const styles = `
   }
 
   .column-items::-webkit-scrollbar-track {
-    background: var(--ha-color-background, #f9fafb);
+    background: var(--background-primary);
   }
 
   .column-items::-webkit-scrollbar-thumb {
-    background: var(--ha-color-border, #d1d5db);
+    background: var(--border-default);
     border-radius: 3px;
   }
 
   .column-items::-webkit-scrollbar-thumb:hover {
-    background: var(--ha-color-text-secondary, #6b7280);
+    background: var(--foreground-primary);
   }
 
   /* Item */
   .item {
-    padding: var(--ha-time-picker-item-padding, var(--ha-spacing-2, 8px));
+    padding: var(--ha-time-picker-item-padding, var(--spacing-2));
     text-align: center;
     cursor: pointer;
     transition: background-color 0.15s, color 0.15s;
@@ -184,17 +184,17 @@ export const styles = `
   }
 
   .item:hover:not(.disabled) {
-    background: var(--ha-time-picker-item-hover-bg, var(--ha-color-primary-50, #eff6ff));
+    background: var(--ha-time-picker-item-hover-bg, var(--primary-default));
   }
 
   .item.selected {
-    background: var(--ha-time-picker-item-selected-bg, var(--ha-color-primary, #3b82f6));
-    color: var(--ha-time-picker-item-selected-color, var(--ha-color-primary-contrast, #ffffff));
-    font-weight: var(--ha-font-weight-medium, 500);
+    background: var(--ha-time-picker-item-selected-bg, var(--primary-default));
+    color: var(--ha-time-picker-item-selected-color, var(--primary-default));
+    font-weight: var(--font-weight-medium);
   }
 
   .item.disabled {
-    color: var(--ha-time-picker-item-disabled-color, var(--ha-color-text-disabled, #d1d5db));
+    color: var(--ha-time-picker-item-disabled-color, var(--foreground-primary));
     background: var(--ha-time-picker-item-disabled-bg, transparent);
     cursor: not-allowed;
     opacity: 0.5;
@@ -204,16 +204,16 @@ export const styles = `
   .period-toggle {
     display: flex;
     flex-direction: column;
-    padding: var(--ha-spacing-2, 8px);
-    gap: var(--ha-spacing-1, 4px);
+    padding: var(--spacing-2);
+    gap: var(--spacing-1);
   }
 
   .period-button {
-    padding: var(--ha-spacing-2, 8px);
-    border: 1px solid var(--ha-color-border, #d1d5db);
-    border-radius: var(--ha-border-radius-sm, 4px);
-    background: var(--ha-color-background, #ffffff);
-    color: var(--ha-color-text, #1f2937);
+    padding: var(--spacing-2);
+    border: 1px solid var(--border-default);
+    border-radius: var(--border-radius-sm);
+    background: var(--background-primary);
+    color: var(--foreground-primary);
     font-family: inherit;
     font-size: inherit;
     cursor: pointer;
@@ -221,44 +221,44 @@ export const styles = `
   }
 
   .period-button:hover {
-    background: var(--ha-color-primary-50, #eff6ff);
-    border-color: var(--ha-color-primary, #3b82f6);
+    background: var(--primary-default);
+    border-color: var(--primary-default);
   }
 
   .period-button.active {
-    background: var(--ha-color-primary, #3b82f6);
-    color: var(--ha-color-primary-contrast, #ffffff);
-    border-color: var(--ha-color-primary, #3b82f6);
-    font-weight: var(--ha-font-weight-medium, 500);
+    background: var(--primary-default);
+    color: var(--primary-default);
+    border-color: var(--primary-default);
+    font-weight: var(--font-weight-medium);
   }
 
   /* Actions */
   .actions {
     display: flex;
-    gap: var(--ha-spacing-2, 8px);
-    padding: var(--ha-spacing-2, 8px);
-    border-top: 1px solid var(--ha-color-border, #d1d5db);
+    gap: var(--spacing-2);
+    padding: var(--spacing-2);
+    border-top: 1px solid var(--border-default);
   }
 
   .now-button,
   .clear-button {
     flex: 1;
-    padding: var(--ha-spacing-2, 8px);
-    border: 1px solid var(--ha-color-border, #d1d5db);
-    border-radius: var(--ha-border-radius-sm, 4px);
-    background: var(--ha-color-background, #ffffff);
-    color: var(--ha-color-text, #1f2937);
+    padding: var(--spacing-2);
+    border: 1px solid var(--border-default);
+    border-radius: var(--border-radius-sm);
+    background: var(--background-primary);
+    color: var(--foreground-primary);
     font-family: inherit;
-    font-size: var(--ha-font-size-sm, 13px);
+    font-size: var(--font-size-sm);
     cursor: pointer;
     transition: all 0.15s;
   }
 
   .now-button:hover,
   .clear-button:hover {
-    background: var(--ha-color-primary-50, #eff6ff);
-    border-color: var(--ha-color-primary, #3b82f6);
-    color: var(--ha-color-primary, #3b82f6);
+    background: var(--primary-default);
+    border-color: var(--primary-default);
+    color: var(--primary-default);
   }
 
   .now-button:active,
@@ -268,21 +268,21 @@ export const styles = `
 
   /* Helper Text */
   .helper-text {
-    margin-top: var(--ha-spacing-1, 4px);
-    font-size: var(--ha-font-size-xs, 12px);
-    color: var(--ha-color-text-secondary, #6b7280);
+    margin-top: var(--spacing-1);
+    font-size: var(--font-size-xs);
+    color: var(--foreground-primary);
   }
 
   /* Error Text */
   .error-text {
-    margin-top: var(--ha-spacing-1, 4px);
-    font-size: var(--ha-font-size-xs, 12px);
-    color: var(--ha-time-picker-error-color, var(--ha-color-error, #ef4444));
+    margin-top: var(--spacing-1);
+    font-size: var(--font-size-xs);
+    color: var(--ha-time-picker-error-color, var(--error-default));
   }
 
   /* Disabled State */
   .container.disabled label {
-    color: var(--ha-color-text-disabled, #9ca3af);
+    color: var(--foreground-primary);
   }
 
   /* Readonly State */

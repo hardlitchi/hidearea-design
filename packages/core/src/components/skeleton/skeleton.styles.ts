@@ -4,8 +4,8 @@ export const skeletonStyles = `
   }
 
   .skeleton {
-    background: var(--ha-skeleton-bg, var(--ha-color-neutral-200, #e5e7eb));
-    border-radius: var(--ha-skeleton-border-radius, var(--ha-border-radius-base, 0.25rem));
+    background: var(--ha-skeleton-bg, var(--color-neutral-200, #e5e7eb));
+    border-radius: var(--ha-skeleton-border-radius, var(--border-radius-md));
     position: relative;
     overflow: hidden;
   }

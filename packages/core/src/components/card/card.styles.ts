@@ -1,30 +1,30 @@
 export const cardStyles = `
   :host {
     display: block;
-    font-family: var(--ha-font-family-base);
+    font-family: var(--font-family-sans);
   }
 
   .card {
     display: flex;
     flex-direction: column;
-    background-color: var(--surface-primary);
-    border-radius: var(--ha-border-radius-lg);
+    background-color: var(--background-primary);
+    border-radius: var(--border-radius-lg);
     overflow: hidden;
-    transition: all var(--ha-transition-duration-normal) var(--ha-transition-timing-default);
+    transition: all var(--animation-duration-base) ease;
   }
 
   /* Variants */
   .card--default {
-    border: 1px solid var(--border-secondary);
+    border: 1px solid var(--border-subtle);
   }
 
   .card--outlined {
-    border: 2px solid var(--border-primary);
+    border: 2px solid var(--border-default);
   }
 
   .card--elevated {
     border: 1px solid var(--border-subtle);
-    box-shadow: var(--ha-shadow-md);
+    box-shadow: var(--shadow-md);
   }
 
   /* Hoverable */
@@ -33,17 +33,17 @@ export const cardStyles = `
   }
 
   .card--hoverable.card--default:hover {
-    border-color: var(--border-primary);
-    box-shadow: var(--ha-shadow-sm);
+    border-color: var(--border-default);
+    box-shadow: var(--shadow-sm);
   }
 
   .card--hoverable.card--outlined:hover {
     border-color: var(--border-strong);
-    box-shadow: var(--ha-shadow-sm);
+    box-shadow: var(--shadow-sm);
   }
 
   .card--hoverable.card--elevated:hover {
-    box-shadow: var(--ha-shadow-lg);
+    box-shadow: var(--shadow-lg);
   }
 
   /* Clickable */
@@ -87,7 +87,7 @@ export const cardStyles = `
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--ha-spacing-3);
+    gap: var(--spacing-3);
   }
 
   .card__header:empty {
@@ -107,7 +107,7 @@ export const cardStyles = `
   .card__footer {
     display: flex;
     align-items: center;
-    gap: var(--ha-spacing-3);
+    gap: var(--spacing-3);
   }
 
   .card__footer:empty {
@@ -124,19 +124,19 @@ export const cardStyles = `
   .card--padding-sm .card__header,
   .card--padding-sm .card__body,
   .card--padding-sm .card__footer {
-    padding: var(--ha-spacing-3);
+    padding: var(--spacing-3);
   }
 
   .card--padding-md .card__header,
   .card--padding-md .card__body,
   .card--padding-md .card__footer {
-    padding: var(--ha-spacing-4);
+    padding: var(--spacing-4);
   }
 
   .card--padding-lg .card__header,
   .card--padding-lg .card__body,
   .card--padding-lg .card__footer {
-    padding: var(--ha-spacing-6);
+    padding: var(--spacing-6);
   }
 
   /* Media doesn't have padding */
@@ -154,11 +154,11 @@ export const cardStyles = `
   }
 
   .card__media:not(:empty) + .card__header:not(:empty) {
-    padding-top: var(--ha-spacing-4);
+    padding-top: var(--spacing-4);
   }
 
   .card__media:not(:empty) + .card__body:not(:empty) {
-    padding-top: var(--ha-spacing-4);
+    padding-top: var(--spacing-4);
   }
 
   /* Reduced motion support */

@@ -4,36 +4,36 @@ export const fileUploadStyles = `
 
     /* Size variables */
     --ha-fileupload-min-height: 120px;
-    --ha-fileupload-padding: var(--ha-spacing-4, 1rem);
-    --ha-fileupload-gap: var(--ha-spacing-3, 0.75rem);
+    --ha-fileupload-padding: var(--spacing-4);
+    --ha-fileupload-gap: var(--spacing-3);
 
     /* Color variables */
-    --ha-fileupload-bg: var(--ha-color-neutral-50, #f9fafb);
-    --ha-fileupload-border-color: var(--ha-color-neutral-300, #d1d5db);
+    --ha-fileupload-bg: var(--color-neutral-50, #f9fafb);
+    --ha-fileupload-border-color: var(--color-neutral-300, #d1d5db);
     --ha-fileupload-border-width: 2px;
-    --ha-fileupload-border-radius: var(--ha-radius-md, 0.375rem);
-    --ha-fileupload-text-color: var(--ha-color-neutral-600, #4b5563);
+    --ha-fileupload-border-radius: var(--border-radius-md);
+    --ha-fileupload-text-color: var(--color-neutral-600, #4b5563);
 
     /* Drag state */
-    --ha-fileupload-drag-bg: var(--ha-color-primary-50, #eff6ff);
-    --ha-fileupload-drag-border-color: var(--ha-color-primary-500, #3b82f6);
+    --ha-fileupload-drag-bg: var(--primary-default);
+    --ha-fileupload-drag-border-color: var(--primary-default);
 
     /* Error state */
-    --ha-fileupload-error-border-color: var(--ha-color-error-500, #ef4444);
-    --ha-fileupload-error-text-color: var(--ha-color-error-700, #b91c1c);
+    --ha-fileupload-error-border-color: var(--error-default);
+    --ha-fileupload-error-text-color: var(--error-default);
 
     /* File item */
-    --ha-fileupload-item-padding: var(--ha-spacing-2, 0.5rem);
-    --ha-fileupload-item-gap: var(--ha-spacing-2, 0.5rem);
-    --ha-fileupload-item-bg: var(--ha-color-neutral-100, #f3f4f6);
-    --ha-fileupload-item-border-radius: var(--ha-radius-sm, 0.25rem);
+    --ha-fileupload-item-padding: var(--spacing-2);
+    --ha-fileupload-item-gap: var(--spacing-2);
+    --ha-fileupload-item-bg: var(--foreground-inverse);
+    --ha-fileupload-item-border-radius: var(--border-radius-sm);
 
     /* Preview */
     --ha-fileupload-preview-size: 48px;
 
     /* Icon */
     --ha-fileupload-icon-size: 48px;
-    --ha-fileupload-icon-color: var(--ha-color-neutral-400, #9ca3af);
+    --ha-fileupload-icon-color: var(--color-neutral-400, #9ca3af);
   }
 
   .file-upload {
@@ -47,12 +47,12 @@ export const fileUploadStyles = `
     display: block;
     font-weight: 500;
     font-size: 0.875rem;
-    color: var(--ha-color-neutral-700, #374151);
+    color: var(--color-neutral-700, #374151);
     margin-bottom: 0.25rem;
   }
 
   .file-upload__label .required {
-    color: var(--ha-color-error-500, #ef4444);
+    color: var(--error-default);
     margin-left: 0.125rem;
   }
 
@@ -72,13 +72,13 @@ export const fileUploadStyles = `
   }
 
   .file-upload__dropzone:hover:not(.file-upload--disabled .file-upload__dropzone) {
-    border-color: var(--ha-color-primary-400, #60a5fa);
-    background-color: var(--ha-color-primary-25, #f0f9ff);
+    border-color: var(--primary-default);
+    background-color: var(--primary-default);
   }
 
   .file-upload__dropzone:focus-visible {
-    border-color: var(--ha-color-primary-500, #3b82f6);
-    box-shadow: 0 0 0 3px var(--ha-color-primary-100, #dbeafe);
+    border-color: var(--primary-default);
+    box-shadow: 0 0 0 3px var(--primary-default);
   }
 
   .file-upload__dropzone--dragging {
@@ -139,14 +139,14 @@ export const fileUploadStyles = `
 
   .file-upload__file-item--error {
     border-color: var(--ha-fileupload-error-border-color);
-    background-color: var(--ha-color-error-50, #fef2f2);
+    background-color: var(--error-default);
   }
 
   .file-upload__file-preview {
     width: var(--ha-fileupload-preview-size);
     height: var(--ha-fileupload-preview-size);
     object-fit: cover;
-    border-radius: var(--ha-radius-sm, 0.25rem);
+    border-radius: var(--border-radius-sm);
     flex-shrink: 0;
   }
 
@@ -156,9 +156,9 @@ export const fileUploadStyles = `
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--ha-color-neutral-200, #e5e7eb);
-    border-radius: var(--ha-radius-sm, 0.25rem);
-    color: var(--ha-color-neutral-500, #6b7280);
+    background-color: var(--color-neutral-200, #e5e7eb);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-neutral-500, #6b7280);
     flex-shrink: 0;
   }
 
@@ -178,7 +178,7 @@ export const fileUploadStyles = `
   .file-upload__file-name {
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--ha-color-neutral-900, #111827);
+    color: var(--foreground-primary);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -186,7 +186,7 @@ export const fileUploadStyles = `
 
   .file-upload__file-size {
     font-size: 0.75rem;
-    color: var(--ha-color-neutral-500, #6b7280);
+    color: var(--color-neutral-500, #6b7280);
   }
 
   .file-upload__file-error {
@@ -203,20 +203,20 @@ export const fileUploadStyles = `
     justify-content: center;
     background: transparent;
     border: none;
-    border-radius: var(--ha-radius-sm, 0.25rem);
-    color: var(--ha-color-neutral-500, #6b7280);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-neutral-500, #6b7280);
     cursor: pointer;
     transition: all 0.2s ease;
     padding: 0;
   }
 
   .file-upload__remove-button:hover {
-    background-color: var(--ha-color-neutral-200, #e5e7eb);
-    color: var(--ha-color-neutral-700, #374151);
+    background-color: var(--color-neutral-200, #e5e7eb);
+    color: var(--color-neutral-700, #374151);
   }
 
   .file-upload__remove-button:focus-visible {
-    outline: 2px solid var(--ha-color-primary-500, #3b82f6);
+    outline: 2px solid var(--primary-default);
     outline-offset: 2px;
   }
 
@@ -229,7 +229,7 @@ export const fileUploadStyles = `
   .file-upload__helper-text {
     margin: 0;
     font-size: 0.75rem;
-    color: var(--ha-color-neutral-500, #6b7280);
+    color: var(--color-neutral-500, #6b7280);
   }
 
   .file-upload__error-message,
@@ -242,7 +242,7 @@ export const fileUploadStyles = `
   /* Variants */
   .file-upload--compact .file-upload__dropzone {
     min-height: 80px;
-    padding: var(--ha-spacing-3, 0.75rem);
+    padding: var(--spacing-3);
   }
 
   .file-upload--compact .file-upload__icon {
@@ -256,16 +256,16 @@ export const fileUploadStyles = `
 
   .file-upload--button .file-upload__dropzone {
     min-height: auto;
-    padding: var(--ha-spacing-2, 0.5rem) var(--ha-spacing-4, 1rem);
-    background-color: var(--ha-color-primary-500, #3b82f6);
-    border: 2px solid var(--ha-color-primary-500, #3b82f6);
+    padding: var(--spacing-2) var(--spacing-4);
+    background-color: var(--primary-default);
+    border: 2px solid var(--primary-default);
     border-style: solid;
-    border-radius: var(--ha-radius-md, 0.375rem);
+    border-radius: var(--border-radius-md);
   }
 
   .file-upload--button .file-upload__dropzone:hover:not(.file-upload--disabled .file-upload__dropzone) {
-    background-color: var(--ha-color-primary-600, #2563eb);
-    border-color: var(--ha-color-primary-600, #2563eb);
+    background-color: var(--primary-default);
+    border-color: var(--primary-default);
   }
 
   .file-upload--button .file-upload__content {
@@ -298,7 +298,7 @@ export const fileUploadStyles = `
   @media (max-width: 640px) {
     .file-upload__dropzone {
       min-height: 100px;
-      padding: var(--ha-spacing-3, 0.75rem);
+      padding: var(--spacing-3);
     }
 
     .file-upload__icon {

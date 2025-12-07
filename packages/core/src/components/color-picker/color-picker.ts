@@ -854,7 +854,7 @@ export class HaColorPicker extends HTMLElement {
       <style>
         :host {
           display: inline-block;
-          font-family: var(--ha-font-family, system-ui, sans-serif);
+          font-family: var(--font-family-sans);
         }
 
         :host([disabled]) {

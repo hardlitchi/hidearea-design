@@ -1,24 +1,24 @@
 export const tableStyles = `
   :host {
     display: block;
-    --ha-table-border-color: var(--ha-color-neutral-3);
-    --ha-table-header-bg: var(--ha-color-neutral-1);
-    --ha-table-row-hover-bg: var(--ha-color-neutral-1);
-    --ha-table-striped-bg: var(--ha-color-neutral-1);
-    --ha-table-padding: var(--ha-spacing-3);
-    --ha-table-padding-compact: var(--ha-spacing-2);
+    --ha-table-border-color: var(--color-neutral-300);
+    --ha-table-header-bg: var(--foreground-inverse);
+    --ha-table-row-hover-bg: var(--foreground-inverse);
+    --ha-table-striped-bg: var(--foreground-inverse);
+    --ha-table-padding: var(--spacing-3);
+    --ha-table-padding-compact: var(--spacing-2);
   }
 
   .table-wrapper {
     overflow-x: auto;
-    border-radius: var(--ha-border-radius-base);
+    border-radius: var(--border-radius-base);
   }
 
   .table {
     width: 100%;
     border-collapse: collapse;
-    font-size: var(--ha-font-size-base);
-    color: var(--ha-color-neutral-9);
+    font-size: var(--font-size-base);
+    color: var(--foreground-primary);
   }
 
   .table--full-width {
@@ -28,7 +28,7 @@ export const tableStyles = `
   /* Table cells */
   .table :slotted(thead) {
     background-color: var(--ha-table-header-bg);
-    font-weight: var(--ha-font-weight-semibold);
+    font-weight: var(--font-weight-semibold);
   }
 
   .table :slotted(th),

@@ -3,17 +3,17 @@ export const datePickerStyles = `
     display: inline-block;
     position: relative;
     width: var(--ha-datepicker-width, 280px);
-    font-family: var(--ha-font-family, system-ui, -apple-system, sans-serif);
+    font-family: var(--font-family-sans);
 
     /* Base */
-    --ha-datepicker-bg: var(--ha-color-white, #ffffff);
-    --ha-datepicker-border-color: var(--ha-color-gray-300, #d1d5db);
-    --ha-datepicker-border-radius: var(--ha-radius-md, 0.375rem);
+    --ha-datepicker-bg: var(--foreground-inverse);
+    --ha-datepicker-border-color: var(--border-default);
+    --ha-datepicker-border-radius: var(--border-radius-md);
     --ha-datepicker-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
     /* Input */
     --ha-datepicker-input-padding: 0.5rem 0.75rem;
-    --ha-datepicker-input-font-size: var(--ha-font-size-base, 1rem);
+    --ha-datepicker-input-font-size: var(--font-size-base);
     --ha-datepicker-input-height: 40px;
 
     /* Calendar */
@@ -27,16 +27,16 @@ export const datePickerStyles = `
     /* Day cells */
     --ha-datepicker-day-size: 36px;
     --ha-datepicker-day-font-size: 0.875rem;
-    --ha-datepicker-day-hover-bg: var(--ha-color-gray-100, #f3f4f6);
-    --ha-datepicker-day-selected-bg: var(--ha-color-primary-500, #3b82f6);
-    --ha-datepicker-day-selected-color: var(--ha-color-white, #ffffff);
-    --ha-datepicker-day-today-border-color: var(--ha-color-primary-500, #3b82f6);
+    --ha-datepicker-day-hover-bg: var(--border-default);
+    --ha-datepicker-day-selected-bg: var(--primary-default);
+    --ha-datepicker-day-selected-color: var(--foreground-inverse);
+    --ha-datepicker-day-today-border-color: var(--primary-default);
     --ha-datepicker-day-disabled-opacity: 0.4;
     --ha-datepicker-day-outside-opacity: 0.5;
 
     /* Range */
-    --ha-datepicker-range-bg: var(--ha-color-primary-100, #dbeafe);
-    --ha-datepicker-range-color: var(--ha-color-primary-900, #1e3a8a);
+    --ha-datepicker-range-bg: var(--primary-default);
+    --ha-datepicker-range-color: var(--primary-default);
   }
 
   :host([inline]) {
@@ -60,7 +60,7 @@ export const datePickerStyles = `
     padding: var(--ha-datepicker-input-padding);
     font-size: var(--ha-datepicker-input-font-size);
     font-family: inherit;
-    color: var(--ha-color-gray-900, #111827);
+    color: var(--border-default);
     background-color: var(--ha-datepicker-bg);
     border: 1px solid var(--ha-datepicker-border-color);
     border-radius: var(--ha-datepicker-border-radius);
@@ -70,26 +70,26 @@ export const datePickerStyles = `
   }
 
   .date-picker__input:hover:not(:disabled) {
-    border-color: var(--ha-color-primary-400, #60a5fa);
+    border-color: var(--primary-default);
   }
 
   .date-picker__input:focus {
-    border-color: var(--ha-color-primary-500, #3b82f6);
+    border-color: var(--primary-default);
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   }
 
   .date-picker__input:disabled {
-    background-color: var(--ha-color-gray-100, #f3f4f6);
+    background-color: var(--border-default);
     cursor: not-allowed;
     opacity: 0.6;
   }
 
   .date-picker__input::placeholder {
-    color: var(--ha-color-gray-400, #9ca3af);
+    color: var(--border-default);
   }
 
   .date-picker--error .date-picker__input {
-    border-color: var(--ha-color-danger-500, #ef4444);
+    border-color: var(--error-default);
   }
 
   .date-picker--error .date-picker__input:focus {
@@ -103,7 +103,7 @@ export const datePickerStyles = `
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    color: var(--ha-color-gray-400, #9ca3af);
+    color: var(--border-default);
     pointer-events: none;
   }
 
@@ -154,8 +154,8 @@ export const datePickerStyles = `
     padding: 0;
     background: none;
     border: none;
-    border-radius: var(--ha-radius-sm, 0.25rem);
-    color: var(--ha-color-gray-600, #4b5563);
+    border-radius: var(--border-radius-sm);
+    color: var(--border-default);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -177,7 +177,7 @@ export const datePickerStyles = `
     text-align: center;
     font-size: var(--ha-datepicker-input-font-size);
     font-weight: var(--ha-datepicker-header-font-weight);
-    color: var(--ha-color-gray-900, #111827);
+    color: var(--border-default);
   }
 
   /* Weekdays */
@@ -196,7 +196,7 @@ export const datePickerStyles = `
     justify-content: center;
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--ha-color-gray-500, #6b7280);
+    color: var(--border-default);
     text-transform: uppercase;
   }
 
@@ -213,8 +213,8 @@ export const datePickerStyles = `
     padding: 0;
     background: none;
     border: 2px solid transparent;
-    border-radius: var(--ha-radius-sm, 0.25rem);
-    color: var(--ha-color-gray-900, #111827);
+    border-radius: var(--border-radius-sm);
+    color: var(--border-default);
     font-size: var(--ha-datepicker-day-font-size);
     cursor: pointer;
     display: flex;
@@ -229,7 +229,7 @@ export const datePickerStyles = `
 
   .date-picker__day:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--ha-color-primary-400, #60a5fa);
+    box-shadow: 0 0 0 2px var(--primary-default);
   }
 
   .date-picker__day--today {
@@ -243,7 +243,7 @@ export const datePickerStyles = `
   }
 
   .date-picker__day--selected:hover {
-    background-color: var(--ha-color-primary-600, #2563eb);
+    background-color: var(--primary-default);
   }
 
   .date-picker__day--in-range {
@@ -253,13 +253,13 @@ export const datePickerStyles = `
   }
 
   .date-picker__day--range-start {
-    border-top-left-radius: var(--ha-radius-sm, 0.25rem);
-    border-bottom-left-radius: var(--ha-radius-sm, 0.25rem);
+    border-top-left-radius: var(--border-radius-sm);
+    border-bottom-left-radius: var(--border-radius-sm);
   }
 
   .date-picker__day--range-end {
-    border-top-right-radius: var(--ha-radius-sm, 0.25rem);
-    border-bottom-right-radius: var(--ha-radius-sm, 0.25rem);
+    border-top-right-radius: var(--border-radius-sm);
+    border-bottom-right-radius: var(--border-radius-sm);
   }
 
   .date-picker__day--outside {
@@ -287,26 +287,26 @@ export const datePickerStyles = `
   .date-picker__footer-button {
     flex: 1;
     padding: 0.5rem 1rem;
-    background-color: var(--ha-color-gray-100, #f3f4f6);
+    background-color: var(--border-default);
     border: none;
-    border-radius: var(--ha-radius-sm, 0.25rem);
-    color: var(--ha-color-gray-700, #374151);
+    border-radius: var(--border-radius-sm);
+    color: var(--border-default);
     font-size: 0.875rem;
     cursor: pointer;
     transition: all 0.2s ease;
   }
 
   .date-picker__footer-button:hover {
-    background-color: var(--ha-color-gray-200, #e5e7eb);
+    background-color: var(--border-default);
   }
 
   .date-picker__footer-button--primary {
-    background-color: var(--ha-color-primary-500, #3b82f6);
-    color: var(--ha-color-white, #ffffff);
+    background-color: var(--primary-default);
+    color: var(--foreground-inverse);
   }
 
   .date-picker__footer-button--primary:hover {
-    background-color: var(--ha-color-primary-600, #2563eb);
+    background-color: var(--primary-default);
   }
 
   /* Label & Helper Text */
@@ -315,21 +315,21 @@ export const datePickerStyles = `
     margin-bottom: 0.5rem;
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--ha-color-gray-700, #374151);
+    color: var(--border-default);
   }
 
   .date-picker__helper-text {
     display: block;
     margin-top: 0.5rem;
     font-size: 0.875rem;
-    color: var(--ha-color-gray-500, #6b7280);
+    color: var(--border-default);
   }
 
   .date-picker__error-text {
     display: block;
     margin-top: 0.5rem;
     font-size: 0.875rem;
-    color: var(--ha-color-danger-500, #ef4444);
+    color: var(--error-default);
   }
 
   .date-picker--error .date-picker__error-text {
