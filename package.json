@@ -36,7 +36,7 @@
     "axe-core": "^4.11.0",
     "eslint": "^8.57.1",
     "prettier": "^3.2.5",
-    "turbo": "^2.0.0",
+    "turbo": "^2.6.3",
     "typescript": "^5.4.5"
   },
   "engines": {
