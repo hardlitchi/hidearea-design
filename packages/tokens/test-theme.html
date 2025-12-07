@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two-Tier CSS Variables Test - Shadow DOM Theme Switching</title>
+  <link rel="stylesheet" href="build/css/variables.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 2rem;
+      background: var(--background-primary);
+      color: var(--text-primary);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .controls {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: var(--surface-primary);
+      border: 1px solid var(--border-primary);
+      border-radius: 8px;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      margin-right: 0.5rem;
+      background: var(--primary-default);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--primary-hover);
+    }
+
+    .test-component {
+      margin-bottom: 1rem;
+    }
+
+    .info {
+      padding: 1rem;
+      background: var(--info-subtle);
+      border-left: 4px solid var(--info-default);
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Two-Tier CSS Variables Test</h1>
+
+  <div class="info">
+    <h3>Test Purpose:</h3>
+    <p>This page tests that the new two-tier CSS variable structure allows Shadow DOM components to inherit theme changes.</p>
+    <p><strong>Expected behavior:</strong> When you click theme buttons, BOTH the regular elements AND the Shadow DOM component should update their colors.</p>
+  </div>
+
+  <div class="controls">
+    <h2>Theme Controls</h2>
+    <button onclick="setTheme('light')">Light Theme</button>
+    <button onclick="setTheme('dark')">Dark Theme</button>
+    <p>Current theme: <code id="current-theme">light</code></p>
+  </div>
+
+  <div class="test-component">
+    <h2>Regular DOM Test</h2>
+    <div style="padding: 1rem; background: var(--surface-primary); border: 1px solid var(--border-primary); border-radius: 4px;">
+      <p style="color: var(--text-primary);">Primary Text: var(--text-primary)</p>
+      <p style="color: var(--text-secondary);">Secondary Text: var(--text-secondary)</p>
+      <p style="background: var(--primary-subtle); padding: 0.5rem; border-radius: 4px;">
+        Primary Subtle Background: var(--primary-subtle)
+      </p>
+    </div>
+  </div>
+
+  <div class="test-component">
+    <h2>Shadow DOM Test</h2>
+    <test-shadow-component></test-shadow-component>
+  </div>
+
+  <div class="test-component">
+    <h2>CSS Variable Inspection</h2>
+    <div id="variable-inspector" style="font-family: monospace; font-size: 0.875rem; background: var(--surface-secondary); padding: 1rem; border-radius: 4px; white-space: pre-wrap;">
+      Loading...
+    </div>
+  </div>
+
+  <script>
+    // Define custom Shadow DOM component
+    class TestShadowComponent extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+
+        const style = document.createElement('style');
+        style.textContent = `
+          :host {
+            display: block;
+          }
+          .container {
+            padding: 1rem;
+            background: var(--surface-primary);
+            border: 1px solid var(--border-primary);
+            border-radius: 4px;
+            transition: background 0.3s, border-color 0.3s;
+          }
+          .text-primary {
+            color: var(--text-primary);
+            transition: color 0.3s;
+          }
+          .text-secondary {
+            color: var(--text-secondary);
+            transition: color 0.3s;
+          }
+          .primary-subtle {
+            background: var(--primary-subtle);
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            transition: background 0.3s;
+          }
+        `;
+
+        const container = document.createElement('div');
+        container.className = 'container';
+        container.innerHTML = `
+          <p class="text-primary">Shadow DOM - Primary Text: var(--text-primary)</p>
+          <p class="text-secondary">Shadow DOM - Secondary Text: var(--text-secondary)</p>
+          <div class="primary-subtle">
+            <p class="text-primary">Shadow DOM - Primary Subtle Background: var(--primary-subtle)</p>
+          </div>
+        `;
+
+        this.shadowRoot.appendChild(style);
+        this.shadowRoot.appendChild(container);
+      }
+    }
+
+    customElements.define('test-shadow-component', TestShadowComponent);
+
+    // Theme control functions
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.getElementById('current-theme').textContent = theme;
+      updateVariableInspector();
+    }
+
+    // Inspect CSS variable values
+    function updateVariableInspector() {
+      const style = getComputedStyle(document.documentElement);
+      const inspector = document.getElementById('variable-inspector');
+
+      const variables = [
+        'text-primary',
+        'text-secondary',
+        'background-primary',
+        'surface-primary',
+        'border-primary',
+        'primary-default',
+        'primary-subtle',
+        'theme-text-primary',
+        'theme-background-primary',
+        'theme-surface-primary',
+      ];
+
+      let output = 'Computed CSS Variables:\n\n';
+      variables.forEach(varName => {
+        const value = style.getPropertyValue(`--${varName}`).trim();
+        output += `--${varName}: ${value}\n`;
+      });
+
+      inspector.textContent = output;
+    }
+
+    // Initialize
+    setTheme('light');
+  </script>
+</body>
+</html>
