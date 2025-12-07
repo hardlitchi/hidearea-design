@@ -5,11 +5,7 @@ import type { StorybookConfig } from "@storybook/web-components-vite";
 const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
-    getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-a11y"),
-    getAbsolutePath("@storybook/addon-docs"),
-    getAbsolutePath("@storybook/addon-viewport"),
-    getAbsolutePath("@storybook/addon-backgrounds"),
   ],
 
   framework: {
