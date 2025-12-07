@@ -1,14 +1,27 @@
 import { spyOn } from "storybook/test";
-import type { Preview } from "@storybook/web-components-vite";
+import type { Preview, Decorator } from "@storybook/web-components-vite";
 import "@hidearea-design/tokens/build/css/variables.css";
-import { initTheme } from "@hidearea-design/core";
+import { initTheme, setTheme } from "@hidearea-design/core";
 
 // Initialize theme on load
 if (typeof window !== 'undefined') {
   initTheme();
 }
 
+// Theme decorator to apply theme changes
+const withTheme: Decorator = (story, context) => {
+  const theme = context.globals.theme || 'light';
+
+  // Apply theme to document
+  if (typeof window !== 'undefined') {
+    setTheme(theme as 'light' | 'dark' | 'auto');
+  }
+
+  return story();
+};
+
 const preview: Preview = {
+  decorators: [withTheme],
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
@@ -32,7 +45,7 @@ const preview: Preview = {
       toolbar: {
         title: 'Theme',
         icon: 'circlehollow',
-        items: ['light', 'dark'],
+        items: ['light', 'dark', 'auto'],
         dynamicTitle: true,
       },
     },
