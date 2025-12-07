@@ -166,4 +166,13 @@ export const drawerStyles = `
   .drawer__footer:not(:has(::slotted([slot="footer"]))) {
     display: none;
   }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .drawer__overlay,
+    .drawer__panel {
+      animation: none;
+      transition: none;
+    }
+  }
 `;

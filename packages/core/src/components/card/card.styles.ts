@@ -160,4 +160,19 @@ export const cardStyles = `
   .card__media:not(:empty) + .card__body:not(:empty) {
     padding-top: var(--ha-spacing-4);
   }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      transition: none;
+    }
+
+    .card--hoverable:hover {
+      transform: none;
+    }
+
+    .card--clickable:active {
+      transform: none;
+    }
+  }
 `;

@@ -403,3 +403,12 @@
   --theme-info-active: #67e8f9;
   --theme-info-subtle: #164e63;
 }
+/* Reduced motion support for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --animation-duration-fast: 0ms;
+    --animation-duration-base: 0ms;
+    --animation-duration-slow: 0ms;
+    --animation-duration-slower: 0ms;
+  }
+}

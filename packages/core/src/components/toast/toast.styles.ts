@@ -149,4 +149,16 @@ export const toastStyles = `
   :host([variant="error"]) .progress-bar {
     background: var(--color-error-500);
   }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .container {
+      animation: none;
+      transition: none;
+    }
+
+    .progress-bar {
+      transition: none;
+    }
+  }
 `;

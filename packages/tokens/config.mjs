@@ -65,7 +65,9 @@ StyleDictionary.registerFormat({
       semanticTokens.push(`  ${semanticVar}: var(${themeVar}, ${defaultValue});`);
     });
 
-    return `:root {\n${baseTokens.join('\n')}\n${semanticTokens.join('\n')}\n}\n\n[data-theme="light"] {\n${lightTokens.join('\n')}\n}\n\n[data-theme="dark"] {\n${darkTokens.join('\n')}\n}`;
+    const reducedMotion = `\n/* Reduced motion support for accessibility */\n@media (prefers-reduced-motion: reduce) {\n  :root {\n    --animation-duration-fast: 0ms;\n    --animation-duration-base: 0ms;\n    --animation-duration-slow: 0ms;\n    --animation-duration-slower: 0ms;\n  }\n}`;
+
+    return `:root {\n${baseTokens.join('\n')}\n${semanticTokens.join('\n')}\n}\n\n[data-theme="light"] {\n${lightTokens.join('\n')}\n}\n\n[data-theme="dark"] {\n${darkTokens.join('\n')}\n}${reducedMotion}`;
   }
 });
 
