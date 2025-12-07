@@ -20,6 +20,8 @@ const withTheme: Decorator = (story, context) => {
     console.log('[Theme Decorator] Applied theme:', theme, 'data-theme:', document.documentElement.getAttribute('data-theme'));
   }
 
+  // Simply return the story - no wrapper needed
+  // The theme is applied to document.documentElement, which Shadow DOM components inherit from
   return story();
 };
 

@@ -60,7 +60,7 @@ export const buttonStyles = `
   /* Variant: Primary */
   :host([variant="primary"]) button {
     background-color: var(--primary-default);
-    color: var(--text-inverse);
+    color: var(--foreground-inverse);
     border: var(--border-width-1, 1px) solid transparent;
   }
 
@@ -75,7 +75,7 @@ export const buttonStyles = `
   /* Variant: Secondary */
   :host([variant="secondary"]) button {
     background-color: var(--secondary-default);
-    color: var(--text-inverse);
+    color: var(--foreground-inverse);
     border: var(--border-width-1, 1px) solid transparent;
   }
 
@@ -120,7 +120,7 @@ export const buttonStyles = `
   /* Variant: Danger */
   :host([variant="danger"]) button {
     background-color: var(--error-default);
-    color: var(--text-inverse);
+    color: var(--foreground-inverse);
     border: var(--border-width-1, 1px) solid transparent;
   }
 

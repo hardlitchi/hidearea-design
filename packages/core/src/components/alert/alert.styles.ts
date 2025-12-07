@@ -1,42 +1,42 @@
 export const alertStyles = `
   :host {
     display: block;
-    font-family: var(--ha-font-family-base);
+    font-family: var(--font-family-sans);
   }
 
   .alert {
     display: flex;
     align-items: flex-start;
-    gap: var(--ha-spacing-3);
-    padding: var(--ha-spacing-4);
-    border-radius: var(--ha-border-radius-md);
-    font-size: var(--ha-font-size-sm);
-    line-height: var(--ha-line-height-normal);
+    gap: var(--spacing-3);
+    padding: var(--spacing-4);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
+    line-height: var(--font-line-height-normal);
     position: relative;
   }
 
   /* Variants - Filled */
   .alert--filled.alert--info {
     background-color: var(--info-default);
-    color: var(--text-inverse);
+    color: var(--foreground-inverse);
     border: 1px solid var(--info-hover);
   }
 
   .alert--filled.alert--success {
     background-color: var(--success-default);
-    color: var(--text-inverse);
+    color: var(--foreground-inverse);
     border: 1px solid var(--success-hover);
   }
 
   .alert--filled.alert--warning {
     background-color: var(--warning-default);
-    color: var(--text-inverse);
+    color: var(--foreground-inverse);
     border: 1px solid var(--warning-hover);
   }
 
   .alert--filled.alert--error {
     background-color: var(--error-default);
-    color: var(--text-inverse);
+    color: var(--foreground-inverse);
     border: 1px solid var(--error-hover);
   }
 
@@ -113,8 +113,8 @@ export const alertStyles = `
   }
 
   .alert__title {
-    font-weight: var(--ha-font-weight-semibold);
-    margin: 0 0 var(--ha-spacing-1) 0;
+    font-weight: var(--font-weight-semibold);
+    margin: 0 0 var(--spacing-1) 0;
   }
 
   .alert__message {
@@ -130,7 +130,7 @@ export const alertStyles = `
     cursor: pointer;
     color: currentColor;
     opacity: 0.7;
-    transition: opacity var(--ha-transition-duration-normal) var(--ha-transition-timing-default);
+    transition: opacity var(--animation-duration-base) ease;
     width: 20px;
     height: 20px;
     display: flex;
@@ -145,7 +145,7 @@ export const alertStyles = `
   .alert__close:focus {
     outline: 2px solid currentColor;
     outline-offset: 2px;
-    border-radius: var(--ha-border-radius-sm);
+    border-radius: var(--border-radius-sm);
   }
 
   .alert__close svg {
@@ -157,8 +157,8 @@ export const alertStyles = `
   /* Actions slot */
   .alert__actions {
     display: flex;
-    gap: var(--ha-spacing-2);
-    margin-top: var(--ha-spacing-2);
+    gap: var(--spacing-2);
+    margin-top: var(--spacing-2);
   }
 
   .alert__actions:empty {

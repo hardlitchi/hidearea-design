@@ -1,41 +1,41 @@
 export const badgeStyles = `
   :host {
     display: inline-flex;
-    font-family: var(--ha-font-family-base);
+    font-family: var(--font-family-sans);
   }
 
   .badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--ha-spacing-1);
-    font-weight: var(--ha-font-weight-medium);
+    gap: var(--spacing-1);
+    font-weight: var(--font-weight-medium);
     line-height: 1;
     border: 1px solid transparent;
     white-space: nowrap;
     vertical-align: middle;
-    transition: all var(--ha-transition-duration-normal) var(--ha-transition-timing-default);
+    transition: all var(--animation-duration-base) ease;
   }
 
   /* Sizes */
   .badge--sm {
     padding: 0.125rem 0.5rem;
-    font-size: var(--ha-font-size-xs);
-    border-radius: var(--ha-border-radius-sm);
+    font-size: var(--font-size-xs);
+    border-radius: var(--border-radius-sm);
     min-height: 1.25rem;
   }
 
   .badge--md {
     padding: 0.25rem 0.625rem;
-    font-size: var(--ha-font-size-sm);
-    border-radius: var(--ha-border-radius-md);
+    font-size: var(--font-size-sm);
+    border-radius: var(--border-radius-md);
     min-height: 1.5rem;
   }
 
   .badge--lg {
     padding: 0.375rem 0.75rem;
-    font-size: var(--ha-font-size-base);
-    border-radius: var(--ha-border-radius-md);
+    font-size: var(--font-size-base);
+    border-radius: var(--border-radius-md);
     min-height: 1.75rem;
   }
 
@@ -90,113 +90,113 @@ export const badgeStyles = `
 
   /* Color Variants */
   .badge--primary {
-    background-color: var(--ha-color-primary-500);
+    background-color: var(--primary-default);
     color: white;
-    border-color: var(--ha-color-primary-600);
+    border-color: var(--primary-default);
   }
 
   .badge--secondary {
-    background-color: var(--ha-color-neutral-500);
+    background-color: var(--color-neutral-500);
     color: white;
-    border-color: var(--ha-color-neutral-600);
+    border-color: var(--color-neutral-600);
   }
 
   .badge--success {
-    background-color: var(--ha-color-success-500);
+    background-color: var(--success-default);
     color: white;
-    border-color: var(--ha-color-success-600);
+    border-color: var(--success-default);
   }
 
   .badge--warning {
-    background-color: var(--ha-color-warning-500);
+    background-color: var(--warning-default);
     color: white;
-    border-color: var(--ha-color-warning-600);
+    border-color: var(--warning-default);
   }
 
   .badge--error {
-    background-color: var(--ha-color-error-500);
+    background-color: var(--error-default);
     color: white;
-    border-color: var(--ha-color-error-600);
+    border-color: var(--error-default);
   }
 
   .badge--info {
-    background-color: var(--ha-color-info-500);
+    background-color: var(--info-default);
     color: white;
-    border-color: var(--ha-color-info-600);
+    border-color: var(--info-default);
   }
 
   /* Outlined variants */
   .badge--outlined.badge--primary {
     background-color: transparent;
-    color: var(--ha-color-primary-700);
-    border-color: var(--ha-color-primary-500);
+    color: var(--primary-default);
+    border-color: var(--primary-default);
   }
 
   .badge--outlined.badge--secondary {
     background-color: transparent;
-    color: var(--ha-color-neutral-700);
-    border-color: var(--ha-color-neutral-500);
+    color: var(--color-neutral-700);
+    border-color: var(--color-neutral-500);
   }
 
   .badge--outlined.badge--success {
     background-color: transparent;
-    color: var(--ha-color-success-700);
-    border-color: var(--ha-color-success-500);
+    color: var(--success-default);
+    border-color: var(--success-default);
   }
 
   .badge--outlined.badge--warning {
     background-color: transparent;
-    color: var(--ha-color-warning-700);
-    border-color: var(--ha-color-warning-500);
+    color: var(--warning-default);
+    border-color: var(--warning-default);
   }
 
   .badge--outlined.badge--error {
     background-color: transparent;
-    color: var(--ha-color-error-700);
-    border-color: var(--ha-color-error-500);
+    color: var(--error-default);
+    border-color: var(--error-default);
   }
 
   .badge--outlined.badge--info {
     background-color: transparent;
-    color: var(--ha-color-info-700);
-    border-color: var(--ha-color-info-500);
+    color: var(--info-default);
+    border-color: var(--info-default);
   }
 
   /* Soft variants */
   .badge--soft.badge--primary {
-    background-color: var(--ha-color-primary-50);
-    color: var(--ha-color-primary-700);
-    border-color: var(--ha-color-primary-200);
+    background-color: var(--primary-default);
+    color: var(--primary-default);
+    border-color: var(--primary-default);
   }
 
   .badge--soft.badge--secondary {
-    background-color: var(--ha-color-neutral-50);
-    color: var(--ha-color-neutral-700);
-    border-color: var(--ha-color-neutral-200);
+    background-color: var(--color-neutral-50);
+    color: var(--color-neutral-700);
+    border-color: var(--color-neutral-200);
   }
 
   .badge--soft.badge--success {
-    background-color: var(--ha-color-success-50);
-    color: var(--ha-color-success-700);
-    border-color: var(--ha-color-success-200);
+    background-color: var(--success-default);
+    color: var(--success-default);
+    border-color: var(--success-default);
   }
 
   .badge--soft.badge--warning {
-    background-color: var(--ha-color-warning-50);
-    color: var(--ha-color-warning-700);
-    border-color: var(--ha-color-warning-200);
+    background-color: var(--warning-default);
+    color: var(--warning-default);
+    border-color: var(--warning-default);
   }
 
   .badge--soft.badge--error {
-    background-color: var(--ha-color-error-50);
-    color: var(--ha-color-error-700);
-    border-color: var(--ha-color-error-200);
+    background-color: var(--error-default);
+    color: var(--error-default);
+    border-color: var(--error-default);
   }
 
   .badge--soft.badge--info {
-    background-color: var(--ha-color-info-50);
-    color: var(--ha-color-info-700);
-    border-color: var(--ha-color-info-200);
+    background-color: var(--info-default);
+    color: var(--info-default);
+    border-color: var(--info-default);
   }
 
   /* Icon */
@@ -243,11 +243,11 @@ export const badgeStyles = `
     background: none;
     border: none;
     padding: 0;
-    margin-left: var(--ha-spacing-1);
+    margin-left: var(--spacing-1);
     cursor: pointer;
     color: currentColor;
     opacity: 0.7;
-    transition: opacity var(--ha-transition-duration-normal) var(--ha-transition-timing-default);
+    transition: opacity var(--animation-duration-base) ease;
   }
 
   .badge__remove:hover {
@@ -257,7 +257,7 @@ export const badgeStyles = `
   .badge__remove:focus {
     outline: 2px solid currentColor;
     outline-offset: 1px;
-    border-radius: var(--ha-border-radius-sm);
+    border-radius: var(--border-radius-sm);
     opacity: 1;
   }
 

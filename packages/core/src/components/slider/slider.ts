@@ -535,10 +535,10 @@ export class HaSlider extends HTMLElement {
           display: inline-block;
           width: 100%;
           --slider-track-height: 6px;
-          --slider-track-color: var(--ha-color-neutral-3, #e5e7eb);
-          --slider-fill-color: var(--ha-color-primary-6, #2563eb);
+          --slider-track-color: var(--color-neutral-3, #e5e7eb);
+          --slider-fill-color: var(--primary-default);
           --slider-thumb-size: 18px;
-          --slider-thumb-color: var(--ha-color-primary-6, #2563eb);
+          --slider-thumb-color: var(--primary-default);
         }
 
         :host([orientation="vertical"]) {
@@ -564,9 +564,9 @@ export class HaSlider extends HTMLElement {
         .slider__label {
           display: block;
           margin-bottom: 8px;
-          font-size: var(--ha-font-size-sm, 0.875rem);
-          font-weight: var(--ha-font-weight-medium, 500);
-          color: var(--ha-color-neutral-9, #111827);
+          font-size: var(--font-size-sm);
+          font-weight: var(--font-weight-medium);
+          color: var(--foreground-primary);
         }
 
         .slider__track {
@@ -646,9 +646,9 @@ export class HaSlider extends HTMLElement {
           left: 50%;
           transform: translateX(-50%);
           padding: 4px 8px;
-          background-color: var(--ha-color-neutral-9, #111827);
+          background-color: var(--foreground-primary);
           color: white;
-          font-size: var(--ha-font-size-xs, 0.75rem);
+          font-size: var(--font-size-xs);
           border-radius: 4px;
           white-space: nowrap;
           pointer-events: none;
@@ -698,7 +698,7 @@ export class HaSlider extends HTMLElement {
           transform: translate(-50%, -50%);
           width: 2px;
           height: calc(var(--slider-track-height) + 4px);
-          background-color: var(--ha-color-neutral-5, #9ca3af);
+          background-color: var(--color-neutral-5, #9ca3af);
         }
 
         :host([orientation="vertical"]) .slider__mark {

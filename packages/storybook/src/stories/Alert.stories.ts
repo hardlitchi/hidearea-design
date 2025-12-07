@@ -423,3 +423,16 @@ export const StyleVariantsComparison: Story = {
     </div>
   `,
 };
+
+/**
+ * Info variant alerts in different styles
+ */
+export const Test: Story = {
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <ha-alert variant="info" style-variant="filled" show-icon>
+        Test alert
+      </ha-alert>
+    </div>
+  `,
+};

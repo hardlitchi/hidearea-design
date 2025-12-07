@@ -80,27 +80,27 @@ export const spinnerStyles = `
 
   /* Color variants */
   .spinner--primary {
-    color: var(--ha-color-primary-500);
+    color: var(--primary-default);
   }
 
   .spinner--success {
-    color: var(--ha-color-success-500);
+    color: var(--success-default);
   }
 
   .spinner--warning {
-    color: var(--ha-color-warning-500);
+    color: var(--warning-default);
   }
 
   .spinner--error {
-    color: var(--ha-color-error-500);
+    color: var(--error-default);
   }
 
   .spinner--info {
-    color: var(--ha-color-info-500);
+    color: var(--info-default);
   }
 
   .spinner--neutral {
-    color: var(--ha-color-neutral-500);
+    color: var(--color-neutral-500);
   }
 
   /* Animations */
