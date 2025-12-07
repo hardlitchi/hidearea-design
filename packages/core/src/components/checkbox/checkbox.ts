@@ -115,6 +115,9 @@ export class HaCheckbox extends HTMLElement {
     // Handle click on host
     this.addEventListener("click", this.handleClick.bind(this));
 
+    // Handle keyboard events
+    this.addEventListener("keydown", this.handleKeydown.bind(this));
+
     // Handle input change
     this.input.addEventListener("change", (e) => {
       this.checked = this.input.checked;
@@ -190,6 +193,18 @@ export class HaCheckbox extends HTMLElement {
     // Toggle the checkbox
     e.preventDefault();
     this.input.click();
+  }
+
+  private handleKeydown(e: KeyboardEvent) {
+    if (this.disabled) {
+      return;
+    }
+
+    // Space key toggles the checkbox
+    if (e.key === " " || e.key === "Spacebar") {
+      e.preventDefault();
+      this.input.click();
+    }
   }
 
   connectedCallback() {

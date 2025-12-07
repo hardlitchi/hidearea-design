@@ -233,6 +233,7 @@ export class HaTooltip extends HTMLElement {
         break;
       case "click":
         this.trigger.addEventListener("click", this.handleTriggerClick);
+        document.addEventListener("keydown", this.handleKeydown);
         break;
     }
   }
@@ -250,6 +251,7 @@ export class HaTooltip extends HTMLElement {
     this.trigger.removeEventListener("blur", this.handleTriggerBlur);
     this.trigger.removeEventListener("click", this.handleTriggerClick);
     document.removeEventListener("click", this.handleDocumentClick);
+    document.removeEventListener("keydown", this.handleKeydown);
     window.removeEventListener("resize", this.handleWindowResize);
     window.removeEventListener("scroll", this.handleWindowScroll, true);
   }
@@ -290,6 +292,14 @@ export class HaTooltip extends HTMLElement {
 
   private handleDocumentClick(e: Event) {
     if (!this.contains(e.target as Node)) {
+      this.hide();
+      document.removeEventListener("click", this.handleDocumentClick);
+    }
+  }
+
+  private handleKeydown(e: KeyboardEvent) {
+    if (this.triggerMode === "click" && this.isVisible && e.key === "Escape") {
+      e.preventDefault();
       this.hide();
       document.removeEventListener("click", this.handleDocumentClick);
     }
