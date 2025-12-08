@@ -130,11 +130,16 @@
   - ✅ Storybook統合
 
 #### 優先度: 中
-- [ ] **Storybook Addons**
-  - a11y addon: アクセシビリティチェック
-  - viewport addon: レスポンシブテスト
-  - controls addon: より詳細なprop制御
-  - docs addon: 自動ドキュメント生成強化
+- [x] **Storybook Addons** ✅ (2025-12-08)
+  - ✅ a11y addon: アクセシビリティチェック（WCAG 2.1 AA、9ルール）
+  - ✅ viewport addon: レスポンシブテスト（7ビューポート）
+  - ✅ controls addon: より詳細なprop制御（展開表示、アルファベット順）
+  - ✅ docs addon: 自動ドキュメント生成強化（autodocs, TOC）
+  - ✅ actions addon: イベントログ
+  - ✅ theme switcher: Light/Dark/Auto切替
+  - ✅ backgrounds addon: 3背景色
+  - ✅ story sorting: 論理的順序
+  - ✅ 包括的ドキュメント（ADDONS.md、245行）
 
 - [ ] **Performance Monitoring**
   - バンドルサイズ監視
