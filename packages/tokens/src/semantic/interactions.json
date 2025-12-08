@@ -1,0 +1,49 @@
+{
+  "interaction": {
+    "transition": {
+      "fast": {
+        "duration": { "value": "{animation.duration.fast}" },
+        "timing": { "value": "{animation.easing.ease}" }
+      },
+      "normal": {
+        "duration": { "value": "{animation.duration.base}" },
+        "timing": { "value": "{animation.easing.ease}" }
+      },
+      "slow": {
+        "duration": { "value": "{animation.duration.slow}" },
+        "timing": { "value": "{animation.easing.ease}" }
+      }
+    },
+    "animation": {
+      "fadeIn": {
+        "duration": { "value": "{animation.duration.base}" },
+        "timing": { "value": "{animation.easing.easeIn}" }
+      },
+      "fadeOut": {
+        "duration": { "value": "{animation.duration.base}" },
+        "timing": { "value": "{animation.easing.easeOut}" }
+      },
+      "slideIn": {
+        "duration": { "value": "{animation.duration.base}" },
+        "timing": { "value": "{animation.easing.easeOut}" }
+      },
+      "slideOut": {
+        "duration": { "value": "{animation.duration.fast}" },
+        "timing": { "value": "{animation.easing.easeIn}" }
+      },
+      "scale": {
+        "duration": { "value": "{animation.duration.fast}" },
+        "timing": { "value": "{animation.easing.easeInOut}" }
+      }
+    },
+    "cursor": {
+      "default": { "value": "default" },
+      "pointer": { "value": "pointer" },
+      "text": { "value": "text" },
+      "move": { "value": "move" },
+      "notAllowed": { "value": "not-allowed" },
+      "grab": { "value": "grab" },
+      "grabbing": { "value": "grabbing" }
+    }
+  }
+}
