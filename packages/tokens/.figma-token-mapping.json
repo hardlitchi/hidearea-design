@@ -1,0 +1,76 @@
+{
+  "$schema": "./figma-token-mapping.schema.json",
+  "version": "1.0.0",
+  "description": "Maps Figma variables to Style Dictionary token structure",
+  "mappings": {
+    "collections": {
+      "primitives": {
+        "figmaCollectionName": "Primitives",
+        "outputPath": "src/base",
+        "description": "Base primitive tokens (colors, spacing, typography, etc.)"
+      },
+      "semantic": {
+        "figmaCollectionName": "Semantic",
+        "outputPath": "src/semantic",
+        "description": "Semantic tokens for components and patterns"
+      },
+      "light-theme": {
+        "figmaCollectionName": "Theme/Light",
+        "outputPath": "src/themes/light",
+        "description": "Light theme tokens"
+      },
+      "dark-theme": {
+        "figmaCollectionName": "Theme/Dark",
+        "outputPath": "src/themes/dark",
+        "description": "Dark theme tokens"
+      }
+    },
+    "typeMapping": {
+      "COLOR": "color",
+      "FLOAT": "number",
+      "STRING": "string",
+      "BOOLEAN": "boolean"
+    },
+    "namingConventions": {
+      "separator": "/",
+      "caseStyle": "kebab-case",
+      "preserveOriginal": false
+    },
+    "transformations": {
+      "colors": {
+        "format": "hex",
+        "includeAlpha": true,
+        "uppercaseHex": false
+      },
+      "spacing": {
+        "unit": "rem",
+        "basePixelSize": 16
+      },
+      "typography": {
+        "fontSizeUnit": "rem",
+        "lineHeightUnit": "unitless"
+      }
+    },
+    "sync": {
+      "createBackup": true,
+      "backupRetention": 10,
+      "validateBeforeWrite": true,
+      "overwriteExisting": false,
+      "mergeStrategy": "merge"
+    },
+    "ignore": {
+      "collections": [],
+      "variables": [],
+      "patterns": [
+        "^_",
+        "^test",
+        "^debug"
+      ]
+    }
+  },
+  "metadata": {
+    "lastSync": null,
+    "figmaFileKey": null,
+    "figmaFileName": null
+  }
+}
