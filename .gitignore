@@ -87,3 +87,6 @@ packages/tokens/build/
 
 # Chromatic
 chromatic-build/
+
+# Performance monitoring reports (exclude from git but keep in CI artifacts)
+.performance/
