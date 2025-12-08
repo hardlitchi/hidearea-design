@@ -15,12 +15,22 @@ import {
   ReadResourceRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import {
-  COMPONENTS,
-  COMPONENT_CATEGORIES,
-  findComponent,
-  searchComponents,
-  getComponentsByCategory,
-} from "./components-metadata.js";
+  ALL_COMPONENT_METADATA,
+  findComponentMetadata,
+  searchComponentMetadata,
+  getComponentMetadataByCategory,
+} from "@hidearea-design/core/metadata";
+import type { ComponentCategory, ComponentMetadata, ComponentExample } from "@hidearea-design/core/types/metadata";
+
+// Component categories
+const COMPONENT_CATEGORIES: ComponentCategory[] = [
+  "Form Controls",
+  "Data Display",
+  "Feedback",
+  "Navigation",
+  "Layout",
+  "Overlay",
+];
 
 // Create MCP server instance
 const server = new Server(
@@ -75,7 +85,7 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
           uri,
           mimeType: "application/json",
           text: JSON.stringify(
-            COMPONENTS.map((c) => ({
+            ALL_COMPONENT_METADATA.map((c: ComponentMetadata) => ({
               name: c.name,
               tagName: c.tagName,
               description: c.description,
@@ -101,7 +111,7 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
               componentsByCategory: Object.fromEntries(
                 COMPONENT_CATEGORIES.map((cat) => [
                   cat,
-                  getComponentsByCategory(cat).map((c) => ({
+                  getComponentMetadataByCategory(cat).map((c: ComponentMetadata) => ({
                     name: c.name,
                     tagName: c.tagName,
                   })),
@@ -244,7 +254,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   switch (name) {
     case "search_components": {
       const { query } = args as { query: string };
-      const results = searchComponents(query);
+      const results = searchComponentMetadata(query);
       return {
         content: [
           {
@@ -253,7 +263,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
               {
                 query,
                 count: results.length,
-                results: results.map((c) => ({
+                results: results.map((c: ComponentMetadata) => ({
                   name: c.name,
                   tagName: c.tagName,
                   description: c.description,
@@ -270,7 +280,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     case "get_component_details": {
       const { component } = args as { component: string };
-      const comp = findComponent(component);
+      const comp = findComponentMetadata(component);
 
       if (!comp) {
         return {
@@ -295,7 +305,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     case "get_usage_example": {
       const { component, variant } = args as { component: string; variant?: string };
-      const comp = findComponent(component);
+      const comp = findComponentMetadata(component);
 
       if (!comp) {
         return {
@@ -309,7 +319,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }
 
       const examples = variant
-        ? comp.examples.filter((e) => e.title.toLowerCase().includes(variant.toLowerCase()))
+        ? comp.examples.filter((e: ComponentExample) => e.title.toLowerCase().includes(variant.toLowerCase()))
         : comp.examples;
 
       return {

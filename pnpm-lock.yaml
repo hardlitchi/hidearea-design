@@ -104,6 +104,9 @@ importers:
 
   packages/mcp-server:
     dependencies:
+      '@hidearea-design/core':
+        specifier: workspace:*
+        version: link:../core
       '@modelcontextprotocol/sdk':
         specifier: ^1.0.4
         version: 1.24.3(zod@3.25.76)

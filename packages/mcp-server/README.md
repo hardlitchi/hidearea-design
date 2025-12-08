@@ -178,6 +178,22 @@ The MCP server exposes:
 
 All component metadata is structured and type-safe, ensuring accurate AI responses.
 
+### Metadata Architecture
+
+Component metadata is now distributed across the codebase:
+
+- **Type Definitions**: `@hidearea-design/core/src/types/metadata.ts`
+- **Component Metadata**: Each component has its own `metadata.ts` file (e.g., `packages/core/src/components/button/metadata.ts`)
+- **Aggregation**: `packages/core/scripts/collect-metadata.mjs` collects all metadata at build time
+- **Generated Index**: `packages/core/src/metadata-index.ts` (auto-generated, do not edit)
+- **MCP Server**: Imports metadata from `@hidearea-design/core/metadata`
+
+This distributed architecture:
+- Co-locates metadata with component source code
+- Makes it easier to maintain and update
+- Ensures metadata stays in sync with implementations
+- Reduces duplication across packages
+
 ## License
 
 MIT
