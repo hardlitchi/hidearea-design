@@ -119,10 +119,15 @@
   - ✅ インタラクティブモード＋コマンドラインモード
   - ✅ 15ファイル、1,330行のコード
 
-- [ ] **Visual Regression Testing**
-  - Chromatic or Percy統合
-  - スナップショットテスト
-  - CI/CDパイプライン組み込み
+- [x] **Visual Regression Testing** ✅ (2025-12-08)
+  - ✅ Playwright統合（Chromatic/Percy不要）
+  - ✅ スナップショットテスト（28テスト、3コンポーネント）
+  - ✅ CI/CDパイプライン組み込み（GitHub Actions）
+  - ✅ マルチブラウザ対応（Chromium, Firefox, WebKit）
+  - ✅ レスポンシブテスト（Desktop, Tablet, Mobile）
+  - ✅ ダークテーマテスト
+  - ✅ 状態テスト（hover, focus, disabled, error）
+  - ✅ Storybook統合
 
 #### 優先度: 中
 - [ ] **Storybook Addons**
