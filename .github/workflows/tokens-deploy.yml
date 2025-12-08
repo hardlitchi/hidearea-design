@@ -1,0 +1,105 @@
+name: Token Deployment
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/tokens/src/**'
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: 'Version bump type'
+        type: choice
+        options: [auto, patch, minor, major]
+        default: 'auto'
+
+concurrency:
+  group: token-deployment
+  cancel-in-progress: false
+
+jobs:
+  detect-changes:
+    name: Detect Changes
+    runs-on: ubuntu-latest
+    outputs:
+      has_changes: ${{ steps.detect.outputs.has_changes }}
+      version_bump: ${{ steps.detect.outputs.version_bump }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changes
+        id: detect
+        run: |
+          cd packages/tokens
+          if node scripts/detect-token-changes.mjs --format json > changes.json; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            VERSION_BUMP=$(jq -r 'if .breaking | length > 0 then "major" elif .summary.added > 0 then "minor" else "patch" end' changes.json)
+            echo "version_bump=$VERSION_BUMP" >> $GITHUB_OUTPUT
+            node scripts/detect-token-changes.mjs --format markdown > changes.md
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "version_bump=none" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Upload report
+        if: steps.detect.outputs.has_changes == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: token-changes
+          path: packages/tokens/changes.*
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true'
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump version
+        id: version
+        run: |
+          cd packages/tokens
+          BUMP="${{ github.event.inputs.version_bump || needs.detect-changes.outputs.version_bump }}"
+          [ "$BUMP" = "auto" ] && BUMP="${{ needs.detect-changes.outputs.version_bump }}"
+          [ "$BUMP" = "none" ] && exit 0
+          npm version $BUMP --no-git-tag-version
+          echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Build
+        run: cd packages/tokens && npm run build
+
+      - name: Commit
+        run: |
+          git add packages/tokens/
+          git commit -m "chore(tokens): Release v${{ steps.version.outputs.version }}"
+          git push origin main
+          git tag "tokens-v${{ steps.version.outputs.version }}"
+          git push origin "tokens-v${{ steps.version.outputs.version }}"
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: tokens-v${{ steps.version.outputs.version }}
+          release_name: Design Tokens v${{ steps.version.outputs.version }}

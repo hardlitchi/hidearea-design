@@ -128,6 +128,21 @@ Components using semantic tokens will automatically update their appearance.
 npm run build
 ```
 
+### Automated Deployment
+
+Design tokens are automatically deployed when changes are merged to main:
+
+```bash
+# Detect changes locally
+npm run changes
+
+# JSON/Markdown output
+npm run changes:json
+npm run changes:markdown
+```
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for complete documentation.
+
 ### Performance Monitoring
 
 This package includes comprehensive performance monitoring to ensure optimal bundle sizes.
