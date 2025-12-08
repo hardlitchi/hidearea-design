@@ -12,11 +12,17 @@ Model Context Protocol (MCP) server for Hidearea Design System. Provides AI-powe
 
 ### 🛠️ Tools
 
+**Core Tools:**
 - **search_components**: Find components by name, description, or category
 - **get_component_details**: Get comprehensive component documentation
 - **get_usage_example**: Retrieve code examples for any component
 - **suggest_semantic_tokens**: Get token recommendations for CSS properties
 - **convert_html_to_components**: Transform HTML to Hidearea components
+
+**Validation & Quality (Phase 1):** 🆕
+- **validate_component_usage**: Validate props, types, and required attributes
+- **get_accessibility_guidance**: Get ARIA roles, keyboard support, and WCAG guidelines
+- **check_token_compatibility**: Check color contrast and WCAG compliance
 
 ## Installation
 
@@ -119,6 +125,48 @@ Convert HTML to components:
 
 **Returns**: Converted code using Hidearea components.
 
+### validate_component_usage
+
+Validate component props and usage:
+
+```typescript
+{
+  "component": "Button",
+  "props": {
+    "variant": "invalid",
+    "size": "medium"
+  }
+}
+```
+
+**Returns**: Validation results with errors and warnings for invalid prop values or missing required props.
+
+### get_accessibility_guidance
+
+Get accessibility best practices:
+
+```typescript
+{
+  "component": "Modal",
+  "scenario": "confirmation dialog" // optional
+}
+```
+
+**Returns**: ARIA roles, keyboard support, WCAG guidelines, and best practices specific to the component and scenario.
+
+### check_token_compatibility
+
+Check color contrast for accessibility:
+
+```typescript
+{
+  "background": "color-neutral-50",
+  "foreground": "color-neutral-900"
+}
+```
+
+**Returns**: Contrast ratio estimates, WCAG AA/AAA compliance, and recommendations for improving accessibility.
+
 ## Resources
 
 ### hidearea://components/list
@@ -159,6 +207,24 @@ Claude will use `convert_html_to_components` to transform it.
 > "What semantic tokens should I use for a card background?"
 
 Claude will use `suggest_semantic_tokens` to recommend appropriate tokens.
+
+### Validating Component Usage
+
+> "Check if this button usage is correct: `<ha-button variant='invalid' size='medium'>`"
+
+Claude will use `validate_component_usage` to identify issues.
+
+### Getting Accessibility Guidance
+
+> "How should I implement keyboard navigation for this Modal?"
+
+Claude will use `get_accessibility_guidance` to provide WCAG guidelines and best practices.
+
+### Checking Color Contrast
+
+> "Is color-neutral-100 on color-neutral-200 accessible?"
+
+Claude will use `check_token_compatibility` to verify WCAG compliance.
 
 ## Component Categories
 

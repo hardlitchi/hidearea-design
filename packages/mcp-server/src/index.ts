@@ -244,6 +244,60 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           required: ["html"],
         },
       },
+      {
+        name: "validate_component_usage",
+        description: "Validate component props, events, and usage patterns",
+        inputSchema: {
+          type: "object",
+          properties: {
+            component: {
+              type: "string",
+              description: "Component name or tag name",
+            },
+            props: {
+              type: "object",
+              description: "Props to validate (key-value pairs)",
+            },
+          },
+          required: ["component", "props"],
+        },
+      },
+      {
+        name: "get_accessibility_guidance",
+        description: "Get accessibility best practices and ARIA guidance for a component",
+        inputSchema: {
+          type: "object",
+          properties: {
+            component: {
+              type: "string",
+              description: "Component name",
+            },
+            scenario: {
+              type: "string",
+              description: "Optional: specific use case or scenario",
+            },
+          },
+          required: ["component"],
+        },
+      },
+      {
+        name: "check_token_compatibility",
+        description: "Check color contrast and token compatibility for accessibility",
+        inputSchema: {
+          type: "object",
+          properties: {
+            background: {
+              type: "string",
+              description: "Background color token",
+            },
+            foreground: {
+              type: "string",
+              description: "Foreground/text color token",
+            },
+          },
+          required: ["background", "foreground"],
+        },
+      },
     ],
   };
 });
@@ -436,6 +490,248 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
               null,
               2
             ),
+          },
+        ],
+      };
+    }
+
+    case "validate_component_usage": {
+      const { component, props } = args as { component: string; props: Record<string, any> };
+      const comp = findComponentMetadata(component);
+
+      if (!comp) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(
+                {
+                  valid: false,
+                  errors: [`Component '${component}' not found`],
+                },
+                null,
+                2
+              ),
+            },
+          ],
+        };
+      }
+
+      const errors: string[] = [];
+      const warnings: string[] = [];
+
+      // Validate each provided prop
+      for (const [propName, propValue] of Object.entries(props)) {
+        const propDef = comp.props.find((p) => p.name === propName);
+
+        if (!propDef) {
+          warnings.push(`Prop '${propName}' is not defined for ${comp.name}`);
+          continue;
+        }
+
+        // Check required props
+        if (propDef.required && (propValue === undefined || propValue === null)) {
+          errors.push(`Required prop '${propName}' is missing`);
+        }
+
+        // Type validation for specific patterns
+        if (propDef.type.includes("|")) {
+          // Union type - check if value is one of the options
+          const validValues = propDef.type
+            .split("|")
+            .map((v) => v.trim().replace(/'/g, ""));
+
+          if (!validValues.includes(String(propValue))) {
+            errors.push(
+              `Invalid value '${propValue}' for prop '${propName}'. Valid values: ${validValues.join(", ")}`
+            );
+          }
+        }
+
+        // Boolean validation
+        if (propDef.type === "boolean" && typeof propValue !== "boolean") {
+          warnings.push(`Prop '${propName}' expects boolean, got ${typeof propValue}`);
+        }
+
+        // Number validation
+        if (propDef.type === "number" && typeof propValue !== "number") {
+          warnings.push(`Prop '${propName}' expects number, got ${typeof propValue}`);
+        }
+      }
+
+      // Check for missing required props
+      for (const propDef of comp.props) {
+        if (propDef.required && !(propDef.name in props)) {
+          errors.push(`Required prop '${propDef.name}' is missing`);
+        }
+      }
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(
+              {
+                component: comp.name,
+                valid: errors.length === 0,
+                errors,
+                warnings,
+                validatedProps: Object.keys(props),
+              },
+              null,
+              2
+            ),
+          },
+        ],
+      };
+    }
+
+    case "get_accessibility_guidance": {
+      const { component, scenario } = args as { component: string; scenario?: string };
+      const comp = findComponentMetadata(component);
+
+      if (!comp) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(
+                {
+                  error: `Component '${component}' not found`,
+                },
+                null,
+                2
+              ),
+            },
+          ],
+        };
+      }
+
+      const guidance = {
+        component: comp.name,
+        scenario: scenario || "general usage",
+        roles: comp.accessibility.roles,
+        keyboardSupport: comp.accessibility.keyboardSupport,
+        ariaAttributes: comp.accessibility.ariaAttributes,
+        bestPractices: [] as string[],
+        wcagGuidelines: [] as string[],
+      };
+
+      // Add specific guidance based on component type
+      if (comp.category === "Form Controls") {
+        guidance.bestPractices.push(
+          "Always provide visible labels or aria-label",
+          "Ensure focus indicators are visible",
+          "Provide clear error messages with aria-describedby"
+        );
+        guidance.wcagGuidelines.push(
+          "WCAG 3.3.2: Labels or Instructions",
+          "WCAG 2.4.7: Focus Visible",
+          "WCAG 3.3.1: Error Identification"
+        );
+      }
+
+      if (comp.category === "Overlay") {
+        guidance.bestPractices.push(
+          "Trap focus within the overlay when open",
+          "Return focus to trigger element on close",
+          "Support Escape key to close",
+          "Use aria-modal for modal dialogs"
+        );
+        guidance.wcagGuidelines.push(
+          "WCAG 2.4.3: Focus Order",
+          "WCAG 2.1.2: No Keyboard Trap"
+        );
+      }
+
+      if (comp.category === "Navigation") {
+        guidance.bestPractices.push(
+          "Use semantic navigation landmarks",
+          "Provide skip links for keyboard users",
+          "Indicate current page/location with aria-current"
+        );
+        guidance.wcagGuidelines.push(
+          "WCAG 2.4.1: Bypass Blocks",
+          "WCAG 2.4.8: Location"
+        );
+      }
+
+      if (comp.name === "Button" && scenario?.includes("icon")) {
+        guidance.bestPractices.push(
+          "Icon-only buttons must have aria-label",
+          "Consider adding a tooltip for clarification"
+        );
+      }
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(guidance, null, 2),
+          },
+        ],
+      };
+    }
+
+    case "check_token_compatibility": {
+      const { background, foreground } = args as { background: string; foreground: string };
+
+      // Simplified contrast checking (in real implementation, would calculate actual contrast ratios)
+      const contrastChecks = {
+        background,
+        foreground,
+        compatibility: "unknown" as "good" | "warning" | "poor" | "unknown",
+        contrastRatio: "Unable to calculate (needs actual color values)" as string,
+        wcagAA: "unknown" as "pass" | "fail" | "unknown",
+        wcagAAA: "unknown" as "pass" | "fail" | "unknown",
+        recommendations: [] as string[],
+      };
+
+      // Pattern-based heuristics
+      const bgIsLight = background.includes("50") || background.includes("100") || background.includes("white");
+      const fgIsLight = foreground.includes("50") || foreground.includes("100") || foreground.includes("white");
+      const bgIsDark = background.includes("900") || background.includes("950") || background.includes("black");
+      const fgIsDark = foreground.includes("900") || foreground.includes("950") || foreground.includes("black");
+
+      if ((bgIsLight && fgIsDark) || (bgIsDark && fgIsLight)) {
+        contrastChecks.compatibility = "good";
+        contrastChecks.contrastRatio = "Estimated: High (>7:1)";
+        contrastChecks.wcagAA = "pass";
+        contrastChecks.wcagAAA = "pass";
+        contrastChecks.recommendations.push("Good contrast combination");
+      } else if ((bgIsLight && fgIsLight) || (bgIsDark && fgIsDark)) {
+        contrastChecks.compatibility = "poor";
+        contrastChecks.contrastRatio = "Estimated: Low (<3:1)";
+        contrastChecks.wcagAA = "fail";
+        contrastChecks.wcagAAA = "fail";
+        contrastChecks.recommendations.push(
+          "Low contrast detected",
+          `Consider using darker text if background is '${background}'`,
+          "Ensure minimum 4.5:1 ratio for normal text (WCAG AA)",
+          "Ensure minimum 7:1 ratio for normal text (WCAG AAA)"
+        );
+      } else {
+        contrastChecks.compatibility = "warning";
+        contrastChecks.contrastRatio = "Estimated: Medium (3-7:1)";
+        contrastChecks.wcagAA = "unknown";
+        contrastChecks.wcagAAA = "fail";
+        contrastChecks.recommendations.push(
+          "Contrast may be borderline",
+          "Test with actual color values",
+          "Consider increasing contrast for better readability"
+        );
+      }
+
+      contrastChecks.recommendations.push(
+        "Note: This is a heuristic check. Use actual color values for precise contrast calculation.",
+        "Tools: https://webaim.org/resources/contrastchecker/"
+      );
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(contrastChecks, null, 2),
           },
         ],
       };
