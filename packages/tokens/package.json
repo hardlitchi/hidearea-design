@@ -24,6 +24,9 @@
     "perf:bundle": "node scripts/measure-bundle-size.mjs",
     "perf:report": "node scripts/generate-perf-report.mjs",
     "perf": "npm run perf:bundle && npm run perf:report",
+    "changes": "node scripts/detect-token-changes.mjs",
+    "changes:json": "node scripts/detect-token-changes.mjs --format json",
+    "changes:markdown": "node scripts/detect-token-changes.mjs --format markdown",
     "figma:sync": "node scripts/figma-sync.mjs --api",
     "figma:import": "node scripts/figma-sync.mjs --import",
     "figma:validate": "node scripts/figma-sync.mjs --validate"
