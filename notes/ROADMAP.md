@@ -152,9 +152,18 @@
   - ✅ ゼロ外部依存（Node.js組み込みモジュールのみ）
 
 - [ ] **Design Tokens管理強化**
-  - Figmaトークン連携
-  - トークン変更の自動デプロイ
-  - セマンティックトークンの拡充
+  - [ ] Figmaトークン連携
+  - [ ] トークン変更の自動デプロイ
+  - [x] セマンティックトークンの拡充 ✅ (2025-12-08)
+    - ✅ コンポーネントトークン（Button, Input, Card, Badge, Alert, Table, Navigation, Modal, Tooltip）
+    - ✅ 状態トークン（Focus, Hover, Disabled, Loading, Success, Warning, Error, Selected）
+    - ✅ サーフェストークン（Base, Raised, Overlay, Sunken, Interactive, 4レベル）
+    - ✅ テキスト・タイポグラフィトークン（Headings h1-h6, Body, Caption, Label, Helper, Code, Links）
+    - ✅ レイアウトトークン（Container, Section, Grid, Stack, Inline）
+    - ✅ インタラクショントークン（Transitions, Animations, Cursors）
+    - ✅ ライト/ダークテーマ対応
+    - ✅ 包括的ドキュメント（SEMANTIC-TOKENS.md、450+行）
+    - ✅ パフォーマンス: 13.45 KB gzipped（バジェット内 ✓）
 
 ---
 

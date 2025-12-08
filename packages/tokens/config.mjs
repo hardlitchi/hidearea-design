@@ -75,6 +75,7 @@ StyleDictionary.registerFormat({
  * Style Dictionary設定
  */
 const sd = new StyleDictionary({
+  log: { verbosity: 'verbose' },
   source: ['src/**/*.json'],
   platforms: {
     css: {
