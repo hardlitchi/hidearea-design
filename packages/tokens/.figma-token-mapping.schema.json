@@ -1,0 +1,196 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Figma Token Mapping Configuration",
+  "description": "Configuration for mapping Figma variables to Style Dictionary tokens",
+  "type": "object",
+  "required": ["version", "mappings"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Configuration schema version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of this configuration"
+    },
+    "mappings": {
+      "type": "object",
+      "required": ["collections", "typeMapping"],
+      "properties": {
+        "collections": {
+          "type": "object",
+          "description": "Mapping of Figma collections to output directories",
+          "patternProperties": {
+            "^[a-z0-9-]+$": {
+              "type": "object",
+              "required": ["figmaCollectionName", "outputPath"],
+              "properties": {
+                "figmaCollectionName": {
+                  "type": "string",
+                  "description": "Name of the collection in Figma"
+                },
+                "outputPath": {
+                  "type": "string",
+                  "description": "Relative path from tokens root to output directory"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "typeMapping": {
+          "type": "object",
+          "description": "Mapping of Figma types to Style Dictionary types",
+          "properties": {
+            "COLOR": { "type": "string" },
+            "FLOAT": { "type": "string" },
+            "STRING": { "type": "string" },
+            "BOOLEAN": { "type": "string" }
+          }
+        },
+        "namingConventions": {
+          "type": "object",
+          "properties": {
+            "separator": {
+              "type": "string",
+              "description": "Character used to separate token name parts in Figma",
+              "default": "/"
+            },
+            "caseStyle": {
+              "type": "string",
+              "enum": ["kebab-case", "camelCase", "snake_case", "PascalCase"],
+              "default": "kebab-case"
+            },
+            "preserveOriginal": {
+              "type": "boolean",
+              "description": "Keep original Figma names without transformation",
+              "default": false
+            }
+          }
+        },
+        "transformations": {
+          "type": "object",
+          "properties": {
+            "colors": {
+              "type": "object",
+              "properties": {
+                "format": {
+                  "type": "string",
+                  "enum": ["hex", "rgb", "rgba", "hsl", "hsla"],
+                  "default": "hex"
+                },
+                "includeAlpha": {
+                  "type": "boolean",
+                  "default": true
+                },
+                "uppercaseHex": {
+                  "type": "boolean",
+                  "default": false
+                }
+              }
+            },
+            "spacing": {
+              "type": "object",
+              "properties": {
+                "unit": {
+                  "type": "string",
+                  "enum": ["px", "rem", "em"],
+                  "default": "rem"
+                },
+                "basePixelSize": {
+                  "type": "number",
+                  "default": 16
+                }
+              }
+            },
+            "typography": {
+              "type": "object",
+              "properties": {
+                "fontSizeUnit": {
+                  "type": "string",
+                  "enum": ["px", "rem", "em"],
+                  "default": "rem"
+                },
+                "lineHeightUnit": {
+                  "type": "string",
+                  "enum": ["unitless", "px", "rem", "em"],
+                  "default": "unitless"
+                }
+              }
+            }
+          }
+        },
+        "sync": {
+          "type": "object",
+          "properties": {
+            "createBackup": {
+              "type": "boolean",
+              "description": "Create backup before overwriting",
+              "default": true
+            },
+            "backupRetention": {
+              "type": "number",
+              "description": "Number of backups to retain",
+              "default": 10
+            },
+            "validateBeforeWrite": {
+              "type": "boolean",
+              "default": true
+            },
+            "overwriteExisting": {
+              "type": "boolean",
+              "description": "Overwrite existing token files",
+              "default": false
+            },
+            "mergeStrategy": {
+              "type": "string",
+              "enum": ["merge", "replace", "skip"],
+              "default": "merge"
+            }
+          }
+        },
+        "ignore": {
+          "type": "object",
+          "properties": {
+            "collections": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Collection names to ignore"
+            },
+            "variables": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Variable names to ignore"
+            },
+            "patterns": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Regex patterns for names to ignore"
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "lastSync": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Timestamp of last successful sync"
+        },
+        "figmaFileKey": {
+          "type": ["string", "null"],
+          "description": "Figma file key being synced"
+        },
+        "figmaFileName": {
+          "type": ["string", "null"],
+          "description": "Name of the Figma file"
+        }
+      }
+    }
+  }
+}

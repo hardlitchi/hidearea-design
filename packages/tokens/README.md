@@ -128,6 +128,28 @@ Components using semantic tokens will automatically update their appearance.
 npm run build
 ```
 
+### Figma Token Synchronization
+
+Sync design tokens between Figma and Style Dictionary:
+
+```bash
+# Sync from Figma API (Enterprise accounts)
+npm run figma:sync
+
+# Import from Figma Variables JSON export
+npm run figma:import path/to/figma-export.json
+
+# Validate token structure
+npm run figma:validate
+```
+
+See [FIGMA-SYNC.md](./FIGMA-SYNC.md) for complete documentation on:
+- Setup and configuration
+- Figma API integration
+- Token transformation
+- Workflow automation
+- Troubleshooting
+
 ### Performance Monitoring
 
 This package includes comprehensive performance monitoring to ensure optimal bundle sizes.
@@ -161,6 +183,7 @@ Current bundle sizes (with semantic tokens):
 
 - **[SEMANTIC-TOKENS.md](./SEMANTIC-TOKENS.md)** - Comprehensive semantic tokens guide
 - **[PERFORMANCE.md](./PERFORMANCE.md)** - Performance monitoring and optimization
+- **[FIGMA-SYNC.md](./FIGMA-SYNC.md)** - Figma token synchronization guide
 
 ## Best Practices
 

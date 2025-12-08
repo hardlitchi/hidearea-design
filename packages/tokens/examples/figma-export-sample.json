@@ -1,0 +1,206 @@
+{
+  "meta": {
+    "variables": {
+      "VariableID:1:1": {
+        "id": "VariableID:1:1",
+        "name": "color/primary/500",
+        "key": "primary-500",
+        "variableCollectionId": "VariableCollectionId:1:1",
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "1:1": {
+            "r": 0.23137254901960785,
+            "g": 0.5098039215686274,
+            "b": 0.9647058823529412,
+            "a": 1
+          }
+        },
+        "remote": false,
+        "description": "Primary brand color",
+        "hiddenFromPublishing": false,
+        "scopes": ["ALL_SCOPES"],
+        "codeSyntax": {}
+      },
+      "VariableID:1:2": {
+        "id": "VariableID:1:2",
+        "name": "color/primary/600",
+        "key": "primary-600",
+        "variableCollectionId": "VariableCollectionId:1:1",
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "1:1": {
+            "r": 0.1450980392156863,
+            "g": 0.38823529411764707,
+            "b": 0.9215686274509803,
+            "a": 1
+          }
+        },
+        "remote": false,
+        "description": "Darker shade of primary color",
+        "hiddenFromPublishing": false,
+        "scopes": ["ALL_SCOPES"],
+        "codeSyntax": {}
+      },
+      "VariableID:1:3": {
+        "id": "VariableID:1:3",
+        "name": "color/gray/100",
+        "key": "gray-100",
+        "variableCollectionId": "VariableCollectionId:1:1",
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "1:1": {
+            "r": 0.9607843137254902,
+            "g": 0.9607843137254902,
+            "b": 0.9607843137254902,
+            "a": 1
+          }
+        },
+        "remote": false,
+        "description": "Light gray",
+        "hiddenFromPublishing": false,
+        "scopes": ["ALL_SCOPES"],
+        "codeSyntax": {}
+      },
+      "VariableID:1:4": {
+        "id": "VariableID:1:4",
+        "name": "spacing/base",
+        "key": "spacing-base",
+        "variableCollectionId": "VariableCollectionId:1:1",
+        "resolvedType": "FLOAT",
+        "valuesByMode": {
+          "1:1": 16
+        },
+        "remote": false,
+        "description": "Base spacing unit (16px)",
+        "hiddenFromPublishing": false,
+        "scopes": ["ALL_SCOPES"],
+        "codeSyntax": {}
+      },
+      "VariableID:1:5": {
+        "id": "VariableID:1:5",
+        "name": "spacing/small",
+        "key": "spacing-small",
+        "variableCollectionId": "VariableCollectionId:1:1",
+        "resolvedType": "FLOAT",
+        "valuesByMode": {
+          "1:1": 8
+        },
+        "remote": false,
+        "description": "Small spacing (8px)",
+        "hiddenFromPublishing": false,
+        "scopes": ["ALL_SCOPES"],
+        "codeSyntax": {}
+      },
+      "VariableID:2:1": {
+        "id": "VariableID:2:1",
+        "name": "button/background",
+        "key": "button-bg",
+        "variableCollectionId": "VariableCollectionId:2:1",
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "2:1": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:1:1"
+          }
+        },
+        "remote": false,
+        "description": "Button background color (references primary color)",
+        "hiddenFromPublishing": false,
+        "scopes": ["ALL_SCOPES"],
+        "codeSyntax": {}
+      },
+      "VariableID:2:2": {
+        "id": "VariableID:2:2",
+        "name": "button/padding",
+        "key": "button-padding",
+        "variableCollectionId": "VariableCollectionId:2:1",
+        "resolvedType": "FLOAT",
+        "valuesByMode": {
+          "2:1": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:1:5"
+          }
+        },
+        "remote": false,
+        "description": "Button padding (references spacing small)",
+        "hiddenFromPublishing": false,
+        "scopes": ["ALL_SCOPES"],
+        "codeSyntax": {}
+      },
+      "VariableID:3:1": {
+        "id": "VariableID:3:1",
+        "name": "font/family/base",
+        "key": "font-family-base",
+        "variableCollectionId": "VariableCollectionId:1:1",
+        "resolvedType": "STRING",
+        "valuesByMode": {
+          "1:1": "Inter, system-ui, sans-serif"
+        },
+        "remote": false,
+        "description": "Base font family",
+        "hiddenFromPublishing": false,
+        "scopes": ["ALL_SCOPES"],
+        "codeSyntax": {}
+      },
+      "VariableID:3:2": {
+        "id": "VariableID:3:2",
+        "name": "animation/enabled",
+        "key": "animation-enabled",
+        "variableCollectionId": "VariableCollectionId:1:1",
+        "resolvedType": "BOOLEAN",
+        "valuesByMode": {
+          "1:1": true
+        },
+        "remote": false,
+        "description": "Whether animations are enabled",
+        "hiddenFromPublishing": false,
+        "scopes": ["ALL_SCOPES"],
+        "codeSyntax": {}
+      }
+    },
+    "variableCollections": {
+      "VariableCollectionId:1:1": {
+        "id": "VariableCollectionId:1:1",
+        "name": "Primitives",
+        "key": "primitives",
+        "modes": [
+          {
+            "modeId": "1:1",
+            "name": "Default"
+          }
+        ],
+        "defaultModeId": "1:1",
+        "remote": false,
+        "hiddenFromPublishing": false,
+        "variableIds": [
+          "VariableID:1:1",
+          "VariableID:1:2",
+          "VariableID:1:3",
+          "VariableID:1:4",
+          "VariableID:1:5",
+          "VariableID:3:1",
+          "VariableID:3:2"
+        ]
+      },
+      "VariableCollectionId:2:1": {
+        "id": "VariableCollectionId:2:1",
+        "name": "Semantic Tokens",
+        "key": "semantic",
+        "modes": [
+          {
+            "modeId": "2:1",
+            "name": "Default"
+          }
+        ],
+        "defaultModeId": "2:1",
+        "remote": false,
+        "hiddenFromPublishing": false,
+        "variableIds": [
+          "VariableID:2:1",
+          "VariableID:2:2"
+        ]
+      }
+    }
+  },
+  "status": 200
+}
