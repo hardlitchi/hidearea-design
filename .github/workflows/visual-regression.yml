@@ -1,0 +1,92 @@
+name: Visual Regression Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  visual-tests:
+    name: Visual Regression Testing
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build packages
+        run: |
+          npm run build --workspace=@hidearea-design/tokens
+          npm run build --workspace=@hidearea-design/core
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run visual regression tests
+        run: npm run test --workspace=@hidearea-design/visual-tests
+        env:
+          CI: true
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-test-results
+          path: packages/visual-tests/test-results/
+          retention-days: 30
+
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-test-report
+          path: packages/visual-tests/test-results/html/
+          retention-days: 30
+
+      - name: Comment PR with results
+        if: github.event_name == 'pull_request' && failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const resultsPath = 'packages/visual-tests/test-results/results.json';
+
+            if (fs.existsSync(resultsPath)) {
+              const results = JSON.parse(fs.readFileSync(resultsPath, 'utf8'));
+              const failed = results.suites.reduce((acc, suite) => {
+                return acc + suite.specs.filter(spec => spec.tests.some(t => t.status === 'failed')).length;
+              }, 0);
+
+              const comment = `## ⚠️ Visual Regression Test Failed
+
+**${failed} test(s) failed**
+
+Visual differences were detected. Please review the test results:
+- Download the \`visual-test-report\` artifact to view detailed comparison screenshots
+- Check the \`visual-test-results\` artifact for full test output
+
+If these changes are intentional:
+1. Run \`npm run test:update --workspace=@hidearea-design/visual-tests\` locally
+2. Commit the updated snapshots
+3. Push the changes
+
+[View workflow run](${context.payload.repository.html_url}/actions/runs/${context.runId})`;
+
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            }
