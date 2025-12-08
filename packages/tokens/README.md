@@ -17,11 +17,12 @@ npm install @hidearea-design/tokens
 ### JavaScript/TypeScript
 
 ```javascript
-import { colors, spacing, font } from '@hidearea-design/tokens';
+
+import { colors, spacing, typography } from '@hidearea-design/tokens';
 
 console.log(colors.primary[500]); // #3B82F6
-console.log(spacing[4]); // 1rem
-console.log(font.size.base); // 1rem
+console.log(spacing.md); // 16px
+console.log(typography.fontSize.base); // 16px
 ```
 
 ### CSS
@@ -51,6 +52,23 @@ console.log(font.size.base); // 1rem
 @import '@hidearea-design/tokens/scss';
 
 .my-element {
+  color: $ha-color-primary-500;
+  padding: $ha-spacing-md;
+  font-size: $ha-font-size-base;
+}
+```
+
+## Available Tokens
+
+- **Colors**: Primary, secondary, neutral, semantic colors
+- **Typography**: Font sizes, weights, line heights
+- **Spacing**: Consistent spacing scale
+- **Borders**: Border widths, radii
+- **Shadows**: Box shadows for depth
+- **Breakpoints**: Responsive design breakpoints
+- **Z-Index**: Layering scale
+- **Animations**: Timing functions and durations
+
   color: $color-primary-500;
   padding: $spacing-4;
   font-size: $font-size-base;
@@ -125,9 +143,9 @@ npm run perf:report
 npm run perf
 ```
 
-See [PERFORMANCE.md](./PERFORMANCE.md) for detailed documentation.
+See [PERFORMANCE.md](./PERFORMANCE.md) for detailed documentation on performance monitoring, budgets, and best practices.
 
-## Performance
+## Performance Budgets
 
 Current bundle sizes (with semantic tokens):
 
