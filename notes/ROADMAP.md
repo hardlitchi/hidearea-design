@@ -141,11 +141,15 @@
   - ✅ story sorting: 論理的順序
   - ✅ 包括的ドキュメント（ADDONS.md、245行）
 
-- [ ] **Performance Monitoring**
-  - バンドルサイズ監視
-  - レンダリングパフォーマンス測定
-  - Core Web Vitals測定
-  - パフォーマンスバジェット設定
+- [x] **Performance Monitoring** ✅ (2025-12-08)
+  - ✅ バンドルサイズ監視（`measure-bundle-size.mjs`）
+  - ✅ パフォーマンスレポート自動生成（`generate-perf-report.mjs`）
+  - ✅ パフォーマンスバジェット設定（`.performance.config.mjs`）
+  - ✅ CI/CD統合（GitHub Actions - 自動測定、PR コメント）
+  - ✅ 履歴トラッキング（最大100ビルド）
+  - ✅ パフォーマンススコア（0-100評価）
+  - ✅ 包括的ドキュメント（PERFORMANCE.md、README.md）
+  - ✅ ゼロ外部依存（Node.js組み込みモジュールのみ）
 
 - [ ] **Design Tokens管理強化**
   - Figmaトークン連携
