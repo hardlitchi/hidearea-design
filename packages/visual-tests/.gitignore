@@ -1,0 +1,17 @@
+# Test results
+test-results/
+playwright-report/
+
+# Test artifacts
+*.png-actual.png
+*.png-diff.png
+
+# Playwright cache
+.cache/
+
+# Node modules
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
