@@ -12,6 +12,10 @@ const config: StorybookConfig = {
     name: getAbsolutePath("@storybook/web-components-vite"),
     options: {},
   },
+
+  docs: {
+    autodocs: "tag",
+  },
 };
 
 export default config;

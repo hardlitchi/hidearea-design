@@ -28,18 +28,23 @@ const withTheme: Decorator = (story, context) => {
 const preview: Preview = {
   decorators: [withTheme],
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    actions: { 
+      argTypesRegex: "^on[A-Z].*" 
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+      expanded: true,
+      sort: 'alpha',
     },
     backgrounds: {
       default: 'light',
       values: [
         { name: 'light', value: '#ffffff' },
         { name: 'dark', value: '#171717' },
+        { name: 'gray', value: '#f5f5f5' },
       ],
     },
     a11y: {
@@ -61,6 +66,26 @@ const preview: Preview = {
             id: 'link-name',
             enabled: true,
           },
+          {
+            id: 'aria-allowed-attr',
+            enabled: true,
+          },
+          {
+            id: 'aria-required-attr',
+            enabled: true,
+          },
+          {
+            id: 'aria-valid-attr-value',
+            enabled: true,
+          },
+          {
+            id: 'aria-valid-attr',
+            enabled: true,
+          },
+          {
+            id: 'tabindex',
+            enabled: true,
+          },
         ],
       },
       options: {
@@ -69,6 +94,7 @@ const preview: Preview = {
           values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'],
         },
       },
+      manual: false,
     },
     viewport: {
       viewports: {
@@ -78,6 +104,15 @@ const preview: Preview = {
             width: '375px',
             height: '667px',
           },
+          type: 'mobile',
+        },
+        mobileLandscape: {
+          name: 'Mobile Landscape',
+          styles: {
+            width: '667px',
+            height: '375px',
+          },
+          type: 'mobile',
         },
         tablet: {
           name: 'Tablet',
@@ -85,6 +120,15 @@ const preview: Preview = {
             width: '768px',
             height: '1024px',
           },
+          type: 'tablet',
+        },
+        tabletLandscape: {
+          name: 'Tablet Landscape',
+          styles: {
+            width: '1024px',
+            height: '768px',
+          },
+          type: 'tablet',
         },
         desktop: {
           name: 'Desktop',
@@ -92,6 +136,7 @@ const preview: Preview = {
             width: '1280px',
             height: '800px',
           },
+          type: 'desktop',
         },
         wide: {
           name: 'Wide Desktop',
@@ -99,9 +144,39 @@ const preview: Preview = {
             width: '1920px',
             height: '1080px',
           },
+          type: 'desktop',
+        },
+        ultrawide: {
+          name: 'Ultra Wide',
+          styles: {
+            width: '2560px',
+            height: '1440px',
+          },
+          type: 'desktop',
         },
       },
       defaultViewport: 'desktop',
+    },
+    docs: {
+      toc: {
+        contentsSelector: '.sbdocs-content',
+        headingSelector: 'h1, h2, h3',
+        ignoreSelector: '#primary',
+        title: 'Table of Contents',
+        disable: false,
+      },
+    },
+    options: {
+      storySort: {
+        order: [
+          'Introduction',
+          'Getting Started',
+          'Design Tokens',
+          'Components',
+          ['Form', 'Layout', 'Data Display', 'Feedback', 'Navigation', 'Utility'],
+          'Examples',
+        ],
+      },
     },
   },
   globalTypes: {
@@ -111,7 +186,11 @@ const preview: Preview = {
       toolbar: {
         title: 'Theme',
         icon: 'circlehollow',
-        items: ['light', 'dark', 'auto'],
+        items: [
+          { value: 'light', title: 'Light', icon: 'circlehollow' },
+          { value: 'dark', title: 'Dark', icon: 'circle' },
+          { value: 'auto', title: 'Auto', icon: 'sync' },
+        ],
         dynamicTitle: true,
       },
     },
