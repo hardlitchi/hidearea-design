@@ -16,22 +16,16 @@
       "import": "./dist/components/*.js"
     },
     "./metadata": {
-      "types": "./src/metadata-index.ts",
-      "import": "./src/metadata-index.js"
+      "types": "./dist/metadata-index.d.ts",
+      "import": "./dist/metadata-index.js"
     },
     "./types/metadata": {
-      "types": "./src/types/metadata.ts",
-      "import": "./src/types/metadata.js"
+      "types": "./dist/types/metadata.d.ts",
+      "import": "./dist/types/metadata.js"
     }
   },
   "files": [
-    "dist",
-    "src/metadata-index.ts",
-    "src/metadata-index.js",
-    "src/types/metadata.ts",
-    "src/types/metadata.js",
-    "src/components/*/metadata.ts",
-    "src/components/*/metadata.js"
+    "dist"
   ],
   "scripts": {
     "dev": "vite build --watch",
