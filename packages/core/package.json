@@ -14,19 +14,35 @@
     "./components/*": {
       "types": "./dist/components/*.d.ts",
       "import": "./dist/components/*.js"
+    },
+    "./metadata": {
+      "types": "./src/metadata-index.ts",
+      "import": "./src/metadata-index.js"
+    },
+    "./types/metadata": {
+      "types": "./src/types/metadata.ts",
+      "import": "./src/types/metadata.js"
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "src/metadata-index.ts",
+    "src/metadata-index.js",
+    "src/types/metadata.ts",
+    "src/types/metadata.js",
+    "src/components/*/metadata.ts",
+    "src/components/*/metadata.js"
   ],
   "scripts": {
     "dev": "vite build --watch",
+    "prebuild": "node scripts/collect-metadata.mjs",
     "build": "tsc && vite build",
     "test": "vitest run",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint src --ext .ts --ignore-pattern '**/*.test.ts' --ignore-pattern '**/*.spec.ts'",
-    "clean": "rm -rf dist node_modules"
+    "clean": "rm -rf dist node_modules",
+    "metadata": "node scripts/collect-metadata.mjs"
   },
   "keywords": [
     "web-components",
