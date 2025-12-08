@@ -19,10 +19,15 @@ Model Context Protocol (MCP) server for Hidearea Design System. Provides AI-powe
 - **suggest_semantic_tokens**: Get token recommendations for CSS properties
 - **convert_html_to_components**: Transform HTML to Hidearea components
 
-**Validation & Quality (Phase 1):** 🆕
+**Validation & Quality (Phase 1):**
 - **validate_component_usage**: Validate props, types, and required attributes
 - **get_accessibility_guidance**: Get ARIA roles, keyboard support, and WCAG guidelines
 - **check_token_compatibility**: Check color contrast and WCAG compliance
+
+**Developer Experience (Phase 2):** 🆕
+- **get_related_components**: Discover components commonly used together
+- **compare_components**: Compare 2-4 components to understand differences
+- **suggest_layout**: Get layout recommendations based on content description
 
 ## Installation
 
@@ -167,6 +172,43 @@ Check color contrast for accessibility:
 
 **Returns**: Contrast ratio estimates, WCAG AA/AAA compliance, and recommendations for improving accessibility.
 
+### get_related_components
+
+Find components commonly used together:
+
+```typescript
+{
+  "component": "Modal"
+}
+```
+
+**Returns**: Related components with reasons why they're commonly used together, plus category-based recommendations.
+
+### compare_components
+
+Compare components to understand differences:
+
+```typescript
+{
+  "components": ["Modal", "Drawer"]
+}
+```
+
+**Returns**: Side-by-side comparison with specific insights about when to use each component.
+
+### suggest_layout
+
+Get layout suggestions based on content:
+
+```typescript
+{
+  "content": "a grid of product cards with filters",
+  "constraints": "mobile-first"
+}
+```
+
+**Returns**: Recommended layout components with code examples and responsive considerations.
+
 ## Resources
 
 ### hidearea://components/list
@@ -225,6 +267,24 @@ Claude will use `get_accessibility_guidance` to provide WCAG guidelines and best
 > "Is color-neutral-100 on color-neutral-200 accessible?"
 
 Claude will use `check_token_compatibility` to verify WCAG compliance.
+
+### Finding Related Components
+
+> "What components work well with Modal?"
+
+Claude will use `get_related_components` to suggest Button, FormGroup, Input, and Alert.
+
+### Comparing Components
+
+> "What's the difference between Modal and Drawer?"
+
+Claude will use `compare_components` to explain use cases for each.
+
+### Getting Layout Suggestions
+
+> "I need to display a grid of product cards with filters, what layout should I use?"
+
+Claude will use `suggest_layout` to recommend Grid and Stack components with examples.
 
 ## Component Categories
 

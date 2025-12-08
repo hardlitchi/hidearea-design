@@ -298,6 +298,55 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           required: ["background", "foreground"],
         },
       },
+      {
+        name: "get_related_components",
+        description: "Get components that are commonly used together with a specific component",
+        inputSchema: {
+          type: "object",
+          properties: {
+            component: {
+              type: "string",
+              description: "Component name",
+            },
+          },
+          required: ["component"],
+        },
+      },
+      {
+        name: "compare_components",
+        description: "Compare two or more components to understand their differences and use cases",
+        inputSchema: {
+          type: "object",
+          properties: {
+            components: {
+              type: "array",
+              items: {
+                type: "string",
+              },
+              description: "Array of component names to compare (2-4 components)",
+            },
+          },
+          required: ["components"],
+        },
+      },
+      {
+        name: "suggest_layout",
+        description: "Suggest appropriate layout components based on content description",
+        inputSchema: {
+          type: "object",
+          properties: {
+            content: {
+              type: "string",
+              description: "Description of the content to be laid out",
+            },
+            constraints: {
+              type: "string",
+              description: "Optional: Any layout constraints (e.g., 'mobile-first', 'responsive')",
+            },
+          },
+          required: ["content"],
+        },
+      },
     ],
   };
 });
@@ -732,6 +781,303 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           {
             type: "text",
             text: JSON.stringify(contrastChecks, null, 2),
+          },
+        ],
+      };
+    }
+
+    case "get_related_components": {
+      const { component } = args as { component: string };
+      const comp = findComponentMetadata(component);
+
+      if (!comp) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(
+                {
+                  error: `Component '${component}' not found`,
+                },
+                null,
+                2
+              ),
+            },
+          ],
+        };
+      }
+
+      // Define common component relationships
+      const relationships: Record<string, { related: string[]; reason: string }[]> = {
+        Modal: [
+          { related: ["Button"], reason: "For action buttons in modal footer" },
+          { related: ["FormGroup", "Input"], reason: "For forms within modals" },
+          { related: ["Alert"], reason: "For displaying warnings or errors" },
+        ],
+        Drawer: [
+          { related: ["Button"], reason: "For trigger and action buttons" },
+          { related: ["List", "Menu"], reason: "Common content for navigation drawers" },
+        ],
+        Form: [
+          { related: ["FormGroup"], reason: "For organizing form fields" },
+          { related: ["Input", "Select", "Textarea", "Checkbox", "Radio"], reason: "Form input controls" },
+          { related: ["Button"], reason: "For submit and cancel actions" },
+          { related: ["Alert"], reason: "For form-level error messages" },
+        ],
+        Table: [
+          { related: ["Pagination"], reason: "For paginating table data" },
+          { related: ["Badge"], reason: "For status indicators in cells" },
+          { related: ["Button"], reason: "For row actions" },
+          { related: ["Checkbox"], reason: "For row selection" },
+        ],
+        Card: [
+          { related: ["Button"], reason: "For card actions" },
+          { related: ["Badge"], reason: "For status or category indicators" },
+          { related: ["Avatar"], reason: "For user or entity representation" },
+        ],
+        DataGrid: [
+          { related: ["Pagination"], reason: "For navigating large datasets" },
+          { related: ["Select", "Input"], reason: "For filtering data" },
+          { related: ["Button"], reason: "For bulk actions" },
+        ],
+      };
+
+      // Get category-based recommendations
+      const categoryRelated: string[] = [];
+      if (comp.category === "Form Controls") {
+        categoryRelated.push("FormGroup", "Button", "Alert");
+      } else if (comp.category === "Overlay") {
+        categoryRelated.push("Button");
+      } else if (comp.category === "Data Display") {
+        categoryRelated.push("Pagination", "Badge", "Spinner");
+      }
+
+      const specific = relationships[comp.name] || [];
+      const result = {
+        component: comp.name,
+        category: comp.category,
+        relatedComponents: specific,
+        categoryRecommendations: categoryRelated.filter(
+          (c) => !specific.some((s) => s.related.includes(c))
+        ),
+      };
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(result, null, 2),
+          },
+        ],
+      };
+    }
+
+    case "compare_components": {
+      const { components } = args as { components: string[] };
+
+      if (components.length < 2) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(
+                {
+                  error: "At least 2 components are required for comparison",
+                },
+                null,
+                2
+              ),
+            },
+          ],
+        };
+      }
+
+      const componentData = components.map((name) => {
+        const comp = findComponentMetadata(name);
+        if (!comp) {
+          return { name, found: false };
+        }
+        return {
+          name: comp.name,
+          tagName: comp.tagName,
+          category: comp.category,
+          description: comp.description,
+          propsCount: comp.props.length,
+          eventsCount: comp.events.length,
+          slotsCount: comp.slots?.length || 0,
+          found: true,
+        };
+      });
+
+      const notFound = componentData.filter((c) => !c.found);
+      if (notFound.length > 0) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(
+                {
+                  error: `Components not found: ${notFound.map((c) => c.name).join(", ")}`,
+                },
+                null,
+                2
+              ),
+            },
+          ],
+        };
+      }
+
+      // Add specific comparisons for common pairs
+      const insights: string[] = [];
+      const componentNames = components.map((c) => c.toLowerCase());
+
+      if (componentNames.includes("modal") && componentNames.includes("drawer")) {
+        insights.push(
+          "Modal: Center-screen overlay, blocks interaction with page, best for critical decisions",
+          "Drawer: Side panel, can allow page interaction, best for navigation or secondary content"
+        );
+      }
+
+      if (componentNames.includes("button") && componentNames.includes("link")) {
+        insights.push(
+          "Button: For actions (submit, save, delete), triggers JavaScript events",
+          "Link: For navigation, changes URL, semantic <a> tag"
+        );
+      }
+
+      if (componentNames.includes("select") && componentNames.includes("radio")) {
+        insights.push(
+          "Select: Compact, good for 5+ options, hides options until opened",
+          "Radio: Shows all options, better for 2-5 options, easier to scan"
+        );
+      }
+
+      if (componentNames.includes("checkbox") && componentNames.includes("switch")) {
+        insights.push(
+          "Checkbox: For selecting items from a list, multiple selections",
+          "Switch: For on/off states, immediate effect, single toggle"
+        );
+      }
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(
+              {
+                components: componentData,
+                insights: insights.length > 0 ? insights : ["No specific insights for this combination"],
+                recommendation: "Choose based on user context and interaction patterns",
+              },
+              null,
+              2
+            ),
+          },
+        ],
+      };
+    }
+
+    case "suggest_layout": {
+      const { content, constraints } = args as { content: string; constraints?: string };
+
+      const suggestions: any = {
+        content,
+        constraints: constraints || "none specified",
+        recommendations: [],
+      };
+
+      const lowerContent = content.toLowerCase();
+
+      // Detect layout patterns
+      if (lowerContent.includes("grid") || lowerContent.includes("cards") || lowerContent.includes("gallery")) {
+        suggestions.recommendations.push({
+          component: "Grid",
+          reason: "Perfect for card layouts and responsive galleries",
+          example: `<ha-grid columns="3" gap="md">
+  <ha-card>Item 1</ha-card>
+  <ha-card>Item 2</ha-card>
+  <ha-card>Item 3</ha-card>
+</ha-grid>`,
+        });
+      }
+
+      if (lowerContent.includes("list") || lowerContent.includes("items") || lowerContent.includes("menu")) {
+        suggestions.recommendations.push({
+          component: "Stack",
+          reason: "Ideal for vertical lists with consistent spacing",
+          example: `<ha-stack direction="vertical" gap="sm">
+  <ha-list-item>Item 1</ha-list-item>
+  <ha-list-item>Item 2</ha-list-item>
+</ha-stack>`,
+        });
+      }
+
+      if (lowerContent.includes("form") || lowerContent.includes("input")) {
+        suggestions.recommendations.push({
+          component: "Stack + FormGroup",
+          reason: "Forms need vertical stacking with proper field grouping",
+          example: `<ha-stack direction="vertical" gap="md">
+  <ha-form-group label="Name" required>
+    <ha-input></ha-input>
+  </ha-form-group>
+  <ha-form-group label="Email">
+    <ha-input type="email"></ha-input>
+  </ha-form-group>
+</ha-stack>`,
+        });
+      }
+
+      if (lowerContent.includes("sidebar") || lowerContent.includes("main content")) {
+        suggestions.recommendations.push({
+          component: "Container + Grid",
+          reason: "Two-column layout with sidebar and main content area",
+          example: `<ha-container>
+  <ha-grid columns="2" gap="lg">
+    <aside>Sidebar content</aside>
+    <main>Main content</main>
+  </ha-grid>
+</ha-container>`,
+        });
+      }
+
+      if (lowerContent.includes("header") || lowerContent.includes("footer") || lowerContent.includes("center")) {
+        suggestions.recommendations.push({
+          component: "Container",
+          reason: "Centers content and constrains maximum width",
+          example: `<ha-container max-width="lg">
+  <header>Header content</header>
+  <main>Main content</main>
+  <footer>Footer content</footer>
+</ha-container>`,
+        });
+      }
+
+      if (suggestions.recommendations.length === 0) {
+        suggestions.recommendations.push({
+          component: "Container + Stack",
+          reason: "General-purpose layout for most content",
+          example: `<ha-container>
+  <ha-stack direction="vertical" gap="lg">
+    <!-- Your content here -->
+  </ha-stack>
+</ha-container>`,
+        });
+      }
+
+      // Add responsive considerations if mentioned
+      if (constraints?.includes("mobile") || constraints?.includes("responsive")) {
+        suggestions.responsiveNotes = [
+          "Use Grid with responsive column counts: :columns=\"{ sm: 1, md: 2, lg: 3 }\"",
+          "Stack direction can be changed based on screen size",
+          "Container automatically adapts to viewport width",
+        ];
+      }
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(suggestions, null, 2),
           },
         ],
       };
