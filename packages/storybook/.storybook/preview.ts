@@ -157,15 +157,17 @@ const preview: Preview = {
       },
       defaultViewport: 'desktop',
     },
-    docs: {
-      toc: {
-        contentsSelector: '.sbdocs-content',
-        headingSelector: 'h1, h2, h3',
-        ignoreSelector: '#primary',
-        title: 'Table of Contents',
-        disable: false,
-      },
-    },
+    // Note: Docs configuration disabled for Web Components compatibility
+    // Web Components don't have full autodocs support in Storybook 10
+    // docs: {
+    //   toc: {
+    //     contentsSelector: '.sbdocs-content',
+    //     headingSelector: 'h1, h2, h3',
+    //     ignoreSelector: '#primary',
+    //     title: 'Table of Contents',
+    //     disable: false,
+    //   },
+    // },
     options: {
       storySort: {
         order: [

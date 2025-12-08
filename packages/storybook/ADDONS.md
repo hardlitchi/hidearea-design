@@ -177,68 +177,78 @@ export const Button: Story = {
 
 ---
 
-### 4. **Docs Addon** ✅
+### 4. **Docs Addon** ⚠️
 
 **Built-in**: Storybook Core (part of essentials)  
-**Purpose**: Automatic documentation generation
+**Purpose**: Automatic documentation generation  
+**Status**: Limited support for Web Components in Storybook 10
 
-#### Features
+#### Important Note
 
-- ✅ **Auto-Generated Docs**: MDX-based documentation
-- ✅ **Table of Contents**: Automatic TOC generation
-- ✅ **Props Table**: Auto-documented component API
-- ✅ **Interactive Examples**: Live code examples
+The autodocs feature is **not fully supported** for Web Components in Storybook 10.1.2. The automatic documentation generation can cause rendering errors:
+
+```
+TypeError: i.renderer is not a function
+```
+
+**Current Status:**
+- ❌ Autodocs disabled to prevent errors
+- ✅ Manual MDX documentation works
+- ✅ Story examples still displayed
+- ⏳ Waiting for full Web Components support
 
 #### Configuration
 
 ```typescript
-docs: {
-  autodocs: "tag",  // Generate docs for tagged stories
-  toc: {
-    contentsSelector: '.sbdocs-content',
-    headingSelector: 'h1, h2, h3',
-    title: 'Table of Contents',
-    disable: false,
-  },
-}
+// Currently disabled in main.ts
+// docs: {
+//   autodocs: "tag",  // Not supported for Web Components yet
+// },
 ```
 
-#### Usage
+#### Workaround: Manual MDX Documentation
 
-1. Add `tags: ['autodocs']` to your story:
-
-```typescript
-const meta: Meta<typeof HaButton> = {
-  title: 'Components/Button',
-  component: HaButton,
-  tags: ['autodocs'],  // Enable auto-docs
-};
-```
-
-2. Storybook automatically generates:
-   - Component description
-   - Props table with types
-   - All story examples
-   - Table of contents
-
-3. Customize docs with MDX:
+Create custom `.mdx` files for component documentation:
 
 ```mdx
 import { Meta, Story, Canvas } from '@storybook/blocks';
+import * as ButtonStories from './button.stories';
 
-<Meta title="Components/Button" />
+<Meta of={ButtonStories} />
 
 # Button Component
 
-The Button component provides...
+The Button component provides interactive elements for user actions.
 
-<Canvas>
-  <Story id="components-button--primary" />
-</Canvas>
+## Examples
+
+### Primary Button
+
+<Canvas of={ButtonStories.Primary} />
+
+### Sizes
+
+<Canvas of={ButtonStories.Small} />
+<Canvas of={ButtonStories.Medium} />
+<Canvas of={ButtonStories.Large} />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | string | 'primary' | Button style variant |
+| size | string | 'md' | Button size |
+| disabled | boolean | false | Disabled state |
 ```
 
----
+#### Future Enhancement
 
+Once Storybook improves Web Components support, we can re-enable:
+- Automatic props table generation
+- Auto-generated documentation
+- Table of contents
+
+---
 ### 5. **Actions Addon** ✅
 
 **Built-in**: Storybook Core (part of essentials)  

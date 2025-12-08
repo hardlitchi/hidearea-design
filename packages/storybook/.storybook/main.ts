@@ -13,9 +13,11 @@ const config: StorybookConfig = {
     options: {},
   },
 
-  docs: {
-    autodocs: "tag",
-  },
+  // Note: autodocs is not fully supported for Web Components in Storybook 10
+  // Keeping it disabled to prevent renderer errors
+  // docs: {
+  //   autodocs: "tag",
+  // },
 };
 
 export default config;
