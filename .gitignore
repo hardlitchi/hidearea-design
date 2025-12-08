@@ -90,3 +90,8 @@ chromatic-build/
 
 # Performance monitoring reports (exclude from git but keep in CI artifacts)
 .performance/
+
+# Figma token synchronization
+.figma-backups/
+packages/tokens/src/figma-sync/
+.figma-token-mapping.json.backup
