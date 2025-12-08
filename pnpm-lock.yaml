@@ -8,6 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@hidearea-design/core':
+        specifier: link:packages/core
+        version: link:packages/core
+      '@hidearea-design/mcp-server':
+        specifier: link:packages/mcp-server
+        version: link:packages/mcp-server
+      '@hidearea-design/tokens':
+        specifier: link:packages/tokens
+        version: link:packages/tokens
       '@playwright/test':
         specifier: ^1.57.0
         version: 1.57.0

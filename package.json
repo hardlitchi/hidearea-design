@@ -45,6 +45,9 @@
   },
   "packageManager": "pnpm@10.24.0",
   "dependencies": {
+    "@hidearea-design/core": "link:packages/core",
+    "@hidearea-design/mcp-server": "link:packages/mcp-server",
+    "@hidearea-design/tokens": "link:packages/tokens",
     "@playwright/test": "^1.57.0"
   }
 }
