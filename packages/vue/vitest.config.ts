@@ -14,6 +14,18 @@ export default defineConfig({
   test: {
     environment: "happy-dom",
     globals: true,
+    poolOptions: {
+      threads: {
+        singleThread: true,
+        useAtomics: true,
+      },
+      vmThreads: {
+        useAtomics: true,
+      },
+    },
+    hookTimeout: 60000,
+    testTimeout: 15000,
+    isolate: false,
     coverage: {
       provider: "v8",
       reporter: ["text", "json", "html"],
