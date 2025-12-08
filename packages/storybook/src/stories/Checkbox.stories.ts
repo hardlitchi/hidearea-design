@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
+import { ref, createRef, Ref } from "lit/directives/ref.js";
 import "@hidearea-design/core";
 
 interface CheckboxArgs {
@@ -67,23 +68,34 @@ export const Default: Story = {
     label: "Accept terms and conditions",
     description: "",
   },
-  render: (args, { updateArgs }) => html`
-    <ha-checkbox
-      size="${args.size}"
-      ?checked="${args.checked}"
-      ?indeterminate="${args.indeterminate}"
-      ?disabled="${args.disabled}"
-      ?required="${args.required}"
-      ?error="${args.error}"
-      label="${args.label}"
-      description="${args.description}"
-      @change="${(e: CustomEvent) => {
-        console.log("Change:", e.detail.checked);
-        updateArgs({ checked: e.detail.checked, indeterminate: false });
-      }}"
-    >
-    </ha-checkbox>
-  `,
+  render: (args, { updateArgs }) => {
+    const checkboxRef: Ref<any> = createRef();
+
+    // Update properties when args change
+    setTimeout(() => {
+      if (checkboxRef.value) {
+        checkboxRef.value.checked = args.checked;
+        checkboxRef.value.indeterminate = args.indeterminate;
+      }
+    }, 0);
+
+    return html`
+      <ha-checkbox
+        ${ref(checkboxRef)}
+        size="${args.size}"
+        ?disabled="${args.disabled}"
+        ?required="${args.required}"
+        ?error="${args.error}"
+        label="${args.label}"
+        description="${args.description}"
+        @change="${(e: CustomEvent) => {
+          console.log("Change:", e.detail.checked);
+          updateArgs({ checked: e.detail.checked, indeterminate: false });
+        }}"
+      >
+      </ha-checkbox>
+    `;
+  },
 };
 
 export const Checked: Story = {
