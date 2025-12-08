@@ -597,42 +597,53 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     case "convert_html_to_components": {
       const { html } = args as { html: string };
 
-      // Simple conversion rules
       let converted = html;
+      const conversions: string[] = [];
 
-      // Convert buttons
-      converted = converted.replace(
-        /<button([^>]*)>(.*?)<\/button>/gi,
-        (_match, attrs, content) => {
-          const className = attrs.match(/class="([^"]*)"/)?.[1] || "";
-          let variant = "primary";
-
-          if (className.includes("secondary")) variant = "secondary";
-          if (className.includes("outline")) variant = "outline";
-          if (className.includes("ghost")) variant = "ghost";
-
-          return `<ha-button variant="${variant}">${content}</ha-button>`;
+      // Helper function to parse HTML attributes
+      const parseAttributes = (attrString: string): Record<string, string> => {
+        const attrs: Record<string, string> = {};
+        const attrRegex = /(\w+)(?:="([^"]*)")?/g;
+        let match;
+        while ((match = attrRegex.exec(attrString)) !== null) {
+          attrs[match[1]] = match[2] || '';
         }
-      );
+        return attrs;
+      };
 
-      // Convert inputs
-      converted = converted.replace(
-        /<input([^>]*)>/gi,
-        (_match, attrs) => {
-          const type = attrs.match(/type="([^"]*)"/)?.[1] || "text";
-          const placeholder = attrs.match(/placeholder="([^"]*)"/)?.[1] || "";
+      // Get all components with converters
+      const componentsWithConverters = ALL_COMPONENT_METADATA.filter((c: ComponentMetadata) => c.htmlConverter);
 
-          return `<ha-input type="${type}" placeholder="${placeholder}"></ha-input>`;
+      // Build conversion patterns for each component
+      for (const comp of componentsWithConverters) {
+        if (!comp.htmlConverter) continue;
+
+        for (const pattern of comp.htmlConverter.patterns) {
+          // Create regex based on pattern
+          let regex: RegExp;
+
+          if (pattern.startsWith('<button')) {
+            regex = /<button([^>]*)>(.*?)<\/button>/gis;
+          } else if (pattern.startsWith('<input type="button"')) {
+            regex = /<input([^>]*type="button"[^>]*)>/gi;
+          } else if (pattern.startsWith('<input type="submit"')) {
+            regex = /<input([^>]*type="submit"[^>]*)>/gi;
+          } else if (pattern.startsWith('<input')) {
+            regex = /<input([^>]*)>/gi;
+          } else if (pattern.includes('card')) {
+            regex = /<(?:div|article)([^>]*class="[^"]*card[^"]*"[^>]*)>(.*?)<\/(?:div|article)>/gis;
+          } else {
+            continue;
+          }
+
+          converted = converted.replace(regex, (match, attrs, content = '') => {
+            const attributes = parseAttributes(attrs);
+            const result = comp.htmlConverter!.convert(match, attributes, content);
+            conversions.push(`${comp.name}: ${match.substring(0, 50)}...`);
+            return result;
+          });
         }
-      );
-
-      // Convert divs with card classes
-      converted = converted.replace(
-        /<div class="card"([^>]*)>(.*?)<\/div>/gis,
-        (_match, _attrs, content) => {
-          return `<ha-card>${content}</ha-card>`;
-        }
-      );
+      }
 
       return {
         content: [
@@ -642,7 +653,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
               {
                 original: html,
                 converted,
-                note: "Conversion is basic. Manual adjustments may be needed for complex cases.",
+                conversions: conversions.length,
+                componentsUsed: [...new Set(conversions.map(c => c.split(':')[0]))],
+                note: "Converted using component-specific converters. Manual adjustments may be needed for complex cases.",
               },
               null,
               2
