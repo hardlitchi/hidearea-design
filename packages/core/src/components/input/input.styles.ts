@@ -183,4 +183,46 @@ export const inputStyles = `
     content: ' *';
     color: var(--error-default);
   }
+
+  /* Touch device optimization */
+  @media (pointer: coarse) {
+    /* Ensure comfortable touch target size */
+    .input-wrapper {
+      min-height: var(--touch-target-minimum, 44px);
+    }
+
+    :host([size="sm"]) .input-wrapper {
+      min-height: var(--touch-target-minimum, 44px);
+      padding: var(--spacing-2, 0.5rem) var(--spacing-3, 0.75rem);
+    }
+
+    :host([size="md"]) .input-wrapper,
+    .input-wrapper {
+      min-height: var(--touch-target-comfortable, 48px);
+    }
+
+    :host([size="lg"]) .input-wrapper {
+      min-height: var(--touch-target-large, 56px);
+    }
+
+    /* Increase font size to prevent auto-zoom on iOS */
+    input {
+      font-size: max(16px, var(--font-size-base, 1rem));
+    }
+  }
+
+  /* Hover effects only for devices that support hover */
+  @media (hover: none) {
+    :host([variant="default"]) .input-wrapper:has(input:hover:not(:disabled):not(:focus)),
+    :host([variant="filled"]) .input-wrapper:has(input:hover:not(:disabled):not(:focus)),
+    :host([variant="outlined"]) .input-wrapper:has(input:hover:not(:disabled):not(:focus)) {
+      /* Remove hover styles on touch devices */
+      border-color: var(--border-default);
+      background-color: var(--background-primary);
+    }
+
+    :host([variant="filled"]) .input-wrapper:has(input:hover:not(:disabled):not(:focus)) {
+      background-color: var(--background-secondary);
+    }
+  }
 `;

@@ -209,4 +209,55 @@ export const buttonStyles = `
       animation: none;
     }
   }
+
+  /* Touch device optimization */
+  @media (pointer: coarse) {
+    /* Ensure minimum touch target size (WCAG 2.1 AA) */
+    button {
+      min-height: var(--touch-target-minimum, 44px);
+      min-width: var(--touch-target-minimum, 44px);
+    }
+
+    :host([size="sm"]) button {
+      min-height: var(--touch-target-minimum, 44px);
+      padding: var(--spacing-2, 0.5rem) var(--spacing-4, 1rem);
+    }
+
+    :host([size="md"]) button,
+    button {
+      min-height: var(--touch-target-comfortable, 48px);
+    }
+
+    :host([size="lg"]) button {
+      min-height: var(--touch-target-large, 56px);
+    }
+
+    /* Remove active transform on touch (causes flicker) */
+    button:active:not(:disabled) {
+      transform: none;
+    }
+  }
+
+  /* Hover effects only for devices that support hover */
+  @media (hover: none) {
+    :host([variant="primary"]) button:hover:not(:disabled),
+    :host([variant="secondary"]) button:hover:not(:disabled),
+    :host([variant="danger"]) button:hover:not(:disabled) {
+      /* Revert to default state */
+      background-color: var(--primary-default);
+    }
+
+    :host([variant="secondary"]) button:hover:not(:disabled) {
+      background-color: var(--secondary-default);
+    }
+
+    :host([variant="danger"]) button:hover:not(:disabled) {
+      background-color: var(--error-default);
+    }
+
+    :host([variant="outline"]) button:hover:not(:disabled),
+    :host([variant="ghost"]) button:hover:not(:disabled) {
+      background-color: transparent;
+    }
+  }
 `;

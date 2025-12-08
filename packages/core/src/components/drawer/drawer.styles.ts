@@ -175,4 +175,114 @@ export const drawerStyles = `
       transition: none;
     }
   }
+
+  /* Touch device optimization */
+  @media (pointer: coarse) {
+    /* Fullscreen on small touch devices for better UX */
+    .drawer--placement-left,
+    .drawer--placement-right {
+      width: 100%;
+      max-width: 100vw;
+    }
+
+    .drawer--placement-top,
+    .drawer--placement-bottom {
+      height: 100%;
+      max-height: 100vh;
+    }
+
+    /* Increase padding for touch comfort */
+    .drawer__header,
+    .drawer__body,
+    .drawer__footer {
+      padding: var(--spacing-4, 1rem);
+    }
+
+    /* Ensure close button meets touch target size */
+    .drawer__close {
+      min-width: var(--touch-target-minimum, 44px);
+      min-height: var(--touch-target-minimum, 44px);
+      padding: var(--spacing-2, 0.5rem);
+    }
+
+    /* Use swipe-friendly gesture area */
+    .drawer__header {
+      position: relative;
+    }
+
+    .drawer__header::before {
+      content: '';
+      position: absolute;
+      top: var(--spacing-2, 0.5rem);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 4px;
+      background-color: var(--color-neutral-400);
+      border-radius: var(--border-radius-full, 9999px);
+      opacity: 0.5;
+    }
+
+    /* Bottom drawer shows handle */
+    .drawer--placement-bottom .drawer__header::before {
+      top: var(--spacing-2, 0.5rem);
+    }
+
+    /* Top drawer shows handle */
+    .drawer--placement-top .drawer__header::before {
+      top: auto;
+      bottom: var(--spacing-2, 0.5rem);
+    }
+
+    /* Left/Right drawers hide handle on touch */
+    .drawer--placement-left .drawer__header::before,
+    .drawer--placement-right .drawer__header::before {
+      display: none;
+    }
+  }
+
+  /* Hover effects only for devices that support hover */
+  @media (hover: none) {
+    .drawer__close:hover {
+      color: var(--color-neutral-600);
+    }
+  }
+
+  /* Larger screens - restore drawer layout */
+  @media (pointer: coarse) and (min-width: 768px) {
+    .drawer--placement-left.drawer--size-sm,
+    .drawer--placement-right.drawer--size-sm {
+      width: var(--drawer-width-sm);
+    }
+
+    .drawer--placement-left.drawer--size-md,
+    .drawer--placement-right.drawer--size-md {
+      width: var(--drawer-width-md);
+    }
+
+    .drawer--placement-left.drawer--size-lg,
+    .drawer--placement-right.drawer--size-lg {
+      width: var(--drawer-width-lg);
+    }
+
+    .drawer--placement-top.drawer--size-sm,
+    .drawer--placement-bottom.drawer--size-sm {
+      height: var(--drawer-height-sm);
+    }
+
+    .drawer--placement-top.drawer--size-md,
+    .drawer--placement-bottom.drawer--size-md {
+      height: var(--drawer-height-md);
+    }
+
+    .drawer--placement-top.drawer--size-lg,
+    .drawer--placement-bottom.drawer--size-lg {
+      height: var(--drawer-height-lg);
+    }
+
+    /* Hide swipe handle on larger screens */
+    .drawer__header::before {
+      display: none;
+    }
+  }
 `;
