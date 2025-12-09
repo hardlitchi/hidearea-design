@@ -15,6 +15,24 @@ export interface ComponentMetadata {
   examples: ComponentExample[];
   accessibility: AccessibilityInfo;
   tokens: TokenUsage;
+  htmlConverter?: HTMLConverter;
+}
+
+export interface HTMLConverter {
+  /**
+   * HTML patterns this converter can handle
+   * Examples: ['<button', '<input type="button"']
+   */
+  patterns: string[];
+
+  /**
+   * Convert HTML to Hidearea component
+   * @param match - The matched HTML string
+   * @param attributes - Parsed HTML attributes
+   * @param content - Inner HTML content
+   * @returns Converted component HTML
+   */
+  convert: (match: string, attributes: Record<string, string>, content: string) => string;
 }
 
 export interface ComponentProp {

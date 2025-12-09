@@ -51,4 +51,21 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize'],
     other: ['border-radius-md', 'interaction-transition-fast-duration'],
   },
+  htmlConverter: {
+    patterns: ['<input'],
+    convert: (_match: string, attributes: Record<string, string>, _content: string) => {
+      // Extract relevant attributes
+      const type = attributes.type && attributes.type !== 'button' && attributes.type !== 'submit'
+        ? ` type="${attributes.type}"`
+        : '';
+      const placeholder = attributes.placeholder ? ` placeholder="${attributes.placeholder}"` : '';
+      const value = attributes.value ? ` value="${attributes.value}"` : '';
+      const disabled = attributes.disabled !== undefined ? ' disabled' : '';
+      const required = attributes.required !== undefined ? ' required' : '';
+      const readonly = attributes.readonly !== undefined ? ' readonly' : '';
+      const name = attributes.name ? ` name="${attributes.name}"` : '';
+
+      return `<ha-input${type}${placeholder}${value}${disabled}${required}${readonly}${name}></ha-input>`;
+    },
+  },
 };
