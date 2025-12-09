@@ -169,52 +169,149 @@ function CheckboxGroup() {
 
 ## アクセシビリティ
 
+Checkboxコンポーネントは、WCAG 2.1 AAに準拠し、フォーム入力のアクセシビリティ要件を満たしています。
+
 ### ARIAサポート
 
-`<ha-checkbox>` コンポーネントは、WCAG 2.1 AA基準に準拠したアクセシビリティ機能を提供します。
+Checkboxコンポーネントは自動的にARIA属性を適用します：
 
-- **role**: `checkbox` （自動設定）
-- **aria-checked**: チェック状態を表します
-  - `true`: チェック済み
-  - `false`: 未チェック
-  - `mixed`: 不確定状態（indeterminate）
-- **aria-disabled**: `disabled` 属性が設定されている場合、自動的に `true` に設定
-- **aria-required**: `required` 属性が設定されている場合、自動的に `true` に設定
-- **aria-labelledby**: ラベルとの関連付けを自動管理
+| ARIA属性 | 要素 | 説明 |
+|---------|------|------|
+| `role="checkbox"` | checkbox要素 | チェックボックスであることを示す |
+| `aria-checked="true"` | checkbox要素 | チェック済み状態 |
+| `aria-checked="false"` | checkbox要素 | 未チェック状態 |
+| `aria-checked="mixed"` | checkbox要素 | 不確定状態（indeterminate） |
+| `aria-label` | checkbox要素 | ラベルテキスト（スロットがない場合） |
+| `aria-labelledby` | checkbox要素 | 関連するlabel要素のIDを参照 |
+| `aria-describedby` | checkbox要素 | ヘルパーテキストのIDを参照 |
+| `aria-required="true"` | checkbox要素 | `required`属性が設定されている場合 |
+| `aria-disabled="true"` | checkbox要素 | `disabled`属性が設定されている場合 |
 
-### キーボード操作
+### キーボードナビゲーション
 
-| キー | アクション |
-|------|----------|
-| `Tab` | フォーカス移動 |
-| `Space` | チェック状態をトグル |
-| `Shift + Tab` | 逆方向にフォーカス移動 |
+| キー | 動作 |
+|-----|------|
+| `Tab` | 次のフォーカス可能要素へ移動 |
+| `Shift + Tab` | 前のフォーカス可能要素へ移動 |
+| `Space` | チェック状態をトグル（checked ⇔ unchecked） |
 
-### スクリーンリーダー
+### スクリーンリーダーの対応
 
-`<ha-checkbox>` は主要なスクリーンリーダー（NVDA、JAWS、VoiceOver）で適切に読み上げられます：
+Checkboxコンポーネントは主要なスクリーンリーダー（NVDA、JAWS、VoiceOver）で適切に読み上げられます。
 
-- チェック状態（チェック済み/未チェック/不確定）
-- ラベルテキスト
-- 無効状態
-- 必須フィールド
+#### 読み上げ例
+
+**未チェック状態**:
+```
+「利用規約に同意する、チェックボックス、オフ」
+（"Agree to terms of service, checkbox, not checked"）
+```
+
+**チェック済み状態**:
+```
+「利用規約に同意する、チェックボックス、オン」
+（"Agree to terms of service, checkbox, checked"）
+```
+
+**不確定状態（indeterminate）**:
+```
+「全て選択、チェックボックス、混合」
+（"Select all, checkbox, mixed"）
+```
+
+**必須フィールド**:
+```
+「利用規約に同意する、必須、チェックボックス、オフ」
+（"Agree to terms of service, required, checkbox, not checked"）
+```
+
+**無効状態**:
+```
+「利用規約に同意する、使用不可、チェックボックス、オフ」
+（"Agree to terms of service, unavailable, checkbox, not checked"）
+```
+
+**グループ内のチェックボックス**:
+```
+「通知設定、グループ」
+「メール通知を受け取る、チェックボックス、オフ、1個目、3個中」
+「SMS通知を受け取る、チェックボックス、オン、2個目、3個中」
+「プッシュ通知を受け取る、チェックボックス、オフ、3個目、3個中」
+（"Notification settings, group"）
+（"Receive email notifications, checkbox, not checked, 1 of 3"）
+（"Receive SMS notifications, checkbox, checked, 2 of 3"）
+（"Receive push notifications, checkbox, not checked, 3 of 3"）
+```
+
+### フォーカス管理
+
+```css
+/* フォーカスインジケーター */
+ha-checkbox:focus-within {
+  outline: 2px solid var(--state-focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* ハイコントラストモード対応 */
+@media (prefers-contrast: high) {
+  ha-checkbox:focus-within {
+    outline-width: 3px;
+  }
+}
+
+/* 強制カラーモード対応 */
+@media (forced-colors: active) {
+  ha-checkbox:focus-within {
+    outline-color: Highlight;
+  }
+}
+```
 
 ### フォームラベルの関連付け
 
 ```html
-<!-- Good ✓: スロットでラベルを提供 -->
+<!-- ✓ Good: スロットでラベルを提供 -->
 <ha-checkbox name="terms">
   利用規約に同意する
 </ha-checkbox>
 
-<!-- Good ✓: aria-label で明示的にラベル -->
+<!-- ✓ Good: aria-label で明示的にラベル -->
 <ha-checkbox name="newsletter" aria-label="ニュースレターを購読する"></ha-checkbox>
 
-<!-- Good ✓: ha-form-group と組み合わせ -->
+<!-- ✓ Good: ha-form-group と組み合わせ -->
 <ha-form-group label="設定">
   <ha-checkbox name="notifications">通知を受け取る</ha-checkbox>
   <ha-checkbox name="marketing">マーケティングメールを受け取る</ha-checkbox>
 </ha-form-group>
+
+<!-- ✗ Bad: ラベルなし -->
+<ha-checkbox name="agree"></ha-checkbox>
+```
+
+### エラー状態のアクセシビリティ
+
+```html
+<ha-form-group
+  label="利用規約"
+  helper-text="続行するには同意が必要です"
+  error
+  required
+>
+  <ha-checkbox
+    name="terms"
+    required
+    aria-invalid="true"
+    aria-describedby="terms-error"
+  >
+    利用規約に同意する
+  </ha-checkbox>
+</ha-form-group>
+```
+
+**スクリーンリーダー読み上げ**:
+```
+「利用規約、必須、チェックボックス、オフ、無効な入力、続行するには同意が必要です」
+（"Terms of service, required, checkbox, not checked, invalid entry, Agreement is required to continue"）
 ```
 
 ## スタイルのカスタマイズ
