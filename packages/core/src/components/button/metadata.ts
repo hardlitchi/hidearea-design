@@ -117,4 +117,30 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize', 'font-weight-medium'],
     other: ['border-radius-md', 'interaction-transition-fast-duration'],
   },
+  htmlConverter: {
+    patterns: ['<button', '<input type="button"', '<input type="submit"'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      // Determine variant from class names
+      const className = attributes.class || '';
+      let variant = 'primary';
+
+      if (className.includes('secondary')) variant = 'secondary';
+      else if (className.includes('outline')) variant = 'outline';
+      else if (className.includes('ghost')) variant = 'ghost';
+      else if (className.includes('danger')) variant = 'danger';
+
+      // Determine size from class names
+      let size = '';
+      if (className.includes('small') || className.includes('sm')) size = ' size="small"';
+      else if (className.includes('large') || className.includes('lg')) size = ' size="large"';
+
+      // Handle disabled state
+      const disabled = attributes.disabled !== undefined ? ' disabled' : '';
+
+      // Handle type attribute for submit buttons
+      const type = attributes.type === 'submit' ? ' type="submit"' : '';
+
+      return `<ha-button variant="${variant}"${size}${disabled}${type}>${content}</ha-button>`;
+    },
+  },
 };

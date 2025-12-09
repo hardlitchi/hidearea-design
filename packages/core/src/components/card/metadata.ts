@@ -42,4 +42,20 @@ export const metadata: ComponentMetadata = {
     typography: [],
     other: ['border-radius-lg', 'surface-raised-elevation'],
   },
+  htmlConverter: {
+    patterns: ['<div class="card"', '<div class=".*card.*"', '<article class="card"'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      // Determine variant from class names
+      const className = attributes.class || '';
+      let variant = '';
+
+      if (className.includes('outlined')) variant = ' variant="outlined"';
+      else if (className.includes('elevated')) variant = ' variant="elevated"';
+
+      // Check for hoverable class
+      const hoverable = className.includes('hoverable') || className.includes('hover') ? ' hoverable' : '';
+
+      return `<ha-card${variant}${hoverable}>${content}</ha-card>`;
+    },
+  },
 };

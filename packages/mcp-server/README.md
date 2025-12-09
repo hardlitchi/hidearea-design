@@ -24,10 +24,16 @@ Model Context Protocol (MCP) server for Hidearea Design System. Provides AI-powe
 - **get_accessibility_guidance**: Get ARIA roles, keyboard support, and WCAG guidelines
 - **check_token_compatibility**: Check color contrast and WCAG compliance
 
-**Developer Experience (Phase 2):** 🆕
+**Developer Experience (Phase 2):**
 - **get_related_components**: Discover components commonly used together
 - **compare_components**: Compare 2-4 components to understand differences
 - **suggest_layout**: Get layout recommendations based on content description
+
+**Advanced Features (Phase 3):** 🆕
+- **generate_form**: Generate complete forms with validation based on field definitions
+- **get_theme_tokens**: Get theme-specific design tokens for customization
+- **get_migration_guide**: Get migration guidance for upgrading between versions
+- **generate_storybook_story**: Generate Storybook story code for components
 
 ## Installation
 
@@ -209,6 +215,78 @@ Get layout suggestions based on content:
 
 **Returns**: Recommended layout components with code examples and responsive considerations.
 
+### generate_form
+
+Generate a complete form with validation:
+
+```typescript
+{
+  "fields": [
+    {
+      "name": "email",
+      "type": "email",
+      "label": "Email Address",
+      "required": true
+    },
+    {
+      "name": "password",
+      "type": "password",
+      "label": "Password",
+      "required": true
+    },
+    {
+      "name": "country",
+      "type": "select",
+      "label": "Country",
+      "options": ["USA", "Canada", "UK"]
+    }
+  ],
+  "submitLabel": "Sign Up"
+}
+```
+
+**Returns**: Complete form code using Hidearea components with validation logic.
+
+### get_theme_tokens
+
+Get theme-specific design tokens:
+
+```typescript
+{
+  "category": "colors", // or "spacing", "typography", "effects", "all"
+  "component": "Button" // optional
+}
+```
+
+**Returns**: Design tokens for the specified category, optionally filtered by component.
+
+### get_migration_guide
+
+Get migration guidance for version upgrades:
+
+```typescript
+{
+  "fromVersion": "1.0.0",
+  "toVersion": "2.0.0",
+  "component": "Button" // optional
+}
+```
+
+**Returns**: Breaking changes, deprecated features, and step-by-step migration instructions.
+
+### generate_storybook_story
+
+Generate Storybook story code:
+
+```typescript
+{
+  "component": "Button",
+  "variants": ["Basic Usage", "With Icon"] // optional
+}
+```
+
+**Returns**: Complete Storybook story code with all props, argTypes, and example variants.
+
 ## Resources
 
 ### hidearea://components/list
@@ -285,6 +363,30 @@ Claude will use `compare_components` to explain use cases for each.
 > "I need to display a grid of product cards with filters, what layout should I use?"
 
 Claude will use `suggest_layout` to recommend Grid and Stack components with examples.
+
+### Generating Forms
+
+> "Create a signup form with email, password, and country selection"
+
+Claude will use `generate_form` to create a complete form with FormGroup, Input, Select, and Button components.
+
+### Getting Theme Tokens
+
+> "What color tokens are available for the Button component?"
+
+Claude will use `get_theme_tokens` to list all color tokens used by Button.
+
+### Migration Guidance
+
+> "How do I migrate from version 1.0.0 to 2.0.0?"
+
+Claude will use `get_migration_guide` to provide step-by-step migration instructions.
+
+### Generating Storybook Stories
+
+> "Generate a Storybook story for the Card component"
+
+Claude will use `generate_storybook_story` to create a complete story with all variants and props.
 
 ## Component Categories
 
