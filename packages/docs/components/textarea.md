@@ -259,59 +259,175 @@ function AutoExpandTextarea() {
 
 ## アクセシビリティ
 
+Textareaコンポーネントは、WCAG 2.1 AAに準拠し、フォーム入力のアクセシビリティ要件を満たしています。
+
 ### ARIAサポート
 
-`<ha-textarea>` コンポーネントは、WCAG 2.1 AA基準に準拠したアクセシビリティ機能を提供します。
+Textareaコンポーネントは自動的にARIA属性を適用します：
 
-- **role**: `textbox` （自動設定）
-- **aria-multiline**: `true` （自動設定、複数行入力を示す）
-- **aria-disabled**: `disabled` 属性が設定されている場合、自動的に `true` に設定
-- **aria-required**: `required` 属性が設定されている場合、自動的に `true` に設定
-- **aria-invalid**: `error` 属性が設定されている場合、自動的に `true` に設定
-- **aria-readonly**: `readonly` 属性が設定されている場合、自動的に `true` に設定
-- **aria-describedby**: `helper-text` を持つ `<ha-form-group>` と組み合わせた場合、自動的に設定
+| ARIA属性 | 要素 | 説明 |
+|---------|------|------|
+| `role="textbox"` | textarea要素 | テキスト入力フィールドであることを示す |
+| `aria-multiline="true"` | textarea要素 | 複数行入力をサポートすることを示す |
+| `aria-label` | textarea要素 | フィールドのラベル（labelがない場合） |
+| `aria-labelledby` | textarea要素 | 関連するlabel要素のIDを参照 |
+| `aria-describedby` | textarea要素 | ヘルパーテキストやエラーメッセージのIDを参照 |
+| `aria-required="true"` | textarea要素 | `required`属性が設定されている場合 |
+| `aria-invalid="true"` | textarea要素 | `error`属性が設定されている場合 |
+| `aria-disabled="true"` | textarea要素 | `disabled`属性が設定されている場合 |
+| `aria-readonly="true"` | textarea要素 | `readonly`属性が設定されている場合 |
 
-### キーボード操作
+### キーボードナビゲーション
 
-| キー | アクション |
-|------|----------|
-| `Tab` | フォーカス移動 |
-| `Shift + Tab` | 逆方向にフォーカス移動 |
+| キー | 動作 |
+|-----|------|
+| `Tab` | 次のフォーカス可能要素へ移動 |
+| `Shift + Tab` | 前のフォーカス可能要素へ移動 |
 | `Enter` | 改行を挿入 |
 | `Ctrl/Cmd + A` | 全テキストを選択 |
-| `Ctrl/Cmd + C` | テキストをコピー |
+| `Ctrl/Cmd + C` | 選択テキストをコピー |
 | `Ctrl/Cmd + V` | テキストを貼り付け |
-| `Ctrl/Cmd + X` | テキストを切り取り |
-| `Ctrl/Cmd + Z` | 元に戻す |
+| `Ctrl/Cmd + X` | 選択テキストを切り取り |
+| `Ctrl/Cmd + Z` | 元に戻す（Undo） |
+| `Ctrl/Cmd + Y` | やり直す（Redo） |
+| `Arrow Keys` | カーソルを移動 |
+| `Home` | 行の先頭に移動 |
+| `End` | 行の末尾に移動 |
+| `Ctrl/Cmd + Home` | テキストの先頭に移動 |
+| `Ctrl/Cmd + End` | テキストの末尾に移動 |
 
-### スクリーンリーダー
+### スクリーンリーダーの対応
 
-`<ha-textarea>` は主要なスクリーンリーダー（NVDA、JAWS、VoiceOver）で適切に読み上げられます：
+Textareaコンポーネントは主要なスクリーンリーダー（NVDA、JAWS、VoiceOver）で適切に読み上げられます。
 
-- フィールドの種類（複数行テキストフィールド）
-- ラベルとヘルパーテキスト
-- 必須フィールドの状態
-- エラー状態
-- 文字数制限（maxlength設定時）
-- 現在の文字数と残り文字数
+#### 読み上げ例
+
+**通常の状態**:
+```
+「お問い合わせ内容、編集、テキストエリア、複数行、空白」
+（"Inquiry content, edit text, text area, multi-line, blank"）
+```
+
+**必須フィールド**:
+```
+「お問い合わせ内容、必須、編集、テキストエリア、複数行」
+（"Inquiry content, required, edit text, text area, multi-line"）
+```
+
+**エラー状態**:
+```
+「お問い合わせ内容、無効な入力、編集、テキストエリア、複数行、最低10文字以上入力してください」
+（"Inquiry content, invalid entry, edit text, text area, multi-line, Please enter at least 10 characters"）
+```
+
+**読み取り専用**:
+```
+「お問い合わせ内容、読み取り専用、テキストエリア、複数行、こちらは変更できません」
+（"Inquiry content, read-only, text area, multi-line, This cannot be changed"）
+```
+
+**無効状態**:
+```
+「お問い合わせ内容、使用不可、テキストエリア、複数行」
+（"Inquiry content, unavailable, text area, multi-line"）
+```
+
+**文字数制限付き**:
+```
+「コメント、編集、テキストエリア、複数行、最大200文字、50文字入力済み」
+（"Comment, edit text, text area, multi-line, 200 character limit, 50 characters entered"）
+```
+
+**ヘルパーテキスト付き**:
+```
+「お問い合わせ内容、編集、テキストエリア、複数行、詳しい内容をご記入ください」
+（"Inquiry content, edit text, text area, multi-line, Please provide detailed information"）
+```
+
+#### ライブリージョン
+
+エラーメッセージや文字数制限の通知はライブリージョンで通知されます：
+
+```html
+<!-- FormGroupが自動的に生成するライブリージョン -->
+<div role="alert" aria-live="assertive" aria-atomic="true">
+  最低10文字以上入力してください
+</div>
+
+<div role="status" aria-live="polite" aria-atomic="true">
+  残り20文字
+</div>
+```
+
+### フォーカス管理
+
+```css
+/* フォーカスインジケーター */
+ha-textarea:focus-within {
+  outline: 2px solid var(--state-focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* ハイコントラストモード対応 */
+@media (prefers-contrast: high) {
+  ha-textarea:focus-within {
+    outline-width: 3px;
+  }
+}
+
+/* 強制カラーモード対応 */
+@media (forced-colors: active) {
+  ha-textarea:focus-within {
+    outline-color: Highlight;
+  }
+}
+```
 
 ### フォームラベルの関連付け
 
 ```html
-<!-- Good ✓: ha-form-group でラベルを提供 -->
+<!-- ✓ Good: ha-form-group でラベルを提供 -->
 <ha-form-group label="コメント" helper-text="詳細をご記入ください">
   <ha-textarea name="comment" rows="5"></ha-textarea>
 </ha-form-group>
 
-<!-- Good ✓: aria-label で明示的にラベル -->
+<!-- ✓ Good: aria-label で明示的にラベル -->
 <ha-textarea aria-label="フィードバック" rows="5"></ha-textarea>
 
-<!-- Good ✓: aria-labelledby で外部ラベルと関連付け -->
+<!-- ✓ Good: aria-labelledby で外部ラベルと関連付け -->
 <label id="description-label">説明</label>
 <ha-textarea aria-labelledby="description-label" rows="5"></ha-textarea>
 
-<!-- Bad ✗: ラベルなし -->
-<ha-textarea rows="5"></ha-textarea>
+<!-- ✗ Bad: ラベルなし（プレースホルダーだけでは不十分） -->
+<ha-textarea placeholder="コメントを入力" rows="5"></ha-textarea>
+```
+
+### エラー状態のアクセシビリティ
+
+エラーメッセージは適切に関連付けられます：
+
+```html
+<ha-form-group
+  label="お問い合わせ内容"
+  helper-text="最低10文字以上入力してください"
+  error
+  required
+>
+  <ha-textarea
+    name="inquiry"
+    rows="5"
+    error
+    required
+    aria-invalid="true"
+    aria-describedby="inquiry-error"
+  ></ha-textarea>
+</ha-form-group>
+```
+
+**スクリーンリーダー読み上げ**:
+```
+「お問い合わせ内容、必須、無効な入力、編集、テキストエリア、複数行、最低10文字以上入力してください」
+（"Inquiry content, required, invalid entry, edit text, text area, multi-line, Please enter at least 10 characters"）
 ```
 
 ## スタイルのカスタマイズ
