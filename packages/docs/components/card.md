@@ -323,16 +323,104 @@ function ClickableCard() {
 
 ## アクセシビリティ
 
-- セマンティックな要素として機能します
-- クリッカブルなカードの場合は、適切な `role` と `tabindex` を設定してください
+### ARIAサポート
+
+- **role**: セマンティックなコンテナとして機能（デフォルト: `article` または `region`）
+- **role="button"**: クリッカブルなカードの場合に設定
+- **tabindex**: キーボードフォーカス可能にする（クリッカブルカードの場合: `0`）
+- **aria-label**: カードの目的を説明（特にクリッカブルカードで重要）
+
+### キーボード操作
+
+クリッカブルカードの場合：
+
+| キー | アクション |
+|------|----------|
+| `Tab` | カードにフォーカス |
+| `Enter` | カードをアクティベート |
+| `Space` | カードをアクティベート |
+
+### スクリーンリーダー
+
+- カードのコンテンツはセマンティックな順序で読み上げられます
+- 見出し要素（`h2`, `h3` など）を使用して構造を明確に
+- クリッカブルカードは「ボタン」として認識されます
+
+### クリッカブルカードの実装
 
 ```html
-<ha-card role="button" tabindex="0">
-  <h3>クリッカブルカード</h3>
+<!-- Good ✓: 適切なARIA属性 -->
+<ha-card
+  role="button"
+  tabindex="0"
+  aria-label="商品の詳細を表示"
+  @click="viewDetails"
+  @keydown.enter="viewDetails"
+  @keydown.space.prevent="viewDetails"
+>
+  <h3>商品名</h3>
+  <p>商品の説明</p>
+</ha-card>
+
+<!-- Better ✓✓: リンクを使用 -->
+<a href="/product/123" style="text-decoration: none; color: inherit;">
+  <ha-card>
+    <h3>商品名</h3>
+    <p>商品の説明</p>
+  </ha-card>
+</a>
+
+<!-- Avoid ✗: ARIA属性なし -->
+<ha-card @click="viewDetails" style="cursor: pointer;">
+  <h3>商品名</h3>
+</ha-card>
+```
+
+### セマンティックHTML
+
+カード内では適切な見出しレベルを使用：
+
+```html
+<!-- Good ✓ -->
+<ha-card>
+  <h2>メインタイトル</h2>
+  <h3>サブタイトル</h3>
+  <p>説明文</p>
+</ha-card>
+
+<!-- Avoid ✗: divのみ -->
+<ha-card>
+  <div style="font-size: 24px; font-weight: bold;">タイトル</div>
+  <div>説明文</div>
 </ha-card>
 ```
 
 ## スタイルのカスタマイズ
+
+### デザイントークン
+
+このコンポーネントは以下のデザイントークンを使用します：
+
+```css
+/* Card */
+var(--component-card-background-default)
+var(--component-card-background-hover)
+var(--component-card-background-selected)
+var(--component-card-border-default)
+var(--component-card-border-hover)
+var(--component-card-border-selected)
+
+/* 共通トークン */
+var(--spacing-md)              /* パディング（中） */
+var(--spacing-lg)              /* パディング（大） */
+var(--border-radius-lg)        /* 角丸 */
+var(--surface-level-1-background)  /* サーフェスレベル */
+var(--surface-level-1-elevation)   /* シャドウ */
+var(--interaction-transition-normal-duration)  /* トランジション */
+var(--state-hover-elevation-medium)  /* ホバー時のシャドウ */
+```
+
+### カスタムCSS変数
 
 CSS変数を使用してスタイルをカスタマイズできます：
 
@@ -353,6 +441,22 @@ ha-card[variant="outlined"]:hover {
 }
 ```
 
+### スタイルの上書き
+
+Shadow DOMのパーツを使用してスタイルを上書き：
+
+```css
+ha-card::part(card) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+/* バリアント別のカスタマイズ */
+ha-card[variant="elevated"]::part(card) {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+```
+
 ## バリアント別の使い分け
 
 | バリアント | 用途 | 特徴 |
@@ -360,3 +464,257 @@ ha-card[variant="outlined"]:hover {
 | `default` | 標準的なコンテンツ | シンプル、軽量 |
 | `outlined` | 区別が必要なコンテンツ | ボーダー付き |
 | `elevated` | 重要なコンテンツ | シャドウで強調 |
+
+## ベストプラクティス
+
+### Do's ✓
+
+- **適切な見出しレベルを使用**: カード内でセマンティックなHTML（h2, h3など）を使用
+- **一貫したパディング**: 同じグリッド内のカードは同じパディング設定を使用
+- **レスポンシブグリッド**: Grid や Container と組み合わせてモバイル対応
+- **クリッカブルな場合はリンクを使用**: `<a>` タグでラップするか、適切なARIA属性を設定
+- **画像は padding="false"**: 画像をカード全体に表示する場合はパディングを無効化
+- **明確なアクション**: カード内のボタンは目的を明確に（"詳細を見る"、"購入する"など）
+
+### Don'ts ✗
+
+- **カード内にカード**: ネストしたカードは視覚的に混乱を招く
+- **過度なシャドウ**: elevated バリアントの濫用は避ける
+- **長すぎるコンテンツ**: カードは簡潔に。詳細は別ページやモーダルで
+- **一貫性のない高さ**: グリッド内のカードは高さを揃える（CSSで調整）
+- **クリッカブル領域の不明確さ**: カード全体がクリッカブルか、ボタンのみかを明確に
+
+## よくある質問
+
+### カードをクリッカブルにするベストプラクティスは？
+
+リンクとして機能する場合は `<a>` タグでラップするのが最適：
+
+```html
+<!-- Best ✓✓: SEOとアクセシビリティに最適 -->
+<a href="/product/123" style="text-decoration: none; color: inherit;">
+  <ha-card variant="outlined">
+    <h3>商品名</h3>
+    <p>説明</p>
+  </ha-card>
+</a>
+
+<!-- Good ✓: JavaScriptアクションの場合 -->
+<ha-card
+  role="button"
+  tabindex="0"
+  aria-label="詳細を表示"
+  @click="viewDetails"
+  @keydown.enter="viewDetails"
+  @keydown.space.prevent="viewDetails"
+  style="cursor: pointer;"
+>
+  <h3>タイトル</h3>
+</ha-card>
+```
+
+### カードの高さを揃えるには？
+
+CSSの `height` または Grid の `align-items` を使用：
+
+```css
+/* 方法1: 固定高さ */
+ha-card {
+  height: 300px;
+}
+
+/* 方法2: Grid の stretch */
+ha-grid {
+  align-items: stretch;
+}
+
+ha-card {
+  height: 100%;
+}
+```
+
+React/Vueの場合：
+
+```tsx
+<Grid columns="3" gap="4" style={{ alignItems: 'stretch' }}>
+  <Card style={{ height: '100%' }}>...</Card>
+  <Card style={{ height: '100%' }}>...</Card>
+  <Card style={{ height: '100%' }}>...</Card>
+</Grid>
+```
+
+### カードに画像を追加する際のベストプラクティスは？
+
+`padding="false"` を使用し、画像部分のみパディングを無効化：
+
+```html
+<ha-card padding="false">
+  <!-- 画像: パディングなし -->
+  <img
+    src="image.jpg"
+    alt="説明"
+    style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px 8px 0 0;"
+  />
+  <!-- コンテンツ: パディング追加 -->
+  <div style="padding: 16px;">
+    <h3>タイトル</h3>
+    <p>説明文</p>
+  </div>
+</ha-card>
+```
+
+### ホバーエフェクトを追加するには？
+
+CSSトランジションとJavaScriptイベントを組み合わせます：
+
+```tsx
+// React
+<Card
+  variant="outlined"
+  style={{
+    cursor: 'pointer',
+    transition: 'all 0.2s ease-in-out',
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.transform = 'translateY(-4px)';
+    e.currentTarget.style.boxShadow = '0 8px 16px rgba(0,0,0,0.15)';
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform = 'translateY(0)';
+    e.currentTarget.style.boxShadow = 'none';
+  }}
+>
+  <h3>ホバーで浮き上がるカード</h3>
+</Card>
+```
+
+CSS のみの場合：
+
+```css
+ha-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+ha-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+```
+
+## 関連コンポーネント
+
+- [Grid](/components/grid) - カードのグリッドレイアウト
+- [Container](/components/container) - カードコンテナのレスポンシブ対応
+- [Stack](/components/stack) - カード内のコンテンツ配置
+- [Button](/components/button) - カード内のアクションボタン
+- [Badge](/components/badge) - カード内のステータス表示
+
+## API リファレンス
+
+詳細なAPI仕様については、型定義ファイルを参照してください：
+
+```typescript
+import type { CardProps } from '@hidearea-design/core';
+
+interface CardProps {
+  variant?: 'default' | 'outlined' | 'elevated';
+  padding?: boolean;
+}
+```
+
+## トラブルシューティング
+
+### カード内の画像が正しく表示されない
+
+**問題**: 画像がカードからはみ出す、または歪んで表示される
+
+**解決策**:
+1. `padding="false"` を設定して画像用のパディングを削除
+2. `object-fit: cover` を使用して画像のアスペクト比を維持
+3. 画像の幅を `100%` に設定
+
+```html
+<!-- ✓ Good -->
+<ha-card padding="false">
+  <img
+    src="image.jpg"
+    style="width: 100%; height: 200px; object-fit: cover;"
+  />
+  <div style="padding: 16px;">
+    <h3>タイトル</h3>
+  </div>
+</ha-card>
+
+<!-- ✗ Bad: padding が有効 -->
+<ha-card>
+  <img src="image.jpg" style="width: 100%;" />
+</ha-card>
+```
+
+### グリッド内のカードの高さが揃わない
+
+**問題**: Grid 内の各カードの高さがバラバラになる
+
+**解決策**:
+Grid に `align-items: stretch` を設定し、カードに `height: 100%` を設定：
+
+```html
+<ha-grid columns="3" gap="4" style="align-items: stretch;">
+  <ha-card style="height: 100%;">...</ha-card>
+  <ha-card style="height: 100%;">...</ha-card>
+  <ha-card style="height: 100%;">...</ha-card>
+</ha-grid>
+```
+
+### クリッカブルカードがキーボードで操作できない
+
+**問題**: クリックできるが、キーボード（Tab, Enter）で操作できない
+
+**解決策**:
+`tabindex="0"` を設定し、Enter/Space キーのイベントハンドラを追加：
+
+```html
+<!-- ✓ Good: キーボード対応 -->
+<ha-card
+  role="button"
+  tabindex="0"
+  @click="handleClick"
+  @keydown.enter="handleClick"
+  @keydown.space.prevent="handleClick"
+>
+  <h3>クリッカブルカード</h3>
+</ha-card>
+
+<!-- ✗ Bad: tabindex がない -->
+<ha-card role="button" @click="handleClick">
+  <h3>クリッカブルカード</h3>
+</ha-card>
+```
+
+### ダークモードでカードが見えにくい
+
+**問題**: ダークテーマで背景と区別がつかない
+
+**解決策**:
+デザイントークンを使用するか、バリアントを調整：
+
+```css
+/* カスタムダークモード対応 */
+[data-theme="dark"] ha-card {
+  --card-bg: var(--surface-level-1-background);
+  --card-border-color: var(--color-gray-700);
+}
+```
+
+または、ダークモードでは `outlined` または `elevated` バリアントを使用：
+
+```tsx
+import { useTheme } from '@hidearea-design/react';
+
+function MyCard() {
+  const { theme } = useTheme();
+  const variant = theme === 'dark' ? 'outlined' : 'default';
+
+  return <Card variant={variant}>...</Card>;
+}
+```
