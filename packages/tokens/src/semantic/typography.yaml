@@ -2,89 +2,165 @@
 # テキストスタイルの役割ベース定義
 
 text:
-  # 見出しスタイル
+  # 見出しスタイル（レスポンシブ対応）
   heading:
     h1:
       fontSize:
-        value: "{font.size.4xl}"
+        mobile:
+          value: "{font.size.2xl}"
+          comment: "モバイル: 24px"
+        tablet:
+          value: "{font.size.3xl}"
+          comment: "タブレット: 30px"
+        desktop:
+          value: "{font.size.4xl}"
+          comment: "デスクトップ: 36px"
       fontWeight:
         value: "{font.weight.bold}"
       lineHeight:
         value: "{font.lineHeight.tight}"
+      fontFamily:
+        value: "{font.family.sans}"
       color:
         value: "{color.gray.900}"
     h2:
       fontSize:
-        value: "{font.size.3xl}"
+        mobile:
+          value: "{font.size.xl}"
+          comment: "モバイル: 20px"
+        tablet:
+          value: "{font.size.2xl}"
+          comment: "タブレット: 24px"
+        desktop:
+          value: "{font.size.3xl}"
+          comment: "デスクトップ: 30px"
       fontWeight:
         value: "{font.weight.bold}"
       lineHeight:
         value: "{font.lineHeight.tight}"
+      fontFamily:
+        value: "{font.family.sans}"
       color:
         value: "{color.gray.900}"
     h3:
       fontSize:
-        value: "{font.size.2xl}"
+        mobile:
+          value: "{font.size.lg}"
+          comment: "モバイル: 18px"
+        tablet:
+          value: "{font.size.xl}"
+          comment: "タブレット: 20px"
+        desktop:
+          value: "{font.size.2xl}"
+          comment: "デスクトップ: 24px"
       fontWeight:
         value: "{font.weight.semibold}"
       lineHeight:
         value: "{font.lineHeight.snug}"
+      fontFamily:
+        value: "{font.family.sans}"
       color:
         value: "{color.gray.900}"
     h4:
       fontSize:
-        value: "{font.size.xl}"
+        mobile:
+          value: "{font.size.base}"
+          comment: "モバイル: 16px"
+        tablet:
+          value: "{font.size.lg}"
+          comment: "タブレット: 18px"
+        desktop:
+          value: "{font.size.xl}"
+          comment: "デスクトップ: 20px"
       fontWeight:
         value: "{font.weight.semibold}"
       lineHeight:
         value: "{font.lineHeight.snug}"
+      fontFamily:
+        value: "{font.family.sans}"
       color:
         value: "{color.gray.900}"
     h5:
       fontSize:
-        value: "{font.size.lg}"
+        mobile:
+          value: "{font.size.sm}"
+          comment: "モバイル: 14px"
+        tablet:
+          value: "{font.size.base}"
+          comment: "タブレット: 16px"
+        desktop:
+          value: "{font.size.lg}"
+          comment: "デスクトップ: 18px"
       fontWeight:
         value: "{font.weight.medium}"
       lineHeight:
         value: "{font.lineHeight.normal}"
+      fontFamily:
+        value: "{font.family.sans}"
       color:
         value: "{color.gray.900}"
     h6:
       fontSize:
-        value: "{font.size.base}"
+        mobile:
+          value: "{font.size.sm}"
+          comment: "モバイル: 14px"
+        tablet:
+          value: "{font.size.sm}"
+          comment: "タブレット: 14px"
+        desktop:
+          value: "{font.size.base}"
+          comment: "デスクトップ: 16px"
       fontWeight:
         value: "{font.weight.medium}"
       lineHeight:
         value: "{font.lineHeight.normal}"
+      fontFamily:
+        value: "{font.family.sans}"
       color:
         value: "{color.gray.900}"
   body:
     large:
       fontSize:
         value: "{font.size.lg}"
+      fontWeight:
+        value: "{font.weight.normal}"
       lineHeight:
         value: "{font.lineHeight.relaxed}"
+      fontFamily:
+        value: "{font.family.sans}"
       color:
         value: "{color.gray.700}"
     default:
       fontSize:
         value: "{font.size.base}"
+      fontWeight:
+        value: "{font.weight.normal}"
       lineHeight:
         value: "{font.lineHeight.normal}"
+      fontFamily:
+        value: "{font.family.sans}"
       color:
         value: "{color.gray.700}"
     small:
       fontSize:
         value: "{font.size.sm}"
+      fontWeight:
+        value: "{font.weight.normal}"
       lineHeight:
         value: "{font.lineHeight.normal}"
+      fontFamily:
+        value: "{font.family.sans}"
       color:
         value: "{color.gray.600}"
   caption:
     fontSize:
       value: "{font.size.xs}"
+    fontWeight:
+      value: "{font.weight.normal}"
     lineHeight:
       value: "{font.lineHeight.normal}"
+    fontFamily:
+      value: "{font.family.sans}"
     color:
       value: "{color.gray.500}"
   label:
@@ -94,13 +170,19 @@ text:
       value: "{font.weight.medium}"
     lineHeight:
       value: "{font.lineHeight.normal}"
+    fontFamily:
+      value: "{font.family.sans}"
     color:
       value: "{color.gray.700}"
   helper:
     fontSize:
       value: "{font.size.sm}"
+    fontWeight:
+      value: "{font.weight.normal}"
     lineHeight:
       value: "{font.lineHeight.normal}"
+    fontFamily:
+      value: "{font.family.sans}"
     color:
       value: "{color.gray.500}"
   code:
@@ -134,11 +216,20 @@ text:
     default:
       color:
         value: "{color.primary.600}"
+        comment: "デフォルトのリンク色"
       textDecoration:
         value: underline
+      fontFamily:
+        value: "{font.family.sans}"
     hover:
       color:
         value: "{color.primary.700}"
+        comment: "ホバー時のリンク色"
+      textDecoration:
+        value: underline
     visited:
       color:
-        value: "{color.purple.600}"
+        value: "{color.primary.800}"
+        comment: "訪問済みリンク色 - ブランドカラーと競合しない濃いプライマリ"
+      textDecoration:
+        value: underline
