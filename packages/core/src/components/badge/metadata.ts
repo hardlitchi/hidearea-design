@@ -45,4 +45,20 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-small-fontSize', 'font-weight-medium'],
     other: ['border-radius-sm'],
   },
+  htmlConverter: {
+    patterns: ['<span class="badge"', '<span role="status"', '<small class="badge"'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      const className = attributes.class || '';
+      let variant = 'primary';
+
+      if (className.includes('success')) variant = 'success';
+      else if (className.includes('warning')) variant = 'warning';
+      else if (className.includes('error') || className.includes('danger')) variant = 'error';
+      else if (className.includes('secondary')) variant = 'secondary';
+
+      const dot = !content.trim() || className.includes('dot') ? ' dot' : '';
+
+      return `<ha-badge variant="${variant}"${dot}>${content}</ha-badge>`;
+    },
+  },
 };

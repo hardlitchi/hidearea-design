@@ -48,4 +48,12 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize'],
     other: ['border-radius-full'],
   },
+  htmlConverter: {
+    patterns: ['<img class="avatar"', '<div class="avatar"'],
+    convert: (_match: string, attributes: Record<string, string>, _content: string) => {
+      const src = attributes.src || '';
+      const alt = attributes.alt || '';
+      return `<ha-avatar src="${src}" alt="${alt}"></ha-avatar>`;
+    },
+  },
 };

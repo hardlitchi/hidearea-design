@@ -40,4 +40,16 @@ export const metadata: ComponentMetadata = {
     typography: [],
     other: [],
   },
+  htmlConverter: {
+    patterns: ['<div class="container"', '<main class="container"', '<section class="container"'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      const className = attributes.class || '';
+      let maxWidth = '';
+
+      if (className.includes('fluid')) maxWidth = ' max-width="none"';
+      else if (className.includes('narrow')) maxWidth = ' max-width="narrow"';
+
+      return `<ha-container${maxWidth}>\n  ${content.trim()}\n</ha-container>`;
+    },
+  },
 };

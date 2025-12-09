@@ -614,41 +614,62 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       // Get all components with converters
       const componentsWithConverters = ALL_COMPONENT_METADATA.filter((c: ComponentMetadata) => c.htmlConverter);
 
+      // Helper function to create regex from pattern
+      const createRegex = (pattern: string): RegExp | null => {
+        // Extract tag name from pattern
+        const tagMatch = pattern.match(/<(\w+)/);
+        if (!tagMatch) return null;
+
+        const tag = tagMatch[1];
+
+        // Self-closing tags (input, img, br, hr, etc.)
+        const selfClosingTags = ['input', 'img', 'br', 'hr', 'progress'];
+        if (selfClosingTags.includes(tag)) {
+          // Match any attributes that appear in the pattern
+          if (pattern.includes('type=')) {
+            const typeMatch = pattern.match(/type="([^"]*)"/);
+            if (typeMatch) {
+              return new RegExp(`<${tag}([^>]*type="${typeMatch[1]}"[^>]*)>`, 'gi');
+            }
+          }
+          if (pattern.includes('role=')) {
+            const roleMatch = pattern.match(/role="([^"]*)"/);
+            if (roleMatch) {
+              return new RegExp(`<${tag}([^>]*role="${roleMatch[1]}"[^>]*)>`, 'gi');
+            }
+          }
+          return new RegExp(`<${tag}([^>]*)>`, 'gi');
+        }
+
+        // Paired tags (div, button, etc.)
+        // Handle patterns with role or class attributes
+        if (pattern.includes('role="')) {
+          const roleMatch = pattern.match(/role="([^"]*)"/);
+          if (roleMatch) {
+            return new RegExp(`<${tag}([^>]*role="${roleMatch[1]}"[^>]*)>(.*?)<\/${tag}>`, 'gis');
+          }
+        }
+        if (pattern.includes('class="')) {
+          const classMatch = pattern.match(/class="([^"]*)"/);
+          if (classMatch) {
+            return new RegExp(`<${tag}([^>]*class="[^"]*${classMatch[1]}[^"]*"[^>]*)>(.*?)<\/${tag}>`, 'gis');
+          }
+        }
+        if (pattern.includes('aria-label')) {
+          return new RegExp(`<${tag}([^>]*aria-label[^>]*)>(.*?)<\/${tag}>`, 'gis');
+        }
+
+        // Default: match tag with any attributes and content
+        return new RegExp(`<${tag}([^>]*)>(.*?)<\/${tag}>`, 'gis');
+      };
+
       // Build conversion patterns for each component
       for (const comp of componentsWithConverters) {
         if (!comp.htmlConverter) continue;
 
         for (const pattern of comp.htmlConverter.patterns) {
-          // Create regex based on pattern
-          let regex: RegExp;
-
-          if (pattern.startsWith('<button')) {
-            regex = /<button([^>]*)>(.*?)<\/button>/gis;
-          } else if (pattern.startsWith('<input type="button"')) {
-            regex = /<input([^>]*type="button"[^>]*)>/gi;
-          } else if (pattern.startsWith('<input type="submit"')) {
-            regex = /<input([^>]*type="submit"[^>]*)>/gi;
-          } else if (pattern.startsWith('<input type="checkbox" role="switch"')) {
-            regex = /<input([^>]*type="checkbox"[^>]*role="switch"[^>]*)>/gi;
-          } else if (pattern.startsWith('<input type="checkbox"')) {
-            regex = /<input([^>]*type="checkbox"[^>]*)>/gi;
-          } else if (pattern.startsWith('<input type="radio"')) {
-            regex = /<input([^>]*type="radio"[^>]*)>/gi;
-          } else if (pattern.startsWith('<input')) {
-            regex = /<input([^>]*)>/gi;
-          } else if (pattern.startsWith('<select')) {
-            regex = /<select([^>]*)>(.*?)<\/select>/gis;
-          } else if (pattern.startsWith('<textarea')) {
-            regex = /<textarea([^>]*)>(.*?)<\/textarea>/gis;
-          } else if (pattern.startsWith('<div role="switch"')) {
-            regex = /<div([^>]*role="switch"[^>]*)>(.*?)<\/div>/gis;
-          } else if (pattern.startsWith('<button role="switch"')) {
-            regex = /<button([^>]*role="switch"[^>]*)>(.*?)<\/button>/gis;
-          } else if (pattern.includes('card')) {
-            regex = /<(?:div|article)([^>]*class="[^"]*card[^"]*"[^>]*)>(.*?)<\/(?:div|article)>/gis;
-          } else {
-            continue;
-          }
+          const regex = createRegex(pattern);
+          if (!regex) continue;
 
           converted = converted.replace(regex, (match, attrs, content = '') => {
             const attributes = parseAttributes(attrs);

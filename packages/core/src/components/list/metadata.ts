@@ -52,4 +52,10 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize'],
     other: ['border-radius-md'],
   },
+  htmlConverter: {
+    patterns: ['<ul class="list"', '<ol class="list"', '<div role="list"'],
+    convert: (_match: string, _attributes: Record<string, string>, content: string) => {
+      return `<ha-list>\n  ${content.trim()}\n</ha-list>`;
+    },
+  },
 };

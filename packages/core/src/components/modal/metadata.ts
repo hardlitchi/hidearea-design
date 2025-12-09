@@ -53,4 +53,13 @@ export const metadata: ComponentMetadata = {
     typography: ['text-heading-h3-fontSize', 'font-weight-bold'],
     other: ['border-radius-lg', 'surface-overlay-elevation'],
   },
+  htmlConverter: {
+    patterns: ['<div role="dialog"', '<dialog', '<div class="modal"'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      const open = attributes.open !== undefined ? ' open' : '';
+      const ariaLabel = attributes['aria-label'] || attributes['aria-labelledby'] || '';
+
+      return `<ha-modal${open} label="${ariaLabel}">\n  ${content.trim()}\n</ha-modal>`;
+    },
+  },
 };

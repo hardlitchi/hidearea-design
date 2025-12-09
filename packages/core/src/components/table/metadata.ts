@@ -57,4 +57,10 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize', 'font-weight-medium'],
     other: ['border-radius-md'],
   },
+  htmlConverter: {
+    patterns: ['<table'],
+    convert: (_match: string, _attributes: Record<string, string>, content: string) => {
+      return `<ha-table>\n  ${content.trim()}\n</ha-table>`;
+    },
+  },
 };

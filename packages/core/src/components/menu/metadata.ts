@@ -40,4 +40,10 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize'],
     other: ['border-radius-md', 'surface-overlay-elevation'],
   },
+  htmlConverter: {
+    patterns: ['<nav role="menu"', '<ul role="menu"', '<div class="menu"'],
+    convert: (_match: string, _attributes: Record<string, string>, content: string) => {
+      return `<ha-menu>\n  ${content.trim()}\n</ha-menu>`;
+    },
+  },
 };

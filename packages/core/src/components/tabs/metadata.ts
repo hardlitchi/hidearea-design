@@ -49,4 +49,10 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize', 'font-weight-medium'],
     other: ['border-radius-md'],
   },
+  htmlConverter: {
+    patterns: ['<div role="tablist"', '<nav role="tablist"', '<div class="tabs"'],
+    convert: (_match: string, _attributes: Record<string, string>, content: string) => {
+      return `<ha-tabs>\n  ${content.trim()}\n</ha-tabs>`;
+    },
+  },
 };

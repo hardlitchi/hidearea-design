@@ -53,4 +53,19 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize', 'font-weight-medium'],
     other: ['border-radius-md'],
   },
+  htmlConverter: {
+    patterns: ['<div role="alert"', '<div class="alert"', '<aside role="alert"'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      const className = attributes.class || '';
+      let variant = 'info';
+
+      if (className.includes('success')) variant = 'success';
+      else if (className.includes('warning')) variant = 'warning';
+      else if (className.includes('error') || className.includes('danger')) variant = 'error';
+
+      const closable = className.includes('closable') || className.includes('dismissible') ? ' closable' : '';
+
+      return `<ha-alert variant="${variant}"${closable}>\n  ${content.trim()}\n</ha-alert>`;
+    },
+  },
 };

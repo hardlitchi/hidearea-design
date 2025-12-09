@@ -44,4 +44,19 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize'],
     other: ['border-radius-md', 'surface-overlay-elevation'],
   },
+  htmlConverter: {
+    patterns: ['<div role="status" aria-live', '<div class="toast"', '<aside class="notification"'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      const className = attributes.class || '';
+      let variant = 'info';
+
+      if (className.includes('success')) variant = 'success';
+      else if (className.includes('warning')) variant = 'warning';
+      else if (className.includes('error') || className.includes('danger')) variant = 'error';
+
+      const duration = attributes['data-duration'] || '5000';
+
+      return `<ha-toast variant="${variant}" duration="${duration}">\n  ${content.trim()}\n</ha-toast>`;
+    },
+  },
 };

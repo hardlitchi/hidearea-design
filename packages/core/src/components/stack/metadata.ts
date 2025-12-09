@@ -48,4 +48,15 @@ export const metadata: ComponentMetadata = {
     typography: [],
     other: [],
   },
+  htmlConverter: {
+    patterns: ['<div class="stack"', '<div class="flex-col"', '<div class="vstack"'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      const className = attributes.class || '';
+      let direction = '';
+
+      if (className.includes('horizontal') || className.includes('hstack')) direction = ' direction="horizontal"';
+
+      return `<ha-stack${direction}>\n  ${content.trim()}\n</ha-stack>`;
+    },
+  },
 };

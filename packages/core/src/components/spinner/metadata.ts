@@ -35,4 +35,18 @@ export const metadata: ComponentMetadata = {
     typography: [],
     other: ['interaction-transition-fast-duration'],
   },
+  htmlConverter: {
+    patterns: ['<div role="status" aria-busy', '<div class="spinner"', '<div class="loading"'],
+    convert: (_match: string, attributes: Record<string, string>, _content: string) => {
+      const className = attributes.class || '';
+      let size = 'medium';
+
+      if (className.includes('small') || className.includes('sm')) size = 'small';
+      else if (className.includes('large') || className.includes('lg')) size = 'large';
+
+      const label = attributes['aria-label'] || 'Loading...';
+
+      return `<ha-spinner size="${size}" label="${label}"></ha-spinner>`;
+    },
+  },
 };

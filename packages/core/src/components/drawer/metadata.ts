@@ -52,4 +52,19 @@ export const metadata: ComponentMetadata = {
     typography: ['text-heading-h3-fontSize', 'font-weight-bold'],
     other: ['surface-overlay-elevation'],
   },
+  htmlConverter: {
+    patterns: ['<aside role="dialog"', '<aside class="drawer"', '<div class="sidebar"'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      const className = attributes.class || '';
+      let position = 'right';
+
+      if (className.includes('left')) position = 'left';
+      else if (className.includes('top')) position = 'top';
+      else if (className.includes('bottom')) position = 'bottom';
+
+      const open = attributes.open !== undefined || attributes['aria-hidden'] === 'false' ? ' open' : '';
+
+      return `<ha-drawer position="${position}"${open}>\n  ${content.trim()}\n</ha-drawer>`;
+    },
+  },
 };
