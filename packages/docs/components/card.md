@@ -323,33 +323,150 @@ function ClickableCard() {
 
 ## アクセシビリティ
 
+Cardコンポーネントは、WCAG 2.1 AAに準拠し、コンテンツコンテナのアクセシビリティ要件を満たしています。
+
 ### ARIAサポート
 
-- **role**: セマンティックなコンテナとして機能（デフォルト: `article` または `region`）
-- **role="button"**: クリッカブルなカードの場合に設定
-- **tabindex**: キーボードフォーカス可能にする（クリッカブルカードの場合: `0`）
-- **aria-label**: カードの目的を説明（特にクリッカブルカードで重要）
+Cardコンポーネントで使用されるARIA属性：
 
-### キーボード操作
+| ARIA属性 | 要素 | 説明 |
+|---------|------|------|
+| `role="article"` | card要素 | 独立したコンテンツセクションであることを示す（デフォルト） |
+| `role="region"` | card要素 | ランドマークとして使用する場合（`aria-label`必須） |
+| `role="button"` | card要素 | クリッカブルなカードの場合に設定 |
+| `tabindex="0"` | card要素 | キーボードフォーカス可能（クリッカブルカードの場合） |
+| `aria-label` | card要素 | カードの目的を説明（クリッカブルカードで必須） |
+| `aria-labelledby` | card要素 | カード内の見出しIDを参照 |
+| `aria-describedby` | card要素 | カードの説明テキストIDを参照 |
+| `aria-pressed` | card要素 | トグル可能なカードの状態（true/false） |
 
-クリッカブルカードの場合：
+### キーボードナビゲーション
 
-| キー | アクション |
-|------|----------|
-| `Tab` | カードにフォーカス |
-| `Enter` | カードをアクティベート |
-| `Space` | カードをアクティベート |
+#### 通常のカード（静的コンテンツ）
 
-### スクリーンリーダー
+| キー | 動作 |
+|-----|------|
+| `Tab` | カード内のフォーカス可能要素へ移動 |
+| `Shift + Tab` | 前のフォーカス可能要素へ移動 |
 
-- カードのコンテンツはセマンティックな順序で読み上げられます
-- 見出し要素（`h2`, `h3` など）を使用して構造を明確に
-- クリッカブルカードは「ボタン」として認識されます
+#### クリッカブルカード（インタラクティブ）
 
-### クリッカブルカードの実装
+| キー | 動作 |
+|-----|------|
+| `Tab` | カード自体にフォーカス |
+| `Shift + Tab` | 前のフォーカス可能要素へ移動 |
+| `Enter` | カードをアクティベート（クリック） |
+| `Space` | カードをアクティベート（クリック） |
+
+### スクリーンリーダーの対応
+
+Cardコンポーネントは主要なスクリーンリーダー（NVDA、JAWS、VoiceOver）で適切に読み上げられます。
+
+#### 読み上げ例
+
+**通常のカード**:
+```
+「記事、商品カード」
+「商品名、見出しレベル3」
+「商品の説明、テキスト」
+（"Article, Product card"）
+（"Product name, heading level 3"）
+（"Product description, text"）
+```
+
+**クリッカブルカード（role="button"）**:
+```
+「商品の詳細を表示、ボタン」
+「商品名、見出しレベル3」
+「商品の説明」
+（"View product details, button"）
+（"Product name, heading level 3"）
+（"Product description"）
+```
+
+**リンクでラップされたカード**:
+```
+「商品ページへ移動、リンク」
+「商品名、見出しレベル3」
+「商品の説明」
+（"Navigate to product page, link"）
+（"Product name, heading level 3"）
+（"Product description"）
+```
+
+**ランドマークとしてのカード**:
+```
+「ユーザー統計、ランドマーク」
+「総売上、見出しレベル3」
+「1,234,567円」
+（"User statistics, landmark"）
+（"Total sales, heading level 3"）
+（"1,234,567 yen"）
+```
+
+**トグル可能なカード**:
+```
+「カードを展開、トグルボタン、押されていない」
+（"Expand card, toggle button, not pressed"）
+
+「カードを折りたたむ、トグルボタン、押されている」
+（"Collapse card, toggle button, pressed"）
+```
+
+### フォーカス管理
+
+```css
+/* 通常のカード - フォーカス不要 */
+ha-card {
+  /* フォーカススタイルなし */
+}
+
+/* クリッカブルカード - フォーカスインジケーター */
+ha-card[role="button"]:focus,
+ha-card[tabindex="0"]:focus {
+  outline: 2px solid var(--state-focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* ハイコントラストモード対応 */
+@media (prefers-contrast: high) {
+  ha-card[role="button"]:focus {
+    outline-width: 3px;
+  }
+}
+
+/* 強制カラーモード対応 */
+@media (forced-colors: active) {
+  ha-card[role="button"]:focus {
+    outline-color: Highlight;
+  }
+}
+```
+
+### クリッカブルカードの実装パターン
+
+#### パターン1: リンクでラップ（推奨）
 
 ```html
-<!-- Good ✓: 適切なARIA属性 -->
+<!-- ✓✓ Best: SEOとアクセシビリティに最適 -->
+<a href="/product/123" style="text-decoration: none; color: inherit;">
+  <ha-card>
+    <h3>商品名</h3>
+    <p>商品の説明</p>
+  </ha-card>
+</a>
+```
+
+**スクリーンリーダー読み上げ**:
+```
+「商品ページへ移動、リンク、商品名、商品の説明」
+（"Navigate to product page, link, Product name, Product description"）
+```
+
+#### パターン2: role="button"（JavaScriptアクション用）
+
+```html
+<!-- ✓ Good: JavaScriptアクションの場合 -->
 <ha-card
   role="button"
   tabindex="0"
@@ -357,42 +474,116 @@ function ClickableCard() {
   @click="viewDetails"
   @keydown.enter="viewDetails"
   @keydown.space.prevent="viewDetails"
+  style="cursor: pointer;"
 >
   <h3>商品名</h3>
   <p>商品の説明</p>
 </ha-card>
+```
 
-<!-- Better ✓✓: リンクを使用 -->
-<a href="/product/123" style="text-decoration: none; color: inherit;">
-  <ha-card>
-    <h3>商品名</h3>
-    <p>商品の説明</p>
-  </ha-card>
-</a>
+**React での実装**:
+```tsx
+import { Card } from '@hidearea-design/react';
 
-<!-- Avoid ✗: ARIA属性なし -->
-<ha-card @click="viewDetails" style="cursor: pointer;">
+function ClickableCard() {
+  const handleClick = () => console.log('Clicked');
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleClick();
+    }
+  };
+
+  return (
+    <Card
+      role="button"
+      tabIndex={0}
+      aria-label="商品の詳細を表示"
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      style={{ cursor: 'pointer' }}
+    >
+      <h3>商品名</h3>
+      <p>商品の説明</p>
+    </Card>
+  );
+}
+```
+
+#### パターン3: カード内に個別のアクション（推奨）
+
+```html
+<!-- ✓✓ Best: 複数アクションがある場合 -->
+<ha-card>
   <h3>商品名</h3>
+  <p>商品の説明</p>
+  <ha-stack direction="horizontal" gap="2">
+    <ha-button variant="primary" aria-label="商品をカートに追加">カートに追加</ha-button>
+    <ha-button variant="outline" aria-label="商品の詳細を表示">詳細</ha-button>
+  </ha-stack>
 </ha-card>
+```
+
+**スクリーンリーダー読み上げ**:
+```
+「記事」
+「商品名、見出しレベル3」
+「商品の説明」
+「商品をカートに追加、ボタン」
+「商品の詳細を表示、ボタン」
 ```
 
 ### セマンティックHTML
 
-カード内では適切な見出しレベルを使用：
+カード内では適切な見出しレベルと構造を使用：
 
 ```html
-<!-- Good ✓ -->
+<!-- ✓ Good: セマンティックな構造 -->
 <ha-card>
-  <h2>メインタイトル</h2>
-  <h3>サブタイトル</h3>
-  <p>説明文</p>
+  <article>
+    <header>
+      <h2>メインタイトル</h2>
+      <p style="color: var(--color-text-secondary); font-size: 14px;">
+        投稿日: 2024年12月9日
+      </p>
+    </header>
+    <p>記事の本文...</p>
+    <footer>
+      <a href="/article/123">続きを読む</a>
+    </footer>
+  </article>
 </ha-card>
 
-<!-- Avoid ✗: divのみ -->
+<!-- ✗ Bad: divのみ -->
 <ha-card>
   <div style="font-size: 24px; font-weight: bold;">タイトル</div>
-  <div>説明文</div>
+  <div style="font-size: 12px; color: gray;">2024年12月9日</div>
+  <div>本文</div>
+  <div>続きを読む</div>
 </ha-card>
+```
+
+### カードグリッドのアクセシビリティ
+
+```html
+<!-- ✓ Good: ランドマークとして明示 -->
+<section aria-label="商品一覧">
+  <h2>おすすめ商品</h2>
+  <ha-grid columns="1" md-columns="2" lg-columns="3" gap="4">
+    <ha-card>
+      <h3>商品1</h3>
+      <p>説明1</p>
+    </ha-card>
+    <ha-card>
+      <h3>商品2</h3>
+      <p>説明2</p>
+    </ha-card>
+    <ha-card>
+      <h3>商品3</h3>
+      <p>説明3</p>
+    </ha-card>
+  </ha-grid>
+</section>
 ```
 
 ## スタイルのカスタマイズ
