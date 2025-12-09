@@ -742,7 +742,6 @@ function AnimatedBadge({ children, animation }: { children: React.ReactNode; ani
 - [Button](/components/button) - バッジと組み合わせてカウンター表示
 - [Card](/components/card) - カードヘッダーにバッジを配置
 - [Alert](/components/alert) - より詳細なステータスメッセージ
-- [Chip](/components/chip) - インタラクティブなタグ（削除可能）
 
 ## API リファレンス
 
