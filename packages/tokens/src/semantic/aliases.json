@@ -1,11 +1,4 @@
 {
-  "color": {
-    "gray": {
-      "25": { "value": "#fcfcfc" },
-      "750": { "value": "#3a3a3a" },
-      "950": { "value": "#0a0a0a" }
-    }
-  },
   "spacing": {
     "xs": { "value": "{spacing.2}" },
     "sm": { "value": "{spacing.3}" },

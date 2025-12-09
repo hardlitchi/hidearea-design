@@ -12,6 +12,9 @@ color:
     comment: "黒"
 
   gray:
+    25:
+      value: "#fcfcfc"
+      comment: "ほぼ白に近いグレー - 微細な背景の区別に使用"
     50:
       value: "#fafafa"
       comment: "最も明るいグレー"
@@ -29,11 +32,16 @@ color:
       value: "#525252"
     700:
       value: "#404040"
+    750:
+      value: "#3a3a3a"
+      comment: "濃いグレー - ダークモードの中間色"
     800:
       value: "#262626"
     900:
       value: "#171717"
-      comment: "最も暗いグレー"
+    950:
+      value: "#0a0a0a"
+      comment: "ほぼ黒に近いグレー - ダークモードの最暗背景"
 
   # プライマリカラー（ブルー系）
   blue:

@@ -8,7 +8,7 @@ import YAML from 'yaml';
 StyleDictionary.registerParser({
   name: 'yaml-parser',
   pattern: /\.yaml$/,
-  parser: ({ filePath, contents }) => {
+  parser: ({ contents }) => {
     return YAML.parse(contents);
   },
 });
@@ -76,7 +76,8 @@ StyleDictionary.registerFormat({
  */
 const sd = new StyleDictionary({
   log: { verbosity: 'verbose' },
-  source: ['src/**/*.json'],
+  source: ['src/**/*.json', 'src/**/*.yaml'],
+  parsers: ['yaml-parser'],
   platforms: {
     css: {
       transformGroup: 'css',
