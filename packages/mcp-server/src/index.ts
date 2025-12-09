@@ -628,8 +628,22 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             regex = /<input([^>]*type="button"[^>]*)>/gi;
           } else if (pattern.startsWith('<input type="submit"')) {
             regex = /<input([^>]*type="submit"[^>]*)>/gi;
+          } else if (pattern.startsWith('<input type="checkbox" role="switch"')) {
+            regex = /<input([^>]*type="checkbox"[^>]*role="switch"[^>]*)>/gi;
+          } else if (pattern.startsWith('<input type="checkbox"')) {
+            regex = /<input([^>]*type="checkbox"[^>]*)>/gi;
+          } else if (pattern.startsWith('<input type="radio"')) {
+            regex = /<input([^>]*type="radio"[^>]*)>/gi;
           } else if (pattern.startsWith('<input')) {
             regex = /<input([^>]*)>/gi;
+          } else if (pattern.startsWith('<select')) {
+            regex = /<select([^>]*)>(.*?)<\/select>/gis;
+          } else if (pattern.startsWith('<textarea')) {
+            regex = /<textarea([^>]*)>(.*?)<\/textarea>/gis;
+          } else if (pattern.startsWith('<div role="switch"')) {
+            regex = /<div([^>]*role="switch"[^>]*)>(.*?)<\/div>/gis;
+          } else if (pattern.startsWith('<button role="switch"')) {
+            regex = /<button([^>]*role="switch"[^>]*)>(.*?)<\/button>/gis;
           } else if (pattern.includes('card')) {
             regex = /<(?:div|article)([^>]*class="[^"]*card[^"]*"[^>]*)>(.*?)<\/(?:div|article)>/gis;
           } else {
