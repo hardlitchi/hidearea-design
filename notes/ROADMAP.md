@@ -189,12 +189,15 @@
   - サードパーティ拡張機能のサポート
   - カスタムコンポーネント追加API
 
-- [ ] **MCPサーバの作成**
-  - 利用コンポーネントの検索
-  - style からセマンティックトークンを選択
-  - HTML を 本ライブラリを使用したものに変換
-  - 各コンポーネントの使い方提示
-  - 該当するコンポーネントと使用例を提示
+- [x] **MCPサーバの作成** ✅ (2025-12-09)
+  - ✅ 利用コンポーネントの検索（search_components）
+  - ✅ style からセマンティックトークンを選択（suggest_semantic_tokens, check_token_compatibility）
+  - ✅ HTML を 本ライブラリを使用したものに変換（convert_html_to_components）
+  - ✅ 各コンポーネントの使い方提示（get_component_details, get_usage_example）
+  - ✅ 該当するコンポーネントと使用例を提示（get_accessibility_guidance, get_related_components）
+  - ✅ 15ツール実装（Phase 1-3完了）
+  - ✅ コンポーネント別HTML変換ロジック（関心の分離）
+  - ✅ フォーム自動生成、テーマトークン取得、マイグレーションガイド、Storybook生成
 
 ### エンタープライズ機能
 - [ ] **デザインシステムドキュメントサイト**
