@@ -441,50 +441,617 @@ const columns = [
 
 ## スタイルのカスタマイズ
 
-CSS変数を使用してスタイルをカスタマイズできます：
+DataGrid コンポーネントは、デザイントークンとカスタムCSS変数を使用して柔軟にカスタマイズできます。
+
+### デザイントークン
+
+DataGrid コンポーネントで使用される主要なデザイントークン：
 
 ```css
-ha-datagrid {
-  --ha-datagrid-bg: #ffffff;
-  --ha-datagrid-header-bg: #f3f4f6;
-  --ha-datagrid-header-hover-bg: #e5e7eb;
-  --ha-datagrid-row-hover-bg: #f9fafb;
-  --ha-datagrid-selected-bg: #eff6ff;
-  --ha-datagrid-selected-hover-bg: #dbeafe;
-  --ha-datagrid-border-color: #e5e7eb;
-  --ha-datagrid-stripe-bg: #f9fafb;
-  --ha-datagrid-cell-padding: 0.75rem;
+:root {
+  /* テーブル背景 */
+  --datagrid-bg: var(--color-surface-0);
+  --datagrid-stripe-bg: var(--color-surface-50);
+
+  /* ヘッダー */
+  --datagrid-header-bg: var(--color-surface-100);
+  --datagrid-header-hover-bg: var(--color-surface-200);
+  --datagrid-header-color: var(--color-text-primary);
+
+  /* 行 */
+  --datagrid-row-hover-bg: var(--color-surface-50);
+  --datagrid-selected-bg: var(--color-primary-50);
+  --datagrid-selected-hover-bg: var(--color-primary-100);
+
+  /* ボーダー */
+  --datagrid-border-color: var(--color-border-subtle);
+  --datagrid-cell-padding: var(--space-3); /* 12px */
+
+  /* フォント */
+  --datagrid-font-size: var(--font-size-sm);
+  --datagrid-header-font-weight: var(--font-weight-semibold);
 }
 ```
 
-### CSS Parts
+### カスタムCSS変数
 
-`::part()`セレクタでスタイルをカスタマイズできます：
+DataGrid のスタイルをカスタマイズするためのCSS変数：
 
 ```css
+ha-datagrid {
+  /* 背景色 */
+  --ha-datagrid-bg: var(--color-surface-0);
+  --ha-datagrid-stripe-bg: var(--color-surface-50);
+
+  /* ヘッダー */
+  --ha-datagrid-header-bg: var(--color-surface-100);
+  --ha-datagrid-header-hover-bg: var(--color-surface-200);
+  --ha-datagrid-header-color: var(--color-text-primary);
+  --ha-datagrid-header-font-weight: 600;
+
+  /* 行のホバー */
+  --ha-datagrid-row-hover-bg: var(--color-surface-50);
+
+  /* 選択された行 */
+  --ha-datagrid-selected-bg: var(--color-primary-50);
+  --ha-datagrid-selected-hover-bg: var(--color-primary-100);
+
+  /* ボーダー */
+  --ha-datagrid-border-color: var(--color-border-subtle);
+  --ha-datagrid-border-width: 1px;
+
+  /* パディング */
+  --ha-datagrid-cell-padding: 0.75rem;
+  --ha-datagrid-header-padding: 0.75rem;
+
+  /* フォント */
+  --ha-datagrid-font-size: 14px;
+  --ha-datagrid-line-height: 1.5;
+}
+
+/* コンパクトスタイル */
+ha-datagrid.compact {
+  --ha-datagrid-cell-padding: 0.5rem;
+  --ha-datagrid-header-padding: 0.5rem;
+  --ha-datagrid-font-size: 13px;
+}
+
+/* ラージスタイル */
+ha-datagrid.large {
+  --ha-datagrid-cell-padding: 1rem;
+  --ha-datagrid-header-padding: 1rem;
+  --ha-datagrid-font-size: 16px;
+}
+```
+
+### Shadow DOMパーツ
+
+DataGrid は Shadow DOM を使用しており、`::part()` セレクタでスタイルをカスタマイズできます：
+
+```css
+/* テーブル全体 */
 ha-datagrid::part(table) {
   font-size: 14px;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
+/* ヘッダー */
 ha-datagrid::part(header) {
   background: linear-gradient(to bottom, #f9fafb, #f3f4f6);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
+ha-datagrid::part(header-cell) {
+  padding: 1rem 0.75rem;
+  border-bottom: 2px solid var(--color-border-subtle);
+}
+
+/* セル */
 ha-datagrid::part(cell) {
-  padding: 1rem;
+  padding: 0.75rem;
+  vertical-align: middle;
 }
 
+/* 行 */
+ha-datagrid::part(row) {
+  transition: background-color 0.2s ease;
+}
+
+ha-datagrid::part(row):hover {
+  background-color: var(--color-surface-100);
+}
+
+/* ページネーション */
 ha-datagrid::part(pagination) {
-  border-top: 2px solid #e5e7eb;
+  border-top: 2px solid var(--color-border-subtle);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ha-datagrid::part(pagination-button) {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+}
+
+/* ソートインジケーター */
+ha-datagrid::part(sort-indicator) {
+  margin-left: 0.5rem;
+  color: var(--color-primary-500);
+}
+
+/* チェックボックス */
+ha-datagrid::part(checkbox) {
+  cursor: pointer;
+}
+```
+
+### ダークモード対応
+
+ダークモードでの DataGrid スタイル：
+
+```css
+/* ライトモード */
+:root {
+  --datagrid-bg: var(--color-surface-0);
+  --datagrid-header-bg: var(--color-surface-100);
+  --datagrid-border-color: var(--color-border-subtle);
+  --datagrid-text-color: var(--color-text-primary);
+}
+
+/* ダークモード */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --datagrid-bg: var(--color-surface-900);
+    --datagrid-header-bg: var(--color-surface-800);
+    --datagrid-border-color: var(--color-border-subtle-dark);
+    --datagrid-text-color: var(--color-text-primary-dark);
+    --datagrid-stripe-bg: var(--color-surface-850);
+  }
+}
+
+ha-datagrid {
+  background-color: var(--datagrid-bg);
+  color: var(--datagrid-text-color);
+}
+```
+
+### カスタムテーマ
+
+DataGrid のカスタムテーマ例：
+
+```css
+/* プライマリテーマ */
+ha-datagrid.theme-primary {
+  --ha-datagrid-header-bg: var(--color-primary-100);
+  --ha-datagrid-header-color: var(--color-primary-900);
+  --ha-datagrid-selected-bg: var(--color-primary-100);
+  --ha-datagrid-selected-hover-bg: var(--color-primary-200);
+  --ha-datagrid-border-color: var(--color-primary-300);
+}
+
+/* サクセステーマ */
+ha-datagrid.theme-success {
+  --ha-datagrid-header-bg: var(--color-success-100);
+  --ha-datagrid-selected-bg: var(--color-success-50);
+}
+
+/* カスタムストライプ */
+ha-datagrid.custom-stripe {
+  --ha-datagrid-stripe-bg: #f0f9ff;
+}
+
+/* エレベーション（影）付き */
+ha-datagrid.elevated {
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+ha-datagrid.elevated::part(header) {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ボーダーレス */
+ha-datagrid.borderless {
+  --ha-datagrid-border-color: transparent;
+}
+
+/* ミニマルスタイル */
+ha-datagrid.minimal {
+  --ha-datagrid-header-bg: transparent;
+  --ha-datagrid-stripe-bg: transparent;
+  --ha-datagrid-border-color: var(--color-border-subtle);
+}
+
+ha-datagrid.minimal::part(header) {
+  border-bottom: 2px solid var(--color-border-default);
+}
+
+ha-datagrid.minimal::part(row) {
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+```
+
+### レスポンシブスタイル
+
+ビューポートサイズに応じて異なるスタイルを適用：
+
+```css
+/* モバイル */
+ha-datagrid {
+  --ha-datagrid-font-size: 13px;
+  --ha-datagrid-cell-padding: 0.5rem;
+}
+
+/* タブレット */
+@media (min-width: 768px) {
+  ha-datagrid {
+    --ha-datagrid-font-size: 14px;
+    --ha-datagrid-cell-padding: 0.75rem;
+  }
+}
+
+/* デスクトップ */
+@media (min-width: 1024px) {
+  ha-datagrid {
+    --ha-datagrid-font-size: 14px;
+    --ha-datagrid-cell-padding: 1rem;
+  }
+}
+
+/* モバイルで横スクロール */
+@media (max-width: 767px) {
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  ha-datagrid {
+    min-width: 600px;
+  }
+}
+```
+
+### カラムの幅カスタマイズ
+
+```css
+/* 特定のカラムの幅を設定 */
+ha-datagrid::part(header-cell):nth-child(1),
+ha-datagrid::part(cell):nth-child(1) {
+  width: 60px;
+  text-align: center;
+}
+
+ha-datagrid::part(header-cell):nth-child(2),
+ha-datagrid::part(cell):nth-child(2) {
+  width: 100px;
+}
+
+ha-datagrid::part(header-cell):last-child,
+ha-datagrid::part(cell):last-child {
+  width: 150px;
+  text-align: right;
+}
+```
+
+### アニメーション
+
+```css
+/* 行のホバーアニメーション */
+ha-datagrid::part(row) {
+  transition: all 0.2s ease-in-out;
+}
+
+ha-datagrid::part(row):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ソートインジケーターのアニメーション */
+ha-datagrid::part(sort-indicator) {
+  transition: transform 0.2s ease;
+}
+
+ha-datagrid::part(sort-indicator).ascending {
+  transform: rotate(0deg);
+}
+
+ha-datagrid::part(sort-indicator).descending {
+  transform: rotate(180deg);
+}
+
+/* ページネーションボタンのホバー */
+ha-datagrid::part(pagination-button) {
+  transition: all 0.2s ease;
+}
+
+ha-datagrid::part(pagination-button):hover:not(:disabled) {
+  background-color: var(--color-primary-100);
+  transform: translateY(-1px);
 }
 ```
 
 ## アクセシビリティ
 
-- テーブルの構造は標準的なHTML要素を使用
-- ソート可能なヘッダーはキーボード操作に対応
-- 選択チェックボックスはキーボードでアクセス可能
-- ページネーションボタンもキーボード操作可能
+DataGrid コンポーネントは WCAG 2.1 AA 基準に準拠し、すべてのユーザーがデータにアクセスできるようにします。
+
+### テーブル構造とARIAサポート
+
+DataGrid は標準的なHTMLテーブル要素とARIA属性を組み合わせて、セマンティックで読みやすい構造を提供します。
+
+```html
+<ha-datagrid striped hoverable selectable>
+  <!-- 自動的に以下のARIA属性が設定される -->
+  <!-- role="table", aria-label="データテーブル" -->
+</ha-datagrid>
+```
+
+**自動設定されるARIA属性**:
+
+| ARIA属性 | 要素 | 説明 |
+|---------|------|------|
+| `role="table"` | テーブルコンテナ | テーブルであることを示す |
+| `role="rowgroup"` | thead, tbody | 行グループを示す |
+| `role="row"` | tr | テーブル行を示す |
+| `role="columnheader"` | th | カラムヘッダーを示す |
+| `role="cell"` | td | データセルを示す |
+| `aria-sort` | th | ソート状態（ascending, descending, none）を示す |
+| `aria-selected` | tr | 選択された行を示す |
+| `aria-label` | チェックボックス | 「行を選択」を示す |
+
+### キーボードナビゲーション
+
+DataGrid は完全なキーボード操作をサポートします。
+
+**テーブル全体のナビゲーション**:
+
+| キー | 動作 |
+|-----|------|
+| `Tab` | 次のフォーカス可能要素（ソートヘッダー、チェックボックス、ページネーション）へ移動 |
+| `Shift + Tab` | 前のフォーカス可能要素へ移動 |
+
+**ソートヘッダー**:
+
+| キー | 動作 |
+|-----|------|
+| `Enter` / `Space` | ソート実行（昇順 → 降順 → ソート解除） |
+| `Tab` | 次のソート可能ヘッダーへ移動 |
+
+**行選択（selectableモード）**:
+
+| キー | 動作 |
+|-----|------|
+| `Space` | チェックボックスのON/OFF切り替え |
+| `Tab` | 次の行のチェックボックスへ移動 |
+
+**ページネーション**:
+
+| キー | 動作 |
+|-----|------|
+| `Tab` | 前へ/次へボタン、ページ番号ボタンへ移動 |
+| `Enter` / `Space` | ページ移動を実行 |
+
+```html
+<!-- キーボードナビゲーション例 -->
+<ha-datagrid striped selectable></ha-datagrid>
+
+<!-- フォーカス順序: -->
+<!-- 1. ソート可能な列ヘッダー（左から右） -->
+<!-- 2. 各行の選択チェックボックス（上から下） -->
+<!-- 3. ページネーションボタン（前へ、1、2、3、次へ） -->
+```
+
+### スクリーンリーダー
+
+DataGrid はスクリーンリーダーに最適化された情報を提供します。
+
+**テーブル読み上げ例**:
+
+```javascript
+const columns = [
+  { key: 'id', label: 'ID', sortable: true },
+  { key: 'name', label: 'Name', sortable: true },
+  { key: 'email', label: 'Email' }
+];
+
+const data = [
+  { id: 1, name: 'Alice Johnson', email: 'alice@example.com' },
+  { id: 2, name: 'Bob Smith', email: 'bob@example.com' },
+];
+```
+
+**スクリーンリーダーの読み上げ** (NVDA/JAWS):
+1. "データテーブル、3カラム、2行"
+2. "カラムヘッダー、ID、ソート可能、現在ソートなし"
+3. "カラムヘッダー、Name、ソート可能、現在ソートなし"
+4. "カラムヘッダー、Email"
+5. "行1、ID、1"
+6. "Name、Alice Johnson"
+7. "Email、alice@example.com"
+
+**ソート状態の読み上げ**:
+- ソート前: "ID、ソート可能、現在ソートなし"
+- 昇順ソート後: "ID、ソート済み、昇順"
+- 降順ソート後: "ID、ソート済み、降順"
+
+**選択状態の読み上げ**:
+- 未選択: "行を選択、チェックボックス、チェックなし"
+- 選択済み: "行を選択、チェックボックス、チェック済み"
+
+### ライブリージョン（動的コンテンツ）
+
+DataGrid は動的な変更をスクリーンリーダーに通知します。
+
+```html
+<!-- 自動的にaria-live属性が設定される -->
+<div aria-live="polite" aria-atomic="true">
+  <!-- ソート実行時: "テーブルがNameカラムで昇順にソートされました" -->
+  <!-- ページ変更時: "2ページ目を表示中" -->
+  <!-- 選択変更時: "3行が選択されています" -->
+</div>
+```
+
+### カラムヘッダーのアクセシビリティ
+
+```html
+<!-- ソート可能なヘッダー -->
+<th
+  role="columnheader"
+  aria-sort="ascending"
+  tabindex="0"
+  scope="col"
+>
+  <button type="button" aria-label="Name カラムで昇順ソート">
+    Name
+    <span aria-hidden="true">↑</span>
+  </button>
+</th>
+
+<!-- ソート不可のヘッダー -->
+<th role="columnheader" scope="col">
+  Email
+</th>
+```
+
+### ページネーションのアクセシビリティ
+
+```html
+<nav aria-label="テーブルページネーション" role="navigation">
+  <button
+    aria-label="前のページへ"
+    aria-disabled="true"
+    disabled
+  >
+    前へ
+  </button>
+
+  <button
+    aria-label="1ページ目"
+    aria-current="page"
+  >
+    1
+  </button>
+
+  <button aria-label="2ページ目">
+    2
+  </button>
+
+  <button aria-label="次のページへ">
+    次へ
+  </button>
+
+  <span aria-live="polite" aria-atomic="true">
+    1ページ目を表示中、全2ページ
+  </span>
+</nav>
+```
+
+### 行選択のアクセシビリティ
+
+```html
+<!-- 全選択チェックボックス -->
+<th role="columnheader">
+  <input
+    type="checkbox"
+    aria-label="すべての行を選択"
+    tabindex="0"
+  />
+</th>
+
+<!-- 個別行の選択チェックボックス -->
+<tr role="row" aria-selected="true">
+  <td role="cell">
+    <input
+      type="checkbox"
+      aria-label="Alice Johnsonの行を選択"
+      checked
+      tabindex="0"
+    />
+  </td>
+  <td role="cell">1</td>
+  <td role="cell">Alice Johnson</td>
+  <td role="cell">alice@example.com</td>
+</tr>
+```
+
+### 空のテーブル状態
+
+```html
+<!-- データが0件の場合 -->
+<div role="status" aria-live="polite">
+  <p>表示するデータがありません</p>
+</div>
+```
+
+### 読み込み中状態
+
+```html
+<!-- データ読み込み中 -->
+<div role="status" aria-live="polite" aria-busy="true">
+  <p>データを読み込んでいます...</p>
+</div>
+```
+
+### カラムの説明
+
+```html
+<!-- カラムに説明が必要な場合 -->
+<th role="columnheader" aria-describedby="col-id-desc">
+  ID
+  <span id="col-id-desc" hidden>ユーザーの一意識別子</span>
+</th>
+```
+
+### フォーカスインジケーター
+
+DataGrid は明確なフォーカスインジケーターを提供します：
+
+```css
+/* 自動的に適用されるフォーカススタイル */
+ha-datagrid th:focus,
+ha-datagrid button:focus,
+ha-datagrid input:focus {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+```
+
+### ハイコントラストモード
+
+```css
+/* ハイコントラストモードでの表示 */
+@media (prefers-contrast: high) {
+  ha-datagrid {
+    --ha-datagrid-border-color: #000000;
+    --ha-datagrid-header-bg: #ffffff;
+    --ha-datagrid-row-hover-bg: #ffff00;
+  }
+}
+```
+
+### レスポンシブアクセシビリティ
+
+モバイルデバイスでの DataGrid はスクロール可能で、すべての機能がタッチ操作でアクセス可能です。
+
+```html
+<!-- 横スクロール可能なテーブル -->
+<div
+  role="region"
+  aria-label="スクロール可能なテーブル"
+  tabindex="0"
+  style="overflow-x: auto;"
+>
+  <ha-datagrid striped hoverable></ha-datagrid>
+</div>
+```
+
+**タッチターゲット**:
+- すべてのインタラクティブ要素（ボタン、チェックボックス）は最小 44x44px のタッチターゲットサイズを確保
 
 ## パフォーマンス
 
