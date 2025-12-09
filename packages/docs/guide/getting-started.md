@@ -390,8 +390,7 @@ const Modal = defineAsyncComponent(() =>
 ## 次のステップ
 
 - [デザイントークン](/guide/design-tokens) - デザインシステムの詳細
-- [コンポーネント一覧](/components/overview) - 利用可能なコンポーネント
 - [React ガイド](/guide/react) - React での詳細な使い方
 - [Vue ガイド](/guide/vue) - Vue での詳細な使い方
-- [テーマ設定](/guide/theming) - カスタムテーマの作成
-- [アクセシビリティ](/guide/accessibility) - アクセシビリティガイドライン
+- [Button コンポーネント](/components/button) - 最もよく使われるコンポーネント
+- [Input コンポーネント](/components/input) - フォーム入力コンポーネント

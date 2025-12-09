@@ -319,10 +319,9 @@ function ResponsiveButton() {
 
 ## 関連コンポーネント
 
-- [Button Group](/components/button-group) - 複数のボタンをグループ化
-- [Icon Button](/components/icon-button) - アイコンのみのボタン
 - [Input](/components/input) - フォーム入力と組み合わせて使用
 - [Card](/components/card) - カード内のアクションボタン
+- [Form Group](/components/form-group) - フォームコンポーネントのグループ化
 
 ## API リファレンス
 

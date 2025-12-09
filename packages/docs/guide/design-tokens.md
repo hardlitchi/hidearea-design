@@ -812,7 +812,7 @@ import '@hidearea-design/tokens/build/css/variables.css';
 
 ## 次のステップ
 
-- [セマンティックトークン詳細](/guide/semantic-tokens) - セマンティックトークンの完全なリファレンス
-- [テーマカスタマイズ](/guide/theming) - カスタムテーマの作成方法
-- [コンポーネント一覧](/components/overview) - トークンを使用したコンポーネント
-- [アクセシビリティ](/guide/accessibility) - アクセシブルなカラーコントラスト
+- [Getting Started](/guide/getting-started) - デザインシステムの基本的な使い方
+- [React](/guide/react) - React での使用方法
+- [Vue](/guide/vue) - Vue での使用方法
+- [コンポーネント](/components/button) - トークンを使用したコンポーネント
