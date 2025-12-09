@@ -436,7 +436,13 @@
   --surface-overlay-background: #ffffff;
   --surface-overlay-elevation: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
   --surface-sunken-background: #fafafa;
-  --surface-sunken-elevation: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+  --surface-sunken-elevation: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+  --surface-glass-light-background: rgba(255, 255, 255, 0.8);
+  --surface-glass-light-backdrop-filter: blur(10px) saturate(180%);
+  --surface-glass-light-border: 1px solid rgba(255, 255, 255, 0.3);
+  --surface-glass-dark-background: rgba(23, 23, 23, 0.8);
+  --surface-glass-dark-backdrop-filter: blur(10px) saturate(180%);
+  --surface-glass-dark-border: 1px solid rgba(255, 255, 255, 0.1);
   --surface-level-0-background: #ffffff;
   --surface-level-0-elevation: none;
   --surface-level-1-background: #fafafa;
