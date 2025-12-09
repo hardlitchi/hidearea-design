@@ -46,4 +46,33 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-small-fontSize'],
     other: ['border-radius-full'],
   },
+  htmlConverter: {
+    patterns: ['<input type="range"', '<div class="slider"', '<div role="slider"'],
+    convert: (_match: string, attributes: Record<string, string>, _content: string) => {
+      const value = attributes.value || '0';
+      const min = attributes.min ? ` min="${attributes.min}"` : '';
+      const max = attributes.max ? ` max="${attributes.max}"` : '';
+      const step = attributes.step ? ` step="${attributes.step}"` : '';
+      const disabled = attributes.disabled !== undefined ? ' disabled' : '';
+
+      // Detect show-value from class names or data attributes
+      const className = attributes.class || '';
+      const showValue = attributes['data-show-value'] || '';
+      let showValueAttr = '';
+      if (showValue === 'false' || className.includes('no-value') || className.includes('hide-value')) {
+        showValueAttr = ' show-value="false"';
+      }
+
+      let label = '';
+      if (attributes['aria-label']) {
+        label = ` label="${attributes['aria-label']}"`;
+      } else if (attributes.id) {
+        label = ` label="Slider"`;
+      }
+
+      const valueAttr = ` value="${value}"`;
+
+      return `<ha-slider${label}${valueAttr}${min}${max}${step}${disabled}${showValueAttr}></ha-slider>`;
+    },
+  },
 };

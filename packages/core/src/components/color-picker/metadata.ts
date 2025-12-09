@@ -40,4 +40,40 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize'],
     other: ['border-radius-md', 'surface-overlay-elevation'],
   },
+  htmlConverter: {
+    patterns: ['<input type="color"', '<div class="color-picker"', '<div class="colorpicker"'],
+    convert: (_match: string, attributes: Record<string, string>, _content: string) => {
+      const value = attributes.value || '';
+      const disabled = attributes.disabled !== undefined ? ' disabled' : '';
+
+      // Detect format from data attributes or class names
+      const className = attributes.class || '';
+      let format = attributes['data-format'] || attributes.format || '';
+      if (!format) {
+        if (className.includes('rgb')) {
+          format = 'rgb';
+        } else if (className.includes('hsl')) {
+          format = 'hsl';
+        } else {
+          format = 'hex';
+        }
+      }
+      const formatAttr = format ? ` format="${format}"` : '';
+
+      // Extract swatches from data-swatches attribute
+      const swatches = attributes['data-swatches'] || '';
+      const swatchesAttr = swatches ? ` swatches='${swatches}'` : '';
+
+      let label = '';
+      if (attributes['aria-label']) {
+        label = ` label="${attributes['aria-label']}"`;
+      } else if (attributes.id) {
+        label = ` label="Choose color"`;
+      }
+
+      const valueAttr = value ? ` value="${value}"` : '';
+
+      return `<ha-color-picker${label}${valueAttr}${formatAttr}${disabled}${swatchesAttr}></ha-color-picker>`;
+    },
+  },
 };

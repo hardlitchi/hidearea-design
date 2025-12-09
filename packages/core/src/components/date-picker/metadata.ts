@@ -44,4 +44,27 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize'],
     other: ['border-radius-md', 'surface-overlay-elevation'],
   },
+  htmlConverter: {
+    patterns: ['<input type="date"', '<div class="date-picker"', '<div class="datepicker"', '<div role="application" aria-label'],
+    convert: (_match: string, attributes: Record<string, string>, _content: string) => {
+      const value = attributes.value || '';
+      const min = attributes.min ? ` min="${attributes.min}"` : '';
+      const max = attributes.max ? ` max="${attributes.max}"` : '';
+      const disabled = attributes.disabled !== undefined ? ' disabled' : '';
+      const placeholder = attributes.placeholder ? ` placeholder="${attributes.placeholder}"` : '';
+      const format = attributes['data-format'] || attributes.format || '';
+      const formatAttr = format ? ` format="${format}"` : '';
+
+      let label = '';
+      if (attributes['aria-label']) {
+        label = ` label="${attributes['aria-label']}"`;
+      } else if (attributes.id) {
+        label = ` label="Select date"`;
+      }
+
+      const valueAttr = value ? ` value="${value}"` : '';
+
+      return `<ha-date-picker${label}${valueAttr}${min}${max}${disabled}${placeholder}${formatAttr}></ha-date-picker>`;
+    },
+  },
 };
