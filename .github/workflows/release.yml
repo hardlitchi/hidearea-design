@@ -1,12 +1,10 @@
 name: Release
 
 on:
-  # push:
-  #   branches:
-  #     - main
-  workflow_dispatch: # 手動で実行することもできる
+  push:
     branches:
       - main
+  workflow_dispatch: # 手動で実行することもできる
 
 permissions:
   contents: write
