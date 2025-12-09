@@ -14,6 +14,28 @@ StyleDictionary.registerParser({
 });
 
 /**
+ * 検証用トランスフォーム: .valueサフィックスの検出
+ *
+ * トークン参照に不要な.valueサフィックスが含まれている場合にエラーを投げる
+ * 例: "{color.white.value}" は "{color.white}" とすべき
+ */
+StyleDictionary.registerTransform({
+  name: 'validate/no-value-suffix',
+  type: 'value',
+  transitive: true,
+  filter: (token) => typeof token.value === 'string',
+  transform: (token) => {
+    if (token.value.includes('.value}')) {
+      throw new Error(
+        `トークン "${token.path.join('.')}" に不要な.valueサフィックスが含まれています: ${token.value}\n` +
+        `修正: .valueサフィックスを削除してください`
+      );
+    }
+    return token.value;
+  }
+});
+
+/**
  * カスタムフォーマット: ライトモードとダークモードのCSS変数（二層構造）
  *
  * Shadow DOM対応のため、以下の構造を生成:
@@ -81,6 +103,7 @@ const sd = new StyleDictionary({
   platforms: {
     css: {
       transformGroup: 'css',
+      transforms: ['validate/no-value-suffix'],
       buildPath: 'build/css/',
       files: [
         {
@@ -91,6 +114,7 @@ const sd = new StyleDictionary({
     },
     js: {
       transformGroup: 'js',
+      transforms: ['validate/no-value-suffix'],
       buildPath: 'build/js/',
       files: [
         {
@@ -101,6 +125,7 @@ const sd = new StyleDictionary({
     },
     ts: {
       transformGroup: 'js',
+      transforms: ['validate/no-value-suffix'],
       buildPath: 'build/ts/',
       files: [
         {
