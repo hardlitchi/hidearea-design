@@ -26,25 +26,25 @@ color:
       value: "{color.blue.900}"
   secondary:
     "50":
-      value: "{color.gray.50}"
+      value: "{color.purple.50}"
     "100":
-      value: "{color.gray.100}"
+      value: "{color.purple.100}"
     "200":
-      value: "{color.gray.200}"
+      value: "{color.purple.200}"
     "300":
-      value: "{color.gray.300}"
+      value: "{color.purple.300}"
     "400":
-      value: "{color.gray.400}"
+      value: "{color.purple.400}"
     "500":
-      value: "{color.gray.500}"
+      value: "{color.purple.500}"
     "600":
-      value: "{color.gray.600}"
+      value: "{color.purple.600}"
     "700":
-      value: "{color.gray.700}"
+      value: "{color.purple.700}"
     "800":
-      value: "{color.gray.800}"
+      value: "{color.purple.800}"
     "900":
-      value: "{color.gray.900}"
+      value: "{color.purple.900}"
   success:
     "50":
       value: "{color.green.50}"
@@ -129,24 +129,33 @@ color:
       value: "{color.cyan.800}"
     "900":
       value: "{color.cyan.900}"
-  neutral:
-    "50":
-      value: "{color.gray.50}"
-    "100":
-      value: "{color.gray.100}"
-    "200":
-      value: "{color.gray.200}"
-    "300":
-      value: "{color.gray.300}"
-    "400":
-      value: "{color.gray.400}"
-    "500":
-      value: "{color.gray.500}"
-    "600":
-      value: "{color.gray.600}"
-    "700":
+
+  # アクションカラー（ユーザーインタラクション用）
+  action:
+    primary:
+      value: "{color.primary.500}"
+      comment: "主要なアクション - ボタン、リンク"
+    secondary:
+      value: "{color.secondary.500}"
+      comment: "二次的なアクション"
+    destructive:
+      value: "{color.error.500}"
+      comment: "破壊的なアクション - 削除、キャンセルなど"
+    subtle:
       value: "{color.gray.700}"
-    "800":
-      value: "{color.gray.800}"
-    "900":
-      value: "{color.gray.900}"
+      comment: "控えめなアクション - キャンセル、戻るなど"
+
+  # フィードバックカラー（システムメッセージ用）
+  feedback:
+    success:
+      value: "{color.success.500}"
+      comment: "成功メッセージ"
+    warning:
+      value: "{color.warning.500}"
+      comment: "警告メッセージ"
+    error:
+      value: "{color.error.500}"
+      comment: "エラーメッセージ"
+    info:
+      value: "{color.info.500}"
+      comment: "情報メッセージ"

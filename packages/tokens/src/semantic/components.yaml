@@ -179,6 +179,7 @@ component:
     neutral:
       background:
         value: "{color.gray.100}"
+        comment: "ニュートラルなバッジ"
       text:
         value: "{color.gray.700}"
   alert:
