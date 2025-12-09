@@ -756,6 +756,55 @@ interaction:
 
 ## Phase 3: Component Tokens (Week 7-13)
 
+### Component File Structure
+
+In Phase 3, component tokens will be organized using the following directory structure:
+
+```
+src/semantic/components/
+├── buttons/
+│   └── button.yaml           # Button component
+├── forms/
+│   ├── input.yaml            # Text input
+│   ├── textarea.yaml         # Text area
+│   ├── select.yaml           # Select box
+│   ├── checkbox.yaml         # Checkbox
+│   ├── radio.yaml            # Radio button
+│   └── switch.yaml           # Switch
+├── feedback/
+│   ├── alert.yaml            # Alert
+│   ├── toast.yaml            # Toast notification
+│   ├── badge.yaml            # Badge
+│   ├── tooltip.yaml          # Tooltip
+│   └── progress.yaml         # Progress bar
+├── navigation/
+│   ├── navigation.yaml       # Navigation
+│   ├── tabs.yaml             # Tabs
+│   ├── breadcrumb.yaml       # Breadcrumb
+│   └── pagination.yaml       # Pagination
+├── overlays/
+│   ├── modal.yaml            # Modal
+│   ├── dialog.yaml           # Dialog
+│   ├── drawer.yaml           # Drawer
+│   ├── popover.yaml          # Popover
+│   └── dropdown.yaml         # Dropdown
+└── data-display/
+    ├── table.yaml            # Table
+    ├── list.yaml             # List
+    ├── card.yaml             # Card
+    └── avatar.yaml           # Avatar
+```
+
+**config.mjs update required:**
+```javascript
+source: [
+  'src/base/**/*.yaml',
+  'src/semantic/*.yaml',
+  'src/semantic/components/**/*.yaml',  // ← Add this
+  'src/themes/**/*.yaml'
+],
+```
+
 ### Component Token Structure Template
 
 Each component should follow this comprehensive structure:
