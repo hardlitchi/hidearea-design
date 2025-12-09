@@ -1517,6 +1517,261 @@ function ExportableGrid() {
 - [Button](/components/button) - アクションボタン
 - [Badge](/components/badge) - ステータス表示
 
+## API リファレンス
+
+詳細なAPI仕様については、型定義ファイルを参照してください：
+
+```typescript
+import type { DataGridProps, DataGridColumn, DataGridSortDirection } from '@hidearea-design/core';
+
+/**
+ * DataGridコンポーネントのプロパティ
+ */
+interface DataGridProps {
+  /**
+   * 縞模様の行を表示
+   * @default false
+   */
+  striped?: boolean;
+
+  /**
+   * テーブルに罫線を表示
+   * @default false
+   */
+  bordered?: boolean;
+
+  /**
+   * 行のホバーエフェクトを有効化
+   * @default false
+   */
+  hoverable?: boolean;
+
+  /**
+   * 行選択機能を有効化
+   * @default false
+   */
+  selectable?: boolean;
+
+  /**
+   * 1ページあたりの行数
+   * @default 10
+   */
+  pageSize?: number;
+
+  /**
+   * 現在のページ番号（1始まり）
+   * @default 1
+   */
+  currentPage?: number;
+
+  /**
+   * 総アイテム数（ページネーション計算用）
+   */
+  totalItems?: number;
+
+  /**
+   * ローディング状態
+   * @default false
+   */
+  loading?: boolean;
+
+  /**
+   * ソート変更時のイベントハンドラ
+   */
+  onSortChange?: (event: CustomEvent<{ sortKey: string; sortDirection: DataGridSortDirection }>) => void;
+
+  /**
+   * 選択変更時のイベントハンドラ
+   */
+  onSelectionChange?: (event: CustomEvent<{ selectedRows: number[] }>) => void;
+
+  /**
+   * ページ変更時のイベントハンドラ
+   */
+  onPageChange?: (event: CustomEvent<{ currentPage: number; pageSize: number }>) => void;
+}
+
+/**
+ * カラム定義
+ */
+interface DataGridColumn<T = any> {
+  /**
+   * データオブジェクト内のキー（必須）
+   */
+  key: string;
+
+  /**
+   * 列ヘッダーに表示するラベル（必須）
+   */
+  label: string;
+
+  /**
+   * ソート機能を有効化
+   * @default false
+   */
+  sortable?: boolean;
+
+  /**
+   * 列の幅（CSS値）
+   * @example '100px', '20%', 'auto'
+   */
+  width?: string;
+
+  /**
+   * カスタムセルレンダラー（React/Vueのみ）
+   * @param value - セルの値
+   * @param row - 行データ全体
+   * @param rowIndex - 行インデックス
+   */
+  render?: (value: any, row: T, rowIndex: number) => React.ReactNode | VNode;
+}
+
+/**
+ * ソート方向
+ */
+type DataGridSortDirection = 'asc' | 'desc' | null;
+
+/**
+ * DataGridメソッド
+ */
+interface DataGridMethods {
+  /**
+   * カラム定義を設定
+   * @param columns - カラム定義の配列
+   */
+  setColumns(columns: DataGridColumn[]): void;
+
+  /**
+   * データを設定
+   * @param data - 表示するデータの配列
+   */
+  setData(data: any[]): void;
+
+  /**
+   * 選択された行のインデックス配列を取得
+   * @returns 選択された行のインデックス配列（0始まり）
+   */
+  getSelectedRows(): number[];
+
+  /**
+   * すべての選択をクリア
+   */
+  clearSelection(): void;
+
+  /**
+   * 特定の行を選択
+   * @param rowIndex - 行インデックス（0始まり）
+   */
+  selectRow(rowIndex: number): void;
+
+  /**
+   * 特定の行の選択を解除
+   * @param rowIndex - 行インデックス（0始まり）
+   */
+  deselectRow(rowIndex: number): void;
+
+  /**
+   * 現在のソート状態を取得
+   * @returns ソートキーと方向を含むオブジェクト
+   */
+  getSortState(): { sortKey: string | null; sortDirection: DataGridSortDirection };
+}
+
+/**
+ * カスタムイベント型定義
+ */
+interface DataGridEvents {
+  'sort-change': CustomEvent<{
+    sortKey: string;
+    sortDirection: DataGridSortDirection;
+  }>;
+
+  'selection-change': CustomEvent<{
+    selectedRows: number[];
+  }>;
+
+  'page-change': CustomEvent<{
+    currentPage: number;
+    pageSize: number;
+  }>;
+}
+```
+
+### 使用例
+
+**TypeScript with React:**
+
+```typescript
+import { DataGrid, type DataGridColumn } from '@hidearea-design/react';
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  status: 'active' | 'inactive';
+}
+
+function UserGrid() {
+  const columns: DataGridColumn<User>[] = [
+    { key: 'id', label: 'ID', sortable: true, width: '80px' },
+    { key: 'name', label: 'Name', sortable: true },
+    { key: 'email', label: 'Email', sortable: true },
+    {
+      key: 'status',
+      label: 'Status',
+      render: (value: string) => (
+        <Badge variant={value === 'active' ? 'success' : 'default'}>
+          {value}
+        </Badge>
+      ),
+    },
+  ];
+
+  const [data, setData] = useState<User[]>([]);
+
+  return (
+    <DataGrid
+      columns={columns}
+      data={data}
+      striped
+      hoverable
+      selectable
+      pageSize={20}
+      onSortChange={(e) => console.log(e.detail)}
+      onSelectionChange={(e) => console.log(e.detail.selectedRows)}
+    />
+  );
+}
+```
+
+**Web Components (Vanilla JavaScript):**
+
+```typescript
+const grid = document.querySelector('ha-datagrid') as HTMLElement & DataGridMethods;
+
+// カラム設定
+grid.setColumns([
+  { key: 'id', label: 'ID', sortable: true },
+  { key: 'name', label: 'Name', sortable: true },
+]);
+
+// データ設定
+grid.setData([
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' },
+]);
+
+// イベントリスナー登録
+grid.addEventListener('sort-change', (e: DataGridEvents['sort-change']) => {
+  const { sortKey, sortDirection } = e.detail;
+  console.log(`Sorted by ${sortKey} in ${sortDirection} order`);
+});
+
+// 選択された行を取得
+const selectedRows = grid.getSelectedRows();
+console.log('Selected row indices:', selectedRows);
+```
+
 ## 将来の拡張機能
 
 - カラムのリサイズ
