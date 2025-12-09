@@ -1,0 +1,17 @@
+# エイリアストークン - hidearea-design
+# 使いやすいショートカット名の定義
+
+spacing:
+  # スペーシングのショートカット
+  xs:
+    value: "{spacing.2}"
+  sm:
+    value: "{spacing.3}"
+  md:
+    value: "{spacing.4}"
+  lg:
+    value: "{spacing.6}"
+  xl:
+    value: "{spacing.8}"
+  2xl:
+    value: "{spacing.12}"
