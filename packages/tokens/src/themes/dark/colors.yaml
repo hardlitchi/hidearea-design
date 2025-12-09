@@ -130,3 +130,33 @@ theme:
       subtle:
         value: "{color.cyan.900}"
         comment: "情報（控えめ）"
+
+    # シャドウ（ダークモード専用 - 視認性向上のため濃く設定）
+    shadow:
+      sm:
+        value: "0 1px 2px 0 rgba(0, 0, 0, 0.5)"
+        comment: "小さな影 - カード、ボタンなどの微細な立体感"
+      base:
+        value: "0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px -1px rgba(0, 0, 0, 0.5)"
+        comment: "基本の影 - ドロップダウン、ツールチップ"
+      md:
+        value: "0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5)"
+        comment: "中程度の影 - モーダルダイアログ"
+      lg:
+        value: "0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5)"
+        comment: "大きな影 - ドロワー、サイドバー"
+      xl:
+        value: "0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5)"
+        comment: "特大の影 - フルスクリーンオーバーレイ"
+      "2xl":
+        value: "0 25px 50px -12px rgba(0, 0, 0, 0.5)"
+        comment: "最大の影 - 最も目立つ要素"
+
+    # サーフェス（立体的な要素の背景）
+    surface:
+      elevated:
+        value: "{color.gray.800}"
+        comment: "浮いた要素の背景 - カード、モーダル、ドロップダウン"
+      overlay:
+        value: "{color.gray.750}"
+        comment: "オーバーレイ要素の背景 - ポップオーバー、メニュー"
