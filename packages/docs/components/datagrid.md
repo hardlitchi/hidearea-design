@@ -1131,12 +1131,400 @@ grid.setAttribute('page-size', '10');  // ページサイズ10 → ページネ�
 gridRef.current.clearSelection();
 ```
 
+## FAQ（よくある質問）
+
+### Q1: 大量のデータを扱う際のパフォーマンスを最適化するには？
+
+**A**: ページネーションとサーバーサイドのデータ取得を組み合わせることで、大量のデータでも高速に表示できます。
+
+```tsx
+import { DataGrid } from '@hidearea-design/react';
+import { useState, useEffect } from 'react';
+
+function OptimizedDataGrid() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
+  const pageSize = 50;
+
+  useEffect(() => {
+    fetchData(currentPage);
+  }, [currentPage]);
+
+  const fetchData = async (page: number) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`/api/data?page=${page}&size=${pageSize}`);
+      const result = await response.json();
+      setData(result.items);
+      setTotalItems(result.total);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <DataGrid
+      columns={columns}
+      data={data}
+      pageSize={pageSize}
+      currentPage={currentPage}
+      totalItems={totalItems}
+      onPageChange={(page) => setCurrentPage(page)}
+      loading={loading}
+    />
+  );
+}
+```
+
+**Vue での例**:
+```vue
+<template>
+  <HaDataGrid
+    :columns="columns"
+    :data="data"
+    :page-size="pageSize"
+    :current-page="currentPage"
+    :total-items="totalItems"
+    :loading="loading"
+    @page-change="handlePageChange"
+  />
+</template>
+
+<script setup>
+import { ref, watch } from 'vue';
+import { DataGrid as HaDataGrid } from '@hidearea-design/vue';
+
+const data = ref([]);
+const loading = ref(false);
+const currentPage = ref(1);
+const totalItems = ref(0);
+const pageSize = 50;
+
+const fetchData = async (page) => {
+  loading.value = true;
+  try {
+    const response = await fetch(`/api/data?page=${page}&size=${pageSize}`);
+    const result = await response.json();
+    data.value = result.items;
+    totalItems.value = result.total;
+  } finally {
+    loading.value = false;
+  }
+};
+
+const handlePageChange = (page) => {
+  currentPage.value = page;
+};
+
+watch(currentPage, (newPage) => {
+  fetchData(newPage);
+}, { immediate: true });
+</script>
+```
+
+### Q2: カスタムセルレンダリングを実装するには？
+
+**A**: カラム定義でカスタムレンダラーを使用できます。
+
+```tsx
+import { DataGrid } from '@hidearea-design/react';
+import { Badge, Button } from '@hidearea-design/react';
+
+function CustomRendererGrid() {
+  const columns = [
+    {
+      key: 'name',
+      label: 'Name',
+      sortable: true,
+    },
+    {
+      key: 'status',
+      label: 'Status',
+      render: (value, row) => {
+        const variant = value === 'active' ? 'success' : 'error';
+        return <Badge variant={variant}>{value}</Badge>;
+      },
+    },
+    {
+      key: 'actions',
+      label: 'Actions',
+      render: (value, row) => (
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <Button size="sm" variant="outline" onClick={() => handleEdit(row)}>
+            Edit
+          </Button>
+          <Button size="sm" variant="ghost" onClick={() => handleDelete(row)}>
+            Delete
+          </Button>
+        </div>
+      ),
+    },
+  ];
+
+  const handleEdit = (row) => {
+    console.log('Edit:', row);
+  };
+
+  const handleDelete = (row) => {
+    if (confirm('Are you sure?')) {
+      console.log('Delete:', row);
+    }
+  };
+
+  return <DataGrid columns={columns} data={data} />;
+}
+```
+
+### Q3: 選択された行のデータを取得するには？
+
+**A**: `selection-change`イベントを使用して選択された行のデータを取得できます。
+
+```tsx
+import { DataGrid } from '@hidearea-design/react';
+import { useState } from 'react';
+
+function SelectableGrid() {
+  const [selectedRows, setSelectedRows] = useState([]);
+
+  const handleSelectionChange = (event) => {
+    const selectedIds = event.detail.selectedRows;
+    const selected = data.filter(row => selectedIds.includes(row.id));
+    setSelectedRows(selected);
+    console.log('Selected rows:', selected);
+  };
+
+  const handleBulkAction = () => {
+    if (selectedRows.length === 0) {
+      alert('Please select at least one row');
+      return;
+    }
+    console.log('Performing bulk action on:', selectedRows);
+  };
+
+  return (
+    <div>
+      <div style={{ marginBottom: '16px' }}>
+        <Button onClick={handleBulkAction} disabled={selectedRows.length === 0}>
+          Bulk Action ({selectedRows.length} selected)
+        </Button>
+      </div>
+      <DataGrid
+        columns={columns}
+        data={data}
+        selectable
+        onSelectionChange={handleSelectionChange}
+      />
+    </div>
+  );
+}
+```
+
+**Vue での例**:
+```vue
+<template>
+  <div>
+    <div style="margin-bottom: 16px;">
+      <HaButton @click="handleBulkAction" :disabled="selectedRows.length === 0">
+        Bulk Action ({{ selectedRows.length }} selected)
+      </HaButton>
+    </div>
+    <HaDataGrid
+      :columns="columns"
+      :data="data"
+      selectable
+      @selection-change="handleSelectionChange"
+    />
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { DataGrid as HaDataGrid, Button as HaButton } from '@hidearea-design/vue';
+
+const selectedRows = ref([]);
+
+const handleSelectionChange = (event) => {
+  const selectedIds = event.detail.selectedRows;
+  selectedRows.value = data.filter(row => selectedIds.includes(row.id));
+  console.log('Selected rows:', selectedRows.value);
+};
+
+const handleBulkAction = () => {
+  if (selectedRows.value.length === 0) {
+    alert('Please select at least one row');
+    return;
+  }
+  console.log('Performing bulk action on:', selectedRows.value);
+};
+</script>
+```
+
+### Q4: ソートとページネーションを同時に使用するには？
+
+**A**: サーバーサイドでソートとページネーションを処理するのが最適です。
+
+```tsx
+import { DataGrid } from '@hidearea-design/react';
+import { useState, useEffect } from 'react';
+
+function SortablePagedGrid() {
+  const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState('name');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const pageSize = 20;
+
+  useEffect(() => {
+    fetchData(currentPage, sortBy, sortOrder);
+  }, [currentPage, sortBy, sortOrder]);
+
+  const fetchData = async (page: number, sort: string, order: 'asc' | 'desc') => {
+    const response = await fetch(
+      `/api/data?page=${page}&size=${pageSize}&sort=${sort}&order=${order}`
+    );
+    const result = await response.json();
+    setData(result.items);
+  };
+
+  const handleSort = (event) => {
+    const { column, order } = event.detail;
+    setSortBy(column);
+    setSortOrder(order);
+    setCurrentPage(1); // ソート変更時は最初のページに戻る
+  };
+
+  return (
+    <DataGrid
+      columns={columns}
+      data={data}
+      pageSize={pageSize}
+      currentPage={currentPage}
+      sortable
+      onPageChange={(page) => setCurrentPage(page)}
+      onSort={handleSort}
+    />
+  );
+}
+```
+
+### Q5: DataGridの高さを固定してスクロール可能にするには？
+
+**A**: CSSで高さを設定し、オーバーフローをスクロールに設定します。
+
+```html
+<style>
+  .fixed-height-grid {
+    height: 600px;
+    overflow: auto;
+  }
+
+  /* ヘッダーを固定する場合 */
+  .fixed-height-grid ha-datagrid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fixed-height-grid ha-datagrid::part(header) {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: white;
+  }
+</style>
+
+<div class="fixed-height-grid">
+  <ha-datagrid id="grid"></ha-datagrid>
+</div>
+```
+
+**React での例**:
+```tsx
+import { DataGrid } from '@hidearea-design/react';
+
+function FixedHeightGrid() {
+  return (
+    <div style={{ height: '600px', overflow: 'auto' }}>
+      <DataGrid
+        columns={columns}
+        data={data}
+        style={{
+          '--datagrid-header-position': 'sticky',
+          '--datagrid-header-top': '0',
+          '--datagrid-header-z-index': '10',
+          '--datagrid-header-bg': 'white',
+        }}
+      />
+    </div>
+  );
+}
+```
+
+### Q6: エクスポート機能を実装するには？
+
+**A**: データをCSVやExcel形式でエクスポートする機能を実装できます。
+
+```tsx
+import { DataGrid } from '@hidearea-design/react';
+import { Button } from '@hidearea-design/react';
+
+function ExportableGrid() {
+  const exportToCSV = () => {
+    const headers = columns.map(col => col.label).join(',');
+    const rows = data.map(row =>
+      columns.map(col => {
+        const value = row[col.key];
+        // 値にカンマや改行が含まれる場合はクォートで囲む
+        return typeof value === 'string' && (value.includes(',') || value.includes('\n'))
+          ? `"${value.replace(/"/g, '""')}"`
+          : value;
+      }).join(',')
+    ).join('\n');
+
+    const csv = `${headers}\n${rows}`;
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'data.csv';
+    link.click();
+  };
+
+  const exportToJSON = () => {
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'data.json';
+    link.click();
+  };
+
+  return (
+    <div>
+      <div style={{ marginBottom: '16px', display: 'flex', gap: '8px' }}>
+        <Button onClick={exportToCSV}>Export to CSV</Button>
+        <Button onClick={exportToJSON}>Export to JSON</Button>
+      </div>
+      <DataGrid columns={columns} data={data} />
+    </div>
+  );
+}
+```
+
+## 関連コンポーネント
+
+- [Grid](/components/grid) - グリッドレイアウトコンポーネント
+- [Button](/components/button) - アクションボタン
+- [Badge](/components/badge) - ステータス表示
+
 ## 将来の拡張機能
 
 - カラムのリサイズ
-- カラムの並び替え
-- フィルタリング機能
-- 編集可能なセル
-- 仮想スクロール
-- エクスポート機能（CSV, Excel）
-- カスタムセルレンダラー
+- カラムの並び替え（ドラッグ&ドロップ）
+- 高度なフィルタリング機能（複数条件、カスタムフィルター）
+- 編集可能なセル（インラインエディット）
+- 仮想スクロール（大量データの効率的な表示）
+- エクスポート機能（CSV, Excel, PDF）
+- カスタムセルレンダラー（より柔軟なカスタマイズ）
+- グループ化機能（行のグループ化と集計）
+- ツリーグリッド（階層データの表示）
