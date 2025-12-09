@@ -44,4 +44,34 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize'],
     other: ['border-radius-md', 'surface-overlay-elevation'],
   },
+  htmlConverter: {
+    patterns: ['<input type="time"', '<div class="time-picker"', '<div class="timepicker"'],
+    convert: (_match: string, attributes: Record<string, string>, _content: string) => {
+      const value = attributes.value || '';
+      const disabled = attributes.disabled !== undefined ? ' disabled' : '';
+      const placeholder = attributes.placeholder ? ` placeholder="${attributes.placeholder}"` : '';
+      const step = attributes.step ? ` step="${attributes.step}"` : '';
+
+      // Detect 12h/24h format from class names or data attributes
+      const className = attributes.class || '';
+      let format = attributes['data-format'] || attributes.format || '';
+      if (!format) {
+        if (className.includes('12h') || className.includes('12-hour') || className.includes('ampm')) {
+          format = '12h';
+        }
+      }
+      const formatAttr = format ? ` format="${format}"` : '';
+
+      let label = '';
+      if (attributes['aria-label']) {
+        label = ` label="${attributes['aria-label']}"`;
+      } else if (attributes.id) {
+        label = ` label="Select time"`;
+      }
+
+      const valueAttr = value ? ` value="${value}"` : '';
+
+      return `<ha-time-picker${label}${valueAttr}${formatAttr}${disabled}${placeholder}${step}></ha-time-picker>`;
+    },
+  },
 };

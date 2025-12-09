@@ -47,4 +47,32 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize', 'font-weight-medium'],
     other: ['border-radius-md'],
   },
+  htmlConverter: {
+    patterns: ['<table class="datagrid"', '<div class="data-grid"', '<div class="grid"', '<div role="grid"'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      // Detect features from class names and data attributes
+      const className = attributes.class || '';
+
+      const sortable = attributes['data-sortable'] !== undefined || className.includes('sortable') ? ' sortable' : '';
+      const filterable = attributes['data-filterable'] !== undefined || className.includes('filterable') ? ' filterable' : '';
+      const paginate = attributes['data-paginate'] !== undefined || className.includes('paginate') || className.includes('pagination') ? ' paginate' : '';
+      const selectable = attributes['data-selectable'] !== undefined || className.includes('selectable') ? ' selectable' : '';
+
+      // Extract page size
+      const pageSize = attributes['data-page-size'] || attributes.pagesize || '';
+      const pageSizeAttr = pageSize ? ` page-size="${pageSize}"` : '';
+
+      // Extract columns and data from data attributes
+      const columns = attributes['data-columns'] || '';
+      const columnsAttr = columns ? ` columns='${columns}'` : '';
+
+      const data = attributes['data-source'] || attributes['data-items'] || '';
+      const dataAttr = data ? ` data='${data}'` : '';
+
+      // Preserve table structure as slot content if it's a table element
+      const innerContent = content.trim() ? `\n  ${content.trim()}\n` : '';
+
+      return `<ha-datagrid${dataAttr}${columnsAttr}${sortable}${filterable}${paginate}${selectable}${pageSizeAttr}>${innerContent}</ha-datagrid>`;
+    },
+  },
 };

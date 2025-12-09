@@ -50,4 +50,36 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize'],
     other: ['border-radius-md'],
   },
+  htmlConverter: {
+    patterns: ['<input type="file"', '<div class="file-upload"', '<div class="dropzone"', '<div class="file-drop"'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      const accept = attributes.accept ? ` accept="${attributes.accept}"` : '';
+      const multiple = attributes.multiple !== undefined ? ' multiple' : '';
+      const disabled = attributes.disabled !== undefined ? ' disabled' : '';
+
+      // Extract max size from data attributes
+      const maxSize = attributes['data-max-size'] || attributes.maxsize || '';
+      const maxSizeAttr = maxSize ? ` max-size="${maxSize}"` : '';
+
+      // Extract max files from data attributes
+      const maxFiles = attributes['data-max-files'] || attributes.maxfiles || '';
+      const maxFilesAttr = maxFiles ? ` max-files="${maxFiles}"` : '';
+
+      // Detect drag-drop from class names
+      const className = attributes.class || '';
+      const dragDrop = className.includes('dropzone') || className.includes('drag') || className.includes('drop');
+      const dragDropAttr = dragDrop ? '' : ' drag-drop="false"';
+
+      let label = '';
+      if (attributes['aria-label']) {
+        label = ` label="${attributes['aria-label']}"`;
+      } else if (attributes.id) {
+        label = ` label="Upload files"`;
+      }
+
+      const innerContent = content.trim() ? `\n  ${content.trim()}\n` : '';
+
+      return `<ha-file-upload${label}${accept}${multiple}${maxSizeAttr}${maxFilesAttr}${disabled}${dragDropAttr}>${innerContent}</ha-file-upload>`;
+    },
+  },
 };
