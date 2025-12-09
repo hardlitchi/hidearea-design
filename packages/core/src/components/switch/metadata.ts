@@ -48,4 +48,23 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize'],
     other: ['border-radius-full', 'interaction-transition-fast-duration'],
   },
+  htmlConverter: {
+    patterns: ['<input type="checkbox" role="switch"', '<div role="switch"', '<button role="switch"'],
+    convert: (_match: string, attributes: Record<string, string>, _content: string) => {
+      // Switches are often implemented as checkboxes with role="switch" or custom elements
+      const checked = attributes.checked !== undefined || attributes['aria-checked'] === 'true' ? ' checked' : '';
+      const disabled = attributes.disabled !== undefined || attributes['aria-disabled'] === 'true' ? ' disabled' : '';
+      const required = attributes.required !== undefined ? ' required' : '';
+
+      // Extract label
+      let label = '';
+      if (attributes['aria-label']) {
+        label = attributes['aria-label'];
+      } else if (attributes['aria-labelledby']) {
+        label = 'Switch';
+      }
+
+      return `<ha-switch${checked}${disabled}${required}>${label}</ha-switch>`;
+    },
+  },
 };

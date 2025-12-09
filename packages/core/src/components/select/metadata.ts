@@ -54,4 +54,16 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize'],
     other: ['border-radius-md', 'surface-overlay-elevation'],
   },
+  htmlConverter: {
+    patterns: ['<select'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      const multiple = attributes.multiple !== undefined ? ' multiple' : '';
+      const disabled = attributes.disabled !== undefined ? ' disabled' : '';
+      const required = attributes.required !== undefined ? ' required' : '';
+      const name = attributes.name ? ` name="${attributes.name}"` : '';
+
+      // Preserve the option elements from the original select
+      return `<ha-select${multiple}${disabled}${required}${name}>\n  ${content.trim()}\n</ha-select>`;
+    },
+  },
 };

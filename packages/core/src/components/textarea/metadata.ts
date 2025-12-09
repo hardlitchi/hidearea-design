@@ -47,4 +47,18 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize'],
     other: ['border-radius-md', 'interaction-transition-fast-duration'],
   },
+  htmlConverter: {
+    patterns: ['<textarea'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      const placeholder = attributes.placeholder ? ` placeholder="${attributes.placeholder}"` : '';
+      const disabled = attributes.disabled !== undefined ? ' disabled' : '';
+      const required = attributes.required !== undefined ? ' required' : '';
+      const readonly = attributes.readonly !== undefined ? ' readonly' : '';
+      const rows = attributes.rows ? ` rows="${attributes.rows}"` : '';
+      const maxlength = attributes.maxlength ? ` maxlength="${attributes.maxlength}"` : '';
+      const name = attributes.name ? ` name="${attributes.name}"` : '';
+
+      return `<ha-textarea${placeholder}${disabled}${required}${readonly}${rows}${maxlength}${name}>${content}</ha-textarea>`;
+    },
+  },
 };

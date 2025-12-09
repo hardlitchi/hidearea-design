@@ -47,4 +47,24 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize'],
     other: ['border-radius-sm', 'interaction-transition-fast-duration'],
   },
+  htmlConverter: {
+    patterns: ['<input type="checkbox"'],
+    convert: (_match: string, attributes: Record<string, string>, _content: string) => {
+      const checked = attributes.checked !== undefined ? ' checked' : '';
+      const disabled = attributes.disabled !== undefined ? ' disabled' : '';
+      const required = attributes.required !== undefined ? ' required' : '';
+      const value = attributes.value ? ` value="${attributes.value}"` : '';
+      const name = attributes.name ? ` name="${attributes.name}"` : '';
+
+      // Extract label from associated label element or use placeholder
+      let label = '';
+      if (attributes['aria-label']) {
+        label = attributes['aria-label'];
+      } else if (attributes.id) {
+        label = `Label for ${attributes.id}`;
+      }
+
+      return `<ha-checkbox${checked}${disabled}${required}${value}${name}>${label}</ha-checkbox>`;
+    },
+  },
 };

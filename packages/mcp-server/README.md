@@ -422,6 +422,207 @@ This distributed architecture:
 - Ensures metadata stays in sync with implementations
 - Reduces duplication across packages
 
+### HTML Conversion Architecture
+
+The HTML conversion system uses component-specific converters:
+
+- **Converter Interface**: Defined in `ComponentMetadata.htmlConverter`
+- **Component-Specific Logic**: Each component owns its conversion logic
+- **Dynamic Discovery**: MCP server discovers converters at runtime
+- **Extensible**: Add new converters by updating component metadata
+
+**Supported Components with HTML Converters:**
+- Button (`<button>`, `<input type="button|submit">`)
+- Input (`<input>`)
+- Checkbox (`<input type="checkbox">`)
+- Radio (`<input type="radio">`)
+- Select (`<select>`)
+- Textarea (`<textarea>`)
+- Switch (`<input type="checkbox" role="switch">`)
+- Card (`<div class="card">`)
+
+## Integration Examples
+
+### Real-World Workflow
+
+#### Building a Contact Form
+
+```
+User: "Create a contact form with name, email, phone, message, and a subscribe checkbox"
+
+Claude (uses generate_form):
+```
+```html
+<form>
+  <ha-form-group label="Name" required>
+    <ha-input name="name" type="text" placeholder="Enter your name" required></ha-input>
+  </ha-form-group>
+
+  <ha-form-group label="Email" required>
+    <ha-input name="email" type="email" placeholder="Enter your email" required></ha-input>
+  </ha-form-group>
+
+  <ha-form-group label="Phone">
+    <ha-input name="phone" type="tel" placeholder="Enter your phone"></ha-input>
+  </ha-form-group>
+
+  <ha-form-group label="Message" required>
+    <ha-textarea name="message" rows="5" placeholder="Enter your message" required></ha-textarea>
+  </ha-form-group>
+
+  <ha-form-group>
+    <ha-checkbox name="subscribe">Subscribe to newsletter</ha-checkbox>
+  </ha-form-group>
+
+  <ha-button type="submit" variant="primary">Submit</ha-button>
+</form>
+```
+
+#### Converting Legacy HTML
+
+```
+User: "Convert this HTML form to use Hidearea components: [HTML code]"
+
+Claude (uses convert_html_to_components):
+```
+Automatically converts all standard HTML elements to Hidearea components while preserving attributes and structure.
+
+#### Ensuring Accessibility
+
+```
+User: "Is this Modal implementation accessible?"
+
+Claude (uses get_accessibility_guidance + validate_component_usage):
+```
+Provides WCAG compliance check, ARIA attribute validation, and keyboard navigation requirements.
+
+#### Component Selection
+
+```
+User: "Should I use Modal or Drawer for a shopping cart?"
+
+Claude (uses compare_components):
+```
+Compares both components and recommends Drawer for shopping cart (side overlay, better for persistent content).
+
+### VSCode with Continue
+
+```json
+{
+  "models": [
+    {
+      "title": "Claude 3.5 Sonnet",
+      "provider": "anthropic",
+      "model": "claude-3-5-sonnet-20241022",
+      "apiKey": "your-api-key"
+    }
+  ],
+  "mcpServers": {
+    "hidearea-design": {
+      "command": "node",
+      "args": [
+        "/absolute/path/to/hidearea-design/packages/mcp-server/build/index.js"
+      ]
+    }
+  }
+}
+```
+
+### Cursor IDE
+
+Add to `.cursorrules` or system prompts:
+
+```
+When building UI components, use the Hidearea Design System MCP server to:
+- Search for appropriate components
+- Get component usage examples
+- Validate component props
+- Check accessibility requirements
+- Convert HTML to Hidearea components
+```
+
+### Zed Editor
+
+```json
+{
+  "assistant": {
+    "provider": "anthropic",
+    "mcp_servers": {
+      "hidearea-design": {
+        "command": "node",
+        "args": [
+          "/absolute/path/to/hidearea-design/packages/mcp-server/build/index.js"
+        ]
+      }
+    }
+  }
+}
+```
+
+## Advanced Usage
+
+### Custom Tool Combinations
+
+Combine multiple tools for complex workflows:
+
+```
+1. search_components("data table")
+2. get_component_details("Table")
+3. get_related_components("Table") → suggests Pagination, Badge
+4. get_accessibility_guidance("Table")
+5. generate_storybook_story("Table")
+```
+
+### Token-Driven Theming
+
+```
+1. get_theme_tokens("colors", "Button")
+2. check_token_compatibility(background, foreground)
+3. suggest_semantic_tokens("background-color")
+```
+
+### Migration Workflows
+
+```
+1. get_migration_guide("1.0.0", "2.0.0")
+2. validate_component_usage(component, props) → check for breaking changes
+3. get_component_details(component) → review new props/events
+```
+
+## Resources
+
+- **Usage Guide**: See [USAGE_GUIDE.md](./USAGE_GUIDE.md) for detailed examples
+- **Component Catalog**: Browse components at your Storybook instance
+- **Design Tokens**: Full token reference in design system documentation
+- **Source Code**: https://github.com/hardlitchi/hidearea-design
+
+## Contributing
+
+To add HTML converters for new components:
+
+1. Add `htmlConverter` to component metadata:
+
+```typescript
+// packages/core/src/components/your-component/metadata.ts
+export const metadata: ComponentMetadata = {
+  // ... existing metadata
+  htmlConverter: {
+    patterns: ['<your-html-pattern'],
+    convert: (match, attributes, content) => {
+      // Conversion logic
+      return `<ha-your-component>${content}</ha-your-component>`;
+    },
+  },
+};
+```
+
+2. Rebuild packages:
+```bash
+pnpm build
+```
+
+No changes to MCP server code needed – converters are discovered automatically!
+
 ## License
 
 MIT
