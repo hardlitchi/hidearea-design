@@ -48,4 +48,11 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize', 'font-weight-medium'],
     other: ['border-radius-md'],
   },
+  htmlConverter: {
+    patterns: ['<details', '<div class="accordion"'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      const open = attributes.open !== undefined ? ' open' : '';
+      return `<ha-accordion${open}>\n  ${content.trim()}\n</ha-accordion>`;
+    },
+  },
 };

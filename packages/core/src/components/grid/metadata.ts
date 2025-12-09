@@ -45,4 +45,15 @@ export const metadata: ComponentMetadata = {
     typography: [],
     other: [],
   },
+  htmlConverter: {
+    patterns: ['<div class="grid"', '<div class="row"', '<section class="grid"'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      const className = attributes.class || '';
+      let columns = '';
+      const match = className.match(/(?:grid|cols?)-(\d+)/);
+      if (match) columns = ` columns="${match[1]}"`;
+
+      return `<ha-grid${columns}>\n  ${content.trim()}\n</ha-grid>`;
+    },
+  },
 };

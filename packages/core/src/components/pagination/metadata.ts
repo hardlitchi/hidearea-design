@@ -38,4 +38,11 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize'],
     other: ['border-radius-md'],
   },
+  htmlConverter: {
+    patterns: ['<nav aria-label="pagination"', '<nav class="pagination"', '<ul class="pagination"'],
+    convert: (_match: string, attributes: Record<string, string>, _content: string) => {
+      const total = attributes['data-total'] || attributes['aria-label']?.match(/\d+/)?.[0] || '10';
+      return `<ha-pagination total="${total}"></ha-pagination>`;
+    },
+  },
 };

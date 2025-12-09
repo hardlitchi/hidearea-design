@@ -42,4 +42,16 @@ export const metadata: ComponentMetadata = {
     typography: [],
     other: ['border-radius-md', 'interaction-transition-fast-duration'],
   },
+  htmlConverter: {
+    patterns: ['<div class="skeleton"', '<div role="status" aria-busy="true"', '<div class="loading-placeholder"'],
+    convert: (_match: string, attributes: Record<string, string>, _content: string) => {
+      const className = attributes.class || '';
+      let variant = 'text';
+
+      if (className.includes('circle')) variant = 'circle';
+      else if (className.includes('rectangle') || className.includes('rect')) variant = 'rectangle';
+
+      return `<ha-skeleton variant="${variant}"></ha-skeleton>`;
+    },
+  },
 };

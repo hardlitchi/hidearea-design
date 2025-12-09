@@ -44,4 +44,14 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-small-fontSize'],
     other: ['border-radius-full'],
   },
+  htmlConverter: {
+    patterns: ['<progress', '<div role="progressbar"', '<div class="progress"'],
+    convert: (_match: string, attributes: Record<string, string>, _content: string) => {
+      const value = attributes.value || attributes['aria-valuenow'] || '0';
+      const max = attributes.max || attributes['aria-valuemax'] || '100';
+      const label = attributes['aria-label'] || '';
+
+      return `<ha-progress value="${value}" max="${max}" label="${label}"></ha-progress>`;
+    },
+  },
 };

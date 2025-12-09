@@ -48,4 +48,17 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-small-fontSize'],
     other: ['border-radius-sm', 'surface-overlay-elevation'],
   },
+  htmlConverter: {
+    patterns: ['<div role="tooltip"', '<span role="tooltip"', '<div class="tooltip"'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      const className = attributes.class || '';
+      let position = 'top';
+
+      if (className.includes('bottom')) position = 'bottom';
+      else if (className.includes('left')) position = 'left';
+      else if (className.includes('right')) position = 'right';
+
+      return `<ha-tooltip position="${position}">${content}</ha-tooltip>`;
+    },
+  },
 };

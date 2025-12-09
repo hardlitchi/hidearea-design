@@ -45,4 +45,13 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize', 'text-body-small-fontSize', 'font-weight-medium'],
     other: [],
   },
+  htmlConverter: {
+    patterns: ['<div class="form-group"', '<fieldset', '<div class="field"'],
+    convert: (_match: string, attributes: Record<string, string>, content: string) => {
+      const label = attributes['aria-label'] || attributes.legend || '';
+      const required = attributes.required !== undefined || content.includes('required') ? ' required' : '';
+
+      return `<ha-form-group label="${label}"${required}>\n  ${content.trim()}\n</ha-form-group>`;
+    },
+  },
 };

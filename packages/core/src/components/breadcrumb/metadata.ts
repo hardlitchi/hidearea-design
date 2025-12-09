@@ -42,4 +42,10 @@ export const metadata: ComponentMetadata = {
     typography: ['text-body-default-fontSize'],
     other: [],
   },
+  htmlConverter: {
+    patterns: ['<nav aria-label="breadcrumb"', '<nav class="breadcrumb"', '<ol class="breadcrumb"'],
+    convert: (_match: string, _attributes: Record<string, string>, content: string) => {
+      return `<ha-breadcrumb>\n  ${content.trim()}\n</ha-breadcrumb>`;
+    },
+  },
 };
