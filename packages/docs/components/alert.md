@@ -851,9 +851,8 @@ function SomeComponent() {
 
 ## 関連コンポーネント
 
-- [Toast](/components/toast) - 非ブロッキングな一時的な通知
-- [Modal](/components/modal) - ユーザーの注意を引く重要な情報の表示
-- [Banner](/components/banner) - ページ全体に影響する重要なメッセージ
+- [Button](/components/button) - Alert内でアクションを実行するボタン
+- [Card](/components/card) - Alert と類似したコンテナコンポーネント
 
 ## API リファレンス
 

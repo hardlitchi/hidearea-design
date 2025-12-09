@@ -748,9 +748,9 @@ function App() {
 
 ## 関連コンポーネント
 
-- [Popover](/components/popover) - インタラクティブな内容を表示するオーバーレイ
-- [Dropdown](/components/dropdown) - 選択肢を表示するメニュー
+- [Button](/components/button) - ツールチップのトリガーとして使用
 - [Badge](/components/badge) - ステータスやカウントの表示
+- [Input](/components/input) - フォームフィールドのヒント表示
 
 ## API リファレンス
 

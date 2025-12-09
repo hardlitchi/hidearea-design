@@ -1096,9 +1096,9 @@ function VerticalTabs() {
 
 ## 関連コンポーネント
 
-- [Accordion](/components/accordion) - 縦方向に展開するコンテンツ
 - [Card](/components/card) - タブパネルのコンテナとして使用
 - [Badge](/components/badge) - タブにカウンターやステータスを表示
+- [Button](/components/button) - タブ内のアクションボタン
 
 ## API リファレンス
 
