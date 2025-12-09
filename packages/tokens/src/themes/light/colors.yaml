@@ -130,3 +130,12 @@ theme:
       subtle:
         value: "{color.cyan.50}"
         comment: "情報（控えめ）"
+
+    # サーフェス（立体的な要素の背景）
+    surface:
+      elevated:
+        value: "{color.white}"
+        comment: "浮いた要素の背景 - カード、モーダル、ドロップダウン"
+      overlay:
+        value: "{color.white}"
+        comment: "オーバーレイ要素の背景 - ポップオーバー、メニュー"
