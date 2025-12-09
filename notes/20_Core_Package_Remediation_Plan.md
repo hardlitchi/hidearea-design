@@ -1,86 +1,85 @@
-# Core Package Remediation Plan
+# Coreパッケージ修正計画
 
-**Date:** 2025-12-09
-**Project:** @hidearea-design/core Token Migration
-**Priority:** High
-**Estimated Effort:** 2-3 days
-
----
-
-## Executive Summary
-
-This document outlines a comprehensive remediation plan to address the primary issue identified in the core package review: **inconsistent design token usage across 23 components**.
-
-### Objectives
-
-1. **Standardize token usage** across all 35 components
-2. **Migrate from legacy tokens** (`--color-gray-*`, `--color-neutral-*`) to semantic tokens
-3. **Remove hardcoded color fallbacks** that bypass the semantic token system
-4. **Ensure theme consistency** across all components
-5. **Improve maintainability** through consistent token patterns
-
-### Success Criteria
-
-- ✅ All 23 affected components migrated to semantic tokens
-- ✅ Zero hardcoded color references (except in tokens package)
-- ✅ 100% theme consistency across light and dark modes
-- ✅ All tests passing
-- ✅ Token consistency score: 10/10
+**日付:** 2025-12-09
+**プロジェクト:** @hidearea-design/core トークン移行
+**優先度:** 高
+**推定作業量:** 2-3日（40時間）
 
 ---
 
-## 1. Current State Analysis
+## エグゼクティブサマリー
 
-### 1.1 Token Systems
+このドキュメントは、coreパッケージレビューで特定された主要な問題に対処するための包括的な修正計画を概説します：**23コンポーネントにおける一貫性のないデザイントークン使用**。
 
-#### Available Token Categories
+### 目的
 
-**Semantic Tokens (Target):**
+1. **トークン使用の標準化** - 全35コンポーネント間で統一
+2. **レガシートークンからの移行** - `--color-gray-*`、`--color-neutral-*`からセマンティックトークンへ
+3. **ハードコードされたカラーフォールバックの削除** - セマンティックトークンシステムをバイパスするものを削除
+4. **テーマの一貫性確保** - 全コンポーネントで統一
+5. **保守性の向上** - 一貫したトークンパターンによる
+
+### 成功基準
+
+- ✅ 影響を受ける23コンポーネント全てをセマンティックトークンに移行
+- ✅ ハードコードされたカラー参照をゼロに（tokensパッケージを除く）
+- ✅ ライトモードとダークモードの両方で100%テーマ一貫性
+- ✅ 全テストがパス
+- ✅ トークン一貫性スコア: 10/10
+
+---
+
+## 1. 現状分析
+
+### 1.1 トークンシステム
+
+#### 利用可能なセマンティックトークン（移行先）
+
 ```css
-/* Foreground */
---foreground-primary      /* Primary text */
---foreground-secondary    /* Secondary/muted text */
---foreground-tertiary     /* Disabled/placeholder text */
---foreground-inverse      /* Text on colored backgrounds */
---foreground-on-primary   /* Text on primary color */
---foreground-error        /* Error text */
---foreground-warning      /* Warning text */
---foreground-success      /* Success text */
+/* フォアグラウンド（テキスト） */
+--foreground-primary      /* プライマリテキスト */
+--foreground-secondary    /* セカンダリ/ミュートテキスト */
+--foreground-tertiary     /* 無効/プレースホルダーテキスト */
+--foreground-inverse      /* カラー背景上のテキスト */
+--foreground-on-primary   /* プライマリカラー上のテキスト */
+--foreground-error        /* エラーテキスト */
+--foreground-warning      /* 警告テキスト */
+--foreground-success      /* 成功テキスト */
 
-/* Background */
---background-primary      /* Main background */
---background-secondary    /* Card/panel background */
---background-tertiary     /* Hover/subtle background */
---background-inverse      /* Dark mode primary */
---background-error        /* Error background */
---background-warning      /* Warning background */
---background-success      /* Success background */
+/* バックグラウンド */
+--background-primary      /* メイン背景 */
+--background-secondary    /* カード/パネル背景 */
+--background-tertiary     /* ホバー/サブトル背景 */
+--background-inverse      /* ダークモードプライマリ */
+--background-error        /* エラー背景 */
+--background-warning      /* 警告背景 */
+--background-success      /* 成功背景 */
 
-/* Border */
---border-default          /* Default border color */
---border-hover            /* Border on hover */
---border-focus            /* Border on focus */
---border-error            /* Error border */
+/* ボーダー */
+--border-default          /* デフォルトボーダーカラー */
+--border-hover            /* ホバー時のボーダー */
+--border-focus            /* フォーカス時のボーダー */
+--border-error            /* エラーボーダー */
 
-/* Interactive */
---interactive-primary     /* Primary buttons/links */
---interactive-hover       /* Hover state */
---interactive-active      /* Active/pressed state */
---interactive-disabled    /* Disabled state */
+/* インタラクティブ */
+--interactive-primary     /* プライマリボタン/リンク */
+--interactive-hover       /* ホバー状態 */
+--interactive-active      /* アクティブ/押下状態 */
+--interactive-disabled    /* 無効状態 */
 
-/* Spacing, Typography, etc. */
---spacing-1 through --spacing-12
---font-size-xs through --font-size-4xl
---border-radius-sm through --border-radius-full
---shadow-sm through --shadow-2xl
+/* その他 */
+--spacing-1 から --spacing-12
+--font-size-xs から --font-size-4xl
+--border-radius-sm から --border-radius-full
+--shadow-sm から --shadow-2xl
 ```
 
-#### Legacy Tokens (Current, Problematic)
+#### レガシートークン（現状、問題あり）
 
 ```css
-/* Raw color tokens (should not be used directly in components) */
---color-gray-50 through --color-gray-900
---color-neutral-0 through --color-neutral-900
+/* 生のカラートークン（コンポーネントで直接使用すべきでない） */
+--color-gray-50 から --color-gray-900
+--color-neutral-0 から --color-neutral-900
 --color-primary-500
 --color-success-500
 --color-warning-500
@@ -88,317 +87,280 @@ This document outlines a comprehensive remediation plan to address the primary i
 --color-white
 ```
 
-### 1.2 Affected Components (23)
+### 1.2 影響を受けるコンポーネント（23件）
 
-#### Category 1: Navigation Components (3)
-- `pagination` - 8 hardcoded color references
-- `breadcrumb` - 4 hardcoded color references
-- `tabs` - 6 hardcoded color references
+#### カテゴリ1: ナビゲーションコンポーネント（3件）
+- `pagination` - 8箇所のハードコードされたカラー参照
+- `breadcrumb` - 4箇所のハードコードされたカラー参照
+- `tabs` - 6箇所のハードコードされたカラー参照
 
-#### Category 2: Form Components (3)
-- `switch` - 4 hardcoded color references
-- `select` - 5 hardcoded color references
-- `slider` - 3 hardcoded color references (inline styles)
+#### カテゴリ2: フォームコンポーネント（3件）
+- `switch` - 4箇所のハードコードされたカラー参照
+- `select` - 5箇所のハードコードされたカラー参照
+- `slider` - 3箇所のハードコードされたカラー参照（インラインスタイル）
 
-#### Category 3: Data Display (7)
-- `avatar` - 5 hardcoded color references
-- `avatar-group` - 8 hardcoded color references
-- `spinner` - 2 hardcoded color references
-- `skeleton` - 4 hardcoded color references
-- `table` - 7 hardcoded color references
-- `datagrid` - 8 hardcoded color references
-- `progress` - 3 hardcoded color references
+#### カテゴリ3: データ表示（7件）
+- `avatar` - 5箇所のハードコードされたカラー参照
+- `avatar-group` - 8箇所のハードコードされたカラー参照
+- `spinner` - 2箇所のハードコードされたカラー参照
+- `skeleton` - 4箇所のハードコードされたカラー参照
+- `table` - 7箇所のハードコードされたカラー参照
+- `datagrid` - 8箇所のハードコードされたカラー参照
+- `progress` - 3箇所のハードコードされたカラー参照
 
-#### Category 4: Overlay/Feedback (4)
-- `drawer` - 6 hardcoded color references
-- `menu` - 5 hardcoded color references
-- `toast` - 4 hardcoded color references
-- `tooltip` - 3 hardcoded color references
+#### カテゴリ4: オーバーレイ/フィードバック（4件）
+- `drawer` - 6箇所のハードコードされたカラー参照
+- `menu` - 5箇所のハードコードされたカラー参照
+- `toast` - 4箇所のハードコードされたカラー参照
+- `tooltip` - 3箇所のハードコードされたカラー参照
 
-#### Category 5: Complex Components (3)
-- `accordion` - 4 hardcoded color references
-- `list` - 5 hardcoded color references
-- `file-upload` - 4 hardcoded color references
+#### カテゴリ5: 複雑なコンポーネント（3件）
+- `accordion` - 4箇所のハードコードされたカラー参照
+- `list` - 5箇所のハードコードされたカラー参照
+- `file-upload` - 4箇所のハードコードされたカラー参照
 
-#### Category 6: Pickers (3)
-- `date-picker` - 12 hardcoded color references
-- `time-picker` - 9 hardcoded color references
-- `color-picker` - 6 hardcoded color references (inline styles)
+#### カテゴリ6: ピッカー（3件）
+- `date-picker` - 12箇所のハードコードされたカラー参照
+- `time-picker` - 9箇所のハードコードされたカラー参照
+- `color-picker` - 6箇所のハードコードされたカラー参照（インラインスタイル）
 
-**Total Issues:** ~128 hardcoded color token references across 23 components
+**合計問題数:** 23コンポーネントで約128箇所のハードコードされたカラートークン参照
 
 ---
 
-## 2. Migration Strategy
+## 2. 移行戦略
 
-### 2.1 Token Mapping Rules
+### 2.1 トークンマッピングルール
 
-#### Rule 1: Text Colors
+#### ルール1: テキストカラー
 
 ```css
-/* BEFORE (Legacy) */
+/* 移行前（レガシー） */
 color: var(--color-gray-700);
 color: var(--color-gray-600);
 color: var(--color-gray-500);
 color: var(--color-neutral-600, #4b5563);
 
-/* AFTER (Semantic) */
-color: var(--foreground-primary);      /* Primary text */
-color: var(--foreground-secondary);    /* Secondary text */
-color: var(--foreground-tertiary);     /* Muted text */
-color: var(--foreground-secondary);    /* No hardcoded fallback */
+/* 移行後（セマンティック） */
+color: var(--foreground-primary);      /* プライマリテキスト */
+color: var(--foreground-secondary);    /* セカンダリテキスト */
+color: var(--foreground-tertiary);     /* ミュートテキスト */
+color: var(--foreground-secondary);    /* ハードコードされたフォールバックなし */
 ```
 
-#### Rule 2: Background Colors
+#### ルール2: 背景カラー
 
 ```css
-/* BEFORE (Legacy) */
+/* 移行前（レガシー） */
 background: var(--color-gray-50);
 background: var(--color-gray-100);
 background: var(--color-gray-200);
 background: var(--color-neutral-100, #f3f4f6);
 background: var(--color-white);
 
-/* AFTER (Semantic) */
-background: var(--background-tertiary);   /* Subtle hover background */
-background: var(--background-secondary);  /* Card/panel background */
-background: var(--background-tertiary);   /* Light neutral background */
-background: var(--background-secondary);  /* No hardcoded fallback */
-background: var(--background-primary);    /* Primary background */
+/* 移行後（セマンティック） */
+background: var(--background-tertiary);   /* サブトルホバー背景 */
+background: var(--background-secondary);  /* カード/パネル背景 */
+background: var(--background-tertiary);   /* ライトニュートラル背景 */
+background: var(--background-secondary);  /* ハードコードされたフォールバックなし */
+background: var(--background-primary);    /* プライマリ背景 */
 ```
 
-#### Rule 3: Border Colors
+#### ルール3: ボーダーカラー
 
 ```css
-/* BEFORE (Legacy) */
+/* 移行前（レガシー） */
 border: 1px solid var(--color-gray-300);
 border: 1px solid var(--color-gray-400);
 border: 2px solid var(--color-neutral-200, #e5e7eb);
 
-/* AFTER (Semantic) */
+/* 移行後（セマンティック） */
 border: 1px solid var(--border-default);
 border: 1px solid var(--border-hover);
 border: 2px solid var(--border-default);
 ```
 
-#### Rule 4: State Colors
+#### ルール4: 状態カラー
 
 ```css
-/* BEFORE (Legacy) */
+/* 移行前（レガシー） */
 background: var(--color-primary-500);
 color: var(--color-success-500);
 background: var(--color-error-500);
 background: var(--color-warning-500);
 
-/* AFTER (Semantic) */
+/* 移行後（セマンティック） */
 background: var(--interactive-primary);
 color: var(--foreground-success);
 background: var(--background-error);
 background: var(--background-warning);
 ```
 
-#### Rule 5: Component-Specific Tokens
+#### ルール5: コンポーネント固有トークン
 
 ```css
-/* Components should define their own semantic CSS variables */
-/* that reference the global semantic tokens */
+/* コンポーネントは自身のセマンティックCSS変数を定義すべき */
+/* これらはグローバルセマンティックトークンを参照する */
 
-/* BEFORE (Direct usage) */
+/* 移行前（直接使用） */
 .button {
   background: var(--color-gray-100);
   color: var(--color-gray-700);
 }
 
-/* AFTER (Component semantic tokens) */
+/* 移行後（コンポーネントセマンティックトークン） */
 .button {
   background: var(--button-bg, var(--background-tertiary));
   color: var(--button-color, var(--foreground-primary));
 }
 ```
 
-### 2.2 Migration Phases
+### 2.2 移行フェーズ
 
-#### Phase 1: Preparation (2 hours)
+#### フェーズ1: 準備（2時間）
 
-**Tasks:**
-1. Create token mapping reference document
-2. Set up automated testing for visual regression
-3. Create branch: `refactor/semantic-tokens-migration`
-4. Back up current implementation
+**タスク:**
+1. トークンマッピング参照ドキュメントを作成
+2. ビジュアルリグレッション用の自動テストを設定
+3. ブランチを作成: `refactor/semantic-tokens-migration`
+4. 現在の実装をバックアップ
 
-**Deliverables:**
-- Token mapping guide
-- Test baseline screenshots
-- Git branch ready for changes
+**成果物:**
+- トークンマッピングガイド
+- テストベースラインスクリーンショット
+- 変更準備ができたGitブランチ
 
-#### Phase 2: Navigation Components (4 hours)
+#### フェーズ2: ナビゲーションコンポーネント（4時間）
 
-**Components:**
-- pagination (8 references)
-- breadcrumb (4 references)
-- tabs (6 references)
+**コンポーネント:**
+- pagination（8参照）
+- breadcrumb（4参照）
+- tabs（6参照）
 
-**Steps per component:**
-1. Open component `.styles.ts` file
-2. Identify all `--color-*` references
-3. Replace with semantic equivalents
-4. Remove hardcoded fallbacks
-5. Run component tests
-6. Visual verification in light/dark modes
-7. Commit changes
+**コンポーネントごとのステップ:**
+1. コンポーネントの`.styles.ts`ファイルを開く
+2. 全ての`--color-*`参照を特定
+3. セマンティック等価物で置換
+4. ハードコードされたフォールバックを削除
+5. コンポーネントテストを実行
+6. ライト/ダークモードでビジュアル検証
+7. 変更をコミット
 
-**Verification:**
+**検証:**
 ```bash
-# Run tests
+# テストを実行
 npm run test -- pagination.test.ts
 npm run test -- breadcrumb.test.ts
 npm run test -- tabs.test.ts
 
-# Visual check
+# ビジュアルチェック
 npm run dev
-# Test in browser with light/dark mode toggle
+# ブラウザでライト/ダークモード切り替えをテスト
 ```
 
-#### Phase 3: Form Components (4 hours)
+#### フェーズ3: フォームコンポーネント（4時間）
 
-**Components:**
-- switch (4 references)
-- select (5 references)
-- slider (3 references + extract inline styles)
+**コンポーネント:**
+- switch（4参照）
+- select（5参照）
+- slider（3参照 + インラインスタイル抽出）
 
-**Additional task for slider:**
-1. Extract inline styles to `slider.styles.ts`
-2. Then apply token migration
+**sliderの追加タスク:**
+1. インラインスタイルを`slider.styles.ts`に抽出
+2. その後トークン移行を適用
 
-**Verification:**
+#### フェーズ4: データ表示コンポーネント（6時間）
+
+**コンポーネント:**
+- avatar（5参照）
+- avatar-group（8参照）
+- spinner（2参照）
+- skeleton（4参照）
+- table（7参照）
+- datagrid（8参照）
+- progress（3参照）
+
+**高影響コンポーネント:** avatar、avatar-group、table、datagrid
+
+#### フェーズ5: オーバーレイ/フィードバックコンポーネント（5時間）
+
+**コンポーネント:**
+- drawer（6参照）
+- menu（5参照）
+- toast（4参照）
+- tooltip（3参照）
+
+#### フェーズ6: 複雑なコンポーネント（5時間）
+
+**コンポーネント:**
+- accordion（4参照）
+- list（5参照）
+- file-upload（4参照）
+
+#### フェーズ7: ピッカーコンポーネント（6時間）
+
+**コンポーネント:**
+- date-picker（12参照）
+- time-picker（9参照）
+- color-picker（6参照 + インラインスタイル抽出）
+
+**最大コンポーネント:** date-picker（1,030行）、color-picker（796行）
+
+**color-pickerの追加タスク:**
+1. インラインスタイルを`color-picker.styles.ts`に抽出
+2. その後トークン移行を適用
+
+#### フェーズ8: テストと検証（4時間）
+
+**タスク:**
+1. 全テストスイートを実行
+2. カバレッジレポートを実行
+3. ビジュアルリグレッションテスト（全コンポーネント）
+4. テーマ切り替え検証
+5. アクセシビリティ検証
+6. パフォーマンステスト
+
+**検証:**
 ```bash
-npm run test -- switch.test.ts
-npm run test -- select.test.ts
-npm run test -- slider.test.ts
-```
-
-#### Phase 4: Data Display Components (6 hours)
-
-**Components:**
-- avatar (5 references)
-- avatar-group (8 references)
-- spinner (2 references)
-- skeleton (4 references)
-- table (7 references)
-- datagrid (8 references)
-- progress (3 references)
-
-**High-impact components:** avatar, avatar-group, table, datagrid
-
-**Verification:**
-```bash
-npm run test -- avatar.test.ts
-npm run test -- table.test.ts
-npm run test -- datagrid.test.ts
-# etc.
-```
-
-#### Phase 5: Overlay/Feedback Components (5 hours)
-
-**Components:**
-- drawer (6 references)
-- menu (5 references)
-- toast (4 references)
-- tooltip (3 references)
-
-**Verification:**
-```bash
-npm run test -- drawer.test.ts
-npm run test -- menu.test.ts
-npm run test -- toast.test.ts
-npm run test -- tooltip.test.ts
-```
-
-#### Phase 6: Complex Components (5 hours)
-
-**Components:**
-- accordion (4 references)
-- list (5 references)
-- file-upload (4 references)
-
-**Verification:**
-```bash
-npm run test -- accordion.test.ts
-npm run test -- list.test.ts
-npm run test -- file-upload.test.ts
-```
-
-#### Phase 7: Picker Components (6 hours)
-
-**Components:**
-- date-picker (12 references)
-- time-picker (9 references)
-- color-picker (6 references + extract inline styles)
-
-**Largest components:** date-picker (1,030 lines), color-picker (796 lines)
-
-**Additional task for color-picker:**
-1. Extract inline styles to `color-picker.styles.ts`
-2. Then apply token migration
-
-**Verification:**
-```bash
-npm run test -- date-picker.test.ts
-npm run test -- time-picker.test.ts
-npm run test -- color-picker.test.ts
-```
-
-#### Phase 8: Testing and Validation (4 hours)
-
-**Tasks:**
-1. Run full test suite
-2. Run coverage report
-3. Visual regression testing (all components)
-4. Theme switching verification
-5. Accessibility verification
-6. Performance testing
-
-**Verification:**
-```bash
-# Full test suite
+# 全テストスイート
 npm run test
 
-# Coverage
+# カバレッジ
 npm run test:coverage
 
 # Lint
 npm run lint
 
-# Build
+# ビルド
 npm run build
 ```
 
-#### Phase 9: Documentation (2 hours)
+#### フェーズ9: ドキュメント化（2時間）
 
-**Tasks:**
-1. Update component metadata files with new tokens
-2. Update base.ts documentation
-3. Create token usage guide
-4. Update CHANGELOG.md
+**タスク:**
+1. 新しいトークンでコンポーネントメタデータファイルを更新
+2. base.tsドキュメントを更新
+3. トークン使用ガイドを作成
+4. CHANGELOG.mdを更新
 
-#### Phase 10: Review and Merge (2 hours)
+#### フェーズ10: レビューとマージ（2時間）
 
-**Tasks:**
-1. Self-review all changes
-2. Create pull request
-3. Request team review
-4. Address feedback
-5. Merge to main branch
+**タスク:**
+1. 全変更のセルフレビュー
+2. プルリクエストを作成
+3. チームレビューを依頼
+4. フィードバックに対応
+5. mainブランチにマージ
 
 ---
 
-## 3. Detailed Component Migration Guide
+## 3. 詳細なコンポーネント移行ガイド
 
-### 3.1 Example: Pagination Component
+### 3.1 例: Paginationコンポーネント
 
-#### Before Migration
+#### 移行前
 
-**File:** `src/components/pagination/pagination.styles.ts`
+**ファイル:** `src/components/pagination/pagination.styles.ts`
 
 ```css
 .button {
@@ -429,7 +391,7 @@ npm run build
 }
 ```
 
-#### After Migration
+#### 移行後
 
 ```css
 .button {
@@ -460,7 +422,7 @@ npm run build
 }
 ```
 
-#### Changes Summary
+#### 変更サマリー
 
 - `var(--color-gray-300)` → `var(--border-default)`
 - `var(--color-gray-700)` → `var(--foreground-primary)`
@@ -470,11 +432,11 @@ npm run build
 - `var(--color-gray-500)` → `var(--foreground-tertiary)`
 - `var(--color-gray-600)` → `var(--foreground-secondary)`
 
-### 3.2 Example: Avatar Component
+### 3.2 例: Avatarコンポーネント
 
-#### Before Migration
+#### 移行前
 
-**File:** `src/components/avatar/avatar.styles.ts`
+**ファイル:** `src/components/avatar/avatar.styles.ts`
 
 ```css
 .container {
@@ -493,7 +455,7 @@ npm run build
 }
 ```
 
-#### After Migration
+#### 移行後
 
 ```css
 .container {
@@ -512,18 +474,11 @@ npm run build
 }
 ```
 
-#### Changes Summary
+### 3.3 例: Avatar Groupコンポーネント
 
-- `var(--color-gray-200)` → `var(--background-tertiary)`
-- `var(--color-gray-700)` → `var(--foreground-primary)`
-- `var(--color-white)` → `var(--background-primary)`
-- `var(--color-gray-400)` → `var(--foreground-tertiary)`
+#### 移行前
 
-### 3.3 Example: Avatar Group Component
-
-#### Before Migration
-
-**File:** `src/components/avatar/avatar-group.styles.ts`
+**ファイル:** `src/components/avatar/avatar-group.styles.ts`
 
 ```css
 .avatar {
@@ -539,7 +494,7 @@ npm run build
 }
 ```
 
-#### After Migration
+#### 移行後
 
 ```css
 .avatar {
@@ -555,101 +510,100 @@ npm run build
 }
 ```
 
-#### Changes Summary
+#### 変更サマリー
 
 - `var(--color-neutral-0, #ffffff)` → `var(--background-primary)`
 - `var(--color-neutral-200, #e5e7eb)` → `var(--border-default)`
 - `var(--color-neutral-100, #f3f4f6)` → `var(--background-secondary)`
 - `var(--color-neutral-600, #4b5563)` → `var(--foreground-secondary)`
-- **Removed all hardcoded hex fallbacks**
+- **全てのハードコードされた16進数フォールバックを削除**
 
 ---
 
-## 4. Testing Strategy
+## 4. テスト戦略
 
-### 4.1 Unit Testing
+### 4.1 ユニットテスト
 
-**For each migrated component:**
+**移行した各コンポーネントに対して:**
 
 ```bash
-# Run component-specific tests
+# コンポーネント固有のテストを実行
 npm run test -- [component].test.ts
 
-# Verify no regressions
+# リグレッションがないことを確認
 npm run test:coverage
 ```
 
-**Acceptance criteria:**
-- ✅ All existing tests pass
-- ✅ No decrease in coverage
-- ✅ Component functionality unchanged
+**受け入れ基準:**
+- ✅ 既存の全テストがパス
+- ✅ カバレッジの低下なし
+- ✅ コンポーネント機能が変更されていない
 
-### 4.2 Visual Testing
+### 4.2 ビジュアルテスト
 
-**Manual verification checklist per component:**
+**コンポーネントごとの手動検証チェックリスト:**
 
 ```markdown
-- [ ] Light mode appearance
-- [ ] Dark mode appearance
-- [ ] Hover states
-- [ ] Active states
-- [ ] Disabled states
-- [ ] Focus states
-- [ ] All variants (if applicable)
-- [ ] All sizes (if applicable)
-- [ ] Border visibility
-- [ ] Text readability
-- [ ] Contrast ratios (WCAG AA)
+- [ ] ライトモードの外観
+- [ ] ダークモードの外観
+- [ ] ホバー状態
+- [ ] アクティブ状態
+- [ ] 無効状態
+- [ ] フォーカス状態
+- [ ] 全バリアント（該当する場合）
+- [ ] 全サイズ（該当する場合）
+- [ ] ボーダーの可視性
+- [ ] テキストの可読性
+- [ ] コントラスト比（WCAG AA）
 ```
 
-**Tools:**
-- Browser DevTools
-- Theme toggle utility (`toggleTheme()`)
-- Accessibility inspector
+**ツール:**
+- ブラウザDevTools
+- テーマ切り替えユーティリティ（`toggleTheme()`）
+- アクセシビリティインスペクター
 
-### 4.3 Theme Switching Testing
+### 4.3 テーマ切り替えテスト
 
-**Test procedure:**
+**テスト手順:**
 
-1. Open component in browser
-2. Toggle theme: light → dark
-3. Verify smooth transition
-4. Verify all colors update correctly
-5. Toggle theme: dark → light
-6. Verify no visual artifacts
+1. ブラウザでコンポーネントを開く
+2. テーマを切り替え: ライト → ダーク
+3. スムーズな遷移を確認
+4. 全カラーが正しく更新されることを確認
+5. テーマを切り替え: ダーク → ライト
+6. ビジュアルアーティファクトがないことを確認
 
 ```typescript
-// Test script
+// テストスクリプト
 import { toggleTheme, getEffectiveTheme } from '@hidearea-design/core';
 
-// Start in light mode
-console.log('Current theme:', getEffectiveTheme()); // 'light'
+// ライトモードで開始
+console.log('現在のテーマ:', getEffectiveTheme()); // 'light'
 
-// Toggle to dark
+// ダークに切り替え
 toggleTheme();
-console.log('Current theme:', getEffectiveTheme()); // 'dark'
+console.log('現在のテーマ:', getEffectiveTheme()); // 'dark'
 
-// Verify component colors updated
-// Visual inspection required
+// コンポーネントカラーが更新されたことを確認
+// ビジュアル検査が必要
 ```
 
-### 4.4 Automated Testing Script
+### 4.4 自動テストスクリプト
 
-**Create test script:** `scripts/test-token-migration.mjs`
+**テストスクリプトを作成:** `scripts/test-token-migration.mjs`
 
 ```javascript
 import { execSync } from 'child_process';
-import { readdirSync, readFileSync } from 'fs';
-import { join } from 'path';
+import { readdirSync } from 'fs';
 
 const componentsDir = './src/components';
 
-// Get all component directories
+// 全コンポーネントディレクトリを取得
 const components = readdirSync(componentsDir, { withFileTypes: true })
   .filter(dirent => dirent.isDirectory())
   .map(dirent => dirent.name);
 
-console.log(`Testing ${components.length} components...\n`);
+console.log(`${components.length}個のコンポーネントをテスト中...\n`);
 
 let passed = 0;
 let failed = 0;
@@ -657,7 +611,7 @@ const failures = [];
 
 for (const component of components) {
   try {
-    // Run tests for component
+    // コンポーネントのテストを実行
     execSync(`npm run test -- ${component}.test.ts`, {
       stdio: 'pipe',
       encoding: 'utf-8'
@@ -673,379 +627,304 @@ for (const component of components) {
 }
 
 console.log(`\n${'='.repeat(50)}`);
-console.log(`Total: ${components.length} | Passed: ${passed} | Failed: ${failed}`);
+console.log(`合計: ${components.length} | 成功: ${passed} | 失敗: ${failed}`);
 
 if (failed > 0) {
-  console.log(`\nFailed components:`);
+  console.log(`\n失敗したコンポーネント:`);
   failures.forEach(c => console.log(`  - ${c}`));
   process.exit(1);
 }
 
-console.log('\n✅ All tests passed!');
+console.log('\n✅ 全テストが成功！');
 ```
 
-**Run script:**
+**スクリプトを実行:**
 ```bash
 node scripts/test-token-migration.mjs
 ```
 
-### 4.5 Regression Testing
-
-**Before migration:**
-```bash
-# Create baseline
-npm run test:coverage
-npm run build
-
-# Save results
-cp coverage/coverage-summary.json baseline-coverage.json
-cp dist/index.es.js baseline-bundle.js
-```
-
-**After migration:**
-```bash
-# Compare results
-npm run test:coverage
-npm run build
-
-# Verify no regressions
-diff baseline-coverage.json coverage/coverage-summary.json
-```
-
 ---
 
-## 5. Risk Assessment and Mitigation
+## 5. リスク評価と軽減策
 
-### 5.1 Identified Risks
+### 5.1 特定されたリスク
 
-#### Risk 1: Visual Regressions
+#### リスク1: ビジュアルリグレッション
 
-**Impact:** High
-**Probability:** Medium
+**影響:** 高
+**確率:** 中
 
-**Description:**
-Semantic token mappings may not perfectly match legacy colors, causing visual differences.
+**説明:**
+セマンティックトークンマッピングがレガシーカラーと完全に一致しない可能性があり、ビジュアルの違いを引き起こす。
 
-**Mitigation:**
-1. Side-by-side visual comparison (before/after)
-2. Theme switching verification
-3. User acceptance testing
-4. Staged rollout (one category at a time)
-5. Easy rollback via Git
+**軽減策:**
+1. サイドバイサイドビジュアル比較（移行前/後）
+2. テーマ切り替え検証
+3. ユーザー受け入れテスト
+4. 段階的ロールアウト（一度に1カテゴリずつ）
+5. Gitによる容易なロールバック
 
-#### Risk 2: Breaking Changes
+#### リスク2: 破壊的変更
 
-**Impact:** High
-**Probability:** Low
+**影響:** 高
+**確率:** 低
 
-**Description:**
-Token changes could break component functionality or tests.
+**説明:**
+トークン変更がコンポーネント機能やテストを破壊する可能性。
 
-**Mitigation:**
-1. Comprehensive unit tests before migration
-2. Test each component immediately after changes
-3. Automated test suite runs for all components
-4. Feature branch with easy rollback
+**軽減策:**
+1. 移行前に包括的なユニットテスト
+2. 変更後すぐに各コンポーネントをテスト
+3. 全コンポーネントの自動テストスイート実行
+4. 容易なロールバックが可能なフィーチャーブランチ
 
-#### Risk 3: Theme Inconsistency
+#### リスク3: テーマの不整合
 
-**Impact:** Medium
-**Probability:** Low
+**影響:** 中
+**確率:** 低
 
-**Description:**
-Mixed legacy and semantic tokens during migration phase.
+**説明:**
+移行フェーズ中にレガシーとセマンティックトークンが混在。
 
-**Mitigation:**
-1. Migrate components in logical groups (by category)
-2. Complete one category before starting next
-3. Daily integration testing during migration
-4. Documented migration status
+**軽減策:**
+1. 論理的なグループでコンポーネントを移行（カテゴリ別）
+2. 次を開始する前に1カテゴリを完了
+3. 移行中の日次統合テスト
+4. ドキュメント化された移行ステータス
 
-#### Risk 4: Performance Impact
+#### リスク4: パフォーマンス影響
 
-**Impact:** Low
-**Probability:** Very Low
+**影響:** 低
+**確率:** 非常に低
 
-**Description:**
-Additional CSS variable lookups could impact performance.
+**説明:**
+追加のCSS変数ルックアップがパフォーマンスに影響する可能性。
 
-**Mitigation:**
-1. Performance benchmarks before/after
-2. Browser DevTools performance profiling
-3. Bundle size comparison
-4. CSS variable resolution is highly optimized in modern browsers
+**軽減策:**
+1. 移行前/後のパフォーマンスベンチマーク
+2. ブラウザDevToolsパフォーマンスプロファイリング
+3. バンドルサイズ比較
+4. CSS変数解決は最新ブラウザで高度に最適化されている
 
-### 5.2 Rollback Plan
+### 5.2 ロールバック計画
 
-**If critical issues discovered:**
+**重大な問題が発見された場合:**
 
 ```bash
-# Immediate rollback
+# 即座のロールバック
 git checkout main
 git branch -D refactor/semantic-tokens-migration
 
-# Partial rollback (revert specific components)
+# 部分的なロールバック（特定のコンポーネントを戻す）
 git revert <commit-hash>
 ```
 
-**Rollback triggers:**
-- Failing tests that cannot be fixed quickly
-- Critical visual regressions
-- Performance degradation >10%
-- Accessibility issues (WCAG failures)
+**ロールバックトリガー:**
+- 迅速に修正できない失敗したテスト
+- 重大なビジュアルリグレッション
+- パフォーマンス低下 >10%
+- アクセシビリティ問題（WCAG失敗）
 
 ---
 
-## 6. Timeline and Resource Allocation
+## 6. タイムラインとリソース配分
 
-### 6.1 Estimated Timeline
+### 6.1 推定タイムライン
 
-| Phase | Duration | Components | Total Hours |
-|-------|----------|------------|-------------|
-| Phase 1: Preparation | 2 hours | - | 2 |
-| Phase 2: Navigation | 4 hours | 3 | 4 |
-| Phase 3: Form | 4 hours | 3 | 4 |
-| Phase 4: Data Display | 6 hours | 7 | 6 |
-| Phase 5: Overlay/Feedback | 5 hours | 4 | 5 |
-| Phase 6: Complex | 5 hours | 3 | 5 |
-| Phase 7: Pickers | 6 hours | 3 | 6 |
-| Phase 8: Testing | 4 hours | - | 4 |
-| Phase 9: Documentation | 2 hours | - | 2 |
-| Phase 10: Review | 2 hours | - | 2 |
-| **Total** | **40 hours** | **23** | **40** |
+| フェーズ | 期間 | コンポーネント | 合計時間 |
+|-------|------|------------|---------|
+| フェーズ1: 準備 | 2時間 | - | 2 |
+| フェーズ2: ナビゲーション | 4時間 | 3 | 4 |
+| フェーズ3: フォーム | 4時間 | 3 | 4 |
+| フェーズ4: データ表示 | 6時間 | 7 | 6 |
+| フェーズ5: オーバーレイ/フィードバック | 5時間 | 4 | 5 |
+| フェーズ6: 複雑 | 5時間 | 3 | 5 |
+| フェーズ7: ピッカー | 6時間 | 3 | 6 |
+| フェーズ8: テスト | 4時間 | - | 4 |
+| フェーズ9: ドキュメント | 2時間 | - | 2 |
+| フェーズ10: レビュー | 2時間 | - | 2 |
+| **合計** | **40時間** | **23** | **40** |
 
-**Calendar time:** 5 working days (assuming 8 hours/day)
+**カレンダー時間:** 5営業日（1日8時間想定）
 
-### 6.2 Resource Requirements
+### 6.2 リソース要件
 
-**Personnel:**
-- 1 Senior Frontend Developer (full-time, 5 days)
-- 1 QA Engineer (part-time, 2 days for testing phases)
-- 1 Designer (consultation, 4 hours for visual approval)
+**人員:**
+- シニアフロントエンド開発者1名（フルタイム、5日間）
+- QAエンジニア1名（パートタイム、テストフェーズで2日間）
+- デザイナー1名（相談、ビジュアル承認で4時間）
 
-**Tools:**
-- Development environment
-- Browser DevTools
-- Git version control
-- npm test runners
-
----
-
-## 7. Success Metrics
-
-### 7.1 Quantitative Metrics
-
-**Before Migration:**
-- Token consistency score: 7.0/10
-- Components using semantic tokens: 12/35 (34.3%)
-- Components using legacy tokens: 23/35 (65.7%)
-- Hardcoded color references: ~128
-
-**After Migration (Target):**
-- Token consistency score: 10.0/10
-- Components using semantic tokens: 35/35 (100%)
-- Components using legacy tokens: 0/35 (0%)
-- Hardcoded color references: 0
-
-### 7.2 Qualitative Metrics
-
-**Success criteria:**
-- ✅ All tests passing (100%)
-- ✅ No visual regressions
-- ✅ Smooth theme transitions
-- ✅ Improved maintainability
-- ✅ Consistent token patterns
-- ✅ Updated documentation
-- ✅ Team approval
+**ツール:**
+- 開発環境
+- ブラウザDevTools
+- Gitバージョン管理
+- npmテストランナー
 
 ---
 
-## 8. Post-Migration Tasks
+## 7. 成功指標
 
-### 8.1 Immediate Tasks
+### 7.1 定量的指標
 
-1. **Update documentation**
-   - Component metadata files
-   - Token usage guide
-   - Migration notes in CHANGELOG.md
+**移行前:**
+- トークン一貫性スコア: 7.0/10
+- セマンティックトークンを使用するコンポーネント: 12/35（34.3%）
+- レガシートークンを使用するコンポーネント: 23/35（65.7%）
+- ハードコードされたカラー参照: 約128箇所
 
-2. **Team communication**
-   - Announce completion
-   - Share before/after comparisons
-   - Document lessons learned
+**移行後（目標）:**
+- トークン一貫性スコア: 10.0/10
+- セマンティックトークンを使用するコンポーネント: 35/35（100%）
+- レガシートークンを使用するコンポーネント: 0/35（0%）
+- ハードコードされたカラー参照: 0箇所
 
-3. **Monitoring**
-   - Watch for bug reports
-   - Monitor theme switching issues
-   - Track user feedback
+### 7.2 定性的指標
 
-### 8.2 Follow-up Tasks
-
-4. **Style extraction** (Medium priority)
-   - Extract inline styles from slider
-   - Extract inline styles from color-picker
-   - Maintain consistency
-
-5. **ESLint rules** (Medium priority)
-   - Add rule to prevent `--color-*` usage
-   - Enforce semantic token patterns
-   - Add to pre-commit hooks
-
-6. **Token documentation** (Low priority)
-   - Create visual token guide
-   - Add usage examples
-   - Document best practices
+**成功基準:**
+- ✅ 全テストが成功（100%）
+- ✅ ビジュアルリグレッションなし
+- ✅ スムーズなテーマ遷移
+- ✅ 保守性の向上
+- ✅ 一貫したトークンパターン
+- ✅ 更新されたドキュメント
+- ✅ チームの承認
 
 ---
 
-## 9. Appendix
+## 8. 移行後のタスク
 
-### 9.1 Token Reference Table
+### 8.1 即時タスク
 
-| Legacy Token | Semantic Token | Usage Context |
-|--------------|---------------|---------------|
-| `--color-gray-50` | `--background-tertiary` | Subtle hover backgrounds |
-| `--color-gray-100` | `--background-secondary` | Card/panel backgrounds |
-| `--color-gray-200` | `--background-tertiary` | Disabled/inactive backgrounds |
-| `--color-gray-300` | `--border-default` | Default borders |
-| `--color-gray-400` | `--border-hover` | Hover borders |
-| `--color-gray-500` | `--foreground-tertiary` | Muted/disabled text |
-| `--color-gray-600` | `--foreground-secondary` | Secondary text |
-| `--color-gray-700` | `--foreground-primary` | Primary text |
-| `--color-gray-900` | `--foreground-primary` | Emphasis text |
-| `--color-neutral-0` | `--background-primary` | White/primary background |
-| `--color-neutral-100` | `--background-secondary` | Light neutral background |
-| `--color-neutral-200` | `--border-default` | Light borders |
-| `--color-neutral-300` | `--border-default` | Medium borders |
-| `--color-neutral-400` | `--border-hover` | Hover borders |
-| `--color-neutral-500` | `--foreground-tertiary` | Muted text |
-| `--color-neutral-600` | `--foreground-secondary` | Secondary text |
-| `--color-neutral-700` | `--foreground-primary` | Primary text |
-| `--color-primary-500` | `--interactive-primary` | Primary interactive color |
-| `--color-success-500` | `--foreground-success` | Success text/icons |
-| `--color-warning-500` | `--foreground-warning` | Warning text/icons |
-| `--color-error-500` | `--foreground-error` | Error text/icons |
-| `--color-white` | `--foreground-inverse` | Text on colored backgrounds |
+1. **ドキュメントを更新**
+   - コンポーネントメタデータファイル
+   - トークン使用ガイド
+   - CHANGELOG.mdに移行ノート
 
-### 9.2 Automated Search and Replace
+2. **チームコミュニケーション**
+   - 完了を告知
+   - 移行前/後の比較を共有
+   - 学んだ教訓をドキュメント化
 
-**Script:** `scripts/migrate-tokens.sh`
+3. **モニタリング**
+   - バグレポートを監視
+   - テーマ切り替えの問題を監視
+   - ユーザーフィードバックを追跡
 
-```bash
-#!/bin/bash
+### 8.2 フォローアップタスク
 
-# Migrate color-gray tokens
-find src/components -name "*.styles.ts" -o -name "*.ts" | xargs sed -i \
-  -e 's/var(--color-gray-50[^)]*)/var(--background-tertiary)/g' \
-  -e 's/var(--color-gray-100[^)]*)/var(--background-secondary)/g' \
-  -e 's/var(--color-gray-200[^)]*)/var(--background-tertiary)/g' \
-  -e 's/var(--color-gray-300[^)]*)/var(--border-default)/g' \
-  -e 's/var(--color-gray-400[^)]*)/var(--border-hover)/g' \
-  -e 's/var(--color-gray-500[^)]*)/var(--foreground-tertiary)/g' \
-  -e 's/var(--color-gray-600[^)]*)/var(--foreground-secondary)/g' \
-  -e 's/var(--color-gray-700[^)]*)/var(--foreground-primary)/g'
+4. **スタイル抽出**（優先度：中）
+   - sliderからインラインスタイルを抽出
+   - color-pickerからインラインスタイルを抽出
+   - 一貫性を維持
 
-# Migrate color-neutral tokens
-find src/components -name "*.styles.ts" -o -name "*.ts" | xargs sed -i \
-  -e 's/var(--color-neutral-0[^)]*)/var(--background-primary)/g' \
-  -e 's/var(--color-neutral-100[^)]*)/var(--background-secondary)/g' \
-  -e 's/var(--color-neutral-200[^)]*)/var(--border-default)/g' \
-  -e 's/var(--color-neutral-300[^)]*)/var(--border-default)/g' \
-  -e 's/var(--color-neutral-400[^)]*)/var(--border-hover)/g' \
-  -e 's/var(--color-neutral-500[^)]*)/var(--foreground-tertiary)/g' \
-  -e 's/var(--color-neutral-600[^)]*)/var(--foreground-secondary)/g' \
-  -e 's/var(--color-neutral-700[^)]*)/var(--foreground-primary)/g'
+5. **ESLintルール**（優先度：中）
+   - `--color-*`使用を防ぐルールを追加
+   - セマンティックトークンパターンを強制
+   - pre-commitフックに追加
 
-# Migrate state colors
-find src/components -name "*.styles.ts" -o -name "*.ts" | xargs sed -i \
-  -e 's/var(--color-primary-500)/var(--interactive-primary)/g' \
-  -e 's/var(--color-success-500)/var(--foreground-success)/g' \
-  -e 's/var(--color-warning-500)/var(--foreground-warning)/g' \
-  -e 's/var(--color-error-500)/var(--foreground-error)/g'
+6. **トークンドキュメント**（優先度：低）
+   - ビジュアルトークンガイドを作成
+   - 使用例を追加
+   - ベストプラクティスをドキュメント化
 
-# Migrate color-white
-find src/components -name "*.styles.ts" -o -name "*.ts" | xargs sed -i \
-  -e 's/var(--color-white)/var(--foreground-inverse)/g'
+---
 
-echo "✅ Token migration complete"
-echo "⚠️  Manual review required for context-specific tokens"
-```
+## 9. 付録
 
-**Usage:**
-```bash
-chmod +x scripts/migrate-tokens.sh
-./scripts/migrate-tokens.sh
-```
+### 9.1 トークン参照テーブル
 
-**Note:** Automated replacement is a starting point. Manual review required for context-specific optimizations.
+| レガシートークン | セマンティックトークン | 使用コンテキスト |
+|--------------|-------------------|---------------|
+| `--color-gray-50` | `--background-tertiary` | サブトルホバー背景 |
+| `--color-gray-100` | `--background-secondary` | カード/パネル背景 |
+| `--color-gray-200` | `--background-tertiary` | 無効/非アクティブ背景 |
+| `--color-gray-300` | `--border-default` | デフォルトボーダー |
+| `--color-gray-400` | `--border-hover` | ホバーボーダー |
+| `--color-gray-500` | `--foreground-tertiary` | ミュート/無効テキスト |
+| `--color-gray-600` | `--foreground-secondary` | セカンダリテキスト |
+| `--color-gray-700` | `--foreground-primary` | プライマリテキスト |
+| `--color-gray-900` | `--foreground-primary` | 強調テキスト |
+| `--color-neutral-0` | `--background-primary` | 白/プライマリ背景 |
+| `--color-neutral-100` | `--background-secondary` | ライトニュートラル背景 |
+| `--color-neutral-200` | `--border-default` | ライトボーダー |
+| `--color-neutral-300` | `--border-default` | ミディアムボーダー |
+| `--color-neutral-400` | `--border-hover` | ホバーボーダー |
+| `--color-neutral-500` | `--foreground-tertiary` | ミュートテキスト |
+| `--color-neutral-600` | `--foreground-secondary` | セカンダリテキスト |
+| `--color-neutral-700` | `--foreground-primary` | プライマリテキスト |
+| `--color-primary-500` | `--interactive-primary` | プライマリインタラクティブカラー |
+| `--color-success-500` | `--foreground-success` | 成功テキスト/アイコン |
+| `--color-warning-500` | `--foreground-warning` | 警告テキスト/アイコン |
+| `--color-error-500` | `--foreground-error` | エラーテキスト/アイコン |
+| `--color-white` | `--foreground-inverse` | カラー背景上のテキスト |
 
-### 9.3 Verification Checklist
+### 9.2 検証チェックリスト
 
-**Per-component checklist:**
+**コンポーネントごとのチェックリスト:**
 
 ```markdown
-## [Component Name] Migration Checklist
+## [コンポーネント名] 移行チェックリスト
 
-### Code Changes
-- [ ] All `--color-gray-*` tokens replaced
-- [ ] All `--color-neutral-*` tokens replaced
-- [ ] All state colors updated
-- [ ] Hardcoded hex fallbacks removed
-- [ ] Component tokens use semantic fallbacks
+### コード変更
+- [ ] 全ての`--color-gray-*`トークンを置換
+- [ ] 全ての`--color-neutral-*`トークンを置換
+- [ ] 全ての状態カラーを更新
+- [ ] ハードコードされた16進数フォールバックを削除
+- [ ] コンポーネントトークンがセマンティックフォールバックを使用
 
-### Testing
-- [ ] Unit tests passing
-- [ ] Visual test in light mode
-- [ ] Visual test in dark mode
-- [ ] Theme switching works
-- [ ] All variants tested
-- [ ] All sizes tested
-- [ ] Hover states verified
-- [ ] Active states verified
-- [ ] Disabled states verified
-- [ ] Focus states verified
+### テスト
+- [ ] ユニットテストが成功
+- [ ] ライトモードでのビジュアルテスト
+- [ ] ダークモードでのビジュアルテスト
+- [ ] テーマ切り替えが動作
+- [ ] 全バリアントをテスト
+- [ ] 全サイズをテスト
+- [ ] ホバー状態を確認
+- [ ] アクティブ状態を確認
+- [ ] 無効状態を確認
+- [ ] フォーカス状態を確認
 
-### Accessibility
-- [ ] Contrast ratios meet WCAG AA
-- [ ] Text readable in both themes
-- [ ] Border visibility maintained
-- [ ] No accessibility regressions
+### アクセシビリティ
+- [ ] コントラスト比がWCAG AAを満たす
+- [ ] 両テーマでテキストが読める
+- [ ] ボーダーの可視性を維持
+- [ ] アクセシビリティのリグレッションなし
 
-### Documentation
-- [ ] Metadata updated with new tokens
-- [ ] Component tokens documented
-- [ ] Examples updated
+### ドキュメント
+- [ ] 新しいトークンでメタデータを更新
+- [ ] コンポーネントトークンをドキュメント化
+- [ ] 例を更新
 
-### Review
-- [ ] Code self-review completed
-- [ ] Designer approval obtained
-- [ ] Changes committed to Git
+### レビュー
+- [ ] コードのセルフレビュー完了
+- [ ] デザイナーの承認取得
+- [ ] Gitに変更をコミット
 ```
 
 ---
 
-## 10. Conclusion
+## 10. 結論
 
-This remediation plan provides a comprehensive, phased approach to migrating all 23 affected components from legacy color tokens to semantic tokens. By following this plan, the core package will achieve:
+この修正計画は、影響を受ける23コンポーネント全てをレガシーカラートークンからセマンティックトークンに移行するための包括的な段階的アプローチを提供します。この計画に従うことで、coreパッケージは以下を達成します：
 
-- **100% token consistency** across all components
-- **Improved theme switching** and dark mode support
-- **Better maintainability** through standardized token usage
-- **Enhanced developer experience** with clear token patterns
+- **100%のトークン一貫性** - 全コンポーネントで統一
+- **改善されたテーマ切り替え** - ダークモードサポート向上
+- **より良い保守性** - 標準化されたトークン使用
+- **強化された開発者体験** - 明確なトークンパターン
 
-### Next Steps
+### 次のステップ
 
-1. **Review and approve** this remediation plan
-2. **Allocate resources** (developer, QA, designer)
-3. **Schedule migration** in project timeline
-4. **Create Git branch** for migration work
-5. **Begin Phase 1** (Preparation)
+1. **この修正計画をレビューして承認**
+2. **リソースを割り当て**（開発者、QA、デザイナー）
+3. **プロジェクトタイムラインで移行をスケジュール**
+4. **移行作業用のGitブランチを作成**
+5. **フェーズ1（準備）を開始**
 
-**Estimated completion:** 5 working days from start
+**完了予定:** 開始から5営業日
 
 ---
 
-**Document Version:** 1.0
-**Last Updated:** 2025-12-09
-**Author:** Claude Code
-**Status:** Ready for Implementation
+**ドキュメントバージョン:** 1.0
+**最終更新:** 2025-12-09
+**作成者:** Claude Code
+**ステータス:** 実装準備完了
