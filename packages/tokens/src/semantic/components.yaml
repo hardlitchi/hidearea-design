@@ -1,6 +1,6 @@
 # コンポーネントトークン - hidearea-design
 # UIコンポーネントごとの具体的なトークン定義
-# 注: button, input, card, modal, tooltip は src/components/ に移行されました
+# 注: button, input, card, modal, tooltip, navigation, table は src/components/ に移行されました
 
 component:
   # バッジコンポーネント
@@ -73,35 +73,3 @@ component:
         value: "{color.info.200}"
       icon:
         value: "{color.info.600}"
-  table:
-    header:
-      background:
-        value: "{color.gray.50}"
-      text:
-        value: "{color.gray.700}"
-    row:
-      background:
-        default:
-          value: "{color.white}"
-        hover:
-          value: "{color.gray.50}"
-        selected:
-          value: "{color.primary.50}"
-        striped:
-          value: "{color.gray.25}"
-    border:
-      default:
-        value: "{color.gray.200}"
-  navigation:
-    background:
-      default:
-        value: "{color.white}"
-      active:
-        value: "{color.primary.50}"
-    text:
-      default:
-        value: "{color.gray.700}"
-      active:
-        value: "{color.primary.700}"
-      hover:
-        value: "{color.gray.900}"

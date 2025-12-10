@@ -6,14 +6,14 @@ component:
     # 背景色
     background:
       default:
-        value: "{color.white}"
-        comment: "モーダルコンテンツの背景色 - 白"
+        value: "{background.primary}"
+        comment: "モーダルコンテンツの背景色（テーマ対応）"
       overlay:
         value: rgba(0, 0, 0, 0.5)
-        comment: "背景オーバーレイ色 - 半透明黒（50%透明度）"
+        comment: "背景オーバーレイ色 - 半透明黒（テーマ非依存・50%透明度）"
 
     # ボーダー色
     border:
       default:
-        value: "{color.gray.200}"
-        comment: "モーダルのボーダー色 - 薄いグレー"
+        value: "{border.default}"
+        comment: "モーダルのボーダー色（テーマ対応）"

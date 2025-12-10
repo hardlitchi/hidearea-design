@@ -1,0 +1,35 @@
+# テーブルコンポーネントトークン - hidearea-design
+# データテーブルの外観と振る舞いを定義
+
+component:
+  table:
+    # ヘッダー
+    header:
+      background:
+        value: "{background.secondary}"
+        comment: "テーブルヘッダー背景色 - セカンダリ背景（テーマ対応）"
+      text:
+        value: "{foreground.secondary}"
+        comment: "ヘッダーテキスト色 - セカンダリテキスト（テーマ対応）"
+
+    # 行
+    row:
+      background:
+        default:
+          value: "{background.primary}"
+          comment: "デフォルト行背景色 - プライマリ背景（テーマ対応）"
+        hover:
+          value: "{background.secondary}"
+          comment: "ホバー時行背景色 - セカンダリ背景（テーマ対応）"
+        selected:
+          value: "{primary.subtle}"
+          comment: "選択時行背景色 - 薄いプライマリカラー（テーマ対応）"
+        striped:
+          value: "{background.tertiary}"
+          comment: "ストライプ行背景色 - ターシャリ背景（テーマ対応・交互行用）"
+
+    # ボーダー
+    border:
+      default:
+        value: "{border.default}"
+        comment: "テーブルボーダー色 - デフォルトボーダー（テーマ対応）"

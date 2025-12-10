@@ -1,0 +1,25 @@
+# ナビゲーションコンポーネントトークン - hidearea-design
+# ナビゲーションメニューの外観と振る舞いを定義
+
+component:
+  navigation:
+    # 背景色
+    background:
+      default:
+        value: "{background.primary}"
+        comment: "ナビゲーション背景色 - セマンティック背景（テーマ対応）"
+      active:
+        value: "{primary.subtle}"
+        comment: "アクティブ項目の背景色 - 薄いプライマリカラー（テーマ対応）"
+
+    # テキスト色
+    text:
+      default:
+        value: "{foreground.secondary}"
+        comment: "デフォルトテキスト色 - セカンダリテキスト（テーマ対応）"
+      active:
+        value: "{primary.active}"
+        comment: "アクティブ項目のテキスト色 - プライマリカラー（テーマ対応）"
+      hover:
+        value: "{foreground.primary}"
+        comment: "ホバー時テキスト色 - プライマリテキスト（テーマ対応）"

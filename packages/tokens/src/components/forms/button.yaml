@@ -7,37 +7,37 @@ component:
     primary:
       background:
         default:
-          value: "{color.primary.500}"
-          comment: "プライマリボタンのデフォルト背景色"
+          value: "{primary.default}"
+          comment: "プライマリボタンのデフォルト背景色（テーマ対応）"
         hover:
-          value: "{color.primary.600}"
-          comment: "ホバー時の背景色 - やや濃く"
+          value: "{primary.hover}"
+          comment: "ホバー時の背景色（テーマ対応）"
         active:
-          value: "{color.primary.700}"
-          comment: "押下時の背景色 - さらに濃く"
+          value: "{primary.active}"
+          comment: "押下時の背景色（テーマ対応）"
         disabled:
-          value: "{color.gray.300}"
-          comment: "無効時の背景色 - グレーアウト"
+          value: "{border.default}"
+          comment: "無効時の背景色 - グレーアウト（テーマ対応）"
       text:
         default:
-          value: "{color.white}"
-          comment: "デフォルトテキスト色 - 白"
+          value: "{foreground.inverse}"
+          comment: "デフォルトテキスト色 - 反転色（テーマ対応）"
         disabled:
-          value: "{color.gray.500}"
-          comment: "無効時テキスト色"
+          value: "{foreground.tertiary}"
+          comment: "無効時テキスト色（テーマ対応）"
       border:
         default:
-          value: "{color.primary.500}"
-          comment: "デフォルトボーダー色"
+          value: "{primary.default}"
+          comment: "デフォルトボーダー色（テーマ対応）"
         hover:
-          value: "{color.primary.600}"
-          comment: "ホバー時ボーダー色"
+          value: "{primary.hover}"
+          comment: "ホバー時ボーダー色（テーマ対応）"
         active:
-          value: "{color.primary.700}"
-          comment: "押下時ボーダー色"
+          value: "{primary.active}"
+          comment: "押下時ボーダー色（テーマ対応）"
         disabled:
-          value: "{color.gray.300}"
-          comment: "無効時ボーダー色"
+          value: "{border.default}"
+          comment: "無効時ボーダー色（テーマ対応）"
 
     # セカンダリボタン - 副次的なアクション
     secondary:
@@ -46,34 +46,34 @@ component:
           value: transparent
           comment: "セカンダリボタンの背景は透明"
         hover:
-          value: "{color.gray.100}"
-          comment: "ホバー時に薄いグレー背景"
+          value: "{background.secondary}"
+          comment: "ホバー時にセカンダリ背景（テーマ対応）"
         active:
-          value: "{color.gray.200}"
-          comment: "押下時に少し濃いグレー背景"
+          value: "{background.tertiary}"
+          comment: "押下時にターシャリ背景（テーマ対応）"
         disabled:
           value: transparent
           comment: "無効時も透明"
       text:
         default:
-          value: "{color.gray.700}"
-          comment: "デフォルトテキスト色 - 濃いグレー"
+          value: "{foreground.secondary}"
+          comment: "デフォルトテキスト色（テーマ対応）"
         disabled:
-          value: "{color.gray.400}"
-          comment: "無効時テキスト色 - 薄いグレー"
+          value: "{foreground.tertiary}"
+          comment: "無効時テキスト色（テーマ対応）"
       border:
         default:
-          value: "{color.gray.300}"
-          comment: "デフォルトボーダー色"
+          value: "{border.default}"
+          comment: "デフォルトボーダー色（テーマ対応）"
         hover:
-          value: "{color.gray.400}"
-          comment: "ホバー時ボーダー色"
+          value: "{border.strong}"
+          comment: "ホバー時ボーダー色（テーマ対応）"
         active:
-          value: "{color.gray.500}"
-          comment: "押下時ボーダー色"
+          value: "{foreground.secondary}"
+          comment: "押下時ボーダー色（テーマ対応）"
         disabled:
-          value: "{color.gray.200}"
-          comment: "無効時ボーダー色"
+          value: "{border.subtle}"
+          comment: "無効時ボーダー色（テーマ対応）"
 
     # ゴーストボタン - 背景なしボタン
     ghost:
@@ -82,54 +82,54 @@ component:
           value: transparent
           comment: "ゴーストボタンは背景なし"
         hover:
-          value: "{color.gray.100}"
-          comment: "ホバー時に薄い背景"
+          value: "{background.secondary}"
+          comment: "ホバー時にセカンダリ背景（テーマ対応）"
         active:
-          value: "{color.gray.200}"
-          comment: "押下時にやや濃い背景"
+          value: "{background.tertiary}"
+          comment: "押下時にターシャリ背景（テーマ対応）"
         disabled:
           value: transparent
           comment: "無効時も背景なし"
       text:
         default:
-          value: "{color.gray.700}"
-          comment: "デフォルトテキスト色"
+          value: "{foreground.secondary}"
+          comment: "デフォルトテキスト色（テーマ対応）"
         disabled:
-          value: "{color.gray.400}"
-          comment: "無効時テキスト色"
+          value: "{foreground.tertiary}"
+          comment: "無効時テキスト色（テーマ対応）"
 
     # デンジャーボタン - 破壊的アクション（削除など）
     danger:
       background:
         default:
-          value: "{color.error.500}"
-          comment: "危険なアクションを示す赤背景"
+          value: "{error.default}"
+          comment: "危険なアクションを示すエラー背景（テーマ対応）"
         hover:
-          value: "{color.error.600}"
-          comment: "ホバー時の背景色"
+          value: "{error.hover}"
+          comment: "ホバー時の背景色（テーマ対応）"
         active:
-          value: "{color.error.700}"
-          comment: "押下時の背景色"
+          value: "{error.active}"
+          comment: "押下時の背景色（テーマ対応）"
         disabled:
-          value: "{color.gray.300}"
-          comment: "無効時の背景色"
+          value: "{border.default}"
+          comment: "無効時の背景色（テーマ対応）"
       text:
         default:
-          value: "{color.white}"
-          comment: "デフォルトテキスト色 - 白"
+          value: "{foreground.inverse}"
+          comment: "デフォルトテキスト色 - 反転色（テーマ対応）"
         disabled:
-          value: "{color.gray.500}"
-          comment: "無効時テキスト色"
+          value: "{foreground.tertiary}"
+          comment: "無効時テキスト色（テーマ対応）"
       border:
         default:
-          value: "{color.error.500}"
-          comment: "デフォルトボーダー色"
+          value: "{error.default}"
+          comment: "デフォルトボーダー色（テーマ対応）"
         hover:
-          value: "{color.error.600}"
-          comment: "ホバー時ボーダー色"
+          value: "{error.hover}"
+          comment: "ホバー時ボーダー色（テーマ対応）"
         active:
-          value: "{color.error.700}"
-          comment: "押下時ボーダー色"
+          value: "{error.active}"
+          comment: "押下時ボーダー色（テーマ対応）"
         disabled:
-          value: "{color.gray.300}"
-          comment: "無効時ボーダー色"
+          value: "{border.default}"
+          comment: "無効時ボーダー色（テーマ対応）"

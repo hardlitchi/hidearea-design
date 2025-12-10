@@ -36,6 +36,46 @@ StyleDictionary.registerTransform({
 });
 
 /**
+ * CSS変数参照を保持するトランスフォーム
+ *
+ * セマンティックトークン（background.*, foreground.*, border.*, primary.*, etc）への
+ * 参照をCSS変数参照（var(--background-primary)）に変換する
+ */
+StyleDictionary.registerTransform({
+  name: 'css/preserve-semantic-references',
+  type: 'value',
+  transitive: false,
+  filter: (token) => {
+    // componentトークンのみ対象
+    return token.path[0] === 'component' && typeof token.original.value === 'string';
+  },
+  transform: (token, options) => {
+    const value = token.original.value;
+
+    // セマンティックトークン参照のパターン
+    const semanticPatterns = [
+      'background', 'foreground', 'border',
+      'primary', 'secondary', 'success', 'error', 'warning', 'info'
+    ];
+
+    // 参照が含まれているか確認
+    if (value.startsWith('{') && value.endsWith('}')) {
+      const ref = value.slice(1, -1); // {} を削除
+      const refParts = ref.split('.');
+
+      // セマンティックトークンへの参照の場合、CSS変数参照に変換
+      if (semanticPatterns.includes(refParts[0])) {
+        const cssVarName = `--${refParts.join('-')}`;
+        return `var(${cssVarName})`;
+      }
+    }
+
+    // それ以外は通常の解決
+    return token.value;
+  }
+});
+
+/**
  * カスタムフォーマット: ライトモードとダークモードのCSS変数（二層構造）
  *
  * Shadow DOM対応のため、以下の構造を生成:
@@ -56,9 +96,35 @@ StyleDictionary.registerFormat({
     // テーマトークンの初期値を記録（ライトモードのデフォルト値）
     const defaultValues = {};
 
+    // セマンティックエイリアスのトークン名を記録
+    const aliasTokens = new Set(['background', 'foreground', 'border', 'primary', 'secondary', 'success', 'error', 'warning', 'info']);
+
+    // セマンティックトークン参照をCSS変数参照に変換するヘルパー
+    const convertToVarReference = (originalValue) => {
+      if (typeof originalValue === 'string' && originalValue.startsWith('{') && originalValue.endsWith('}')) {
+        const ref = originalValue.slice(1, -1); // {} を削除
+        const refParts = ref.split('.');
+
+        // セマンティックトークンへの参照の場合、CSS変数参照に変換
+        if (aliasTokens.has(refParts[0])) {
+          const cssVarName = `--${refParts.join('-')}`;
+          return `var(${cssVarName})`;
+        }
+      }
+      return null; // 変換しない
+    };
+
     dictionary.allTokens.forEach(token => {
       const cssVar = `--${token.name}`;
-      const value = token.value;
+      let value = token.value;
+
+      // コンポーネントトークンで、セマンティック参照がある場合は変換
+      if (token.path[0] === 'component' && token.original && token.original.value) {
+        const varRef = convertToVarReference(token.original.value);
+        if (varRef) {
+          value = varRef;
+        }
+      }
 
       if (token.path[0] === 'theme' && token.path[1] === 'light') {
         // ライトモードトークン
@@ -73,8 +139,8 @@ StyleDictionary.registerFormat({
         const semanticName = token.path.slice(2).join('-');
         const themeName = `--theme-${semanticName}`;
         darkTokens.push(`  ${themeName}: ${value};`);
-      } else if (token.path[0] !== 'theme') {
-        // ベーストークン
+      } else if (token.path[0] !== 'theme' && !aliasTokens.has(token.path[0])) {
+        // ベーストークン（エイリアスを除く）
         baseTokens.push(`  ${cssVar}: ${value};`);
       }
     });
@@ -102,8 +168,7 @@ const sd = new StyleDictionary({
   parsers: ['yaml-parser'],
   platforms: {
     css: {
-      transformGroup: 'css',
-      transforms: ['validate/no-value-suffix'],
+      transforms: ['css/preserve-semantic-references', 'name/kebab', 'validate/no-value-suffix'],
       buildPath: 'build/css/',
       files: [
         {
