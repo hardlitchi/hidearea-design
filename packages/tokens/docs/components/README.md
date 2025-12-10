@@ -11,7 +11,7 @@
 
 ---
 
-## 実装済みコンポーネント (14)
+## 実装済みコンポーネント (22)
 
 ### Forms (フォーム) ✅ 完成 7/7
 
@@ -27,7 +27,7 @@
 | **Textarea** | 3サイズ (small, default, large) | ✅ 実装済み | [textarea.md](./textarea.md) |
 | **Switch** | 3サイズ (small, default, large) | ✅ 実装済み | [switch.md](./switch.md) |
 
-### Feedback (フィードバック)
+### Feedback (フィードバック) ✅ 完成 6/6
 
 ユーザーへの通知や状態表示
 
@@ -35,6 +35,10 @@
 |--------------|------------|----------|------------|
 | **Badge** | 4 (success, error, warning, info) | ✅ 実装済み | [badge.md](./badge.md) |
 | **Alert** | 4 (success, error, warning, info) | ✅ 実装済み | [alert.md](./alert.md) |
+| **Toast** | 4 (success, error, warning, info) | ✅ 実装済み | [toast.md](./toast.md) |
+| **Progress** | 5色 + 3サイズ + circle型 | ✅ 実装済み | [progress.md](./progress.md) |
+| **Skeleton** | 7種類 (text, heading, avatar, etc) | ✅ 実装済み | [skeleton.md](./skeleton.md) |
+| **Spinner** | 4サイズ + 7色 | ✅ 実装済み | [spinner.md](./spinner.md) |
 
 ### Overlays (オーバーレイ)
 
@@ -54,29 +58,21 @@
 | **Card** | 1 (default) + 状態 | ✅ 実装済み | [card.md](./card.md) |
 | **Table** | 1 (default) | ✅ 実装済み | [table.md](./table.md) |
 
-### Navigation (ナビゲーション)
+### Navigation (ナビゲーション) ✅ 完成 5/5
 
 ページ間やセクション間の移動
 
 | コンポーネント | バリアント数 | ステータス | ドキュメント |
 |--------------|------------|----------|------------|
 | **Navigation** | 1 (default) | ✅ 実装済み | [navigation.md](./navigation.md) |
+| **Tabs** | 3 (line, enclosed, soft) + 3サイズ | ✅ 実装済み | [tabs.md](./tabs.md) |
+| **Breadcrumb** | 4種セパレーター + 3サイズ | ✅ 実装済み | [breadcrumb.md](./breadcrumb.md) |
+| **Pagination** | 3 (default, simple, rounded) | ✅ 実装済み | [pagination.md](./pagination.md) |
+| **Menu** | 3サイズ (compact, default, comfortable) | ✅ 実装済み | [menu.md](./menu.md) |
 
 ---
 
 ## 今後追加予定のコンポーネント
-
-### Feedback (優先度: 高)
-- Toast - トースト通知
-- Progress - プログレスバー
-- Skeleton - スケルトンローダー
-- Spinner - ローディングスピナー
-
-### Navigation (優先度: 高)
-- Tabs - タブナビゲーション
-- Breadcrumb - パンくずリスト
-- Pagination - ページネーション
-- Menu - ドロップダウンメニュー
 
 ### Overlays (優先度: 中)
 - Dialog
