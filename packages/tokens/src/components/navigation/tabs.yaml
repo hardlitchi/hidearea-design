@@ -1,0 +1,217 @@
+# タブコンポーネントトークン - hidearea-design
+# タブナビゲーションの外観と振る舞いを定義
+
+component:
+  tabs:
+    # コンテナ
+    container:
+      background:
+        value: "{background.primary}"
+        comment: "タブコンテナの背景色"
+      borderBottom:
+        value: "1px solid {border.default}"
+        comment: "タブリストの下ボーダー"
+      gap:
+        value: "{spacing.1}"
+        comment: "タブ間の間隔"
+
+    # タブアイテム
+    tab:
+      # パディング
+      padding:
+        horizontal:
+          value: "{spacing.4}"
+          comment: "タブの水平パディング"
+        vertical:
+          value: "{spacing.3}"
+          comment: "タブの垂直パディング"
+
+      # タイポグラフィ
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "タブのフォントサイズ"
+      fontWeight:
+        default:
+          value: "{font.weight.medium}"
+          comment: "デフォルトのフォントウェイト"
+        active:
+          value: "{font.weight.semibold}"
+          comment: "アクティブタブのフォントウェイト"
+      lineHeight:
+        value: "{font.lineHeight.normal}"
+        comment: "タブの行高"
+
+      # 色
+      text:
+        default:
+          value: "{foreground.secondary}"
+          comment: "デフォルトのテキスト色"
+        hover:
+          value: "{foreground.primary}"
+          comment: "ホバー時のテキスト色"
+        active:
+          value: "{primary.active}"
+          comment: "アクティブタブのテキスト色"
+        disabled:
+          value: "{foreground.tertiary}"
+          comment: "無効状態のテキスト色"
+
+      background:
+        default:
+          value: "transparent"
+          comment: "デフォルトの背景色"
+        hover:
+          value: "{background.secondary}"
+          comment: "ホバー時の背景色"
+        active:
+          value: "transparent"
+          comment: "アクティブタブの背景色"
+
+      # ボーダー
+      border:
+        radius:
+          value: "{border.radius.md} {border.radius.md} 0 0"
+          comment: "タブの角丸（上部のみ）"
+
+      # アクティブインジケーター
+      indicator:
+        height:
+          value: "2px"
+          comment: "アクティブインジケーターの高さ"
+        color:
+          value: "{primary.default}"
+          comment: "アクティブインジケーターの色"
+        position:
+          value: "absolute"
+          comment: "インジケーターの配置"
+
+    # アイコン
+    icon:
+      size:
+        value: "{spacing.4}"
+        comment: "タブアイコンのサイズ"
+      gap:
+        value: "{spacing.2}"
+        comment: "アイコンとテキストの間隔"
+      color:
+        default:
+          value: "{foreground.tertiary}"
+          comment: "デフォルトのアイコン色"
+        active:
+          value: "{primary.default}"
+          comment: "アクティブタブのアイコン色"
+
+    # バッジ（通知数など）
+    badge:
+      size:
+        value: "{spacing.5}"
+        comment: "バッジのサイズ"
+      fontSize:
+        value: "{font.size.xs}"
+        comment: "バッジのフォントサイズ"
+      background:
+        value: "{error.default}"
+        comment: "バッジの背景色"
+      text:
+        value: "{foreground.inverse}"
+        comment: "バッジのテキスト色"
+      marginLeft:
+        value: "{spacing.2}"
+        comment: "バッジの左マージン"
+
+    # タブパネル
+    panel:
+      padding:
+        value: "{spacing.6}"
+        comment: "タブパネルのパディング"
+      background:
+        value: "{background.primary}"
+        comment: "タブパネルの背景色"
+
+    # トランジション
+    transition:
+      duration:
+        value: "{animation.duration.fast}"
+        comment: "トランジションの持続時間"
+      timing:
+        value: "{animation.easing.ease}"
+        comment: "トランジションのイージング"
+      properties:
+        value: "color, background-color, border-color"
+        comment: "トランジション対象のプロパティ"
+
+    # サイズバリアント
+    size:
+      small:
+        padding:
+          horizontal:
+            value: "{spacing.3}"
+            comment: "小サイズの水平パディング"
+          vertical:
+            value: "{spacing.2}"
+            comment: "小サイズの垂直パディング"
+        fontSize:
+          value: "{font.size.xs}"
+          comment: "小サイズのフォントサイズ"
+        iconSize:
+          value: "{spacing.3}"
+          comment: "小サイズのアイコンサイズ"
+
+      default:
+        padding:
+          horizontal:
+            value: "{spacing.4}"
+            comment: "デフォルトサイズの水平パディング"
+          vertical:
+            value: "{spacing.3}"
+            comment: "デフォルトサイズの垂直パディング"
+        fontSize:
+          value: "{font.size.sm}"
+          comment: "デフォルトサイズのフォントサイズ"
+        iconSize:
+          value: "{spacing.4}"
+          comment: "デフォルトサイズのアイコンサイズ"
+
+      large:
+        padding:
+          horizontal:
+            value: "{spacing.5}"
+            comment: "大サイズの水平パディング"
+          vertical:
+            value: "{spacing.4}"
+            comment: "大サイズの垂直パディング"
+        fontSize:
+          value: "{font.size.base}"
+          comment: "大サイズのフォントサイズ"
+        iconSize:
+          value: "{spacing.5}"
+          comment: "大サイズのアイコンサイズ"
+
+    # バリアント（スタイル）
+    variant:
+      # ラインタイプ（デフォルト）
+      line:
+        border:
+          bottom:
+            value: "2px solid {primary.default}"
+            comment: "ラインタイプのボーダー"
+
+      # エンクローズドタイプ（囲み型）
+      enclosed:
+        border:
+          value: "1px solid {border.default}"
+          comment: "エンクローズドタイプのボーダー"
+        active:
+          borderBottom:
+            value: "1px solid {background.primary}"
+            comment: "アクティブタブの下ボーダー（背景と同色で消す）"
+
+      # ソフトラウンド（丸みのある背景）
+      soft:
+        active:
+          background:
+            value: "{primary.subtle}"
+            comment: "アクティブタブの背景色"
+          borderRadius:
+            value: "{border.radius.md}"
+            comment: "ソフトタイプの角丸"

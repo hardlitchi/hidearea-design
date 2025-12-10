@@ -685,6 +685,180 @@
           </nav>
         </div>
       </div>
+
+      <div class="component-group">
+        <h3>Tabs - タブ</h3>
+        <div class="example-box">
+          <div class="tabs">
+            <div class="tabs-list">
+              <button class="tab tab-active">概要</button>
+              <button class="tab">ドキュメント</button>
+              <button class="tab">設定</button>
+              <button class="tab" disabled>無効</button>
+            </div>
+            <div class="tab-panels">
+              <div class="tab-panel tab-panel-active">
+                <p>概要タブの内容です。デフォルトで表示されています。</p>
+              </div>
+            </div>
+          </div>
+
+          <h4 style="margin-top: 2rem; margin-bottom: 1rem;">アイコン付きタブ</h4>
+          <div class="tabs">
+            <div class="tabs-list">
+              <button class="tab tab-active">
+                <span class="tab-icon">🏠</span>
+                <span>ホーム</span>
+                <span class="tab-badge">5</span>
+              </button>
+              <button class="tab">
+                <span class="tab-icon">📧</span>
+                <span>メッセージ</span>
+                <span class="tab-badge">12</span>
+              </button>
+              <button class="tab">
+                <span class="tab-icon">⚙️</span>
+                <span>設定</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Breadcrumb - パンくずリスト</h3>
+        <div class="example-box">
+          <nav class="breadcrumb" aria-label="パンくずナビゲーション">
+            <ol class="breadcrumb-list">
+              <li class="breadcrumb-item">
+                <a href="#" class="breadcrumb-link">🏠 ホーム</a>
+              </li>
+              <li class="breadcrumb-separator">/</li>
+              <li class="breadcrumb-item">
+                <a href="#" class="breadcrumb-link">プロダクト</a>
+              </li>
+              <li class="breadcrumb-separator">/</li>
+              <li class="breadcrumb-item">
+                <a href="#" class="breadcrumb-link">カテゴリ</a>
+              </li>
+              <li class="breadcrumb-separator">/</li>
+              <li class="breadcrumb-item breadcrumb-item-active" aria-current="page">
+                現在のページ
+              </li>
+            </ol>
+          </nav>
+
+          <h4 style="margin-top: 2rem; margin-bottom: 1rem;">シェブロンセパレーター</h4>
+          <nav class="breadcrumb">
+            <ol class="breadcrumb-list">
+              <li class="breadcrumb-item">
+                <a href="#" class="breadcrumb-link">ホーム</a>
+              </li>
+              <li class="breadcrumb-separator">›</li>
+              <li class="breadcrumb-item">
+                <a href="#" class="breadcrumb-link">ドキュメント</a>
+              </li>
+              <li class="breadcrumb-separator">›</li>
+              <li class="breadcrumb-item breadcrumb-item-active">
+                コンポーネント
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Pagination - ページネーション</h3>
+        <div class="example-box">
+          <nav class="pagination" aria-label="ページネーション">
+            <button class="pagination-nav" aria-label="前のページ" disabled>
+              <span>‹</span>
+            </button>
+            <button class="pagination-item pagination-item-active" aria-current="page">1</button>
+            <button class="pagination-item">2</button>
+            <button class="pagination-item">3</button>
+            <button class="pagination-item">4</button>
+            <button class="pagination-item">5</button>
+            <button class="pagination-nav" aria-label="次のページ">
+              <span>›</span>
+            </button>
+          </nav>
+
+          <h4 style="margin-top: 2rem; margin-bottom: 1rem;">省略表示付き</h4>
+          <nav class="pagination">
+            <button class="pagination-nav" aria-label="前のページ">
+              <span>‹</span>
+            </button>
+            <button class="pagination-item">1</button>
+            <button class="pagination-item pagination-item-active">2</button>
+            <button class="pagination-item">3</button>
+            <span class="pagination-ellipsis">...</span>
+            <button class="pagination-item">10</button>
+            <button class="pagination-nav" aria-label="次のページ">
+              <span>›</span>
+            </button>
+          </nav>
+
+          <h4 style="margin-top: 2rem; margin-bottom: 1rem;">情報付き</h4>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <nav class="pagination">
+              <button class="pagination-nav" aria-label="前のページ">
+                <span>‹</span>
+              </button>
+              <button class="pagination-item">1</button>
+              <button class="pagination-item pagination-item-active">2</button>
+              <button class="pagination-item">3</button>
+              <button class="pagination-nav" aria-label="次のページ">
+                <span>›</span>
+              </button>
+            </nav>
+            <span class="pagination-info">全30件中 11-20件を表示</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Menu - メニュー</h3>
+        <div class="example-box">
+          <button class="btn btn-secondary" id="menu-trigger">メニューを開く</button>
+
+          <div style="margin-top: 2rem; position: relative;">
+            <div class="menu" style="position: static; display: block;">
+              <div class="menu-group-header">アカウント</div>
+              <button class="menu-item">
+                <span class="menu-icon">👤</span>
+                <span>プロフィール</span>
+                <span class="menu-shortcut">⌘P</span>
+              </button>
+              <button class="menu-item">
+                <span class="menu-icon">⚙️</span>
+                <span>設定</span>
+                <span class="menu-shortcut">⌘S</span>
+              </button>
+              <div class="menu-divider"></div>
+              <div class="menu-group-header">アクション</div>
+              <button class="menu-item menu-item-active">
+                <span class="menu-check">✓</span>
+                <span>選択済み項目</span>
+              </button>
+              <button class="menu-item">
+                <span class="menu-icon">📄</span>
+                <span>新規作成</span>
+                <span class="menu-arrow">›</span>
+              </button>
+              <button class="menu-item" disabled>
+                <span class="menu-icon">🔒</span>
+                <span>無効な項目</span>
+              </button>
+              <div class="menu-divider"></div>
+              <button class="menu-item menu-item-danger">
+                <span class="menu-icon">🗑️</span>
+                <span>削除</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->

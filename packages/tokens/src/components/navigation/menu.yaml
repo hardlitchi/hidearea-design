@@ -1,0 +1,343 @@
+# メニューコンポーネントトークン - hidearea-design
+# ドロップダウンメニューとコンテキストメニューの外観と振る舞いを定義
+
+component:
+  menu:
+    # コンテナ
+    container:
+      background:
+        value: "{background.primary}"
+        comment: "メニューコンテナの背景色"
+      border:
+        width:
+          value: "{border.width.1}"
+          comment: "コンテナのボーダー幅"
+        color:
+          value: "{border.default}"
+          comment: "コンテナのボーダー色"
+        radius:
+          value: "{border.radius.md}"
+          comment: "コンテナの角丸"
+      shadow:
+        value: "{shadow.lg}"
+        comment: "コンテナのシャドウ"
+      padding:
+        vertical:
+          value: "{spacing.2}"
+          comment: "コンテナの垂直パディング"
+        horizontal:
+          value: "{spacing.0}"
+          comment: "コンテナの水平パディング"
+      minWidth:
+        value: "{spacing.48}"
+        comment: "コンテナの最小幅（192px）"
+      maxHeight:
+        value: "400px"
+        comment: "コンテナの最大高さ"
+      overflow:
+        value: "auto"
+        comment: "オーバーフロー時の挙動"
+
+    # メニューアイテム
+    item:
+      # パディング
+      padding:
+        vertical:
+          value: "{spacing.2}"
+          comment: "アイテムの垂直パディング"
+        horizontal:
+          value: "{spacing.3}"
+          comment: "アイテムの水平パディング"
+
+      # タイポグラフィ
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "アイテムのフォントサイズ"
+      fontWeight:
+        value: "{font.weight.normal}"
+        comment: "アイテムのフォントウェイト"
+      lineHeight:
+        value: "{font.lineHeight.normal}"
+        comment: "アイテムの行高"
+
+      # 色
+      background:
+        default:
+          value: "transparent"
+          comment: "デフォルトの背景色"
+        hover:
+          value: "{background.secondary}"
+          comment: "ホバー時の背景色"
+        active:
+          value: "{primary.subtle}"
+          comment: "アクティブ時の背景色"
+        focus:
+          value: "{background.secondary}"
+          comment: "フォーカス時の背景色"
+        disabled:
+          value: "transparent"
+          comment: "無効状態の背景色"
+
+      text:
+        default:
+          value: "{foreground.primary}"
+          comment: "デフォルトのテキスト色"
+        hover:
+          value: "{foreground.primary}"
+          comment: "ホバー時のテキスト色"
+        active:
+          value: "{primary.active}"
+          comment: "アクティブ時のテキスト色"
+        disabled:
+          value: "{foreground.tertiary}"
+          comment: "無効状態のテキスト色"
+
+      # 高さ
+      minHeight:
+        default:
+          value: "{spacing.10}"
+          comment: "デフォルトの最小高さ"
+        compact:
+          value: "{spacing.8}"
+          comment: "コンパクトサイズの最小高さ"
+        comfortable:
+          value: "{spacing.12}"
+          comment: "ゆったりサイズの最小高さ"
+
+      # カーソル
+      cursor:
+        default:
+          value: "pointer"
+          comment: "デフォルトのカーソル"
+        disabled:
+          value: "not-allowed"
+          comment: "無効状態のカーソル"
+
+    # アイコン
+    icon:
+      size:
+        value: "{spacing.4}"
+        comment: "アイコンのサイズ"
+      color:
+        default:
+          value: "{foreground.secondary}"
+          comment: "デフォルトのアイコン色"
+        hover:
+          value: "{foreground.primary}"
+          comment: "ホバー時のアイコン色"
+        active:
+          value: "{primary.default}"
+          comment: "アクティブ時のアイコン色"
+      gap:
+        value: "{spacing.3}"
+        comment: "アイコンとテキストの間隔"
+
+    # チェックマーク（選択状態）
+    check:
+      size:
+        value: "{spacing.4}"
+        comment: "チェックマークのサイズ"
+      color:
+        value: "{primary.default}"
+        comment: "チェックマークの色"
+      marginRight:
+        value: "{spacing.3}"
+        comment: "チェックマークの右マージン"
+
+    # ショートカットキー表示
+    shortcut:
+      fontSize:
+        value: "{font.size.xs}"
+        comment: "ショートカットのフォントサイズ"
+      color:
+        value: "{foreground.tertiary}"
+        comment: "ショートカットの色"
+      marginLeft:
+        value: "{spacing.4}"
+        comment: "ショートカットの左マージン"
+      padding:
+        value: "{spacing.1} {spacing.2}"
+        comment: "ショートカットのパディング"
+      background:
+        value: "{background.secondary}"
+        comment: "ショートカットの背景色"
+      borderRadius:
+        value: "{border.radius.sm}"
+        comment: "ショートカットの角丸"
+
+    # サブメニュー矢印
+    arrow:
+      size:
+        value: "{spacing.4}"
+        comment: "サブメニュー矢印のサイズ"
+      color:
+        value: "{foreground.tertiary}"
+        comment: "矢印の色"
+      marginLeft:
+        value: "auto"
+        comment: "矢印の左マージン（右寄せ）"
+
+    # 区切り線
+    divider:
+      height:
+        value: "1px"
+        comment: "区切り線の高さ"
+      background:
+        value: "{border.default}"
+        comment: "区切り線の背景色"
+      margin:
+        vertical:
+          value: "{spacing.2}"
+          comment: "区切り線の垂直マージン"
+        horizontal:
+          value: "{spacing.0}"
+          comment: "区切り線の水平マージン"
+
+    # グループヘッダー
+    group:
+      header:
+        padding:
+          vertical:
+            value: "{spacing.2}"
+            comment: "グループヘッダーの垂直パディング"
+          horizontal:
+            value: "{spacing.3}"
+            comment: "グループヘッダーの水平パディング"
+        fontSize:
+          value: "{font.size.xs}"
+          comment: "グループヘッダーのフォントサイズ"
+        fontWeight:
+          value: "{font.weight.semibold}"
+          comment: "グループヘッダーのフォントウェイト"
+        color:
+          value: "{foreground.tertiary}"
+          comment: "グループヘッダーの色"
+        textTransform:
+          value: "uppercase"
+          comment: "グループヘッダーのテキスト変換"
+        letterSpacing:
+          value: "0.05em"
+          comment: "グループヘッダーの字間"
+
+    # 危険なアクション（削除など）
+    danger:
+      text:
+        default:
+          value: "{error.default}"
+          comment: "危険なアクションのテキスト色"
+        hover:
+          value: "{foreground.inverse}"
+          comment: "ホバー時のテキスト色"
+      background:
+        hover:
+          value: "{error.default}"
+          comment: "ホバー時の背景色"
+      icon:
+        color:
+          value: "{error.default}"
+          comment: "アイコンの色"
+
+    # アニメーション
+    animation:
+      # 表示時
+      enter:
+        duration:
+          value: "{animation.duration.fast}"
+          comment: "表示アニメーションの持続時間"
+        timing:
+          value: "{animation.easing.easeOut}"
+          comment: "表示アニメーションのイージング"
+        opacity:
+          from:
+            value: "0"
+            comment: "開始時の透明度"
+          to:
+            value: "1"
+            comment: "終了時の透明度"
+        transform:
+          from:
+            value: "translateY(-8px)"
+            comment: "開始時の位置"
+          to:
+            value: "translateY(0)"
+            comment: "終了時の位置"
+
+      # 非表示時
+      exit:
+        duration:
+          value: "{animation.duration.fast}"
+          comment: "非表示アニメーションの持続時間"
+        timing:
+          value: "{animation.easing.easeIn}"
+          comment: "非表示アニメーションのイージング"
+        opacity:
+          from:
+            value: "1"
+            comment: "開始時の透明度"
+          to:
+            value: "0"
+            comment: "終了時の透明度"
+
+    # トランジション
+    transition:
+      duration:
+        value: "{animation.duration.fast}"
+        comment: "トランジションの持続時間"
+      timing:
+        value: "{animation.easing.ease}"
+        comment: "トランジションのイージング"
+      properties:
+        value: "background-color, color"
+        comment: "トランジション対象のプロパティ"
+
+    # サイズバリアント
+    size:
+      compact:
+        fontSize:
+          value: "{font.size.xs}"
+          comment: "コンパクトサイズのフォントサイズ"
+        padding:
+          vertical:
+            value: "{spacing.1}"
+            comment: "コンパクトサイズの垂直パディング"
+          horizontal:
+            value: "{spacing.2}"
+            comment: "コンパクトサイズの水平パディング"
+        minHeight:
+          value: "{spacing.8}"
+          comment: "コンパクトサイズの最小高さ"
+
+      default:
+        fontSize:
+          value: "{font.size.sm}"
+          comment: "デフォルトサイズのフォントサイズ"
+        padding:
+          vertical:
+            value: "{spacing.2}"
+            comment: "デフォルトサイズの垂直パディング"
+          horizontal:
+            value: "{spacing.3}"
+            comment: "デフォルトサイズの水平パディング"
+        minHeight:
+          value: "{spacing.10}"
+          comment: "デフォルトサイズの最小高さ"
+
+      comfortable:
+        fontSize:
+          value: "{font.size.base}"
+          comment: "ゆったりサイズのフォントサイズ"
+        padding:
+          vertical:
+            value: "{spacing.3}"
+            comment: "ゆったりサイズの垂直パディング"
+          horizontal:
+            value: "{spacing.4}"
+            comment: "ゆったりサイズの水平パディング"
+        minHeight:
+          value: "{spacing.12}"
+          comment: "ゆったりサイズの最小高さ"
+
+    # Z-index（重なり順）
+    zIndex:
+      value: "1000"
+      comment: "メニューのz-index"
