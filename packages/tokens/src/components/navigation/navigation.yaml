@@ -1,0 +1,25 @@
+# ナビゲーションコンポーネントトークン - hidearea-design
+# ナビゲーションメニューの外観と振る舞いを定義
+
+component:
+  navigation:
+    # 背景色
+    background:
+      default:
+        value: "{color.white}"
+        comment: "ナビゲーション背景色 - 白"
+      active:
+        value: "{color.primary.50}"
+        comment: "アクティブ項目の背景色 - 非常に薄いプライマリカラー"
+
+    # テキスト色
+    text:
+      default:
+        value: "{color.gray.700}"
+        comment: "デフォルトテキスト色 - 濃いグレー"
+      active:
+        value: "{color.primary.700}"
+        comment: "アクティブ項目のテキスト色 - プライマリカラー"
+      hover:
+        value: "{color.gray.900}"
+        comment: "ホバー時テキスト色 - ほぼ黒"

@@ -1,0 +1,35 @@
+# テーブルコンポーネントトークン - hidearea-design
+# データテーブルの外観と振る舞いを定義
+
+component:
+  table:
+    # ヘッダー
+    header:
+      background:
+        value: "{color.gray.50}"
+        comment: "テーブルヘッダー背景色 - 薄いグレー"
+      text:
+        value: "{color.gray.700}"
+        comment: "ヘッダーテキスト色 - 濃いグレー"
+
+    # 行
+    row:
+      background:
+        default:
+          value: "{color.white}"
+          comment: "デフォルト行背景色 - 白"
+        hover:
+          value: "{color.gray.50}"
+          comment: "ホバー時行背景色 - 薄いグレー"
+        selected:
+          value: "{color.primary.50}"
+          comment: "選択時行背景色 - 非常に薄いプライマリカラー"
+        striped:
+          value: "{color.gray.25}"
+          comment: "ストライプ行背景色 - 非常に薄いグレー（交互行用）"
+
+    # ボーダー
+    border:
+      default:
+        value: "{color.gray.200}"
+        comment: "テーブルボーダー色 - 薄いグレー"
