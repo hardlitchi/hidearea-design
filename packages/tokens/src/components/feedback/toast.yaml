@@ -1,0 +1,181 @@
+# トーストコンポーネントトークン - hidearea-design
+# 一時的な通知メッセージの外観と振る舞いを定義
+# Toastは画面の端に表示され、数秒後に自動的に消える通知コンポーネント
+
+component:
+  toast:
+    # 成功トースト
+    success:
+      background:
+        value: "{success.default}"
+        comment: "成功トースト背景色（テーマ対応）"
+      text:
+        value: "{foreground.inverse}"
+        comment: "成功トーストテキスト色（テーマ対応）"
+      border:
+        value: "{success.active}"
+        comment: "成功トーストボーダー色（テーマ対応）"
+      icon:
+        value: "{foreground.inverse}"
+        comment: "成功トーストアイコン色（テーマ対応）"
+
+    # 警告トースト
+    warning:
+      background:
+        value: "{warning.default}"
+        comment: "警告トースト背景色（テーマ対応）"
+      text:
+        value: "{foreground.inverse}"
+        comment: "警告トーストテキスト色（テーマ対応）"
+      border:
+        value: "{warning.active}"
+        comment: "警告トーストボーダー色（テーマ対応）"
+      icon:
+        value: "{foreground.inverse}"
+        comment: "警告トーストアイコン色（テーマ対応）"
+
+    # エラートースト
+    error:
+      background:
+        value: "{error.default}"
+        comment: "エラートースト背景色（テーマ対応）"
+      text:
+        value: "{foreground.inverse}"
+        comment: "エラートーストテキスト色（テーマ対応）"
+      border:
+        value: "{error.active}"
+        comment: "エラートーストボーダー色（テーマ対応）"
+      icon:
+        value: "{foreground.inverse}"
+        comment: "エラートーストアイコン色（テーマ対応）"
+
+    # 情報トースト
+    info:
+      background:
+        value: "{info.default}"
+        comment: "情報トースト背景色（テーマ対応）"
+      text:
+        value: "{foreground.inverse}"
+        comment: "情報トーストテキスト色（テーマ対応）"
+      border:
+        value: "{info.default}"
+        comment: "情報トーストボーダー色（テーマ対応）"
+      icon:
+        value: "{foreground.inverse}"
+        comment: "情報トーストアイコン色（テーマ対応）"
+
+    # 共通スタイリング
+    padding:
+      vertical:
+        value: "{spacing.3}"
+        comment: "縦方向のパディング (12px)"
+      horizontal:
+        value: "{spacing.4}"
+        comment: "横方向のパディング (16px)"
+
+    # ボーダー
+    borderWidth:
+      default:
+        value: "{border.width.1}"
+        comment: "デフォルトのボーダー幅 (1px)"
+
+    borderRadius:
+      default:
+        value: "{border.radius.md}"
+        comment: "トーストの角丸 (6px)"
+
+    # シャドウ
+    shadow:
+      default:
+        value: "{shadow.lg}"
+        comment: "トーストの影 - 浮遊感を演出"
+
+    # タイポグラフィ
+    font:
+      size:
+        value: "{font.size.sm}"
+        comment: "トーストのフォントサイズ (14px)"
+      weight:
+        value: "{font.weight.medium}"
+        comment: "トーストのフォントウェイト (500)"
+      lineHeight:
+        value: "{font.lineHeight.normal}"
+        comment: "トーストの行の高さ (1.5)"
+
+    # アイコン
+    icon:
+      size:
+        value: "1.25rem"
+        comment: "アイコンのサイズ (20px)"
+      spacing:
+        value: "{spacing.2}"
+        comment: "アイコンとテキストの間隔 (8px)"
+
+    # 閉じるボタン
+    closeButton:
+      size:
+        value: "1rem"
+        comment: "閉じるボタンのサイズ (16px)"
+      spacing:
+        value: "{spacing.2}"
+        comment: "閉じるボタンと端の間隔 (8px)"
+      color:
+        default:
+          value: "{foreground.inverse}"
+          comment: "閉じるボタンのデフォルト色"
+        hover:
+          value: "{foreground.inverse}"
+          comment: "閉じるボタンのホバー色"
+      opacity:
+        default:
+          value: "0.8"
+          comment: "閉じるボタンのデフォルト不透明度"
+        hover:
+          value: "1"
+          comment: "閉じるボタンのホバー時不透明度"
+
+    # レイアウト
+    minWidth:
+      value: "18rem"
+      comment: "トーストの最小幅 (288px)"
+
+    maxWidth:
+      value: "24rem"
+      comment: "トーストの最大幅 (384px)"
+
+    gap:
+      value: "{spacing.2}"
+      comment: "トースト要素間の間隔 (8px)"
+
+    # アニメーション
+    transition:
+      duration:
+        value: "{animation.duration.base}"
+        comment: "トランジションの時間 (200ms)"
+      timing:
+        value: "{animation.easing.ease}"
+        comment: "トランジションのイージング"
+      properties:
+        value: "opacity, transform"
+        comment: "トランジション対象のプロパティ"
+
+    # 位置関連（コンテナ用）
+    position:
+      offset:
+        value: "{spacing.4}"
+        comment: "画面端からのオフセット (16px)"
+      gap:
+        value: "{spacing.2}"
+        comment: "複数のトースト間の間隔 (8px)"
+
+    # プログレスバー（自動消去用）
+    progressBar:
+      height:
+        value: "3px"
+        comment: "プログレスバーの高さ"
+      background:
+        value: "{foreground.inverse}"
+        comment: "プログレスバーの色"
+      opacity:
+        value: "0.3"
+        comment: "プログレスバーの不透明度"

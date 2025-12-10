@@ -408,6 +408,174 @@
           </div>
         </div>
       </div>
+
+      <div class="component-group">
+        <h3>Toast - トースト通知</h3>
+        <div class="example-box">
+          <div class="toast-container">
+            <div class="toast toast-success">
+              <div class="toast-content">
+                <svg class="toast-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm-2 15l-5-5 1.41-1.41L8 12.17l7.59-7.59L17 6l-9 9z" fill="currentColor"/>
+                </svg>
+                <span>保存が完了しました</span>
+              </div>
+              <button class="toast-close" aria-label="閉じる">×</button>
+            </div>
+
+            <div class="toast toast-error">
+              <div class="toast-content">
+                <svg class="toast-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm1 15H9v-2h2v2zm0-4H9V5h2v6z" fill="currentColor"/>
+                </svg>
+                <span>エラーが発生しました</span>
+              </div>
+              <button class="toast-close" aria-label="閉じる">×</button>
+            </div>
+
+            <div class="toast toast-warning">
+              <div class="toast-content">
+                <svg class="toast-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M1 17h18L10 1 1 17zm10-2H9v-2h2v2zm0-4H9V7h2v4z" fill="currentColor"/>
+                </svg>
+                <span>注意: 変更は保存されていません</span>
+              </div>
+              <button class="toast-close" aria-label="閉じる">×</button>
+            </div>
+
+            <div class="toast toast-info">
+              <div class="toast-content">
+                <svg class="toast-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm1 15H9v-6h2v6zm0-8H9V5h2v2z" fill="currentColor"/>
+                </svg>
+                <span>新しいアップデートがあります</span>
+              </div>
+              <button class="toast-close" aria-label="閉じる">×</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Progress - プログレスバー</h3>
+        <div class="example-box">
+          <div class="progress-group">
+            <label class="progress-label">デフォルト (75%)</label>
+            <div class="progress">
+              <div class="progress-fill" style="width: 75%"></div>
+            </div>
+          </div>
+
+          <div class="progress-group">
+            <label class="progress-label">Success (100%)</label>
+            <div class="progress">
+              <div class="progress-fill progress-fill-success" style="width: 100%"></div>
+            </div>
+          </div>
+
+          <div class="progress-group">
+            <label class="progress-label">Warning (60%)</label>
+            <div class="progress">
+              <div class="progress-fill progress-fill-warning" style="width: 60%"></div>
+            </div>
+          </div>
+
+          <div class="progress-group">
+            <label class="progress-label">Error (25%)</label>
+            <div class="progress">
+              <div class="progress-fill progress-fill-error" style="width: 25%"></div>
+            </div>
+          </div>
+
+          <div class="progress-group">
+            <label class="progress-label">小サイズ (50%)</label>
+            <div class="progress progress-small">
+              <div class="progress-fill" style="width: 50%"></div>
+            </div>
+          </div>
+
+          <div class="progress-group">
+            <label class="progress-label">大サイズ (80%)</label>
+            <div class="progress progress-large">
+              <div class="progress-fill" style="width: 80%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Skeleton - スケルトンローダー</h3>
+        <div class="example-box">
+          <div class="skeleton-demo">
+            <div class="skeleton skeleton-avatar"></div>
+            <div class="skeleton-content">
+              <div class="skeleton skeleton-text" style="width: 60%"></div>
+              <div class="skeleton skeleton-text" style="width: 80%"></div>
+              <div class="skeleton skeleton-text" style="width: 40%"></div>
+            </div>
+          </div>
+
+          <div class="skeleton-demo">
+            <div class="skeleton skeleton-heading"></div>
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text" style="width: 90%"></div>
+            <div class="skeleton skeleton-button"></div>
+          </div>
+
+          <div class="skeleton-demo">
+            <div class="skeleton skeleton-image"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Spinner - ローディングスピナー</h3>
+        <div class="example-box">
+          <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+            <div class="spinner-demo">
+              <div class="spinner spinner-small"></div>
+              <span>小</span>
+            </div>
+
+            <div class="spinner-demo">
+              <div class="spinner"></div>
+              <span>デフォルト</span>
+            </div>
+
+            <div class="spinner-demo">
+              <div class="spinner spinner-large"></div>
+              <span>大</span>
+            </div>
+
+            <div class="spinner-demo">
+              <div class="spinner spinner-xlarge"></div>
+              <span>特大</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; margin-top: 2rem;">
+            <div class="spinner-demo">
+              <div class="spinner spinner-success"></div>
+              <span>Success</span>
+            </div>
+
+            <div class="spinner-demo">
+              <div class="spinner spinner-warning"></div>
+              <span>Warning</span>
+            </div>
+
+            <div class="spinner-demo">
+              <div class="spinner spinner-error"></div>
+              <span>Error</span>
+            </div>
+
+            <div class="spinner-demo">
+              <div class="spinner spinner-info"></div>
+              <span>Info</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Data Display Section -->
