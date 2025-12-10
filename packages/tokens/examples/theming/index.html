@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theme Switching Demo - Hidearea Design Tokens</title>
+  <link rel="stylesheet" href="../../build/css/variables.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family-sans, -apple-system, sans-serif);
+      line-height: 1.6;
+      color: var(--foreground-primary);
+      background-color: var(--background-primary);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .theme-controls {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .theme-btn {
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--border-default);
+      border-radius: 0.5rem;
+      background-color: var(--background-secondary);
+      color: var(--foreground-primary);
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--primary-default);
+      background-color: var(--primary-default);
+      color: var(--foreground-inverse);
+    }
+
+    .theme-btn.active {
+      border-color: var(--primary-default);
+      background-color: var(--primary-default);
+      color: var(--foreground-inverse);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .demo-section {
+      background-color: var(--background-secondary);
+      border: 1px solid var(--border-default);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+    }
+
+    .demo-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 1rem;
+    }
+
+    .color-box {
+      aspect-ratio: 1;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid var(--border-default);
+    }
+
+    .token-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .token-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem;
+      background-color: var(--background-primary);
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
+    }
+
+    .token-name {
+      font-family: monospace;
+      color: var(--foreground-secondary);
+    }
+
+    .token-value {
+      font-family: monospace;
+      color: var(--primary-default);
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .comparison-panel {
+      border: 1px solid var(--border-default);
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    .comparison-header {
+      padding: 1rem;
+      background-color: var(--background-secondary);
+      border-bottom: 1px solid var(--border-default);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .comparison-content {
+      padding: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--component-button-primary-background-default);
+      color: var(--component-button-primary-text-default);
+      border: 1px solid var(--component-button-primary-border-default);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--component-button-primary-background-hover);
+    }
+
+    .card {
+      padding: 1.5rem;
+      background-color: var(--component-card-background-default);
+      border: 1px solid var(--component-card-border-default);
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-right: 0.5rem;
+    }
+
+    .badge-success {
+      background-color: var(--component-badge-success-background);
+      color: var(--component-badge-success-text);
+    }
+
+    .badge-error {
+      background-color: var(--component-badge-error-background);
+      color: var(--component-badge-error-text);
+    }
+
+    .system-preference {
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--background-secondary);
+      border: 1px solid var(--border-default);
+      border-radius: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .comparison {
+        grid-template-columns: 1fr;
+      }
+
+      .demo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎨 テーマ切り替えデモ</h1>
+      <p>Hidearea Design Tokens の動的テーマ切り替え機能</p>
+    </div>
+
+    <div class="theme-controls">
+      <button class="theme-btn" data-theme="light">
+        ☀️ ライトテーマ
+      </button>
+      <button class="theme-btn" data-theme="dark">
+        🌙 ダークテーマ
+      </button>
+      <button class="theme-btn" id="system-theme">
+        💻 システム設定
+      </button>
+    </div>
+
+    <div class="comparison">
+      <div class="comparison-panel">
+        <div class="comparison-header">現在のテーマ</div>
+        <div class="comparison-content">
+          <h4>主要なトークン値</h4>
+          <div class="token-list" id="current-tokens"></div>
+        </div>
+      </div>
+
+      <div class="comparison-panel">
+        <div class="comparison-header">コンポーネントプレビュー</div>
+        <div class="comparison-content">
+          <button class="btn btn-primary">Primary Button</button>
+          <div class="card">
+            <h4>カード例</h4>
+            <p>このカードはテーマに応じて色が変わります。</p>
+            <div style="margin-top: 0.5rem;">
+              <span class="badge badge-success">Success</span>
+              <span class="badge badge-error">Error</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-section">
+        <h3>🎨 カラー</h3>
+        <div class="color-grid">
+          <div class="color-box" style="background-color: var(--primary-default); color: var(--foreground-inverse);">
+            Primary
+          </div>
+          <div class="color-box" style="background-color: var(--success-default); color: var(--foreground-inverse);">
+            Success
+          </div>
+          <div class="color-box" style="background-color: var(--error-default); color: var(--foreground-inverse);">
+            Error
+          </div>
+          <div class="color-box" style="background-color: var(--warning-default); color: var(--color-gray-900);">
+            Warning
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3>📝 背景とテキスト</h3>
+        <div class="token-list">
+          <div class="token-item">
+            <span class="token-name">--background-primary</span>
+            <span class="token-value" id="bg-primary"></span>
+          </div>
+          <div class="token-item">
+            <span class="token-name">--foreground-primary</span>
+            <span class="token-value" id="fg-primary"></span>
+          </div>
+          <div class="token-item">
+            <span class="token-name">--border-default</span>
+            <span class="token-value" id="border-default"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3>🔧 実装方法</h3>
+        <pre style="background-color: var(--background-primary); padding: 1rem; border-radius: 0.25rem; overflow-x: auto; font-size: 0.875rem;"><code>// テーマ切り替え
+const theme = 'dark';
+document.documentElement
+  .setAttribute('data-theme', theme);
+
+// システム設定を検出
+const prefersDark = window
+  .matchMedia('(prefers-color-scheme: dark)')
+  .matches;</code></pre>
+      </div>
+
+      <div class="demo-section">
+        <h3>✨ 特徴</h3>
+        <ul style="padding-left: 1.5rem; line-height: 2;">
+          <li>JavaScriptなしでも動作</li>
+          <li>CSS変数のみで実装</li>
+          <li>スムーズなトランジション</li>
+          <li>システム設定に対応</li>
+          <li>ローカルストレージで保存</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="system-preference">
+      <p><strong>システムのカラースキーム設定:</strong> <span id="system-scheme"></span></p>
+      <p style="font-size: 0.875rem; color: var(--foreground-secondary); margin-top: 0.5rem;">
+        ブラウザの設定を変更すると、「システム設定」モードで自動的に切り替わります
+      </p>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
