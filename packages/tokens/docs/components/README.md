@@ -11,7 +11,7 @@
 
 ---
 
-## 実装済みコンポーネント (22)
+## 実装済みコンポーネント (26)
 
 ### Forms (フォーム) ✅ 完成 7/7
 
@@ -40,7 +40,7 @@
 | **Skeleton** | 7種類 (text, heading, avatar, etc) | ✅ 実装済み | [skeleton.md](./skeleton.md) |
 | **Spinner** | 4サイズ + 7色 | ✅ 実装済み | [spinner.md](./spinner.md) |
 
-### Overlays (オーバーレイ)
+### Overlays (オーバーレイ) ✅ 完成 6/6
 
 画面上に重なって表示される要素
 
@@ -48,6 +48,10 @@
 |--------------|------------|----------|------------|
 | **Modal** | 1 (default) | ✅ 実装済み | [modal.md](./modal.md) |
 | **Tooltip** | 1 (default) | ✅ 実装済み | [tooltip.md](./tooltip.md) |
+| **Dialog** | 5 (confirmation, warning, destructive, info, success) | ✅ 実装済み | [dialog.md](./dialog.md) |
+| **Drawer** | 4位置 (left, right, top, bottom) | ✅ 実装済み | [drawer.md](./drawer.md) |
+| **Popover** | 3サイズ + arrow | ✅ 実装済み | [popover.md](./popover.md) |
+| **Dropdown** | 1 (default) + search | ✅ 実装済み | [dropdown.md](./dropdown.md) |
 
 ### Data Display (データ表示)
 
@@ -74,13 +78,7 @@
 
 ## 今後追加予定のコンポーネント
 
-### Overlays (優先度: 中)
-- Dialog
-- Drawer
-- Popover
-- Dropdown
-
-### Data Display
+### Data Display (優先度: 中)
 - List
 - Avatar
 - Chip
