@@ -103,6 +103,42 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// Menu Management
+const menuTrigger = document.getElementById('menu-trigger');
+const demoMenu = document.getElementById('demo-menu');
+
+if (menuTrigger && demoMenu) {
+  let isMenuOpen = false;
+
+  menuTrigger.addEventListener('click', () => {
+    isMenuOpen = !isMenuOpen;
+    demoMenu.style.display = isMenuOpen ? 'block' : 'none';
+    menuTrigger.textContent = isMenuOpen ? 'メニューを閉じる' : 'メニューを開く';
+    menuTrigger.setAttribute('aria-expanded', isMenuOpen);
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (isMenuOpen && !menuTrigger.contains(e.target) && !demoMenu.contains(e.target)) {
+      isMenuOpen = false;
+      demoMenu.style.display = 'none';
+      menuTrigger.textContent = 'メニューを開く';
+      menuTrigger.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close menu with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isMenuOpen) {
+      isMenuOpen = false;
+      demoMenu.style.display = 'none';
+      menuTrigger.textContent = 'メニューを開く';
+      menuTrigger.setAttribute('aria-expanded', 'false');
+      menuTrigger.focus();
+    }
+  });
+}
+
 // Initialize theme on page load
 initTheme();
 
