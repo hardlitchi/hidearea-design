@@ -38,6 +38,147 @@
       </div>
 
       <div class="component-group">
+        <h3>Checkbox - チェックボックス</h3>
+        <div class="example-box">
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" class="checkbox" checked>
+              <span class="checkbox-text">デフォルトチェックボックス</span>
+            </label>
+            <span class="checkbox-helper">これはヘルパーテキストです</span>
+          </div>
+
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" class="checkbox checkbox-small">
+              <span class="checkbox-text">小さいチェックボックス</span>
+            </label>
+          </div>
+
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" class="checkbox checkbox-large" checked>
+              <span class="checkbox-text">大きいチェックボックス</span>
+            </label>
+          </div>
+
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" class="checkbox checkbox-error">
+              <span class="checkbox-text">エラー状態</span>
+            </label>
+            <span class="checkbox-helper checkbox-helper-error">この項目は必須です</span>
+          </div>
+
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" class="checkbox" disabled>
+              <span class="checkbox-text">無効なチェックボックス</span>
+            </label>
+          </div>
+
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" class="checkbox" checked disabled>
+              <span class="checkbox-text">チェック済み・無効</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Radio - ラジオボタン</h3>
+        <div class="example-box">
+          <div class="radio-group">
+            <div class="radio-item">
+              <label class="radio-label">
+                <input type="radio" name="option" class="radio" value="1" checked>
+                <span class="radio-text">オプション 1</span>
+              </label>
+            </div>
+            <div class="radio-item">
+              <label class="radio-label">
+                <input type="radio" name="option" class="radio" value="2">
+                <span class="radio-text">オプション 2</span>
+              </label>
+            </div>
+            <div class="radio-item">
+              <label class="radio-label">
+                <input type="radio" name="option" class="radio" value="3">
+                <span class="radio-text">オプション 3</span>
+              </label>
+            </div>
+            <span class="radio-helper">1つのオプションを選択してください</span>
+          </div>
+
+          <div class="radio-group">
+            <h4 style="margin-bottom: 0.5rem;">小さいサイズ</h4>
+            <div class="radio-item">
+              <label class="radio-label">
+                <input type="radio" name="size-small" class="radio radio-small" value="s" checked>
+                <span class="radio-text">Small</span>
+              </label>
+            </div>
+            <div class="radio-item">
+              <label class="radio-label">
+                <input type="radio" name="size-small" class="radio radio-small" value="m">
+                <span class="radio-text">Medium</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="radio-group">
+            <h4 style="margin-bottom: 0.5rem;">大きいサイズ</h4>
+            <div class="radio-item">
+              <label class="radio-label">
+                <input type="radio" name="size-large" class="radio radio-large" value="l" checked>
+                <span class="radio-text">Large</span>
+              </label>
+            </div>
+            <div class="radio-item">
+              <label class="radio-label">
+                <input type="radio" name="size-large" class="radio radio-large" value="xl">
+                <span class="radio-text">Extra Large</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="radio-group">
+            <h4 style="margin-bottom: 0.5rem;">エラー状態</h4>
+            <div class="radio-item">
+              <label class="radio-label">
+                <input type="radio" name="error" class="radio radio-error" value="1">
+                <span class="radio-text">オプション A</span>
+              </label>
+            </div>
+            <div class="radio-item">
+              <label class="radio-label">
+                <input type="radio" name="error" class="radio radio-error" value="2">
+                <span class="radio-text">オプション B</span>
+              </label>
+            </div>
+            <span class="radio-helper radio-helper-error">このフィールドは必須です</span>
+          </div>
+
+          <div class="radio-group">
+            <h4 style="margin-bottom: 0.5rem;">無効状態</h4>
+            <div class="radio-item">
+              <label class="radio-label">
+                <input type="radio" name="disabled" class="radio" value="1" disabled>
+                <span class="radio-text">無効なオプション</span>
+              </label>
+            </div>
+            <div class="radio-item">
+              <label class="radio-label">
+                <input type="radio" name="disabled" class="radio" value="2" checked disabled>
+                <span class="radio-text">選択済み・無効</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-group">
         <h3>Input - テキスト入力</h3>
         <div class="example-box">
           <div class="input-group">
