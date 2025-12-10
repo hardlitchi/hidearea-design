@@ -21,16 +21,16 @@ component:
     # ストローク幅
     strokeWidth:
       small:
-        value: "2"
+        value: "2px"
         comment: "小サイズのストローク幅 (2px)"
       default:
-        value: "3"
+        value: "3px"
         comment: "デフォルトのストローク幅 (3px)"
       large:
-        value: "4"
+        value: "4px"
         comment: "大サイズのストローク幅 (4px)"
       xlarge:
-        value: "5"
+        value: "5px"
         comment: "特大サイズのストローク幅 (5px)"
 
     # 色バリアント

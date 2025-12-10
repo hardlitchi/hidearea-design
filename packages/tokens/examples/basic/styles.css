@@ -1324,7 +1324,7 @@ body {
 .spinner {
   width: var(--component-spinner-size-default, 1.5rem);
   height: var(--component-spinner-size-default, 1.5rem);
-  border: var(--component-spinner-stroke-width-default, 3) solid var(--component-spinner-track-color-default);
+  border: var(--component-spinner-stroke-width-default, 3px) solid var(--component-spinner-track-color-default);
   border-top-color: var(--component-spinner-color-default);
   border-radius: 50%;
   animation: spinner-rotate var(--component-spinner-animation-duration, 0.6s)
@@ -1340,19 +1340,19 @@ body {
 .spinner-small {
   width: var(--component-spinner-size-small, 1rem);
   height: var(--component-spinner-size-small, 1rem);
-  border-width: var(--component-spinner-stroke-width-small, 2);
+  border-width: var(--component-spinner-stroke-width-small, 2px);
 }
 
 .spinner-large {
   width: var(--component-spinner-size-large, 2rem);
   height: var(--component-spinner-size-large, 2rem);
-  border-width: var(--component-spinner-stroke-width-large, 4);
+  border-width: var(--component-spinner-stroke-width-large, 4px);
 }
 
 .spinner-xlarge {
   width: var(--component-spinner-size-xlarge, 3rem);
   height: var(--component-spinner-size-xlarge, 3rem);
-  border-width: var(--component-spinner-stroke-width-xlarge, 5);
+  border-width: var(--component-spinner-stroke-width-xlarge, 5px);
 }
 
 .spinner-success {
