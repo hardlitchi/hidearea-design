@@ -2,17 +2,46 @@
 # インタラクション状態の定義
 
 state:
-  # フォーカス状態
+  # フォーカス状態（全インタラクション）
   focus:
+    outline:
+      value: "2px solid {color.primary.500}"
+      comment: "フォーカス時のアウトライン"
+    outlineOffset:
+      value: "2px"
+      comment: "アウトラインのオフセット"
     ring:
       color:
         value: "{color.primary.500}"
+        comment: "フォーカスリングの色"
       width:
-        value: 2px
+        value: "2px"
+        comment: "フォーカスリングの幅"
       offset:
-        value: 2px
+        value: "2px"
+        comment: "フォーカスリングのオフセット"
       style:
-        value: solid
+        value: "solid"
+        comment: "フォーカスリングのスタイル"
+
+  # フォーカスビジブル（キーボード操作時のみ）
+  focusVisible:
+    outline:
+      value: "2px solid {color.primary.500}"
+      comment: "キーボードフォーカス時のみ表示されるアウトライン"
+    outlineOffset:
+      value: "2px"
+      comment: "アウトラインのオフセット"
+    ring:
+      color:
+        value: "{color.primary.500}"
+        comment: "キーボードフォーカスリングの色"
+      width:
+        value: "2px"
+        comment: "キーボードフォーカスリングの幅"
+      offset:
+        value: "2px"
+        comment: "キーボードフォーカスリングのオフセット"
   disabled:
     opacity:
       value: "0.5"
@@ -29,9 +58,41 @@ state:
   active:
     scale:
       value: "0.98"
+      comment: "アクティブ時の縮小"
+
+  # プレス状態（ボタン押下時）
+  pressed:
+    scale:
+      value: "0.95"
+      comment: "プレス時の縮小"
+    opacity:
+      value: "0.9"
+      comment: "プレス時の透明度"
+    transition:
+      value: "{animation.duration.fast}"
+      comment: "プレス時のトランジション"
+
+  # ローディング状態
   loading:
     opacity:
       value: "0.6"
+      comment: "ローディング時の透明度"
+    cursor:
+      value: "wait"
+      comment: "ローディング時のカーソル"
+    animation:
+      name:
+        value: "pulse"
+        comment: "ローディングアニメーション名"
+      duration:
+        value: "{animation.duration.slow}"
+        comment: "アニメーション時間"
+      timing:
+        value: "{animation.easing.easeInOut}"
+        comment: "アニメーションイージング"
+      iteration:
+        value: "infinite"
+        comment: "アニメーション繰り返し"
   success:
     color:
       value: "{color.success.500}"
