@@ -1107,6 +1107,270 @@ body {
   color: var(--component-navigation-link-text-active);
 }
 
+/* ===== Toast Component ===== */
+.toast-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--component-toast-position-gap, 0.5rem);
+  width: 100%;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--component-toast-gap, 0.5rem);
+  min-width: var(--component-toast-min-width, 18rem);
+  max-width: var(--component-toast-max-width, 24rem);
+  padding: var(--component-toast-padding-vertical, 0.75rem) var(--component-toast-padding-horizontal, 1rem);
+  border-radius: var(--component-toast-border-radius-default, 0.375rem);
+  box-shadow: var(--component-toast-shadow-default, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+  font-size: var(--component-toast-font-size, 0.875rem);
+  font-weight: var(--component-toast-font-weight, 500);
+  line-height: var(--component-toast-font-line-height, 1.5);
+  transition: var(--component-toast-transition-properties, opacity, transform)
+              var(--component-toast-transition-duration, 0.2s)
+              var(--component-toast-transition-timing, ease);
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: var(--component-toast-icon-spacing, 0.5rem);
+  flex: 1;
+}
+
+.toast-icon {
+  flex-shrink: 0;
+  width: var(--component-toast-icon-size, 1.25rem);
+  height: var(--component-toast-icon-size, 1.25rem);
+}
+
+.toast-close {
+  flex-shrink: 0;
+  width: var(--component-toast-close-button-size, 1rem);
+  height: var(--component-toast-close-button-size, 1rem);
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: var(--component-toast-close-button-opacity-default, 0.8);
+  color: inherit;
+  transition: opacity 0.2s ease;
+}
+
+.toast-close:hover {
+  opacity: var(--component-toast-close-button-opacity-hover, 1);
+}
+
+.toast-success {
+  background-color: var(--component-toast-success-background);
+  color: var(--component-toast-success-text);
+  border: var(--component-toast-border-width-default, 1px) solid var(--component-toast-success-border);
+}
+
+.toast-error {
+  background-color: var(--component-toast-error-background);
+  color: var(--component-toast-error-text);
+  border: var(--component-toast-border-width-default, 1px) solid var(--component-toast-error-border);
+}
+
+.toast-warning {
+  background-color: var(--component-toast-warning-background);
+  color: var(--component-toast-warning-text);
+  border: var(--component-toast-border-width-default, 1px) solid var(--component-toast-warning-border);
+}
+
+.toast-info {
+  background-color: var(--component-toast-info-background);
+  color: var(--component-toast-info-text);
+  border: var(--component-toast-border-width-default, 1px) solid var(--component-toast-info-border);
+}
+
+/* ===== Progress Component ===== */
+.progress-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--component-progress-label-spacing, 0.5rem);
+  margin-bottom: 1rem;
+}
+
+.progress-label {
+  font-size: var(--component-progress-label-font-size, 0.875rem);
+  font-weight: var(--component-progress-label-font-weight, 500);
+  color: var(--component-progress-label-color-default);
+}
+
+.progress {
+  width: 100%;
+  height: var(--component-progress-track-height-default, 0.5rem);
+  background-color: var(--component-progress-track-background);
+  border-radius: var(--component-progress-track-border-radius, 9999px);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--component-progress-fill-background-default);
+  border-radius: var(--component-progress-track-border-radius, 9999px);
+  transition: var(--component-progress-transition-properties, width)
+              var(--component-progress-transition-duration, 0.2s)
+              var(--component-progress-transition-timing, ease);
+}
+
+.progress-fill-success {
+  background-color: var(--component-progress-fill-success);
+}
+
+.progress-fill-warning {
+  background-color: var(--component-progress-fill-warning);
+}
+
+.progress-fill-error {
+  background-color: var(--component-progress-fill-error);
+}
+
+.progress-fill-info {
+  background-color: var(--component-progress-fill-info);
+}
+
+.progress-small {
+  height: var(--component-progress-track-height-small, 0.25rem);
+}
+
+.progress-large {
+  height: var(--component-progress-track-height-large, 0.75rem);
+}
+
+/* ===== Skeleton Component ===== */
+.skeleton-demo {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: var(--background-primary);
+  border-radius: 0.5rem;
+}
+
+.skeleton-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--component-skeleton-text-gap, 0.5rem);
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--component-skeleton-background-base) 0%,
+    var(--component-skeleton-background-highlight) 50%,
+    var(--component-skeleton-background-base) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-pulse var(--component-skeleton-pulse-duration, 1.5s)
+             var(--component-skeleton-pulse-timing, ease-in-out) infinite;
+  border-radius: var(--component-skeleton-border-radius-default, 0.375rem);
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: var(--component-skeleton-pulse-opacity-start, 1);
+  }
+  50% {
+    opacity: var(--component-skeleton-pulse-opacity-middle, 0.5);
+  }
+}
+
+.skeleton-avatar {
+  width: var(--component-skeleton-avatar-size-default, 2.5rem);
+  height: var(--component-skeleton-avatar-size-default, 2.5rem);
+  border-radius: var(--component-skeleton-border-radius-full, 9999px);
+  flex-shrink: 0;
+}
+
+.skeleton-text {
+  height: var(--component-skeleton-text-height-default, 1rem);
+  width: 100%;
+}
+
+.skeleton-heading {
+  height: var(--component-skeleton-heading-height-h3, 1.5rem);
+  width: 60%;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-button {
+  height: var(--component-skeleton-button-height-default, 2.5rem);
+  width: var(--component-skeleton-button-width-default, 8rem);
+  margin-top: 0.5rem;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: var(--component-skeleton-image-min-height, 8rem);
+  aspect-ratio: var(--component-skeleton-image-aspect-ratio-video, 16 / 9);
+}
+
+/* ===== Spinner Component ===== */
+.spinner-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spinner {
+  width: var(--component-spinner-size-default, 1.5rem);
+  height: var(--component-spinner-size-default, 1.5rem);
+  border: var(--component-spinner-stroke-width-default, 3) solid var(--component-spinner-track-color-default);
+  border-top-color: var(--component-spinner-color-default);
+  border-radius: 50%;
+  animation: spinner-rotate var(--component-spinner-animation-duration, 0.6s)
+             var(--component-spinner-animation-timing, linear) infinite;
+}
+
+@keyframes spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-small {
+  width: var(--component-spinner-size-small, 1rem);
+  height: var(--component-spinner-size-small, 1rem);
+  border-width: var(--component-spinner-stroke-width-small, 2);
+}
+
+.spinner-large {
+  width: var(--component-spinner-size-large, 2rem);
+  height: var(--component-spinner-size-large, 2rem);
+  border-width: var(--component-spinner-stroke-width-large, 4);
+}
+
+.spinner-xlarge {
+  width: var(--component-spinner-size-xlarge, 3rem);
+  height: var(--component-spinner-size-xlarge, 3rem);
+  border-width: var(--component-spinner-stroke-width-xlarge, 5);
+}
+
+.spinner-success {
+  border-top-color: var(--component-spinner-color-success);
+}
+
+.spinner-warning {
+  border-top-color: var(--component-spinner-color-warning);
+}
+
+.spinner-error {
+  border-top-color: var(--component-spinner-color-error);
+}
+
+.spinner-info {
+  border-top-color: var(--component-spinner-color-info);
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
   .container {
