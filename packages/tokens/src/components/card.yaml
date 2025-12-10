@@ -1,0 +1,28 @@
+# カードコンポーネントトークン - hidearea-design
+# カードの外観と振る舞いを定義
+
+component:
+  card:
+    # 背景色
+    background:
+      default:
+        value: "{color.white}"
+        comment: "デフォルト背景色 - 白"
+      hover:
+        value: "{color.gray.50}"
+        comment: "ホバー時背景色 - 非常に薄いグレー"
+      selected:
+        value: "{color.primary.50}"
+        comment: "選択時背景色 - 非常に薄いプライマリカラー"
+
+    # ボーダー色
+    border:
+      default:
+        value: "{color.gray.200}"
+        comment: "デフォルトボーダー色 - 薄いグレー"
+      hover:
+        value: "{color.gray.300}"
+        comment: "ホバー時ボーダー色 - やや濃いグレー"
+      selected:
+        value: "{color.primary.300}"
+        comment: "選択時ボーダー色 - プライマリカラー"
