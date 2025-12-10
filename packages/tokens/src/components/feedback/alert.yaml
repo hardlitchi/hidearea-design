@@ -1,0 +1,64 @@
+# アラートコンポーネントトークン - hidearea-design
+# ユーザーへの通知やフィードバックメッセージの外観と振る舞いを定義
+
+component:
+  alert:
+    # 成功アラート
+    success:
+      background:
+        value: "{success.subtle}"
+        comment: "成功アラート背景色（テーマ対応）"
+      text:
+        value: "{foreground.primary}"
+        comment: "成功アラートテキスト色（テーマ対応）"
+      border:
+        value: "{success.default}"
+        comment: "成功アラートボーダー色（テーマ対応）"
+      icon:
+        value: "{success.active}"
+        comment: "成功アラートアイコン色（テーマ対応）"
+
+    # 警告アラート
+    warning:
+      background:
+        value: "{warning.subtle}"
+        comment: "警告アラート背景色（テーマ対応）"
+      text:
+        value: "{foreground.primary}"
+        comment: "警告アラートテキスト色（テーマ対応）"
+      border:
+        value: "{warning.default}"
+        comment: "警告アラートボーダー色（テーマ対応）"
+      icon:
+        value: "{warning.active}"
+        comment: "警告アラートアイコン色（テーマ対応）"
+
+    # エラーアラート
+    error:
+      background:
+        value: "{error.subtle}"
+        comment: "エラーアラート背景色（テーマ対応）"
+      text:
+        value: "{foreground.primary}"
+        comment: "エラーアラートテキスト色（テーマ対応）"
+      border:
+        value: "{error.default}"
+        comment: "エラーアラートボーダー色（テーマ対応）"
+      icon:
+        value: "{error.active}"
+        comment: "エラーアラートアイコン色（テーマ対応）"
+
+    # 情報アラート
+    info:
+      background:
+        value: "{info.subtle}"
+        comment: "情報アラート背景色（テーマ対応）"
+      text:
+        value: "{foreground.primary}"
+        comment: "情報アラートテキスト色（テーマ対応）"
+      border:
+        value: "{info.default}"
+        comment: "情報アラートボーダー色（テーマ対応）"
+      icon:
+        value: "{info.active}"
+        comment: "情報アラートアイコン色（テーマ対応）"

@@ -30,7 +30,7 @@ const HISTORY_FILE = path.join(REPORTS_DIR, 'bundle-size-history.json');
 // Performance budgets (in bytes)
 const SIZE_BUDGETS = {
   'js/index.js': {
-    raw: 50 * 1024,      // 50 KB
+    raw: 55 * 1024,      // 55 KB (increased for Phase 3 completion - 9 components)
     gzip: 15 * 1024,     // 15 KB
   },
   'css/variables.css': {

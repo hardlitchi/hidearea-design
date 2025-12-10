@@ -1,0 +1,58 @@
+# バッジコンポーネントトークン - hidearea-design
+# ステータスや分類を示すバッジの外観と振る舞いを定義
+
+component:
+  badge:
+    # プライマリバッジ
+    primary:
+      background:
+        value: "{primary.subtle}"
+        comment: "プライマリバッジ背景色（テーマ対応）"
+      text:
+        value: "{primary.active}"
+        comment: "プライマリバッジテキスト色（テーマ対応）"
+
+    # 成功バッジ
+    success:
+      background:
+        value: "{success.subtle}"
+        comment: "成功バッジ背景色（テーマ対応）"
+      text:
+        value: "{success.active}"
+        comment: "成功バッジテキスト色（テーマ対応）"
+
+    # 警告バッジ
+    warning:
+      background:
+        value: "{warning.subtle}"
+        comment: "警告バッジ背景色（テーマ対応）"
+      text:
+        value: "{warning.active}"
+        comment: "警告バッジテキスト色（テーマ対応）"
+
+    # エラーバッジ
+    error:
+      background:
+        value: "{error.subtle}"
+        comment: "エラーバッジ背景色（テーマ対応）"
+      text:
+        value: "{error.active}"
+        comment: "エラーバッジテキスト色（テーマ対応）"
+
+    # 情報バッジ
+    info:
+      background:
+        value: "{info.subtle}"
+        comment: "情報バッジ背景色（テーマ対応）"
+      text:
+        value: "{info.active}"
+        comment: "情報バッジテキスト色（テーマ対応）"
+
+    # ニュートラルバッジ
+    neutral:
+      background:
+        value: "{background.tertiary}"
+        comment: "ニュートラルバッジ背景色（テーマ対応）"
+      text:
+        value: "{foreground.secondary}"
+        comment: "ニュートラルバッジテキスト色（テーマ対応）"
