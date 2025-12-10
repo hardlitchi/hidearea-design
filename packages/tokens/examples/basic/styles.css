@@ -544,6 +544,301 @@ body {
   color: var(--component-radio-helper-color-error);
 }
 
+/* ===== Select Component ===== */
+.select-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--component-select-label-spacing, 0.5rem);
+  min-width: 300px;
+}
+
+.select-label {
+  font-size: var(--component-select-label-font-size, 0.875rem);
+  font-weight: var(--component-select-label-font-weight, 500);
+  color: var(--component-select-label-color-default);
+}
+
+.select {
+  appearance: none;
+  padding: var(--component-select-padding-vertical, 0.5rem) var(--component-select-padding-with-icon, 2.5rem) var(--component-select-padding-vertical, 0.5rem) var(--component-select-padding-horizontal, 0.75rem);
+  font-size: var(--font-size-base, 1rem);
+  font-family: var(--font-family-sans);
+  background-color: var(--component-select-background-default);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--component-select-icon-spacing, 0.5rem) center;
+  background-size: var(--component-select-icon-size, 1rem);
+  color: var(--component-select-text-default);
+  border: var(--component-select-border-width-default, 1px) solid var(--component-select-border-default);
+  border-radius: var(--component-select-border-radius-default, 0.375rem);
+  cursor: pointer;
+  transition: var(--component-select-transition-properties, background-color, border-color, box-shadow)
+              var(--component-select-transition-duration, 0.15s)
+              var(--component-select-transition-timing, ease);
+}
+
+.select::placeholder {
+  color: var(--component-select-text-placeholder);
+}
+
+.select:hover:not(:disabled) {
+  background-color: var(--component-select-background-hover);
+  border-color: var(--component-select-border-hover);
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--component-select-border-focus);
+  box-shadow: 0 0 0 var(--component-select-focus-ring-offset, 2px) transparent,
+              0 0 0 calc(var(--component-select-focus-ring-width, 3px) + var(--component-select-focus-ring-offset, 2px)) var(--component-select-focus-ring-color-default);
+}
+
+.select:disabled {
+  background-color: var(--component-select-background-disabled);
+  color: var(--component-select-text-disabled);
+  border-color: var(--component-select-border-disabled);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.select-error {
+  border-color: var(--component-select-border-error);
+}
+
+.select-error:focus {
+  border-color: var(--component-select-border-focus);
+  box-shadow: 0 0 0 var(--component-select-focus-ring-offset, 2px) transparent,
+              0 0 0 calc(var(--component-select-focus-ring-width, 3px) + var(--component-select-focus-ring-offset, 2px)) var(--component-select-focus-ring-color-error);
+}
+
+.select-helper {
+  font-size: var(--component-select-helper-font-size, 0.875rem);
+  color: var(--component-select-helper-color-default);
+}
+
+.select-helper-error {
+  color: var(--component-select-helper-color-error);
+}
+
+/* ===== Textarea Component ===== */
+.textarea-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--component-textarea-label-spacing, 0.5rem);
+  min-width: 300px;
+}
+
+.textarea-label {
+  font-size: var(--component-textarea-label-font-size, 0.875rem);
+  font-weight: var(--component-textarea-label-font-weight, 500);
+  color: var(--component-textarea-label-color-default);
+}
+
+.textarea {
+  padding: var(--component-textarea-padding-vertical, 0.75rem) var(--component-textarea-padding-horizontal, 0.75rem);
+  font-size: var(--component-textarea-font-size, 1rem);
+  font-family: var(--component-textarea-font-family);
+  line-height: var(--component-textarea-font-line-height, 1.5);
+  background-color: var(--component-textarea-background-default);
+  color: var(--component-textarea-text-default);
+  border: var(--component-textarea-border-width-default, 1px) solid var(--component-textarea-border-default);
+  border-radius: var(--component-textarea-border-radius-default, 0.375rem);
+  resize: vertical;
+  min-height: var(--component-textarea-min-height-default, 5rem);
+  transition: var(--component-textarea-transition-properties, background-color, border-color, box-shadow)
+              var(--component-textarea-transition-duration, 0.15s)
+              var(--component-textarea-transition-timing, ease);
+}
+
+.textarea::placeholder {
+  color: var(--component-textarea-text-placeholder);
+}
+
+.textarea:hover:not(:disabled) {
+  background-color: var(--component-textarea-background-hover);
+  border-color: var(--component-textarea-border-hover);
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--component-textarea-border-focus);
+  box-shadow: 0 0 0 var(--component-textarea-focus-ring-offset, 2px) transparent,
+              0 0 0 calc(var(--component-textarea-focus-ring-width, 3px) + var(--component-textarea-focus-ring-offset, 2px)) var(--component-textarea-focus-ring-color-default);
+}
+
+.textarea:disabled {
+  background-color: var(--component-textarea-background-disabled);
+  color: var(--component-textarea-text-disabled);
+  border-color: var(--component-textarea-border-disabled);
+  cursor: not-allowed;
+  resize: none;
+}
+
+.textarea-small {
+  min-height: var(--component-textarea-min-height-small, 3rem);
+}
+
+.textarea-large {
+  min-height: var(--component-textarea-min-height-large, 8rem);
+}
+
+.textarea-error {
+  border-color: var(--component-textarea-border-error);
+}
+
+.textarea-error:focus {
+  border-color: var(--component-textarea-border-focus);
+  box-shadow: 0 0 0 var(--component-textarea-focus-ring-offset, 2px) transparent,
+              0 0 0 calc(var(--component-textarea-focus-ring-width, 3px) + var(--component-textarea-focus-ring-offset, 2px)) var(--component-textarea-focus-ring-color-error);
+}
+
+.textarea-helper {
+  font-size: var(--component-textarea-helper-font-size, 0.875rem);
+  color: var(--component-textarea-helper-color-default);
+}
+
+.textarea-helper-error {
+  color: var(--component-textarea-helper-color-error);
+}
+
+/* ===== Switch Component ===== */
+.switch-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--component-switch-helper-spacing, 0.5rem);
+  min-width: 250px;
+}
+
+.switch-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--component-switch-label-spacing, 0.5rem);
+  cursor: pointer;
+  font-size: var(--component-switch-label-font-size, 1rem);
+  font-weight: var(--component-switch-label-font-weight, 400);
+  color: var(--component-switch-label-color-default);
+  user-select: none;
+}
+
+.switch-label:has(.switch-input:disabled) {
+  color: var(--component-switch-label-color-disabled);
+  cursor: not-allowed;
+}
+
+.switch-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-track {
+  position: relative;
+  display: inline-block;
+  width: var(--component-switch-track-width-default, 2.75rem);
+  height: var(--component-switch-track-height-default, 1.5rem);
+  background-color: var(--component-switch-background-off-default);
+  border: var(--component-switch-border-width, 1px) solid var(--component-switch-border-color-off);
+  border-radius: var(--component-switch-border-radius-track, 9999px);
+  transition: var(--component-switch-transition-properties, background-color, border-color, transform, box-shadow)
+              var(--component-switch-transition-duration, 0.2s)
+              var(--component-switch-transition-timing, ease);
+  flex-shrink: 0;
+}
+
+.switch-input:hover:not(:disabled) + .switch-track {
+  background-color: var(--component-switch-background-off-hover);
+}
+
+.switch-input:focus + .switch-track {
+  outline: none;
+  box-shadow: 0 0 0 var(--component-switch-focus-ring-offset, 2px) transparent,
+              0 0 0 calc(var(--component-switch-focus-ring-width, 3px) + var(--component-switch-focus-ring-offset, 2px)) var(--component-switch-focus-ring-color-default);
+}
+
+.switch-input:checked + .switch-track {
+  background-color: var(--component-switch-background-on-default);
+  border-color: var(--component-switch-border-color-on);
+}
+
+.switch-input:checked:hover:not(:disabled) + .switch-track {
+  background-color: var(--component-switch-background-on-hover);
+}
+
+.switch-thumb {
+  position: absolute;
+  top: var(--component-switch-thumb-offset, 0.125rem);
+  left: var(--component-switch-thumb-offset, 0.125rem);
+  width: var(--component-switch-thumb-size-default, 1.25rem);
+  height: var(--component-switch-thumb-size-default, 1.25rem);
+  background-color: var(--component-switch-thumb-background-default);
+  border-radius: var(--component-switch-border-radius-thumb, 9999px);
+  box-shadow: var(--component-switch-thumb-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  transition: transform var(--component-switch-transition-duration, 0.2s) var(--component-switch-transition-timing, ease);
+}
+
+.switch-input:checked + .switch-track .switch-thumb {
+  transform: translateX(calc(var(--component-switch-track-width-default, 2.75rem) - var(--component-switch-thumb-size-default, 1.25rem) - var(--component-switch-thumb-offset, 0.125rem) * 2));
+}
+
+.switch-input:disabled + .switch-track {
+  background-color: var(--component-switch-background-off-disabled);
+  border-color: var(--component-switch-border-color-disabled);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.switch-input:checked:disabled + .switch-track {
+  background-color: var(--component-switch-background-on-disabled);
+}
+
+.switch-input:disabled + .switch-track .switch-thumb {
+  background-color: var(--component-switch-thumb-background-disabled);
+}
+
+/* Switch size variants */
+.switch-small .switch-track {
+  width: var(--component-switch-track-width-small, 2rem);
+  height: var(--component-switch-track-height-small, 1.125rem);
+}
+
+.switch-small .switch-thumb {
+  width: var(--component-switch-thumb-size-small, 0.875rem);
+  height: var(--component-switch-thumb-size-small, 0.875rem);
+}
+
+.switch-small .switch-input:checked + .switch-track .switch-thumb {
+  transform: translateX(calc(var(--component-switch-track-width-small, 2rem) - var(--component-switch-thumb-size-small, 0.875rem) - var(--component-switch-thumb-offset, 0.125rem) * 2));
+}
+
+.switch-large .switch-track {
+  width: var(--component-switch-track-width-large, 3.5rem);
+  height: var(--component-switch-track-height-large, 2rem);
+}
+
+.switch-large .switch-thumb {
+  width: var(--component-switch-thumb-size-large, 1.75rem);
+  height: var(--component-switch-thumb-size-large, 1.75rem);
+}
+
+.switch-large .switch-input:checked + .switch-track .switch-thumb {
+  transform: translateX(calc(var(--component-switch-track-width-large, 3.5rem) - var(--component-switch-thumb-size-large, 1.75rem) - var(--component-switch-thumb-offset, 0.125rem) * 2));
+}
+
+.switch-text {
+  line-height: 1.5;
+}
+
+.switch-helper {
+  font-size: var(--component-switch-helper-font-size, 0.875rem);
+  color: var(--component-switch-helper-color-default);
+  margin-left: calc(var(--component-switch-track-width-default, 2.75rem) + var(--component-switch-label-spacing, 0.5rem));
+}
+
+.switch-helper-error {
+  color: var(--component-switch-helper-color-error);
+}
+
 /* ===== Badge Component ===== */
 .badge {
   display: inline-flex;

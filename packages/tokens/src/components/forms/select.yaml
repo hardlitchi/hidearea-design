@@ -1,0 +1,211 @@
+# セレクトコンポーネントトークン - hidearea-design
+# ドロップダウン選択要素の外観と振る舞いを定義
+
+component:
+  select:
+    # 背景色
+    background:
+      default:
+        value: "{background.primary}"
+        comment: "セレクトボックスのデフォルト背景色（テーマ対応）"
+      hover:
+        value: "{background.secondary}"
+        comment: "ホバー時の背景色（テーマ対応）"
+      disabled:
+        value: "{background.tertiary}"
+        comment: "無効時の背景色（テーマ対応）"
+      readonly:
+        value: "{background.secondary}"
+        comment: "読み取り専用の背景色（テーマ対応）"
+
+    # テキスト色
+    text:
+      default:
+        value: "{foreground.primary}"
+        comment: "デフォルトのテキスト色（テーマ対応）"
+      placeholder:
+        value: "{foreground.tertiary}"
+        comment: "プレースホルダーの色（テーマ対応）"
+      disabled:
+        value: "{foreground.tertiary}"
+        comment: "無効時のテキスト色（テーマ対応）"
+
+    # ボーダー色
+    border:
+      default:
+        value: "{border.default}"
+        comment: "デフォルトのボーダー色（テーマ対応）"
+      hover:
+        value: "{border.strong}"
+        comment: "ホバー時のボーダー色（テーマ対応）"
+      focus:
+        value: "{primary.default}"
+        comment: "フォーカス時のボーダー色（テーマ対応）"
+      error:
+        value: "{error.default}"
+        comment: "エラー時のボーダー色（テーマ対応）"
+      success:
+        value: "{success.default}"
+        comment: "成功時のボーダー色（テーマ対応）"
+      disabled:
+        value: "{border.subtle}"
+        comment: "無効時のボーダー色（テーマ対応）"
+
+    # ボーダー幅・半径
+    borderWidth:
+      default:
+        value: "{border.width.1}"
+        comment: "デフォルトのボーダー幅"
+
+    borderRadius:
+      default:
+        value: "{border.radius.md}"
+        comment: "セレクトボックスの角丸"
+
+    # 矢印アイコン
+    icon:
+      color:
+        default:
+          value: "{foreground.secondary}"
+          comment: "矢印アイコンのデフォルト色（テーマ対応）"
+        hover:
+          value: "{foreground.primary}"
+          comment: "ホバー時の矢印色（テーマ対応）"
+        disabled:
+          value: "{foreground.tertiary}"
+          comment: "無効時の矢印色（テーマ対応）"
+      size:
+        value: "1rem"
+        comment: "矢印アイコンのサイズ（16px）"
+      spacing:
+        value: "{spacing.2}"
+        comment: "矢印アイコンと端の間隔"
+
+    # フォーカスリング
+    focusRing:
+      width:
+        value: "3px"
+        comment: "フォーカスリングの幅"
+      offset:
+        value: "2px"
+        comment: "フォーカスリングのオフセット"
+      color:
+        default:
+          value: "{primary.subtle}"
+          comment: "フォーカスリングのデフォルト色（テーマ対応）"
+        error:
+          value: "{error.subtle}"
+          comment: "エラー時のフォーカスリング色（テーマ対応）"
+
+    # パディング
+    padding:
+      vertical:
+        value: "{spacing.2}"
+        comment: "縦方向のパディング（上下）"
+      horizontal:
+        value: "{spacing.3}"
+        comment: "横方向のパディング（左右）"
+      withIcon:
+        value: "{spacing.10}"
+        comment: "アイコンがある場合の右パディング"
+
+    # ラベル
+    label:
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "ラベルのフォントサイズ"
+      fontWeight:
+        value: "{font.weight.medium}"
+        comment: "ラベルのフォントウェイト"
+      color:
+        default:
+          value: "{foreground.primary}"
+          comment: "ラベルのデフォルト色（テーマ対応）"
+        disabled:
+          value: "{foreground.tertiary}"
+          comment: "無効時のラベル色（テーマ対応）"
+      spacing:
+        value: "{spacing.2}"
+        comment: "ラベルとセレクトボックスの間隔"
+
+    # ヘルパーテキスト
+    helper:
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "ヘルパーテキストのフォントサイズ"
+      color:
+        default:
+          value: "{foreground.secondary}"
+          comment: "ヘルパーテキストのデフォルト色（テーマ対応）"
+        error:
+          value: "{error.default}"
+          comment: "エラー時のヘルパーテキスト色（テーマ対応）"
+        success:
+          value: "{success.default}"
+          comment: "成功時のヘルパーテキスト色（テーマ対応）"
+      spacing:
+        value: "{spacing.2}"
+        comment: "セレクトボックスとヘルパーテキストの間隔"
+
+    # ドロップダウンメニュー
+    menu:
+      background:
+        value: "{background.primary}"
+        comment: "ドロップダウンメニューの背景色（テーマ対応）"
+      border:
+        value: "{border.default}"
+        comment: "ドロップダウンメニューのボーダー色（テーマ対応）"
+      borderRadius:
+        value: "{border.radius.md}"
+        comment: "ドロップダウンメニューの角丸"
+      shadow:
+        value: "{shadow.md}"
+        comment: "ドロップダウンメニューの影"
+      maxHeight:
+        value: "16rem"
+        comment: "ドロップダウンメニューの最大高さ（256px）"
+
+    # オプション項目
+    option:
+      background:
+        default:
+          value: "transparent"
+          comment: "オプションのデフォルト背景色"
+        hover:
+          value: "{background.secondary}"
+          comment: "ホバー時のオプション背景色（テーマ対応）"
+        selected:
+          value: "{primary.subtle}"
+          comment: "選択されたオプションの背景色（テーマ対応）"
+        disabled:
+          value: "transparent"
+          comment: "無効なオプションの背景色"
+      text:
+        default:
+          value: "{foreground.primary}"
+          comment: "オプションのデフォルトテキスト色（テーマ対応）"
+        selected:
+          value: "{primary.default}"
+          comment: "選択されたオプションのテキスト色（テーマ対応）"
+        disabled:
+          value: "{foreground.tertiary}"
+          comment: "無効なオプションのテキスト色（テーマ対応）"
+      padding:
+        vertical:
+          value: "{spacing.2}"
+          comment: "オプションの縦方向パディング"
+        horizontal:
+          value: "{spacing.3}"
+          comment: "オプションの横方向パディング"
+
+    # トランジション
+    transition:
+      duration:
+        value: "{animation.duration.fast}"
+        comment: "トランジションの時間"
+      timing:
+        value: "{animation.easing.ease}"
+        comment: "トランジションのイージング"
+      properties:
+        value: "background-color, border-color, box-shadow, transform"
+        comment: "トランジション対象のプロパティ"
