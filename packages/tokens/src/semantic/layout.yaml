@@ -2,64 +2,104 @@
 # レイアウト構造に関するトークン
 
 layout:
+  # セーフエリア - ノッチやエッジからの安全な距離
+  safeArea:
+    inset:
+      top:
+        value: "env(safe-area-inset-top, 0px)"
+        comment: "画面上部の安全領域（ノッチ対応）"
+      right:
+        value: "env(safe-area-inset-right, 0px)"
+        comment: "画面右側の安全領域"
+      bottom:
+        value: "env(safe-area-inset-bottom, 0px)"
+        comment: "画面下部の安全領域（ホームバー対応）"
+      left:
+        value: "env(safe-area-inset-left, 0px)"
+        comment: "画面左側の安全領域"
+
   # コンテナ設定
   container:
     maxWidth:
       sm:
         value: 640px
+        comment: "スモール: モバイル横向き"
       md:
         value: 768px
+        comment: "ミディアム: タブレット縦向き"
       lg:
         value: 1024px
+        comment: "ラージ: タブレット横向き、小型デスクトップ"
       xl:
         value: 1280px
+        comment: "エクストララージ: デスクトップ"
       2xl:
         value: 1536px
+        comment: "2XL: ワイドスクリーン"
     padding:
       mobile:
         value: "{spacing.md}"
+        comment: "モバイルのコンテナ内側余白"
       tablet:
         value: "{spacing.lg}"
+        comment: "タブレットのコンテナ内側余白"
       desktop:
         value: "{spacing.xl}"
+        comment: "デスクトップのコンテナ内側余白"
   section:
     padding:
       small:
         value: "{spacing.lg}"
+        comment: "小セクションの余白"
       medium:
         value: "{spacing.xl}"
+        comment: "中セクションの余白"
       large:
         value: "{spacing.2xl}"
+        comment: "大セクションの余白"
   grid:
     gap:
       small:
         value: "{spacing.sm}"
+        comment: "密なグリッド間隔"
       medium:
         value: "{spacing.md}"
+        comment: "標準グリッド間隔"
       large:
         value: "{spacing.lg}"
+        comment: "広いグリッド間隔"
     columns:
       mobile:
         value: "4"
+        comment: "モバイル: 4カラム"
       tablet:
         value: "8"
+        comment: "タブレット: 8カラム"
       desktop:
         value: "12"
+        comment: "デスクトップ: 12カラム"
   stack:
     gap:
       tight:
         value: "{spacing.xs}"
+        comment: "密な縦積み間隔"
       default:
         value: "{spacing.sm}"
+        comment: "標準縦積み間隔"
       relaxed:
         value: "{spacing.md}"
+        comment: "ゆったり縦積み間隔"
       loose:
         value: "{spacing.lg}"
+        comment: "広い縦積み間隔"
   inline:
     gap:
       tight:
         value: "{spacing.xs}"
+        comment: "密な横並び間隔"
       default:
         value: "{spacing.sm}"
+        comment: "標準横並び間隔"
       relaxed:
         value: "{spacing.md}"
+        comment: "ゆったり横並び間隔"
