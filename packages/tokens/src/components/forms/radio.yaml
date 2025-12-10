@@ -1,0 +1,152 @@
+# ラジオボタンコンポーネントトークン - hidearea-design
+# ラジオボタンの外観と振る舞いを定義
+
+component:
+  radio:
+    # サイズ
+    size:
+      default:
+        value: "1.25rem"
+        comment: "ラジオボタンのデフォルトサイズ（20px）"
+      small:
+        value: "1rem"
+        comment: "小さいラジオボタン（16px）"
+      large:
+        value: "1.5rem"
+        comment: "大きいラジオボタン（24px）"
+
+    # 背景色
+    background:
+      default:
+        value: "{background.primary}"
+        comment: "ラジオボタンのデフォルト背景色（テーマ対応）"
+      selected:
+        value: "{background.primary}"
+        comment: "選択時も背景は同じ（テーマ対応）"
+      hover:
+        value: "{background.secondary}"
+        comment: "ホバー時の背景色（テーマ対応）"
+      disabled:
+        value: "{background.tertiary}"
+        comment: "無効時の背景色（テーマ対応）"
+
+    # ボーダー色
+    border:
+      default:
+        value: "{border.default}"
+        comment: "デフォルトのボーダー色（テーマ対応）"
+      hover:
+        value: "{border.strong}"
+        comment: "ホバー時のボーダー色（テーマ対応）"
+      selected:
+        value: "{primary.default}"
+        comment: "選択時のボーダー色（テーマ対応）"
+      focus:
+        value: "{primary.default}"
+        comment: "フォーカス時のボーダー色（テーマ対応）"
+      disabled:
+        value: "{border.subtle}"
+        comment: "無効時のボーダー色（テーマ対応）"
+      error:
+        value: "{error.default}"
+        comment: "エラー時のボーダー色（テーマ対応）"
+
+    # インナーサークル（選択インジケーター）
+    indicator:
+      default:
+        value: "{primary.default}"
+        comment: "選択インジケーターの色（テーマ対応）"
+      disabled:
+        value: "{border.default}"
+        comment: "無効時のインジケーター色（テーマ対応）"
+      size:
+        default:
+          value: "0.5rem"
+          comment: "インジケーターのサイズ（8px）- デフォルト"
+        small:
+          value: "0.375rem"
+          comment: "インジケーターのサイズ（6px）- 小"
+        large:
+          value: "0.625rem"
+          comment: "インジケーターのサイズ（10px）- 大"
+
+    # ボーダー幅
+    borderWidth:
+      default:
+        value: "{border.width.1}"
+        comment: "デフォルトのボーダー幅"
+
+    # ボーダー半径（円形）
+    borderRadius:
+      default:
+        value: "{border.radius.full}"
+        comment: "完全な円形"
+
+    # フォーカスリング
+    focusRing:
+      width:
+        value: "3px"
+        comment: "フォーカスリングの幅"
+      offset:
+        value: "2px"
+        comment: "フォーカスリングのオフセット"
+      color:
+        default:
+          value: "{primary.subtle}"
+          comment: "フォーカスリングの色（テーマ対応）"
+        error:
+          value: "{error.subtle}"
+          comment: "エラー時のフォーカスリング色（テーマ対応）"
+
+    # ラベル
+    label:
+      fontSize:
+        value: "{font.size.base}"
+        comment: "ラベルのフォントサイズ"
+      fontWeight:
+        value: "{font.weight.normal}"
+        comment: "ラベルのフォントウェイト"
+      color:
+        default:
+          value: "{foreground.primary}"
+          comment: "ラベルのデフォルト色（テーマ対応）"
+        disabled:
+          value: "{foreground.tertiary}"
+          comment: "無効時のラベル色（テーマ対応）"
+      spacing:
+        value: "{spacing.2}"
+        comment: "ラジオボタンとラベルの間隔"
+
+    # ヘルパーテキスト
+    helper:
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "ヘルパーテキストのフォントサイズ"
+      color:
+        default:
+          value: "{foreground.secondary}"
+          comment: "ヘルパーテキストのデフォルト色（テーマ対応）"
+        error:
+          value: "{error.default}"
+          comment: "エラー時のヘルパーテキスト色（テーマ対応）"
+      spacing:
+        value: "{spacing.2}"
+        comment: "ラベルとヘルパーテキストの間隔"
+
+    # グループスペーシング（複数のラジオボタン間）
+    group:
+      spacing:
+        value: "{spacing.3}"
+        comment: "ラジオボタングループ内の要素間隔"
+
+    # トランジション
+    transition:
+      duration:
+        value: "{animation.duration.fast}"
+        comment: "トランジションの時間"
+      timing:
+        value: "{animation.easing.ease}"
+        comment: "トランジションのイージング"
+      properties:
+        value: "background-color, border-color, box-shadow, transform"
+        comment: "トランジション対象のプロパティ"

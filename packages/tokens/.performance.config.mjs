@@ -9,18 +9,18 @@ export default {
   // Performance budgets (in bytes)
   budgets: {
     'js/index.js': {
-      raw: 50 * 1024, // 50 KB
-      gzip: 15 * 1024, // 15 KB
+      raw: 150 * 1024, // 150 KB (Phase 4 target: 27 components)
+      gzip: 30 * 1024, // 30 KB
       description: 'JavaScript tokens export',
     },
     'css/variables.css': {
-      raw: 100 * 1024, // 100 KB
-      gzip: 20 * 1024, // 20 KB
+      raw: 150 * 1024, // 150 KB (Phase 4 target)
+      gzip: 25 * 1024, // 25 KB
       description: 'CSS variables',
     },
     'scss/variables.scss': {
-      raw: 100 * 1024, // 100 KB
-      gzip: 20 * 1024, // 20 KB
+      raw: 150 * 1024, // 150 KB (Phase 4 target)
+      gzip: 25 * 1024, // 25 KB
       description: 'SCSS variables',
     },
   },

@@ -1,0 +1,142 @@
+# チェックボックスコンポーネントトークン - hidearea-design
+# チェックボックスの外観と振る舞いを定義
+
+component:
+  checkbox:
+    # サイズ
+    size:
+      default:
+        value: "1.25rem"
+        comment: "チェックボックスのデフォルトサイズ（20px）"
+      small:
+        value: "1rem"
+        comment: "小さいチェックボックス（16px）"
+      large:
+        value: "1.5rem"
+        comment: "大きいチェックボックス（24px）"
+
+    # 背景色
+    background:
+      default:
+        value: "{background.primary}"
+        comment: "チェックボックスのデフォルト背景色（テーマ対応）"
+      checked:
+        value: "{primary.default}"
+        comment: "チェック時の背景色（テーマ対応）"
+      hover:
+        value: "{background.secondary}"
+        comment: "ホバー時の背景色（テーマ対応）"
+      checkedHover:
+        value: "{primary.hover}"
+        comment: "チェック済みでホバー時の背景色（テーマ対応）"
+      disabled:
+        value: "{background.tertiary}"
+        comment: "無効時の背景色（テーマ対応）"
+      checkedDisabled:
+        value: "{border.default}"
+        comment: "チェック済み無効時の背景色（テーマ対応）"
+
+    # ボーダー色
+    border:
+      default:
+        value: "{border.default}"
+        comment: "デフォルトのボーダー色（テーマ対応）"
+      hover:
+        value: "{border.strong}"
+        comment: "ホバー時のボーダー色（テーマ対応）"
+      checked:
+        value: "{primary.default}"
+        comment: "チェック時のボーダー色（テーマ対応）"
+      focus:
+        value: "{primary.default}"
+        comment: "フォーカス時のボーダー色（テーマ対応）"
+      disabled:
+        value: "{border.subtle}"
+        comment: "無効時のボーダー色（テーマ対応）"
+      error:
+        value: "{error.default}"
+        comment: "エラー時のボーダー色（テーマ対応）"
+
+    # チェックマーク色
+    checkmark:
+      default:
+        value: "{foreground.inverse}"
+        comment: "チェックマークの色（テーマ対応）"
+      disabled:
+        value: "{foreground.tertiary}"
+        comment: "無効時のチェックマーク色（テーマ対応）"
+
+    # ボーダー幅
+    borderWidth:
+      default:
+        value: "{border.width.1}"
+        comment: "デフォルトのボーダー幅"
+
+    # ボーダー半径
+    borderRadius:
+      default:
+        value: "{border.radius.sm}"
+        comment: "デフォルトのボーダー半径"
+
+    # フォーカスリング
+    focusRing:
+      width:
+        value: "3px"
+        comment: "フォーカスリングの幅"
+      offset:
+        value: "2px"
+        comment: "フォーカスリングのオフセット"
+      color:
+        default:
+          value: "{primary.subtle}"
+          comment: "フォーカスリングの色（テーマ対応）"
+        error:
+          value: "{error.subtle}"
+          comment: "エラー時のフォーカスリング色（テーマ対応）"
+
+    # ラベル
+    label:
+      fontSize:
+        value: "{font.size.base}"
+        comment: "ラベルのフォントサイズ"
+      fontWeight:
+        value: "{font.weight.normal}"
+        comment: "ラベルのフォントウェイト"
+      color:
+        default:
+          value: "{foreground.primary}"
+          comment: "ラベルのデフォルト色（テーマ対応）"
+        disabled:
+          value: "{foreground.tertiary}"
+          comment: "無効時のラベル色（テーマ対応）"
+      spacing:
+        value: "{spacing.2}"
+        comment: "チェックボックスとラベルの間隔"
+
+    # ヘルパーテキスト
+    helper:
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "ヘルパーテキストのフォントサイズ"
+      color:
+        default:
+          value: "{foreground.secondary}"
+          comment: "ヘルパーテキストのデフォルト色（テーマ対応）"
+        error:
+          value: "{error.default}"
+          comment: "エラー時のヘルパーテキスト色（テーマ対応）"
+      spacing:
+        value: "{spacing.2}"
+        comment: "ラベルとヘルパーテキストの間隔"
+
+    # トランジション
+    transition:
+      duration:
+        value: "{animation.duration.fast}"
+        comment: "トランジションの時間"
+      timing:
+        value: "{animation.easing.ease}"
+        comment: "トランジションのイージング"
+      properties:
+        value: "background-color, border-color, box-shadow"
+        comment: "トランジション対象のプロパティ"
