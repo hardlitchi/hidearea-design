@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hidearea Design Tokens - Basic Examples</title>
+  <link rel="stylesheet" href="../../build/css/variables.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1>Hidearea Design Tokens</h1>
+      <p class="subtitle">コンポーネント使用例</p>
+
+      <!-- Theme Toggle -->
+      <button id="theme-toggle" class="btn btn-ghost" aria-label="テーマ切り替え">
+        <span class="theme-icon light-icon">☀️</span>
+        <span class="theme-icon dark-icon">🌙</span>
+        <span class="theme-label"></span>
+      </button>
+    </header>
+
+    <!-- Forms Section -->
+    <section class="section">
+      <h2>Forms - フォームコンポーネント</h2>
+
+      <div class="component-group">
+        <h3>Buttons - ボタン</h3>
+        <div class="example-box">
+          <button class="btn btn-primary">Primary Button</button>
+          <button class="btn btn-secondary">Secondary Button</button>
+          <button class="btn btn-ghost">Ghost Button</button>
+          <button class="btn btn-danger">Danger Button</button>
+          <button class="btn btn-primary" disabled>Disabled</button>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Input - テキスト入力</h3>
+        <div class="example-box">
+          <div class="input-group">
+            <label class="input-label" for="email">Email</label>
+            <input
+              class="input"
+              type="email"
+              id="email"
+              placeholder="your@email.com"
+            >
+            <span class="input-helper">メールアドレスを入力してください</span>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="email-error">Email (Error)</label>
+            <input
+              class="input input-error"
+              type="email"
+              id="email-error"
+              placeholder="your@email.com"
+              value="invalid-email"
+            >
+            <span class="input-helper input-helper-error">正しいメールアドレスを入力してください</span>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="disabled">Disabled Input</label>
+            <input
+              class="input"
+              type="text"
+              id="disabled"
+              disabled
+              value="Disabled field"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section class="section">
+      <h2>Feedback - フィードバックコンポーネント</h2>
+
+      <div class="component-group">
+        <h3>Badges - バッジ</h3>
+        <div class="example-box">
+          <span class="badge badge-success">Success</span>
+          <span class="badge badge-error">Error</span>
+          <span class="badge badge-warning">Warning</span>
+          <span class="badge badge-info">Info</span>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Alerts - アラート</h3>
+        <div class="example-box">
+          <div class="alert alert-success">
+            <strong>成功！</strong> 操作が正常に完了しました。
+          </div>
+          <div class="alert alert-error">
+            <strong>エラー！</strong> 問題が発生しました。もう一度お試しください。
+          </div>
+          <div class="alert alert-warning">
+            <strong>警告！</strong> この操作は取り消せません。
+          </div>
+          <div class="alert alert-info">
+            <strong>情報</strong> 新しい機能が利用可能です。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Display Section -->
+    <section class="section">
+      <h2>Data Display - データ表示コンポーネント</h2>
+
+      <div class="component-group">
+        <h3>Cards - カード</h3>
+        <div class="example-box">
+          <div class="card">
+            <h4>カードタイトル</h4>
+            <p>これはカードコンポーネントの例です。背景色、ボーダー、ホバー効果が適用されています。</p>
+            <div style="margin-top: 1rem;">
+              <button class="btn btn-primary">アクション</button>
+            </div>
+          </div>
+
+          <div class="card card-hover">
+            <h4>ホバー可能なカード</h4>
+            <p>このカードにマウスを乗せると、ホバー効果が表示されます。</p>
+          </div>
+
+          <div class="card card-selected">
+            <h4>選択されたカード</h4>
+            <p>このカードは選択状態を示しています。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Table - テーブル</h3>
+        <div class="example-box">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>名前</th>
+                <th>メール</th>
+                <th>ステータス</th>
+                <th>アクション</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>山田 太郎</td>
+                <td>yamada@example.com</td>
+                <td><span class="badge badge-success">アクティブ</span></td>
+                <td>
+                  <button class="btn btn-ghost" style="padding: 0.25rem 0.5rem; font-size: 0.875rem;">編集</button>
+                </td>
+              </tr>
+              <tr>
+                <td>佐藤 花子</td>
+                <td>sato@example.com</td>
+                <td><span class="badge badge-warning">保留中</span></td>
+                <td>
+                  <button class="btn btn-ghost" style="padding: 0.25rem 0.5rem; font-size: 0.875rem;">編集</button>
+                </td>
+              </tr>
+              <tr>
+                <td>鈴木 一郎</td>
+                <td>suzuki@example.com</td>
+                <td><span class="badge badge-error">停止</span></td>
+                <td>
+                  <button class="btn btn-ghost" style="padding: 0.25rem 0.5rem; font-size: 0.875rem;">編集</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overlays Section -->
+    <section class="section">
+      <h2>Overlays - オーバーレイコンポーネント</h2>
+
+      <div class="component-group">
+        <h3>Modal - モーダル</h3>
+        <div class="example-box">
+          <button class="btn btn-primary" id="open-modal">モーダルを開く</button>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Tooltip - ツールチップ</h3>
+        <div class="example-box">
+          <div class="tooltip-container">
+            <button class="btn btn-secondary">ホバーしてください</button>
+            <div class="tooltip">これはツールチップです</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Section -->
+    <section class="section">
+      <h2>Navigation - ナビゲーションコンポーネント</h2>
+
+      <div class="component-group">
+        <h3>Navigation - ナビゲーション</h3>
+        <div class="example-box">
+          <nav class="navigation">
+            <a href="#" class="nav-link nav-link-active">ホーム</a>
+            <a href="#" class="nav-link">プロダクト</a>
+            <a href="#" class="nav-link">ドキュメント</a>
+            <a href="#" class="nav-link">サポート</a>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Hidearea Design System Tokens - Phase 3</p>
+      <p>
+        <a href="https://github.com/hardlitchi/hidearea-design" target="_blank">GitHub</a> |
+        <a href="../../docs/アーキテクチャガイド.md">ドキュメント</a>
+      </p>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal-overlay" style="display: none;">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>モーダルタイトル</h3>
+        <button class="modal-close" aria-label="閉じる">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>これはモーダルコンポーネントの例です。</p>
+        <p>背景、ボーダー、オーバーレイが適用されています。</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="cancel-modal">キャンセル</button>
+        <button class="btn btn-primary" id="confirm-modal">確認</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
