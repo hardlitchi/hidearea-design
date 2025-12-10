@@ -7,56 +7,180 @@ interaction:
     fast:
       duration:
         value: "{animation.duration.fast}"
+        comment: "素早い遷移 - 150ms"
       timing:
         value: "{animation.easing.ease}"
+        comment: "標準イージング"
     normal:
       duration:
         value: "{animation.duration.base}"
+        comment: "通常の遷移 - 200ms"
       timing:
         value: "{animation.easing.ease}"
+        comment: "標準イージング"
     slow:
       duration:
         value: "{animation.duration.slow}"
+        comment: "ゆっくり遷移 - 300ms"
       timing:
         value: "{animation.easing.ease}"
+        comment: "標準イージング"
   animation:
     fadeIn:
       duration:
         value: "{animation.duration.base}"
+        comment: "フェードイン時間"
       timing:
         value: "{animation.easing.easeIn}"
+        comment: "開始を滑らかに"
+      keyframes:
+        value: "fadeIn"
+        comment: "フェードインアニメーション - 透明から不透明へ"
     fadeOut:
       duration:
         value: "{animation.duration.base}"
+        comment: "フェードアウト時間"
       timing:
         value: "{animation.easing.easeOut}"
+        comment: "終了を滑らかに"
+      keyframes:
+        value: "fadeOut"
+        comment: "フェードアウトアニメーション - 不透明から透明へ"
     slideIn:
       duration:
         value: "{animation.duration.base}"
+        comment: "スライドイン時間"
       timing:
         value: "{animation.easing.easeOut}"
+        comment: "終了を滑らかに"
+      keyframes:
+        value: "slideIn"
+        comment: "スライドインアニメーション - 上から下へ"
+      distance:
+        value: "100%"
+        comment: "スライド距離"
     slideOut:
       duration:
         value: "{animation.duration.fast}"
+        comment: "スライドアウト時間"
       timing:
         value: "{animation.easing.easeIn}"
+        comment: "開始を滑らかに"
+      keyframes:
+        value: "slideOut"
+        comment: "スライドアウトアニメーション - 下から上へ"
+      distance:
+        value: "100%"
+        comment: "スライド距離"
     scale:
       duration:
         value: "{animation.duration.fast}"
+        comment: "スケール変化時間"
       timing:
         value: "{animation.easing.easeInOut}"
+        comment: "開始と終了を滑らかに"
+      keyframes:
+        value: "scaleIn"
+        comment: "スケールインアニメーション - 小から大へ"
+      from:
+        value: "0.95"
+        comment: "開始スケール"
+      to:
+        value: "1"
+        comment: "終了スケール"
+    pulse:
+      duration:
+        value: "{animation.duration.slow}"
+        comment: "脈動アニメーション時間"
+      timing:
+        value: "{animation.easing.easeInOut}"
+        comment: "滑らかな脈動"
+      keyframes:
+        value: "pulse"
+        comment: "脈動アニメーション - 透明度の変化"
+      iteration:
+        value: "infinite"
+        comment: "無限ループ"
+    spin:
+      duration:
+        value: "1s"
+        comment: "1回転の時間"
+      timing:
+        value: "linear"
+        comment: "等速回転"
+      keyframes:
+        value: "spin"
+        comment: "回転アニメーション - 360度回転"
+      iteration:
+        value: "infinite"
+        comment: "無限ループ"
+    bounce:
+      duration:
+        value: "{animation.duration.base}"
+        comment: "バウンス時間"
+      timing:
+        value: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+        comment: "バウンス効果"
+      keyframes:
+        value: "bounce"
+        comment: "バウンスアニメーション - 跳ねる動き"
   cursor:
     default:
       value: default
+      comment: "デフォルトカーソル"
     pointer:
       value: pointer
+      comment: "ポインターカーソル - クリック可能要素"
     text:
       value: text
+      comment: "テキストカーソル - 選択可能テキスト"
     move:
       value: move
+      comment: "移動カーソル - ドラッグ可能要素"
     notAllowed:
       value: not-allowed
+      comment: "禁止カーソル - 操作不可要素"
     grab:
       value: grab
+      comment: "つかむカーソル - ドラッグ開始前"
     grabbing:
       value: grabbing
+      comment: "つかんでいるカーソル - ドラッグ中"
+    wait:
+      value: wait
+      comment: "待機カーソル - 処理中"
+    help:
+      value: help
+      comment: "ヘルプカーソル - 追加情報あり"
+    zoomIn:
+      value: zoom-in
+      comment: "ズームインカーソル - 拡大可能"
+    zoomOut:
+      value: zoom-out
+      comment: "ズームアウトカーソル - 縮小可能"
+
+  # インタラクションフィードバック
+  feedback:
+    haptic:
+      light:
+        value: "light"
+        comment: "軽い触覚フィードバック - 選択、ホバー"
+      medium:
+        value: "medium"
+        comment: "中程度の触覚フィードバック - 通知、アラート"
+      heavy:
+        value: "heavy"
+        comment: "強い触覚フィードバック - エラー、完了"
+    sound:
+      click:
+        value: "click"
+        comment: "クリック音 - ボタン押下"
+      success:
+        value: "success"
+        comment: "成功音 - 操作完了"
+      error:
+        value: "error"
+        comment: "エラー音 - 失敗通知"
+      notification:
+        value: "notification"
+        comment: "通知音 - アラート"
