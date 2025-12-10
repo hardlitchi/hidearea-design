@@ -1,0 +1,197 @@
+# パンくずリストコンポーネントトークン - hidearea-design
+# パンくずナビゲーションの外観と振る舞いを定義
+
+component:
+  breadcrumb:
+    # コンテナ
+    container:
+      padding:
+        vertical:
+          value: "{spacing.2}"
+          comment: "コンテナの垂直パディング"
+        horizontal:
+          value: "{spacing.0}"
+          comment: "コンテナの水平パディング"
+      gap:
+        value: "{spacing.2}"
+        comment: "パンくずアイテム間の間隔"
+
+    # アイテム
+    item:
+      # タイポグラフィ
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "パンくずアイテムのフォントサイズ"
+      fontWeight:
+        value: "{font.weight.normal}"
+        comment: "パンくずアイテムのフォントウェイト"
+      lineHeight:
+        value: "{font.lineHeight.normal}"
+        comment: "パンくずアイテムの行高"
+
+      # 色
+      text:
+        default:
+          value: "{foreground.secondary}"
+          comment: "デフォルトのテキスト色"
+        hover:
+          value: "{primary.default}"
+          comment: "ホバー時のテキスト色"
+        active:
+          value: "{foreground.primary}"
+          comment: "現在のページ（アクティブ）のテキスト色"
+        disabled:
+          value: "{foreground.tertiary}"
+          comment: "無効状態のテキスト色"
+
+      # リンク装飾
+      textDecoration:
+        default:
+          value: "none"
+          comment: "デフォルトのテキスト装飾"
+        hover:
+          value: "underline"
+          comment: "ホバー時のテキスト装飾"
+
+      # パディング
+      padding:
+        horizontal:
+          value: "{spacing.1}"
+          comment: "アイテムの水平パディング"
+        vertical:
+          value: "{spacing.1}"
+          comment: "アイテムの垂直パディング"
+
+      # 角丸
+      borderRadius:
+        value: "{border.radius.sm}"
+        comment: "アイテムの角丸"
+
+    # セパレーター（区切り文字）
+    separator:
+      color:
+        value: "{foreground.tertiary}"
+        comment: "セパレーターの色"
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "セパレーターのフォントサイズ"
+      margin:
+        horizontal:
+          value: "{spacing.2}"
+          comment: "セパレーターの水平マージン"
+      content:
+        default:
+          value: '"/"'
+          comment: "デフォルトのセパレーター文字"
+        chevron:
+          value: '"›"'
+          comment: "シェブロンセパレーター"
+        arrow:
+          value: '"→"'
+          comment: "矢印セパレーター"
+        dot:
+          value: '"·"'
+          comment: "ドットセパレーター"
+
+    # アイコン
+    icon:
+      size:
+        value: "{spacing.4}"
+        comment: "アイコンのサイズ"
+      color:
+        default:
+          value: "{foreground.tertiary}"
+          comment: "デフォルトのアイコン色"
+        hover:
+          value: "{primary.default}"
+          comment: "ホバー時のアイコン色"
+        active:
+          value: "{foreground.primary}"
+          comment: "アクティブアイテムのアイコン色"
+      gap:
+        value: "{spacing.2}"
+        comment: "アイコンとテキストの間隔"
+
+    # ホームアイコン
+    home:
+      size:
+        value: "{spacing.4}"
+        comment: "ホームアイコンのサイズ"
+      color:
+        value: "{foreground.secondary}"
+        comment: "ホームアイコンの色"
+
+    # 省略表示（...）
+    ellipsis:
+      color:
+        value: "{foreground.secondary}"
+        comment: "省略記号の色"
+      padding:
+        value: "{spacing.1}"
+        comment: "省略記号のパディング"
+      cursor:
+        value: "pointer"
+        comment: "省略記号のカーソル"
+      hover:
+        color:
+          value: "{primary.default}"
+          comment: "ホバー時の省略記号の色"
+        background:
+          value: "{background.secondary}"
+          comment: "ホバー時の背景色"
+
+    # トランジション
+    transition:
+      duration:
+        value: "{animation.duration.fast}"
+        comment: "トランジションの持続時間"
+      timing:
+        value: "{animation.easing.ease}"
+        comment: "トランジションのイージング"
+      properties:
+        value: "color, background-color"
+        comment: "トランジション対象のプロパティ"
+
+    # サイズバリアント
+    size:
+      small:
+        fontSize:
+          value: "{font.size.xs}"
+          comment: "小サイズのフォントサイズ"
+        iconSize:
+          value: "{spacing.3}"
+          comment: "小サイズのアイコンサイズ"
+        gap:
+          value: "{spacing.1}"
+          comment: "小サイズのアイテム間隔"
+
+      default:
+        fontSize:
+          value: "{font.size.sm}"
+          comment: "デフォルトサイズのフォントサイズ"
+        iconSize:
+          value: "{spacing.4}"
+          comment: "デフォルトサイズのアイコンサイズ"
+        gap:
+          value: "{spacing.2}"
+          comment: "デフォルトサイズのアイテム間隔"
+
+      large:
+        fontSize:
+          value: "{font.size.base}"
+          comment: "大サイズのフォントサイズ"
+        iconSize:
+          value: "{spacing.5}"
+          comment: "大サイズのアイコンサイズ"
+        gap:
+          value: "{spacing.3}"
+          comment: "大サイズのアイテム間隔"
+
+    # 最大表示アイテム数（省略表示用）
+    maxItems:
+      default:
+        value: "5"
+        comment: "デフォルトの最大表示アイテム数"
+      compact:
+        value: "3"
+        comment: "コンパクト表示の最大アイテム数"
