@@ -1,0 +1,135 @@
+# ボタンコンポーネントトークン - hidearea-design
+# ボタンの外観と振る舞いを定義
+
+component:
+  button:
+    # プライマリボタン - 主要なアクション
+    primary:
+      background:
+        default:
+          value: "{color.primary.500}"
+          comment: "プライマリボタンのデフォルト背景色"
+        hover:
+          value: "{color.primary.600}"
+          comment: "ホバー時の背景色 - やや濃く"
+        active:
+          value: "{color.primary.700}"
+          comment: "押下時の背景色 - さらに濃く"
+        disabled:
+          value: "{color.gray.300}"
+          comment: "無効時の背景色 - グレーアウト"
+      text:
+        default:
+          value: "{color.white}"
+          comment: "デフォルトテキスト色 - 白"
+        disabled:
+          value: "{color.gray.500}"
+          comment: "無効時テキスト色"
+      border:
+        default:
+          value: "{color.primary.500}"
+          comment: "デフォルトボーダー色"
+        hover:
+          value: "{color.primary.600}"
+          comment: "ホバー時ボーダー色"
+        active:
+          value: "{color.primary.700}"
+          comment: "押下時ボーダー色"
+        disabled:
+          value: "{color.gray.300}"
+          comment: "無効時ボーダー色"
+
+    # セカンダリボタン - 副次的なアクション
+    secondary:
+      background:
+        default:
+          value: transparent
+          comment: "セカンダリボタンの背景は透明"
+        hover:
+          value: "{color.gray.100}"
+          comment: "ホバー時に薄いグレー背景"
+        active:
+          value: "{color.gray.200}"
+          comment: "押下時に少し濃いグレー背景"
+        disabled:
+          value: transparent
+          comment: "無効時も透明"
+      text:
+        default:
+          value: "{color.gray.700}"
+          comment: "デフォルトテキスト色 - 濃いグレー"
+        disabled:
+          value: "{color.gray.400}"
+          comment: "無効時テキスト色 - 薄いグレー"
+      border:
+        default:
+          value: "{color.gray.300}"
+          comment: "デフォルトボーダー色"
+        hover:
+          value: "{color.gray.400}"
+          comment: "ホバー時ボーダー色"
+        active:
+          value: "{color.gray.500}"
+          comment: "押下時ボーダー色"
+        disabled:
+          value: "{color.gray.200}"
+          comment: "無効時ボーダー色"
+
+    # ゴーストボタン - 背景なしボタン
+    ghost:
+      background:
+        default:
+          value: transparent
+          comment: "ゴーストボタンは背景なし"
+        hover:
+          value: "{color.gray.100}"
+          comment: "ホバー時に薄い背景"
+        active:
+          value: "{color.gray.200}"
+          comment: "押下時にやや濃い背景"
+        disabled:
+          value: transparent
+          comment: "無効時も背景なし"
+      text:
+        default:
+          value: "{color.gray.700}"
+          comment: "デフォルトテキスト色"
+        disabled:
+          value: "{color.gray.400}"
+          comment: "無効時テキスト色"
+
+    # デンジャーボタン - 破壊的アクション（削除など）
+    danger:
+      background:
+        default:
+          value: "{color.error.500}"
+          comment: "危険なアクションを示す赤背景"
+        hover:
+          value: "{color.error.600}"
+          comment: "ホバー時の背景色"
+        active:
+          value: "{color.error.700}"
+          comment: "押下時の背景色"
+        disabled:
+          value: "{color.gray.300}"
+          comment: "無効時の背景色"
+      text:
+        default:
+          value: "{color.white}"
+          comment: "デフォルトテキスト色 - 白"
+        disabled:
+          value: "{color.gray.500}"
+          comment: "無効時テキスト色"
+      border:
+        default:
+          value: "{color.error.500}"
+          comment: "デフォルトボーダー色"
+        hover:
+          value: "{color.error.600}"
+          comment: "ホバー時ボーダー色"
+        active:
+          value: "{color.error.700}"
+          comment: "押下時ボーダー色"
+        disabled:
+          value: "{color.gray.300}"
+          comment: "無効時ボーダー色"
