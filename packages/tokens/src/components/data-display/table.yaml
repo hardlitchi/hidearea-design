@@ -6,30 +6,30 @@ component:
     # ヘッダー
     header:
       background:
-        value: "{color.gray.50}"
-        comment: "テーブルヘッダー背景色 - 薄いグレー"
+        value: "{background.secondary}"
+        comment: "テーブルヘッダー背景色 - セカンダリ背景（テーマ対応）"
       text:
-        value: "{color.gray.700}"
-        comment: "ヘッダーテキスト色 - 濃いグレー"
+        value: "{foreground.secondary}"
+        comment: "ヘッダーテキスト色 - セカンダリテキスト（テーマ対応）"
 
     # 行
     row:
       background:
         default:
-          value: "{color.white}"
-          comment: "デフォルト行背景色 - 白"
+          value: "{background.primary}"
+          comment: "デフォルト行背景色 - プライマリ背景（テーマ対応）"
         hover:
-          value: "{color.gray.50}"
-          comment: "ホバー時行背景色 - 薄いグレー"
+          value: "{background.secondary}"
+          comment: "ホバー時行背景色 - セカンダリ背景（テーマ対応）"
         selected:
-          value: "{color.primary.50}"
-          comment: "選択時行背景色 - 非常に薄いプライマリカラー"
+          value: "{primary.subtle}"
+          comment: "選択時行背景色 - 薄いプライマリカラー（テーマ対応）"
         striped:
-          value: "{color.gray.25}"
-          comment: "ストライプ行背景色 - 非常に薄いグレー（交互行用）"
+          value: "{background.tertiary}"
+          comment: "ストライプ行背景色 - ターシャリ背景（テーマ対応・交互行用）"
 
     # ボーダー
     border:
       default:
-        value: "{color.gray.200}"
-        comment: "テーブルボーダー色 - 薄いグレー"
+        value: "{border.default}"
+        comment: "テーブルボーダー色 - デフォルトボーダー（テーマ対応）"

@@ -6,11 +6,11 @@ component:
     # 背景色
     background:
       default:
-        value: "{color.gray.900}"
-        comment: "ツールチップ背景色 - ほぼ黒（視認性を高めるため）"
+        value: "{foreground.primary}"
+        comment: "ツールチップ背景色 - プライマリ前景色を反転利用（テーマ対応・視認性を高めるため）"
 
     # テキスト色
     text:
       default:
-        value: "{color.white}"
-        comment: "ツールチップテキスト色 - 白（コントラストを高めるため）"
+        value: "{foreground.inverse}"
+        comment: "ツールチップテキスト色 - 反転色（テーマ対応・コントラストを高めるため）"

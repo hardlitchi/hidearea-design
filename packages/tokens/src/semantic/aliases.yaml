@@ -1,6 +1,84 @@
 # エイリアストークン - hidearea-design
 # 使いやすいショートカット名の定義
 
+# セマンティックカラーエイリアス（テーマ対応のショートカット）
+# コンポーネントトークンはこれらを参照することで、テーマ切り替えに対応
+background:
+  primary:
+    value: "{theme.light.background.primary}"
+  secondary:
+    value: "{theme.light.background.secondary}"
+  tertiary:
+    value: "{theme.light.background.tertiary}"
+
+foreground:
+  primary:
+    value: "{theme.light.foreground.primary}"
+  secondary:
+    value: "{theme.light.foreground.secondary}"
+  tertiary:
+    value: "{theme.light.foreground.tertiary}"
+  inverse:
+    value: "{theme.light.foreground.inverse}"
+
+border:
+  default:
+    value: "{theme.light.border.default}"
+  subtle:
+    value: "{theme.light.border.subtle}"
+  strong:
+    value: "{theme.light.border.strong}"
+
+primary:
+  default:
+    value: "{theme.light.primary.default}"
+  hover:
+    value: "{theme.light.primary.hover}"
+  active:
+    value: "{theme.light.primary.active}"
+  subtle:
+    value: "{theme.light.primary.subtle}"
+
+success:
+  default:
+    value: "{theme.light.success.default}"
+  hover:
+    value: "{theme.light.success.hover}"
+  active:
+    value: "{theme.light.success.active}"
+  subtle:
+    value: "{theme.light.success.subtle}"
+
+error:
+  default:
+    value: "{theme.light.error.default}"
+  hover:
+    value: "{theme.light.error.hover}"
+  active:
+    value: "{theme.light.error.active}"
+  subtle:
+    value: "{theme.light.error.subtle}"
+
+warning:
+  default:
+    value: "{theme.light.warning.default}"
+  hover:
+    value: "{theme.light.warning.hover}"
+  active:
+    value: "{theme.light.warning.active}"
+  subtle:
+    value: "{theme.light.warning.subtle}"
+
+info:
+  default:
+    value: "{theme.light.info.default}"
+  hover:
+    value: "{theme.light.info.hover}"
+  active:
+    value: "{theme.light.info.active}"
+  subtle:
+    value: "{theme.light.info.subtle}"
+
 spacing:
   # スペーシングのショートカット
   xs:
