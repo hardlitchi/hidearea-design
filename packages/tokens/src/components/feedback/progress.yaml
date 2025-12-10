@@ -1,0 +1,154 @@
+# プログレスコンポーネントトークン - hidearea-design
+# 進行状況を視覚的に表示するバーやサークル
+
+component:
+  progress:
+    # トラック（背景）
+    track:
+      background:
+        value: "{background.secondary}"
+        comment: "プログレストラックの背景色（テーマ対応）"
+      height:
+        default:
+          value: "0.5rem"
+          comment: "デフォルトのトラック高さ (8px)"
+        small:
+          value: "0.25rem"
+          comment: "小サイズのトラック高さ (4px)"
+        large:
+          value: "0.75rem"
+          comment: "大サイズのトラック高さ (12px)"
+      borderRadius:
+        value: "{border.radius.full}"
+        comment: "トラックの角丸（完全な楕円）"
+
+    # フィル（進行バー）
+    fill:
+      # デフォルト（プライマリー）
+      background:
+        default:
+          value: "{primary.default}"
+          comment: "デフォルトプログレスバー色（テーマ対応）"
+        animated:
+          value: "{primary.default}"
+          comment: "アニメーション時のプログレスバー色"
+
+      # 成功
+      success:
+        value: "{success.default}"
+        comment: "成功状態のプログレスバー色（テーマ対応）"
+
+      # 警告
+      warning:
+        value: "{warning.default}"
+        comment: "警告状態のプログレスバー色（テーマ対応）"
+
+      # エラー
+      error:
+        value: "{error.default}"
+        comment: "エラー状態のプログレスバー色（テーマ対応）"
+
+      # 情報
+      info:
+        value: "{info.default}"
+        comment: "情報状態のプログレスバー色（テーマ対応）"
+
+    # ラベル
+    label:
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "ラベルのフォントサイズ (14px)"
+      fontWeight:
+        value: "{font.weight.medium}"
+        comment: "ラベルのフォントウェイト (500)"
+      color:
+        default:
+          value: "{foreground.primary}"
+          comment: "ラベルのデフォルト色（テーマ対応）"
+        inverse:
+          value: "{foreground.inverse}"
+          comment: "バー内のラベル色（反転）"
+      spacing:
+        value: "{spacing.2}"
+        comment: "ラベルとバーの間隔 (8px)"
+
+    # パーセンテージ表示
+    percentage:
+      fontSize:
+        value: "{font.size.xs}"
+        comment: "パーセンテージのフォントサイズ (12px)"
+      fontWeight:
+        value: "{font.weight.semibold}"
+        comment: "パーセンテージのフォントウェイト (600)"
+      color:
+        value: "{foreground.secondary}"
+        comment: "パーセンテージのテキスト色（テーマ対応）"
+      spacing:
+        value: "{spacing.2}"
+        comment: "パーセンテージとバーの間隔 (8px)"
+
+    # サークルプログレス（円形）
+    circle:
+      size:
+        default:
+          value: "4rem"
+          comment: "デフォルトのサークルサイズ (64px)"
+        small:
+          value: "3rem"
+          comment: "小サイズのサークル (48px)"
+        large:
+          value: "6rem"
+          comment: "大サイズのサークル (96px)"
+      strokeWidth:
+        default:
+          value: "4"
+          comment: "デフォルトのストローク幅 (4px)"
+        small:
+          value: "3"
+          comment: "小サイズのストローク幅 (3px)"
+        large:
+          value: "6"
+          comment: "大サイズのストローク幅 (6px)"
+      track:
+        value: "{background.secondary}"
+        comment: "サークルトラックの色（テーマ対応）"
+      fill:
+        value: "{primary.default}"
+        comment: "サークル進行バーの色（テーマ対応）"
+
+    # インデタミネート（不確定）状態
+    indeterminate:
+      animationDuration:
+        value: "1.5s"
+        comment: "インデタミネートアニメーションの時間"
+      gradient:
+        start:
+          value: "{primary.subtle}"
+          comment: "グラデーション開始色"
+        end:
+          value: "{primary.default}"
+          comment: "グラデーション終了色"
+
+    # トランジション
+    transition:
+      duration:
+        value: "{animation.duration.base}"
+        comment: "トランジションの時間 (200ms)"
+      timing:
+        value: "{animation.easing.ease}"
+        comment: "トランジションのイージング"
+      properties:
+        value: "width, stroke-dashoffset"
+        comment: "トランジション対象のプロパティ"
+
+    # ストライプ（オプション）
+    stripe:
+      color:
+        value: "rgba(255, 255, 255, 0.15)"
+        comment: "ストライプの色（半透明白）"
+      width:
+        value: "1rem"
+        comment: "ストライプの幅 (16px)"
+      animationDuration:
+        value: "1s"
+        comment: "ストライプアニメーションの時間"
