@@ -292,6 +292,12 @@
   --component-button-danger-border-hover: #dc2626;
   --component-button-danger-border-active: #b91c1c;
   --component-button-danger-border-disabled: #d4d4d4;
+  --component-card-background-default: #ffffff;
+  --component-card-background-hover: #fafafa;
+  --component-card-background-selected: #eff6ff;
+  --component-card-border-default: #e5e5e5;
+  --component-card-border-hover: #d4d4d4;
+  --component-card-border-selected: #93c5fd;
   --component-input-background-default: #ffffff;
   --component-input-background-disabled: #f5f5f5;
   --component-input-background-readonly: #fafafa;
@@ -304,12 +310,6 @@
   --component-input-border-error: #ef4444;
   --component-input-border-success: #22c55e;
   --component-input-border-disabled: #e5e5e5;
-  --component-card-background-default: #ffffff;
-  --component-card-background-hover: #fafafa;
-  --component-card-background-selected: #eff6ff;
-  --component-card-border-default: #e5e5e5;
-  --component-card-border-hover: #d4d4d4;
-  --component-card-border-selected: #93c5fd;
   --component-modal-background-default: #ffffff;
   --component-modal-background-overlay: rgba(0, 0, 0, 0.5);
   --component-modal-border-default: #e5e5e5;

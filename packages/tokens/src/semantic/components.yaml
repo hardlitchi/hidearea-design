@@ -1,40 +1,9 @@
 # コンポーネントトークン - hidearea-design
 # UIコンポーネントごとの具体的なトークン定義
-# 注: button と input は src/components/ に移行されました
+# 注: button, input, card, modal, tooltip は src/components/ に移行されました
 
 component:
-  # カードコンポーネント
-  card:
-    background:
-      default:
-        value: "{color.white}"
-      hover:
-        value: "{color.gray.50}"
-      selected:
-        value: "{color.primary.50}"
-    border:
-      default:
-        value: "{color.gray.200}"
-      hover:
-        value: "{color.gray.300}"
-      selected:
-        value: "{color.primary.300}"
-  modal:
-    background:
-      default:
-        value: "{color.white}"
-      overlay:
-        value: rgba(0, 0, 0, 0.5)
-    border:
-      default:
-        value: "{color.gray.200}"
-  tooltip:
-    background:
-      default:
-        value: "{color.gray.900}"
-    text:
-      default:
-        value: "{color.white}"
+  # バッジコンポーネント
   badge:
     primary:
       background:

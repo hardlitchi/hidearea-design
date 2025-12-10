@@ -1,0 +1,16 @@
+# ツールチップコンポーネントトークン - hidearea-design
+# ツールチップの外観と振る舞いを定義
+
+component:
+  tooltip:
+    # 背景色
+    background:
+      default:
+        value: "{color.gray.900}"
+        comment: "ツールチップ背景色 - ほぼ黒（視認性を高めるため）"
+
+    # テキスト色
+    text:
+      default:
+        value: "{color.white}"
+        comment: "ツールチップテキスト色 - 白（コントラストを高めるため）"
