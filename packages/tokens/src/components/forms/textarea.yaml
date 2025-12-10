@@ -1,0 +1,191 @@
+# テキストエリアコンポーネントトークン - hidearea-design
+# 複数行テキスト入力要素の外観と振る舞いを定義
+
+component:
+  textarea:
+    # 背景色
+    background:
+      default:
+        value: "{background.primary}"
+        comment: "テキストエリアのデフォルト背景色（テーマ対応）"
+      hover:
+        value: "{background.secondary}"
+        comment: "ホバー時の背景色（テーマ対応）"
+      disabled:
+        value: "{background.tertiary}"
+        comment: "無効時の背景色（テーマ対応）"
+      readonly:
+        value: "{background.secondary}"
+        comment: "読み取り専用の背景色（テーマ対応）"
+
+    # テキスト色
+    text:
+      default:
+        value: "{foreground.primary}"
+        comment: "デフォルトのテキスト色（テーマ対応）"
+      placeholder:
+        value: "{foreground.tertiary}"
+        comment: "プレースホルダーの色（テーマ対応）"
+      disabled:
+        value: "{foreground.tertiary}"
+        comment: "無効時のテキスト色（テーマ対応）"
+
+    # ボーダー色
+    border:
+      default:
+        value: "{border.default}"
+        comment: "デフォルトのボーダー色（テーマ対応）"
+      hover:
+        value: "{border.strong}"
+        comment: "ホバー時のボーダー色（テーマ対応）"
+      focus:
+        value: "{primary.default}"
+        comment: "フォーカス時のボーダー色（テーマ対応）"
+      error:
+        value: "{error.default}"
+        comment: "エラー時のボーダー色（テーマ対応）"
+      success:
+        value: "{success.default}"
+        comment: "成功時のボーダー色（テーマ対応）"
+      disabled:
+        value: "{border.subtle}"
+        comment: "無効時のボーダー色（テーマ対応）"
+
+    # ボーダー幅・半径
+    borderWidth:
+      default:
+        value: "{border.width.1}"
+        comment: "デフォルトのボーダー幅"
+
+    borderRadius:
+      default:
+        value: "{border.radius.md}"
+        comment: "テキストエリアの角丸"
+
+    # フォーカスリング
+    focusRing:
+      width:
+        value: "3px"
+        comment: "フォーカスリングの幅"
+      offset:
+        value: "2px"
+        comment: "フォーカスリングのオフセット"
+      color:
+        default:
+          value: "{primary.subtle}"
+          comment: "フォーカスリングのデフォルト色（テーマ対応）"
+        error:
+          value: "{error.subtle}"
+          comment: "エラー時のフォーカスリング色（テーマ対応）"
+
+    # パディング
+    padding:
+      vertical:
+        value: "{spacing.3}"
+        comment: "縦方向のパディング（上下）"
+      horizontal:
+        value: "{spacing.3}"
+        comment: "横方向のパディング（左右）"
+
+    # フォントスタイル
+    font:
+      size:
+        value: "{font.size.base}"
+        comment: "テキストエリアのフォントサイズ"
+      family:
+        value: "{font.family.sans}"
+        comment: "テキストエリアのフォントファミリー"
+      lineHeight:
+        value: "{font.lineHeight.normal}"
+        comment: "テキストエリアの行の高さ"
+
+    # サイズ
+    minHeight:
+      default:
+        value: "5rem"
+        comment: "デフォルトの最小高さ（80px、約3行）"
+      small:
+        value: "3rem"
+        comment: "小さいサイズの最小高さ（48px、約2行）"
+      large:
+        value: "8rem"
+        comment: "大きいサイズの最小高さ（128px、約5行）"
+
+    # リサイズハンドル
+    resize:
+      indicator:
+        color:
+          value: "{foreground.tertiary}"
+          comment: "リサイズハンドルの色（テーマ対応）"
+        size:
+          value: "0.75rem"
+          comment: "リサイズハンドルのサイズ（12px）"
+
+    # 文字数カウンター
+    counter:
+      fontSize:
+        value: "{font.size.xs}"
+        comment: "文字数カウンターのフォントサイズ"
+      color:
+        default:
+          value: "{foreground.secondary}"
+          comment: "カウンターのデフォルト色（テーマ対応）"
+        warning:
+          value: "{warning.default}"
+          comment: "制限に近づいた時の色（テーマ対応）"
+        error:
+          value: "{error.default}"
+          comment: "制限を超えた時の色（テーマ対応）"
+      spacing:
+        value: "{spacing.1}"
+        comment: "カウンターとテキストエリアの間隔"
+
+    # ラベル
+    label:
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "ラベルのフォントサイズ"
+      fontWeight:
+        value: "{font.weight.medium}"
+        comment: "ラベルのフォントウェイト"
+      color:
+        default:
+          value: "{foreground.primary}"
+          comment: "ラベルのデフォルト色（テーマ対応）"
+        disabled:
+          value: "{foreground.tertiary}"
+          comment: "無効時のラベル色（テーマ対応）"
+      spacing:
+        value: "{spacing.2}"
+        comment: "ラベルとテキストエリアの間隔"
+
+    # ヘルパーテキスト
+    helper:
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "ヘルパーテキストのフォントサイズ"
+      color:
+        default:
+          value: "{foreground.secondary}"
+          comment: "ヘルパーテキストのデフォルト色（テーマ対応）"
+        error:
+          value: "{error.default}"
+          comment: "エラー時のヘルパーテキスト色（テーマ対応）"
+        success:
+          value: "{success.default}"
+          comment: "成功時のヘルパーテキスト色（テーマ対応）"
+      spacing:
+        value: "{spacing.2}"
+        comment: "テキストエリアとヘルパーテキストの間隔"
+
+    # トランジション
+    transition:
+      duration:
+        value: "{animation.duration.fast}"
+        comment: "トランジションの時間"
+      timing:
+        value: "{animation.easing.ease}"
+        comment: "トランジションのイージング"
+      properties:
+        value: "background-color, border-color, box-shadow"
+        comment: "トランジション対象のプロパティ"

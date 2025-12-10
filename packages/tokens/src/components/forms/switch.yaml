@@ -1,0 +1,181 @@
+# スイッチコンポーネントトークン - hidearea-design
+# オン/オフ切り替えスイッチの外観と振る舞いを定義
+
+component:
+  switch:
+    # トラック（背景）サイズ
+    track:
+      width:
+        default:
+          value: "2.75rem"
+          comment: "トラックのデフォルト幅（44px）"
+        small:
+          value: "2rem"
+          comment: "トラックの小さい幅（32px）"
+        large:
+          value: "3.5rem"
+          comment: "トラックの大きい幅（56px）"
+      height:
+        default:
+          value: "1.5rem"
+          comment: "トラックのデフォルト高さ（24px）"
+        small:
+          value: "1.125rem"
+          comment: "トラックの小さい高さ（18px）"
+        large:
+          value: "2rem"
+          comment: "トラックの大きい高さ（32px）"
+
+    # トラック（背景）色
+    background:
+      off:
+        default:
+          value: "{border.default}"
+          comment: "オフ状態のデフォルト背景色（テーマ対応）"
+        hover:
+          value: "{border.strong}"
+          comment: "オフ状態でホバー時の背景色（テーマ対応）"
+        disabled:
+          value: "{background.tertiary}"
+          comment: "オフ状態で無効時の背景色（テーマ対応）"
+      on:
+        default:
+          value: "{primary.default}"
+          comment: "オン状態のデフォルト背景色（テーマ対応）"
+        hover:
+          value: "{primary.hover}"
+          comment: "オン状態でホバー時の背景色（テーマ対応）"
+        disabled:
+          value: "{border.default}"
+          comment: "オン状態で無効時の背景色（テーマ対応）"
+
+    # ボーダー
+    border:
+      width:
+        value: "{border.width.1}"
+        comment: "ボーダーの幅"
+      color:
+        off:
+          value: "{border.default}"
+          comment: "オフ状態のボーダー色（テーマ対応）"
+        on:
+          value: "{primary.default}"
+          comment: "オン状態のボーダー色（テーマ対応）"
+        disabled:
+          value: "{border.subtle}"
+          comment: "無効時のボーダー色（テーマ対応）"
+
+    # ボーダー半径
+    borderRadius:
+      track:
+        value: "{border.radius.full}"
+        comment: "トラックの角丸（完全な楕円）"
+      thumb:
+        value: "{border.radius.full}"
+        comment: "つまみの角丸（完全な円）"
+
+    # つまみ（ハンドル）
+    thumb:
+      size:
+        default:
+          value: "1.25rem"
+          comment: "つまみのデフォルトサイズ（20px）"
+        small:
+          value: "0.875rem"
+          comment: "つまみの小さいサイズ（14px）"
+        large:
+          value: "1.75rem"
+          comment: "つまみの大きいサイズ（28px）"
+      background:
+        default:
+          value: "{background.primary}"
+          comment: "つまみのデフォルト背景色（テーマ対応）"
+        disabled:
+          value: "{foreground.tertiary}"
+          comment: "無効時のつまみ背景色（テーマ対応）"
+      shadow:
+        value: "{shadow.sm}"
+        comment: "つまみの影"
+      offset:
+        value: "0.125rem"
+        comment: "トラック端からのつまみオフセット（2px）"
+
+    # フォーカスリング
+    focusRing:
+      width:
+        value: "3px"
+        comment: "フォーカスリングの幅"
+      offset:
+        value: "2px"
+        comment: "フォーカスリングのオフセット"
+      color:
+        default:
+          value: "{primary.subtle}"
+          comment: "フォーカスリングの色（テーマ対応）"
+
+    # ラベル
+    label:
+      fontSize:
+        value: "{font.size.base}"
+        comment: "ラベルのフォントサイズ"
+      fontWeight:
+        value: "{font.weight.normal}"
+        comment: "ラベルのフォントウェイト"
+      color:
+        default:
+          value: "{foreground.primary}"
+          comment: "ラベルのデフォルト色（テーマ対応）"
+        disabled:
+          value: "{foreground.tertiary}"
+          comment: "無効時のラベル色（テーマ対応）"
+      spacing:
+        value: "{spacing.2}"
+        comment: "スイッチとラベルの間隔"
+
+    # ヘルパーテキスト
+    helper:
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "ヘルパーテキストのフォントサイズ"
+      color:
+        default:
+          value: "{foreground.secondary}"
+          comment: "ヘルパーテキストのデフォルト色（テーマ対応）"
+        error:
+          value: "{error.default}"
+          comment: "エラー時のヘルパーテキスト色（テーマ対応）"
+      spacing:
+        value: "{spacing.2}"
+        comment: "ラベルとヘルパーテキストの間隔"
+
+    # アイコン（オプション）
+    icon:
+      size:
+        default:
+          value: "0.75rem"
+          comment: "アイコンのデフォルトサイズ（12px）"
+        small:
+          value: "0.625rem"
+          comment: "アイコンの小さいサイズ（10px）"
+        large:
+          value: "1rem"
+          comment: "アイコンの大きいサイズ（16px）"
+      color:
+        off:
+          value: "{foreground.tertiary}"
+          comment: "オフ状態のアイコン色（テーマ対応）"
+        on:
+          value: "{foreground.inverse}"
+          comment: "オン状態のアイコン色（テーマ対応）"
+
+    # トランジション
+    transition:
+      duration:
+        value: "{animation.duration.base}"
+        comment: "トランジションの時間"
+      timing:
+        value: "{animation.easing.ease}"
+        comment: "トランジションのイージング"
+      properties:
+        value: "background-color, border-color, transform, box-shadow"
+        comment: "トランジション対象のプロパティ"
