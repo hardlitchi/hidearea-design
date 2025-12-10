@@ -14,7 +14,6 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "build:deploy": "turbo run build && pm2 restart DesignStorybook designExample hideareaDesignDocs",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
@@ -25,6 +24,7 @@
     "changeset": "changeset",
     "version": "changeset version",
     "release": "turbo run build && changeset publish",
+    "rebuild:deploy": "turbo run clean && pnpm install && turbo run build && pm2 restart DesignStorybook designExample hideareaDesignDocs",
     "storybook:deploy": "pm2 stop DesignStorybook | pm2 delete DesignStorybook | pm2 serve ./packages/storybook/storybook-static 6006 --name DesignStorybook",
     "docs:deploy": "pm2 stop DesignDocs | pm2 delete DesignDocs | pm2 serve ./packages/docs/.vitepress/dist 5174 --name DesignDocs",
     "git:reflesh": "git checkout main && git pull && git fetch -p && git branch"
@@ -45,7 +45,7 @@
     "node": ">=18.0.0",
     "pnpm": ">=8.0.0"
   },
-  "packageManager": "pnpm@10.24.0",
+  "packageManager": "pnpm@10.25.0",
   "dependencies": {
     "@hidearea-design/core": "link:packages/core",
     "@hidearea-design/mcp-server": "link:packages/mcp-server",
