@@ -216,6 +216,165 @@
           </div>
         </div>
       </div>
+
+      <div class="component-group">
+        <h3>Select - セレクトボックス</h3>
+        <div class="example-box">
+          <div class="select-group">
+            <label class="select-label" for="country">国を選択</label>
+            <select class="select" id="country">
+              <option value="">選択してください</option>
+              <option value="jp">日本</option>
+              <option value="us">アメリカ</option>
+              <option value="uk">イギリス</option>
+              <option value="de">ドイツ</option>
+            </select>
+            <span class="select-helper">お住まいの国を選択してください</span>
+          </div>
+
+          <div class="select-group">
+            <label class="select-label" for="priority">優先度 (Error)</label>
+            <select class="select select-error" id="priority">
+              <option value="">選択してください</option>
+              <option value="high">高</option>
+              <option value="medium">中</option>
+              <option value="low">低</option>
+            </select>
+            <span class="select-helper select-helper-error">優先度を選択してください</span>
+          </div>
+
+          <div class="select-group">
+            <label class="select-label" for="disabled-select">Disabled Select</label>
+            <select class="select" id="disabled-select" disabled>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Textarea - テキストエリア</h3>
+        <div class="example-box">
+          <div class="textarea-group">
+            <label class="textarea-label" for="message">メッセージ</label>
+            <textarea
+              class="textarea"
+              id="message"
+              placeholder="メッセージを入力してください..."
+              rows="4"
+            ></textarea>
+            <span class="textarea-helper">最大500文字まで入力できます</span>
+          </div>
+
+          <div class="textarea-group">
+            <label class="textarea-label" for="feedback">フィードバック (Error)</label>
+            <textarea
+              class="textarea textarea-error"
+              id="feedback"
+              placeholder="フィードバックを入力..."
+              rows="3"
+            ></textarea>
+            <span class="textarea-helper textarea-helper-error">このフィールドは必須です</span>
+          </div>
+
+          <div class="textarea-group">
+            <label class="textarea-label" for="bio-small">小さいサイズ</label>
+            <textarea
+              class="textarea textarea-small"
+              id="bio-small"
+              placeholder="短い説明..."
+              rows="2"
+            ></textarea>
+          </div>
+
+          <div class="textarea-group">
+            <label class="textarea-label" for="bio-large">大きいサイズ</label>
+            <textarea
+              class="textarea textarea-large"
+              id="bio-large"
+              placeholder="詳細な説明..."
+              rows="6"
+            ></textarea>
+          </div>
+
+          <div class="textarea-group">
+            <label class="textarea-label" for="disabled-textarea">Disabled Textarea</label>
+            <textarea
+              class="textarea"
+              id="disabled-textarea"
+              disabled
+              rows="3"
+            >This textarea is disabled</textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Switch - スイッチ</h3>
+        <div class="example-box">
+          <div class="switch-group">
+            <label class="switch-label">
+              <input type="checkbox" class="switch-input" checked>
+              <span class="switch-track">
+                <span class="switch-thumb"></span>
+              </span>
+              <span class="switch-text">通知を有効にする</span>
+            </label>
+            <span class="switch-helper">新しいメッセージの通知を受け取ります</span>
+          </div>
+
+          <div class="switch-group">
+            <label class="switch-label">
+              <input type="checkbox" class="switch-input">
+              <span class="switch-track">
+                <span class="switch-thumb"></span>
+              </span>
+              <span class="switch-text">ダークモード</span>
+            </label>
+          </div>
+
+          <div class="switch-group">
+            <label class="switch-label switch-small">
+              <input type="checkbox" class="switch-input" checked>
+              <span class="switch-track">
+                <span class="switch-thumb"></span>
+              </span>
+              <span class="switch-text">小さいスイッチ</span>
+            </label>
+          </div>
+
+          <div class="switch-group">
+            <label class="switch-label switch-large">
+              <input type="checkbox" class="switch-input">
+              <span class="switch-track">
+                <span class="switch-thumb"></span>
+              </span>
+              <span class="switch-text">大きいスイッチ</span>
+            </label>
+          </div>
+
+          <div class="switch-group">
+            <label class="switch-label">
+              <input type="checkbox" class="switch-input" disabled>
+              <span class="switch-track">
+                <span class="switch-thumb"></span>
+              </span>
+              <span class="switch-text">無効なスイッチ</span>
+            </label>
+          </div>
+
+          <div class="switch-group">
+            <label class="switch-label">
+              <input type="checkbox" class="switch-input" checked disabled>
+              <span class="switch-track">
+                <span class="switch-thumb"></span>
+              </span>
+              <span class="switch-text">オン・無効</span>
+            </label>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Feedback Section -->
