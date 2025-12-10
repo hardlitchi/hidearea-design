@@ -256,6 +256,12 @@
   --font-letter-spacing-wide: 0.025em;
   --font-letter-spacing-wider: 0.05em;
   --font-letter-spacing-widest: 0.1em;
+  --component-card-background-default: #ffffff;
+  --component-card-background-hover: #fafafa;
+  --component-card-background-selected: #eff6ff;
+  --component-card-border-default: #e5e5e5;
+  --component-card-border-hover: #d4d4d4;
+  --component-card-border-selected: #93c5fd;
   --component-button-primary-background-default: #3b82f6;
   --component-button-primary-background-hover: #2563eb;
   --component-button-primary-background-active: #1d4ed8;
@@ -292,12 +298,6 @@
   --component-button-danger-border-hover: #dc2626;
   --component-button-danger-border-active: #b91c1c;
   --component-button-danger-border-disabled: #d4d4d4;
-  --component-card-background-default: #ffffff;
-  --component-card-background-hover: #fafafa;
-  --component-card-background-selected: #eff6ff;
-  --component-card-border-default: #e5e5e5;
-  --component-card-border-hover: #d4d4d4;
-  --component-card-border-selected: #93c5fd;
   --component-input-background-default: #ffffff;
   --component-input-background-disabled: #f5f5f5;
   --component-input-background-readonly: #fafafa;
