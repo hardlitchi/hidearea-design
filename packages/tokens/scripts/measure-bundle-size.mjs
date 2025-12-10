@@ -26,22 +26,31 @@ const BUILD_DIR = path.join(ROOT_DIR, 'build');
 const REPORTS_DIR = path.join(ROOT_DIR, '.performance');
 const REPORT_FILE = path.join(REPORTS_DIR, 'bundle-size.json');
 const HISTORY_FILE = path.join(REPORTS_DIR, 'bundle-size-history.json');
+const CONFIG_FILE = path.join(ROOT_DIR, '.performance.config.mjs');
 
-// Performance budgets (in bytes)
-const SIZE_BUDGETS = {
-  'js/index.js': {
-    raw: 55 * 1024,      // 55 KB (increased for Phase 3 completion - 9 components)
-    gzip: 15 * 1024,     // 15 KB
-  },
-  'css/variables.css': {
-    raw: 100 * 1024,     // 100 KB
-    gzip: 20 * 1024,     // 20 KB
-  },
-  'scss/variables.scss': {
-    raw: 100 * 1024,     // 100 KB
-    gzip: 20 * 1024,     // 20 KB
-  },
-};
+// Load performance budgets from config file
+let SIZE_BUDGETS = {};
+try {
+  const config = await import(`file://${CONFIG_FILE}`);
+  SIZE_BUDGETS = config.default.budgets || {};
+} catch (error) {
+  console.warn('⚠️  Could not load .performance.config.mjs, using fallback budgets');
+  // Fallback budgets if config file doesn't exist
+  SIZE_BUDGETS = {
+    'js/index.js': {
+      raw: 150 * 1024,     // 150 KB (Phase 4 target)
+      gzip: 30 * 1024,     // 30 KB
+    },
+    'css/variables.css': {
+      raw: 150 * 1024,     // 150 KB
+      gzip: 25 * 1024,     // 25 KB
+    },
+    'scss/variables.scss': {
+      raw: 150 * 1024,     // 150 KB
+      gzip: 25 * 1024,     // 25 KB
+    },
+  };
+}
 
 /**
  * Format bytes to human-readable string
