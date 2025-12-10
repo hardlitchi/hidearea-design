@@ -4,20 +4,79 @@
 
 ## 構造
 
-各コンポーネントは独立したYAMLファイルとして定義されます：
+コンポーネントは機能別カテゴリに整理されています：
 
 ```
 src/components/
-├── button.yaml          # ボタンコンポーネント
-├── input.yaml           # フォーム入力コンポーネント
-├── card.yaml            # カードコンポーネント
-├── modal.yaml           # モーダル/ダイアログ
-├── navigation.yaml      # ナビゲーション
-├── table.yaml           # テーブル
-├── badge.yaml           # バッジ
-├── alert.yaml           # アラート/通知
-└── tooltip.yaml         # ツールチップ
+├── forms/              # フォーム関連コンポーネント
+│   ├── button.yaml
+│   ├── input.yaml
+│   ├── checkbox.yaml
+│   ├── radio.yaml
+│   ├── select.yaml
+│   ├── textarea.yaml
+│   └── toggle.yaml
+├── feedback/           # フィードバックコンポーネント
+│   ├── alert.yaml
+│   ├── badge.yaml
+│   ├── toast.yaml
+│   └── progress.yaml
+├── overlays/           # オーバーレイコンポーネント
+│   ├── modal.yaml
+│   ├── tooltip.yaml
+│   ├── drawer.yaml
+│   └── popover.yaml
+├── data-display/       # データ表示コンポーネント
+│   ├── card.yaml
+│   ├── table.yaml
+│   ├── list.yaml
+│   └── accordion.yaml
+└── navigation/         # ナビゲーションコンポーネント
+    ├── navigation.yaml
+    ├── breadcrumb.yaml
+    ├── tabs.yaml
+    └── pagination.yaml
 ```
+
+## カテゴリ説明
+
+### forms/ - フォーム関連
+ユーザー入力を受け付けるコンポーネント：
+- **button**: アクションボタン（primary, secondary, ghost, danger）
+- **input**: テキスト入力フィールド
+- **checkbox**: チェックボックス
+- **radio**: ラジオボタン
+- **select**: ドロップダウン選択
+- **textarea**: 複数行テキスト入力
+- **toggle**: トグルスイッチ
+
+### feedback/ - フィードバック
+ユーザーにフィードバックを提供するコンポーネント：
+- **alert**: 重要なメッセージ（success, warning, error, info）
+- **badge**: ステータスや数値の表示
+- **toast**: 一時的な通知メッセージ
+- **progress**: 進捗状況の表示
+
+### overlays/ - オーバーレイ
+画面上に重ねて表示されるコンポーネント：
+- **modal**: モーダルダイアログ
+- **tooltip**: ツールチップ（ホバー時の説明）
+- **drawer**: サイドドロワー
+- **popover**: ポップオーバー
+
+### data-display/ - データ表示
+情報やデータを表示するコンポーネント：
+- **card**: カード（コンテンツのグループ化）
+- **table**: データテーブル
+- **list**: リスト表示
+- **accordion**: アコーディオン（展開可能なセクション）
+
+### navigation/ - ナビゲーション
+ページ間やセクション間の移動を助けるコンポーネント：
+- **navigation**: メインナビゲーション
+- **breadcrumb**: パンくずリスト
+- **tabs**: タブナビゲーション
+- **pagination**: ページネーション
 
 ## 命名規則
 
@@ -64,6 +123,7 @@ component:
 - **button**: primary, secondary, outline, ghost, destructive
 - **input**: text, textarea, select, checkbox, radio, toggle
 - **badge**: primary, success, warning, error, info, neutral
+- **alert**: success, warning, error, info
 
 ### 3. 状態の定義
 
@@ -76,6 +136,7 @@ component:
 - **disabled**: 無効時
 - **readonly**: 読み取り専用（入力要素）
 - **checked**: チェック済み（チェックボックス、ラジオ）
+- **selected**: 選択済み（カード、ナビゲーションなど）
 
 ### 4. プロパティの分類
 
@@ -112,12 +173,13 @@ component:
 現在、既存のコンポーネントトークンは `src/semantic/components.yaml` に定義されています。
 以下の順序で段階的に移行します：
 
-1. **Phase 3.1**: ディレクトリ構造の準備（このPR）
-2. **Phase 3.2**: Button & Input コンポーネント移行
-3. **Phase 3.3**: Card, Modal, Tooltip コンポーネント移行
-4. **Phase 3.4**: Navigation, Table コンポーネント移行
-5. **Phase 3.5**: Badge, Alert コンポーネント移行
-6. **Phase 3.6**: 既存の semantic/components.yaml 削除
+1. **Phase 3.1**: ディレクトリ構造の準備 ✅
+2. **Phase 3.2**: Button & Input コンポーネント移行 ✅
+3. **Phase 3.3**: Card, Modal, Tooltip コンポーネント移行 ✅
+4. **Phase 3.4**: カテゴリ別ディレクトリ構造への再編成（このPR）
+5. **Phase 3.5**: Navigation, Table コンポーネント移行
+6. **Phase 3.6**: Badge, Alert コンポーネント移行
+7. **Phase 3.7**: 既存の semantic/components.yaml 削除
 
 ## 使用例
 
@@ -160,6 +222,48 @@ const Button = styled.button`
   transition: all var(--component-button-state-transition);
 `;
 ```
+
+### カードコンポーネントの実装
+
+```tsx
+const Card = styled.div`
+  background-color: var(--component-card-background-default);
+  border: 1px solid var(--component-card-border-default);
+  border-radius: 8px;
+  padding: 16px;
+
+  &:hover {
+    background-color: var(--component-card-background-hover);
+    border-color: var(--component-card-border-hover);
+  }
+
+  &[aria-selected="true"] {
+    background-color: var(--component-card-background-selected);
+    border-color: var(--component-card-border-selected);
+  }
+`;
+```
+
+## コンポーネント追加ガイドライン
+
+新しいコンポーネントを追加する際は、以下を確認してください：
+
+1. **適切なカテゴリの選択**
+   - コンポーネントの主な目的に基づいてカテゴリを選択
+   - 複数のカテゴリに該当する場合は、最も重要な機能を優先
+
+2. **ファイル命名**
+   - ケバブケース（lowercase-with-hyphens）を使用
+   - コンポーネント名と一致させる（例: `text-input.yaml`）
+
+3. **トークン定義**
+   - 全てのバリアントと状態を網羅
+   - 日本語と英語のコメントを追加
+   - セマンティックトークンを優先的に参照
+
+4. **ドキュメント更新**
+   - このREADME.mdの構造図を更新
+   - 使用例を追加（必要に応じて）
 
 ## 参照
 
