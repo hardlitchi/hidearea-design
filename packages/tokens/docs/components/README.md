@@ -11,9 +11,9 @@
 
 ---
 
-## 実装済みコンポーネント (9)
+## 実装済みコンポーネント (14)
 
-### Forms (フォーム)
+### Forms (フォーム) ✅ 完成 7/7
 
 ユーザー入力を受け付けるコンポーネント
 
@@ -21,6 +21,11 @@
 |--------------|------------|----------|------------|
 | **Button** | 4 (primary, secondary, ghost, danger) | ✅ 実装済み | [button.md](./button.md) |
 | **Input** | 1 (default) + 状態 (error, success) | ✅ 実装済み | [input.md](./input.md) |
+| **Checkbox** | 3サイズ (small, default, large) | ✅ 実装済み | [checkbox.md](./checkbox.md) |
+| **Radio** | 3サイズ (small, default, large) | ✅ 実装済み | [radio.md](./radio.md) |
+| **Select** | 1 (default) + 状態 | ✅ 実装済み | [select.md](./select.md) |
+| **Textarea** | 3サイズ (small, default, large) | ✅ 実装済み | [textarea.md](./textarea.md) |
+| **Switch** | 3サイズ (small, default, large) | ✅ 実装済み | [switch.md](./switch.md) |
 
 ### Feedback (フィードバック)
 
@@ -61,24 +66,19 @@
 
 ## 今後追加予定のコンポーネント
 
-### Forms
-- Checkbox
-- Radio
-- Select
-- Textarea
-- Switch
+### Feedback (優先度: 高)
+- Toast - トースト通知
+- Progress - プログレスバー
+- Skeleton - スケルトンローダー
+- Spinner - ローディングスピナー
 
-### Feedback
-- Toast
-- Progress
-- Skeleton
+### Navigation (優先度: 高)
+- Tabs - タブナビゲーション
+- Breadcrumb - パンくずリスト
+- Pagination - ページネーション
+- Menu - ドロップダウンメニュー
 
-### Navigation
-- Tabs
-- Breadcrumb
-- Pagination
-
-### Overlays
+### Overlays (優先度: 中)
 - Dialog
 - Drawer
 - Popover
