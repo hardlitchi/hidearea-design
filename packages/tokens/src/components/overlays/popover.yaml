@@ -1,0 +1,257 @@
+# ポップオーバーコンポーネントトークン - hidearea-design
+# インタラクティブな吹き出しUI（矢印付き）
+
+component:
+  popover:
+    # サイズバリアント
+    width:
+      small:
+        value: "240px"
+        comment: "小サイズ - 簡単な説明"
+      default:
+        value: "320px"
+        comment: "デフォルトサイズ - 標準的な内容"
+      large:
+        value: "480px"
+        comment: "大サイズ - 詳細な内容やフォーム"
+
+    maxWidth:
+      value: "90vw"
+      comment: "画面幅の90%まで"
+
+    minWidth:
+      value: "200px"
+      comment: "最小幅"
+
+    maxHeight:
+      value: "480px"
+      comment: "最大高さ"
+
+    # スペーシング
+    padding:
+      value: "{spacing.4}"
+      comment: "内部パディング (16px)"
+
+    gap:
+      value: "{spacing.3}"
+      comment: "要素間の間隔 (12px)"
+
+    # 背景
+    background:
+      default:
+        value: "{background.primary}"
+        comment: "ポップオーバー背景色（テーマ対応）"
+
+    # ボーダー
+    border:
+      width:
+        value: "{border.width.1}"
+        comment: "ボーダー幅 (1px)"
+      radius:
+        value: "{border.radius.md}"
+        comment: "角丸 (6px)"
+      color:
+        value: "{border.default}"
+        comment: "ボーダー色（テーマ対応）"
+
+    # シャドウ
+    shadow:
+      value: "{shadow.lg}"
+      comment: "大きめの影"
+
+    # Z-index
+    zIndex:
+      value: "1100"
+      comment: "ポップオーバーのz-index（モーダルより上）"
+
+    # 矢印（Arrow）
+    arrow:
+      size:
+        value: "{spacing.2}"
+        comment: "矢印サイズ (8px)"
+
+      background:
+        value: "{background.primary}"
+        comment: "矢印背景色（テーマ対応）"
+
+      border:
+        width:
+          value: "{border.width.1}"
+          comment: "矢印ボーダー幅 (1px)"
+        color:
+          value: "{border.default}"
+          comment: "矢印ボーダー色（テーマ対応）"
+
+      offset:
+        value: "{spacing.3}"
+        comment: "矢印のオフセット (12px)"
+
+    # ヘッダー
+    header:
+      padding:
+        value: "{spacing.4}"
+        comment: "ヘッダーパディング (16px)"
+
+      borderBottom:
+        value: "1px solid {border.default}"
+        comment: "ヘッダー下ボーダー"
+
+      title:
+        fontSize:
+          value: "{font.size.base}"
+          comment: "タイトル文字サイズ (16px)"
+        fontWeight:
+          value: "{font.weight.semibold}"
+          comment: "タイトル太さ (600)"
+        lineHeight:
+          value: "{font.lineHeight.tight}"
+          comment: "行高"
+        color:
+          value: "{foreground.primary}"
+          comment: "タイトル色（テーマ対応）"
+
+    # ボディ
+    body:
+      padding:
+        value: "{spacing.4}"
+        comment: "ボディパディング (16px)"
+
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "ボディ文字サイズ (14px)"
+
+      lineHeight:
+        value: "{font.lineHeight.relaxed}"
+        comment: "行高"
+
+      color:
+        value: "{foreground.secondary}"
+        comment: "ボディ色（テーマ対応）"
+
+      maxHeight:
+        value: "320px"
+        comment: "ボディ最大高さ"
+
+      overflow:
+        value: "auto"
+        comment: "スクロール可能"
+
+    # フッター
+    footer:
+      padding:
+        value: "{spacing.4}"
+        comment: "フッターパディング (16px)"
+
+      borderTop:
+        value: "1px solid {border.default}"
+        comment: "フッター上ボーダー"
+
+      gap:
+        value: "{spacing.2}"
+        comment: "ボタン間の間隔 (8px)"
+
+      justifyContent:
+        value: "flex-end"
+        comment: "ボタンを右寄せ"
+
+    # 閉じるボタン
+    closeButton:
+      size:
+        value: "{spacing.6}"
+        comment: "閉じるボタンサイズ (24px)"
+
+      position:
+        top:
+          value: "{spacing.2}"
+          comment: "上からの位置 (8px)"
+        right:
+          value: "{spacing.2}"
+          comment: "右からの位置 (8px)"
+
+      background:
+        default:
+          value: "transparent"
+          comment: "デフォルト背景 - 透明"
+        hover:
+          value: "{background.secondary}"
+          comment: "ホバー時背景"
+
+      color:
+        default:
+          value: "{foreground.tertiary}"
+          comment: "デフォルト色"
+        hover:
+          value: "{foreground.primary}"
+          comment: "ホバー時色"
+
+      borderRadius:
+        value: "{border.radius.sm}"
+        comment: "角丸 (4px)"
+
+    # アニメーション
+    animation:
+      duration:
+        value: "{animation.duration.fast}"
+        comment: "アニメーション時間 (0.15s)"
+
+      timing:
+        value: "{animation.easing.easeOut}"
+        comment: "イージング"
+
+      # 位置別の出現アニメーション
+      enter:
+        top:
+          value: "transform: translateY(-8px); opacity: 0"
+          comment: "上から出現"
+        bottom:
+          value: "transform: translateY(8px); opacity: 0"
+          comment: "下から出現"
+        left:
+          value: "transform: translateX(-8px); opacity: 0"
+          comment: "左から出現"
+        right:
+          value: "transform: translateX(8px); opacity: 0"
+          comment: "右から出現"
+
+    # トランジション
+    transition:
+      duration:
+        value: "{animation.duration.fast}"
+        comment: "トランジション時間 (0.15s)"
+
+      timing:
+        value: "{animation.easing.ease}"
+        comment: "イージング"
+
+      properties:
+        value: "background-color, color, border-color, opacity, transform"
+        comment: "トランジション対象プロパティ"
+
+    # オフセット（トリガー要素からの距離）
+    offset:
+      default:
+        value: "{spacing.2}"
+        comment: "デフォルトオフセット (8px)"
+
+      withArrow:
+        value: "{spacing.3}"
+        comment: "矢印付きオフセット (12px)"
+
+    # インタラクティブ設定
+    interactive:
+      cursor:
+        value: "auto"
+        comment: "ポインターカーソル"
+
+      focusRing:
+        width:
+          value: "2px"
+          comment: "フォーカスリング幅"
+
+        offset:
+          value: "2px"
+          comment: "フォーカスリングオフセット"
+
+        color:
+          value: "{primary.default}"
+          comment: "フォーカスリング色"

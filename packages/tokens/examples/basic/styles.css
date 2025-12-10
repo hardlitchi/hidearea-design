@@ -1713,3 +1713,239 @@ body {
   text-transform: var(--component-menu-group-header-text-transform, uppercase);
   letter-spacing: var(--component-menu-group-header-letter-spacing, 0.05em);
 }
+
+/* ===================================
+   Overlays Components - Phase 4 Option D
+   =================================== */
+
+/* Dialog Component */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--component-dialog-background-overlay);
+  z-index: var(--component-dialog-z-index-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dialog {
+  background: var(--component-dialog-background-default);
+  border-radius: var(--component-dialog-border-radius);
+  box-shadow: var(--component-dialog-shadow);
+  padding: var(--component-dialog-padding);
+  max-width: var(--component-dialog-max-width);
+  max-height: var(--component-dialog-max-height);
+  z-index: var(--component-dialog-z-index-content);
+  display: flex;
+  flex-direction: column;
+  gap: var(--component-dialog-gap);
+}
+
+.dialog-small {
+  width: var(--component-dialog-width-small);
+}
+
+.dialog-default {
+  width: var(--component-dialog-width-default);
+}
+
+.dialog-large {
+  width: var(--component-dialog-width-large);
+}
+
+.dialog-icon {
+  width: var(--component-dialog-icon-size);
+  height: var(--component-dialog-icon-size);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.dialog-icon-confirmation {
+  background: var(--component-dialog-icon-confirmation-background);
+  color: var(--component-dialog-icon-confirmation-color);
+}
+
+.dialog-icon-warning {
+  background: var(--component-dialog-icon-warning-background);
+  color: var(--component-dialog-icon-warning-color);
+}
+
+.dialog-icon-destructive {
+  background: var(--component-dialog-icon-destructive-background);
+  color: var(--component-dialog-icon-destructive-color);
+}
+
+.dialog-title {
+  font-size: var(--component-dialog-title-font-size);
+  font-weight: var(--component-dialog-title-font-weight);
+  color: var(--component-dialog-title-color);
+  text-align: center;
+}
+
+.dialog-description {
+  font-size: var(--component-dialog-description-font-size);
+  color: var(--component-dialog-description-color);
+  text-align: center;
+}
+
+.dialog-footer {
+  display: flex;
+  gap: var(--component-dialog-footer-gap);
+  justify-content: var(--component-dialog-footer-justify-content);
+  margin-top: var(--component-dialog-footer-margin-top);
+}
+
+/* Drawer Component */
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--component-drawer-background-overlay);
+  z-index: var(--component-drawer-z-index-overlay);
+}
+
+.drawer {
+  position: fixed;
+  background: var(--component-drawer-background-default);
+  box-shadow: var(--component-drawer-shadow);
+  z-index: var(--component-drawer-z-index-content);
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-left {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--component-drawer-size-default);
+  border-right: var(--component-drawer-position-left-border-right);
+}
+
+.drawer-right {
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--component-drawer-size-default);
+  border-left: var(--component-drawer-position-right-border-left);
+}
+
+.drawer-bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--component-drawer-size-default);
+  border-top: var(--component-drawer-position-bottom-border-top);
+}
+
+.drawer-header {
+  padding: var(--component-drawer-header-padding);
+  border-bottom: var(--component-drawer-header-border-bottom);
+  min-height: var(--component-drawer-header-min-height);
+}
+
+.drawer-title {
+  font-size: var(--component-drawer-header-title-font-size);
+  font-weight: var(--component-drawer-header-title-font-weight);
+  color: var(--component-drawer-header-title-color);
+}
+
+.drawer-body {
+  flex: 1;
+  padding: var(--component-drawer-body-padding);
+  overflow: var(--component-drawer-body-overflow);
+}
+
+/* Popover Component */
+.popover {
+  position: absolute;
+  background: var(--component-popover-background-default);
+  border: var(--component-popover-border-width) solid var(--component-popover-border-color);
+  border-radius: var(--component-popover-border-radius);
+  box-shadow: var(--component-popover-shadow);
+  padding: var(--component-popover-padding);
+  z-index: var(--component-popover-z-index);
+}
+
+.popover-small {
+  width: var(--component-popover-width-small);
+}
+
+.popover-default {
+  width: var(--component-popover-width-default);
+}
+
+.popover-large {
+  width: var(--component-popover-width-large);
+}
+
+.popover-title {
+  font-size: var(--component-popover-header-title-font-size);
+  font-weight: var(--component-popover-header-title-font-weight);
+  color: var(--component-popover-header-title-color);
+  margin-bottom: var(--component-popover-gap);
+}
+
+.popover-body {
+  font-size: var(--component-popover-body-font-size);
+  color: var(--component-popover-body-color);
+}
+
+/* Dropdown Component */
+.dropdown-container {
+  position: absolute;
+  background: var(--component-dropdown-container-background);
+  border: var(--component-dropdown-container-border-width) solid var(--component-dropdown-container-border-color);
+  border-radius: var(--component-dropdown-container-border-radius);
+  box-shadow: var(--component-dropdown-container-shadow);
+  padding: var(--component-dropdown-container-padding-vertical) var(--component-dropdown-container-padding-horizontal);
+  min-width: var(--component-dropdown-container-min-width);
+  max-height: var(--component-dropdown-container-max-height);
+  overflow: var(--component-dropdown-container-overflow);
+  z-index: var(--component-dropdown-z-index);
+}
+
+.dropdown-item {
+  padding: var(--component-dropdown-item-padding-vertical) var(--component-dropdown-item-padding-horizontal);
+  font-size: var(--component-dropdown-item-font-size);
+  color: var(--component-dropdown-item-text-default);
+  background: var(--component-dropdown-item-background-default);
+  cursor: var(--component-dropdown-item-cursor-default);
+  min-height: var(--component-dropdown-item-min-height-default);
+  display: flex;
+  align-items: center;
+  transition: var(--component-dropdown-transition-properties) var(--component-dropdown-transition-duration);
+}
+
+.dropdown-item:hover {
+  background: var(--component-dropdown-item-background-hover);
+}
+
+.dropdown-item.selected {
+  background: var(--component-dropdown-item-background-selected);
+  color: var(--component-dropdown-item-text-selected);
+  font-weight: var(--component-dropdown-item-font-weight-selected);
+}
+
+.dropdown-divider {
+  height: var(--component-dropdown-divider-height);
+  background: var(--component-dropdown-divider-background);
+  margin: var(--component-dropdown-divider-margin-vertical) var(--component-dropdown-divider-margin-horizontal);
+}
+
+.dropdown-group-header {
+  padding: var(--component-dropdown-group-header-padding-vertical) var(--component-dropdown-group-header-padding-horizontal);
+  font-size: var(--component-dropdown-group-header-font-size);
+  font-weight: var(--component-dropdown-group-header-font-weight);
+  color: var(--component-dropdown-group-header-color);
+  text-transform: var(--component-dropdown-group-header-text-transform);
+  letter-spacing: var(--component-dropdown-group-header-letter-spacing);
+}

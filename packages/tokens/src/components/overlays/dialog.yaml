@@ -1,0 +1,219 @@
+# ダイアログコンポーネントトークン - hidearea-design
+# 確認・警告・破壊的アクション用のダイアログUI
+
+component:
+  dialog:
+    # サイズバリアント
+    width:
+      small:
+        value: "320px"
+        comment: "小サイズ - シンプルな確認ダイアログ"
+      default:
+        value: "480px"
+        comment: "デフォルトサイズ - 標準的なダイアログ"
+      large:
+        value: "640px"
+        comment: "大サイズ - 詳細な説明が必要な場合"
+
+    maxWidth:
+      value: "90vw"
+      comment: "画面幅の90%まで"
+
+    maxHeight:
+      value: "90vh"
+      comment: "画面高さの90%まで"
+
+    minHeight:
+      value: "160px"
+      comment: "最小高さ"
+
+    # スペーシング
+    padding:
+      value: "{spacing.6}"
+      comment: "ダイアログ内部のパディング (24px)"
+
+    gap:
+      value: "{spacing.4}"
+      comment: "要素間の間隔 (16px)"
+
+    # 背景とオーバーレイ
+    background:
+      default:
+        value: "{background.primary}"
+        comment: "ダイアログ背景色（テーマ対応）"
+      overlay:
+        value: "rgba(0, 0, 0, 0.5)"
+        comment: "背景オーバーレイ - 半透明黒"
+
+    # ボーダー
+    border:
+      width:
+        value: "{border.width.0}"
+        comment: "ボーダーなし"
+      radius:
+        value: "{border.radius.lg}"
+        comment: "角丸 (8px)"
+      color:
+        value: "{border.default}"
+        comment: "ボーダー色（テーマ対応）"
+
+    # シャドウ
+    shadow:
+      value: "{shadow.2xl}"
+      comment: "大きな影で浮き上がり効果"
+
+    # Z-index
+    zIndex:
+      overlay:
+        value: "1000"
+        comment: "オーバーレイのz-index"
+      content:
+        value: "1001"
+        comment: "ダイアログコンテンツのz-index"
+
+    # アニメーション
+    animation:
+      duration:
+        value: "{animation.duration.base}"
+        comment: "アニメーション時間 (0.2s)"
+      timing:
+        value: "{animation.easing.easeOut}"
+        comment: "イージング"
+
+    # アイコン
+    icon:
+      size:
+        value: "{spacing.12}"
+        comment: "アイコンサイズ (48px)"
+
+      # 確認ダイアログ
+      confirmation:
+        background:
+          value: "{primary.subtle}"
+          comment: "確認アイコン背景 - プライマリ淡色"
+        color:
+          value: "{primary.default}"
+          comment: "確認アイコン色 - プライマリ"
+
+      # 警告ダイアログ
+      warning:
+        background:
+          value: "{warning.subtle}"
+          comment: "警告アイコン背景 - 警告淡色"
+        color:
+          value: "{warning.default}"
+          comment: "警告アイコン色 - 警告"
+
+      # エラー/破壊的ダイアログ
+      destructive:
+        background:
+          value: "{error.subtle}"
+          comment: "破壊的アイコン背景 - エラー淡色"
+        color:
+          value: "{error.default}"
+          comment: "破壊的アイコン色 - エラー"
+
+      # 情報ダイアログ
+      info:
+        background:
+          value: "{info.subtle}"
+          comment: "情報アイコン背景 - 情報淡色"
+        color:
+          value: "{info.default}"
+          comment: "情報アイコン色 - 情報"
+
+      # 成功ダイアログ
+      success:
+        background:
+          value: "{success.subtle}"
+          comment: "成功アイコン背景 - 成功淡色"
+        color:
+          value: "{success.default}"
+          comment: "成功アイコン色 - 成功"
+
+    # タイトル
+    title:
+      fontSize:
+        value: "{font.size.lg}"
+        comment: "タイトル文字サイズ (18px)"
+      fontWeight:
+        value: "{font.weight.semibold}"
+        comment: "タイトル太さ (600)"
+      lineHeight:
+        value: "{font.lineHeight.tight}"
+        comment: "行高"
+      color:
+        value: "{foreground.primary}"
+        comment: "タイトル色（テーマ対応）"
+      marginBottom:
+        value: "{spacing.2}"
+        comment: "タイトル下マージン (8px)"
+
+    # 説明文
+    description:
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "説明文字サイズ (14px)"
+      fontWeight:
+        value: "{font.weight.normal}"
+        comment: "説明文太さ (400)"
+      lineHeight:
+        value: "{font.lineHeight.relaxed}"
+        comment: "行高"
+      color:
+        value: "{foreground.secondary}"
+        comment: "説明文色（テーマ対応）"
+
+    # フッター（ボタンエリア）
+    footer:
+      gap:
+        value: "{spacing.3}"
+        comment: "ボタン間の間隔 (12px)"
+      marginTop:
+        value: "{spacing.6}"
+        comment: "フッター上マージン (24px)"
+      justifyContent:
+        value: "flex-end"
+        comment: "ボタンを右寄せ"
+
+    # 閉じるボタン
+    closeButton:
+      size:
+        value: "{spacing.8}"
+        comment: "閉じるボタンサイズ (32px)"
+      position:
+        top:
+          value: "{spacing.4}"
+          comment: "上からの位置 (16px)"
+        right:
+          value: "{spacing.4}"
+          comment: "右からの位置 (16px)"
+      background:
+        default:
+          value: "transparent"
+          comment: "デフォルト背景 - 透明"
+        hover:
+          value: "{background.secondary}"
+          comment: "ホバー時背景"
+      color:
+        default:
+          value: "{foreground.tertiary}"
+          comment: "デフォルト色"
+        hover:
+          value: "{foreground.primary}"
+          comment: "ホバー時色"
+      borderRadius:
+        value: "{border.radius.md}"
+        comment: "角丸 (6px)"
+
+    # トランジション
+    transition:
+      duration:
+        value: "{animation.duration.fast}"
+        comment: "トランジション時間 (0.15s)"
+      timing:
+        value: "{animation.easing.ease}"
+        comment: "イージング"
+      properties:
+        value: "background-color, color, opacity, transform"
+        comment: "トランジション対象プロパティ"
