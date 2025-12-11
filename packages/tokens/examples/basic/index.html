@@ -688,10 +688,18 @@
 
       <div class="component-group">
         <h3>Tooltip - ツールチップ</h3>
+        <p style="margin-bottom: 1rem;">ボタンにホバーまたはフォーカスすると、ツールチップが表示されます。自動的に位置が調整され、ビューポート内に表示されます。</p>
         <div class="example-box">
-          <div class="tooltip-container">
-            <button class="btn btn-secondary">ホバーしてください</button>
-            <div class="tooltip">これはツールチップです</div>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; align-items: center; padding: 2rem;">
+            <button class="btn btn-primary" data-tooltip="これは上部のツールチップです" data-tooltip-position="top">Top Tooltip</button>
+            <button class="btn btn-secondary" data-tooltip="これは右側のツールチップです" data-tooltip-position="right">Right Tooltip</button>
+            <button class="btn btn-ghost" data-tooltip="これは下部のツールチップです" data-tooltip-position="bottom">Bottom Tooltip</button>
+            <button class="btn btn-danger" data-tooltip="これは左側のツールチップです" data-tooltip-position="left">Left Tooltip</button>
+          </div>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 1rem;">
+            <button class="btn btn-secondary" data-tooltip="保存ボタンをクリックすると、現在の作業内容がサーバーに保存されます。" data-tooltip-position="top">Save</button>
+            <button class="btn btn-ghost" data-tooltip="キャンセルすると、変更は破棄されます。" data-tooltip-position="top">Cancel</button>
+            <button class="btn btn-primary" data-tooltip="削除すると、このアイテムは完全に削除されます。この操作は元に戻せません。" data-tooltip-position="top">Delete</button>
           </div>
         </div>
       </div>
@@ -789,6 +797,7 @@
 
       <div class="component-group">
         <h3>Breadcrumb - パンくずリスト</h3>
+        <p style="margin-bottom: 1rem;">リンクをクリックすると、トースト通知でナビゲーション先が表示されます。キーボード操作（Enter、Space）にも対応しています。</p>
         <div class="example-box">
           <nav class="breadcrumb" aria-label="パンくずナビゲーション">
             <ol class="breadcrumb-list">
