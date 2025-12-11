@@ -178,7 +178,13 @@ function createDialog(type, title, message) {
     if (animate) {
       overlay.classList.add('dialog-exiting');
       dialog.classList.add('dialog-exiting');
-      setTimeout(() => overlay.remove(), 200);
+
+      // アニメーション完了後に要素を削除
+      const handleAnimationEnd = () => {
+        overlay.remove();
+        overlay.removeEventListener('animationend', handleAnimationEnd);
+      };
+      overlay.addEventListener('animationend', handleAnimationEnd);
     } else {
       overlay.remove();
     }
@@ -262,7 +268,13 @@ function createDrawer(position) {
     if (animate) {
       overlay.classList.add('drawer-exiting');
       drawer.classList.add('drawer-exiting');
-      setTimeout(() => overlay.remove(), 200);
+
+      // アニメーション完了後に要素を削除
+      const handleAnimationEnd = () => {
+        overlay.remove();
+        overlay.removeEventListener('animationend', handleAnimationEnd);
+      };
+      overlay.addEventListener('animationend', handleAnimationEnd);
     } else {
       overlay.remove();
     }
@@ -330,7 +342,13 @@ function createPopover(trigger) {
   const close = (animate = true) => {
     if (animate) {
       popover.classList.add('popover-exiting');
-      setTimeout(() => popover.remove(), 150);
+
+      // アニメーション完了後に要素を削除
+      const handleAnimationEnd = () => {
+        popover.remove();
+        popover.removeEventListener('animationend', handleAnimationEnd);
+      };
+      popover.addEventListener('animationend', handleAnimationEnd);
     } else {
       popover.remove();
     }
@@ -406,7 +424,13 @@ function createDropdown(trigger) {
   const close = (animate = true) => {
     if (animate) {
       dropdown.classList.add('dropdown-exiting');
-      setTimeout(() => dropdown.remove(), 150);
+
+      // アニメーション完了後に要素を削除
+      const handleAnimationEnd = () => {
+        dropdown.remove();
+        dropdown.removeEventListener('animationend', handleAnimationEnd);
+      };
+      dropdown.addEventListener('animationend', handleAnimationEnd);
     } else {
       dropdown.remove();
     }
