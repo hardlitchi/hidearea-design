@@ -81,15 +81,31 @@ npm run dev
 
 ## 🚀 すべてのサンプルを一度に起動
 
-ルートディレクトリから:
+### 方法1: 手動起動（開発時）
+
+プロジェクトルートから:
 
 ```bash
-# 依存関係のインストール
-pnpm install
+# すべてのサンプルを起動
+./scripts/start-examples.sh
 
-# 開発サーバーを起動
-pnpm dev
+# 停止する場合
+./scripts/stop-examples.sh
 ```
+
+### 方法2: systemd サービス（本番環境）
+
+```bash
+# サービスをインストール（初回のみ）
+sudo ./scripts/install-systemd-service.sh
+
+# サービスを起動
+sudo systemctl start hidearea-examples
+```
+
+詳細は [ローカルサーバーデプロイガイド](../docs/deployment/local-server.md) を参照してください。
+
+### アクセスURL
 
 各サンプルは異なるポートで起動します:
 - Component Showcase: http://localhost:5173

@@ -1,0 +1,18 @@
+{
+  "name": "@hidearea-design/example-login-form",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5174 --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --port 5174 --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@hidearea-design/core": "workspace:*",
+    "@hidearea-design/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

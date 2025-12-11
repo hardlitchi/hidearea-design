@@ -1,0 +1,24 @@
+[Unit]
+Description=hidearea-design Examples Server
+After=network.target
+
+[Service]
+Type=forking
+User=neko
+WorkingDirectory=/home/neko/workspaces/design
+ExecStart=/home/neko/workspaces/design/scripts/start-examples.sh
+ExecStop=/home/neko/workspaces/design/scripts/stop-examples.sh
+Restart=on-failure
+RestartSec=10
+
+# Environment
+Environment="NODE_ENV=production"
+Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=hidearea-examples
+
+[Install]
+WantedBy=multi-user.target
