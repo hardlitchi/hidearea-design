@@ -1,0 +1,205 @@
+/**
+ * Chip Component Styles
+ * Design tokens: @hidearea-design/tokens
+ * 
+ * This CSS file defines the complete visual styling for the Chip component.
+ * All values reference design tokens (CSS custom properties) defined in
+ * src/components/data-display/chip.yaml
+ */
+
+/* ========================================
+   Host & Container
+   ======================================== */
+
+:host {
+  display: inline-flex;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--component-chip-icon-gap);
+  height: var(--component-chip-size-medium-height);
+  padding: 0 var(--component-chip-size-medium-padding-horizontal);
+  background: var(--component-chip-default-background-default);
+  color: var(--component-chip-default-text);
+  font-size: var(--component-chip-size-medium-fontSize);
+  font-weight: var(--component-chip-fontWeight);
+  line-height: var(--component-chip-lineHeight);
+  border: var(--component-chip-border-width) solid var(--component-chip-default-border-color);
+  border-radius: var(--component-chip-border-radius);
+  cursor: default;
+  user-select: none;
+  white-space: nowrap;
+  transition: var(--component-chip-interactive-transition-properties) 
+              var(--component-chip-interactive-transition-duration) 
+              var(--component-chip-interactive-transition-timing);
+}
+
+/* ========================================
+   Content Parts
+   ======================================== */
+
+.chip__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--component-chip-size-medium-iconSize);
+  height: var(--component-chip-size-medium-iconSize);
+  color: var(--component-chip-icon-color);
+}
+
+.chip__text {
+  flex: 1;
+}
+
+.chip__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--component-chip-close-size-medium);
+  height: var(--component-chip-close-size-medium);
+  margin-left: var(--component-chip-close-gap);
+  padding: var(--component-chip-close-padding);
+  background: transparent;
+  border: none;
+  border-radius: var(--component-chip-close-borderRadius);
+  color: var(--component-chip-close-color-default);
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.chip__close:hover {
+  background: var(--component-chip-close-background-hover);
+  color: var(--component-chip-close-color-hover);
+}
+
+/* ========================================
+   Size Variants
+   ======================================== */
+
+:host([size="small"]) .chip {
+  height: var(--component-chip-size-small-height);
+  padding: 0 var(--component-chip-size-small-padding-horizontal);
+  font-size: var(--component-chip-size-small-fontSize);
+}
+
+:host([size="small"]) .chip__icon {
+  width: var(--component-chip-size-small-iconSize);
+  height: var(--component-chip-size-small-iconSize);
+}
+
+:host([size="small"]) .chip__close {
+  width: var(--component-chip-close-size-small);
+  height: var(--component-chip-close-size-small);
+}
+
+:host([size="large"]) .chip {
+  height: var(--component-chip-size-large-height);
+  padding: 0 var(--component-chip-size-large-padding-horizontal);
+  font-size: var(--component-chip-size-large-fontSize);
+}
+
+:host([size="large"]) .chip__icon {
+  width: var(--component-chip-size-large-iconSize);
+  height: var(--component-chip-size-large-iconSize);
+}
+
+:host([size="large"]) .chip__close {
+  width: var(--component-chip-close-size-large);
+  height: var(--component-chip-close-size-large);
+}
+
+/* ========================================
+   Color Variants
+   ======================================== */
+
+:host([color="primary"]) .chip {
+  background: var(--component-chip-primary-background-default);
+  color: var(--component-chip-primary-text-default);
+  border-color: var(--component-chip-primary-border-color);
+}
+
+:host([color="primary"]:hover) .chip {
+  background: var(--component-chip-primary-background-hover);
+  color: var(--component-chip-primary-text-hover);
+}
+
+:host([color="success"]) .chip {
+  background: var(--component-chip-success-background-default);
+  color: var(--component-chip-success-text-default);
+}
+
+:host([color="success"]:hover) .chip {
+  background: var(--component-chip-success-background-hover);
+  color: var(--component-chip-success-text-hover);
+}
+
+:host([color="warning"]) .chip {
+  background: var(--component-chip-warning-background-default);
+  color: var(--component-chip-warning-text-default);
+}
+
+:host([color="warning"]:hover) .chip {
+  background: var(--component-chip-warning-background-hover);
+  color: var(--component-chip-warning-text-hover);
+}
+
+:host([color="error"]) .chip {
+  background: var(--component-chip-error-background-default);
+  color: var(--component-chip-error-text-default);
+}
+
+:host([color="error"]:hover) .chip {
+  background: var(--component-chip-error-background-hover);
+  color: var(--component-chip-error-text-hover);
+}
+
+:host([color="info"]) .chip {
+  background: var(--component-chip-info-background-default);
+  color: var(--component-chip-info-text-default);
+}
+
+:host([color="info"]:hover) .chip {
+  background: var(--component-chip-info-background-hover);
+  color: var(--component-chip-info-text-hover);
+}
+
+/* ========================================
+   Interactive State
+   ======================================== */
+
+:host([interactive]) .chip {
+  cursor: var(--component-chip-interactive-cursor);
+}
+
+/* ========================================
+   Disabled State
+   ======================================== */
+
+:host([disabled]) .chip {
+  opacity: var(--component-chip-disabled-opacity);
+  cursor: var(--component-chip-disabled-cursor);
+  pointer-events: none;
+}
+
+/* ========================================
+   Focus State
+   ======================================== */
+
+:host(:focus-visible) .chip {
+  outline: var(--component-chip-focus-ring-width) solid var(--component-chip-focus-ring-color);
+  outline-offset: var(--component-chip-focus-ring-offset);
+}
+
+/* ========================================
+   Accessibility & Motion
+   ======================================== */
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .chip,
+  .chip__close {
+    transition: none;
+  }
+}

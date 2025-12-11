@@ -1,5 +1,6 @@
 import StyleDictionary from 'style-dictionary';
-import { readFileSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync, readdirSync } from 'fs';
+import { join, basename } from 'path';
 import YAML from 'yaml';
 
 /**
@@ -205,3 +206,86 @@ const sd = new StyleDictionary({
 await sd.buildAllPlatforms();
 
 console.log('✅ Design tokens built successfully!');
+
+/**
+ * Build component CSS files
+ * 1. Copy CSS files from src/css/components/ to build/css/components/
+ * 2. Generate TypeScript exports in build/js/styles/
+ */
+const srcCssDir = 'src/css/components';
+const buildCssDir = 'build/css/components';
+const buildJsStylesDir = 'build/js/styles';
+
+// Create output directories
+mkdirSync(buildCssDir, { recursive: true });
+mkdirSync(buildJsStylesDir, { recursive: true });
+
+// Get all CSS files
+const cssFiles = readdirSync(srcCssDir).filter(file => file.endsWith('.css'));
+
+console.log(`\n📦 Building component styles...`);
+
+// Helper function to convert kebab-case to camelCase
+const kebabToCamel = (str) => str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+
+cssFiles.forEach(file => {
+  const srcPath = join(srcCssDir, file);
+  const cssContent = readFileSync(srcPath, 'utf-8');
+  const componentName = basename(file, '.css');
+  const camelCaseName = kebabToCamel(componentName);
+
+  // 1. Copy CSS to build/css/components/
+  const destCssPath = join(buildCssDir, file);
+  copyFileSync(srcPath, destCssPath);
+  console.log(`   ✓ Copied ${file} → ${buildCssDir}/`);
+
+  // 2. Generate JavaScript export in build/js/styles/
+  const jsContent = `/**
+ * ${camelCaseName.charAt(0).toUpperCase() + camelCaseName.slice(1)} Component Styles
+ * Auto-generated from src/css/components/${file}
+ * @hidearea-design/tokens
+ */
+
+export const ${camelCaseName}Styles = \`${cssContent.replace(/`/g, '\\`')}\`;
+`;
+
+  const destJsPath = join(buildJsStylesDir, `${componentName}.js`);
+  writeFileSync(destJsPath, jsContent, 'utf-8');
+  console.log(`   ✓ Generated ${componentName}.js → ${buildJsStylesDir}/`);
+
+  // 3. Generate TypeScript declaration in build/js/styles/
+  const dtsContent = `/**
+ * ${camelCaseName.charAt(0).toUpperCase() + camelCaseName.slice(1)} Component Styles
+ * Auto-generated from src/css/components/${file}
+ * @hidearea-design/tokens
+ */
+
+export declare const ${camelCaseName}Styles: string;
+`;
+
+  const destDtsPath = join(buildJsStylesDir, `${componentName}.d.ts`);
+  writeFileSync(destDtsPath, dtsContent, 'utf-8');
+  console.log(`   ✓ Generated ${componentName}.d.ts → ${buildJsStylesDir}/`);
+});
+
+// Generate index file for easy imports
+const indexContent = cssFiles.map(file => {
+  const componentName = basename(file, '.css');
+  const camelCaseName = kebabToCamel(componentName);
+  return `export { ${camelCaseName}Styles } from './${componentName}.js';`;
+}).join('\n') + '\n';
+
+writeFileSync(join(buildJsStylesDir, 'index.js'), indexContent, 'utf-8');
+console.log(`   ✓ Generated index.js → ${buildJsStylesDir}/`);
+
+// Generate TypeScript declaration for index
+const indexDtsContent = cssFiles.map(file => {
+  const componentName = basename(file, '.css');
+  const camelCaseName = kebabToCamel(componentName);
+  return `export { ${camelCaseName}Styles } from './${componentName}.js';`;
+}).join('\n') + '\n';
+
+writeFileSync(join(buildJsStylesDir, 'index.d.ts'), indexDtsContent, 'utf-8');
+console.log(`   ✓ Generated index.d.ts → ${buildJsStylesDir}/`);
+
+console.log(`\n✅ Component styles built successfully! (${cssFiles.length} files)`);

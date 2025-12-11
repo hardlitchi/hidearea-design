@@ -1,4 +1,8 @@
-import { listStyles, listItemStyles, listDividerStyles } from "./list.styles";
+import {
+  listContainerStyles,
+  listItemStyles,
+  listDividerStyles
+} from "@hidearea-design/tokens/styles";
 
 /**
  * List component
@@ -27,7 +31,7 @@ export class HaList extends HTMLElement {
 
     // Create styles
     const style = document.createElement("style");
-    style.textContent = listStyles;
+    style.textContent = listContainerStyles;
 
     // Create list container
     this.listElement = document.createElement("div");

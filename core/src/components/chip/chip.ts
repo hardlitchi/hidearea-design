@@ -1,4 +1,4 @@
-import { chipStyles } from "./chip.styles";
+import { chipStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Chip component

@@ -166,3 +166,12 @@ component:
       marginTop:
         value: "{spacing.1}"
         comment: "セカンダリテキストの上マージン (0.25rem)"
+
+    # 無効状態
+    disabled:
+      opacity:
+        value: "0.5"
+        comment: "無効時の透明度"
+      cursor:
+        value: "not-allowed"
+        comment: "無効時のカーソル"

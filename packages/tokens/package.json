@@ -13,7 +13,14 @@
     },
     "./build/css/variables.css": "./build/css/variables.css",
     "./css": "./build/css/variables.css",
-    "./scss": "./build/scss/variables.scss"
+    "./scss": "./build/scss/variables.scss",
+    "./styles": {
+      "types": "./build/js/styles/index.d.ts",
+      "import": "./build/js/styles/index.js"
+    },
+    "./styles/*": {
+      "import": "./build/js/styles/*.js"
+    }
   },
   "files": [
     "build"
