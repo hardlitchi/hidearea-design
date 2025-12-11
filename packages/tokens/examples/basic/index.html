@@ -412,6 +412,16 @@
       <div class="component-group">
         <h3>Toast - トースト通知</h3>
         <div class="example-box">
+          <p style="margin-bottom: 1rem;">ボタンをクリックしてトースト通知を表示します（自動で5秒後に消えます）</p>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button class="btn btn-primary" onclick="showToast('保存が完了しました', 'success')">Success Toast</button>
+            <button class="btn btn-danger" onclick="showToast('エラーが発生しました', 'error')">Error Toast</button>
+            <button class="btn btn-secondary" onclick="showToast('注意: 変更は保存されていません', 'warning')">Warning Toast</button>
+            <button class="btn btn-ghost" onclick="showToast('新しいアップデートがあります', 'info')">Info Toast</button>
+            <button class="btn btn-secondary" onclick="showToast('このトーストは消えません', 'info', 0)" style="margin-left: auto;">永続Toast</button>
+          </div>
+
+          <h4 style="margin-top: 2rem; margin-bottom: 1rem;">静的プレビュー</h4>
           <div class="toast-container">
             <div class="toast toast-success">
               <div class="toast-content">
@@ -855,43 +865,8 @@
       <div class="component-group">
         <h3>Menu - メニュー</h3>
         <div class="example-box">
+          <p style="margin-bottom: 1rem;">ボタンをクリックしてメニューを表示します。キーボード操作（矢印キー、Enter、Escape）も可能です。</p>
           <button class="btn btn-secondary" id="menu-trigger">メニューを開く</button>
-
-          <div style="margin-top: 2rem; position: relative;">
-            <div class="menu" id="demo-menu" style="position: static; display: none;">
-              <div class="menu-group-header">アカウント</div>
-              <button class="menu-item">
-                <span class="menu-icon">👤</span>
-                <span>プロフィール</span>
-                <span class="menu-shortcut">⌘P</span>
-              </button>
-              <button class="menu-item">
-                <span class="menu-icon">⚙️</span>
-                <span>設定</span>
-                <span class="menu-shortcut">⌘S</span>
-              </button>
-              <div class="menu-divider"></div>
-              <div class="menu-group-header">アクション</div>
-              <button class="menu-item menu-item-active">
-                <span class="menu-check">✓</span>
-                <span>選択済み項目</span>
-              </button>
-              <button class="menu-item">
-                <span class="menu-icon">📄</span>
-                <span>新規作成</span>
-                <span class="menu-arrow">›</span>
-              </button>
-              <button class="menu-item" disabled>
-                <span class="menu-icon">🔒</span>
-                <span>無効な項目</span>
-              </button>
-              <div class="menu-divider"></div>
-              <button class="menu-item menu-item-danger">
-                <span class="menu-icon">🗑️</span>
-                <span>削除</span>
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </section>

@@ -630,6 +630,543 @@ document.getElementById('dropdown-trigger')?.addEventListener('click', function(
   createDropdown(this);
 });
 
+// ========================================
+// Tabs Component
+// ========================================
+
+/**
+ * Initialize tabs with keyboard navigation and ARIA support
+ * @param {HTMLElement} tabsContainer - Container element with .tabs class
+ */
+function initializeTabs(tabsContainer) {
+  const tabsList = tabsContainer.querySelector('.tabs-list');
+  const tabs = Array.from(tabsList.querySelectorAll('.tab:not([disabled])'));
+  const panels = Array.from(tabsContainer.querySelectorAll('.tab-panel'));
+
+  if (tabs.length === 0) return;
+
+  // Set ARIA attributes
+  tabsList.setAttribute('role', 'tablist');
+  tabs.forEach((tab, index) => {
+    const tabId = `tab-${Date.now()}-${index}`;
+    const panelId = `panel-${Date.now()}-${index}`;
+
+    tab.setAttribute('role', 'tab');
+    tab.setAttribute('id', tabId);
+    tab.setAttribute('tabindex', tab.classList.contains('tab-active') ? '0' : '-1');
+
+    if (panels[index]) {
+      panels[index].setAttribute('role', 'tabpanel');
+      panels[index].setAttribute('id', panelId);
+      panels[index].setAttribute('aria-labelledby', tabId);
+      tab.setAttribute('aria-controls', panelId);
+    }
+
+    tab.setAttribute('aria-selected', tab.classList.contains('tab-active') ? 'true' : 'false');
+  });
+
+  // Activate tab function
+  const activateTab = (tab) => {
+    const index = tabs.indexOf(tab);
+    if (index === -1) return;
+
+    // Deactivate all tabs and panels
+    tabs.forEach(t => {
+      t.classList.remove('tab-active');
+      t.setAttribute('tabindex', '-1');
+      t.setAttribute('aria-selected', 'false');
+    });
+
+    panels.forEach(p => {
+      p.classList.remove('tab-panel-active');
+    });
+
+    // Activate selected tab and panel
+    tab.classList.add('tab-active');
+    tab.setAttribute('tabindex', '0');
+    tab.setAttribute('aria-selected', 'true');
+    tab.focus();
+
+    if (panels[index]) {
+      panels[index].classList.add('tab-panel-active');
+    }
+  };
+
+  // Click handler
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => activateTab(tab));
+  });
+
+  // Keyboard navigation
+  tabsList.addEventListener('keydown', (e) => {
+    const currentIndex = tabs.indexOf(document.activeElement);
+    if (currentIndex === -1) return;
+
+    let nextIndex = currentIndex;
+
+    switch (e.key) {
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        e.preventDefault();
+        nextIndex = currentIndex - 1;
+        if (nextIndex < 0) nextIndex = tabs.length - 1;
+        activateTab(tabs[nextIndex]);
+        break;
+
+      case 'ArrowRight':
+      case 'ArrowDown':
+        e.preventDefault();
+        nextIndex = currentIndex + 1;
+        if (nextIndex >= tabs.length) nextIndex = 0;
+        activateTab(tabs[nextIndex]);
+        break;
+
+      case 'Home':
+        e.preventDefault();
+        activateTab(tabs[0]);
+        break;
+
+      case 'End':
+        e.preventDefault();
+        activateTab(tabs[tabs.length - 1]);
+        break;
+    }
+  });
+}
+
+// Initialize all tabs on page
+document.querySelectorAll('.tabs').forEach(initializeTabs);
+
+// ========================================
+// Toast Component
+// ========================================
+
+const TOAST_ANIMATION_DURATION = 200;
+const TOAST_AUTO_DISMISS_DELAY = 5000;
+
+/**
+ * Create and show a toast notification
+ * @param {string} message - Toast message
+ * @param {string} type - Toast type (success, error, warning, info)
+ * @param {number} duration - Auto-dismiss duration in ms (0 = no auto-dismiss)
+ * @returns {HTMLElement} Toast element
+ */
+function showToast(message, type = 'info', duration = TOAST_AUTO_DISMISS_DELAY) {
+  // Create or get toast container
+  let container = document.querySelector('.toast-container-live');
+  if (!container) {
+    container = document.createElement('div');
+    container.className = 'toast-container-live';
+    container.style.cssText = `
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      pointer-events: none;
+    `;
+    container.setAttribute('aria-live', 'polite');
+    container.setAttribute('aria-atomic', 'false');
+    document.body.appendChild(container);
+  }
+
+  // Create toast
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.style.cssText = `
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity ${TOAST_ANIMATION_DURATION}ms, transform ${TOAST_ANIMATION_DURATION}ms;
+  `;
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+
+  const icons = {
+    success: '✓',
+    error: '✕',
+    warning: '⚠',
+    info: 'ℹ'
+  };
+
+  toast.innerHTML = `
+    <div class="toast-content" style="display: flex; align-items: center; gap: 0.75rem;">
+      <span class="toast-icon" style="font-size: 1.25rem; line-height: 1;">${icons[type] || icons.info}</span>
+      <span>${message}</span>
+    </div>
+    <button class="toast-close" aria-label="閉じる" style="background: none; border: none; color: inherit; font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 0; margin-left: 1rem; opacity: 0.7; transition: opacity 0.15s;">×</button>
+  `;
+
+  container.appendChild(toast);
+
+  // Trigger enter animation
+  requestAnimationFrame(() => {
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateX(0)';
+  });
+
+  // Close function
+  const close = () => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateX(100%)';
+
+    setTimeout(() => {
+      toast.remove();
+      // Remove container if empty
+      if (container.children.length === 0) {
+        container.remove();
+      }
+    }, TOAST_ANIMATION_DURATION);
+  };
+
+  // Close button handler
+  const closeButton = toast.querySelector('.toast-close');
+  closeButton.addEventListener('click', close);
+
+  // Auto-dismiss
+  if (duration > 0) {
+    setTimeout(close, duration);
+  }
+
+  return toast;
+}
+
+// Add toast demo buttons
+document.querySelectorAll('.toast-container .toast-close').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const toast = this.closest('.toast');
+    toast.style.opacity = '0';
+    setTimeout(() => toast.style.opacity = '1', 300);
+  });
+});
+
+// ========================================
+// Menu Component
+// ========================================
+
+const MENU_ANIMATION_DURATION = 150;
+
+/**
+ * Setup keyboard navigation for menu items
+ * @param {HTMLElement[]} items - Array of menu items
+ * @param {Function} closeCallback - Callback to close menu
+ * @returns {Function} Cleanup function
+ */
+function setupMenuKeyboardNav(items, closeCallback) {
+  const handleKeyNav = (e) => {
+    const currentIndex = items.indexOf(document.activeElement);
+
+    switch (e.key) {
+      case 'Escape':
+        closeCallback();
+        break;
+
+      case 'ArrowDown':
+        e.preventDefault();
+        if (currentIndex === -1) {
+          items[0]?.focus();
+        } else {
+          const nextIndex = (currentIndex + 1) % items.length;
+          items[nextIndex].focus();
+        }
+        break;
+
+      case 'ArrowUp':
+        e.preventDefault();
+        if (currentIndex === -1) {
+          items[items.length - 1]?.focus();
+        } else {
+          const prevIndex = (currentIndex - 1 + items.length) % items.length;
+          items[prevIndex].focus();
+        }
+        break;
+
+      case 'Home':
+        e.preventDefault();
+        items[0]?.focus();
+        break;
+
+      case 'End':
+        e.preventDefault();
+        items[items.length - 1]?.focus();
+        break;
+
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        if (currentIndex !== -1) {
+          items[currentIndex].click();
+        }
+        break;
+    }
+  };
+
+  const cleanup = () => {
+    document.removeEventListener('keydown', handleKeyNav);
+  };
+
+  document.addEventListener('keydown', handleKeyNav);
+  return cleanup;
+}
+
+/**
+ * Create and display a menu
+ * @param {HTMLElement} trigger - Element that triggered the menu
+ * @returns {HTMLElement} Menu element
+ */
+function createMenu(trigger) {
+  // Remove existing menu
+  const existing = document.querySelector('.menu-live');
+  if (existing) {
+    existing.remove();
+    return null;
+  }
+
+  // Create menu
+  const menu = document.createElement('div');
+  menu.className = 'menu menu-live';
+  menu.style.cssText = `
+    position: absolute;
+    background: var(--background-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--border-radius-md);
+    padding: 0.5rem;
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    min-width: 200px;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity ${MENU_ANIMATION_DURATION}ms, transform ${MENU_ANIMATION_DURATION}ms;
+  `;
+  menu.setAttribute('role', 'menu');
+  menu.setAttribute('aria-orientation', 'vertical');
+
+  menu.innerHTML = `
+    <div class="menu-group-header" style="padding: 0.5rem 0.75rem; font-size: 0.75rem; font-weight: 600; color: var(--foreground-secondary); text-transform: uppercase; letter-spacing: 0.05em;">アカウント</div>
+    <button class="menu-item" role="menuitem" tabindex="0" style="width: 100%; display: flex; align-items: center; gap: 0.75rem; padding: 0.625rem 0.75rem; background: none; border: none; border-radius: var(--border-radius-sm); cursor: pointer; color: var(--foreground-primary); font-size: 0.875rem; text-align: left; transition: background-color 0.15s;">
+      <span class="menu-icon">👤</span>
+      <span>プロフィール</span>
+      <span class="menu-shortcut" style="margin-left: auto; font-size: 0.75rem; color: var(--foreground-tertiary);">⌘P</span>
+    </button>
+    <button class="menu-item" role="menuitem" tabindex="0" style="width: 100%; display: flex; align-items: center; gap: 0.75rem; padding: 0.625rem 0.75rem; background: none; border: none; border-radius: var(--border-radius-sm); cursor: pointer; color: var(--foreground-primary); font-size: 0.875rem; text-align: left; transition: background-color 0.15s;">
+      <span class="menu-icon">⚙️</span>
+      <span>設定</span>
+      <span class="menu-shortcut" style="margin-left: auto; font-size: 0.75rem; color: var(--foreground-tertiary);">⌘S</span>
+    </button>
+    <div class="menu-divider" style="height: 1px; background: var(--border-primary); margin: 0.5rem 0;"></div>
+    <div class="menu-group-header" style="padding: 0.5rem 0.75rem; font-size: 0.75rem; font-weight: 600; color: var(--foreground-secondary); text-transform: uppercase; letter-spacing: 0.05em;">アクション</div>
+    <button class="menu-item" role="menuitem" tabindex="0" style="width: 100%; display: flex; align-items: center; gap: 0.75rem; padding: 0.625rem 0.75rem; background: none; border: none; border-radius: var(--border-radius-sm); cursor: pointer; color: var(--foreground-primary); font-size: 0.875rem; text-align: left; transition: background-color 0.15s;">
+      <span class="menu-icon">📄</span>
+      <span>新規作成</span>
+    </button>
+    <button class="menu-item menu-item-danger" role="menuitem" tabindex="0" style="width: 100%; display: flex; align-items: center; gap: 0.75rem; padding: 0.625rem 0.75rem; background: none; border: none; border-radius: var(--border-radius-sm); cursor: pointer; color: var(--status-error-foreground); font-size: 0.875rem; text-align: left; transition: background-color 0.15s;">
+      <span class="menu-icon">🗑️</span>
+      <span>削除</span>
+    </button>
+  `;
+
+  document.body.appendChild(menu);
+
+  // Position menu
+  const rect = trigger.getBoundingClientRect();
+  const menuRect = menu.getBoundingClientRect();
+  const position = calculateSafePosition(rect, menuRect.width, menuRect.height, 4);
+  menu.style.top = `${position.top}px`;
+  menu.style.left = `${position.left}px`;
+
+  // Trigger enter animation
+  requestAnimationFrame(() => {
+    menu.style.opacity = '1';
+    menu.style.transform = 'scale(1)';
+  });
+
+  // Focus first item
+  const firstItem = menu.querySelector('.menu-item');
+  setTimeout(() => firstItem?.focus(), 50);
+
+  // Close function
+  const close = () => {
+    cleanupKeyNav();
+    cleanupClickOutside();
+    menu.style.opacity = '0';
+    menu.style.transform = 'scale(0.95)';
+    setTimeout(() => menu.remove(), MENU_ANIMATION_DURATION);
+    trigger.focus();
+  };
+
+  // Setup keyboard navigation
+  const items = Array.from(menu.querySelectorAll('.menu-item'));
+  const cleanupKeyNav = setupMenuKeyboardNav(items, close);
+  const cleanupClickOutside = setupClickOutside(menu, trigger, close);
+
+  // Setup item interactions
+  items.forEach(item => {
+    item.addEventListener('mouseenter', function() {
+      this.style.background = 'var(--background-secondary)';
+    });
+    item.addEventListener('mouseleave', function() {
+      this.style.background = 'transparent';
+    });
+    item.addEventListener('click', function() {
+      console.log('Menu item clicked:', this.textContent.trim());
+      close();
+    });
+  });
+
+  return menu;
+}
+
+document.getElementById('menu-trigger')?.addEventListener('click', function(e) {
+  e.stopPropagation();
+  createMenu(this);
+});
+
+// ========================================
+// Pagination Component
+// ========================================
+
+/**
+ * Initialize pagination with state management
+ * @param {HTMLElement} paginationContainer - Container element with .pagination class
+ * @param {Object} options - Configuration options
+ */
+function initializePagination(paginationContainer, options = {}) {
+  const {
+    totalPages = 10,
+    currentPage = 1,
+    maxVisiblePages = 5,
+    onPageChange = (page) => console.log('Page changed to:', page)
+  } = options;
+
+  let activePage = currentPage;
+
+  const render = () => {
+    // Clear existing content
+    paginationContainer.innerHTML = '';
+
+    // Previous button
+    const prevButton = document.createElement('button');
+    prevButton.className = 'pagination-nav';
+    prevButton.setAttribute('aria-label', '前のページ');
+    prevButton.innerHTML = '<span>‹</span>';
+    prevButton.disabled = activePage === 1;
+    prevButton.addEventListener('click', () => {
+      if (activePage > 1) {
+        activePage--;
+        render();
+        onPageChange(activePage);
+      }
+    });
+    paginationContainer.appendChild(prevButton);
+
+    // Calculate visible page range
+    let startPage = Math.max(1, activePage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
+    // Always show first page
+    if (startPage > 1) {
+      const firstButton = createPageButton(1);
+      paginationContainer.appendChild(firstButton);
+
+      if (startPage > 2) {
+        const ellipsis = document.createElement('span');
+        ellipsis.className = 'pagination-ellipsis';
+        ellipsis.textContent = '...';
+        ellipsis.style.cssText = 'display: flex; align-items: center; padding: 0 0.5rem; color: var(--foreground-tertiary);';
+        paginationContainer.appendChild(ellipsis);
+      }
+    }
+
+    // Page buttons
+    for (let i = startPage; i <= endPage; i++) {
+      const pageButton = createPageButton(i);
+      paginationContainer.appendChild(pageButton);
+    }
+
+    // Always show last page
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        const ellipsis = document.createElement('span');
+        ellipsis.className = 'pagination-ellipsis';
+        ellipsis.textContent = '...';
+        ellipsis.style.cssText = 'display: flex; align-items: center; padding: 0 0.5rem; color: var(--foreground-tertiary);';
+        paginationContainer.appendChild(ellipsis);
+      }
+
+      const lastButton = createPageButton(totalPages);
+      paginationContainer.appendChild(lastButton);
+    }
+
+    // Next button
+    const nextButton = document.createElement('button');
+    nextButton.className = 'pagination-nav';
+    nextButton.setAttribute('aria-label', '次のページ');
+    nextButton.innerHTML = '<span>›</span>';
+    nextButton.disabled = activePage === totalPages;
+    nextButton.addEventListener('click', () => {
+      if (activePage < totalPages) {
+        activePage++;
+        render();
+        onPageChange(activePage);
+      }
+    });
+    paginationContainer.appendChild(nextButton);
+  };
+
+  function createPageButton(page) {
+    const button = document.createElement('button');
+    button.className = 'pagination-item';
+    button.textContent = page;
+
+    if (page === activePage) {
+      button.classList.add('pagination-item-active');
+      button.setAttribute('aria-current', 'page');
+    }
+
+    button.addEventListener('click', () => {
+      if (page !== activePage) {
+        activePage = page;
+        render();
+        onPageChange(activePage);
+      }
+    });
+
+    return button;
+  }
+
+  render();
+
+  return {
+    setPage: (page) => {
+      if (page >= 1 && page <= totalPages) {
+        activePage = page;
+        render();
+      }
+    },
+    getCurrentPage: () => activePage
+  };
+}
+
+// Initialize demo pagination
+const demoPagination = document.querySelector('.pagination');
+if (demoPagination && !demoPagination.hasAttribute('data-initialized')) {
+  demoPagination.setAttribute('data-initialized', 'true');
+  initializePagination(demoPagination, {
+    totalPages: 10,
+    currentPage: 1,
+    maxVisiblePages: 5,
+    onPageChange: (page) => {
+      console.log('Current page:', page);
+    }
+  });
+}
+
 // Initialize theme on page load
 initTheme();
 
