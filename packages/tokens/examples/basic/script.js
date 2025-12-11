@@ -929,7 +929,7 @@ function createMenu(trigger) {
   menu.className = 'menu menu-live';
   menu.style.cssText = `
     position: absolute;
-    background: var(--surface-primary);
+    background: var(--background-primary);
     border: 1px solid var(--border-primary);
     border-radius: var(--border-radius-md);
     padding: 0.5rem;
@@ -1004,7 +1004,7 @@ function createMenu(trigger) {
   // Setup item interactions
   items.forEach(item => {
     item.addEventListener('mouseenter', function() {
-      this.style.background = 'var(--surface-secondary)';
+      this.style.background = 'var(--background-secondary)';
     });
     item.addEventListener('mouseleave', function() {
       this.style.background = 'transparent';
