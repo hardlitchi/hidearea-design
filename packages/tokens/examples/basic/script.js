@@ -1449,18 +1449,15 @@ function initializeTooltip(trigger, options = {}) {
   };
 
   const showTooltip = () => {
-    console.log('[Tooltip] showTooltip called, content:', content.substring(0, 30) + '...');
     if (!tooltip) createTooltip();
     positionTooltip();
     requestAnimationFrame(() => {
       tooltip.style.opacity = '1';
       tooltip.style.visibility = 'visible';
-      console.log('[Tooltip] Tooltip opacity set to 1 and visibility to visible');
     });
   };
 
   const hideTooltip = () => {
-    console.log('[Tooltip] hideTooltip called');
     if (!tooltip) return;
     tooltip.style.opacity = '0';
     tooltip.style.visibility = 'hidden';
@@ -1474,12 +1471,10 @@ function initializeTooltip(trigger, options = {}) {
 
   // Mouse events
   trigger.addEventListener('mouseenter', () => {
-    console.log('[Tooltip] mouseenter event fired for:', content.substring(0, 20) + '...');
     showTimeout = setTimeout(showTooltip, delay);
   });
 
   trigger.addEventListener('mouseleave', () => {
-    console.log('[Tooltip] mouseleave event fired');
     if (showTimeout) {
       clearTimeout(showTimeout);
       showTimeout = null;
@@ -1489,12 +1484,10 @@ function initializeTooltip(trigger, options = {}) {
 
   // Focus events for accessibility
   trigger.addEventListener('focus', () => {
-    console.log('[Tooltip] focus event fired for:', content.substring(0, 20) + '...');
     showTimeout = setTimeout(showTooltip, delay);
   });
 
   trigger.addEventListener('blur', () => {
-    console.log('[Tooltip] blur event fired');
     if (showTimeout) {
       clearTimeout(showTimeout);
       showTimeout = null;
@@ -1680,11 +1673,8 @@ initTheme();
 
 // Initialize all components
 function initializeComponents() {
-  console.log('[Init] Initializing components...');
-
   // Tooltip initialization
   const tooltipTriggers = document.querySelectorAll('[data-tooltip]');
-  console.log(`[Init] Found ${tooltipTriggers.length} tooltip triggers`);
   tooltipTriggers.forEach(trigger => {
     const content = trigger.getAttribute('data-tooltip');
     const position = trigger.getAttribute('data-tooltip-position') || 'top';
@@ -1693,26 +1683,15 @@ function initializeComponents() {
 
   // Breadcrumb initialization
   const breadcrumbs = document.querySelectorAll('.breadcrumb');
-  console.log(`[Init] Found ${breadcrumbs.length} breadcrumbs`);
   breadcrumbs.forEach(breadcrumb => {
     initializeBreadcrumb(breadcrumb);
   });
 
   // Switch initialization
   const switches = document.querySelectorAll('.switch-input');
-  console.log(`[Init] Found ${switches.length} switches`);
   switches.forEach(switchInput => {
-    initializeSwitch(switchInput, {
-      onChange: (checked, element) => {
-        console.log('Switch changed:', {
-          checked,
-          label: element.parentElement.querySelector('.switch-text')?.textContent
-        });
-      }
-    });
+    initializeSwitch(switchInput);
   });
-
-  console.log('[Init] Component initialization complete');
 }
 
 // Initialize components when DOM is ready
