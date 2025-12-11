@@ -469,6 +469,23 @@
       <div class="component-group">
         <h3>Progress - プログレスバー</h3>
         <div class="example-box">
+          <h4 style="margin-bottom: 1rem;">アニメーション付きプログレス</h4>
+          <p style="margin-bottom: 1rem;">ボタンをクリックすると、プログレスバーが0%から100%までアニメーションします。</p>
+          <div style="display: flex; gap: 0.75rem; margin-bottom: 2rem; flex-wrap: wrap;">
+            <button class="btn btn-primary" onclick="window.animateProgress('demo-progress-1', 100, 'linear')">Linear</button>
+            <button class="btn btn-secondary" onclick="window.animateProgress('demo-progress-1', 100, 'ease-in')">Ease In</button>
+            <button class="btn btn-secondary" onclick="window.animateProgress('demo-progress-1', 100, 'ease-out')">Ease Out</button>
+            <button class="btn btn-secondary" onclick="window.animateProgress('demo-progress-1', 100, 'ease-in-out')">Ease In-Out</button>
+            <button class="btn btn-ghost" onclick="window.resetProgress('demo-progress-1')">リセット</button>
+          </div>
+          <div class="progress-group">
+            <label class="progress-label" id="demo-progress-1-label">アニメーション (0%)</label>
+            <div class="progress" id="demo-progress-1">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <h4 style="margin-top: 2rem; margin-bottom: 1rem;">静的プレビュー</h4>
           <div class="progress-group">
             <label class="progress-label">デフォルト (75%)</label>
             <div class="progress">
