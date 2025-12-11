@@ -1391,7 +1391,7 @@ function initializeTooltip(trigger, options = {}) {
     tooltip.textContent = content;
     tooltip.setAttribute('role', 'tooltip');
     tooltip.style.cssText = `
-      position: absolute;
+      position: fixed;
       opacity: 0;
       pointer-events: none;
       z-index: 9999;
@@ -1444,8 +1444,8 @@ function initializeTooltip(trigger, options = {}) {
       top = viewportHeight - tooltipRect.height - offset;
     }
 
-    tooltip.style.top = `${top + window.scrollY}px`;
-    tooltip.style.left = `${left + window.scrollX}px`;
+    tooltip.style.top = `${top}px`;
+    tooltip.style.left = `${left}px`;
   };
 
   const showTooltip = () => {
