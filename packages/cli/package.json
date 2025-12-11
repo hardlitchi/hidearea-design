@@ -1,0 +1,27 @@
+{
+  "name": "@hidearea-design/cli",
+  "version": "0.0.1",
+  "description": "CLI tool for generating Hidearea Design System components",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "ha-gen": "./bin/ha-gen.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "design-system",
+    "component-generator",
+    "cli",
+    "web-components"
+  ],
+  "author": "Hidearea Design Team",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  }
+}
