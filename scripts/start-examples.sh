@@ -69,18 +69,24 @@ start_examples() {
     cd "$PROJECT_ROOT"
 
     # バックグラウンドで各サンプルを起動
-    info "Starting Component Showcase on port 5173..."
+    info "Starting Component Showcase on port 5273..."
     cd "$EXAMPLE_DIR/component-showcase"
+    pnpm install vite
+    pnpm install
     pnpm dev > /tmp/hidearea-showcase.log 2>&1 &
     SHOWCASE_PID=$!
 
-    info "Starting Login Form on port 5174..."
+    info "Starting Login Form on port 5274..."
     cd "$EXAMPLE_DIR/login-form"
+    pnpm install vite
+    pnpm install
     pnpm dev > /tmp/hidearea-login.log 2>&1 &
     LOGIN_PID=$!
 
-    info "Starting Dashboard on port 5175..."
+    info "Starting Dashboard on port 5275..."
     cd "$EXAMPLE_DIR/dashboard"
+    pnpm install vite
+    pnpm install
     pnpm dev > /tmp/hidearea-dashboard.log 2>&1 &
     DASHBOARD_PID=$!
 
@@ -97,9 +103,9 @@ start_examples() {
     echo "  📦 hidearea-design Examples Running"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo ""
-    echo "  🎨 Component Showcase:  http://localhost:5173"
-    echo "  🔐 Login Form:          http://localhost:5174"
-    echo "  📊 Dashboard:           http://localhost:5175"
+    echo "  🎨 Component Showcase:  http://localhost:5273"
+    echo "  🔐 Login Form:          http://localhost:5274"
+    echo "  📊 Dashboard:           http://localhost:5275"
     echo ""
     echo "  Logs:"
     echo "    - Showcase: /tmp/hidearea-showcase.log"
