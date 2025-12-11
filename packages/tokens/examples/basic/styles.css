@@ -1718,6 +1718,145 @@ body {
    Overlays Components - Phase 4 Option D
    =================================== */
 
+/* Overlay Animations */
+@keyframes overlay-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlay-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes dialog-scale-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-scale-out {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+@keyframes drawer-slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawer-slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawer-slide-in-bottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawer-slide-out-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes drawer-slide-out-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes drawer-slide-out-bottom {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes popover-fade-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popover-fade-slide-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes dropdown-fade-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropdown-fade-slide-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
 /* Dialog Component */
 .dialog-overlay {
   position: fixed;
@@ -1732,6 +1871,14 @@ body {
   justify-content: center;
 }
 
+.dialog-overlay.dialog-entering {
+  animation: overlay-fade-in var(--component-dialog-animation-duration, 200ms) var(--component-dialog-animation-timing, ease-out);
+}
+
+.dialog-overlay.dialog-exiting {
+  animation: overlay-fade-out var(--component-dialog-animation-duration, 200ms) var(--component-dialog-animation-timing, ease-out);
+}
+
 .dialog {
   background: var(--component-dialog-background-default);
   border-radius: var(--component-dialog-border-radius);
@@ -1743,6 +1890,14 @@ body {
   display: flex;
   flex-direction: column;
   gap: var(--component-dialog-gap);
+}
+
+.dialog.dialog-entering {
+  animation: dialog-scale-in var(--component-dialog-animation-duration, 200ms) var(--component-dialog-animation-timing, ease-out);
+}
+
+.dialog.dialog-exiting {
+  animation: dialog-scale-out var(--component-dialog-animation-duration, 200ms) var(--component-dialog-animation-timing, ease-out);
 }
 
 .dialog-small {
@@ -1813,6 +1968,14 @@ body {
   z-index: var(--component-drawer-z-index-overlay);
 }
 
+.drawer-overlay.drawer-entering {
+  animation: overlay-fade-in var(--component-drawer-animation-duration, 200ms) var(--component-drawer-animation-timing, ease-out);
+}
+
+.drawer-overlay.drawer-exiting {
+  animation: overlay-fade-out var(--component-drawer-animation-duration, 200ms) var(--component-drawer-animation-timing, ease-out);
+}
+
 .drawer {
   position: fixed;
   background: var(--component-drawer-background-default);
@@ -1830,6 +1993,14 @@ body {
   border-right: var(--component-drawer-position-left-border-right);
 }
 
+.drawer-left.drawer-entering {
+  animation: drawer-slide-in-left var(--component-drawer-animation-duration, 200ms) var(--component-drawer-animation-timing, ease-out);
+}
+
+.drawer-left.drawer-exiting {
+  animation: drawer-slide-out-left var(--component-drawer-animation-duration, 200ms) var(--component-drawer-animation-timing, ease-out);
+}
+
 .drawer-right {
   right: 0;
   top: 0;
@@ -1838,12 +2009,28 @@ body {
   border-left: var(--component-drawer-position-right-border-left);
 }
 
+.drawer-right.drawer-entering {
+  animation: drawer-slide-in-right var(--component-drawer-animation-duration, 200ms) var(--component-drawer-animation-timing, ease-out);
+}
+
+.drawer-right.drawer-exiting {
+  animation: drawer-slide-out-right var(--component-drawer-animation-duration, 200ms) var(--component-drawer-animation-timing, ease-out);
+}
+
 .drawer-bottom {
   bottom: 0;
   left: 0;
   right: 0;
   height: var(--component-drawer-size-default);
   border-top: var(--component-drawer-position-bottom-border-top);
+}
+
+.drawer-bottom.drawer-entering {
+  animation: drawer-slide-in-bottom var(--component-drawer-animation-duration, 200ms) var(--component-drawer-animation-timing, ease-out);
+}
+
+.drawer-bottom.drawer-exiting {
+  animation: drawer-slide-out-bottom var(--component-drawer-animation-duration, 200ms) var(--component-drawer-animation-timing, ease-out);
 }
 
 .drawer-header {
@@ -1873,6 +2060,14 @@ body {
   box-shadow: var(--component-popover-shadow);
   padding: var(--component-popover-padding);
   z-index: var(--component-popover-z-index);
+}
+
+.popover.popover-entering {
+  animation: popover-fade-slide-in var(--component-popover-animation-duration, 150ms) var(--component-popover-animation-timing, ease-out);
+}
+
+.popover.popover-exiting {
+  animation: popover-fade-slide-out var(--component-popover-animation-duration, 150ms) var(--component-popover-animation-timing, ease-out);
 }
 
 .popover-small {
@@ -1911,6 +2106,16 @@ body {
   max-height: var(--component-dropdown-container-max-height);
   overflow: var(--component-dropdown-container-overflow);
   z-index: var(--component-dropdown-z-index);
+}
+
+.dropdown,
+.dropdown-container.dropdown-entering {
+  animation: dropdown-fade-slide-in var(--component-dropdown-animation-duration, 150ms) var(--component-dropdown-animation-timing, ease-out);
+}
+
+.dropdown.dropdown-exiting,
+.dropdown-container.dropdown-exiting {
+  animation: dropdown-fade-slide-out var(--component-dropdown-animation-duration, 150ms) var(--component-dropdown-animation-timing, ease-out);
 }
 
 .dropdown-item {
