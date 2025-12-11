@@ -1,3 +1,39 @@
+// Utility: Calculate optimal position to prevent overflow
+function calculateSafePosition(triggerRect, elementWidth, elementHeight, offset = 8) {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  // Default position: below trigger, aligned to left
+  let top = triggerRect.bottom + scrollTop + offset;
+  let left = triggerRect.left + scrollLeft;
+
+  // Check right overflow
+  if (left + elementWidth > scrollLeft + viewportWidth) {
+    // Align to right edge of trigger instead
+    left = triggerRect.right + scrollLeft - elementWidth;
+  }
+
+  // Ensure not too far left
+  if (left < scrollLeft + 16) {
+    left = scrollLeft + 16;
+  }
+
+  // Check bottom overflow
+  if (top + elementHeight > scrollTop + viewportHeight) {
+    // Position above trigger instead
+    top = triggerRect.top + scrollTop - elementHeight - offset;
+  }
+
+  // Ensure not too far top
+  if (top < scrollTop + 16) {
+    top = scrollTop + 16;
+  }
+
+  return { top, left };
+}
+
 // Theme Management
 function initTheme() {
   const savedTheme = localStorage.getItem('theme');
@@ -326,13 +362,13 @@ function createPopover(trigger) {
 
   document.body.appendChild(popover);
 
-  // スクロール位置を考慮した絶対位置を計算
+  // 画面外はみ出しを防ぐ位置計算
   const rect = trigger.getBoundingClientRect();
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+  const popoverRect = popover.getBoundingClientRect();
+  const position = calculateSafePosition(rect, popoverRect.width, popoverRect.height, 8);
 
-  popover.style.top = `${rect.bottom + scrollTop + 8}px`;
-  popover.style.left = `${rect.left + scrollLeft}px`;
+  popover.style.top = `${position.top}px`;
+  popover.style.left = `${position.left}px`;
 
   // アニメーション後にenteringクラスを削除
   setTimeout(() => {
@@ -404,13 +440,13 @@ function createDropdown(trigger) {
 
   document.body.appendChild(dropdown);
 
-  // スクロール位置を考慮した絶対位置を計算
+  // 画面外はみ出しを防ぐ位置計算
   const rect = trigger.getBoundingClientRect();
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+  const dropdownRect = dropdown.getBoundingClientRect();
+  const position = calculateSafePosition(rect, dropdownRect.width, dropdownRect.height, 4);
 
-  dropdown.style.top = `${rect.bottom + scrollTop + 4}px`;
-  dropdown.style.left = `${rect.left + scrollLeft}px`;
+  dropdown.style.top = `${position.top}px`;
+  dropdown.style.left = `${position.left}px`;
 
   // アニメーション後にenteringクラスを削除
   setTimeout(() => {

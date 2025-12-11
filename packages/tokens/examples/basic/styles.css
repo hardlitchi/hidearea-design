@@ -1393,6 +1393,64 @@ body {
     position: static;
     margin-top: 1rem;
   }
+
+  /* Overlay Components - Mobile Optimizations */
+
+  /* Dialog: Full width on mobile with padding */
+  .dialog {
+    width: calc(100% - 2rem);
+    max-width: calc(100% - 2rem);
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+  }
+
+  /* Drawer: Full screen bottom drawer on mobile */
+  .drawer-left,
+  .drawer-right {
+    /* Left/Right drawers become bottom drawers on mobile */
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 70vh !important;
+    max-height: 70vh;
+    border-left: none !important;
+    border-right: none !important;
+    border-top: 1px solid var(--border-default) !important;
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+  }
+
+  /* Override slide animations for mobile drawers */
+  .drawer-left.drawer-entering,
+  .drawer-right.drawer-entering {
+    animation: drawer-slide-in-bottom var(--component-drawer-animation-duration, 200ms) var(--component-drawer-animation-timing, ease-out);
+  }
+
+  .drawer-left.drawer-exiting,
+  .drawer-right.drawer-exiting {
+    animation: drawer-slide-out-bottom var(--component-drawer-animation-duration, 200ms) var(--component-drawer-animation-timing, ease-out);
+  }
+
+  .drawer-bottom {
+    height: 80vh !important;
+    max-height: 80vh;
+  }
+
+  /* Popover: Adjust max-width and ensure it fits on screen */
+  .popover {
+    max-width: calc(100vw - 2rem);
+    min-width: calc(100vw - 2rem);
+  }
+
+  /* Dropdown: Full width on mobile */
+  .dropdown {
+    min-width: calc(100vw - 2rem);
+    max-width: calc(100vw - 2rem);
+    left: 1rem !important;
+    right: 1rem !important;
+  }
 }
 
 /* ===================================
