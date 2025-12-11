@@ -1167,6 +1167,201 @@ if (demoPagination && !demoPagination.hasAttribute('data-initialized')) {
   });
 }
 
+// ========================================
+// Progress Component
+// ========================================
+
+/**
+ * Animated progress bar controller
+ * @param {HTMLElement} progressBar - Progress bar container element
+ * @param {Object} options - Configuration options
+ */
+function createAnimatedProgress(progressBar, options = {}) {
+  const {
+    duration = 2000,
+    startValue = 0,
+    endValue = 100,
+    easing = 'ease-out',
+    onUpdate = null,
+    onComplete = null
+  } = options;
+
+  const fill = progressBar.querySelector('.progress-fill');
+  if (!fill) return;
+
+  let currentValue = startValue;
+  const startTime = Date.now();
+
+  // Easing functions
+  const easings = {
+    linear: (t) => t,
+    'ease-in': (t) => t * t,
+    'ease-out': (t) => t * (2 - t),
+    'ease-in-out': (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
+  };
+
+  const easingFn = easings[easing] || easings.linear;
+
+  function animate() {
+    const elapsed = Date.now() - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const easedProgress = easingFn(progress);
+
+    currentValue = startValue + (endValue - startValue) * easedProgress;
+    fill.style.width = `${currentValue}%`;
+
+    if (onUpdate) {
+      onUpdate(currentValue);
+    }
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      if (onComplete) {
+        onComplete();
+      }
+    }
+  }
+
+  animate();
+
+  return {
+    setProgress: (value) => {
+      fill.style.width = `${value}%`;
+    },
+    getProgress: () => currentValue
+  };
+}
+
+// ========================================
+// Form Validation
+// ========================================
+
+/**
+ * Real-time form validation
+ * @param {HTMLFormElement|HTMLElement} form - Form element or container
+ */
+function initializeFormValidation(form) {
+  const inputs = form.querySelectorAll('input[type="email"], input[type="text"], textarea');
+
+  inputs.forEach(input => {
+    const inputGroup = input.closest('.input-group, .textarea-group');
+    if (!inputGroup) return;
+
+    const helper = inputGroup.querySelector('.input-helper, .textarea-helper');
+
+    // Store original helper text and state
+    const originalHelperText = helper?.textContent || '';
+    const originalHelperClasses = helper?.className || '';
+
+    // Validation rules
+    const validators = {
+      email: (value) => {
+        if (!value) return { valid: false, message: 'メールアドレスを入力してください' };
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(value)
+          ? { valid: true }
+          : { valid: false, message: '正しいメールアドレスを入力してください' };
+      },
+      text: (value) => {
+        if (!value) return { valid: false, message: 'この項目は必須です' };
+        return { valid: true };
+      }
+    };
+
+    const validate = () => {
+      const value = input.value.trim();
+      const type = input.type === 'email' ? 'email' : 'text';
+      const validator = validators[type];
+
+      if (!validator) return;
+
+      const result = validator(value);
+
+      // Update input styling
+      if (value && !result.valid) {
+        input.classList.add('input-error', 'textarea-error');
+        if (helper) {
+          helper.textContent = result.message;
+          helper.className = originalHelperClasses.replace(/-error/g, '') + '-error';
+        }
+      } else {
+        input.classList.remove('input-error', 'textarea-error');
+        if (helper) {
+          helper.textContent = originalHelperText;
+          helper.className = originalHelperClasses.replace(/-error/g, '');
+        }
+      }
+    };
+
+    // Validate on blur
+    input.addEventListener('blur', validate);
+
+    // Clear error on focus
+    input.addEventListener('focus', () => {
+      if (input.classList.contains('input-error') || input.classList.contains('textarea-error')) {
+        input.classList.remove('input-error', 'textarea-error');
+        if (helper) {
+          helper.textContent = originalHelperText;
+          helper.className = originalHelperClasses.replace(/-error/g, '');
+        }
+      }
+    });
+  });
+}
+
+// Initialize form validation for demo
+const demoForm = document.querySelector('.section');
+if (demoForm) {
+  initializeFormValidation(demoForm);
+}
+
+// ========================================
+// Progress Demo Helpers (Global)
+// ========================================
+
+/**
+ * Animate progress bar (exposed globally for onclick handlers)
+ */
+window.animateProgress = function(progressId, targetValue, easing = 'ease-out') {
+  const progressBar = document.getElementById(progressId);
+  const label = document.getElementById(`${progressId}-label`);
+
+  if (!progressBar) return;
+
+  createAnimatedProgress(progressBar, {
+    duration: 2000,
+    startValue: 0,
+    endValue: targetValue,
+    easing: easing,
+    onUpdate: (value) => {
+      if (label) {
+        label.textContent = `アニメーション (${Math.round(value)}%)`;
+      }
+    },
+    onComplete: () => {
+      console.log('Progress animation complete!');
+    }
+  });
+};
+
+/**
+ * Reset progress bar (exposed globally for onclick handlers)
+ */
+window.resetProgress = function(progressId) {
+  const progressBar = document.getElementById(progressId);
+  const label = document.getElementById(`${progressId}-label`);
+  const fill = progressBar?.querySelector('.progress-fill');
+
+  if (fill) {
+    fill.style.width = '0%';
+  }
+
+  if (label) {
+    label.textContent = 'アニメーション (0%)';
+  }
+};
+
 // Initialize theme on page load
 initTheme();
 
