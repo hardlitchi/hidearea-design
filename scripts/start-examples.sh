@@ -22,6 +22,19 @@ error() {
     echo -e "\033[0;31m[ERROR]\033[0m $1"
 }
 
+# nvmの読み込み（systemdから実行される場合に必要）
+load_nvm() {
+    export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+    if [ -s "$NVM_DIR/nvm.sh" ]; then
+        \. "$NVM_DIR/nvm.sh"
+        # LTSバージョンを使用
+        nvm use --lts &>/dev/null || nvm use default &>/dev/null || true
+    fi
+}
+
+# nvmを読み込む
+load_nvm
+
 # ビルドされたパッケージがあるか確認
 check_build() {
     info "Checking if packages are built..."

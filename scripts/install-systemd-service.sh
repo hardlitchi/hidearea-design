@@ -38,34 +38,53 @@ ACTUAL_HOME=$(eval echo ~$ACTUAL_USER)
 info "Detected user: $ACTUAL_USER"
 info "Home directory: $ACTUAL_HOME"
 
-# pnpmのパスを検出
-info "Detecting pnpm installation..."
-PNPM_PATH=""
+# nvmとNode.jsのセットアップ
+info "Setting up nvm and Node.js..."
+NVM_DIR="$ACTUAL_HOME/.nvm"
 
-# 1. nvmの場合
-if [ -d "$ACTUAL_HOME/.nvm" ]; then
-    # Node.jsのバージョンを検出
-    NODE_VERSION=$(ls -t "$ACTUAL_HOME/.nvm/versions/node/" | head -1)
-    if [ -n "$NODE_VERSION" ] && [ -f "$ACTUAL_HOME/.nvm/versions/node/$NODE_VERSION/bin/pnpm" ]; then
-        PNPM_PATH="$ACTUAL_HOME/.nvm/versions/node/$NODE_VERSION/bin"
-        info "Found pnpm in nvm: $PNPM_PATH"
-    fi
-fi
-
-# 2. システムインストールの場合
-if [ -z "$PNPM_PATH" ] && command -v pnpm &> /dev/null; then
-    PNPM_PATH=$(dirname $(which pnpm))
-    info "Found pnpm in system: $PNPM_PATH"
-fi
-
-# pnpmが見つからない場合
-if [ -z "$PNPM_PATH" ]; then
-    error "pnpm not found. Please install pnpm first:"
-    echo "  npm install -g pnpm"
-    echo "  or"
-    echo "  curl -fsSL https://get.pnpm.io/install.sh | sh -"
+if [ ! -d "$NVM_DIR" ]; then
+    error "nvm not found at $NVM_DIR"
+    echo "Please install nvm first:"
+    echo "  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash"
     exit 1
 fi
+
+# nvmスクリプトを読み込み
+info "Loading nvm..."
+export NVM_DIR="$NVM_DIR"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Node.js LTSをインストール/使用
+info "Setting up Node.js LTS..."
+
+# 現在のLTSバージョンを取得して使用
+if ! nvm use --lts 2>/dev/null; then
+    warning "Node.js LTS not found, installing..."
+    nvm install --lts
+    nvm use --lts
+fi
+
+NODE_VERSION=$(nvm version)
+info "Using Node.js version: $NODE_VERSION"
+
+# pnpmの確認とインストール
+info "Checking pnpm installation..."
+if ! command -v pnpm &> /dev/null; then
+    warning "pnpm not found, installing..."
+    npm install -g pnpm
+fi
+
+# pnpmのパスを取得
+PNPM_PATH=$(dirname $(which pnpm))
+NODE_PATH=$(dirname $(which node))
+
+if [ -z "$PNPM_PATH" ] || [ -z "$NODE_PATH" ]; then
+    error "Failed to detect pnpm or node path"
+    exit 1
+fi
+
+success "Found Node.js at: $NODE_PATH"
+success "Found pnpm at: $PNPM_PATH"
 
 # サービスファイルを生成（PATHを動的に設定）
 info "Generating service file..."
@@ -85,8 +104,9 @@ RestartSec=10
 
 # Environment
 Environment="NODE_ENV=production"
-Environment="PATH=$PNPM_PATH:/usr/local/bin:/usr/bin:/bin"
+Environment="PATH=$NODE_PATH:/usr/local/bin:/usr/bin:/bin"
 Environment="HOME=$ACTUAL_HOME"
+Environment="NVM_DIR=$NVM_DIR"
 
 # Logging
 StandardOutput=journal
