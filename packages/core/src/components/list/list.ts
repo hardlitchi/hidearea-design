@@ -21,7 +21,7 @@ export class HaList extends HTMLElement {
   private contentSlot: HTMLSlotElement;
 
   static get observedAttributes() {
-    return ["density", "divided"];
+    return ["density", "divided", "bordered", "hoverable"];
   }
 
   constructor() {
@@ -71,6 +71,14 @@ export class HaList extends HTMLElement {
       this.listElement.classList.add("list--divided");
     }
 
+    if (this.hasAttribute("bordered")) {
+      this.listElement.classList.add("list--bordered");
+    }
+
+    if (this.hasAttribute("hoverable")) {
+      this.listElement.classList.add("list--hoverable");
+    }
+
     // Handle density via CSS custom properties
     const density = this.getAttribute("density") || "default";
     const densityVar = `--component-list-item-padding-vertical-${density}`;
@@ -108,7 +116,7 @@ export class HaListItem extends HTMLElement {
   private suffixSlot: HTMLSlotElement;
 
   static get observedAttributes() {
-    return ["disabled", "selected", "interactive"];
+    return ["disabled", "selected", "interactive", "active"];
   }
 
   constructor() {
@@ -189,7 +197,18 @@ export class HaListItem extends HTMLElement {
   }
 
   private updateState() {
-    // Attributes are handled via :host([attr]) selectors in CSS
+    // Remove all state classes
+    this.itemElement.className = "list-item";
+
+    // Add state classes based on attributes
+    if (this.hasAttribute("disabled")) {
+      this.itemElement.classList.add("list-item--disabled");
+    }
+
+    if (this.hasAttribute("active")) {
+      this.itemElement.classList.add("list-item--active");
+    }
+
     // Set tabindex for keyboard navigation if interactive
     if (this.hasAttribute("interactive") && !this.hasAttribute("disabled")) {
       this.setAttribute("tabindex", "0");
