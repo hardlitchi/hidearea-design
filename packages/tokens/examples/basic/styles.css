@@ -2480,3 +2480,6 @@ body {
     height: 24px !important;
   }
 }
+
+/* NOTE: List, Avatar, and Chip components are now implemented as Web Components in packages/core.
+   For usage examples, see the components in packages/core/src/components/ */

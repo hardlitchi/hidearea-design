@@ -673,6 +673,196 @@
           </table>
         </div>
       </div>
+
+      <div class="component-group">
+        <h3>List - リスト</h3>
+        <div class="example-box">
+          <!-- Default List -->
+          <h4 style="margin-bottom: 0.75rem;">デフォルトリスト</h4>
+          <ul class="list">
+            <li class="list-item">リストアイテム 1</li>
+            <li class="list-item">リストアイテム 2</li>
+            <li class="list-item">リストアイテム 3</li>
+          </ul>
+
+          <!-- Interactive List with Icons -->
+          <h4 style="margin-top: 2rem; margin-bottom: 0.75rem;">アイコン付きインタラクティブリスト</h4>
+          <ul class="list">
+            <li class="list-item list-item-interactive">
+              <span class="list-item-icon">🏠</span>
+              <div class="list-item-content">
+                <div class="list-item-text">ホーム</div>
+                <div class="list-item-secondary">メインページに移動</div>
+              </div>
+            </li>
+            <li class="list-item list-item-interactive">
+              <span class="list-item-icon">⚙️</span>
+              <div class="list-item-content">
+                <div class="list-item-text">設定</div>
+                <div class="list-item-secondary">アプリケーション設定</div>
+              </div>
+            </li>
+            <li class="list-item list-item-interactive list-item-selected">
+              <span class="list-item-icon">📊</span>
+              <div class="list-item-content">
+                <div class="list-item-text">ダッシュボード</div>
+                <div class="list-item-secondary">統計とデータを表示</div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Divided List (Compact) -->
+          <h4 style="margin-top: 2rem; margin-bottom: 0.75rem;">区切り線付きリスト（コンパクト）</h4>
+          <ul class="list list-divided list-compact">
+            <li class="list-item">アイテム A</li>
+            <li class="list-item">アイテム B</li>
+            <li class="list-item">アイテム C</li>
+            <li class="list-item">アイテム D</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Avatar - アバター</h3>
+        <div class="example-box">
+          <!-- Sizes -->
+          <h4 style="margin-bottom: 0.75rem;">サイズバリエーション</h4>
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+            <div class="avatar avatar-xs">
+              <span class="avatar-initials">XS</span>
+            </div>
+            <div class="avatar avatar-sm">
+              <span class="avatar-initials">SM</span>
+            </div>
+            <div class="avatar avatar-md">
+              <span class="avatar-initials">MD</span>
+            </div>
+            <div class="avatar avatar-lg">
+              <span class="avatar-initials">LG</span>
+            </div>
+            <div class="avatar avatar-xl">
+              <span class="avatar-initials">XL</span>
+            </div>
+          </div>
+
+          <!-- Colors -->
+          <h4 style="margin-bottom: 0.75rem;">カラーバリエーション</h4>
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+            <div class="avatar avatar-md">
+              <span class="avatar-initials">AB</span>
+            </div>
+            <div class="avatar avatar-md avatar-primary">
+              <span class="avatar-initials">CD</span>
+            </div>
+            <div class="avatar avatar-md avatar-success">
+              <span class="avatar-initials">EF</span>
+            </div>
+            <div class="avatar avatar-md avatar-warning">
+              <span class="avatar-initials">GH</span>
+            </div>
+            <div class="avatar avatar-md avatar-error">
+              <span class="avatar-initials">IJ</span>
+            </div>
+          </div>
+
+          <!-- With Status -->
+          <h4 style="margin-bottom: 0.75rem;">ステータス付き</h4>
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+            <div class="avatar avatar-lg avatar-primary">
+              <span class="avatar-initials">山田</span>
+              <span class="avatar-status avatar-status-online"></span>
+            </div>
+            <div class="avatar avatar-lg avatar-success">
+              <span class="avatar-initials">佐藤</span>
+              <span class="avatar-status avatar-status-offline"></span>
+            </div>
+            <div class="avatar avatar-lg avatar-warning">
+              <span class="avatar-initials">鈴木</span>
+              <span class="avatar-status avatar-status-away"></span>
+            </div>
+            <div class="avatar avatar-lg avatar-error">
+              <span class="avatar-initials">田中</span>
+              <span class="avatar-status avatar-status-busy"></span>
+            </div>
+          </div>
+
+          <!-- Shapes -->
+          <h4 style="margin-bottom: 0.75rem;">形状バリエーション</h4>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div class="avatar avatar-lg avatar-primary">
+              <span class="avatar-initials">円</span>
+            </div>
+            <div class="avatar avatar-lg avatar-primary avatar-rounded">
+              <span class="avatar-initials">角丸</span>
+            </div>
+            <div class="avatar avatar-lg avatar-primary avatar-square">
+              <span class="avatar-initials">四角</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Chip - チップ</h3>
+        <div class="example-box">
+          <!-- Sizes -->
+          <h4 style="margin-bottom: 0.75rem;">サイズバリエーション</h4>
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap;">
+            <span class="chip chip-small">Small</span>
+            <span class="chip chip-medium">Medium</span>
+            <span class="chip chip-large">Large</span>
+          </div>
+
+          <!-- Colors -->
+          <h4 style="margin-bottom: 0.75rem;">カラーバリエーション</h4>
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap;">
+            <span class="chip">Default</span>
+            <span class="chip chip-primary">Primary</span>
+            <span class="chip chip-success">Success</span>
+            <span class="chip chip-warning">Warning</span>
+            <span class="chip chip-error">Error</span>
+            <span class="chip chip-info">Info</span>
+          </div>
+
+          <!-- With Icons -->
+          <h4 style="margin-bottom: 0.75rem;">アイコン付き</h4>
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap;">
+            <span class="chip chip-primary">
+              <span class="chip-icon">✓</span>
+              <span>承認済み</span>
+            </span>
+            <span class="chip chip-warning">
+              <span class="chip-icon">⚠</span>
+              <span>警告</span>
+            </span>
+            <span class="chip chip-error">
+              <span class="chip-icon">✕</span>
+              <span>エラー</span>
+            </span>
+          </div>
+
+          <!-- Deletable -->
+          <h4 style="margin-bottom: 0.75rem;">削除可能なチップ</h4>
+          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span class="chip chip-primary chip-deletable">
+              <span>React</span>
+              <button class="chip-close" aria-label="削除">×</button>
+            </span>
+            <span class="chip chip-success chip-deletable">
+              <span>Vue.js</span>
+              <button class="chip-close" aria-label="削除">×</button>
+            </span>
+            <span class="chip chip-info chip-deletable">
+              <span>TypeScript</span>
+              <button class="chip-close" aria-label="削除">×</button>
+            </span>
+            <span class="chip chip-warning chip-deletable">
+              <span>JavaScript</span>
+              <button class="chip-close" aria-label="削除">×</button>
+            </span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Overlays Section -->

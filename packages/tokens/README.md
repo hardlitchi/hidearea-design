@@ -196,9 +196,9 @@ Current bundle sizes (with semantic tokens):
 
 ## Interactive Components (Phase 4)
 
-Phase 4 では、Tooltip、Breadcrumb、Switchコンポーネントにインタラクティブ機能を追加しました：
+Phase 4 では、Tooltip、Breadcrumb、Switchコンポーネントにインタラクティブ機能を追加し、さらに3つの新しいデータ表示コンポーネントを実装しました：
 
-### ✨ 新機能
+### ✨ 既存コンポーネントの機能強化
 
 #### Tooltip
 - 複数行テキストの自動折り返し対応
@@ -219,6 +219,34 @@ Phase 4 では、Tooltip、Breadcrumb、Switchコンポーネントにインタ�
 - ARIA属性の自動更新
 - 強化されたキーボードサポート
 
+### 🆕 新規コンポーネント
+
+#### List
+リスト形式でデータを表示するコンポーネント：
+- 3つの密度オプション（コンパクト/デフォルト/快適）
+- インタラクティブ状態（ホバー/選択/アクティブ/無効）
+- アイコンサポート
+- 区切り線スタイル
+- キーボードナビゲーション対応
+
+#### Avatar
+ユーザーやエンティティを表す画像/イニシャルを表示：
+- 6つのサイズバリアント（xs, sm, md, lg, xl, 2xl）
+- 6つのカラーバリアント（default, primary, success, warning, error, info）
+- 3つの形状バリアント（circle, rounded, square）
+- ステータスインジケーター（online, offline, away, busy）
+- グループアバター機能
+- ホバー効果と影のサポート
+
+#### Chip
+タグ、ラベル、フィルターを表示するコンポーネント：
+- 3つのサイズバリアント（small, medium, large）
+- 6つのカラーバリアント（意味的な色分け）
+- アイコンサポート（先頭アイコン）
+- 削除可能機能（クローズボタン）
+- スムーズな削除アニメーション
+- インタラクティブ状態とフォーカスリング
+
 ### 📖 デモページ
 
 実際の動作を確認できます：
@@ -227,10 +255,19 @@ https://example.tokens.design.sb.hidearea.net/examples/basic/index.html
 ### 📚 コンポーネントドキュメント
 
 詳細なドキュメントは各コンポーネントのページを参照：
+
+**インタラクティブコンポーネント**
 - [Tooltip](./docs/components/tooltip.md)
 - [Breadcrumb](./docs/components/breadcrumb.md)
 - [Switch](./docs/components/switch.md)
-- [その他のコンポーネント](./docs/components/README.md)
+
+**データ表示コンポーネント**
+- [List](./docs/components/list.md)
+- [Avatar](./docs/components/avatar.md)
+- [Chip](./docs/components/chip.md)
+
+**その他**
+- [全コンポーネント一覧](./docs/components/README.md)
 
 ## Documentation
 

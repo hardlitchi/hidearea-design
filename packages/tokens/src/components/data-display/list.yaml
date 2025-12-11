@@ -1,0 +1,177 @@
+# リストコンポーネントトークン - hidearea-design
+# リストアイテムの外観と振る舞いを定義
+
+component:
+  list:
+    # コンテナ
+    container:
+      background:
+        value: "{background.primary}"
+        comment: "リストコンテナの背景色"
+      padding:
+        value: "{spacing.0}"
+        comment: "リストコンテナのパディング"
+      gap:
+        value: "{spacing.0}"
+        comment: "リストアイテム間の間隔"
+
+    # リストアイテム
+    item:
+      # 背景色
+      background:
+        default:
+          value: "transparent"
+          comment: "デフォルト背景色"
+        hover:
+          value: "{background.secondary}"
+          comment: "ホバー時背景色"
+        active:
+          value: "{background.tertiary}"
+          comment: "アクティブ時背景色"
+        selected:
+          value: "{primary.subtle}"
+          comment: "選択時背景色"
+
+      # テキスト色
+      text:
+        default:
+          value: "{foreground.primary}"
+          comment: "デフォルトテキスト色"
+        secondary:
+          value: "{foreground.secondary}"
+          comment: "セカンダリテキスト色"
+        disabled:
+          value: "{foreground.tertiary}"
+          comment: "無効時テキスト色"
+
+      # パディング
+      padding:
+        vertical:
+          compact:
+            value: "{spacing.2}"
+            comment: "コンパクトサイズの垂直パディング (0.5rem)"
+          default:
+            value: "{spacing.3}"
+            comment: "デフォルトサイズの垂直パディング (0.75rem)"
+          comfortable:
+            value: "{spacing.4}"
+            comment: "快適サイズの垂直パディング (1rem)"
+        horizontal:
+          value: "{spacing.4}"
+          comment: "水平パディング (1rem)"
+
+      # ボーダー
+      border:
+        width:
+          value: "{border.width.1}"
+          comment: "ボーダーの幅 (1px)"
+        color:
+          value: "{border.default}"
+          comment: "ボーダーの色"
+        radius:
+          value: "{border.radius.md}"
+          comment: "角丸 (0.375rem)"
+
+      # アイコン
+      icon:
+        size:
+          compact:
+            value: "{spacing.4}"
+            comment: "コンパクトサイズのアイコン (1rem)"
+          default:
+            value: "{spacing.5}"
+            comment: "デフォルトサイズのアイコン (1.25rem)"
+          comfortable:
+            value: "{spacing.6}"
+            comment: "快適サイズのアイコン (1.5rem)"
+        color:
+          default:
+            value: "{foreground.secondary}"
+            comment: "デフォルトアイコン色"
+          hover:
+            value: "{foreground.primary}"
+            comment: "ホバー時アイコン色"
+        gap:
+          value: "{spacing.3}"
+          comment: "アイコンとテキストの間隔 (0.75rem)"
+
+      # タイポグラフィ
+      fontSize:
+        compact:
+          value: "{font.size.sm}"
+          comment: "コンパクトサイズのフォントサイズ (0.875rem)"
+        default:
+          value: "{font.size.base}"
+          comment: "デフォルトサイズのフォントサイズ (1rem)"
+        comfortable:
+          value: "{font.size.lg}"
+          comment: "快適サイズのフォントサイズ (1.125rem)"
+      fontWeight:
+        value: "{font.weight.normal}"
+        comment: "フォントウェイト"
+      lineHeight:
+        value: "{font.lineHeight.normal}"
+        comment: "行高"
+
+    # 区切り線（Divider）
+    divider:
+      color:
+        value: "{border.default}"
+        comment: "区切り線の色"
+      width:
+        value: "{border.width.1}"
+        comment: "区切り線の幅 (1px)"
+      margin:
+        vertical:
+          value: "{spacing.0}"
+          comment: "区切り線の垂直マージン"
+
+    # インタラクティブ状態
+    interactive:
+      cursor:
+        value: "pointer"
+        comment: "クリック可能なカーソル"
+      transition:
+        duration:
+          value: "{animation.duration.fast}"
+          comment: "トランジション時間 (150ms)"
+        timing:
+          value: "{animation.easing.ease}"
+          comment: "トランジションのイージング"
+        properties:
+          value: "background-color, color, border-color"
+          comment: "トランジション対象のプロパティ"
+
+    # フォーカスリング
+    focus:
+      ring:
+        width:
+          value: "2px"
+          comment: "フォーカスリングの幅"
+        offset:
+          value: "2px"
+          comment: "フォーカスリングのオフセット"
+        color:
+          value: "{primary.default}"
+          comment: "フォーカスリングの色"
+
+    # セカンダリテキスト（説明文など）
+    secondary:
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "セカンダリテキストのフォントサイズ (0.875rem)"
+      color:
+        value: "{foreground.secondary}"
+        comment: "セカンダリテキストの色"
+      marginTop:
+        value: "{spacing.1}"
+        comment: "セカンダリテキストの上マージン (0.25rem)"
+
+    # 無効状態
+    disabled:
+      opacity:
+        value: "0.5"
+        comment: "無効時の透明度"
+      cursor:
+        value: "not-allowed"
+        comment: "無効時のカーソル"

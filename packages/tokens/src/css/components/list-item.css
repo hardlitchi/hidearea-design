@@ -1,0 +1,100 @@
+/**
+ * List Item Styles
+ * Design tokens: @hidearea-design/tokens
+ *
+ * Styles for the ha-list-item component
+ */
+
+:host {
+  display: block;
+}
+
+/* Base styles */
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--component-list-icon-gap);
+  padding: var(--component-list-item-padding-vertical-default) var(--component-list-item-padding-horizontal);
+  background: var(--component-list-item-background-default);
+  color: var(--component-list-item-text-default);
+  font-size: var(--component-list-item-fontSize-default);
+  line-height: var(--component-list-item-lineHeight);
+  border-radius: var(--component-list-item-border-radius);
+  transition: var(--component-list-interactive-transition-properties) var(--component-list-interactive-transition-duration) var(--component-list-interactive-transition-timing);
+  cursor: default;
+  user-select: none;
+}
+
+/* Layout containers */
+.list-item__prefix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.list-item__prefix ::slotted(*) {
+  width: var(--component-list-icon-size-default);
+  height: var(--component-list-icon-size-default);
+  color: var(--component-list-icon-color-default);
+}
+
+.list-item__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.list-item__suffix {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Interactive States */
+:host([interactive]) .list-item {
+  cursor: var(--component-list-interactive-cursor);
+}
+
+:host([interactive]:hover) .list-item {
+  background: var(--component-list-item-background-hover);
+}
+
+:host([interactive]:active) .list-item {
+  background: var(--component-list-item-background-active);
+}
+
+/* Selected */
+:host([selected]) .list-item {
+  background: var(--component-list-item-background-selected);
+  color: var(--component-list-item-text-default);
+}
+
+/* Disabled */
+:host([disabled]) .list-item {
+  opacity: var(--component-list-disabled-opacity);
+  cursor: var(--component-list-disabled-cursor);
+  pointer-events: none;
+}
+
+/* Focus */
+:host(:focus-visible) .list-item {
+  outline: var(--component-list-focus-ring-width) solid var(--component-list-focus-ring-color);
+  outline-offset: var(--component-list-focus-ring-offset);
+}
+
+/* Density Variants */
+:host {
+  --list-item-padding-vertical: var(--component-list-item-padding-vertical-default);
+}
+
+.list-item {
+  padding-top: var(--list-item-padding-vertical);
+  padding-bottom: var(--list-item-padding-vertical);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .list-item {
+    transition: none;
+  }
+}

@@ -1,18 +1,18 @@
-import { listStyles } from "./list.styles";
+import {
+  listContainerStyles,
+  listItemStyles,
+  listDividerStyles
+} from "@hidearea-design/tokens/styles";
 
 /**
  * List component
  *
  * @element ha-list
  *
- * @attr {boolean} bordered - Enable borders around list
- * @attr {boolean} hoverable - Enable hover effect on items
+ * @attr {string} density - List density: compact, default, comfortable
  * @attr {boolean} divided - Show dividers between items
  *
  * @slot - List items (ha-list-item elements)
- *
- * @cssprop --list-border-color - List border color
- * @cssprop --list-item-padding - List item padding
  *
  * @csspart list - The list container
  */
@@ -21,7 +21,7 @@ export class HaList extends HTMLElement {
   private contentSlot: HTMLSlotElement;
 
   static get observedAttributes() {
-    return ["bordered", "hoverable", "divided"];
+    return ["density", "divided"];
   }
 
   constructor() {
@@ -31,7 +31,7 @@ export class HaList extends HTMLElement {
 
     // Create styles
     const style = document.createElement("style");
-    style.textContent = listStyles;
+    style.textContent = listContainerStyles;
 
     // Create list container
     this.listElement = document.createElement("div");
@@ -67,17 +67,14 @@ export class HaList extends HTMLElement {
     this.listElement.className = "list";
 
     // Add modifier classes based on attributes
-    if (this.hasAttribute("bordered")) {
-      this.listElement.classList.add("list--bordered");
-    }
-
-    if (this.hasAttribute("hoverable")) {
-      this.listElement.classList.add("list--hoverable");
-    }
-
     if (this.hasAttribute("divided")) {
       this.listElement.classList.add("list--divided");
     }
+
+    // Handle density via CSS custom properties
+    const density = this.getAttribute("density") || "default";
+    const densityVar = `--component-list-item-padding-vertical-${density}`;
+    this.style.setProperty("--list-item-padding-vertical", `var(${densityVar})`);
   }
 }
 
@@ -87,15 +84,14 @@ export class HaList extends HTMLElement {
  * @element ha-list-item
  *
  * @attr {boolean} disabled - Disable the item
- * @attr {boolean} active - Mark item as active
+ * @attr {boolean} selected - Mark item as selected
+ * @attr {boolean} interactive - Make item interactive (clickable)
  *
  * @slot - Item content
  * @slot prefix - Content before the main content (icon, avatar, etc.)
  * @slot suffix - Content after the main content (badge, icon, etc.)
  *
  * @fires list-item-click - Emitted when item is clicked
- *
- * @cssprop --list-item-padding - List item padding
  *
  * @csspart item - The list item container
  * @csspart prefix - The prefix container
@@ -112,7 +108,7 @@ export class HaListItem extends HTMLElement {
   private suffixSlot: HTMLSlotElement;
 
   static get observedAttributes() {
-    return ["disabled", "active"];
+    return ["disabled", "selected", "interactive"];
   }
 
   constructor() {
@@ -122,7 +118,7 @@ export class HaListItem extends HTMLElement {
 
     // Create styles
     const style = document.createElement("style");
-    style.textContent = listStyles;
+    style.textContent = listItemStyles;
 
     // Create item container
     this.itemElement = document.createElement("div");
@@ -193,16 +189,12 @@ export class HaListItem extends HTMLElement {
   }
 
   private updateState() {
-    // Remove all state classes
-    this.itemElement.className = "list-item";
-
-    // Add state classes based on attributes
-    if (this.hasAttribute("disabled")) {
-      this.itemElement.classList.add("list-item--disabled");
-    }
-
-    if (this.hasAttribute("active")) {
-      this.itemElement.classList.add("list-item--active");
+    // Attributes are handled via :host([attr]) selectors in CSS
+    // Set tabindex for keyboard navigation if interactive
+    if (this.hasAttribute("interactive") && !this.hasAttribute("disabled")) {
+      this.setAttribute("tabindex", "0");
+    } else {
+      this.removeAttribute("tabindex");
     }
   }
 }
@@ -222,7 +214,7 @@ export class HaListDivider extends HTMLElement {
 
     // Create styles
     const style = document.createElement("style");
-    style.textContent = listStyles;
+    style.textContent = listDividerStyles;
 
     // Create divider
     const divider = document.createElement("div");
