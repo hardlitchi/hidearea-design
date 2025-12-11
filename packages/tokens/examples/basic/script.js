@@ -1396,6 +1396,9 @@ function initializeTooltip(trigger, options = {}) {
       pointer-events: none;
       z-index: 9999;
       transition: opacity 150ms ease;
+      max-width: 300px;
+      white-space: normal;
+      word-wrap: break-word;
     `;
     document.body.appendChild(tooltip);
     return tooltip;
