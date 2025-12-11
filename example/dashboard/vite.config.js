@@ -12,7 +12,8 @@ export default defineConfig(({ command, mode }) => {
     resolve: {
       alias: {
         '@hidearea-design/core': resolve(__dirname, '../../packages/core/src'),
-        '@hidearea-design/tokens': resolve(__dirname, '../../packages/tokens/src')
+        '@hidearea-design/tokens': resolve(__dirname, '../../packages/tokens/src'),
+        '@hidearea-design/tokens/css': resolve(__dirname, '../../packages/tokens/build/css/variables.css')
       }
     },
     server: {
