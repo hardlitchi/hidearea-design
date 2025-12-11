@@ -1058,6 +1058,8 @@ body {
   line-height: 1.5;
   white-space: normal;
   max-width: 300px;
+  min-height: fit-content;
+  height: auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
   opacity: 0;

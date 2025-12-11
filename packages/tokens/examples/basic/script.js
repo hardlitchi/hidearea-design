@@ -1397,6 +1397,8 @@ function initializeTooltip(trigger, options = {}) {
       z-index: 9999;
       transition: opacity 150ms ease;
       max-width: 300px;
+      height: auto;
+      min-height: fit-content;
       line-height: 1.5;
       white-space: normal;
       word-wrap: break-word;
