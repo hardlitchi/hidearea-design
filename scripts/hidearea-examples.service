@@ -13,7 +13,8 @@ RestartSec=10
 
 # Environment
 Environment="NODE_ENV=production"
-Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+Environment="PATH=/home/neko/.nvm/versions/node/v22.21.0/bin:/usr/local/bin:/usr/bin:/bin"
+Environment="NVM_DIR=/home/neko/.nvm"
 
 # Logging
 StandardOutput=journal
