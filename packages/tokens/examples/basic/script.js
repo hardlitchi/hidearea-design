@@ -1403,6 +1403,7 @@ function initializeTooltip(trigger, options = {}) {
       white-space: normal;
       word-wrap: break-word;
       overflow-wrap: break-word;
+      transform: none;
     `;
     document.body.appendChild(tooltip);
     return tooltip;
