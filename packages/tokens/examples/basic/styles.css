@@ -2212,3 +2212,229 @@ body {
   text-transform: var(--component-dropdown-group-header-text-transform);
   letter-spacing: var(--component-dropdown-group-header-letter-spacing);
 }
+
+/* ========================================
+   Interactive Components - Mobile Responsive
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Tabs: Stack vertically on mobile with improved touch targets */
+  .tabs-list {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .tab {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 1rem;
+    min-height: 48px; /* Minimum touch target size */
+  }
+
+  .tab-badge {
+    margin-left: auto;
+  }
+
+  /* Toast: Adjust position for mobile */
+  .toast-container-live {
+    top: auto !important;
+    bottom: 1rem !important;
+    left: 1rem !important;
+    right: 1rem !important;
+    width: calc(100% - 2rem) !important;
+  }
+
+  .toast {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Menu: Full width on mobile */
+  .menu-live {
+    left: 1rem !important;
+    right: 1rem !important;
+    width: calc(100vw - 2rem) !important;
+    min-width: auto !important;
+  }
+
+  .menu-item {
+    min-height: 48px; /* Minimum touch target size */
+    padding: 0.875rem 0.75rem !important;
+  }
+
+  /* Pagination: Reduce visible pages and adjust sizing */
+  .pagination {
+    gap: 0.25rem;
+  }
+
+  .pagination-item,
+  .pagination-nav {
+    min-width: 36px;
+    min-height: 36px;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .pagination-ellipsis {
+    padding: 0 0.25rem !important;
+  }
+
+  /* Hide pagination info text on very small screens */
+  .pagination-info {
+    display: none;
+  }
+
+  /* Navigation: Stack navigation links vertically */
+  .navigation {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    min-height: 48px;
+  }
+
+  /* Breadcrumb: Smaller font and tighter spacing */
+  .breadcrumb-list {
+    font-size: 0.875rem;
+    gap: 0.25rem;
+  }
+
+  .breadcrumb-separator {
+    padding: 0 0.25rem;
+  }
+
+  /* Cards: Ensure proper spacing on mobile */
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  /* Table: Responsive table with horizontal scroll */
+  .table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .table tbody {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  /* Alert: Add margin for better spacing */
+  .alert {
+    margin-bottom: 1rem;
+  }
+
+  /* Progress: Full width on mobile */
+  .progress {
+    width: 100%;
+  }
+
+  /* Skeleton: Adjust sizes for mobile */
+  .skeleton-avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .skeleton-heading {
+    height: 1.5rem;
+  }
+
+  .skeleton-text {
+    height: 1rem;
+  }
+
+  /* Spinner: Center spinner demos */
+  .spinner-demo {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Container: Reduce padding on mobile */
+  .container {
+    padding: 1rem;
+  }
+
+  .section {
+    padding: 1.5rem 0;
+  }
+
+  .component-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .example-box {
+    padding: 1rem;
+  }
+}
+
+/* Extra small devices (portrait phones) */
+@media (max-width: 480px) {
+  /* Further reduce pagination visible pages */
+  .pagination-item:not(.pagination-item-active) {
+    display: none;
+  }
+
+  .pagination-item.pagination-item-active {
+    display: flex;
+  }
+
+  /* Show only current page and navigation */
+  .pagination-ellipsis {
+    display: none;
+  }
+
+  /* Tabs: Even larger touch targets */
+  .tab {
+    padding: 1.25rem 1rem;
+    min-height: 52px;
+  }
+
+  /* Toast: Smaller text on very small screens */
+  .toast {
+    font-size: 0.875rem;
+  }
+
+  .toast-icon {
+    font-size: 1rem !important;
+  }
+
+  /* Menu: Larger touch targets */
+  .menu-item {
+    min-height: 52px;
+    padding: 1rem 0.75rem !important;
+  }
+
+  /* Navigation: Larger touch targets */
+  .nav-link {
+    padding: 1rem;
+    min-height: 52px;
+  }
+
+  /* Reduce header font sizes */
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+  }
+}
