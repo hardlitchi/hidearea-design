@@ -1669,8 +1669,8 @@ function initializeSwitch(switchElement, options = {}) {
 // Initialize theme on page load
 initTheme();
 
-// Initialize all tooltips on page
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize all components
+function initializeComponents() {
   // Tooltip initialization
   const tooltipTriggers = document.querySelectorAll('[data-tooltip]');
   tooltipTriggers.forEach(trigger => {
@@ -1697,7 +1697,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-});
+}
+
+// Initialize components when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeComponents);
+} else {
+  // DOM is already loaded, initialize immediately
+  initializeComponents();
+}
 
 // Log current theme for debugging
 console.log('Current theme:', document.documentElement.getAttribute('data-theme'));
