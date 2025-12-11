@@ -198,6 +198,156 @@ sudo journalctl -u hidearea-examples -n 50
 2. **VPNの使用**
    - WireGuard/OpenVPN経由でアクセス
 
+## 🌐 nginx リバースプロキシの設定
+
+外部からドメイン経由でアクセスする場合、nginx をリバースプロキシとして使用できます。
+
+### Vite の設定
+
+各サンプルの `vite.config.js` に `allowedHosts` を設定する必要があります：
+
+```javascript
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  server: {
+    host: '0.0.0.0',
+    port: 5173, // サンプルごとに異なるポート
+    strictPort: true,
+    allowedHosts: [
+      'localhost',
+      'components.design.sb.hidearea.net', // 実際のドメイン
+      '.hidearea.net',                     // ワイルドカード
+      '.sb.hidearea.net',                  // サブドメイン用ワイルドカード
+      'all'                                // すべてのホストを許可（開発環境）
+    ]
+  },
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true
+  }
+})
+```
+
+### nginx の設定例
+
+#### Component Showcase (components.design.sb.hidearea.net)
+
+```nginx
+server {
+    listen 80;
+    server_name components.design.sb.hidearea.net;
+
+    location / {
+        proxy_pass http://localhost:5173;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+#### Login Form (login.design.sb.hidearea.net)
+
+```nginx
+server {
+    listen 80;
+    server_name login.design.sb.hidearea.net;
+
+    location / {
+        proxy_pass http://localhost:5174;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+#### Dashboard (dashboard.design.sb.hidearea.net)
+
+```nginx
+server {
+    listen 80;
+    server_name dashboard.design.sb.hidearea.net;
+
+    location / {
+        proxy_pass http://localhost:5175;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+### 設定の適用
+
+```bash
+# nginx 設定ファイルを配置
+sudo nano /etc/nginx/sites-available/hidearea-examples
+
+# シンボリックリンクを作成
+sudo ln -s /etc/nginx/sites-available/hidearea-examples /etc/nginx/sites-enabled/
+
+# 設定をテスト
+sudo nginx -t
+
+# nginx を再起動
+sudo systemctl reload nginx
+```
+
+### サービスを再起動
+
+vite.config.js を変更した後は、サービスを再起動してください：
+
+```bash
+# systemd サービスの場合
+sudo systemctl restart hidearea-examples
+
+# 手動起動の場合
+./scripts/stop-examples.sh
+./scripts/start-examples.sh
+```
+
+### トラブルシューティング
+
+#### "Blocked request. This host is not allowed" エラー
+
+vite.config.js の `allowedHosts` にドメインが追加されているか確認してください。
+
+```bash
+# 設定を確認
+cat example/component-showcase/vite.config.js
+```
+
+#### nginx エラー "Connection refused"
+
+Vite 開発サーバーが起動しているか確認してください：
+
+```bash
+# プロセス確認
+ps aux | grep vite
+
+# ポート確認
+sudo lsof -i :5173
+sudo lsof -i :5174
+sudo lsof -i :5175
+```
+
 ## 🎯 本番環境での使用
 
 ### systemd サービスの自動起動
