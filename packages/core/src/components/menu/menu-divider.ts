@@ -1,4 +1,4 @@
-import { menuDividerStyles } from "./menu.styles";
+import { menuStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Menu divider component
@@ -14,7 +14,7 @@ export class HaMenuDivider extends HTMLElement {
 
     // Create styles
     const style = document.createElement("style");
-    style.textContent = menuDividerStyles;
+    style.textContent = menuStyles;
 
     // Create divider
     const divider = document.createElement("div");

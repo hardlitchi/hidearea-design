@@ -1,4 +1,4 @@
-import { tabsStyles } from "./tabs.styles";
+import { tabsStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Tabs component

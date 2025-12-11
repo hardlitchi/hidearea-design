@@ -1,4 +1,4 @@
-import { dropdownStyles } from "./menu.styles";
+import { menuStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Dropdown component
@@ -31,7 +31,7 @@ export class HaDropdown extends HTMLElement {
 
     // Create styles
     const style = document.createElement("style");
-    style.textContent = dropdownStyles;
+    style.textContent = menuStyles;
 
     // Create trigger
     this.triggerSlot = document.createElement("div");

@@ -1,4 +1,4 @@
-import { toastContainerStyles } from "./toast-container.styles";
+import { toastContainerStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Toast Container - Manages toast positioning and stacking

@@ -1,4 +1,4 @@
-import { buttonStyles } from "./button.styles";
+import { buttonStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Button component

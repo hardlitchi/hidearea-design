@@ -1,4 +1,4 @@
-import { paginationStyles } from "./pagination.styles";
+import { paginationStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Pagination component

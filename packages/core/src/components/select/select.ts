@@ -1,4 +1,4 @@
-import { selectStyles } from "./select.styles";
+import { selectStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Select component

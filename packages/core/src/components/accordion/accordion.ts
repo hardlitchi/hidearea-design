@@ -1,4 +1,4 @@
-import { accordionStyles } from "./accordion.styles";
+import { accordionStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Accordion component

@@ -1,4 +1,4 @@
-import { menuStyles } from "./menu.styles";
+import { menuStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Menu component

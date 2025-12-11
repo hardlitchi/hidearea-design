@@ -1,4 +1,4 @@
-import { toastStyles } from "./toast.styles";
+import { toastStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Toast/Notification component

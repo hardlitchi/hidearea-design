@@ -76,6 +76,19 @@
   pointer-events: none;
 }
 
+.list-item--disabled {
+  opacity: var(--component-list-disabled-opacity);
+  cursor: var(--component-list-disabled-cursor);
+  pointer-events: none;
+}
+
+/* Active */
+.list-item--active {
+  background: var(--component-list-item-background-selected);
+  color: var(--component-list-item-text-default);
+  font-weight: var(--font-weight-medium, 500);
+}
+
 /* Focus */
 :host(:focus-visible) .list-item {
   outline: var(--component-list-focus-ring-width) solid var(--component-list-focus-ring-color);

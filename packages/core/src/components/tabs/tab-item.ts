@@ -1,4 +1,4 @@
-import { tabItemStyles } from "./tabs.styles";
+import { tabsStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Tab item component
@@ -31,7 +31,7 @@ export class HaTabItem extends HTMLElement {
 
     // Create styles
     const style = document.createElement("style");
-    style.textContent = tabItemStyles;
+    style.textContent = tabsStyles;
 
     // Create button
     this.button = document.createElement("button");

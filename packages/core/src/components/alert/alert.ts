@@ -1,4 +1,4 @@
-import { alertStyles } from "./alert.styles";
+import { alertStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Alert component

@@ -1,4 +1,4 @@
-import { tooltipStyles } from "./tooltip.styles";
+import { tooltipStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Tooltip component

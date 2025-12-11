@@ -1,4 +1,4 @@
-import { styles } from "./time-picker.styles";
+import { timePickerStyles as styles } from "@hidearea-design/tokens/styles";
 
 export type TimePickerFormat = "12" | "24";
 export type TimePickerPeriod = "AM" | "PM";

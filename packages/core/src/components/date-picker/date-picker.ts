@@ -3,7 +3,7 @@ type DateSelectDetail =
   | { startDate: Date | null; endDate: Date | null }
   | { dates: Date[] };
 
-import { datePickerStyles } from "./date-picker.styles";
+import { datePickerStyles } from "@hidearea-design/tokens/styles";
 
 export type DatePickerMode = "single" | "range" | "multiple";
 

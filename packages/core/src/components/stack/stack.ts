@@ -1,4 +1,4 @@
-import { stackStyles } from "./stack.styles";
+import { stackStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Stack component - manages vertical or horizontal spacing between children
