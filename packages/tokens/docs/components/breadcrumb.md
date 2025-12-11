@@ -17,6 +17,13 @@
 - マルチステップフォームの進行状況表示
 - Eコマースサイトのカテゴリナビゲーション
 
+### Phase 4 で追加された機能
+
+- **クリックイベント処理**: リンククリック時のカスタムイベント発行
+- **キーボードナビゲーション**: Enter/Spaceキーでのリンク操作
+- **動的パス更新**: `updatePath()` メソッドによる動的な階層変更
+- **トースト通知統合**: ナビゲーション時の視覚的フィードバック
+
 ---
 
 ## セパレータースタイル
@@ -541,5 +548,89 @@ function formatLabel(segment) {
 
 ---
 
-**最終更新:** 2025-12-10
-**Phase 4 Option C で実装**
+## インタラクティブ機能の実装 (Phase 4 改善)
+
+### カスタムイベントの発行
+
+パンくずリンクをクリックすると、`breadcrumb-navigate` イベントが発行されます：
+
+```javascript
+function initializeBreadcrumb(breadcrumb) {
+  const links = breadcrumb.querySelectorAll('.breadcrumb-link');
+
+  links.forEach((link, index) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = link.getAttribute('href');
+
+      // カスタムイベントを発行
+      const navEvent = new CustomEvent('breadcrumb-navigate', {
+        detail: {
+          href,
+          index,
+          text: link.textContent.trim()
+        }
+      });
+      breadcrumb.dispatchEvent(navEvent);
+    });
+  });
+}
+
+// イベントのリスニング
+breadcrumb.addEventListener('breadcrumb-navigate', (e) => {
+  console.log('Navigate to:', e.detail.href);
+  // ルーティング処理などを実装
+});
+```
+
+### キーボードナビゲーション
+
+Enter キーまたは Space キーでリンクを操作できます：
+
+```javascript
+link.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    link.click();
+  }
+});
+```
+
+### 動的パス更新
+
+プログラムから階層パスを更新できます：
+
+```javascript
+const breadcrumb = initializeBreadcrumb(document.querySelector('.breadcrumb'));
+
+// パスを動的に更新
+breadcrumb.updatePath([
+  { text: 'ホーム', href: '/' },
+  { text: 'プロダクト', href: '/products' },
+  { text: 'カテゴリ', href: '/products/category' },
+  { text: '現在のページ' } // 最後の要素はリンクなし
+]);
+```
+
+### トースト通知との統合
+
+ナビゲーション時に視覚的フィードバックを提供：
+
+```javascript
+if (window.showToast) {
+  showToast(`パンくずナビゲーション: ${link.textContent.trim()}`, 'info', 3000);
+}
+```
+
+---
+
+## デモページ
+
+実際の動作は以下のページで確認できます：
+
+https://example.tokens.design.sb.hidearea.net/examples/basic/index.html
+
+---
+
+**最終更新:** 2025-12-11
+**Phase 4 Option C で実装、PR #92 で改善**

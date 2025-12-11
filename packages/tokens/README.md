@@ -194,6 +194,44 @@ Current bundle sizes (with semantic tokens):
 
 **Performance Score**: 161/100 (🟢 Excellent)
 
+## Interactive Components (Phase 4)
+
+Phase 4 では、Tooltip、Breadcrumb、Switchコンポーネントにインタラクティブ機能を追加しました：
+
+### ✨ 新機能
+
+#### Tooltip
+- 複数行テキストの自動折り返し対応
+- ビューポート内への自動配置調整
+- 200msの表示遅延でUX改善
+- CSS transform競合の解決による正確な位置計算
+
+#### Breadcrumb
+- クリックイベント処理（`breadcrumb-navigate` カスタムイベント）
+- キーボードナビゲーション（Enter/Space）
+- 動的パス更新API（`updatePath()`メソッド）
+- トースト通知との統合
+
+#### Switch
+- スムーズなアニメーション（200msトランジション）
+- カスタムイベント発行（`switch-change` イベント）
+- プログラマティックAPI（`setValue()`/`getValue()`）
+- ARIA属性の自動更新
+- 強化されたキーボードサポート
+
+### 📖 デモページ
+
+実際の動作を確認できます：
+https://example.tokens.design.sb.hidearea.net/examples/basic/index.html
+
+### 📚 コンポーネントドキュメント
+
+詳細なドキュメントは各コンポーネントのページを参照：
+- [Tooltip](./docs/components/tooltip.md)
+- [Breadcrumb](./docs/components/breadcrumb.md)
+- [Switch](./docs/components/switch.md)
+- [その他のコンポーネント](./docs/components/README.md)
+
 ## Documentation
 
 - **[SEMANTIC-TOKENS.md](./SEMANTIC-TOKENS.md)** - Comprehensive semantic tokens guide

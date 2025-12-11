@@ -24,6 +24,9 @@
 - 簡潔な情報提供（1-2行）
 - 位置の自動調整（上下左右）
 - アクセシビリティ対応
+- **複数行テキストの自動折り返し** (Phase 4 で追加)
+- **ビューポート内への自動配置調整** (Phase 4 で追加)
+- **200msの表示遅延でUX改善** (Phase 4 で追加)
 
 ---
 
@@ -709,5 +712,83 @@ element.addEventListener('touchend', hideTooltip);
 
 ---
 
+## 実装の詳細 (Phase 4 改善)
+
+### 複数行テキストのサポート
+
+Phase 4 で、ツールチップが複数行テキストを正しく表示できるように改善されました：
+
+```css
+.tooltip {
+  white-space: normal;       /* テキストの折り返しを許可 */
+  max-width: 300px;          /* 最大幅を制限 */
+  height: auto;              /* 高さを内容に合わせて自動調整 */
+  min-height: fit-content;   /* 最小高さを内容に合わせる */
+  line-height: 1.5;          /* 読みやすい行間 */
+  word-wrap: break-word;     /* 長い単語を折り返す */
+  overflow-wrap: break-word; /* テキストオーバーフロー対策 */
+}
+```
+
+### 位置計算の改善
+
+CSSのtransformとJavaScriptの位置計算の競合を解決し、正確な配置を実現：
+
+```javascript
+tooltip.style.cssText = `
+  position: fixed;
+  transform: none;  /* CSS transformを無効化 */
+  /* ... その他のスタイル */
+`;
+```
+
+### ビューポート内配置
+
+ツールチップが画面外に出ないよう、自動的に位置を調整：
+
+```javascript
+// 画面外に出ないように調整
+const viewportWidth = window.innerWidth;
+const viewportHeight = window.innerHeight;
+
+if (left < 0) left = offset;
+if (left + tooltipRect.width > viewportWidth) {
+  left = viewportWidth - tooltipRect.width - offset;
+}
+if (top < 0) top = offset;
+if (top + tooltipRect.height > viewportHeight) {
+  top = viewportHeight - tooltipRect.height - offset;
+}
+```
+
+### 表示遅延によるUX改善
+
+即座に表示するのではなく、200msの遅延を設けることで、誤操作による表示を防止：
+
+```javascript
+const TOOLTIP_DELAY = 200; // ms
+
+trigger.addEventListener('mouseenter', () => {
+  showTimeout = setTimeout(showTooltip, delay);
+});
+
+trigger.addEventListener('mouseleave', () => {
+  if (showTimeout) {
+    clearTimeout(showTimeout);
+  }
+  hideTooltip();
+});
+```
+
+---
+
+## デモページ
+
+実際の動作は以下のページで確認できます：
+
+https://example.tokens.design.sb.hidearea.net/examples/basic/index.html
+
+---
+
 **最終更新:** 2025-12-11
-**Phase 4 Option D で実装**
+**Phase 4 Option D で実装、PR #92 で改善**

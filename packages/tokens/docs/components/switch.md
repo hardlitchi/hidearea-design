@@ -18,6 +18,14 @@
 - ダークモードの切り替え
 - 表示/非表示の制御
 
+### Phase 4 で追加された機能
+
+- **スムーズなアニメーション**: トラックとつまみに200msのトランジション
+- **カスタムイベント発行**: `switch-change` イベントで状態変更を通知
+- **プログラマティックAPI**: `setValue()`/`getValue()` メソッドによる制御
+- **ARIA属性の自動更新**: `aria-checked` の自動同期
+- **キーボードサポート強化**: Spaceキーでのトグル操作
+
 ---
 
 ## サイズバリアント
@@ -721,6 +729,108 @@ export function AsyncSwitch({ checked, onChange, loading }) {
 
 ---
 
+## 拡張機能の実装 (Phase 4 改善)
+
+### カスタムイベントの発行
+
+スイッチの状態が変更されると、`switch-change` イベントが発行されます：
+
+```javascript
+function initializeSwitch(switchElement, options = {}) {
+  const handleChange = (e) => {
+    const checked = switchElement.checked;
+
+    // カスタムイベントを発行
+    const changeEvent = new CustomEvent('switch-change', {
+      detail: { checked, element: switchElement }
+    });
+    switchElement.dispatchEvent(changeEvent);
+
+    // ARIA属性を更新
+    switchElement.setAttribute('aria-checked', checked.toString());
+  };
+
+  switchElement.addEventListener('change', handleChange);
+}
+
+// イベントのリスニング
+switchElement.addEventListener('switch-change', (e) => {
+  console.log('Switch changed:', e.detail.checked);
+});
+```
+
+### プログラマティックAPI
+
+JavaScriptから直接スイッチの状態を制御：
+
+```javascript
+const switchControl = initializeSwitch(switchElement, {
+  onChange: (checked) => {
+    console.log('State changed:', checked);
+  },
+  animated: true
+});
+
+// 値を設定
+switchControl.setValue(true);
+
+// 値を取得
+const isChecked = switchControl.getValue();
+
+// クリーンアップ
+switchControl.destroy();
+```
+
+### スムーズなアニメーション
+
+トラックとつまみに200msのトランジションを適用：
+
+```javascript
+if (animated) {
+  track.style.transition = 'background-color 200ms ease';
+  thumb.style.transition = 'transform 200ms ease';
+}
+```
+
+### ARIA属性の自動更新
+
+状態変更時に `aria-checked` 属性を自動的に更新：
+
+```javascript
+// 初期化時
+switchElement.setAttribute('role', 'switch');
+switchElement.setAttribute('aria-checked', switchElement.checked.toString());
+
+// 変更時
+handleChange = (e) => {
+  switchElement.setAttribute('aria-checked', checked.toString());
+};
+```
+
+### 強化されたキーボードサポート
+
+Spaceキーでスイッチをトグル：
+
+```javascript
+switchElement.addEventListener('keydown', (e) => {
+  if (e.key === ' ') {
+    e.preventDefault();
+    switchElement.checked = !switchElement.checked;
+    handleChange({ target: switchElement });
+  }
+});
+```
+
+---
+
+## デモページ
+
+実際の動作は以下のページで確認できます：
+
+https://example.tokens.design.sb.hidearea.net/examples/basic/index.html
+
+---
+
 ## 関連コンポーネント
 
 - [Checkbox](./checkbox.md) - 複数選択用
@@ -735,3 +845,8 @@ export function AsyncSwitch({ checked, onChange, loading }) {
 - [アーキテクチャガイド](../アーキテクチャガイド.md)
 - [使用方法ガイド](../使用方法ガイド.md)
 - [コンポーネントリファレンス](./README.md)
+
+---
+
+**最終更新:** 2025-12-11
+**Phase 4 で実装、PR #92 で改善**
