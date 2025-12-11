@@ -7,7 +7,7 @@ export class HaAvatar extends HTMLElement {
   private statusElement: HTMLDivElement | null = null;
 
   static get observedAttributes() {
-    return ["src", "alt", "size", "variant", "initials", "status"];
+    return ["src", "alt", "size", "variant", "shape", "color", "initials", "status", "interactive"];
   }
 
   constructor() {
