@@ -22,3 +22,17 @@
 .list--divided ::slotted(ha-list-item:not(:last-child)) {
   border-bottom: var(--component-list-divider-width) solid var(--component-list-divider-color);
 }
+
+/* Bordered variant */
+.list--bordered {
+  border: 1px solid var(--component-list-divider-color);
+}
+
+/* Hoverable variant */
+.list--hoverable ::slotted(ha-list-item) {
+  cursor: pointer;
+}
+
+.list--hoverable ::slotted(ha-list-item:hover) {
+  background: var(--component-list-item-background-hover);
+}
