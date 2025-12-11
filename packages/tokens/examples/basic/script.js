@@ -1362,8 +1362,353 @@ window.resetProgress = function(progressId) {
   }
 };
 
+// ============================================
+// Tooltip Component
+// ============================================
+
+const TOOLTIP_DELAY = 200; // ms to show tooltip
+const TOOLTIP_OFFSET = 8; // px offset from target
+
+/**
+ * Initialize tooltip functionality for an element
+ * @param {HTMLElement} trigger - Element that triggers the tooltip
+ * @param {Object} options - Configuration options
+ */
+function initializeTooltip(trigger, options = {}) {
+  const {
+    content = '',
+    position = 'top', // top, bottom, left, right
+    delay = TOOLTIP_DELAY,
+    offset = TOOLTIP_OFFSET
+  } = options;
+
+  let tooltip = null;
+  let showTimeout = null;
+
+  const createTooltip = () => {
+    tooltip = document.createElement('div');
+    tooltip.className = 'tooltip tooltip-live';
+    tooltip.textContent = content;
+    tooltip.setAttribute('role', 'tooltip');
+    tooltip.style.cssText = `
+      position: fixed;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: opacity 150ms ease;
+      max-width: 300px;
+      height: auto;
+      min-height: fit-content;
+      line-height: 1.5;
+      white-space: normal;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      transform: none;
+    `;
+    document.body.appendChild(tooltip);
+    return tooltip;
+  };
+
+  const positionTooltip = () => {
+    if (!tooltip) return;
+
+    const triggerRect = trigger.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+
+    let top, left;
+
+    switch (position) {
+      case 'top':
+        top = triggerRect.top - tooltipRect.height - offset;
+        left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
+        break;
+      case 'bottom':
+        top = triggerRect.bottom + offset;
+        left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
+        break;
+      case 'left':
+        top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2;
+        left = triggerRect.left - tooltipRect.width - offset;
+        break;
+      case 'right':
+        top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2;
+        left = triggerRect.right + offset;
+        break;
+      default:
+        top = triggerRect.top - tooltipRect.height - offset;
+        left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
+    }
+
+    // Keep tooltip within viewport
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    if (left < 0) left = offset;
+    if (left + tooltipRect.width > viewportWidth) {
+      left = viewportWidth - tooltipRect.width - offset;
+    }
+    if (top < 0) top = offset;
+    if (top + tooltipRect.height > viewportHeight) {
+      top = viewportHeight - tooltipRect.height - offset;
+    }
+
+    tooltip.style.top = `${top}px`;
+    tooltip.style.left = `${left}px`;
+  };
+
+  const showTooltip = () => {
+    if (!tooltip) createTooltip();
+    positionTooltip();
+    requestAnimationFrame(() => {
+      tooltip.style.opacity = '1';
+      tooltip.style.visibility = 'visible';
+    });
+  };
+
+  const hideTooltip = () => {
+    if (!tooltip) return;
+    tooltip.style.opacity = '0';
+    tooltip.style.visibility = 'hidden';
+    setTimeout(() => {
+      if (tooltip) {
+        tooltip.remove();
+        tooltip = null;
+      }
+    }, 150);
+  };
+
+  // Mouse events
+  trigger.addEventListener('mouseenter', () => {
+    showTimeout = setTimeout(showTooltip, delay);
+  });
+
+  trigger.addEventListener('mouseleave', () => {
+    if (showTimeout) {
+      clearTimeout(showTimeout);
+      showTimeout = null;
+    }
+    hideTooltip();
+  });
+
+  // Focus events for accessibility
+  trigger.addEventListener('focus', () => {
+    showTimeout = setTimeout(showTooltip, delay);
+  });
+
+  trigger.addEventListener('blur', () => {
+    if (showTimeout) {
+      clearTimeout(showTimeout);
+      showTimeout = null;
+    }
+    hideTooltip();
+  });
+
+  // Cleanup on window resize
+  window.addEventListener('resize', () => {
+    if (tooltip && tooltip.style.opacity === '1') {
+      positionTooltip();
+    }
+  });
+
+  return {
+    show: showTooltip,
+    hide: hideTooltip,
+    destroy: () => {
+      hideTooltip();
+      trigger.removeEventListener('mouseenter', showTooltip);
+      trigger.removeEventListener('mouseleave', hideTooltip);
+    }
+  };
+}
+
+// ============================================
+// Breadcrumb Component
+// ============================================
+
+/**
+ * Initialize breadcrumb navigation
+ * @param {HTMLElement} breadcrumb - Breadcrumb container element
+ */
+function initializeBreadcrumb(breadcrumb) {
+  const links = breadcrumb.querySelectorAll('.breadcrumb-link');
+
+  links.forEach((link, index) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = link.getAttribute('href');
+
+      // Emit custom event for navigation
+      const navEvent = new CustomEvent('breadcrumb-navigate', {
+        detail: {
+          href,
+          index,
+          text: link.textContent.trim()
+        }
+      });
+      breadcrumb.dispatchEvent(navEvent);
+
+      // For demo purposes, show toast notification
+      if (window.showToast) {
+        showToast(`パンくずナビゲーション: ${link.textContent.trim()}`, 'info', 3000);
+      }
+    });
+
+    // Keyboard navigation
+    link.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        link.click();
+      }
+    });
+  });
+
+  return {
+    updatePath: (items) => {
+      const list = breadcrumb.querySelector('.breadcrumb-list');
+      if (!list) return;
+
+      list.innerHTML = '';
+      items.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.className = 'breadcrumb-item';
+
+        if (index === items.length - 1) {
+          // Last item (current page)
+          li.classList.add('breadcrumb-item-active');
+          li.setAttribute('aria-current', 'page');
+          li.textContent = item.text;
+        } else {
+          // Navigation links
+          const a = document.createElement('a');
+          a.href = item.href || '#';
+          a.className = 'breadcrumb-link';
+          a.textContent = item.text;
+          li.appendChild(a);
+        }
+
+        list.appendChild(li);
+
+        // Add separator except for last item
+        if (index < items.length - 1) {
+          const separator = document.createElement('li');
+          separator.className = 'breadcrumb-separator';
+          separator.textContent = '/';
+          list.appendChild(separator);
+        }
+      });
+
+      // Re-initialize links
+      initializeBreadcrumb(breadcrumb);
+    }
+  };
+}
+
+// ============================================
+// Switch Component
+// ============================================
+
+/**
+ * Initialize switch with enhanced functionality
+ * @param {HTMLElement} switchElement - Switch input element
+ * @param {Object} options - Configuration options
+ */
+function initializeSwitch(switchElement, options = {}) {
+  const {
+    onChange = null,
+    animated = true
+  } = options;
+
+  const switchGroup = switchElement.closest('.switch-group');
+  const track = switchGroup?.querySelector('.switch-track');
+  const thumb = switchGroup?.querySelector('.switch-thumb');
+
+  if (!track || !thumb) return;
+
+  // Add animation class if enabled
+  if (animated) {
+    track.style.transition = 'background-color 200ms ease';
+    thumb.style.transition = 'transform 200ms ease';
+  }
+
+  const handleChange = (e) => {
+    const checked = switchElement.checked;
+
+    // Emit change event
+    if (onChange) {
+      onChange(checked, switchElement);
+    }
+
+    // Emit custom event
+    const changeEvent = new CustomEvent('switch-change', {
+      detail: { checked, element: switchElement }
+    });
+    switchElement.dispatchEvent(changeEvent);
+
+    // Update ARIA attributes
+    switchElement.setAttribute('aria-checked', checked.toString());
+  };
+
+  // Set initial ARIA attributes
+  switchElement.setAttribute('role', 'switch');
+  switchElement.setAttribute('aria-checked', switchElement.checked.toString());
+
+  // Listen for changes
+  switchElement.addEventListener('change', handleChange);
+
+  // Keyboard support (Space to toggle)
+  switchElement.addEventListener('keydown', (e) => {
+    if (e.key === ' ') {
+      e.preventDefault();
+      switchElement.checked = !switchElement.checked;
+      handleChange({ target: switchElement });
+    }
+  });
+
+  return {
+    setValue: (value) => {
+      switchElement.checked = value;
+      handleChange({ target: switchElement });
+    },
+    getValue: () => switchElement.checked,
+    destroy: () => {
+      switchElement.removeEventListener('change', handleChange);
+    }
+  };
+}
+
 // Initialize theme on page load
 initTheme();
+
+// Initialize all components
+function initializeComponents() {
+  // Tooltip initialization
+  const tooltipTriggers = document.querySelectorAll('[data-tooltip]');
+  tooltipTriggers.forEach(trigger => {
+    const content = trigger.getAttribute('data-tooltip');
+    const position = trigger.getAttribute('data-tooltip-position') || 'top';
+    initializeTooltip(trigger, { content, position });
+  });
+
+  // Breadcrumb initialization
+  const breadcrumbs = document.querySelectorAll('.breadcrumb');
+  breadcrumbs.forEach(breadcrumb => {
+    initializeBreadcrumb(breadcrumb);
+  });
+
+  // Switch initialization
+  const switches = document.querySelectorAll('.switch-input');
+  switches.forEach(switchInput => {
+    initializeSwitch(switchInput);
+  });
+}
+
+// Initialize components when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeComponents);
+} else {
+  // DOM is already loaded, initialize immediately
+  initializeComponents();
+}
 
 // Log current theme for debugging
 console.log('Current theme:', document.documentElement.getAttribute('data-theme'));
