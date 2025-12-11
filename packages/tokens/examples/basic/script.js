@@ -1397,8 +1397,10 @@ function initializeTooltip(trigger, options = {}) {
       z-index: 9999;
       transition: opacity 150ms ease;
       max-width: 300px;
+      line-height: 1.5;
       white-space: normal;
       word-wrap: break-word;
+      overflow-wrap: break-word;
     `;
     document.body.appendChild(tooltip);
     return tooltip;
