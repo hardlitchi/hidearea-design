@@ -31,6 +31,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build tokens package
+        run: pnpm --filter @hidearea-design/tokens build
+
       - name: Build core package
         run: pnpm --filter @hidearea-design/core build
 
