@@ -6,19 +6,110 @@
 
 Web Componentベースのマルチフレームワーク対応デザインシステム
 
+トークンベースのアーキテクチャにより、スタイルとロジックを完全に分離。React、Vue、Vanilla JSなど、あらゆるフレームワークで一貫したデザインを実現します。
+
+## ✨ 特徴
+
+- 🎨 **トークンベースの設計** - デザイントークンとコンポーネントスタイルを完全分離
+- 🔧 **フレームワーク非依存** - Web Components標準による完全な互換性
+- 🎯 **TypeScript完全対応** - 型安全な開発体験
+- ♿ **アクセシビリティ** - WCAG AA準拠の設計
+- 🌗 **テーマサポート** - ライト/ダークモードの組み込みサポート
+- 📦 **38+コンポーネント** - 実用的なUIコンポーネント群
+
 ## パッケージ
 
-- **[@hidearea-design/core](./packages/core)** - Web Components本体
+- **[@hidearea-design/core](./packages/core)** - Web Components本体（38+ コンポーネント）
 - **[@hidearea-design/react](./packages/react)** - Reactラッパー
 - **[@hidearea-design/vue](./packages/vue)** - Vue 3ラッパー
-- **[@hidearea-design/tokens](./packages/tokens)** - デザイントークン
+- **[@hidearea-design/tokens](./packages/tokens)** - デザイントークン & コンポーネントスタイル
+
+## 🚀 クイックスタート
+
+### Vanilla JavaScript
+
+```bash
+npm install @hidearea-design/core @hidearea-design/tokens
+```
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="module">
+      import '@hidearea-design/tokens/css';
+      import '@hidearea-design/core/components/button';
+    </script>
+  </head>
+  <body>
+    <ha-button variant="primary">Click me</ha-button>
+  </body>
+</html>
+```
+
+### React
+
+```bash
+npm install @hidearea-design/react @hidearea-design/tokens
+```
+
+```tsx
+import '@hidearea-design/tokens/css';
+import { Button } from '@hidearea-design/react';
+
+function App() {
+  return <Button variant="primary">Click me</Button>;
+}
+```
+
+### Vue 3
+
+```bash
+npm install @hidearea-design/vue @hidearea-design/tokens
+```
+
+```vue
+<script setup>
+import '@hidearea-design/tokens/css';
+import { HaButton } from '@hidearea-design/vue';
+</script>
+
+<template>
+  <HaButton variant="primary">Click me</HaButton>
+</template>
+```
+
+## 📦 利用可能なコンポーネント
+
+### フォーム
+Button, Input, Checkbox, Radio, Select, Switch, Textarea, Slider
+
+### データ表示
+Avatar, Avatar Group, Badge, Card, Chip, List, Table, Datagrid
+
+### フィードバック
+Alert, Progress, Spinner, Skeleton, Toast, Tooltip
+
+### ナビゲーション
+Breadcrumb, Menu, Pagination, Tabs
+
+### レイアウト
+Container, Grid, Stack
+
+### オーバーレイ
+Modal, Drawer
+
+### その他
+Accordion, Form Group, File Upload, Date Picker, Time Picker, Color Picker
+
+詳細は [コンポーネントドキュメント](./docs/components/) を参照してください。
 
 ## 開発環境
 
 - Node.js: v22.21.0以上
 - パッケージマネージャー: pnpm 10.22.0
 
-## セットアップ
+## セットアップ（開発者向け）
 
 ```bash
 # 依存関係のインストール
@@ -29,6 +120,9 @@ pnpm build
 
 # 開発モード
 pnpm dev
+
+# テスト実行
+pnpm test
 ```
 
 ## スクリプト
@@ -60,24 +154,34 @@ hidearea-design/
 
 MIT
 
-## ドキュメント
-
-📖 [English](./docs/) | [日本語](./docs/ja/)
+## 📖 ドキュメント
 
 ### Getting Started
 
-- **[インストールガイド](./docs/getting-started/installation.md)** ([日本語](./docs/ja/getting-started/installation.md)) - パッケージのインストール方法と基本セットアップ
-- **[クイックスタート](./docs/getting-started/installation.md#quick-start)** - Vanilla JS、React、Vueでの使用方法
+- **[インストールガイド](./docs/getting-started/installation.md)** - パッケージのインストール方法と基本セットアップ
+- **[使い方ガイド](./docs/getting-started/usage-guide.md)** - デザインシステムの基本的な使い方
+- **[クイックスタート](#-クイックスタート)** - Vanilla JS、React、Vueでの使用方法
+
+### 🎨 サンプル
+
+実用的なサンプルで学ぶ hidearea-design:
+
+- **[Component Showcase](./example/component-showcase/)** - 全コンポーネントのデモ
+- **[Login Form](./example/login-form/)** - ログインフォームの実装例
+- **[Dashboard](./example/dashboard/)** - ダッシュボードUIの実装例
+
+[すべてのサンプルを見る →](./example/README.md)
 
 ### Components
 
-- **[Button](./docs/components/button.md)** ([日本語](./docs/ja/components/button.md)) - ボタンコンポーネントのAPI とサンプル
-- **[Input](./docs/components/input.md)** ([日本語](./docs/ja/components/input.md)) - インプットコンポーネントのAPI とサンプル
-- **[Checkbox](./docs/components/checkbox.md)** ([日本語](./docs/ja/components/checkbox.md)) - チェックボックスコンポーネントのAPI とサンプル
+- **[Button](./docs/components/button.md)** - ボタンコンポーネントのAPI とサンプル
+- **[Input](./docs/components/input.md)** - インプットコンポーネントのAPI とサンプル
+- **[Checkbox](./docs/components/checkbox.md)** - チェックボックスコンポーネントのAPI とサンプル
+- **[全コンポーネント一覧](./docs/components/)** - 38+ コンポーネントのドキュメント
 
 ### Guides
 
-- **[使用例](./docs/guides/examples.md)** ([日本語](./docs/ja/guides/examples.md)) - ログインフォーム、検索、設定パネルなどの実装例
+- **[使用例](./docs/guides/examples.md)** - ログインフォーム、検索、設定パネルなどの実装例
 - **[コントリビューティング](./CONTRIBUTING.md)** ([日本語](./CONTRIBUTING.ja.md)) - プロジェクトへの貢献方法
 
 ### プロジェクトメモ

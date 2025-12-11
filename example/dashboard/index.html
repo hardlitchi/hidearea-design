@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Example - hidearea-design</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--background-default);
+      color: var(--foreground-default);
+      font-family: var(--font-family-sans);
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: var(--background-secondary);
+      border-bottom: 1px solid var(--border-default);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-title {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    /* Main Layout */
+    .main-container {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      min-height: calc(100vh - 73px);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: var(--background-secondary);
+      border-right: 1px solid var(--border-default);
+      padding: 1.5rem 1rem;
+    }
+
+    .sidebar-section {
+      margin-bottom: 2rem;
+    }
+
+    .sidebar-section-title {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      text-transform: uppercase;
+      color: var(--foreground-muted);
+      margin-bottom: 0.5rem;
+      padding: 0 0.75rem;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+    }
+
+    .sidebar-menu-item {
+      margin-bottom: 0.25rem;
+    }
+
+    .sidebar-menu-item a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      border-radius: var(--radius-md);
+      color: var(--foreground-default);
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+
+    .sidebar-menu-item a:hover {
+      background: var(--background-tertiary);
+    }
+
+    .sidebar-menu-item a.active {
+      background: var(--primary-default);
+      color: var(--foreground-inverse);
+    }
+
+    .menu-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Content */
+    .content {
+      padding: 2rem;
+    }
+
+    .page-header {
+      margin-bottom: 2rem;
+    }
+
+    .page-header h1 {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      color: var(--foreground-muted);
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      padding: 1.5rem;
+    }
+
+    .stat-label {
+      font-size: var(--font-size-sm);
+      color: var(--foreground-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-change {
+      font-size: var(--font-size-sm);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .stat-change.positive {
+      color: var(--foreground-success);
+    }
+
+    .stat-change.negative {
+      color: var(--foreground-danger);
+    }
+
+    /* Content Grid */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    /* Activity List */
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .activity-item {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .activity-avatar {
+      flex-shrink: 0;
+    }
+
+    .activity-content {
+      flex: 1;
+    }
+
+    .activity-title {
+      font-weight: var(--font-weight-medium);
+      margin-bottom: 0.25rem;
+    }
+
+    .activity-description {
+      font-size: var(--font-size-sm);
+      color: var(--foreground-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .activity-time {
+      font-size: var(--font-size-xs);
+      color: var(--foreground-muted);
+    }
+
+    /* Task List */
+    .task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .task-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: var(--background-secondary);
+      border-radius: var(--radius-md);
+    }
+
+    .task-content {
+      flex: 1;
+    }
+
+    .task-title {
+      font-size: var(--font-size-sm);
+      margin-bottom: 0.25rem;
+    }
+
+    .task-meta {
+      font-size: var(--font-size-xs);
+      color: var(--foreground-muted);
+    }
+
+    @media (max-width: 768px) {
+      .main-container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <script type="module" src="./main.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-title">Dashboard</div>
+    <div class="header-actions">
+      <ha-button id="light-theme" size="sm" variant="ghost">☀️</ha-button>
+      <ha-button id="dark-theme" size="sm" variant="ghost">🌙</ha-button>
+      <ha-avatar size="sm" initials="JD"></ha-avatar>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="main-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">メニュー</div>
+        <ul class="sidebar-menu">
+          <li class="sidebar-menu-item">
+            <a href="#dashboard" class="active">
+              <span class="menu-icon">📊</span>
+              <span>ダッシュボード</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href="#projects">
+              <span class="menu-icon">📁</span>
+              <span>プロジェクト</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href="#tasks">
+              <span class="menu-icon">✅</span>
+              <span>タスク</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href="#team">
+              <span class="menu-icon">👥</span>
+              <span>チーム</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href="#reports">
+              <span class="menu-icon">📈</span>
+              <span>レポート</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">設定</div>
+        <ul class="sidebar-menu">
+          <li class="sidebar-menu-item">
+            <a href="#settings">
+              <span class="menu-icon">⚙️</span>
+              <span>設定</span>
+            </a>
+          </li>
+          <li class="sidebar-menu-item">
+            <a href="#help">
+              <span class="menu-icon">❓</span>
+              <span>ヘルプ</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Content -->
+    <main class="content">
+      <div class="page-header">
+        <h1>Welcome back, John! 👋</h1>
+        <p>ここに今日の概要が表示されます</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <ha-card class="stat-card">
+          <div class="stat-label">総収益</div>
+          <div class="stat-value">¥1,234,567</div>
+          <div class="stat-change positive">
+            <span>↗</span>
+            <span>+12.5% from last month</span>
+          </div>
+        </ha-card>
+
+        <ha-card class="stat-card">
+          <div class="stat-label">アクティブユーザー</div>
+          <div class="stat-value">8,254</div>
+          <div class="stat-change positive">
+            <span>↗</span>
+            <span>+5.2% from last month</span>
+          </div>
+        </ha-card>
+
+        <ha-card class="stat-card">
+          <div class="stat-label">新規登録</div>
+          <div class="stat-value">432</div>
+          <div class="stat-change negative">
+            <span>↘</span>
+            <span>-2.3% from last month</span>
+          </div>
+        </ha-card>
+
+        <ha-card class="stat-card">
+          <div class="stat-label">完了タスク</div>
+          <div class="stat-value">89%</div>
+          <div class="stat-change positive">
+            <span>↗</span>
+            <span>+4.1% from last month</span>
+          </div>
+        </ha-card>
+      </div>
+
+      <!-- Content Grid -->
+      <div class="content-grid">
+        <!-- Recent Activity -->
+        <ha-card>
+          <div class="card-header">
+            <div class="card-title">最近のアクティビティ</div>
+            <ha-button size="sm" variant="ghost">すべて表示</ha-button>
+          </div>
+
+          <div class="activity-list">
+            <div class="activity-item">
+              <ha-avatar class="activity-avatar" size="sm" initials="MT"></ha-avatar>
+              <div class="activity-content">
+                <div class="activity-title">田中 美咲</div>
+                <div class="activity-description">新しいプロジェクト「ウェブサイトリニューアル」を作成しました</div>
+                <div class="activity-time">2時間前</div>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <ha-avatar class="activity-avatar" size="sm" initials="KS"></ha-avatar>
+              <div class="activity-content">
+                <div class="activity-title">佐藤 健太</div>
+                <div class="activity-description">タスク「デザインレビュー」を完了しました</div>
+                <div class="activity-time">4時間前</div>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <ha-avatar class="activity-avatar" size="sm" initials="AM"></ha-avatar>
+              <div class="activity-content">
+                <div class="activity-title">松本 愛</div>
+                <div class="activity-description">コメントを追加しました</div>
+                <div class="activity-time">6時間前</div>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <ha-avatar class="activity-avatar" size="sm" initials="YI"></ha-avatar>
+              <div class="activity-content">
+                <div class="activity-title">井上 優</div>
+                <div class="activity-description">新しいメンバーをチームに追加しました</div>
+                <div class="activity-time">1日前</div>
+              </div>
+            </div>
+          </div>
+        </ha-card>
+
+        <!-- Tasks -->
+        <ha-card>
+          <div class="card-header">
+            <div class="card-title">今日のタスク</div>
+            <ha-badge>5</ha-badge>
+          </div>
+
+          <div class="task-list">
+            <div class="task-item">
+              <ha-checkbox></ha-checkbox>
+              <div class="task-content">
+                <div class="task-title">クライアントミーティング</div>
+                <div class="task-meta">10:00 AM</div>
+              </div>
+            </div>
+
+            <div class="task-item">
+              <ha-checkbox checked></ha-checkbox>
+              <div class="task-content">
+                <div class="task-title">デザインレビュー</div>
+                <div class="task-meta">完了</div>
+              </div>
+            </div>
+
+            <div class="task-item">
+              <ha-checkbox></ha-checkbox>
+              <div class="task-content">
+                <div class="task-title">コードレビュー</div>
+                <div class="task-meta">2:00 PM</div>
+              </div>
+            </div>
+
+            <div class="task-item">
+              <ha-checkbox></ha-checkbox>
+              <div class="task-content">
+                <div class="task-title">週次レポート作成</div>
+                <div class="task-meta">期限: 今日</div>
+              </div>
+            </div>
+
+            <div class="task-item">
+              <ha-checkbox></ha-checkbox>
+              <div class="task-content">
+                <div class="task-title">チームミーティング</div>
+                <div class="task-meta">4:00 PM</div>
+              </div>
+            </div>
+          </div>
+
+          <ha-button variant="outline" full-width style="margin-top: 1rem;">
+            新しいタスクを追加
+          </ha-button>
+        </ha-card>
+      </div>
+
+      <!-- Quick Actions -->
+      <ha-card>
+        <div class="card-header">
+          <div class="card-title">クイックアクション</div>
+        </div>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <ha-button variant="primary">新しいプロジェクト</ha-button>
+          <ha-button variant="outline">メンバーを招待</ha-button>
+          <ha-button variant="outline">レポートを生成</ha-button>
+          <ha-button variant="ghost">設定</ha-button>
+        </div>
+      </ha-card>
+    </main>
+  </div>
+</body>
+</html>
