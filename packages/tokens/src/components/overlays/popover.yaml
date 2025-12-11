@@ -201,17 +201,57 @@ component:
       # 位置別の出現アニメーション
       enter:
         top:
-          value: "transform: translateY(-8px); opacity: 0"
-          comment: "上から出現"
+          opacityFrom:
+            value: "0"
+            comment: "上から出現時の開始透明度"
+          opacityTo:
+            value: "1"
+            comment: "上から出現時の終了透明度"
+          transformFrom:
+            value: "translateY(-8px)"
+            comment: "上から出現時の開始変形"
+          transformTo:
+            value: "translateY(0)"
+            comment: "上から出現時の終了変形"
         bottom:
-          value: "transform: translateY(8px); opacity: 0"
-          comment: "下から出現"
+          opacityFrom:
+            value: "0"
+            comment: "下から出現時の開始透明度"
+          opacityTo:
+            value: "1"
+            comment: "下から出現時の終了透明度"
+          transformFrom:
+            value: "translateY(8px)"
+            comment: "下から出現時の開始変形"
+          transformTo:
+            value: "translateY(0)"
+            comment: "下から出現時の終了変形"
         left:
-          value: "transform: translateX(-8px); opacity: 0"
-          comment: "左から出現"
+          opacityFrom:
+            value: "0"
+            comment: "左から出現時の開始透明度"
+          opacityTo:
+            value: "1"
+            comment: "左から出現時の終了透明度"
+          transformFrom:
+            value: "translateX(-8px)"
+            comment: "左から出現時の開始変形"
+          transformTo:
+            value: "translateX(0)"
+            comment: "左から出現時の終了変形"
         right:
-          value: "transform: translateX(8px); opacity: 0"
-          comment: "右から出現"
+          opacityFrom:
+            value: "0"
+            comment: "右から出現時の開始透明度"
+          opacityTo:
+            value: "1"
+            comment: "右から出現時の終了透明度"
+          transformFrom:
+            value: "translateX(8px)"
+            comment: "右から出現時の開始変形"
+          transformTo:
+            value: "translateX(0)"
+            comment: "右から出現時の終了変形"
 
     # トランジション
     transition:

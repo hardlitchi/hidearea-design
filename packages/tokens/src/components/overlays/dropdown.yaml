@@ -301,12 +301,32 @@ component:
         comment: "イージング"
 
       enter:
-        value: "transform: translateY(-8px); opacity: 0"
-        comment: "出現アニメーション開始状態"
+        opacityFrom:
+          value: "0"
+          comment: "出現アニメーション開始時の透明度"
+        opacityTo:
+          value: "1"
+          comment: "出現アニメーション終了時の透明度"
+        transformFrom:
+          value: "translateY(-8px)"
+          comment: "出現アニメーション開始時の変形"
+        transformTo:
+          value: "translateY(0)"
+          comment: "出現アニメーション終了時の変形"
 
       exit:
-        value: "transform: translateY(-8px); opacity: 0"
-        comment: "退出アニメーション終了状態"
+        opacityFrom:
+          value: "1"
+          comment: "退出アニメーション開始時の透明度"
+        opacityTo:
+          value: "0"
+          comment: "退出アニメーション終了時の透明度"
+        transformFrom:
+          value: "translateY(0)"
+          comment: "退出アニメーション開始時の変形"
+        transformTo:
+          value: "translateY(-8px)"
+          comment: "退出アニメーション終了時の変形"
 
     # オフセット（トリガーからの距離）
     offset:
