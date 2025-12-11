@@ -1454,7 +1454,8 @@ function initializeTooltip(trigger, options = {}) {
     positionTooltip();
     requestAnimationFrame(() => {
       tooltip.style.opacity = '1';
-      console.log('[Tooltip] Tooltip opacity set to 1');
+      tooltip.style.visibility = 'visible';
+      console.log('[Tooltip] Tooltip opacity set to 1 and visibility to visible');
     });
   };
 
@@ -1462,6 +1463,7 @@ function initializeTooltip(trigger, options = {}) {
     console.log('[Tooltip] hideTooltip called');
     if (!tooltip) return;
     tooltip.style.opacity = '0';
+    tooltip.style.visibility = 'hidden';
     setTimeout(() => {
       if (tooltip) {
         tooltip.remove();
