@@ -1,0 +1,268 @@
+# チップコンポーネントトークン - hidearea-design
+# タグ、ラベル、フィルターチップの外観と振る舞いを定義
+
+component:
+  chip:
+    # サイズ
+    size:
+      small:
+        height:
+          value: "1.5rem"
+          comment: "小サイズの高さ (24px)"
+        padding:
+          horizontal:
+            value: "{spacing.2}"
+            comment: "小サイズの水平パディング (0.5rem)"
+        fontSize:
+          value: "{font.size.xs}"
+          comment: "小サイズのフォントサイズ (0.75rem)"
+        iconSize:
+          value: "0.875rem"
+          comment: "小サイズのアイコン (14px)"
+      medium:
+        height:
+          value: "2rem"
+          comment: "中サイズの高さ (32px)"
+        padding:
+          horizontal:
+            value: "{spacing.3}"
+            comment: "中サイズの水平パディング (0.75rem)"
+        fontSize:
+          value: "{font.size.sm}"
+          comment: "中サイズのフォントサイズ (0.875rem)"
+        iconSize:
+          value: "1rem"
+          comment: "中サイズのアイコン (16px)"
+      large:
+        height:
+          value: "2.5rem"
+          comment: "大サイズの高さ (40px)"
+        padding:
+          horizontal:
+            value: "{spacing.4}"
+            comment: "大サイズの水平パディング (1rem)"
+        fontSize:
+          value: "{font.size.base}"
+          comment: "大サイズのフォントサイズ (1rem)"
+        iconSize:
+          value: "1.25rem"
+          comment: "大サイズのアイコン (20px)"
+
+    # デフォルトバリアント
+    default:
+      background:
+        default:
+          value: "{background.tertiary}"
+          comment: "デフォルト背景色"
+        hover:
+          value: "{background.secondary}"
+          comment: "ホバー時背景色"
+      text:
+        value: "{foreground.primary}"
+        comment: "テキスト色"
+      border:
+        color:
+          value: "{border.default}"
+          comment: "ボーダー色"
+
+    # プライマリバリアント
+    primary:
+      background:
+        default:
+          value: "{primary.subtle}"
+          comment: "プライマリ背景色"
+        hover:
+          value: "{primary.default}"
+          comment: "ホバー時背景色"
+      text:
+        default:
+          value: "{primary.default}"
+          comment: "デフォルトテキスト色"
+        hover:
+          value: "{foreground.inverse}"
+          comment: "ホバー時テキスト色"
+      border:
+        color:
+          value: "{primary.default}"
+          comment: "ボーダー色"
+
+    # 成功バリアント
+    success:
+      background:
+        default:
+          value: "{success.subtle}"
+          comment: "成功背景色"
+        hover:
+          value: "{success.default}"
+          comment: "ホバー時背景色"
+      text:
+        default:
+          value: "{success.default}"
+          comment: "デフォルトテキスト色"
+        hover:
+          value: "{foreground.inverse}"
+          comment: "ホバー時テキスト色"
+      border:
+        color:
+          value: "{success.default}"
+          comment: "ボーダー色"
+
+    # 警告バリアント
+    warning:
+      background:
+        default:
+          value: "{warning.subtle}"
+          comment: "警告背景色"
+        hover:
+          value: "{warning.default}"
+          comment: "ホバー時背景色"
+      text:
+        default:
+          value: "{warning.default}"
+          comment: "デフォルトテキスト色"
+        hover:
+          value: "{foreground.inverse}"
+          comment: "ホバー時テキスト色"
+      border:
+        color:
+          value: "{warning.default}"
+          comment: "ボーダー色"
+
+    # エラーバリアント
+    error:
+      background:
+        default:
+          value: "{error.subtle}"
+          comment: "エラー背景色"
+        hover:
+          value: "{error.default}"
+          comment: "ホバー時背景色"
+      text:
+        default:
+          value: "{error.default}"
+          comment: "デフォルトテキスト色"
+        hover:
+          value: "{foreground.inverse}"
+          comment: "ホバー時テキスト色"
+      border:
+        color:
+          value: "{error.default}"
+          comment: "ボーダー色"
+
+    # 情報バリアント
+    info:
+      background:
+        default:
+          value: "{info.subtle}"
+          comment: "情報背景色"
+        hover:
+          value: "{info.default}"
+          comment: "ホバー時背景色"
+      text:
+        default:
+          value: "{info.default}"
+          comment: "デフォルトテキスト色"
+        hover:
+          value: "{foreground.inverse}"
+          comment: "ホバー時テキスト色"
+      border:
+        color:
+          value: "{info.default}"
+          comment: "ボーダー色"
+
+    # ボーダー
+    border:
+      width:
+        value: "{border.width.1}"
+        comment: "ボーダーの幅 (1px)"
+      radius:
+        value: "{border.radius.full}"
+        comment: "角丸（完全な丸） (9999px)"
+
+    # フォント
+    fontWeight:
+      value: "{font.weight.medium}"
+      comment: "フォントウェイト"
+    lineHeight:
+      value: "{font.lineHeight.tight}"
+      comment: "行高"
+
+    # アイコン
+    icon:
+      gap:
+        value: "{spacing.1}"
+        comment: "アイコンとテキストの間隔 (0.25rem)"
+      color:
+        value: "currentColor"
+        comment: "アイコンの色（テキストと同じ）"
+
+    # 削除ボタン
+    close:
+      size:
+        small:
+          value: "1rem"
+          comment: "小サイズの削除ボタン (16px)"
+        medium:
+          value: "1.25rem"
+          comment: "中サイズの削除ボタン (20px)"
+        large:
+          value: "1.5rem"
+          comment: "大サイズの削除ボタン (24px)"
+      gap:
+        value: "{spacing.1}"
+        comment: "削除ボタンとテキストの間隔 (0.25rem)"
+      color:
+        default:
+          value: "currentColor"
+          comment: "削除ボタンのデフォルト色"
+        hover:
+          value: "{foreground.primary}"
+          comment: "削除ボタンのホバー時色"
+      background:
+        hover:
+          value: "rgba(0, 0, 0, 0.1)"
+          comment: "削除ボタンのホバー時背景色"
+      borderRadius:
+        value: "{border.radius.full}"
+        comment: "削除ボタンの角丸（完全な円）"
+      padding:
+        value: "{spacing.1}"
+        comment: "削除ボタンのパディング (0.25rem)"
+
+    # インタラクティブ（クリック可能）
+    interactive:
+      cursor:
+        value: "pointer"
+        comment: "クリック可能なカーソル"
+      transition:
+        duration:
+          value: "{animation.duration.fast}"
+          comment: "トランジション時間 (150ms)"
+        timing:
+          value: "{animation.easing.ease}"
+          comment: "トランジションのイージング"
+        properties:
+          value: "background-color, color, border-color, transform"
+          comment: "トランジション対象のプロパティ"
+
+    # フォーカスリング
+    focus:
+      ring:
+        width:
+          value: "2px"
+          comment: "フォーカスリングの幅"
+        offset:
+          value: "2px"
+          comment: "フォーカスリングのオフセット"
+        color:
+          value: "{primary.default}"
+          comment: "フォーカスリングの色"
+
+    # 無効状態
+    disabled:
+      opacity:
+        value: "0.5"
+        comment: "無効時の透明度"
+      cursor:
+        value: "not-allowed"
+        comment: "無効時のカーソル"

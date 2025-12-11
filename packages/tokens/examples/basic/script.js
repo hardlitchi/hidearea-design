@@ -1700,6 +1700,23 @@ function initializeComponents() {
   switches.forEach(switchInput => {
     initializeSwitch(switchInput);
   });
+
+  // Chip close button initialization
+  const chipCloseButtons = document.querySelectorAll('.chip-close');
+  chipCloseButtons.forEach(closeButton => {
+    closeButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const chip = closeButton.closest('.chip');
+      if (chip) {
+        chip.style.opacity = '0';
+        chip.style.transform = 'scale(0.8)';
+        chip.style.transition = 'opacity 200ms ease, transform 200ms ease';
+        setTimeout(() => {
+          chip.remove();
+        }, 200);
+      }
+    });
+  });
 }
 
 // Initialize components when DOM is ready

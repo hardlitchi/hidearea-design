@@ -2480,3 +2480,338 @@ body {
     height: 24px !important;
   }
 }
+
+/* ===== List Component ===== */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: var(--component-list-container-background, var(--background-primary));
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: var(--component-list-item-padding-vertical-default, 0.75rem) var(--component-list-item-padding-horizontal, 1rem);
+  background: var(--component-list-item-background-default, transparent);
+  color: var(--component-list-item-text-default, var(--foreground-primary));
+  font-size: var(--component-list-item-font-size-default, 1rem);
+  line-height: var(--component-list-item-line-height, 1.5);
+  transition: var(--component-list-interactive-transition-properties, background-color) var(--component-list-interactive-transition-duration, 150ms) var(--component-list-interactive-transition-timing, ease);
+}
+
+.list-item-interactive {
+  cursor: var(--component-list-interactive-cursor, pointer);
+}
+
+.list-item-interactive:hover {
+  background: var(--component-list-item-background-hover, var(--background-secondary));
+}
+
+.list-item-selected {
+  background: var(--component-list-item-background-selected, var(--primary-subtle));
+}
+
+.list-item-icon {
+  font-size: var(--component-list-item-icon-size-default, 1.25rem);
+  margin-right: var(--component-list-item-icon-gap, 0.75rem);
+  color: var(--component-list-item-icon-color-default, var(--foreground-secondary));
+  flex-shrink: 0;
+}
+
+.list-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.list-item-text {
+  font-weight: var(--component-list-item-font-weight, 400);
+}
+
+.list-item-secondary {
+  font-size: var(--component-list-secondary-font-size, 0.875rem);
+  color: var(--component-list-secondary-color, var(--foreground-secondary));
+  margin-top: var(--component-list-secondary-margin-top, 0.25rem);
+}
+
+.list-divided .list-item:not(:last-child) {
+  border-bottom: var(--component-list-divider-width, 1px) solid var(--component-list-divider-color, var(--border-default));
+}
+
+.list-compact .list-item {
+  padding: var(--component-list-item-padding-vertical-compact, 0.5rem) var(--component-list-item-padding-horizontal, 1rem);
+  font-size: var(--component-list-item-font-size-compact, 0.875rem);
+}
+
+/* ===== Avatar Component ===== */
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--component-avatar-size-md, 2.5rem);
+  height: var(--component-avatar-size-md, 2.5rem);
+  border-radius: var(--component-avatar-border-radius-circle, 50%);
+  background: var(--component-avatar-background-default, var(--background-tertiary));
+  color: var(--component-avatar-text-default, var(--foreground-secondary));
+  font-weight: var(--component-avatar-font-weight, 500);
+  overflow: hidden;
+}
+
+/* Sizes */
+.avatar-xs {
+  width: var(--component-avatar-size-xs, 1.5rem);
+  height: var(--component-avatar-size-xs, 1.5rem);
+  font-size: var(--component-avatar-font-size-xs, 0.625rem);
+}
+
+.avatar-sm {
+  width: var(--component-avatar-size-sm, 2rem);
+  height: var(--component-avatar-size-sm, 2rem);
+  font-size: var(--component-avatar-font-size-sm, 0.75rem);
+}
+
+.avatar-md {
+  width: var(--component-avatar-size-md, 2.5rem);
+  height: var(--component-avatar-size-md, 2.5rem);
+  font-size: var(--component-avatar-font-size-md, 0.875rem);
+}
+
+.avatar-lg {
+  width: var(--component-avatar-size-lg, 3rem);
+  height: var(--component-avatar-size-lg, 3rem);
+  font-size: var(--component-avatar-font-size-lg, 1rem);
+}
+
+.avatar-xl {
+  width: var(--component-avatar-size-xl, 4rem);
+  height: var(--component-avatar-size-xl, 4rem);
+  font-size: var(--component-avatar-font-size-xl, 1.25rem);
+}
+
+/* Color variants */
+.avatar-primary {
+  background: var(--component-avatar-background-primary, var(--primary-default));
+  color: var(--component-avatar-text-on-color, var(--foreground-inverse));
+}
+
+.avatar-success {
+  background: var(--component-avatar-background-success, var(--success-default));
+  color: var(--component-avatar-text-on-color, var(--foreground-inverse));
+}
+
+.avatar-warning {
+  background: var(--component-avatar-background-warning, var(--warning-default));
+  color: var(--component-avatar-text-on-color, var(--foreground-inverse));
+}
+
+.avatar-error {
+  background: var(--component-avatar-background-error, var(--error-default));
+  color: var(--component-avatar-text-on-color, var(--foreground-inverse));
+}
+
+/* Shapes */
+.avatar-rounded {
+  border-radius: var(--component-avatar-border-radius-rounded, 0.5rem);
+}
+
+.avatar-square {
+  border-radius: var(--component-avatar-border-radius-square, 0.25rem);
+}
+
+/* Status indicator */
+.avatar-status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: var(--component-avatar-status-size-md, 0.625rem);
+  height: var(--component-avatar-status-size-md, 0.625rem);
+  border-radius: 50%;
+  border: var(--component-avatar-status-border-width, 2px) solid var(--component-avatar-status-border-color, var(--background-primary));
+}
+
+.avatar-xs .avatar-status {
+  width: var(--component-avatar-status-size-xs, 0.375rem);
+  height: var(--component-avatar-status-size-xs, 0.375rem);
+}
+
+.avatar-sm .avatar-status {
+  width: var(--component-avatar-status-size-sm, 0.5rem);
+  height: var(--component-avatar-status-size-sm, 0.5rem);
+}
+
+.avatar-lg .avatar-status {
+  width: var(--component-avatar-status-size-lg, 0.75rem);
+  height: var(--component-avatar-status-size-lg, 0.75rem);
+}
+
+.avatar-xl .avatar-status {
+  width: var(--component-avatar-status-size-xl, 1rem);
+  height: var(--component-avatar-status-size-xl, 1rem);
+}
+
+.avatar-status-online {
+  background: var(--component-avatar-status-background-online, var(--success-default));
+}
+
+.avatar-status-offline {
+  background: var(--component-avatar-status-background-offline, var(--foreground-tertiary));
+}
+
+.avatar-status-away {
+  background: var(--component-avatar-status-background-away, var(--warning-default));
+}
+
+.avatar-status-busy {
+  background: var(--component-avatar-status-background-busy, var(--error-default));
+}
+
+.avatar-initials {
+  user-select: none;
+}
+
+/* ===== Chip Component ===== */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--component-chip-icon-gap, 0.25rem);
+  height: var(--component-chip-size-medium-height, 2rem);
+  padding: 0 var(--component-chip-size-medium-padding-horizontal, 0.75rem);
+  font-size: var(--component-chip-size-medium-font-size, 0.875rem);
+  font-weight: var(--component-chip-font-weight, 500);
+  line-height: var(--component-chip-line-height, 1.25);
+  background: var(--component-chip-default-background-default, var(--background-tertiary));
+  color: var(--component-chip-default-text, var(--foreground-primary));
+  border: var(--component-chip-border-width, 1px) solid var(--component-chip-default-border-color, var(--border-default));
+  border-radius: var(--component-chip-border-radius, 9999px);
+  transition: var(--component-chip-interactive-transition-properties, background-color) var(--component-chip-interactive-transition-duration, 150ms) var(--component-chip-interactive-transition-timing, ease);
+  user-select: none;
+}
+
+/* Sizes */
+.chip-small {
+  height: var(--component-chip-size-small-height, 1.5rem);
+  padding: 0 var(--component-chip-size-small-padding-horizontal, 0.5rem);
+  font-size: var(--component-chip-size-small-font-size, 0.75rem);
+}
+
+.chip-small .chip-icon {
+  font-size: var(--component-chip-size-small-icon-size, 0.875rem);
+}
+
+.chip-small .chip-close {
+  width: var(--component-chip-close-size-small, 1rem);
+  height: var(--component-chip-close-size-small, 1rem);
+  font-size: 0.75rem;
+}
+
+.chip-large {
+  height: var(--component-chip-size-large-height, 2.5rem);
+  padding: 0 var(--component-chip-size-large-padding-horizontal, 1rem);
+  font-size: var(--component-chip-size-large-font-size, 1rem);
+}
+
+.chip-large .chip-icon {
+  font-size: var(--component-chip-size-large-icon-size, 1.25rem);
+}
+
+.chip-large .chip-close {
+  width: var(--component-chip-close-size-large, 1.5rem);
+  height: var(--component-chip-close-size-large, 1.5rem);
+  font-size: 1.125rem;
+}
+
+/* Color variants */
+.chip-primary {
+  background: var(--component-chip-primary-background-default, var(--primary-subtle));
+  color: var(--component-chip-primary-text-default, var(--primary-default));
+  border-color: var(--component-chip-primary-border-color, var(--primary-default));
+}
+
+.chip-primary:hover {
+  background: var(--component-chip-primary-background-hover, var(--primary-default));
+  color: var(--component-chip-primary-text-hover, var(--foreground-inverse));
+}
+
+.chip-success {
+  background: var(--component-chip-success-background-default, var(--success-subtle));
+  color: var(--component-chip-success-text-default, var(--success-default));
+  border-color: var(--component-chip-success-border-color, var(--success-default));
+}
+
+.chip-success:hover {
+  background: var(--component-chip-success-background-hover, var(--success-default));
+  color: var(--component-chip-success-text-hover, var(--foreground-inverse));
+}
+
+.chip-warning {
+  background: var(--component-chip-warning-background-default, var(--warning-subtle));
+  color: var(--component-chip-warning-text-default, var(--warning-default));
+  border-color: var(--component-chip-warning-border-color, var(--warning-default));
+}
+
+.chip-warning:hover {
+  background: var(--component-chip-warning-background-hover, var(--warning-default));
+  color: var(--component-chip-warning-text-hover, var(--foreground-inverse));
+}
+
+.chip-error {
+  background: var(--component-chip-error-background-default, var(--error-subtle));
+  color: var(--component-chip-error-text-default, var(--error-default));
+  border-color: var(--component-chip-error-border-color, var(--error-default));
+}
+
+.chip-error:hover {
+  background: var(--component-chip-error-background-hover, var(--error-default));
+  color: var(--component-chip-error-text-hover, var(--foreground-inverse));
+}
+
+.chip-info {
+  background: var(--component-chip-info-background-default, var(--info-subtle));
+  color: var(--component-chip-info-text-default, var(--info-default));
+  border-color: var(--component-chip-info-border-color, var(--info-default));
+}
+
+.chip-info:hover {
+  background: var(--component-chip-info-background-hover, var(--info-default));
+  color: var(--component-chip-info-text-hover, var(--foreground-inverse));
+}
+
+/* Icon */
+.chip-icon {
+  font-size: var(--component-chip-size-medium-icon-size, 1rem);
+  color: var(--component-chip-icon-color, currentColor);
+}
+
+/* Close button */
+.chip-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--component-chip-close-size-medium, 1.25rem);
+  height: var(--component-chip-close-size-medium, 1.25rem);
+  margin-left: var(--component-chip-close-gap, 0.25rem);
+  padding: var(--component-chip-close-padding, 0.25rem);
+  background: transparent;
+  border: none;
+  border-radius: var(--component-chip-close-border-radius, 50%);
+  color: var(--component-chip-close-color-default, currentColor);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.chip-close:hover {
+  background: var(--component-chip-close-background-hover, rgba(0, 0, 0, 0.1));
+  color: var(--component-chip-close-color-hover, var(--foreground-primary));
+}
+
+.chip-deletable {
+  cursor: pointer;
+}
+
+.chip-deletable:hover:not(.chip-primary):not(.chip-success):not(.chip-warning):not(.chip-error):not(.chip-info) {
+  background: var(--component-chip-default-background-hover, var(--background-secondary));
+}
