@@ -1,4 +1,4 @@
-import { cardStyles } from "./card.styles";
+import { cardStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Card component

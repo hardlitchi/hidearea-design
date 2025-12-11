@@ -1,4 +1,4 @@
-import { gridStyles } from "./grid.styles";
+import { gridStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Grid component

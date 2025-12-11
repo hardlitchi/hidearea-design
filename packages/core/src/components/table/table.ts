@@ -1,4 +1,4 @@
-import { tableStyles } from "./table.styles";
+import { tableStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Table component

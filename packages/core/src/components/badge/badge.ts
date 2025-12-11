@@ -1,4 +1,4 @@
-import { badgeStyles } from "./badge.styles";
+import { badgeStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Badge component

@@ -1,4 +1,4 @@
-import { fileUploadStyles } from "./file-upload.styles";
+import { fileUploadStyles } from "@hidearea-design/tokens/styles";
 
 export interface FileUploadFile {
   file: File;

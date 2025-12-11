@@ -1,4 +1,4 @@
-import { containerStyles } from "./container.styles";
+import { containerStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Container component

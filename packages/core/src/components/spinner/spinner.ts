@@ -1,4 +1,4 @@
-import { spinnerStyles } from "./spinner.styles";
+import { spinnerStyles } from "@hidearea-design/tokens/styles";
 
 export class HaSpinner extends HTMLElement {
   private spinnerElement!: HTMLDivElement;

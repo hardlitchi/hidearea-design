@@ -1,4 +1,4 @@
-import { menuItemStyles } from "./menu.styles";
+import { menuStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Menu item component
@@ -30,7 +30,7 @@ export class HaMenuItem extends HTMLElement {
 
     // Create styles
     const style = document.createElement("style");
-    style.textContent = menuItemStyles;
+    style.textContent = menuStyles;
 
     // Create button
     this.button = document.createElement("button");

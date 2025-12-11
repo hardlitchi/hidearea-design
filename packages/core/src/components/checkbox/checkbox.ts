@@ -1,4 +1,4 @@
-import { checkboxStyles } from "./checkbox.styles";
+import { checkboxStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Checkbox component

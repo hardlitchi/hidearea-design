@@ -1,4 +1,4 @@
-import { formGroupStyles } from "./form-group.styles";
+import { formGroupStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * FormGroup component - wraps form controls with label and helper text

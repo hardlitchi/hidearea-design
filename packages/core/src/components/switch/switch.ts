@@ -1,4 +1,4 @@
-import { switchStyles } from "./switch.styles";
+import { switchStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Switch component (Toggle)

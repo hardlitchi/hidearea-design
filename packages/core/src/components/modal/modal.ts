@@ -1,4 +1,4 @@
-import { modalStyles } from "./modal.styles";
+import { modalStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Modal/Dialog component

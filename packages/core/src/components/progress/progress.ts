@@ -1,4 +1,4 @@
-import { progressStyles } from "./progress.styles";
+import { progressStyles } from "@hidearea-design/tokens/styles";
 
 export class HaProgress extends HTMLElement {
   private progressElement!: HTMLDivElement;

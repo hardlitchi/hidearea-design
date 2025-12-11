@@ -1,4 +1,4 @@
-import { radioStyles } from "./radio.styles";
+import { radioStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Radio component

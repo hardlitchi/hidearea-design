@@ -1,4 +1,4 @@
-import { datagridStyles } from "./datagrid.styles";
+import { datagridStyles } from "@hidearea-design/tokens/styles";
 
 export interface DataGridColumn {
   key: string;

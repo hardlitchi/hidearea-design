@@ -1,4 +1,4 @@
-import { breadcrumbStyles } from "./breadcrumb.styles";
+import { breadcrumbStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Breadcrumb component

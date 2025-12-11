@@ -1,0 +1,223 @@
+/**
+ * Checkbox Component Styles
+ * Design tokens: @hidearea-design/tokens
+ *
+ * This CSS file defines the complete visual styling for the Checkbox component.
+ * All values reference design tokens (CSS custom properties) defined in
+ * the design tokens system.
+ */
+
+/* ========================================
+   Host & Container
+   ======================================== */
+
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2, 0.5rem);
+  cursor: pointer;
+  font-family: var(--font-family-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+:host([disabled]) {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.checkbox-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ========================================
+   Hidden Input
+   ======================================== */
+
+input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ========================================
+   Checkbox Box
+   ======================================== */
+
+.checkbox-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-width-2, 2px) solid var(--border-default);
+  border-radius: var(--border-radius-base, 0.25rem);
+  background-color: var(--background-primary);
+  transition:
+    border-color var(--animation-duration-base, 200ms) var(--animation-easing-ease, ease),
+    background-color var(--animation-duration-base, 200ms) var(--animation-easing-ease, ease),
+    box-shadow var(--animation-duration-base, 200ms) var(--animation-easing-ease, ease);
+}
+
+.checkbox-icon {
+  display: none;
+  color: var(--foreground-inverse);
+}
+
+/* ========================================
+   Focus State
+   ======================================== */
+
+input[type="checkbox"]:focus-visible + .checkbox-box {
+  outline: 2px solid var(--primary-default);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Hover State
+   ======================================== */
+
+:host(:not([disabled])) input[type="checkbox"]:not(:checked):hover + .checkbox-box {
+  border-color: var(--border-strong);
+}
+
+/* ========================================
+   Checked State
+   ======================================== */
+
+input[type="checkbox"]:checked + .checkbox-box {
+  background-color: var(--primary-default);
+  border-color: var(--primary-default);
+}
+
+input[type="checkbox"]:checked + .checkbox-box .checkbox-icon {
+  display: block;
+}
+
+input[type="checkbox"]:checked:hover + .checkbox-box {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+/* ========================================
+   Indeterminate State
+   ======================================== */
+
+input[type="checkbox"]:indeterminate + .checkbox-box {
+  background-color: var(--primary-default);
+  border-color: var(--primary-default);
+}
+
+input[type="checkbox"]:indeterminate + .checkbox-box .checkbox-icon {
+  display: block;
+}
+
+/* ========================================
+   Error State
+   ======================================== */
+
+:host([error]) .checkbox-box {
+  border-color: var(--error-default);
+}
+
+:host([error]) input[type="checkbox"]:checked + .checkbox-box {
+  background-color: var(--error-default);
+  border-color: var(--error-default);
+}
+
+:host([error]) input[type="checkbox"]:focus-visible + .checkbox-box {
+  outline-color: var(--error-default);
+}
+
+/* ========================================
+   Size: Small
+   ======================================== */
+
+:host([size="sm"]) .checkbox-box {
+  width: 16px;
+  height: 16px;
+}
+
+:host([size="sm"]) .checkbox-icon {
+  width: 12px;
+  height: 12px;
+}
+
+:host([size="sm"]) .label {
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+/* ========================================
+   Size: Medium (default)
+   ======================================== */
+
+:host([size="md"]) .checkbox-box,
+.checkbox-box {
+  width: 20px;
+  height: 20px;
+}
+
+:host([size="md"]) .checkbox-icon,
+.checkbox-icon {
+  width: 14px;
+  height: 14px;
+}
+
+:host([size="md"]) .label,
+.label {
+  font-size: var(--font-size-base, 1rem);
+}
+
+/* ========================================
+   Size: Large
+   ======================================== */
+
+:host([size="lg"]) .checkbox-box {
+  width: 24px;
+  height: 24px;
+}
+
+:host([size="lg"]) .checkbox-icon {
+  width: 16px;
+  height: 16px;
+}
+
+:host([size="lg"]) .label {
+  font-size: var(--font-size-lg, 1.125rem);
+}
+
+/* ========================================
+   Label
+   ======================================== */
+
+.label {
+  font-weight: var(--font-weight-regular, 400);
+  line-height: var(--font-line-height-normal, 1.5);
+  color: var(--foreground-primary);
+  user-select: none;
+}
+
+:host([disabled]) .label {
+  color: var(--foreground-secondary);
+}
+
+/* ========================================
+   Description
+   ======================================== */
+
+.description {
+  display: block;
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--foreground-secondary);
+  margin-top: var(--spacing-1, 0.25rem);
+}
+
+:host([error]) .description {
+  color: var(--error-default);
+}

@@ -1,4 +1,4 @@
-import { drawerStyles } from "./drawer.styles";
+import { drawerStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Drawer component

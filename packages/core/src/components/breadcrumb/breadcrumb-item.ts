@@ -1,4 +1,4 @@
-import { breadcrumbItemStyles } from "./breadcrumb.styles";
+import { breadcrumbStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Breadcrumb item component
@@ -31,7 +31,7 @@ export class HaBreadcrumbItem extends HTMLElement {
 
     // Create styles
     const style = document.createElement("style");
-    style.textContent = breadcrumbItemStyles;
+    style.textContent = breadcrumbStyles;
 
     // Create item element (will be either <a> or <span>)
     this.itemElement = document.createElement("span");

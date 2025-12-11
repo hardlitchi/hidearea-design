@@ -1,4 +1,4 @@
-import { inputStyles } from "./input.styles";
+import { inputStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Input component

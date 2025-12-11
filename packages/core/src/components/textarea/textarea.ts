@@ -1,4 +1,4 @@
-import { textareaStyles } from "./textarea.styles";
+import { textareaStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Textarea component

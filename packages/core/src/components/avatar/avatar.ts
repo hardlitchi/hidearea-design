@@ -1,4 +1,4 @@
-import { avatarStyles } from "./avatar.styles";
+import { avatarStyles } from "@hidearea-design/tokens/styles";
 
 export class HaAvatar extends HTMLElement {
   private containerElement: HTMLDivElement;

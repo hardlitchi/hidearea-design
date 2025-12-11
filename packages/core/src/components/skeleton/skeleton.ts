@@ -1,4 +1,4 @@
-import { skeletonStyles } from "./skeleton.styles";
+import { skeletonStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Skeleton component
