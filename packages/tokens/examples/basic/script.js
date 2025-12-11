@@ -1671,8 +1671,11 @@ initTheme();
 
 // Initialize all components
 function initializeComponents() {
+  console.log('[Init] Initializing components...');
+
   // Tooltip initialization
   const tooltipTriggers = document.querySelectorAll('[data-tooltip]');
+  console.log(`[Init] Found ${tooltipTriggers.length} tooltip triggers`);
   tooltipTriggers.forEach(trigger => {
     const content = trigger.getAttribute('data-tooltip');
     const position = trigger.getAttribute('data-tooltip-position') || 'top';
@@ -1681,12 +1684,14 @@ function initializeComponents() {
 
   // Breadcrumb initialization
   const breadcrumbs = document.querySelectorAll('.breadcrumb');
+  console.log(`[Init] Found ${breadcrumbs.length} breadcrumbs`);
   breadcrumbs.forEach(breadcrumb => {
     initializeBreadcrumb(breadcrumb);
   });
 
   // Switch initialization
   const switches = document.querySelectorAll('.switch-input');
+  console.log(`[Init] Found ${switches.length} switches`);
   switches.forEach(switchInput => {
     initializeSwitch(switchInput, {
       onChange: (checked, element) => {
@@ -1697,6 +1702,8 @@ function initializeComponents() {
       }
     });
   });
+
+  console.log('[Init] Component initialization complete');
 }
 
 // Initialize components when DOM is ready
