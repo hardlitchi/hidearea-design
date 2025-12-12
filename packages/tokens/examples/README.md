@@ -109,7 +109,35 @@ examples/theming/styles.css → トークンを使用したデモスタイル
 open examples/theming/index.html
 ```
 
-### 3. Integration (`/integration`)
+### 3. Unified CSS (`/unified`)
+
+統合CSS（`build/css/html/all.css`）を使用したサンプル
+
+**特徴:**
+- 1ファイルで全38コンポーネント対応
+- `.ha-*` プレフィックス付きクラス
+- プロトタイピングに最適
+- ファイルサイズ: 約149KB
+
+**ファイル:**
+- `index.html` - 統合CSSデモページ
+- `README.md` - 統合CSSの詳細説明
+
+**使用方法:**
+```html
+<link rel="stylesheet" href="../../build/css/variables.css">
+<link rel="stylesheet" href="../../build/css/html/all.css">
+
+<div class="ha-button"><button>クリック</button></div>
+<div class="ha-card"><h3>タイトル</h3></div>
+```
+
+**実行方法:**
+```bash
+open examples/unified/index.html
+```
+
+### 4. Integration (`/integration`)
 
 各種フレームワークとの統合例（準備中）
 

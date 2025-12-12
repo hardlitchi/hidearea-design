@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unified CSS - Hidearea Design Tokens</title>
+  <!-- Design Tokens -->
+  <link rel="stylesheet" href="../../build/css/variables.css">
+
+  <!-- Unified HTML CSS (all components in one file) -->
+  <link rel="stylesheet" href="../../build/css/html/all.css">
+
+  <style>
+    body {
+      font-family: var(--font-family-sans);
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: var(--background-primary);
+      color: var(--foreground-primary);
+    }
+
+    .header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--border-default);
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .component-group {
+      margin-bottom: 2rem;
+    }
+
+    .example-box {
+      padding: 2rem;
+      background: var(--background-secondary);
+      border-radius: var(--border-radius-lg);
+      margin-top: 1rem;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🎨 Unified CSS Demo</h1>
+    <p>統合CSS（build/css/html/all.css）を使用した例</p>
+    <p>全38コンポーネントが1ファイルにまとめられています（149KB）</p>
+    <button id="theme-toggle" onclick="toggleTheme()">テーマ切り替え</button>
+  </div>
+
+  <section class="section">
+    <h2>Button Examples</h2>
+    <div class="component-group">
+      <h3>.ha-button を使用</h3>
+      <div class="example-box">
+        <div class="demo-grid">
+          <div class="ha-button">
+            <button>Default Button</button>
+          </div>
+          <div class="ha-button">
+            <button disabled>Disabled Button</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Card Examples</h2>
+    <div class="component-group">
+      <h3>.ha-card を使用</h3>
+      <div class="example-box">
+        <div class="demo-grid">
+          <div class="ha-card">
+            <h3>カードタイトル</h3>
+            <p>これはカードコンテンツです。統合CSSから.ha-cardクラスを使用しています。</p>
+          </div>
+          <div class="ha-card">
+            <h3>カード2</h3>
+            <p>複数のカードを並べて表示できます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Badge Examples</h2>
+    <div class="component-group">
+      <h3>.ha-badge を使用</h3>
+      <div class="example-box">
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <div class="ha-badge">
+            <span>Default</span>
+          </div>
+          <div class="ha-badge">
+            <span>Badge 2</span>
+          </div>
+          <div class="ha-badge">
+            <span>Badge 3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Alert Examples</h2>
+    <div class="component-group">
+      <h3>.ha-alert を使用</h3>
+      <div class="example-box">
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="ha-alert">
+            <div role="alert">これはアラートメッセージです</div>
+          </div>
+          <div class="ha-alert">
+            <div role="alert">重要な通知があります</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>利点</h2>
+    <div class="component-group">
+      <ul>
+        <li>✅ 1ファイルで全コンポーネントを使用可能</li>
+        <li>✅ HTTPリクエスト数を最小化</li>
+        <li>✅ プロトタイピングに最適</li>
+        <li>✅ .ha-* プレフィックスで名前空間を分離</li>
+        <li>✅ 全38コンポーネント対応</li>
+      </ul>
+    </div>
+  </section>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', newTheme);
+    }
+  </script>
+</body>
+</html>
