@@ -8,7 +8,9 @@
 
 ## 概要
 
-ボタンコンポーネントは、ユーザーがアクションを実行するための主要なインタラクティブ要素です。5つのバリアント（primary, secondary, outline, ghost, danger）と3つのサイズ（sm, md, lg）をサポートしています。
+ボタンコンポーネントは、ユーザーがアクションを実行するための主要なインタラクティブ要素です。  
+5つのバリアント（primary, secondary, outline, ghost, danger）と、  
+3つのサイズ（sm, md, lg）をサポートしています。
 
 ### 用途
 
@@ -257,11 +259,63 @@ function Button({ variant = 'primary', size = 'md', children, ...props }) {
 <p id="submit-help">フォームを送信すると確認メールが届きます</p>
 ```
 
+### キーボード操作
+
+- **Tab**: ボタンにフォーカス
+- **Enter/Space**: ボタンを実行
+- **Shift + Tab**: 前の要素にフォーカス
+
+### ARIA属性
+
+```html
+<!-- ローディング中のボタン -->
+<div class="ha-button" variant="primary">
+  <button aria-busy="true" disabled>
+    読み込み中...
+  </button>
+</div>
+
+<!-- アイコンのみのボタン -->
+<div class="ha-button" variant="ghost">
+  <button aria-label="メニューを開く">
+    <svg>...</svg>
+  </button>
+</div>
+
+<!-- トグルボタン -->
+<div class="ha-button" variant="secondary">
+  <button aria-pressed="false" role="button">
+    お気に入り
+  </button>
+</div>
+```
+
+### フォーカススタイル
+
+```css
+button:focus-visible {
+  outline: 2px solid var(--primary-default);
+  outline-offset: 2px;
+}
+```
+
 ---
 
 ## ベストプラクティス
 
 ### ✅ 推奨
+
+1. **1ページに1つのプライマリボタン**
+   - 最も重要なアクションのみプライマリボタンを使用
+
+2. **明確なラベル**
+   - 「送信」「保存」「削除」など、アクションが明確な動詞を使用
+
+3. **適切なバリアントの選択**
+   - 破壊的なアクションには必ずDangerバリアントを使用
+
+4. **無効状態の適切な使用**
+   - フォームが未完成の場合は送信ボタンを無効化
 
 ```html
 <!-- 適切なバリアント選択 -->
@@ -278,6 +332,15 @@ function Button({ variant = 'primary', size = 'md', children, ...props }) {
 
 ### ❌ 非推奨
 
+1. **複数のプライマリボタン**
+   - ユーザーの意思決定を困難にする
+
+2. **曖昧なラベル**
+   - 「OK」「実行」など、何が起こるか不明確
+
+3. **破壊的アクションに通常のボタンを使用**
+   - 削除などは必ずDangerバリアントを使用
+
 ```html
 <!-- プライマリボタンを複数配置しない -->
 <div class="ha-button" variant="primary"><button>保存</button></div>
@@ -292,6 +355,61 @@ function Button({ variant = 'primary', size = 'md', children, ...props }) {
 <div class="ha-button" variant="danger"><button>詳細を見る</button></div>
 ```
 
+
+---
+
+## バリエーション
+
+### サイズバリアント (今後追加予定)
+
+現在実装されているのは1サイズのみですが、将来的には以下のサイズバリアントを追加予定：
+
+- `small` - コンパクトなボタン
+- `medium` - 標準サイズ (現在のデフォルト)
+- `large` - 大きなボタン
+
+### アイコン付きボタン
+
+```html
+<div class="ha-button" size="sm">
+  <button>
+    <svg class="btn-icon">...</svg>
+    送信
+  </button>
+</div>
+<button class="btn btn-primary">
+  送信
+</button>
+```
+
+```css
+.btn-icon {
+  width: var(--spacing-5);
+  height: var(--spacing-5);
+}
+```
+
+---
+## テーマ対応
+
+全てのボタントークンはテーマに対応しています。`data-theme` 属性を変更するだけで、自動的にダークモードに切り替わります。
+
+```html
+<!-- ライトテーマ -->
+<html data-theme="light">
+  <div class="ha-button" variant="primary">
+    <button>保存</button>
+  </div>
+</html>
+
+<!-- ダークテーマ -->
+<html data-theme="dark">
+  <div class="ha-button" variant="primary">
+    <button>送信</button>
+  </div>
+</html>
+```
+
 ---
 
 ## 関連コンポーネント
@@ -299,6 +417,14 @@ function Button({ variant = 'primary', size = 'md', children, ...props }) {
 - [Form Group](../forms/form-group.md) - ボタンをフォームと組み合わせる
 - [Input](../forms/input.md) - フォーム入力と組み合わせる
 - [Modal](../overlays/modal.md) - モーダル内でのアクションボタン
+
+---
+
+## 関連ドキュメント
+
+- [アーキテクチャガイド](../アーキテクチャガイド.md)
+- [使用方法ガイド](../使用方法ガイド.md)
+- [コンポーネントリファレンス](./README.md)
 
 ---
 
