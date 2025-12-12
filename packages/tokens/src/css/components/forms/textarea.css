@@ -45,7 +45,7 @@ textarea {
   font-family: var(--font-family-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
   font-weight: var(--font-weight-regular, 400);
   line-height: var(--font-line-height-normal, 1.5);
-  color: var(--color-gray-900, #111827);
+  color: var(--foreground-primary, #111827);
 
   /* Transitions */
   transition:
@@ -54,13 +54,13 @@ textarea {
 }
 
 textarea::placeholder {
-  color: var(--color-gray-400, #9ca3af);
+  color: var(--foreground-tertiary, #9ca3af);
 }
 
 textarea:disabled {
   cursor: not-allowed;
   opacity: 0.6;
-  background-color: var(--color-gray-50, #f9fafb);
+  background-color: var(--background-disabled, #f9fafb);
   resize: none;
 }
 
@@ -74,8 +74,8 @@ textarea:read-only {
 
 :host([variant="default"]) .textarea-wrapper,
 .textarea-wrapper {
-  border: var(--border-width-1, 1px) solid var(--color-gray-300, #d1d5db);
-  background-color: var(--color-white, #ffffff);
+  border: var(--border-width-1, 1px) solid var(--border-default, #d1d5db);
+  background-color: var(--background-primary, #ffffff);
 }
 
 :host([variant="default"]) textarea:focus,
@@ -84,13 +84,13 @@ textarea:focus {
 }
 
 :host([variant="default"]) .textarea-wrapper:focus-within {
-  border-color: var(--theme-light-primary-default, #3b82f6);
-  box-shadow: 0 0 0 3px var(--theme-light-primary-subtle, rgba(59, 130, 246, 0.1));
+  border-color: var(--primary-default, #3b82f6);
+  box-shadow: 0 0 0 3px var(--primary-subtle, rgba(59, 130, 246, 0.1));
 }
 
 :host([variant="default"]) textarea:hover:not(:disabled):not(:focus) ~ .textarea-wrapper,
 :host([variant="default"]) .textarea-wrapper:has(textarea:hover:not(:disabled):not(:focus)) {
-  border-color: var(--color-gray-400, #9ca3af);
+  border-color: var(--border-hover, #9ca3af);
 }
 
 /* ========================================
@@ -99,13 +99,13 @@ textarea:focus {
 
 :host([variant="filled"]) .textarea-wrapper {
   border: var(--border-width-1, 1px) solid transparent;
-  background-color: var(--color-gray-100, #f3f4f6);
+  background-color: var(--background-secondary, #f3f4f6);
 }
 
 :host([variant="filled"]) .textarea-wrapper:focus-within {
-  background-color: var(--color-white, #ffffff);
-  border-color: var(--theme-light-primary-default, #3b82f6);
-  box-shadow: 0 0 0 3px var(--theme-light-primary-subtle, rgba(59, 130, 246, 0.1));
+  background-color: var(--background-primary, #ffffff);
+  border-color: var(--primary-default, #3b82f6);
+  box-shadow: 0 0 0 3px var(--primary-subtle, rgba(59, 130, 246, 0.1));
 }
 
 /* ========================================
@@ -113,12 +113,12 @@ textarea:focus {
    ======================================== */
 
 :host([variant="outlined"]) .textarea-wrapper {
-  border: var(--border-width-2, 2px) solid var(--color-gray-300, #d1d5db);
-  background-color: var(--color-white, #ffffff);
+  border: var(--border-width-2, 2px) solid var(--border-default, #d1d5db);
+  background-color: var(--background-primary, #ffffff);
 }
 
 :host([variant="outlined"]) .textarea-wrapper:focus-within {
-  border-color: var(--theme-light-primary-default, #3b82f6);
+  border-color: var(--primary-default, #3b82f6);
 }
 
 /* ========================================
@@ -170,12 +170,12 @@ textarea:focus {
    ======================================== */
 
 :host([error]) .textarea-wrapper {
-  border-color: var(--color-red-500, #ef4444);
+  border-color: var(--error-default, #ef4444);
 }
 
 :host([error]) .textarea-wrapper:focus-within {
-  border-color: var(--color-red-500, #ef4444);
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  border-color: var(--error-default, #ef4444);
+  box-shadow: 0 0 0 3px var(--error-subtle, rgba(239, 68, 68, 0.1));
 }
 
 /* ========================================

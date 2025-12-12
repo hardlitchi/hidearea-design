@@ -15,7 +15,7 @@
 
 .progress {
   width: 100%;
-  background-color: var(--color-neutral-200);
+  background-color: var(--background-tertiary, #e5e7eb);
   border-radius: var(--border-radius-full);
   overflow: hidden;
   position: relative;
@@ -111,10 +111,10 @@
   justify-content: space-between;
   margin-bottom: var(--spacing-2);
   font-size: var(--font-size-sm);
-  color: var(--color-neutral-700);
+  color: var(--foreground-secondary, #6b7280);
 }
 
 .progress__percentage {
   font-weight: var(--font-weight-semibold);
-  color: var(--foreground-primary);
+  color: var(--foreground-primary, #111827);
 }

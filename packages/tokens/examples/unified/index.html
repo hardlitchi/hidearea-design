@@ -432,7 +432,7 @@
       <h2>Textarea Examples</h2>
 
       <!-- デフォルトバリアント -->
-      <div class="ha-textarea" variant="default" size="md">
+      <div class="ha-textarea" variant="default" size="sm">
         <div class="textarea-wrapper">
           <textarea placeholder="メッセージを入力してください..."></textarea>
         </div>
@@ -449,13 +449,6 @@
       <div class="ha-textarea" variant="outlined" size="lg">
         <div class="textarea-wrapper">
           <textarea placeholder="詳細説明..."></textarea>
-        </div>
-      </div>
-
-      <!-- フルWidth -->
-      <div class="ha-textarea" variant="default" full-width>
-        <div class="textarea-wrapper">
-          <textarea placeholder="フルワイド入力..."></textarea>
         </div>
       </div>
     </section>
@@ -879,8 +872,11 @@
       <div>
         <h3>Toast</h3>
 
-        <!-- トーストコンテナ -->
-        <div class="ha-toast-container" data-position="top-right">
+        <div style="position: relative; min-height: 400px; border: 1px dashed var(--border-default); border-radius: 8px; padding: 1rem; background: var(--background-secondary);">
+          <p style="margin: 0 0 1rem 0;">Toast 通知の例（実際の表示イメージ）：</p>
+
+          <!-- トーストコンテナ -->
+          <div class="ha-toast-container" data-position="top-right" style="position: absolute;">
           <!-- 情報トースト -->
           <div class="ha-toast" variant="info" role="alert" aria-live="polite">
             <div class="container">
@@ -930,6 +926,7 @@
               <button class="close-button" aria-label="閉じる">×</button>
             </div>
           </div>
+        </div>
         </div>
       </div>
 
@@ -1066,29 +1063,48 @@
     <section>
       <h2>Progress Examples</h2>
 
-
-      <!-- 確定的プログレス -->
-      <div class="ha-progress" size="md">
-        <div class="progress progress--md">
-          <div class="progress__bar progress__bar--primary" style="width: 60%"></div>
+      <div style="display: flex; flex-direction: column; gap: 2rem;">
+        <!-- 確定的プログレス -->
+        <div class="ha-progress" size="md">
+          <div class="progress__label">
+            <span>ダウンロード中</span>
+            <span class="progress__percentage">30%</span>
+          </div>
+          <div class="progress progress--md">
+            <div class="progress__bar progress__bar--primary" style="width: 30%"></div>
+          </div>
         </div>
-      </div>
 
-      <!-- ラベル付きプログレス -->
-      <div class="ha-progress" size="md">
-        <div class="progress__label">
-          <span>アップロード中</span>
-          <span class="progress__percentage">60%</span>
+        <!-- ラベル付きプログレス -->
+        <div class="ha-progress" size="md">
+          <div class="progress__label">
+            <span>アップロード中</span>
+            <span class="progress__percentage">60%</span>
+          </div>
+          <div class="progress progress--md">
+            <div class="progress__bar progress__bar--primary" style="width: 60%"></div>
+          </div>
         </div>
-        <div class="progress progress--md">
-          <div class="progress__bar progress__bar--primary" style="width: 60%"></div>
-        </div>
-      </div>
 
-      <!-- 不確定的プログレス（アニメーション） -->
-      <div class="ha-progress" size="md">
-        <div class="progress progress--md">
-          <div class="progress__bar progress__bar--primary progress__bar--animated" style="width: 100%"></div>
+        <!-- 成功状態 -->
+        <div class="ha-progress" size="md">
+          <div class="progress__label">
+            <span>完了</span>
+            <span class="progress__percentage">100%</span>
+          </div>
+          <div class="progress progress--md">
+            <div class="progress__bar progress__bar--success" style="width: 100%"></div>
+          </div>
+        </div>
+
+        <!-- 不確定的プログレス（アニメーション） -->
+        <div class="ha-progress" size="md">
+          <div class="progress__label">
+            <span>処理中...</span>
+          </div>
+          <div class="progress progress--md">
+            <div class="progress__bar progress__bar--primary progress__bar--animated" style="width: 100%"></div>
+          </div>
         </div>
       </div>
     </section>

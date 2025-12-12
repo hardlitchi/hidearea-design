@@ -13,7 +13,7 @@
 }
 
 .skeleton {
-  background: var(--skeleton-bg, var(--color-neutral-200, #e5e7eb));
+  background: var(--skeleton-bg, var(--background-tertiary, #e5e7eb));
   border-radius: var(--skeleton-border-radius, var(--border-radius-md));
   position: relative;
   overflow: hidden;
