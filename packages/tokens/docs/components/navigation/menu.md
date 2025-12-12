@@ -1,691 +1,631 @@
 # Menu (メニュー) コンポーネント
 
 **カテゴリ:** Navigation
-**ファイル:** `src/components/navigation/menu.yaml`
-**ステータス:** ✅ 実装済み (Phase 4 Option C)
+**ファイル:** `src/css/components/navigation/menu.css`
+**ステータス:** ✅ 実装済み
 
 ---
 
 ## 概要
 
-メニューコンポーネントは、ドロップダウンメニューやコンテキストメニューとして使用される、アクションやオプションのリストを表示するナビゲーション要素です。グループヘッダー、ショートカットキー表示、チェックマーク、危険なアクションなど、豊富な機能をサポートしています。
+メニューコンポーネントは、アクションや選択肢のリストを表示するためのドロップダウン要素です。
+3つのサイズ（sm, md, lg）と、アイコン、区切り線、サブメニューなどの機能をサポートしています。
 
 ### 用途
 
-- ドロップダウンメニュー（ヘッダーナビゲーション）
+- ドロップダウンメニュー
 - コンテキストメニュー（右クリックメニュー）
-- アクションメニュー（ケバブメニュー）
-- セレクトメニュー（選択肢の表示）
+- ユーザーアカウントメニュー
+- アクションメニュー
 
 ---
 
-## サイズバリアント
+## 特徴
 
-### Compact (コンパクト)
+### 1. メニューアイテム
 
-密度の高いメニュー。多くのアイテムを表示する場合に適しています。
+標準的なクリック可能なメニュー項目です。
 
-- フォントサイズ: 0.75rem (12px)
-- パディング: 垂直 0.25rem / 水平 0.5rem
-- 最小高さ: 32px
+**使用場面:**
+- 標準的なアクション
+- ナビゲーション
+- 選択肢の提供
 
-### Default (デフォルト)
+### 2. アイコン付きメニューアイテム
 
-標準的なサイズ。多くの場面で使用されます。
+アイコンとテキストを組み合わせた視覚的に分かりやすいメニュー項目です。
 
-- フォントサイズ: 0.875rem (14px)
-- パディング: 垂直 0.5rem / 水平 0.75rem
-- 最小高さ: 40px
+**使用場面:**
+- 視覚的な区別が必要な場合
+- アクションの理解を助ける
+- ブランディング
 
-### Comfortable (ゆったり)
+### 3. 区切り線
 
-ゆとりのあるサイズ。タッチデバイスに適しています。
+メニュー項目をグループ化するための視覚的な区切りです。
 
-- フォントサイズ: 1rem (16px)
-- パディング: 垂直 0.75rem / 水平 1rem
-- 最小高さ: 48px
+**使用場面:**
+- 関連するアイテムのグループ化
+- 破壊的なアクションの分離
+- セクションの区切り
 
----
+### 4. 無効化アイテム
 
-## トークン一覧
+現在使用できないメニュー項目です。
 
-### コンテナ
+**使用場面:**
+- 条件が満たされていない場合
+- 権限が不足している場合
+- 一時的に利用不可の機能
 
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.container.background` | `{background.primary}` | メニューの背景色 |
-| `component.menu.container.border.width` | `{border.width.1}` | コンテナのボーダー幅 |
-| `component.menu.container.border.color` | `{border.default}` | コンテナのボーダー色 |
-| `component.menu.container.border.radius` | `{border.radius.md}` | コンテナの角丸 |
-| `component.menu.container.shadow` | `{shadow.lg}` | コンテナのシャドウ |
-| `component.menu.container.padding.vertical` | `{spacing.2}` | 垂直パディング (0.5rem) |
-| `component.menu.container.padding.horizontal` | `{spacing.0}` | 水平パディング |
-| `component.menu.container.minWidth` | `{spacing.48}` | 最小幅 (12rem/192px) |
-| `component.menu.container.maxHeight` | `400px` | 最大高さ |
-| `component.menu.container.overflow` | `auto` | オーバーフロー時の挙動 |
-| `component.menu.zIndex` | `1000` | z-index（重なり順） |
+### 5. 危険なアクション
 
-### メニューアイテム
+削除などの破壊的なアクションを示すメニュー項目です。
 
-#### パディング
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.item.padding.vertical` | `{spacing.2}` | 垂直パディング (0.5rem) |
-| `component.menu.item.padding.horizontal` | `{spacing.3}` | 水平パディング (0.75rem) |
-
-#### タイポグラフィ
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.item.fontSize` | `{font.size.sm}` | フォントサイズ (0.875rem) |
-| `component.menu.item.fontWeight` | `{font.weight.normal}` | フォントウェイト |
-| `component.menu.item.lineHeight` | `{font.lineHeight.normal}` | 行高 |
-
-#### 背景色
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.item.background.default` | `transparent` | デフォルトの背景色 |
-| `component.menu.item.background.hover` | `{background.secondary}` | ホバー時の背景色 |
-| `component.menu.item.background.active` | `{primary.subtle}` | アクティブ時の背景色 |
-| `component.menu.item.background.focus` | `{background.secondary}` | フォーカス時の背景色 |
-| `component.menu.item.background.disabled` | `transparent` | 無効状態の背景色 |
-
-#### テキスト色
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.item.text.default` | `{foreground.primary}` | デフォルトのテキスト色 |
-| `component.menu.item.text.hover` | `{foreground.primary}` | ホバー時のテキスト色 |
-| `component.menu.item.text.active` | `{primary.active}` | アクティブ時のテキスト色 |
-| `component.menu.item.text.disabled` | `{foreground.tertiary}` | 無効状態のテキスト色 |
-
-#### 高さ・カーソル
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.item.minHeight.default` | `{spacing.10}` | デフォルトの最小高さ (2.5rem) |
-| `component.menu.item.minHeight.compact` | `{spacing.8}` | コンパクトの最小高さ (2rem) |
-| `component.menu.item.minHeight.comfortable` | `{spacing.12}` | ゆったりの最小高さ (3rem) |
-| `component.menu.item.cursor.default` | `pointer` | デフォルトのカーソル |
-| `component.menu.item.cursor.disabled` | `not-allowed` | 無効状態のカーソル |
-
-### アイコン
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.icon.size` | `{spacing.4}` | アイコンのサイズ (1rem) |
-| `component.menu.icon.gap` | `{spacing.3}` | アイコンとテキストの間隔 |
-| `component.menu.icon.color.default` | `{foreground.secondary}` | デフォルトのアイコン色 |
-| `component.menu.icon.color.hover` | `{foreground.primary}` | ホバー時のアイコン色 |
-| `component.menu.icon.color.active` | `{primary.default}` | アクティブ時のアイコン色 |
-
-### チェックマーク
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.check.size` | `{spacing.4}` | チェックマークのサイズ (1rem) |
-| `component.menu.check.color` | `{primary.default}` | チェックマークの色 |
-| `component.menu.check.marginRight` | `{spacing.3}` | 右マージン (0.75rem) |
-
-### ショートカットキー
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.shortcut.fontSize` | `{font.size.xs}` | フォントサイズ (0.75rem) |
-| `component.menu.shortcut.color` | `{foreground.tertiary}` | テキスト色 |
-| `component.menu.shortcut.marginLeft` | `{spacing.4}` | 左マージン (1rem) |
-| `component.menu.shortcut.padding` | `{spacing.1} {spacing.2}` | パディング |
-| `component.menu.shortcut.background` | `{background.secondary}` | 背景色 |
-| `component.menu.shortcut.borderRadius` | `{border.radius.sm}` | 角丸 |
-
-### サブメニュー矢印
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.arrow.size` | `{spacing.4}` | 矢印のサイズ (1rem) |
-| `component.menu.arrow.color` | `{foreground.tertiary}` | 矢印の色 |
-| `component.menu.arrow.marginLeft` | `auto` | 左マージン（右寄せ） |
-
-### 区切り線
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.divider.height` | `1px` | 区切り線の高さ |
-| `component.menu.divider.background` | `{border.default}` | 区切り線の背景色 |
-| `component.menu.divider.margin.vertical` | `{spacing.2}` | 垂直マージン (0.5rem) |
-| `component.menu.divider.margin.horizontal` | `{spacing.0}` | 水平マージン |
-
-### グループヘッダー
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.group.header.padding.vertical` | `{spacing.2}` | 垂直パディング (0.5rem) |
-| `component.menu.group.header.padding.horizontal` | `{spacing.3}` | 水平パディング (0.75rem) |
-| `component.menu.group.header.fontSize` | `{font.size.xs}` | フォントサイズ (0.75rem) |
-| `component.menu.group.header.fontWeight` | `{font.weight.semibold}` | フォントウェイト |
-| `component.menu.group.header.color` | `{foreground.tertiary}` | テキスト色 |
-| `component.menu.group.header.textTransform` | `uppercase` | テキスト変換 |
-| `component.menu.group.header.letterSpacing` | `0.05em` | 字間 |
-
-### 危険なアクション
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.danger.text.default` | `{error.default}` | デフォルトのテキスト色 |
-| `component.menu.danger.text.hover` | `{foreground.inverse}` | ホバー時のテキスト色 |
-| `component.menu.danger.background.hover` | `{error.default}` | ホバー時の背景色 |
-| `component.menu.danger.icon.color` | `{error.default}` | アイコンの色 |
-
-### アニメーション
-
-#### 表示時
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.animation.enter.duration` | `{animation.duration.fast}` | 表示アニメーションの持続時間 |
-| `component.menu.animation.enter.timing` | `{animation.easing.easeOut}` | イージング |
-| `component.menu.animation.enter.opacity.from` | `0` | 開始時の透明度 |
-| `component.menu.animation.enter.opacity.to` | `1` | 終了時の透明度 |
-| `component.menu.animation.enter.transform.from` | `translateY(-8px)` | 開始時の位置 |
-| `component.menu.animation.enter.transform.to` | `translateY(0)` | 終了時の位置 |
-
-#### 非表示時
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.animation.exit.duration` | `{animation.duration.fast}` | 非表示アニメーションの持続時間 |
-| `component.menu.animation.exit.timing` | `{animation.easing.easeIn}` | イージング |
-| `component.menu.animation.exit.opacity.from` | `1` | 開始時の透明度 |
-| `component.menu.animation.exit.opacity.to` | `0` | 終了時の透明度 |
-
-### トランジション
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.menu.transition.duration` | `{animation.duration.fast}` | トランジションの持続時間 |
-| `component.menu.transition.timing` | `{animation.easing.ease}` | トランジションのイージング |
-| `component.menu.transition.properties` | `background-color, color` | トランジション対象 |
+**使用場面:**
+- 削除アクション
+- データの消去
+- 取り消し不可能な操作
 
 ---
 
-## 使用例
+## サイズ
 
-### HTML
+### Small (sm)
+- パディング: `0.25rem 0.75rem`
+- フォントサイズ: `0.875rem`
+- 最小幅: `160px`
 
-```html
-<!-- 基本的なメニュー -->
-<div class="menu">
-  <button class="menu-item">
-    <span class="menu-icon">👤</span>
-    <span>プロフィール</span>
-  </button>
-  <button class="menu-item">
-    <span class="menu-icon">⚙️</span>
-    <span>設定</span>
-  </button>
-  <div class="menu-divider"></div>
-  <button class="menu-item menu-item-danger">
-    <span class="menu-icon">🚪</span>
-    <span>ログアウト</span>
-  </button>
-</div>
+### Medium (md) - デフォルト
+- パディング: `0.5rem 1rem`
+- フォントサイズ: `1rem`
+- 最小幅: `200px`
 
-<!-- グループ化されたメニュー -->
-<div class="menu">
-  <div class="menu-group-header">アカウント</div>
-  <button class="menu-item">
-    <span class="menu-icon">👤</span>
-    <span>プロフィール</span>
-    <span class="menu-shortcut">⌘P</span>
-  </button>
-  <button class="menu-item">
-    <span class="menu-icon">⚙️</span>
-    <span>設定</span>
-    <span class="menu-shortcut">⌘S</span>
-  </button>
+### Large (lg)
+- パディング: `0.75rem 1.25rem`
+- フォントサイズ: `1rem`
+- 最小幅: `240px`
 
-  <div class="menu-divider"></div>
+---
 
-  <div class="menu-group-header">アクション</div>
-  <button class="menu-item menu-item-active">
-    <span class="menu-check">✓</span>
-    <span>選択済み項目</span>
-  </button>
-  <button class="menu-item">
-    <span class="menu-icon">📄</span>
-    <span>新規作成</span>
-    <span class="menu-arrow">›</span>
-  </button>
-  <button class="menu-item" disabled>
-    <span class="menu-icon">🔒</span>
-    <span>無効な項目</span>
-  </button>
+## 使用方法
 
-  <div class="menu-divider"></div>
+### Pattern 1: WebComponents (Shadow DOM)
 
-  <button class="menu-item menu-item-danger">
-    <span class="menu-icon">🗑️</span>
-    <span>削除</span>
-  </button>
-</div>
-```
+\`\`\`html
+<!-- ドロップダウンメニュー -->
+<ha-dropdown>
+  <button slot="trigger">メニュー</button>
+  <ha-menu size="md">
+    <ha-menu-item>
+      <button>プロフィール</button>
+    </ha-menu-item>
+    <ha-menu-item>
+      <button>設定</button>
+    </ha-menu-item>
+    <ha-menu-divider></ha-menu-divider>
+    <ha-menu-item danger>
+      <button>ログアウト</button>
+    </ha-menu-item>
+  </ha-menu>
+</ha-dropdown>
+\`\`\`
 
-### CSS
+### Pattern 2: Plain HTML (推奨)
 
-```css
-.menu {
-  min-width: var(--component-menu-container-min-width);
-  max-height: var(--component-menu-container-max-height);
-  padding: var(--component-menu-container-padding-vertical)
-           var(--component-menu-container-padding-horizontal);
-  background: var(--component-menu-container-background);
-  border: var(--component-menu-container-border-width) solid;
-  border-color: var(--component-menu-container-border-color);
-  border-radius: var(--component-menu-container-border-radius);
-  box-shadow: var(--component-menu-container-shadow);
-  overflow: var(--component-menu-container-overflow);
+\`\`\`html
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/variables.css">
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/html/navigation/menu.css">
+</head>
+<body>
+  <!-- 基本的なメニュー -->
+  <div class="ha-menu">
+    <div class="menu size-md" role="menu">
+      <button class="menu-item" role="menuitem">
+        <span class="content">プロフィール</span>
+      </button>
+      <button class="menu-item" role="menuitem">
+        <span class="content">設定</span>
+      </button>
+      <div class="divider" role="separator"></div>
+      <button class="menu-item" role="menuitem">
+        <span class="content">ヘルプ</span>
+      </button>
+      <button class="menu-item danger" role="menuitem">
+        <span class="content">ログアウト</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- アイコン付きメニュー -->
+  <div class="ha-menu">
+    <div class="menu size-md" role="menu">
+      <button class="menu-item" role="menuitem">
+        <span class="icon-slot">
+          <svg width="16" height="16">...</svg>
+        </span>
+        <span class="content">新規作成</span>
+      </button>
+      <button class="menu-item" role="menuitem">
+        <span class="icon-slot">
+          <svg width="16" height="16">...</svg>
+        </span>
+        <span class="content">開く</span>
+      </button>
+      <button class="menu-item" role="menuitem">
+        <span class="icon-slot">
+          <svg width="16" height="16">...</svg>
+        </span>
+        <span class="content">保存</span>
+      </button>
+      <div class="divider" role="separator"></div>
+      <button class="menu-item danger" role="menuitem">
+        <span class="icon-slot">
+          <svg width="16" height="16">...</svg>
+        </span>
+        <span class="content">削除</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 無効化アイテムを含むメニュー -->
+  <div class="ha-menu">
+    <div class="menu size-sm" role="menu">
+      <button class="menu-item" role="menuitem">
+        <span class="content">コピー</span>
+      </button>
+      <button class="menu-item" role="menuitem">
+        <span class="content">切り取り</span>
+      </button>
+      <button class="menu-item" role="menuitem" disabled>
+        <span class="content">貼り付け（利用不可）</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ドロップダウンコンテナ付き -->
+  <div class="ha-dropdown">
+    <div class="trigger">
+      <button>アクション</button>
+    </div>
+    <div class="menu-container open">
+      <div class="menu size-md" role="menu">
+        <button class="menu-item" role="menuitem">編集</button>
+        <button class="menu-item" role="menuitem">複製</button>
+        <div class="divider" role="separator"></div>
+        <button class="menu-item danger" role="menuitem">削除</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+\`\`\`
+
+### Pattern 3: React/Vue
+
+\`\`\`javascript
+import '@hidearea-design/tokens/css/html/navigation/menu.css';
+
+// React例
+function Menu({ items, size = 'md', onSelect }) {
+  return (
+    <div className="ha-menu">
+      <div className={\`menu size-\${size}\`} role="menu">
+        {items.map((item, index) => {
+          if (item.type === 'divider') {
+            return <div key={index} className="divider" role="separator" />;
+          }
+
+          return (
+            <button
+              key={index}
+              className={\`menu-item \${item.danger ? 'danger' : ''}\`}
+              role="menuitem"
+              disabled={item.disabled}
+              onClick={() => onSelect(item)}
+            >
+              {item.icon && (
+                <span className="icon-slot">{item.icon}</span>
+              )}
+              <span className="content">{item.label}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
-.menu-item {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  min-height: var(--component-menu-item-min-height-default);
-  padding: var(--component-menu-item-padding-vertical)
-           var(--component-menu-item-padding-horizontal);
-  font-size: var(--component-menu-item-font-size);
-  color: var(--component-menu-item-text-default);
-  background: var(--component-menu-item-background-default);
-  border: none;
-  text-align: left;
-  cursor: var(--component-menu-item-cursor-default);
-  transition: var(--component-menu-transition-properties)
-              var(--component-menu-transition-duration)
-              var(--component-menu-transition-timing);
-}
+// Dropdown例
+function Dropdown({ trigger, items, size = 'md' }) {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const dropdownRef = React.useRef(null);
 
-.menu-item:hover:not(:disabled) {
-  color: var(--component-menu-item-text-hover);
-  background: var(--component-menu-item-background-hover);
-}
-
-.menu-item-danger {
-  color: var(--component-menu-danger-text-default);
-}
-
-.menu-item-danger:hover:not(:disabled) {
-  color: var(--component-menu-danger-text-hover);
-  background: var(--component-menu-danger-background-hover);
-}
-```
-
-### React
-
-```tsx
-interface MenuItem {
-  label: string;
-  icon?: React.ReactNode;
-  shortcut?: string;
-  onClick?: () => void;
-  disabled?: boolean;
-  danger?: boolean;
-  checked?: boolean;
-  divider?: boolean;
-  header?: string;
-}
-
-function Menu({ items, isOpen, onClose }: {
-  items: MenuItem[];
-  isOpen: boolean;
-  onClose: () => void;
-}) {
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        onClose();
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
       }
-    }
+    };
 
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
-    }
-  }, [isOpen, onClose]);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
-  if (!isOpen) return null;
+  const handleSelect = (item) => {
+    item.onClick?.();
+    setIsOpen(false);
+  };
 
   return (
-    <div className="menu" ref={menuRef}>
-      {items.map((item, index) => {
-        if (item.divider) {
-          return <div key={index} className="menu-divider" />;
-        }
+    <div className="ha-dropdown" ref={dropdownRef}>
+      <div className="trigger" onClick={() => setIsOpen(!isOpen)}>
+        {trigger}
+      </div>
+      <div className={\`menu-container \${isOpen ? 'open' : ''}\`}>
+        <div className={\`menu size-\${size}\`} role="menu">
+          {items.map((item, index) => {
+            if (item.type === 'divider') {
+              return <div key={index} className="divider" role="separator" />;
+            }
 
-        if (item.header) {
-          return (
-            <div key={index} className="menu-group-header">
-              {item.header}
-            </div>
-          );
-        }
-
-        return (
-          <button
-            key={index}
-            className={`menu-item ${item.danger ? 'menu-item-danger' : ''} ${
-              item.checked ? 'menu-item-active' : ''
-            }`}
-            onClick={item.onClick}
-            disabled={item.disabled}
-          >
-            {item.checked && <span className="menu-check">✓</span>}
-            {item.icon && <span className="menu-icon">{item.icon}</span>}
-            <span>{item.label}</span>
-            {item.shortcut && (
-              <span className="menu-shortcut">{item.shortcut}</span>
-            )}
-          </button>
-        );
-      })}
+            return (
+              <button
+                key={index}
+                className={\`menu-item \${item.danger ? 'danger' : ''}\`}
+                role="menuitem"
+                disabled={item.disabled}
+                onClick={() => handleSelect(item)}
+              >
+                {item.icon && (
+                  <span className="icon-slot">{item.icon}</span>
+                )}
+                <span className="content">{item.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
 
 // 使用例
-<Menu
-  isOpen={isMenuOpen}
-  onClose={() => setIsMenuOpen(false)}
+<Dropdown
+  trigger={<button>メニュー</button>}
+  size="md"
   items={[
-    { header: 'アカウント' },
-    { label: 'プロフィール', icon: '👤', shortcut: '⌘P' },
-    { label: '設定', icon: '⚙️', shortcut: '⌘S' },
-    { divider: true },
-    { label: '選択済み', checked: true },
-    { divider: true },
-    { label: '削除', icon: '🗑️', danger: true }
+    { label: 'プロフィール', icon: <UserIcon />, onClick: () => {} },
+    { label: '設定', icon: <SettingsIcon />, onClick: () => {} },
+    { type: 'divider' },
+    { label: 'ヘルプ', icon: <HelpIcon />, onClick: () => {} },
+    { label: 'ログアウト', icon: <LogoutIcon />, danger: true, onClick: () => {} },
   ]}
 />
-```
+\`\`\`
+
+---
+
+## 属性
+
+| 属性 | 値 | デフォルト | 説明 |
+|------|-----|-----------|------|
+| \`size\` | \`sm\` \\| \`md\` \\| \`lg\` | \`md\` | メニューのサイズ |
+| \`danger\` | \`boolean\` | \`false\` | 危険なアクションを示す（menu-item） |
+| \`disabled\` | \`boolean\` | \`false\` | メニュー項目の無効化 |
+
+---
+
+## CSS変数
+
+メニューコンポーネントは以下のCSS変数（デザイントークン）を使用しています:
+
+### 色関連
+- \`--primary-default\` - ホバー時の背景色/テキスト色
+- \`--error-default\` - 危険なアクションの色
+- \`--color-neutral-200\` - ボーダー、区切り線
+- \`--color-neutral-400\` - 無効テキストの色
+- \`--color-neutral-700\` - デフォルトテキスト色
+
+### スペーシング
+- \`--spacing-1\` - 0.25rem (sm パディング縦、区切り線マージン)
+- \`--spacing-2\` - 0.5rem (md パディング縦、アイテム間ギャップ)
+- \`--spacing-3\` - 0.75rem (sm パディング横、lg パディング縦)
+- \`--spacing-4\` - 1rem (md パディング横、メニューパディング)
+- \`--spacing-5\` - 1.25rem (lg パディング横)
+
+### ボーダー
+- \`--border-radius-base\` - 基本角丸
+
+### シャドウ
+- \`--shadow-lg\` - メニューの影
+
+### アニメーション
+- \`--animation-duration-base\` - 200ms
+- \`--animation-easing-ease\` - ease
 
 ---
 
 ## アクセシビリティ
 
-### ARIA属性
+- \`role="menu"\`でメニューを識別
+- \`role="menuitem"\`で各アイテムを識別
+- \`role="separator"\`で区切り線を識別
+- \`disabled\`属性で無効状態を表現
+- キーボードナビゲーションのサポート
+- \`aria-label\`でメニューの目的を説明
 
-- `role="menu"`: メニューコンテナに設定
-- `role="menuitem"`: 各メニューアイテムに設定
-- `role="separator"`: 区切り線に設定
-- `aria-disabled="true"`: 無効なアイテムに設定
-- `aria-checked`: チェックボックス型アイテムに設定
+\`\`\`html
+<!-- アクセシビリティの良い例 -->
+<div class="ha-dropdown">
+  <button
+    id="menu-button"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-controls="menu-list"
+  >
+    メニュー
+  </button>
 
-### キーボードナビゲーション
+  <div
+    class="menu-container"
+    id="menu-list"
+    role="menu"
+    aria-labelledby="menu-button"
+  >
+    <div class="menu">
+      <button class="menu-item" role="menuitem">
+        <span class="content">プロフィール</span>
+      </button>
+      <button class="menu-item" role="menuitem">
+        <span class="content">設定</span>
+      </button>
+      <div class="divider" role="separator"></div>
+      <button
+        class="menu-item danger"
+        role="menuitem"
+        aria-label="アカウントからログアウト"
+      >
+        <span class="content">ログアウト</span>
+      </button>
+    </div>
+  </div>
+</div>
+\`\`\`
 
-実装すべきキーボードショートカット：
+### キーボード操作
 
-- **↑/↓ (矢印キー)**: アイテム間を移動
-- **Enter/Space**: アイテムを選択
-- **Esc**: メニューを閉じる
-- **Home**: 最初のアイテムに移動
-- **End**: 最後のアイテムに移動
-- **Tab**: メニューを閉じてフォーカス移動
+- **Tab**: メニュートリガーにフォーカス
+- **Enter/Space**: メニューを開く/項目を選択
+- **Escape**: メニューを閉じる
+- **Arrow Down**: 次の項目に移動
+- **Arrow Up**: 前の項目に移動
+- **Home**: 最初の項目に移動
+- **End**: 最後の項目に移動
 
-```javascript
-// キーボードナビゲーションの実装
+### JavaScript例（キーボードナビゲーション）
+
+\`\`\`javascript
+const menuButton = document.querySelector('[aria-haspopup="true"]');
+const menu = document.querySelector('[role="menu"]');
 const menuItems = menu.querySelectorAll('[role="menuitem"]:not([disabled])');
-let currentIndex = 0;
+let currentIndex = -1;
+
+menuButton.addEventListener('click', () => {
+  const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+  menuButton.setAttribute('aria-expanded', !isOpen);
+  menu.parentElement.classList.toggle('open');
+
+  if (!isOpen) {
+    currentIndex = 0;
+    menuItems[0]?.focus();
+  }
+});
 
 menu.addEventListener('keydown', (e) => {
-  switch(e.key) {
+  switch (e.key) {
     case 'ArrowDown':
+      e.preventDefault();
       currentIndex = (currentIndex + 1) % menuItems.length;
       menuItems[currentIndex].focus();
-      e.preventDefault();
       break;
 
     case 'ArrowUp':
+      e.preventDefault();
       currentIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
       menuItems[currentIndex].focus();
-      e.preventDefault();
       break;
 
     case 'Home':
+      e.preventDefault();
       currentIndex = 0;
       menuItems[0].focus();
-      e.preventDefault();
       break;
 
     case 'End':
+      e.preventDefault();
       currentIndex = menuItems.length - 1;
       menuItems[currentIndex].focus();
-      e.preventDefault();
       break;
 
     case 'Escape':
-      closeMenu();
-      returnFocusToTrigger();
+      e.preventDefault();
+      menuButton.setAttribute('aria-expanded', 'false');
+      menu.parentElement.classList.remove('open');
+      menuButton.focus();
       break;
   }
 });
-```
 
-### フォーカス管理
-
-```javascript
-function openMenu(triggerElement) {
-  menu.style.display = 'block';
-
-  // 最初のアイテムにフォーカス
-  const firstItem = menu.querySelector('[role="menuitem"]:not([disabled])');
-  firstItem?.focus();
-
-  // トリガー要素を記憶（閉じる時に戻す）
-  menu.dataset.trigger = triggerElement.id;
-}
-
-function closeMenu() {
-  menu.style.display = 'none';
-
-  // トリガー要素にフォーカスを戻す
-  const triggerId = menu.dataset.trigger;
-  document.getElementById(triggerId)?.focus();
-}
-```
+// メニュー外クリックで閉じる
+document.addEventListener('click', (e) => {
+  if (!menu.parentElement.contains(e.target)) {
+    menuButton.setAttribute('aria-expanded', 'false');
+    menu.parentElement.classList.remove('open');
+  }
+});
+\`\`\`
 
 ---
 
 ## ベストプラクティス
 
-### メニューの配置
+### ✅ 推奨
 
-1. **ドロップダウン位置の計算**
+1. **論理的なグループ化**
+   - 関連するアイテムをまとめる
+   - 区切り線で視覚的に分離
 
-```javascript
-function positionMenu(trigger, menu) {
-  const triggerRect = trigger.getBoundingClientRect();
-  const menuRect = menu.getBoundingClientRect();
-  const viewport = {
-    width: window.innerWidth,
-    height: window.innerHeight
-  };
+2. **危険なアクションの分離**
+   - 破壊的なアクションは最下部に配置
+   - \`danger\`クラスで視覚的に区別
 
-  // デフォルトは下に表示
-  let top = triggerRect.bottom + 4;
-  let left = triggerRect.left;
+3. **適切なアイコンの使用**
+   - アクションを視覚的に補強
+   - 一貫性のあるアイコンセットを使用
 
-  // 画面下部に収まらない場合は上に表示
-  if (top + menuRect.height > viewport.height) {
-    top = triggerRect.top - menuRect.height - 4;
-  }
+4. **無効状態の適切な表示**
+   - 条件が満たされない場合は無効化
+   - 完全に非表示にしない
 
-  // 画面右端に収まらない場合は左寄せ
-  if (left + menuRect.width > viewport.width) {
-    left = viewport.width - menuRect.width - 16;
-  }
+\`\`\`html
+<!-- 適切なメニュー構成 -->
+<div class="menu" role="menu">
+  <!-- 主要アクション -->
+  <button class="menu-item" role="menuitem">
+    <span class="icon-slot"><svg>...</svg></span>
+    <span class="content">新規作成</span>
+  </button>
+  <button class="menu-item" role="menuitem">
+    <span class="icon-slot"><svg>...</svg></span>
+    <span class="content">編集</span>
+  </button>
 
-  menu.style.top = `${top}px`;
-  menu.style.left = `${left}px`;
-}
-```
+  <div class="divider" role="separator"></div>
 
-2. **コンテキストメニュー（右クリック）**
+  <!-- 副次的アクション -->
+  <button class="menu-item" role="menuitem">
+    <span class="icon-slot"><svg>...</svg></span>
+    <span class="content">共有</span>
+  </button>
+  <button class="menu-item" role="menuitem">
+    <span class="icon-slot"><svg>...</svg></span>
+    <span class="content">エクスポート</span>
+  </button>
 
-```javascript
-document.addEventListener('contextmenu', (e) => {
-  e.preventDefault();
+  <div class="divider" role="separator"></div>
 
-  // メニューを表示
-  menu.style.display = 'block';
-  menu.style.top = `${e.pageY}px`;
-  menu.style.left = `${e.pageX}px`;
+  <!-- 破壊的アクション -->
+  <button class="menu-item danger" role="menuitem">
+    <span class="icon-slot"><svg>...</svg></span>
+    <span class="content">削除</span>
+  </button>
+</div>
+\`\`\`
 
-  // 画面外に出ないように調整
-  positionMenu(null, menu);
-});
-```
+### ❌ 非推奨
 
-### グループ化
+1. **メニューアイテムが多すぎる**
+   - 7-10個以内に抑える
+   - サブメニューやカテゴリ分けを検討
 
-論理的にアイテムをグループ化：
+2. **不明確なラベル**
+   - 具体的なアクションを示す
+   - 「実行」「OK」などは避ける
 
-1. **関連するアクション**を同じグループに
-2. **破壊的なアクション**は独立したグループに
-3. グループ間に**区切り線**を配置
+3. **区切り線の過剰使用**
+   - 意味のあるグループ化のみに使用
 
-```javascript
-const menuStructure = [
-  {
-    header: '編集',
-    items: [
-      { label: 'コピー', shortcut: '⌘C' },
-      { label: '貼り付け', shortcut: '⌘V' }
-    ]
-  },
-  { divider: true },
-  {
-    header: '危険な操作',
-    items: [
-      { label: '削除', danger: true, shortcut: '⌘D' }
-    ]
-  }
-];
-```
+\`\`\`html
+<!-- メニューアイテムが多すぎる（非推奨） -->
+<div class="menu" role="menu">
+  <button class="menu-item" role="menuitem">項目1</button>
+  <button class="menu-item" role="menuitem">項目2</button>
+  <button class="menu-item" role="menuitem">項目3</button>
+  <!-- ...さらに10個以上続く -->
+</div>
 
-### ショートカットキー
-
-1. **プラットフォーム対応**
-
-```javascript
-const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-const modifierKey = isMac ? '⌘' : 'Ctrl+';
-
-const shortcuts = {
-  copy: `${modifierKey}C`,
-  paste: `${modifierKey}V`,
-  delete: `${modifierKey}D`
-};
-```
-
-2. **ショートカットの実装**
-
-```javascript
-document.addEventListener('keydown', (e) => {
-  const key = e.key.toLowerCase();
-  const modifier = e.metaKey || e.ctrlKey;
-
-  if (modifier && key === 'c') {
-    handleCopy();
-    e.preventDefault();
-  }
-});
-```
+<!-- 区切り線が多すぎる（非推奨） -->
+<div class="menu" role="menu">
+  <button class="menu-item" role="menuitem">項目1</button>
+  <div class="divider"></div>
+  <button class="menu-item" role="menuitem">項目2</button>
+  <div class="divider"></div>
+  <button class="menu-item" role="menuitem">項目3</button>
+  <div class="divider"></div>
+</div>
+\`\`\`
 
 ---
 
-## パフォーマンス最適化
+## バリエーション
 
-### 仮想スクロール
+### ショートカット表示付きメニュー
 
-多数のアイテム（100+）がある場合：
+\`\`\`html
+<button class="menu-item" role="menuitem">
+  <span class="icon-slot"><svg>...</svg></span>
+  <span class="content">保存</span>
+  <span style="margin-left: auto; opacity: 0.6;">Ctrl+S</span>
+</button>
+\`\`\`
 
-```javascript
-import { VirtualList } from 'virtual-list-library';
+### チェックマーク付きメニュー
 
-<VirtualList
-  height={400}
-  itemCount={items.length}
-  itemSize={40}
-  renderItem={({ index, style }) => (
-    <button className="menu-item" style={style}>
-      {items[index].label}
-    </button>
-  )}
-/>
-```
+\`\`\`html
+<button class="menu-item" role="menuitemcheckbox" aria-checked="true">
+  <span class="icon-slot">
+    <svg><!-- チェックマーク --></svg>
+  </span>
+  <span class="content">通知を有効にする</span>
+</button>
+\`\`\`
 
-### 遅延読み込み
+---
 
-```javascript
-function LazyMenu({ onOpen }) {
-  const [items, setItems] = useState([]);
+## テーマ対応
 
-  useEffect(() => {
-    if (onOpen) {
-      fetchMenuItems().then(setItems);
-    }
-  }, [onOpen]);
+全てのメニュートークンはテーマに対応しています。\`data-theme\` 属性を変更するだけで、自動的にダークモードに切り替わります。
 
-  return <Menu items={items} />;
-}
-```
+\`\`\`html
+<!-- ライトテーマ -->
+<html data-theme="light">
+  <div class="ha-menu">
+    <div class="menu" role="menu">
+      <button class="menu-item" role="menuitem">項目</button>
+    </div>
+  </div>
+</html>
+
+<!-- ダークテーマ -->
+<html data-theme="dark">
+  <div class="ha-menu">
+    <div class="menu" role="menu">
+      <button class="menu-item" role="menuitem">項目</button>
+    </div>
+  </div>
+</html>
+\`\`\`
 
 ---
 
 ## 関連コンポーネント
 
-- **Tabs**: タブナビゲーション
-- **Navigation**: ナビゲーションバー
-- **Select**: セレクトボックス（フォーム要素）
+- [Button](../layout/button.md) - メニュートリガーボタン
+- [Dropdown](../overlays/dropdown.md) - ドロップダウンコンテナ
+- [Tabs](./tabs.md) - タブナビゲーション
 
 ---
 
-## よくあるパターン
+## 関連ドキュメント
 
-### ケバブメニュー（3点メニュー）
-
-```html
-<button class="menu-trigger" aria-label="その他のオプション">
-  ⋮
-</button>
-```
-
-### ユーザーメニュー
-
-```
-👤 John Doe
-├── プロフィール
-├── 設定
-├── ヘルプ
-└── ログアウト (danger)
-```
-
-### エディットメニュー
-
-```
-編集
-├── 元に戻す (⌘Z)
-├── やり直す (⌘⇧Z)
----
-├── カット (⌘X)
-├── コピー (⌘C)
-└── 貼り付け (⌘V)
-```
+- [アーキテクチャガイド](../アーキテクチャガイド.md)
+- [使用方法ガイド](../使用方法ガイド.md)
+- [コンポーネントリファレンス](./README.md)
 
 ---
 
-**最終更新:** 2025-12-10
-**Phase 4 Option C で実装**
+**最終更新:** 2025-12-12

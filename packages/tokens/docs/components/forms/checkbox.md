@@ -1,553 +1,811 @@
-# Checkbox (チェックボックス) コンポーネント
+# Checkbox Component
 
-**カテゴリ:** Forms
-**ファイル:** `src/components/forms/checkbox.yaml`
-**ステータス:** ✅ 実装済み (Phase 4)
-
----
-
-## 概要
-
-チェックボックスコンポーネントは、ユーザーが複数の選択肢から0個以上のオプションを選択できるようにするフォーム要素です。オン/オフの状態を表現し、独立した選択が可能です。
-
-### 用途
-
-- 利用規約への同意
-- 複数選択フィルター
-- タスク完了のマーク
-- オプション機能の有効/無効切り替え
+**Category:** Forms
+**File:** `src/css/components/forms/checkbox.css`
+**Status:** ✅ Implemented
 
 ---
 
-## サイズバリアント
+## Overview
 
-### 1. Small (小)
+The Checkbox component is a form element that allows users to select zero or more options from a set of choices. Unlike radio buttons, checkboxes allow independent selection of multiple items and support three states: unchecked, checked, and indeterminate (partially selected).
 
-コンパクトな場所で使用する小さいチェックボックスです。
+### Use Cases
 
-**サイズ:** 16px (1rem)
-**使用場面:**
-- 密集したテーブル内
-- コンパクトなフォーム
-- サイドバーの設定項目
-
-**トークン:** `component.checkbox.size.small`
-
-### 2. Default (デフォルト)
-
-標準サイズのチェックボックスです。最も一般的に使用されます。
-
-**サイズ:** 20px (1.25rem)
-**使用場面:**
-- 通常のフォーム
-- 設定画面
-- リスト項目の選択
-
-**トークン:** `component.checkbox.size.default`
-
-### 3. Large (大)
-
-視認性を高めたい場合に使用する大きなチェックボックスです。
-
-**サイズ:** 24px (1.5rem)
-**使用場面:**
-- 重要な同意項目
-- モバイルUI
-- タッチターゲットを大きくしたい場合
-
-**トークン:** `component.checkbox.size.large`
+- Accepting terms and conditions
+- Multiple selection filters
+- Marking tasks as complete
+- Enabling/disabling optional features
+- Bulk actions on lists (select all/deselect all patterns)
+- Consent for data collection
 
 ---
 
-## 状態
+## Sizes
 
-### Default (デフォルト)
-未選択の通常状態です。
+### Small (sm)
 
-### Checked (チェック済み)
-選択されている状態で、チェックマークが表示されます。
+Compact checkbox for space-constrained areas.
 
-### Hover (ホバー)
-マウスカーソルがチェックボックス上にある状態です。
+**Dimensions:**
+- Box: 16px × 16px
+- Icon: 12px × 12px
+- Label font-size: 0.875rem
 
-### Checked + Hover (チェック済み + ホバー)
-選択済みでホバーしている状態です。
-
-### Focus (フォーカス)
-キーボードフォーカスがある状態で、フォーカスリングが表示されます。
-
-### Disabled (無効)
-操作できない状態で、視覚的に無効であることを示します。
-
-### Checked + Disabled (チェック済み + 無効)
-選択済みで無効な状態です。
-
-### Error (エラー)
-バリデーションエラーがある状態です。
-
----
-
-## トークン一覧
-
-### Size (サイズ)
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.checkbox.size.default` | `1.25rem` | デフォルトサイズ (20px) |
-| `component.checkbox.size.small` | `1rem` | 小サイズ (16px) |
-| `component.checkbox.size.large` | `1.5rem` | 大サイズ (24px) |
-
-### Background (背景色)
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.checkbox.background.default` | `{background.primary}` | デフォルト状態の背景色 |
-| `component.checkbox.background.checked` | `{primary.default}` | チェック時の背景色 |
-| `component.checkbox.background.hover` | `{background.secondary}` | ホバー時の背景色 |
-| `component.checkbox.background.checkedHover` | `{primary.hover}` | チェック済みホバー時 |
-| `component.checkbox.background.disabled` | `{background.tertiary}` | 無効時の背景色 |
-| `component.checkbox.background.checkedDisabled` | `{border.default}` | チェック済み無効時 |
-
-### Border (ボーダー色)
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.checkbox.border.default` | `{border.default}` | デフォルトのボーダー色 |
-| `component.checkbox.border.hover` | `{border.strong}` | ホバー時のボーダー色 |
-| `component.checkbox.border.checked` | `{primary.default}` | チェック時のボーダー色 |
-| `component.checkbox.border.focus` | `{primary.default}` | フォーカス時のボーダー色 |
-| `component.checkbox.border.disabled` | `{border.subtle}` | 無効時のボーダー色 |
-| `component.checkbox.border.error` | `{error.default}` | エラー時のボーダー色 |
-
-### Checkmark (チェックマーク色)
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.checkbox.checkmark.default` | `{foreground.inverse}` | チェックマークの色 |
-| `component.checkbox.checkmark.disabled` | `{foreground.tertiary}` | 無効時のチェックマーク色 |
-
-### Focus Ring (フォーカスリング)
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.checkbox.focusRing.width` | `3px` | フォーカスリングの幅 |
-| `component.checkbox.focusRing.offset` | `2px` | フォーカスリングのオフセット |
-| `component.checkbox.focusRing.color.default` | `{primary.subtle}` | フォーカスリングの色 |
-| `component.checkbox.focusRing.color.error` | `{error.subtle}` | エラー時のフォーカスリング色 |
-
-### Label (ラベル)
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.checkbox.label.fontSize` | `{font.size.base}` | ラベルのフォントサイズ |
-| `component.checkbox.label.fontWeight` | `{font.weight.normal}` | ラベルのフォントウェイト |
-| `component.checkbox.label.color.default` | `{foreground.primary}` | ラベルの色 |
-| `component.checkbox.label.color.disabled` | `{foreground.tertiary}` | 無効時のラベル色 |
-| `component.checkbox.label.spacing` | `{spacing.2}` | チェックボックスとラベルの間隔 |
-
-### Helper Text (ヘルパーテキスト)
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.checkbox.helper.fontSize` | `{font.size.sm}` | ヘルパーテキストのフォントサイズ |
-| `component.checkbox.helper.color.default` | `{foreground.secondary}` | ヘルパーテキストの色 |
-| `component.checkbox.helper.color.error` | `{error.default}` | エラー時のヘルパーテキスト色 |
-| `component.checkbox.helper.spacing` | `{spacing.2}` | ラベルとヘルパーテキストの間隔 |
-
----
-
-## 使用例
-
-### HTML
+**Use Cases:**
+- Embedded in tables
+- Dense form layouts
+- Sidebar settings
+- Compact lists
 
 ```html
-<!-- 基本的なチェックボックス -->
-<div class="checkbox-group">
-  <label class="checkbox-label">
-    <input type="checkbox" class="checkbox" checked>
-    <span class="checkbox-text">利用規約に同意する</span>
-  </label>
-  <span class="checkbox-helper">必須項目です</span>
+<div class="ha-checkbox" size="sm">
+  <input type="checkbox" id="small-check">
+  <span class="label">Small checkbox</span>
 </div>
-
-<!-- 小サイズ -->
-<label class="checkbox-label">
-  <input type="checkbox" class="checkbox checkbox-small">
-  <span class="checkbox-text">メール通知を受け取る</span>
-</label>
-
-<!-- 大サイズ -->
-<label class="checkbox-label">
-  <input type="checkbox" class="checkbox checkbox-large" checked>
-  <span class="checkbox-text">重要な同意事項</span>
-</label>
-
-<!-- エラー状態 -->
-<div class="checkbox-group">
-  <label class="checkbox-label">
-    <input type="checkbox" class="checkbox checkbox-error">
-    <span class="checkbox-text">必須項目</span>
-  </label>
-  <span class="checkbox-helper checkbox-helper-error">この項目は必須です</span>
-</div>
-
-<!-- 無効状態 -->
-<label class="checkbox-label">
-  <input type="checkbox" class="checkbox" disabled>
-  <span class="checkbox-text">無効なオプション</span>
-</label>
 ```
 
-### CSS
+### Medium (md) - Default
 
-```css
-/* チェックボックスグループ */
-.checkbox-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--component-checkbox-label-spacing);
-}
+Standard size checkbox used in most interfaces.
 
-/* ラベル */
-.checkbox-label {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--component-checkbox-label-spacing);
-  cursor: pointer;
-  font-size: var(--component-checkbox-label-font-size);
-  font-weight: var(--component-checkbox-label-font-weight);
-  color: var(--component-checkbox-label-color-default);
-  user-select: none;
-}
+**Dimensions:**
+- Box: 20px × 20px
+- Icon: 14px × 14px
+- Label font-size: 1rem
 
-.checkbox-label:has(.checkbox:disabled) {
-  color: var(--component-checkbox-label-color-disabled);
-  cursor: not-allowed;
-}
+**Use Cases:**
+- Standard forms
+- Settings pages
+- List selection
+- Regular forms and dialogs
 
-/* チェックボックス本体 */
-.checkbox {
-  appearance: none;
-  width: var(--component-checkbox-size-default);
-  height: var(--component-checkbox-size-default);
-  background-color: var(--component-checkbox-background-default);
-  border: var(--component-checkbox-border-width-default) solid var(--component-checkbox-border-default);
-  border-radius: var(--component-checkbox-border-radius-default);
-  cursor: pointer;
-  position: relative;
-  transition: var(--component-checkbox-transition-properties)
-              var(--component-checkbox-transition-duration)
-              var(--component-checkbox-transition-timing);
-}
-
-.checkbox:hover:not(:disabled) {
-  background-color: var(--component-checkbox-background-hover);
-  border-color: var(--component-checkbox-border-hover);
-}
-
-.checkbox:focus {
-  outline: none;
-  border-color: var(--component-checkbox-border-focus);
-  box-shadow: 0 0 0 var(--component-checkbox-focus-ring-offset) transparent,
-              0 0 0 calc(var(--component-checkbox-focus-ring-width) + var(--component-checkbox-focus-ring-offset))
-                var(--component-checkbox-focus-ring-color-default);
-}
-
-.checkbox:checked {
-  background-color: var(--component-checkbox-background-checked);
-  border-color: var(--component-checkbox-border-checked);
-}
-
-.checkbox:checked:hover:not(:disabled) {
-  background-color: var(--component-checkbox-background-checked-hover);
-}
-
-/* チェックマーク */
-.checkbox:checked::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 40%;
-  height: 60%;
-  border: solid var(--component-checkbox-checkmark-default);
-  border-width: 0 2px 2px 0;
-  transform: translate(-50%, -60%) rotate(45deg);
-}
-
-/* 無効状態 */
-.checkbox:disabled {
-  background-color: var(--component-checkbox-background-disabled);
-  border-color: var(--component-checkbox-border-disabled);
-  cursor: not-allowed;
-}
-
-.checkbox:checked:disabled {
-  background-color: var(--component-checkbox-background-checked-disabled);
-}
-
-.checkbox:checked:disabled::after {
-  border-color: var(--component-checkbox-checkmark-disabled);
-}
-
-/* エラー状態 */
-.checkbox-error {
-  border-color: var(--component-checkbox-border-error);
-}
-
-.checkbox-error:focus {
-  box-shadow: 0 0 0 var(--component-checkbox-focus-ring-offset) transparent,
-              0 0 0 calc(var(--component-checkbox-focus-ring-width) + var(--component-checkbox-focus-ring-offset))
-                var(--component-checkbox-focus-ring-color-error);
-}
-
-/* サイズバリアント */
-.checkbox-small {
-  width: var(--component-checkbox-size-small);
-  height: var(--component-checkbox-size-small);
-}
-
-.checkbox-large {
-  width: var(--component-checkbox-size-large);
-  height: var(--component-checkbox-size-large);
-}
-
-/* ヘルパーテキスト */
-.checkbox-helper {
-  font-size: var(--component-checkbox-helper-font-size);
-  color: var(--component-checkbox-helper-color-default);
-  margin-left: calc(var(--component-checkbox-size-default) + var(--component-checkbox-label-spacing));
-}
-
-.checkbox-helper-error {
-  color: var(--component-checkbox-helper-color-error);
-}
+```html
+<div class="ha-checkbox" size="md">
+  <input type="checkbox" id="medium-check">
+  <span class="label">Medium checkbox</span>
+</div>
 ```
 
-### React
+### Large (lg)
 
-```tsx
-import React from 'react';
+Larger checkbox for enhanced visibility and accessibility.
 
-type CheckboxSize = 'small' | 'default' | 'large';
+**Dimensions:**
+- Box: 24px × 24px
+- Icon: 16px × 16px
+- Label font-size: 1.125rem
+
+**Use Cases:**
+- Important consent items
+- Mobile interfaces
+- Accessibility requirements
+- Large touch targets
+
+```html
+<div class="ha-checkbox" size="lg">
+  <input type="checkbox" id="large-check">
+  <span class="label">Large checkbox</span>
+</div>
+```
+
+---
+
+## States
+
+### Unchecked (Default)
+
+The default state of an unselected checkbox. Shows a bordered box with no check mark.
+
+```html
+<div class="ha-checkbox">
+  <input type="checkbox" id="unchecked">
+  <span class="label">Unchecked option</span>
+</div>
+```
+
+**Visual Properties:**
+- Border color: `--border-default`
+- Background: `--background-primary`
+- Cursor: pointer
+
+### Checked
+
+Selected state displaying a checkmark icon.
+
+```html
+<div class="ha-checkbox">
+  <input type="checkbox" id="checked" checked>
+  <span class="label">Checked option</span>
+</div>
+```
+
+**Visual Properties:**
+- Background: `--primary-default`
+- Border color: `--primary-default`
+- Icon color: `--foreground-inverse`
+- Icon displayed
+
+### Hover
+
+Mouse hover state on an unselected checkbox.
+
+```html
+<div class="ha-checkbox">
+  <input type="checkbox" id="hover">
+  <span class="label">Hover me</span>
+</div>
+```
+
+**Visual Properties:**
+- Border color: `--border-strong`
+- Smooth transition (200ms)
+
+### Checked + Hover
+
+Mouse hover state on a selected checkbox.
+
+**Visual Properties:**
+- Background: `--primary-hover`
+- Border color: `--primary-hover`
+- Icon remains visible
+
+### Focus
+
+Keyboard focus state with visible focus ring.
+
+```html
+<div class="ha-checkbox">
+  <input type="checkbox" id="focus" tabindex="0">
+  <span class="label">Keyboard focused</span>
+</div>
+```
+
+**Visual Properties:**
+- Outline: 2px solid `--primary-default`
+- Outline offset: 2px
+- Meets WCAG 2.1 AA contrast requirements
+
+### Disabled
+
+Non-interactive state for unavailable options.
+
+```html
+<div class="ha-checkbox">
+  <input type="checkbox" id="disabled" disabled>
+  <span class="label">Disabled option</span>
+</div>
+```
+
+**Visual Properties:**
+- Opacity: 0.6
+- Cursor: not-allowed
+- Label color: `--foreground-secondary`
+
+### Checked + Disabled
+
+Selected but non-interactive checkbox.
+
+```html
+<div class="ha-checkbox">
+  <input type="checkbox" id="checked-disabled" checked disabled>
+  <span class="label">Selected but disabled</span>
+</div>
+```
+
+### Indeterminate
+
+Partially selected state, typically used in parent/child hierarchies where only some children are selected.
+
+```html
+<div class="ha-checkbox">
+  <input type="checkbox" id="indeterminate">
+  <span class="label">Select all</span>
+</div>
+
+<script>
+  document.getElementById('indeterminate').indeterminate = true;
+</script>
+```
+
+**Visual Properties:**
+- Background: `--primary-default`
+- Border color: `--primary-default`
+- Icon displayed (dash/minus mark)
+
+### Error
+
+Validation error state indicating invalid selection.
+
+```html
+<div class="ha-checkbox" error>
+  <input type="checkbox" id="error">
+  <span class="label">Required checkbox</span>
+</div>
+<span class="description">This field is required</span>
+```
+
+**Visual Properties:**
+- Border color: `--error-default`
+- Focus outline: `--error-default`
+- Description color: `--error-default`
+
+---
+
+## HTML Structure
+
+### Basic Implementation
+
+```html
+<div class="ha-checkbox">
+  <input type="checkbox" id="basic">
+  <span class="label">Accept terms and conditions</span>
+</div>
+```
+
+### With Description
+
+```html
+<div class="ha-checkbox">
+  <input type="checkbox" id="with-desc">
+  <span class="label">Subscribe to newsletter</span>
+  <span class="description">Receive weekly updates and news</span>
+</div>
+```
+
+### With Error State
+
+```html
+<div class="ha-checkbox" error>
+  <input type="checkbox" id="error-check">
+  <span class="label">I agree to the terms</span>
+  <span class="description">You must agree to continue</span>
+</div>
+```
+
+### Checkbox Group
+
+```html
+<fieldset>
+  <legend>What topics interest you?</legend>
+
+  <div class="ha-checkbox">
+    <input type="checkbox" id="tech" name="topics" value="technology">
+    <span class="label">Technology</span>
+  </div>
+
+  <div class="ha-checkbox">
+    <input type="checkbox" id="design" name="topics" value="design">
+    <span class="label">Design</span>
+  </div>
+
+  <div class="ha-checkbox">
+    <input type="checkbox" id="business" name="topics" value="business">
+    <span class="label">Business</span>
+  </div>
+</fieldset>
+```
+
+### Parent-Child Select All Pattern
+
+```html
+<fieldset>
+  <legend>Permissions</legend>
+
+  <!-- Parent checkbox -->
+  <div class="ha-checkbox">
+    <input type="checkbox" id="all-permissions">
+    <span class="label">Select all permissions</span>
+  </div>
+
+  <!-- Child checkboxes -->
+  <fieldset style="margin-left: 2rem;">
+    <div class="ha-checkbox">
+      <input type="checkbox" id="perm-read" name="permissions" value="read">
+      <span class="label">Read</span>
+    </div>
+
+    <div class="ha-checkbox">
+      <input type="checkbox" id="perm-write" name="permissions" value="write">
+      <span class="label">Write</span>
+    </div>
+
+    <div class="ha-checkbox">
+      <input type="checkbox" id="perm-delete" name="permissions" value="delete">
+      <span class="label">Delete</span>
+    </div>
+  </fieldset>
+</fieldset>
+
+<script>
+const parent = document.getElementById('all-permissions');
+const children = document.querySelectorAll('input[name="permissions"]');
+
+function updateParentState() {
+  const allChecked = Array.from(children).every(child => child.checked);
+  const someChecked = Array.from(children).some(child => child.checked);
+
+  parent.checked = allChecked;
+  parent.indeterminate = !allChecked && someChecked;
+}
+
+parent.addEventListener('change', (e) => {
+  children.forEach(child => {
+    child.checked = e.target.checked;
+  });
+});
+
+children.forEach(child => {
+  child.addEventListener('change', updateParentState);
+});
+
+// Initialize state
+updateParentState();
+</script>
+```
+
+---
+
+## Attributes
+
+| Attribute | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `size` | `sm` \| `md` \| `lg` | `md` | Size variant of the checkbox |
+| `error` | boolean | `false` | Indicates error state |
+| `disabled` | boolean | `false` | Disables the checkbox |
+| `checked` | boolean | `false` | Initial checked state |
+| `indeterminate` | boolean | `false` | Partially selected state (JS only) |
+| `name` | string | — | Input name attribute |
+| `value` | string | `on` | Input value attribute |
+| `aria-label` | string | — | Accessible label if visual label hidden |
+| `aria-describedby` | string | — | ID of description element |
+| `aria-invalid` | boolean | — | Indicates invalid state |
+
+---
+
+## CSS Custom Properties
+
+The checkbox component uses the following design tokens:
+
+### Layout
+- `--spacing-2` - Gap between checkbox and label (0.5rem)
+- `--spacing-1` - Margin for description (0.25rem)
+
+### Border
+- `--border-width-2` - Border width (2px)
+- `--border-radius-base` - Border radius (0.25rem)
+- `--border-default` - Default border color
+- `--border-strong` - Hover border color
+
+### Background
+- `--background-primary` - Default background
+
+### Colors
+- `--primary-default` - Checked/selected color
+- `--primary-hover` - Hover state color
+- `--error-default` - Error state color
+- `--foreground-primary` - Label text color
+- `--foreground-secondary` - Description text color
+- `--foreground-inverse` - Checkmark color
+
+### Typography
+- `--font-family-sans` - Label font family
+- `--font-size-sm` - Small text (0.875rem)
+- `--font-size-base` - Base text (1rem)
+- `--font-size-lg` - Large text (1.125rem)
+- `--font-weight-regular` - Label font weight (400)
+- `--font-line-height-normal` - Line height (1.5)
+
+### Animation
+- `--animation-duration-base` - Transition duration (200ms)
+- `--animation-easing-ease` - Easing function
+
+---
+
+## Accessibility
+
+### Keyboard Navigation
+
+- **Tab**: Move focus to the checkbox
+- **Shift + Tab**: Move focus to previous element
+- **Space**: Toggle checkbox state (when focused)
+- **Arrow Keys**: In a group (when using proper ARIA roles)
+
+### ARIA Attributes
+
+```html
+<!-- With error message -->
+<div class="ha-checkbox" error>
+  <input
+    type="checkbox"
+    id="terms"
+    aria-invalid="true"
+    aria-describedby="error-msg"
+  >
+  <span class="label">Accept terms</span>
+  <span id="error-msg" class="description">This is required</span>
+</div>
+
+<!-- In a fieldset group -->
+<fieldset>
+  <legend>Choose options</legend>
+  <div class="ha-checkbox">
+    <input type="checkbox" id="opt1" name="options">
+    <span class="label">Option 1</span>
+  </div>
+  <div class="ha-checkbox">
+    <input type="checkbox" id="opt2" name="options">
+    <span class="label">Option 2</span>
+  </div>
+</fieldset>
+
+<!-- With aria-label for icon-only checkbox -->
+<div class="ha-checkbox">
+  <input
+    type="checkbox"
+    id="favorite"
+    aria-label="Add to favorites"
+  >
+</div>
+```
+
+### Focus Indicators
+
+The component provides visible focus indicators:
+- 2px solid outline at 2px offset
+- Uses `--primary-default` color
+- Changes to `--error-default` in error state
+- WCAG 2.1 AA compliant contrast ratio
+
+### Screen Reader Support
+
+```html
+<!-- Descriptive labels -->
+<label for="subscribe">
+  <input type="checkbox" id="subscribe">
+  Subscribe to our newsletter
+</label>
+
+<!-- With additional description -->
+<div>
+  <label for="subscribe">
+    <input type="checkbox" id="subscribe" aria-describedby="subscribe-help">
+    Subscribe to our newsletter
+  </label>
+  <p id="subscribe-help">We send emails once per week</p>
+</div>
+```
+
+---
+
+## Best Practices
+
+### ✅ Recommended
+
+1. **Always provide labels**
+   - Use explicit `<label>` or inline span labels
+   - Never rely on title attributes alone
+
+2. **Group related checkboxes**
+   - Use `<fieldset>` and `<legend>` for checkbox groups
+   - Provides context and structure
+
+3. **Use descriptive labels**
+   - Be clear about what selecting the checkbox means
+   - Avoid generic labels like "Option 1"
+
+4. **Provide helpful descriptions**
+   - Add optional description text for complex choices
+   - Use `.description` class for error messages
+
+5. **Size appropriately**
+   - Use large (lg) on mobile devices
+   - Use small (sm) in dense tables only
+   - Default (md) for most forms
+
+6. **Implement parent-child relationships**
+   - Use indeterminate state for parent checkboxes
+   - Auto-select/deselect children when parent changes
+
+### ❌ Not Recommended
+
+1. **Using radio buttons for multiple selection**
+   - Use checkboxes, not radio buttons, for multiple items
+   - Radio buttons are only for single selection
+
+2. **Omitting labels**
+   - Never have checkbox without associated label
+   - Always use proper `<label>` element or equivalent
+
+3. **Pre-selecting checkboxes without user intent**
+   - Avoid auto-checking checkboxes (especially consent)
+   - Let users make explicit choices
+
+4. **Very long labels**
+   - Break into label + description
+   - Use line length of 80 characters or less
+
+5. **Disabling without explanation**
+   - If disabled, explain why in description
+   - Consider enabling with warning instead
+
+6. **Using checkboxes for navigation**
+   - Never use to trigger page navigation
+   - Use buttons or links instead
+
+---
+
+## Variations
+
+### Select All Pattern
+
+```html
+<div class="ha-checkbox">
+  <input
+    type="checkbox"
+    id="select-all"
+    aria-label="Select all items"
+  >
+  <span class="label">Select All</span>
+</div>
+
+<div class="ha-checkbox">
+  <input type="checkbox" class="item-checkbox">
+  <span class="label">Item 1</span>
+</div>
+
+<div class="ha-checkbox">
+  <input type="checkbox" class="item-checkbox">
+  <span class="label">Item 2</span>
+</div>
+
+<script>
+const selectAll = document.getElementById('select-all');
+const items = document.querySelectorAll('.item-checkbox');
+
+selectAll.addEventListener('change', () => {
+  items.forEach(item => item.checked = selectAll.checked);
+});
+
+items.forEach(item => {
+  item.addEventListener('change', () => {
+    selectAll.indeterminate =
+      Array.from(items).some(i => i.checked) &&
+      !Array.from(items).every(i => i.checked);
+    selectAll.checked = Array.from(items).every(i => i.checked);
+  });
+});
+</script>
+```
+
+### Conditional Checkboxes
+
+```html
+<div class="ha-checkbox">
+  <input
+    type="checkbox"
+    id="enable-options"
+    aria-controls="conditional-group"
+  >
+  <span class="label">Enable advanced options</span>
+</div>
+
+<fieldset id="conditional-group" disabled>
+  <div class="ha-checkbox">
+    <input type="checkbox" id="option-a">
+    <span class="label">Option A</span>
+  </div>
+
+  <div class="ha-checkbox">
+    <input type="checkbox" id="option-b">
+    <span class="label">Option B</span>
+  </div>
+</fieldset>
+
+<script>
+document.getElementById('enable-options').addEventListener('change', (e) => {
+  document.getElementById('conditional-group').disabled = !e.target.checked;
+});
+</script>
+```
+
+### Checkbox with Icon
+
+```html
+<div class="ha-checkbox">
+  <input type="checkbox" id="icon-check" aria-label="Mark as important">
+  <svg class="icon" viewBox="0 0 24 24">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+  </svg>
+  <span class="label">Mark as important</span>
+</div>
+```
+
+---
+
+## Theme Support
+
+All checkbox tokens support theme switching via the `data-theme` attribute:
+
+```html
+<!-- Light theme -->
+<html data-theme="light">
+  <div class="ha-checkbox">
+    <input type="checkbox" checked>
+    <span class="label">Checkbox in light mode</span>
+  </div>
+</html>
+
+<!-- Dark theme -->
+<html data-theme="dark">
+  <div class="ha-checkbox">
+    <input type="checkbox" checked>
+    <span class="label">Checkbox in dark mode</span>
+  </div>
+</html>
+```
+
+---
+
+## Integration Examples
+
+### With Form Validation
+
+```html
+<form>
+  <div class="ha-checkbox" id="terms-group" error>
+    <input
+      type="checkbox"
+      id="terms"
+      required
+      aria-describedby="terms-error"
+    >
+    <span class="label">I agree to the terms of service</span>
+    <span id="terms-error" class="description" style="display: none;">
+      You must agree to continue
+    </span>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+const form = document.querySelector('form');
+const termsCheckbox = document.getElementById('terms');
+const termsError = document.getElementById('terms-error');
+const termsGroup = document.getElementById('terms-group');
+
+form.addEventListener('submit', (e) => {
+  if (!termsCheckbox.checked) {
+    e.preventDefault();
+    termsError.style.display = 'block';
+    termsGroup.setAttribute('error', '');
+    termsCheckbox.focus();
+  }
+});
+
+termsCheckbox.addEventListener('change', () => {
+  if (termsCheckbox.checked) {
+    termsError.style.display = 'none';
+    termsGroup.removeAttribute('error');
+  }
+});
+</script>
+```
+
+### With React Component
+
+```jsx
+import React, { useState } from 'react';
 
 interface CheckboxProps {
+  id: string;
+  label: string;
+  description?: string;
+  error?: boolean;
+  errorMessage?: string;
+  size?: 'sm' | 'md' | 'lg';
+  disabled?: boolean;
   checked?: boolean;
   onChange?: (checked: boolean) => void;
-  label: string;
-  helper?: string;
-  error?: boolean;
-  disabled?: boolean;
-  size?: CheckboxSize;
-  name?: string;
 }
 
-export function Checkbox({
+function Checkbox({
+  id,
+  label,
+  description,
+  error = false,
+  errorMessage,
+  size = 'md',
+  disabled = false,
   checked = false,
   onChange,
-  label,
-  helper,
-  error = false,
-  disabled = false,
-  size = 'default',
-  name,
 }: CheckboxProps) {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange?.(e.target.checked);
-  };
-
-  const sizeClass = size !== 'default' ? `checkbox-${size}` : '';
-  const errorClass = error ? 'checkbox-error' : '';
-
   return (
-    <div className="checkbox-group">
-      <label className="checkbox-label">
-        <input
-          type="checkbox"
-          className={`checkbox ${sizeClass} ${errorClass}`.trim()}
-          checked={checked}
-          onChange={handleChange}
-          disabled={disabled}
-          name={name}
-        />
-        <span className="checkbox-text">{label}</span>
-      </label>
-      {helper && (
-        <span className={`checkbox-helper ${error ? 'checkbox-helper-error' : ''}`}>
-          {helper}
+    <div className="ha-checkbox" size={size} error={error ? '' : undefined}>
+      <input
+        type="checkbox"
+        id={id}
+        checked={checked}
+        onChange={(e) => onChange?.(e.target.checked)}
+        disabled={disabled}
+        aria-describedby={error ? `${id}-error` : undefined}
+        aria-invalid={error}
+      />
+      <span className="label">{label}</span>
+      {(description || error) && (
+        <span
+          id={error ? `${id}-error` : undefined}
+          className="description"
+        >
+          {error ? errorMessage : description}
         </span>
       )}
     </div>
   );
 }
 
-// 使用例
-<Checkbox
-  label="利用規約に同意する"
-  checked={agreed}
-  onChange={setAgreed}
-  error={!agreed && submitted}
-  helper={!agreed && submitted ? '同意が必要です' : '必須項目です'}
-/>
-```
+// Usage
+function SubscriptionForm() {
+  const [newsletter, setNewsletter] = useState(false);
+  const [terms, setTerms] = useState(false);
+  const [termsError, setTermsError] = useState(false);
 
----
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!terms) {
+      setTermsError(true);
+      return;
+    }
+    // Submit form
+  };
 
-## アクセシビリティ
+  return (
+    <form onSubmit={handleSubmit}>
+      <Checkbox
+        id="newsletter"
+        label="Subscribe to newsletter"
+        description="Receive weekly updates"
+        checked={newsletter}
+        onChange={setNewsletter}
+      />
 
-### キーボード操作
+      <Checkbox
+        id="terms"
+        label="I agree to the terms of service"
+        checked={terms}
+        onChange={(checked) => {
+          setTerms(checked);
+          if (checked) setTermsError(false);
+        }}
+        error={termsError}
+        errorMessage="You must agree to continue"
+      />
 
-- **Tab**: チェックボックスにフォーカス
-- **Space**: チェックボックスの選択/解除を切り替え
-- **Shift + Tab**: 前の要素にフォーカス
-
-### ARIA属性
-
-```html
-<!-- エラー状態のチェックボックス -->
-<div class="checkbox-group">
-  <label class="checkbox-label">
-    <input
-      type="checkbox"
-      class="checkbox checkbox-error"
-      aria-invalid="true"
-      aria-describedby="error-message"
-    >
-    <span class="checkbox-text">必須項目</span>
-  </label>
-  <span id="error-message" class="checkbox-helper checkbox-helper-error">
-    この項目は必須です
-  </span>
-</div>
-
-<!-- グループ化されたチェックボックス -->
-<fieldset>
-  <legend>興味のあるトピック</legend>
-  <label class="checkbox-label">
-    <input type="checkbox" class="checkbox" name="topics" value="tech">
-    <span class="checkbox-text">テクノロジー</span>
-  </label>
-  <label class="checkbox-label">
-    <input type="checkbox" class="checkbox" name="topics" value="design">
-    <span class="checkbox-text">デザイン</span>
-  </label>
-</fieldset>
-```
-
-### フォーカススタイル
-
-フォーカスリングは WCAG 2.1 のアクセシビリティガイドラインに準拠しています：
-- 3px の幅
-- 2px のオフセット
-- 十分なコントラスト比
-
----
-
-## ベストプラクティス
-
-### ✅ 推奨
-
-1. **明確なラベル**
-   - 何を選択するのか明確に記述
-
-2. **独立した選択肢**
-   - 各チェックボックスは独立して操作可能に
-
-3. **グループ化**
-   - 関連するチェックボックスは `<fieldset>` でグループ化
-
-4. **ヘルパーテキスト**
-   - 必要に応じて補足説明を追加
-
-5. **適切なサイズ**
-   - コンテキストに応じたサイズを選択
-   - モバイルでは large を検討
-
-### ❌ 非推奨
-
-1. **相互排他的な選択肢**
-   - 1つしか選べない場合は Radio を使用
-
-2. **ラベルなし**
-   - 必ずラベルテキストを提供
-
-3. **長すぎるラベル**
-   - 簡潔で理解しやすいラベルに
-
-4. **不適切なデフォルト**
-   - ユーザーの意図しない同意を避ける
-
----
-
-## バリエーション
-
-### インデタミネート状態 (部分選択)
-
-親子関係のあるチェックボックスで、一部のみ選択されている状態を表現できます：
-
-```html
-<label class="checkbox-label">
-  <input type="checkbox" class="checkbox" id="parent">
-  <span class="checkbox-text">すべて選択</span>
-</label>
-```
-
-```javascript
-const parent = document.getElementById('parent');
-parent.indeterminate = true; // 部分選択状態
-```
-
-### カスタムチェックマーク
-
-チェックマークの代わりにアイコンを使用：
-
-```css
-.checkbox-custom:checked::after {
-  content: '✓';
-  border: none;
-  transform: translate(-50%, -50%);
-  font-size: 0.875rem;
-  color: var(--component-checkbox-checkmark-default);
+      <button type="submit">Sign Up</button>
+    </form>
+  );
 }
 ```
 
 ---
 
-## テーマ対応
+## Related Components
 
-全てのチェックボックストークンはテーマに対応しています。`data-theme` 属性の変更で自動的にダークモードに切り替わります。
-
-```html
-<!-- ライトテーマ -->
-<html data-theme="light">
-  <label class="checkbox-label">
-    <input type="checkbox" class="checkbox" checked>
-    <span class="checkbox-text">オプション</span>
-  </label>
-</html>
-
-<!-- ダークテーマ -->
-<html data-theme="dark">
-  <label class="checkbox-label">
-    <input type="checkbox" class="checkbox" checked>
-    <span class="checkbox-text">オプション</span>
-  </label>
-</html>
-```
+- [Radio](./radio.md) - Single selection from mutually exclusive options
+- [Switch](./switch.md) - Binary on/off toggle
+- [Select](./select.md) - Dropdown selection
+- [Input](./input.md) - Text input fields
+- [Form Group](./form-group.md) - Group form controls together
 
 ---
 
-## 関連コンポーネント
+## Related Documentation
 
-- [Radio](./radio.md) - 単一選択用
-- [Switch](./switch.md) - オン/オフ切り替え
-- [Input](./input.md) - テキスト入力
-- [Button](./button.md) - アクション実行
+- [Architecture Guide](../architecture.md)
+- [Design Tokens](../tokens.md)
+- [Component Reference](./README.md)
 
 ---
 
-## 関連ドキュメント
-
-- [アーキテクチャガイド](../アーキテクチャガイド.md)
-- [使用方法ガイド](../使用方法ガイド.md)
-- [コンポーネントリファレンス](./README.md)
+**Last Updated:** 2025-12-12

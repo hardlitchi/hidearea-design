@@ -1,159 +1,182 @@
-# Progress (プログレスバー) コンポーネント
+# Progress (プログレス) コンポーネント
 
 **カテゴリ:** Feedback
-**ファイル:** `src/components/feedback/progress.yaml`
-**ステータス:** ✅ 実装済み (Phase 4)
+**ファイル:** `src/css/components/feedback/progress.css`
+**ステータス:** ✅ 実装済み
 
 ---
 
 ## 概要
 
-プログレスコンポーネントは、タスクやプロセスの進行状況を視覚的に表示します。線形バーまたは円形で進捗を示します。
+プログレスコンポーネントは、タスクの完了状況や処理の進行状況を視覚的に表示するコンポーネントです。
+3つのサイズ（sm, md, lg）と、5つのカラーバリアント（primary, success, warning, error, info）、2つのタイプ（determinate, indeterminate）をサポートしています。
 
 ### 用途
 
-- ファイルアップロードの進捗
-- フォーム完了度の表示
-- ページ読み込み状態
-- タスク完了率の可視化
-- スキルレベルの表示
+- ファイルアップロードの進行状況
+- フォーム入力の完了度
+- タスクの完了率表示
+- ローディング状態の表示
 
 ---
 
-## サイズバリアント
+## バリアント
 
-### Small (小)
-**高さ:** 4px
-**用途:** コンパクトな表示、カード内
+### 1. Determinate (確定的)
+具体的なパーセンテージを表示します。
 
-### Default (デフォルト)
-**高さ:** 8px
-**用途:** 一般的な進捗表示
+**使用場面:**
+- ファイルアップロード
+- データ処理の進行状況
+- フォーム入力の完了度
 
-### Large (大)
-**高さ:** 12px
-**用途:** 強調したい進捗、メイン表示
+### 2. Indeterminate (不確定的)
+完了までの時間が不明な処理に使用します。
 
----
-
-## 色バリアント
-
-### Default (プライマリー)
-通常の進捗を示します。
-
-### Success (成功)
-完了した進捗を示します。
-
-### Warning (警告)
-注意が必要な進捗を示します。
-
-### Error (エラー)
-問題がある進捗を示します。
-
-### Info (情報)
-情報提供の進捗を示します。
+**使用場面:**
+- 読み込み中
+- 処理中（時間不明）
+- サーバー応答待ち
 
 ---
 
-## 主要トークン
+## サイズ
 
-### トラック（背景）
-- `track.background` - トラック背景色
-- `track.height.small/default/large` - 高さ
-- `track.borderRadius` - 完全な楕円
+### Small (sm)
+- 高さ: `0.5rem` (8px)
+- 用途: コンパクトな表示
 
-### フィル（進行バー）
-- `fill.background.default` - プライマリー色
-- `fill.success/warning/error/info` - 状態別色
+### Medium (md) - デフォルト
+- 高さ: `0.75rem` (12px)
+- 用途: 標準的な表示
 
-### ラベル
-- `label.fontSize` - 14px
-- `label.fontWeight` - 500
-- `label.spacing` - バーとの間隔
-
-### アニメーション
-- `transition.duration` - 200ms
-- `transition.timing` - ease
-- スムーズな進捗更新
+### Large (lg)
+- 高さ: `1rem` (16px)
+- 用途: 目立たせたい表示
 
 ---
 
-## 使用例
+## 使用方法
 
-### HTML
+### Pattern 1: WebComponents (Shadow DOM)
 
 ```html
-<div class="progress-group">
-  <label class="progress-label">アップロード中 (75%)</label>
-  <div class="progress">
-    <div class="progress-fill" style="width: 75%"></div>
-  </div>
-  <span class="progress-percentage">75%</span>
-</div>
+<!-- 確定的プログレス -->
+<ha-progress value="60" max="100" color="primary" size="md">
+  60%
+</ha-progress>
+
+<!-- 不確定的プログレス -->
+<ha-progress indeterminate color="primary" size="md">
+  読み込み中...
+</ha-progress>
+
+<!-- ラベル付きプログレス -->
+<ha-progress value="75" max="100" color="success" size="md" show-label>
+  完了中
+</ha-progress>
 ```
 
-### React
+### Pattern 2: Plain HTML (推奨)
 
-```tsx
-interface ProgressProps {
-  value: number; // 0-100
-  max?: number;
-  variant?: 'default' | 'success' | 'warning' | 'error' | 'info';
-  size?: 'small' | 'default' | 'large';
-  label?: string;
-  showPercentage?: boolean;
-}
-
-export function Progress({
-  value,
-  max = 100,
-  variant = 'default',
-  size = 'default',
-  label,
-  showPercentage = false
-}: ProgressProps) {
-  const percentage = Math.min(Math.max((value / max) * 100, 0), 100);
-
-  return (
-    <div className="progress-group">
-      {label && <label className="progress-label">{label}</label>}
-      <div className={`progress progress-${size}`}>
-        <div
-          className={`progress-fill progress-fill-${variant}`}
-          style={{ width: `${percentage}%` }}
-          role="progressbar"
-          aria-valuenow={value}
-          aria-valuemin={0}
-          aria-valuemax={max}
-        />
-      </div>
-      {showPercentage && (
-        <span className="progress-percentage">{Math.round(percentage)}%</span>
-      )}
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/variables.css">
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/html/feedback/progress.css">
+</head>
+<body>
+  <!-- 確定的プログレス -->
+  <div class="ha-progress" size="md">
+    <div class="progress progress--md">
+      <div class="progress__bar progress__bar--primary" style="width: 60%"></div>
     </div>
-  );
-}
+  </div>
+
+  <!-- ラベル付きプログレス -->
+  <div class="ha-progress" size="md">
+    <div class="progress__label">
+      <span>アップロード中</span>
+      <span class="progress__percentage">60%</span>
+    </div>
+    <div class="progress progress--md">
+      <div class="progress__bar progress__bar--primary" style="width: 60%"></div>
+    </div>
+  </div>
+
+  <!-- 不確定的プログレス（アニメーション） -->
+  <div class="ha-progress" size="md">
+    <div class="progress progress--md">
+      <div class="progress__bar progress__bar--primary progress__bar--animated" style="width: 100%"></div>
+    </div>
+  </div>
+</body>
+</html>
 ```
+
+---
+
+## 属性
+
+| 属性 | 値 | デフォルト | 説明 |
+|------|-----|-----------|------|
+| `value` | number | 0 | 現在の値 |
+| `max` | number | 100 | 最大値 |
+| `color` | `primary` \| `success` \| `warning` \| `error` \| `info` | `primary` | プログレスバーの色 |
+| `size` | `sm` \| `md` \| `lg` | `md` | プログレスバーのサイズ |
+| `indeterminate` | boolean | `false` | 不確定的モード |
+
+---
+
+## CSS変数
+
+プログレスコンポーネントは以下のCSS変数（デザイントークン）を使用しています:
+
+### サイズ関連
+- `--progress-height-sm` - 0.5rem
+- `--progress-height-md` - 0.75rem
+- `--progress-height-lg` - 1rem
+
+### 色関連
+- `--primary-default` - プライマリ色
+- `--success-default` - 成功色
+- `--warning-default` - 警告色
+- `--error-default` - エラー色
+- `--info-default` - 情報色
+- `--color-neutral-200` - 背景色
+
+### ボーダー
+- `--border-radius-full` - 完全な角丸
 
 ---
 
 ## アクセシビリティ
 
-- **role="progressbar"** 必須
-- **aria-valuenow** - 現在の値
-- **aria-valuemin** - 最小値（通常0）
-- **aria-valuemax** - 最大値（通常100）
-- **aria-label** - ラベルがない場合
+- `role="progressbar"`を使用
+- `aria-valuenow`、`aria-valuemin`、`aria-valuemax`で進行状況を提供
+- `aria-label`または`aria-labelledby`で説明を提供
+- 不確定的な場合は`aria-busy="true"`を使用
 
 ```html
-<div
-  role="progressbar"
-  aria-valuenow="75"
-  aria-valuemin="0"
-  aria-valuemax="100"
-  aria-label="アップロード進捗"
->
-  <div style="width: 75%"></div>
+<!-- 確定的プログレス -->
+<div role="progressbar" 
+     aria-valuenow="60" 
+     aria-valuemin="0" 
+     aria-valuemax="100"
+     aria-label="アップロード進行状況">
+  <div class="progress progress--md">
+    <div class="progress__bar progress__bar--primary" style="width: 60%"></div>
+  </div>
+</div>
+
+<!-- 不確定的プログレス -->
+<div role="progressbar" 
+     aria-busy="true"
+     aria-label="読み込み中">
+  <div class="progress progress--md">
+    <div class="progress__bar progress__bar--primary progress__bar--animated"></div>
+  </div>
 </div>
 ```
 
@@ -163,69 +186,40 @@ export function Progress({
 
 ### ✅ 推奨
 
-- パーセンテージを表示
-- 適切なラベル
-- リアルタイム更新
-- 完了時にSuccessバリアント
-- アニメーションでスムーズに
+1. **適切な色の選択**
+   - 完了に近い場合はsuccess色を使用
+   - エラー時はerror色を使用
+
+2. **ラベルの提供**
+   - 進行状況の説明を追加
+   - パーセンテージを表示
+
+```html
+<!-- 良い例 -->
+<div class="progress__label">
+  <span>ファイルアップロード中</span>
+  <span class="progress__percentage">75%</span>
+</div>
+<div class="progress progress--md">
+  <div class="progress__bar progress__bar--success" style="width: 75%"></div>
+</div>
+```
 
 ### ❌ 非推奨
 
-- 不正確な進捗表示
-- 更新頻度が高すぎる
-- ラベルなしの使用
-- 長時間100%で停止
+1. **説明のないプログレスバー**
+   - 何が進行中か不明確
 
----
-
-## バリエーション
-
-### 不確定プログレス
-
-進捗が不明な場合のアニメーション：
-
-```css
-.progress-indeterminate .progress-fill {
-  width: 30%;
-  animation: progress-indeterminate 1.5s ease-in-out infinite;
-}
-
-@keyframes progress-indeterminate {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(400%); }
-}
-```
-
-### ストライプ付き
-
-視覚的な動きを追加：
-
-```css
-.progress-striped .progress-fill {
-  background-image: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.15) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0.15) 75%,
-    transparent 75%,
-    transparent
-  );
-  background-size: 1rem 1rem;
-}
-```
+2. **誤った色の使用**
+   - 成功時にerror色を使用しない
 
 ---
 
 ## 関連コンポーネント
 
-- [Spinner](./spinner.md) - ローディング表示
-- [Skeleton](./skeleton.md) - コンテンツプレースホルダー
+- [Spinner](./spinner.md) - ローディングスピナー
+- [Skeleton](./skeleton.md) - スケルトンローダー
 
 ---
 
-## 関連ドキュメント
-
-- [アーキテクチャガイド](../アーキテクチャガイド.md)
-- [使用方法ガイド](../使用方法ガイド.md)
+**最終更新:** 2025-12-12

@@ -1,558 +1,608 @@
 # Pagination (ページネーション) コンポーネント
 
 **カテゴリ:** Navigation
-**ファイル:** `src/components/navigation/pagination.yaml`
-**ステータス:** ✅ 実装済み (Phase 4 Option C)
+**ファイル:** `src/css/components/navigation/pagination.css`
+**ステータス:** ✅ 実装済み
 
 ---
 
 ## 概要
 
-ページネーションコンポーネントは、大量のコンテンツを複数のページに分割し、ユーザーがページ間を効率的に移動できるようにするナビゲーション要素です。複数のバリアント（default, simple, rounded）と、サイズバリアント（small, default, large）をサポートしています。
+ページネーションコンポーネントは、大量のコンテンツを複数のページに分割して表示するためのナビゲーション要素です。
+3つのバリアント（full, simple, compact）と、3つのサイズ（sm, md, lg）をサポートしています。
 
 ### 用途
 
-- テーブルやリストの複数ページ表示
-- 検索結果の分割表示
-- ブログ記事一覧
-- プロダクトカタログ
+- テーブルのページ切り替え
+- 検索結果の表示
+- ブログ記事の一覧
+- 商品カタログの閲覧
 
 ---
 
 ## バリアント
 
-### 1. Default (デフォルト) - ボーダー付き
+### 1. Full (フル)
 
-標準的なページネーションスタイル。ボーダーで各ページボタンを区切ります。
-
-**使用場面:**
-- 標準的なテーブル
-- リスト表示
-- 管理画面
-
-**特徴:**
-- 明確なボーダー
-- アクティブページは塗りつぶし
-
-### 2. Simple (シンプル) - ボーダーなし
-
-ミニマルなスタイル。ボーダーがなく軽量な見た目です。
+全ページ番号、前後ボタン、最初/最後へのボタンを含む完全なページネーションです。
 
 **使用場面:**
-- モダンなUI
-- ミニマルなデザイン
-- モバイルアプリ
+- デスクトップの広い画面
+- 重要なデータテーブル
+- ページ数が多いコンテンツ
 
-**特徴:**
-- ボーダーなし
-- ホバー時に背景色変化
+### 2. Simple (シンプル)
 
-### 3. Rounded (丸型)
-
-完全な円形のページボタン。
+前後ボタンと現在のページ情報のみを表示するシンプルなバリアントです。
 
 **使用場面:**
-- プレミアムなデザイン
-- 視覚的に際立たせたい場合
+- モバイル画面
+- サイドバーやカード内
+- スペースが限られた場所
 
-**特徴:**
-- border-radius: full (完全な円)
-- モダンな外観
+### 3. Compact (コンパクト)
+
+前後ボタンとページ番号のみを表示し、最初/最後へのボタンを省略したバリアントです。
+
+**使用場面:**
+- 中規模の画面
+- ページ数が少ない場合
+- バランスの取れた表示が必要な場合
 
 ---
 
-## サイズバリアント
+## サイズ
 
-### Small (小)
+### Small (sm)
+- ボタンサイズ: `28px × 28px`
+- フォントサイズ: `12px`
+- パディング: `0 8px`
 
-コンパクトなスペースに適したサイズ。
+### Medium (md) - デフォルト
+- ボタンサイズ: `36px × 36px`
+- フォントサイズ: `14px`
+- パディング: `0 12px`
 
-- サイズ: 32px × 32px
-- フォントサイズ: 0.75rem (12px)
-- アイコンサイズ: 0.75rem
-
-### Default (デフォルト)
-
-標準的なサイズ。
-
-- サイズ: 40px × 40px
-- フォントサイズ: 0.875rem (14px)
-- アイコンサイズ: 1rem
-
-### Large (大)
-
-タッチデバイスに適した大きなサイズ。
-
-- サイズ: 48px × 48px
-- フォントサイズ: 1rem (16px)
-- アイコンサイズ: 1.25rem
+### Large (lg)
+- ボタンサイズ: `44px × 44px`
+- フォントサイズ: `16px`
+- パディング: `0 16px`
 
 ---
 
-## トークン一覧
+## 使用方法
 
-### コンテナ
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.container.gap` | `{spacing.2}` | アイテム間の間隔 (0.5rem) |
-| `component.pagination.container.justifyContent` | `center` | アイテムの配置 |
-
-### ページアイテム
-
-#### サイズ
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.item.size.default` | `{spacing.10}` | デフォルトサイズ (2.5rem/40px) |
-| `component.pagination.item.size.small` | `{spacing.8}` | 小サイズ (2rem/32px) |
-| `component.pagination.item.size.large` | `{spacing.12}` | 大サイズ (3rem/48px) |
-
-#### 角丸
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.item.borderRadius` | `{border.radius.md}` | アイテムの角丸 (0.375rem) |
-
-#### タイポグラフィ
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.item.fontSize.default` | `{font.size.sm}` | デフォルトのフォントサイズ |
-| `component.pagination.item.fontSize.small` | `{font.size.xs}` | 小サイズのフォントサイズ |
-| `component.pagination.item.fontSize.large` | `{font.size.base}` | 大サイズのフォントサイズ |
-| `component.pagination.item.fontWeight.default` | `{font.weight.medium}` | デフォルトのフォントウェイト |
-| `component.pagination.item.fontWeight.active` | `{font.weight.semibold}` | アクティブページのフォントウェイト |
-| `component.pagination.item.lineHeight` | `{font.lineHeight.none}` | アイテムの行高 |
-
-#### 背景色
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.item.background.default` | `transparent` | デフォルトの背景色 |
-| `component.pagination.item.background.hover` | `{background.secondary}` | ホバー時の背景色 |
-| `component.pagination.item.background.active` | `{primary.default}` | アクティブページの背景色 |
-| `component.pagination.item.background.disabled` | `transparent` | 無効状態の背景色 |
-
-#### テキスト色
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.item.text.default` | `{foreground.secondary}` | デフォルトのテキスト色 |
-| `component.pagination.item.text.hover` | `{foreground.primary}` | ホバー時のテキスト色 |
-| `component.pagination.item.text.active` | `{foreground.inverse}` | アクティブページのテキスト色 |
-| `component.pagination.item.text.disabled` | `{foreground.tertiary}` | 無効状態のテキスト色 |
-
-#### ボーダー
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.item.border.width` | `{border.width.1}` | ボーダーの幅 |
-| `component.pagination.item.border.color.default` | `{border.default}` | デフォルトのボーダー色 |
-| `component.pagination.item.border.color.hover` | `{border.strong}` | ホバー時のボーダー色 |
-| `component.pagination.item.border.color.active` | `{primary.default}` | アクティブページのボーダー色 |
-
-### ナビゲーションボタン（前へ/次へ）
-
-#### サイズ
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.nav.size.default` | `{spacing.10}` | デフォルトサイズ |
-| `component.pagination.nav.size.small` | `{spacing.8}` | 小サイズ |
-| `component.pagination.nav.size.large` | `{spacing.12}` | 大サイズ |
-
-#### アイコン
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.nav.icon.size.default` | `{spacing.4}` | デフォルトのアイコンサイズ |
-| `component.pagination.nav.icon.size.small` | `{spacing.3}` | 小サイズのアイコンサイズ |
-| `component.pagination.nav.icon.size.large` | `{spacing.5}` | 大サイズのアイコンサイズ |
-| `component.pagination.nav.icon.color.default` | `{foreground.secondary}` | デフォルトのアイコン色 |
-| `component.pagination.nav.icon.color.hover` | `{foreground.primary}` | ホバー時のアイコン色 |
-| `component.pagination.nav.icon.color.disabled` | `{foreground.tertiary}` | 無効状態のアイコン色 |
-
-#### 背景・ボーダー
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.nav.background.default` | `transparent` | デフォルトの背景色 |
-| `component.pagination.nav.background.hover` | `{background.secondary}` | ホバー時の背景色 |
-| `component.pagination.nav.background.disabled` | `transparent` | 無効状態の背景色 |
-| `component.pagination.nav.border.color.default` | `{border.default}` | デフォルトのボーダー色 |
-| `component.pagination.nav.border.color.hover` | `{border.strong}` | ホバー時のボーダー色 |
-| `component.pagination.nav.borderRadius` | `{border.radius.md}` | 角丸 |
-
-### 省略記号（...）
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.ellipsis.color` | `{foreground.tertiary}` | 省略記号の色 |
-| `component.pagination.ellipsis.fontSize.default` | `{font.size.sm}` | デフォルトのフォントサイズ |
-| `component.pagination.ellipsis.fontSize.small` | `{font.size.xs}` | 小サイズのフォントサイズ |
-| `component.pagination.ellipsis.fontSize.large` | `{font.size.base}` | 大サイズのフォントサイズ |
-| `component.pagination.ellipsis.padding` | `{spacing.2}` | パディング |
-
-### ジャンプ入力
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.jump.input.width` | `{spacing.16}` | 入力フィールドの幅 (4rem) |
-| `component.pagination.jump.input.height.default` | `{spacing.10}` | デフォルトの高さ |
-| `component.pagination.jump.input.height.small` | `{spacing.8}` | 小サイズの高さ |
-| `component.pagination.jump.input.height.large` | `{spacing.12}` | 大サイズの高さ |
-| `component.pagination.jump.input.fontSize.default` | `{font.size.sm}` | フォントサイズ |
-| `component.pagination.jump.input.padding` | `{spacing.2}` | パディング |
-| `component.pagination.jump.input.border` | `1px solid {border.default}` | ボーダー |
-| `component.pagination.jump.input.borderRadius` | `{border.radius.md}` | 角丸 |
-
-### ページサイズセレクター
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.sizeSelector.gap` | `{spacing.2}` | セレクターとラベルの間隔 |
-| `component.pagination.sizeSelector.fontSize` | `{font.size.sm}` | フォントサイズ |
-| `component.pagination.sizeSelector.width` | `{spacing.20}` | セレクターの幅 (5rem) |
-
-### 情報表示
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.info.fontSize.default` | `{font.size.sm}` | デフォルトのフォントサイズ |
-| `component.pagination.info.fontSize.small` | `{font.size.xs}` | 小サイズのフォントサイズ |
-| `component.pagination.info.color` | `{foreground.secondary}` | 情報テキストの色 |
-| `component.pagination.info.marginLeft` | `{spacing.4}` | 左マージン (1rem) |
-
-### トランジション
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.transition.duration` | `{animation.duration.fast}` | トランジションの持続時間 |
-| `component.pagination.transition.timing` | `{animation.easing.ease}` | トランジションのイージング |
-| `component.pagination.transition.properties` | `background-color, color, border-color` | トランジション対象 |
-
-### コンパクトモード
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.pagination.compact.gap` | `{spacing.1}` | コンパクトモードのアイテム間隔 |
-| `component.pagination.compact.maxVisiblePages` | `5` | 表示する最大ページ数 |
-
----
-
-## 使用例
-
-### HTML
+### Pattern 1: WebComponents (Shadow DOM)
 
 ```html
-<!-- 基本的なページネーション -->
-<nav class="pagination" aria-label="ページネーション">
-  <button class="pagination-nav" aria-label="前のページ" disabled>
-    <span>‹</span>
-  </button>
-  <button class="pagination-item pagination-item-active" aria-current="page">1</button>
-  <button class="pagination-item">2</button>
-  <button class="pagination-item">3</button>
-  <button class="pagination-item">4</button>
-  <button class="pagination-item">5</button>
-  <button class="pagination-nav" aria-label="次のページ">
-    <span>›</span>
-  </button>
-</nav>
+<!-- フルページネーション -->
+<ha-pagination
+  current="1"
+  total="10"
+  variant="full"
+  size="md"
+>
+</ha-pagination>
 
-<!-- 省略表示付き -->
-<nav class="pagination">
-  <button class="pagination-nav" aria-label="前のページ">‹</button>
-  <button class="pagination-item">1</button>
-  <button class="pagination-item pagination-item-active">2</button>
-  <button class="pagination-item">3</button>
-  <span class="pagination-ellipsis">...</span>
-  <button class="pagination-item">10</button>
-  <button class="pagination-nav" aria-label="次のページ">›</button>
-</nav>
+<!-- シンプルページネーション -->
+<ha-pagination
+  current="1"
+  total="10"
+  variant="simple"
+>
+</ha-pagination>
+```
 
-<!-- 情報表示付き -->
-<div style="display: flex; align-items: center; gap: 1rem;">
-  <nav class="pagination">
-    <button class="pagination-nav">‹</button>
-    <button class="pagination-item">1</button>
-    <button class="pagination-item pagination-item-active">2</button>
-    <button class="pagination-item">3</button>
-    <button class="pagination-nav">›</button>
+### Pattern 2: Plain HTML (推奨)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/variables.css">
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/html/navigation/pagination.css">
+</head>
+<body>
+  <!-- フルページネーション -->
+  <nav class="ha-pagination" aria-label="ページネーション" role="navigation">
+    <div class="container">
+      <button class="button first" aria-label="最初のページ" disabled>
+        <svg>...</svg>
+      </button>
+      <button class="button prev" aria-label="前のページ" disabled>
+        <svg>...</svg>
+      </button>
+
+      <button class="button page active" aria-label="ページ1" aria-current="page">1</button>
+      <button class="button page" aria-label="ページ2へ">2</button>
+      <button class="button page" aria-label="ページ3へ">3</button>
+      <span class="ellipsis" aria-hidden="true">...</span>
+      <button class="button page" aria-label="ページ10へ">10</button>
+
+      <button class="button next" aria-label="次のページ">
+        <svg>...</svg>
+      </button>
+      <button class="button last" aria-label="最後のページ">
+        <svg>...</svg>
+      </button>
+    </div>
   </nav>
-  <span class="pagination-info">全30件中 11-20件を表示</span>
-</div>
 
-<!-- ジャンプ入力付き -->
-<div style="display: flex; align-items: center; gap: 1rem;">
-  <nav class="pagination">...</nav>
-  <span class="pagination-jump-label">ページへ移動:</span>
-  <input type="number" class="pagination-jump-input" min="1" max="10" />
-</div>
+  <!-- シンプルページネーション -->
+  <nav class="ha-pagination" variant="simple" aria-label="ページネーション">
+    <div class="container">
+      <button class="button prev" aria-label="前のページ" disabled>前へ</button>
+      <span class="info" aria-live="polite">1 / 10 ページ</span>
+      <button class="button next" aria-label="次のページ">次へ</button>
+    </div>
+  </nav>
+
+  <!-- コンパクトページネーション -->
+  <nav class="ha-pagination" variant="compact" size="sm">
+    <div class="container">
+      <button class="button prev" disabled>
+        <svg>...</svg>
+      </button>
+      <button class="button page active" aria-current="page">1</button>
+      <button class="button page">2</button>
+      <button class="button page">3</button>
+      <span class="ellipsis">...</span>
+      <button class="button page">8</button>
+      <button class="button next">
+        <svg>...</svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 小サイズページネーション -->
+  <nav class="ha-pagination" size="sm">
+    <div class="container">
+      <button class="button page active">1</button>
+      <button class="button page">2</button>
+      <button class="button page">3</button>
+    </div>
+  </nav>
+
+  <!-- 大サイズページネーション -->
+  <nav class="ha-pagination" size="lg">
+    <div class="container">
+      <button class="button page active">1</button>
+      <button class="button page">2</button>
+      <button class="button page">3</button>
+    </div>
+  </nav>
+</body>
+</html>
 ```
 
-### CSS
+### Pattern 3: React/Vue
 
-```css
-.pagination {
-  display: flex;
-  align-items: center;
-  gap: var(--component-pagination-container-gap);
-  justify-content: var(--component-pagination-container-justify-content);
-}
+```javascript
+import '@hidearea-design/tokens/css/html/navigation/pagination.css';
 
-.pagination-item,
-.pagination-nav {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: var(--component-pagination-item-size-default);
-  height: var(--component-pagination-item-size-default);
-  padding: 0;
-  font-size: var(--component-pagination-item-font-size-default);
-  font-weight: var(--component-pagination-item-font-weight-default);
-  color: var(--component-pagination-item-text-default);
-  background: var(--component-pagination-item-background-default);
-  border: var(--component-pagination-item-border-width) solid;
-  border-color: var(--component-pagination-item-border-color-default);
-  border-radius: var(--component-pagination-item-border-radius);
-  cursor: pointer;
-  transition: var(--component-pagination-transition-properties)
-              var(--component-pagination-transition-duration)
-              var(--component-pagination-transition-timing);
-}
+// React例
+function Pagination({ current, total, variant = 'full', size = 'md', onChange }) {
+  const renderPageNumbers = () => {
+    const pages = [];
+    const maxVisible = 5;
+    let start = Math.max(1, current - Math.floor(maxVisible / 2));
+    let end = Math.min(total, start + maxVisible - 1);
 
-.pagination-item-active {
-  color: var(--component-pagination-item-text-active);
-  background: var(--component-pagination-item-background-active);
-  border-color: var(--component-pagination-item-border-color-active);
-  font-weight: var(--component-pagination-item-font-weight-active);
-}
-
-.pagination-item:disabled,
-.pagination-nav:disabled {
-  color: var(--component-pagination-item-text-disabled);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-```
-
-### React
-
-```tsx
-interface PaginationProps {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-  maxVisiblePages?: number;
-}
-
-function Pagination({
-  currentPage,
-  totalPages,
-  onPageChange,
-  maxVisiblePages = 5
-}: PaginationProps) {
-  const getPageNumbers = () => {
-    if (totalPages <= maxVisiblePages) {
-      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    if (end - start < maxVisible - 1) {
+      start = Math.max(1, end - maxVisible + 1);
     }
 
-    const pages: (number | string)[] = [];
-    const halfVisible = Math.floor(maxVisiblePages / 2);
+    // 最初のページ
+    if (start > 1) {
+      pages.push(
+        <button
+          key={1}
+          className="button page"
+          onClick={() => onChange(1)}
+          aria-label={`ページ1へ`}
+        >
+          1
+        </button>
+      );
+      if (start > 2) {
+        pages.push(<span key="ellipsis1" className="ellipsis" aria-hidden="true">...</span>);
+      }
+    }
 
-    if (currentPage <= halfVisible + 1) {
-      // 先頭付近
-      for (let i = 1; i <= maxVisiblePages - 1; i++) {
-        pages.push(i);
+    // 中間のページ
+    for (let i = start; i <= end; i++) {
+      pages.push(
+        <button
+          key={i}
+          className={`button page ${i === current ? 'active' : ''}`}
+          onClick={() => onChange(i)}
+          aria-label={i === current ? `ページ${i}` : `ページ${i}へ`}
+          aria-current={i === current ? 'page' : undefined}
+        >
+          {i}
+        </button>
+      );
+    }
+
+    // 最後のページ
+    if (end < total) {
+      if (end < total - 1) {
+        pages.push(<span key="ellipsis2" className="ellipsis" aria-hidden="true">...</span>);
       }
-      pages.push('...');
-      pages.push(totalPages);
-    } else if (currentPage >= totalPages - halfVisible) {
-      // 末尾付近
-      pages.push(1);
-      pages.push('...');
-      for (let i = totalPages - (maxVisiblePages - 2); i <= totalPages; i++) {
-        pages.push(i);
-      }
-    } else {
-      // 中間
-      pages.push(1);
-      pages.push('...');
-      for (let i = currentPage - 1; i <= currentPage + 1; i++) {
-        pages.push(i);
-      }
-      pages.push('...');
-      pages.push(totalPages);
+      pages.push(
+        <button
+          key={total}
+          className="button page"
+          onClick={() => onChange(total)}
+          aria-label={`ページ${total}へ`}
+        >
+          {total}
+        </button>
+      );
     }
 
     return pages;
   };
 
   return (
-    <nav className="pagination" aria-label="ページネーション">
-      <button
-        className="pagination-nav"
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        aria-label="前のページ"
-      >
-        ‹
-      </button>
-
-      {getPageNumbers().map((page, index) =>
-        typeof page === 'number' ? (
+    <nav
+      className="ha-pagination"
+      data-variant={variant}
+      data-size={size}
+      aria-label="ページネーション"
+      role="navigation"
+    >
+      <div className="container">
+        {variant === 'full' && (
           <button
-            key={index}
-            className={`pagination-item ${
-              page === currentPage ? 'pagination-item-active' : ''
-            }`}
-            onClick={() => onPageChange(page)}
-            aria-current={page === currentPage ? 'page' : undefined}
+            className="button first"
+            onClick={() => onChange(1)}
+            disabled={current === 1}
+            aria-label="最初のページ"
           >
-            {page}
+            <FirstPageIcon />
           </button>
-        ) : (
-          <span key={index} className="pagination-ellipsis">
-            {page}
-          </span>
-        )
-      )}
+        )}
 
-      <button
-        className="pagination-nav"
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        aria-label="次のページ"
-      >
-        ›
-      </button>
+        <button
+          className="button prev"
+          onClick={() => onChange(current - 1)}
+          disabled={current === 1}
+          aria-label="前のページ"
+        >
+          {variant === 'simple' ? '前へ' : <PrevIcon />}
+        </button>
+
+        {variant === 'simple' ? (
+          <span className="info" aria-live="polite">
+            {current} / {total} ページ
+          </span>
+        ) : (
+          renderPageNumbers()
+        )}
+
+        <button
+          className="button next"
+          onClick={() => onChange(current + 1)}
+          disabled={current === total}
+          aria-label="次のページ"
+        >
+          {variant === 'simple' ? '次へ' : <NextIcon />}
+        </button>
+
+        {variant === 'full' && (
+          <button
+            className="button last"
+            onClick={() => onChange(total)}
+            disabled={current === total}
+            aria-label="最後のページ"
+          >
+            <LastPageIcon />
+          </button>
+        )}
+      </div>
     </nav>
   );
 }
+
+// 使用例
+<Pagination
+  current={1}
+  total={10}
+  variant="full"
+  size="md"
+  onChange={(page) => console.log('ページ変更:', page)}
+/>
 ```
+
+---
+
+## 属性
+
+| 属性 | 値 | デフォルト | 説明 |
+|------|-----|-----------|------|
+| `variant` | `full` \| `simple` \| `compact` | `full` | ページネーションのスタイルバリアント |
+| `size` | `sm` \| `md` \| `lg` | `md` | ページネーションのサイズ |
+| `current` | `number` | `1` | 現在のページ番号 |
+| `total` | `number` | - | 総ページ数 |
+
+---
+
+## CSS変数
+
+ページネーションコンポーネントは以下のCSS変数（デザイントークン）を使用しています:
+
+### ボタン関連
+- `--pagination-button-size` - 36px（デフォルトボタンサイズ）
+- `--pagination-button-bg` - transparent（背景色）
+- `--pagination-button-border` - var(--color-gray-300)（ボーダー色）
+- `--pagination-button-color` - var(--color-gray-700)（テキスト色）
+- `--pagination-button-radius` - var(--radius-base, 4px)（角丸）
+
+### ホバー状態
+- `--pagination-button-hover-bg` - var(--color-gray-50)
+- `--pagination-button-hover-border` - var(--color-primary-500)
+- `--pagination-button-hover-color` - var(--color-primary-500)
+
+### アクティブ状態
+- `--pagination-active-bg` - var(--color-primary-500)
+- `--pagination-active-border` - var(--color-primary-500)
+- `--pagination-active-color` - var(--color-white)
+
+### レイアウト
+- `--pagination-gap` - 8px（ボタン間のギャップ）
+- `--pagination-font-size` - 14px
+
+### アニメーション
+- `--duration-fast` - 150ms
+- `--ease` - イージング関数
 
 ---
 
 ## アクセシビリティ
 
-### ARIA属性
+- `role="navigation"`でナビゲーション要素として識別
+- `aria-label="ページネーション"`で目的を明示
+- `aria-current="page"`で現在のページを示す
+- `aria-label`で各ボタンの目的を説明
+- `disabled`属性で無効なボタンを示す
+- `aria-live="polite"`でページ情報の変更を通知
 
-- `aria-label="ページネーション"`: navタグに設定
-- `aria-current="page"`: 現在のページボタンに設定
-- `aria-label`: ナビゲーションボタンに説明を追加
-- `disabled`: 無効なボタン（最初/最後のページ）
+```html
+<!-- アクセシビリティの良い例 -->
+<nav class="ha-pagination" aria-label="検索結果のページネーション" role="navigation">
+  <div class="container">
+    <button
+      class="button first"
+      aria-label="最初のページへ移動"
+      disabled
+    >
+      最初
+    </button>
 
-### キーボードナビゲーション
+    <button
+      class="button prev"
+      aria-label="前のページへ移動"
+      disabled
+    >
+      前へ
+    </button>
 
-実装すべきキーボードショートカット：
+    <button
+      class="button page active"
+      aria-label="現在のページ、ページ1"
+      aria-current="page"
+    >
+      1
+    </button>
 
-- **Tab**: ボタン間を移動
-- **Enter/Space**: ページを選択
-- **Home**: 最初のページ（オプション）
-- **End**: 最後のページ（オプション）
+    <button
+      class="button page"
+      aria-label="ページ2へ移動"
+    >
+      2
+    </button>
+
+    <button
+      class="button next"
+      aria-label="次のページへ移動"
+    >
+      次へ
+    </button>
+
+    <button
+      class="button last"
+      aria-label="最後のページへ移動"
+    >
+      最後
+    </button>
+  </div>
+</nav>
+
+<!-- スクリーンリーダー用の追加情報 -->
+<nav class="ha-pagination" aria-label="ページネーション">
+  <div class="container">
+    <span class="sr-only" aria-live="polite">
+      全10ページ中、現在1ページ目を表示しています
+    </span>
+    <!-- ページネーションボタン -->
+  </div>
+</nav>
+```
+
+### キーボード操作
+
+- **Tab**: 次のボタンにフォーカス
+- **Shift + Tab**: 前のボタンにフォーカス
+- **Enter/Space**: ボタンを実行してページ移動
+- **Home**: 最初のページへ移動（カスタム実装）
+- **End**: 最後のページへ移動（カスタム実装）
 
 ---
 
 ## ベストプラクティス
 
-### ページ数の表示
+### ✅ 推奨
 
-1. **少ないページ数（1-7ページ）**
-   - 全てのページを表示
+1. **適切なバリアントの選択**
+   - デスクトップ: Full
+   - タブレット: Compact
+   - モバイル: Simple
 
-2. **中程度のページ数（8-20ページ）**
-   - 現在のページ前後 + 最初/最後
-   - 省略記号で中間を表示
+2. **現在位置の明示**
+   - アクティブページを明確に表示
+   - `aria-current="page"`を使用
 
-3. **多いページ数（20ページ以上）**
-   - ジャンプ入力を追加
-   - ページサイズセレクターを提供
+3. **無効状態の適切な表示**
+   - 最初のページでは前へボタンを無効化
+   - 最後のページでは次へボタンを無効化
 
-### 情報表示
+4. **ページ情報の提供**
+   - 総ページ数と現在のページを表示
+   - スクリーンリーダー向けの情報も提供
 
-```javascript
-function getPaginationInfo(currentPage, pageSize, totalItems) {
-  const start = (currentPage - 1) * pageSize + 1;
-  const end = Math.min(currentPage * pageSize, totalItems);
-  return `全${totalItems}件中 ${start}-${end}件を表示`;
-}
+```html
+<!-- 適切な実装例 -->
+<nav class="ha-pagination" aria-label="ページネーション">
+  <div class="container">
+    <button class="button prev" disabled aria-label="前のページ">前へ</button>
+    <span class="info" aria-live="polite">1 / 10 ページ</span>
+    <button class="button next" aria-label="次のページへ">次へ</button>
+  </div>
+</nav>
+
+<!-- ページ番号付き -->
+<nav class="ha-pagination" aria-label="ページネーション">
+  <div class="container">
+    <button class="button page active" aria-current="page">1</button>
+    <button class="button page">2</button>
+    <button class="button page">3</button>
+  </div>
+</nav>
 ```
 
-### URL同期
+### ❌ 非推奨
 
-```javascript
-// URLのクエリパラメータと同期
-function updateURL(page) {
-  const url = new URL(window.location);
-  url.searchParams.set('page', page);
-  window.history.pushState({}, '', url);
-}
+1. **小さすぎるタッチターゲット**
+   - 最小44px×44pxを確保（モバイル）
 
-// ページ読み込み時に復元
-const urlParams = new URLSearchParams(window.location.search);
-const initialPage = parseInt(urlParams.get('page')) || 1;
-```
+2. **不明確な現在位置**
+   - アクティブページが分かりにくい
 
-### レスポンシブ対応
+3. **無効ボタンの非表示**
+   - 無効化して表示を保つ（レイアウトの安定性）
 
-```css
-/* モバイルではコンパクトに */
-@media (max-width: 640px) {
-  .pagination {
-    gap: var(--component-pagination-compact-gap);
-  }
+```html
+<!-- タッチターゲットが小さすぎる（非推奨） -->
+<nav class="ha-pagination" size="sm">
+  <button class="button" style="width: 20px; height: 20px;">1</button>
+</nav>
 
-  /* 最初/最後と現在のページ周辺のみ表示 */
-  .pagination-item:not(:first-of-type):not(:last-of-type):not(.pagination-item-active):not(.pagination-item-active + *):not(* + .pagination-item-active) {
-    display: none;
-  }
-}
+<!-- アクティブページが不明確（非推奨） -->
+<div class="container">
+  <button class="button page">1</button>
+  <button class="button page">2</button>
+  <button class="button page">3</button>
+</div>
+
+<!-- 無効ボタンを非表示（非推奨） -->
+<!-- 前へボタンが存在しない -->
+<div class="container">
+  <button class="button page active">1</button>
+  <button class="button next">次へ</button>
+</div>
 ```
 
 ---
 
-## パフォーマンス最適化
+## バリエーション
 
-### 仮想スクロール
+### ページジャンプ機能付き
 
-大量のアイテム（10,000+）がある場合は、仮想スクロールを検討：
+```html
+<nav class="ha-pagination">
+  <div class="container">
+    <button class="button prev">前へ</button>
 
-```javascript
-// 無限スクロールと併用
-function InfiniteScrollPagination() {
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-
-  const loadMore = () => {
-    fetchData(page + 1).then(data => {
-      setPage(page + 1);
-      setHasMore(data.hasMore);
-    });
-  };
-
-  return (
-    <InfiniteScroll
-      dataLength={items.length}
-      next={loadMore}
-      hasMore={hasMore}
+    <label for="page-input" class="sr-only">ページ番号</label>
+    <input
+      id="page-input"
+      type="number"
+      min="1"
+      max="10"
+      value="1"
+      style="width: 60px; text-align: center;"
+      aria-label="ページ番号を入力"
     >
-      {items.map(item => <Item key={item.id} {...item} />)}
-    </InfiniteScroll>
-  );
-}
+    <span>/ 10</span>
+
+    <button class="button next">次へ</button>
+  </div>
+</nav>
+```
+
+### ページサイズ変更機能付き
+
+```html
+<nav class="ha-pagination">
+  <div class="container">
+    <label for="page-size">表示件数:</label>
+    <select id="page-size" aria-label="1ページあたりの表示件数">
+      <option value="10">10件</option>
+      <option value="20">20件</option>
+      <option value="50">50件</option>
+      <option value="100">100件</option>
+    </select>
+
+    <button class="button prev">前へ</button>
+    <span class="info">1 / 10 ページ</span>
+    <button class="button next">次へ</button>
+  </div>
+</nav>
+```
+
+---
+
+## テーマ対応
+
+全てのページネーショントークンはテーマに対応しています。`data-theme` 属性を変更するだけで、自動的にダークモードに切り替わります。
+
+```html
+<!-- ライトテーマ -->
+<html data-theme="light">
+  <nav class="ha-pagination">
+    <div class="container">
+      <button class="button page active">1</button>
+    </div>
+  </nav>
+</html>
+
+<!-- ダークテーマ -->
+<html data-theme="dark">
+  <nav class="ha-pagination">
+    <div class="container">
+      <button class="button page active">1</button>
+    </div>
+  </nav>
+</html>
 ```
 
 ---
 
 ## 関連コンポーネント
 
-- **Table**: テーブルコンポーネント
-- **Breadcrumb**: パンくずリスト
-- **Navigation**: ナビゲーションバー
+- [Button](../layout/button.md) - ページネーションボタンのベース
+- [Table](../data-display/table.md) - テーブルと組み合わせて使用
+- [Select](../forms/select.md) - ページサイズ選択
 
 ---
 
-**最終更新:** 2025-12-10
-**Phase 4 Option C で実装**
+## 関連ドキュメント
+
+- [アーキテクチャガイド](../アーキテクチャガイド.md)
+- [使用方法ガイド](../使用方法ガイド.md)
+- [コンポーネントリファレンス](./README.md)
+
+---
+
+**最終更新:** 2025-12-12

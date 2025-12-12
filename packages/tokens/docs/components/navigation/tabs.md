@@ -1,494 +1,519 @@
 # Tabs (タブ) コンポーネント
 
 **カテゴリ:** Navigation
-**ファイル:** `src/components/navigation/tabs.yaml`
-**ステータス:** ✅ 実装済み (Phase 4 Option C)
+**ファイル:** `src/css/components/navigation/tabs.css`
+**ステータス:** ✅ 実装済み
 
 ---
 
 ## 概要
 
-タブコンポーネントは、関連するコンテンツを複数のパネルに整理し、ユーザーが簡単に切り替えられるようにするナビゲーション要素です。3つのバリアント（line, enclosed, soft）と、複数のサイズ（small, default, large）をサポートしています。
+タブコンポーネントは、関連するコンテンツを複数のパネルに分けて表示するためのナビゲーション要素です。
+3つのバリアント（underline, pills, outlined）と、3つのサイズ（sm, md, lg）をサポートしています。
 
 ### 用途
 
-- 設定画面の複数のセクション
-- プロダクト情報の異なるビュー（概要、仕様、レビュー）
-- ダッシュボードの異なるデータビュー
-- ドキュメントの異なるセクション
+- コンテンツの整理と分類
+- 設定画面のセクション切り替え
+- ダッシュボードのビュー切り替え
+- フォームの複数ステップ表示
 
 ---
 
 ## バリアント
 
-### 1. Line (ライン) - デフォルト
+### 1. Default (アンダーライン)
 
-最も一般的なタブスタイル。アクティブなタブの下部に2pxのインジケーターラインが表示されます。
+下線で現在のタブを示すデフォルトスタイルです。最も一般的なタブUIです。
 
 **使用場面:**
 - 標準的なタブナビゲーション
-- コンテンツの切り替え
-- 設定画面
+- ドキュメント閲覧
+- プロファイル画面のセクション
 
-**特徴:**
-- 下部ボーダーでタブリストを区切る
-- アクティブタブに下線インジケーター
+### 2. Pills (ピル)
 
-### 2. Enclosed (囲み型)
-
-タブがコンテナに囲まれたスタイル。アクティブなタブがコンテンツと視覚的に繋がります。
-
-**使用場面:**
-- カード内のタブ
-- より明確な区切りが必要な場合
-
-**特徴:**
-- ボーダーで囲まれたタブ
-- アクティブタブの下ボーダーが消えてコンテンツと繋がる
-
-### 3. Soft (ソフトラウンド)
-
-丸みのある背景色でアクティブ状態を表現するスタイル。
+丸みを帯びたピル型のタブです。よりモダンな印象を与えます。
 
 **使用場面:**
 - モダンなUI
-- 控えめなタブナビゲーション
+- カード内のタブ
+- ダッシュボードのフィルター
 
-**特徴:**
-- 角丸の背景色
-- ソフトな見た目
+### 3. Outlined (アウトライン)
 
----
+枠線で囲まれたタブです。より明確な区切りが必要な場合に使用します。
 
-## サイズバリアント
-
-### Small (小)
-
-コンパクトなスペースに適したサイズ。
-
-- パディング: 水平 0.75rem / 垂直 0.5rem
-- フォントサイズ: 0.75rem (12px)
-- アイコンサイズ: 0.75rem
-
-### Default (デフォルト)
-
-標準的なサイズ。
-
-- パディング: 水平 1rem / 垂直 0.75rem
-- フォントサイズ: 0.875rem (14px)
-- アイコンサイズ: 1rem
-
-### Large (大)
-
-大きめのタッチターゲットが必要な場合に適したサイズ。
-
-- パディング: 水平 1.25rem / 垂直 1rem
-- フォントサイズ: 1rem (16px)
-- アイコンサイズ: 1.25rem
+**使用場面:**
+- 高コントラストが必要な場面
+- 重要な選択肢の切り替え
+- 設定画面
 
 ---
 
-## トークン一覧
+## サイズ
 
-### コンテナ
+### Small (sm)
+- パディング: `0.25rem 0.75rem`
+- フォントサイズ: `0.875rem`
 
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.tabs.container.background` | `{background.primary}` | タブコンテナの背景色 |
-| `component.tabs.container.borderBottom` | `1px solid {border.default}` | タブリストの下ボーダー |
-| `component.tabs.container.gap` | `{spacing.1}` | タブ間の間隔 (0.25rem) |
+### Medium (md) - デフォルト
+- パディング: `0.5rem 1rem`
+- フォントサイズ: `1rem`
 
-### タブアイテム
-
-#### テキスト色
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.tabs.tab.text.default` | `{foreground.secondary}` | デフォルトのテキスト色 |
-| `component.tabs.tab.text.hover` | `{foreground.primary}` | ホバー時のテキスト色 |
-| `component.tabs.tab.text.active` | `{primary.active}` | アクティブタブのテキスト色 |
-| `component.tabs.tab.text.disabled` | `{foreground.tertiary}` | 無効状態のテキスト色 |
-
-#### 背景色
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.tabs.tab.background.default` | `transparent` | デフォルトの背景色 |
-| `component.tabs.tab.background.hover` | `{background.secondary}` | ホバー時の背景色 |
-| `component.tabs.tab.background.active` | `transparent` | アクティブタブの背景色 |
-
-#### タイポグラフィ
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.tabs.tab.fontSize` | `{font.size.sm}` | タブのフォントサイズ |
-| `component.tabs.tab.fontWeight.default` | `{font.weight.medium}` | デフォルトのフォントウェイト |
-| `component.tabs.tab.fontWeight.active` | `{font.weight.semibold}` | アクティブタブのフォントウェイト |
-| `component.tabs.tab.lineHeight` | `{font.lineHeight.normal}` | タブの行高 |
-
-#### パディング
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.tabs.tab.padding.horizontal` | `{spacing.4}` | タブの水平パディング (1rem) |
-| `component.tabs.tab.padding.vertical` | `{spacing.3}` | タブの垂直パディング (0.75rem) |
-
-### アクティブインジケーター
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.tabs.tab.indicator.height` | `2px` | インジケーターの高さ |
-| `component.tabs.tab.indicator.color` | `{primary.default}` | インジケーターの色 |
-
-### アイコン
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.tabs.icon.size` | `{spacing.4}` | アイコンのサイズ (1rem) |
-| `component.tabs.icon.gap` | `{spacing.2}` | アイコンとテキストの間隔 |
-| `component.tabs.icon.color.default` | `{foreground.tertiary}` | デフォルトのアイコン色 |
-| `component.tabs.icon.color.active` | `{primary.default}` | アクティブタブのアイコン色 |
-
-### バッジ
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.tabs.badge.size` | `{spacing.5}` | バッジのサイズ (1.25rem) |
-| `component.tabs.badge.fontSize` | `{font.size.xs}` | バッジのフォントサイズ |
-| `component.tabs.badge.background` | `{error.default}` | バッジの背景色 |
-| `component.tabs.badge.text` | `{foreground.inverse}` | バッジのテキスト色 |
-| `component.tabs.badge.marginLeft` | `{spacing.2}` | バッジの左マージン |
-
-### タブパネル
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.tabs.panel.padding` | `{spacing.6}` | タブパネルのパディング (1.5rem) |
-| `component.tabs.panel.background` | `{background.primary}` | タブパネルの背景色 |
-
-### トランジション
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.tabs.transition.duration` | `{animation.duration.fast}` | トランジションの持続時間 |
-| `component.tabs.transition.timing` | `{animation.easing.ease}` | トランジションのイージング |
-| `component.tabs.transition.properties` | `color, background-color, border-color` | トランジション対象 |
+### Large (lg)
+- パディング: `0.75rem 1.25rem`
+- フォントサイズ: `1.125rem`
 
 ---
 
-## 使用例
+## 使用方法
 
-### HTML
+### Pattern 1: WebComponents (Shadow DOM)
 
 ```html
-<!-- 基本的なタブ -->
-<div class="tabs">
-  <div class="tabs-list" role="tablist">
-    <button class="tab tab-active" role="tab" aria-selected="true" aria-controls="panel-1">
-      概要
-    </button>
-    <button class="tab" role="tab" aria-selected="false" aria-controls="panel-2">
-      ドキュメント
-    </button>
-    <button class="tab" role="tab" aria-selected="false" aria-controls="panel-3">
-      設定
-    </button>
+<!-- デフォルトタブ -->
+<ha-tabs variant="default">
+  <div role="tablist" aria-label="Main navigation">
+    <ha-tab-item active>
+      <button role="tab" aria-selected="true">ホーム</button>
+    </ha-tab-item>
+    <ha-tab-item>
+      <button role="tab" aria-selected="false">プロフィール</button>
+    </ha-tab-item>
+    <ha-tab-item>
+      <button role="tab" aria-selected="false">設定</button>
+    </ha-tab-item>
   </div>
+</ha-tabs>
 
-  <div class="tab-panels">
-    <div class="tab-panel tab-panel-active" id="panel-1" role="tabpanel">
-      <p>概要タブの内容</p>
-    </div>
-    <div class="tab-panel" id="panel-2" role="tabpanel" hidden>
-      <p>ドキュメントタブの内容</p>
-    </div>
-    <div class="tab-panel" id="panel-3" role="tabpanel" hidden>
-      <p>設定タブの内容</p>
-    </div>
+<!-- ピルタブ -->
+<ha-tabs variant="pills">
+  <div role="tablist">
+    <ha-tab-item active>
+      <button role="tab">概要</button>
+    </ha-tab-item>
+    <ha-tab-item>
+      <button role="tab">詳細</button>
+    </ha-tab-item>
   </div>
-</div>
-
-<!-- アイコンとバッジ付きタブ -->
-<div class="tabs">
-  <div class="tabs-list" role="tablist">
-    <button class="tab tab-active" role="tab">
-      <span class="tab-icon">🏠</span>
-      <span>ホーム</span>
-      <span class="tab-badge">5</span>
-    </button>
-    <button class="tab" role="tab">
-      <span class="tab-icon">📧</span>
-      <span>メッセージ</span>
-      <span class="tab-badge">12</span>
-    </button>
-    <button class="tab" role="tab">
-      <span class="tab-icon">⚙️</span>
-      <span>設定</span>
-    </button>
-  </div>
-</div>
+</ha-tabs>
 ```
 
-### CSS
+### Pattern 2: Plain HTML (推奨)
 
-```css
-.tabs {
-  width: 100%;
-}
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/variables.css">
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/html/navigation/tabs.css">
+</head>
+<body>
+  <!-- デフォルトタブ -->
+  <div class="ha-tabs">
+    <div class="tabs-list" role="tablist" aria-label="Main tabs">
+      <button class="tab-item active" role="tab" aria-selected="true" id="tab1">
+        ホーム
+      </button>
+      <button class="tab-item" role="tab" aria-selected="false" id="tab2">
+        プロフィール
+      </button>
+      <button class="tab-item" role="tab" aria-selected="false" id="tab3">
+        設定
+      </button>
+      <button class="tab-item" role="tab" aria-selected="false" disabled>
+        無効
+      </button>
+    </div>
 
-.tabs-list {
-  display: flex;
-  gap: var(--component-tabs-container-gap);
-  border-bottom: var(--component-tabs-container-border-bottom);
-}
+    <div class="tabs-panels">
+      <div class="tab-panel" role="tabpanel" aria-labelledby="tab1">
+        ホームコンテンツ
+      </div>
+      <div class="tab-panel" role="tabpanel" aria-labelledby="tab2" hidden>
+        プロフィールコンテンツ
+      </div>
+      <div class="tab-panel" role="tabpanel" aria-labelledby="tab3" hidden>
+        設定コンテンツ
+      </div>
+    </div>
+  </div>
 
-.tab {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--component-tabs-icon-gap);
-  padding: var(--component-tabs-tab-padding-vertical)
-           var(--component-tabs-tab-padding-horizontal);
-  font-size: var(--component-tabs-tab-font-size);
-  font-weight: var(--component-tabs-tab-font-weight-default);
-  color: var(--component-tabs-tab-text-default);
-  background: var(--component-tabs-tab-background-default);
-  border: none;
-  border-radius: var(--component-tabs-tab-border-radius);
-  cursor: pointer;
-  position: relative;
-  transition: var(--component-tabs-transition-properties)
-              var(--component-tabs-transition-duration)
-              var(--component-tabs-transition-timing);
-}
+  <!-- ピルタブ -->
+  <div class="ha-tabs" variant="pills">
+    <div class="tabs-list variant-pills" role="tablist">
+      <button class="tab-item size-md active" role="tab">概要</button>
+      <button class="tab-item size-md" role="tab">詳細</button>
+      <button class="tab-item size-md" role="tab">レビュー</button>
+    </div>
+  </div>
 
-.tab:hover:not(:disabled) {
-  color: var(--component-tabs-tab-text-hover);
-  background: var(--component-tabs-tab-background-hover);
-}
-
-.tab-active {
-  color: var(--component-tabs-tab-text-active);
-  font-weight: var(--component-tabs-tab-font-weight-active);
-}
-
-.tab-active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: var(--component-tabs-tab-indicator-height);
-  background-color: var(--component-tabs-tab-indicator-color);
-}
-
-.tab-panel {
-  display: none;
-  padding: var(--component-tabs-panel-padding);
-}
-
-.tab-panel-active {
-  display: block;
-}
+  <!-- アウトラインタブ -->
+  <div class="ha-tabs" variant="outlined">
+    <div class="tabs-list variant-outlined" role="tablist">
+      <button class="tab-item size-sm active" role="tab">タブ1</button>
+      <button class="tab-item size-sm" role="tab">タブ2</button>
+      <button class="tab-item size-sm" role="tab">タブ3</button>
+    </div>
+  </div>
+</body>
+</html>
 ```
 
-### React
+### Pattern 3: React/Vue
 
-```tsx
-import { useState } from 'react';
+```javascript
+import '@hidearea-design/tokens/css/html/navigation/tabs.css';
 
-function Tabs({ items }: { items: Array<{ label: string; content: React.ReactNode }> }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-
+// React例
+function Tabs({ variant = 'default', activeTab, onChange, tabs }) {
   return (
-    <div className="tabs">
-      <div className="tabs-list" role="tablist">
-        {items.map((item, index) => (
+    <div className="ha-tabs" data-variant={variant}>
+      <div className={`tabs-list variant-${variant}`} role="tablist">
+        {tabs.map((tab, index) => (
           <button
-            key={index}
-            className={`tab ${activeIndex === index ? 'tab-active' : ''}`}
+            key={tab.id}
+            className={`tab-item ${activeTab === index ? 'active' : ''}`}
             role="tab"
-            aria-selected={activeIndex === index}
-            onClick={() => setActiveIndex(index)}
+            aria-selected={activeTab === index}
+            onClick={() => onChange(index)}
           >
-            {item.label}
+            {tab.label}
           </button>
         ))}
       </div>
-
-      <div className="tab-panels">
-        {items.map((item, index) => (
+      <div className="tabs-panels">
+        {tabs.map((tab, index) => (
           <div
-            key={index}
-            className={`tab-panel ${activeIndex === index ? 'tab-panel-active' : ''}`}
+            key={tab.id}
+            className="tab-panel"
             role="tabpanel"
-            hidden={activeIndex !== index}
+            hidden={activeTab !== index}
           >
-            {item.content}
+            {tab.content}
           </div>
         ))}
       </div>
     </div>
   );
 }
+
+// 使用例
+<Tabs
+  variant="pills"
+  activeTab={0}
+  onChange={setActiveTab}
+  tabs={[
+    { id: 'home', label: 'ホーム', content: <HomeContent /> },
+    { id: 'profile', label: 'プロフィール', content: <ProfileContent /> },
+    { id: 'settings', label: '設定', content: <SettingsContent /> },
+  ]}
+/>
 ```
+
+---
+
+## 属性
+
+| 属性 | 値 | デフォルト | 説明 |
+|------|-----|-----------|------|
+| `variant` | `default` \| `pills` \| `outlined` | `default` | タブのスタイルバリアント |
+| `size` | `sm` \| `md` \| `lg` | `md` | タブのサイズ |
+| `align` | `start` \| `center` \| `end` | `start` | タブの配置 |
+
+---
+
+## CSS変数
+
+タブコンポーネントは以下のCSS変数（デザイントークン）を使用しています:
+
+### 色関連
+- `--primary-default` - アクティブタブの色
+- `--color-neutral-200` - ボーダーカラー
+- `--color-neutral-400` - 無効タブの色
+- `--color-neutral-600` - デフォルトタブの色
+- `--color-neutral-700` - ホバー時の色
+- `--foreground-inverse` - ピルバリアントの背景色
+
+### スペーシング
+- `--spacing-1` - 0.25rem (小パディング)
+- `--spacing-2` - 0.5rem (中パディング、ギャップ)
+- `--spacing-3` - 0.75rem (sm横パディング)
+- `--spacing-4` - 1rem (md横パディング、コンテナギャップ)
+- `--spacing-5` - 1.25rem (lg横パディング)
+
+### ボーダー
+- `--border-radius-base` - 基本角丸
+- `--border-radius-sm` - 小角丸
+- `--border-radius-full` - 完全な丸
+
+### アニメーション
+- `--animation-duration-base` - 200ms
+- `--animation-easing-ease` - ease
 
 ---
 
 ## アクセシビリティ
 
-### ARIA属性
+- `role="tablist"`でタブリストを識別
+- `role="tab"`で各タブを識別
+- `role="tabpanel"`でパネルを識別
+- `aria-selected`でアクティブなタブを示す
+- `aria-labelledby`でパネルとタブを関連付け
+- `aria-label`でタブリストに説明を追加
 
-- `role="tablist"`: タブリストコンテナに設定
-- `role="tab"`: 各タブボタンに設定
-- `role="tabpanel"`: 各タブパネルに設定
-- `aria-selected`: タブの選択状態（true/false）
-- `aria-controls`: タブが制御するパネルのIDを指定
-- `hidden`: 非アクティブなパネルに設定
+```html
+<!-- アクセシビリティの良い例 -->
+<div class="ha-tabs">
+  <div class="tabs-list" role="tablist" aria-label="アカウント設定">
+    <button
+      class="tab-item active"
+      role="tab"
+      aria-selected="true"
+      aria-controls="panel-general"
+      id="tab-general"
+    >
+      一般
+    </button>
+    <button
+      class="tab-item"
+      role="tab"
+      aria-selected="false"
+      aria-controls="panel-security"
+      id="tab-security"
+    >
+      セキュリティ
+    </button>
+  </div>
 
-### キーボードナビゲーション
+  <div class="tabs-panels">
+    <div
+      class="tab-panel"
+      role="tabpanel"
+      aria-labelledby="tab-general"
+      id="panel-general"
+    >
+      一般設定コンテンツ
+    </div>
+    <div
+      class="tab-panel"
+      role="tabpanel"
+      aria-labelledby="tab-security"
+      id="panel-security"
+      hidden
+    >
+      セキュリティ設定コンテンツ
+    </div>
+  </div>
+</div>
+```
 
-実装すべきキーボードショートカット：
+### キーボード操作
 
-- **←/→ (矢印キー)**: タブ間を移動
+- **Tab**: タブリストにフォーカス
+- **Arrow Left/Right**: 前後のタブに移動
 - **Home**: 最初のタブに移動
 - **End**: 最後のタブに移動
-- **Tab**: タブリストからパネルにフォーカス移動
 - **Enter/Space**: タブを選択
+- **Ctrl + Tab**: 次のタブパネルに移動（ブラウザの動作）
 
-### フォーカス管理
+### JavaScript例（キーボードナビゲーション）
 
 ```javascript
-// キーボードナビゲーションの実装例
-const tabList = document.querySelector('[role="tablist"]');
-const tabs = tabList.querySelectorAll('[role="tab"]');
+const tabs = document.querySelectorAll('[role="tab"]');
+const panels = document.querySelectorAll('[role="tabpanel"]');
 
-tabList.addEventListener('keydown', (e) => {
-  const currentTab = document.activeElement;
-  const currentIndex = Array.from(tabs).indexOf(currentTab);
+tabs.forEach((tab, index) => {
+  tab.addEventListener('keydown', (e) => {
+    let newIndex = index;
 
-  let newIndex;
-
-  switch(e.key) {
-    case 'ArrowLeft':
-      newIndex = currentIndex - 1;
-      if (newIndex < 0) newIndex = tabs.length - 1;
-      break;
-    case 'ArrowRight':
-      newIndex = currentIndex + 1;
-      if (newIndex >= tabs.length) newIndex = 0;
-      break;
-    case 'Home':
+    if (e.key === 'ArrowRight') {
+      newIndex = (index + 1) % tabs.length;
+    } else if (e.key === 'ArrowLeft') {
+      newIndex = (index - 1 + tabs.length) % tabs.length;
+    } else if (e.key === 'Home') {
       newIndex = 0;
-      break;
-    case 'End':
+    } else if (e.key === 'End') {
       newIndex = tabs.length - 1;
-      break;
-    default:
+    } else {
       return;
-  }
+    }
 
-  tabs[newIndex].focus();
-  tabs[newIndex].click();
-  e.preventDefault();
+    e.preventDefault();
+    activateTab(newIndex);
+  });
+
+  tab.addEventListener('click', () => activateTab(index));
 });
+
+function activateTab(index) {
+  tabs.forEach((t, i) => {
+    t.classList.toggle('active', i === index);
+    t.setAttribute('aria-selected', i === index);
+  });
+
+  panels.forEach((p, i) => {
+    p.hidden = i !== index;
+  });
+
+  tabs[index].focus();
+}
 ```
 
 ---
 
 ## ベストプラクティス
 
-### タブの使用
+### ✅ 推奨
 
-1. **タブ数の制限**
-   - 5-7個以内に抑える
+1. **適切なタブ数**
+   - 5-7個以内のタブを推奨
    - それ以上の場合はドロップダウンメニューを検討
 
-2. **ラベルの明確性**
-   - 簡潔で分かりやすいラベル
-   - 1-2単語が理想的
+2. **明確なラベル**
+   - 短く分かりやすいラベルを使用
+   - アイコンと組み合わせて視覚的に区別
 
-3. **順序**
-   - 最も重要な内容を左端に配置
-   - 論理的な順序で並べる
+3. **デフォルト選択**
+   - 最初のタブまたは最も重要なタブを選択状態にする
 
-### 状態管理
-
-1. **初期状態**
-   - 常に1つのタブをアクティブに
-   - デフォルトは最初のタブ
-
-2. **URL同期**
-   - URLハッシュやクエリパラメータでタブ状態を保存
-   - ブラウザの戻る/進むに対応
-
-```javascript
-// URL同期の例
-function activateTab(index) {
-  // タブを切り替え
-  setActiveTab(index);
-
-  // URLを更新
-  const tab = tabs[index];
-  window.location.hash = tab.id;
-}
-
-// ページ読み込み時にURLから復元
-window.addEventListener('load', () => {
-  const hash = window.location.hash.slice(1);
-  const tab = tabs.find(t => t.id === hash);
-  if (tab) activateTab(tabs.indexOf(tab));
-});
-```
-
-### パフォーマンス
-
-1. **遅延読み込み**
-   - タブパネルの内容を必要になるまで読み込まない
-
-2. **コンテンツの保持**
-   - 一度読み込んだタブ内容は保持する（display: noneで非表示）
-
----
-
-## 関連コンポーネント
-
-- **Navigation**: メインナビゲーションバー
-- **Breadcrumb**: パンくずリスト
-- **Menu**: ドロップダウンメニュー
-
----
-
-## バリエーション
-
-### 垂直タブ
-
-```css
-.tabs-vertical .tabs-list {
-  flex-direction: column;
-  border-bottom: none;
-  border-right: var(--component-tabs-container-border-bottom);
-}
-
-.tabs-vertical .tab-active::after {
-  bottom: auto;
-  left: auto;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: var(--component-tabs-tab-indicator-height);
-  height: auto;
-}
-```
-
-### アイコンオンリータブ
+4. **レスポンシブ対応**
+   - 小画面ではスクロール可能にする
+   - またはドロップダウンに変換する
 
 ```html
-<button class="tab tab-icon-only" aria-label="ホーム">
-  <span class="tab-icon">🏠</span>
+<!-- 適切なタブの使用例 -->
+<div class="ha-tabs">
+  <div class="tabs-list" role="tablist">
+    <button class="tab-item active" role="tab">
+      <svg>...</svg>
+      概要
+    </button>
+    <button class="tab-item" role="tab">
+      <svg>...</svg>
+      統計
+    </button>
+    <button class="tab-item" role="tab">
+      <svg>...</svg>
+      設定
+    </button>
+  </div>
+</div>
+```
+
+### ❌ 非推奨
+
+1. **タブ内でのナビゲーション**
+   - タブは同一ページ内のコンテンツ切り替えに使用
+   - ページ遷移には使用しない
+
+2. **ネストされたタブ**
+   - タブの中にタブを配置しない
+   - 複雑になりすぎる場合は別のUIパターンを検討
+
+3. **長すぎるラベル**
+   - 1-2単語程度に収める
+   - 長い説明は不要
+
+```html
+<!-- タブが多すぎる例（非推奨） -->
+<div class="tabs-list" role="tablist">
+  <button class="tab-item" role="tab">タブ1</button>
+  <button class="tab-item" role="tab">タブ2</button>
+  <button class="tab-item" role="tab">タブ3</button>
+  <button class="tab-item" role="tab">タブ4</button>
+  <button class="tab-item" role="tab">タブ5</button>
+  <button class="tab-item" role="tab">タブ6</button>
+  <button class="tab-item" role="tab">タブ7</button>
+  <button class="tab-item" role="tab">タブ8</button>
+</div>
+
+<!-- 長すぎるラベル（非推奨） -->
+<button class="tab-item" role="tab">
+  これは非常に長いタブのラベルです
 </button>
 ```
 
 ---
 
-**最終更新:** 2025-12-10
-**Phase 4 Option C で実装**
+## バリエーション
+
+### アイコン付きタブ
+
+```html
+<div class="tabs-list" role="tablist">
+  <button class="tab-item active" role="tab">
+    <svg width="16" height="16">...</svg>
+    <span>ホーム</span>
+  </button>
+  <button class="tab-item" role="tab">
+    <svg width="16" height="16">...</svg>
+    <span>設定</span>
+  </button>
+</div>
+```
+
+### スクロール可能なタブ
+
+```css
+.tabs-list {
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.tabs-list::-webkit-scrollbar {
+  height: 4px;
+}
+
+.tabs-list::-webkit-scrollbar-thumb {
+  background-color: var(--color-neutral-300);
+  border-radius: var(--border-radius-full);
+}
+```
+
+---
+
+## テーマ対応
+
+全てのタブトークンはテーマに対応しています。`data-theme` 属性を変更するだけで、自動的にダークモードに切り替わります。
+
+```html
+<!-- ライトテーマ -->
+<html data-theme="light">
+  <div class="ha-tabs">
+    <div class="tabs-list" role="tablist">
+      <button class="tab-item active" role="tab">ホーム</button>
+    </div>
+  </div>
+</html>
+
+<!-- ダークテーマ -->
+<html data-theme="dark">
+  <div class="ha-tabs">
+    <div class="tabs-list" role="tablist">
+      <button class="tab-item active" role="tab">ホーム</button>
+    </div>
+  </div>
+</html>
+```
+
+---
+
+## 関連コンポーネント
+
+- [Button](../layout/button.md) - タブ内のアクションボタン
+- [Menu](./menu.md) - タブが多い場合の代替
+- [Breadcrumb](./breadcrumb.md) - 階層ナビゲーション
+
+---
+
+## 関連ドキュメント
+
+- [アーキテクチャガイド](../アーキテクチャガイド.md)
+- [使用方法ガイド](../使用方法ガイド.md)
+- [コンポーネントリファレンス](./README.md)
+
+---
+
+**最終更新:** 2025-12-12

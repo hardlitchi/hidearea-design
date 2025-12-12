@@ -1,476 +1,491 @@
-# Avatar コンポーネント
+# Avatar (アバター) コンポーネント
 
-ユーザーやエンティティを表す画像またはイニシャルを表示するコンポーネントです。
+**カテゴリ:** Data Display
+**ファイル:** `src/css/components/data-display/avatar.css`
+**ステータス:** ✅ 実装済み
+
+---
 
 ## 概要
 
-Avatarコンポーネントは、ユーザープロフィール画像、イニシャル、またはアイコンを円形や角丸の形状で表示します。オンライン状態を示すステータスインジケーターや、複数のアバターをグループ表示する機能も提供します。
+アバターコンポーネントは、ユーザーやエンティティを視覚的に表現するための画像やアイコン、イニシャルを表示する要素です。
+6つのサイズ（xs, sm, md, lg, xl, 2xl）と、3つの形状（circle, rounded, square）をサポートしています。
 
-## 基本的な使い方
+### 用途
 
-### 画像アバター
+- ユーザープロフィール表示
+- コメントやチャットのユーザーアイコン
+- チームメンバーリスト
+- アバターグループ（複数ユーザー表示）
+
+---
+
+## バリアント
+
+### 1. 画像アバター
+
+ユーザーの写真やプロフィール画像を表示します。
+
+**使用場面:**
+- ユーザープロフィール
+- コメント投稿者
+- チャットメッセージ
+
+### 2. イニシャルアバター
+
+ユーザー名のイニシャルを大文字で表示します。
+
+**使用場面:**
+- 画像が未設定のユーザー
+- フォールバック表示
+- シンプルな識別表示
+
+### 3. アイコンアバター
+
+アイコンを使用したアバター表示です。
+
+**使用場面:**
+- デフォルトユーザーアイコン
+- システムアカウント
+- 汎用的なプレースホルダー
+
+### 4. インタラクティブアバター
+
+クリック可能なアバターで、ホバー効果を持ちます。
+
+**使用場面:**
+- プロフィールへのリンク
+- ユーザー詳細モーダルトリガー
+- 選択可能なユーザーリスト
+
+---
+
+## サイズ
+
+### Extra Small (xs)
+- サイズ: `24px × 24px`
+- フォントサイズ: `0.625rem`
+- 用途: コンパクトなリスト
+
+### Small (sm)
+- サイズ: `32px × 32px`
+- フォントサイズ: `0.75rem`
+- 用途: インラインコメント
+
+### Medium (md) - デフォルト
+- サイズ: `40px × 40px`
+- フォントサイズ: `0.875rem`
+- 用途: 標準的な表示
+
+### Large (lg)
+- サイズ: `48px × 48px`
+- フォントサイズ: `1rem`
+- 用途: 目立たせたい表示
+
+### Extra Large (xl)
+- サイズ: `64px × 64px`
+- フォントサイズ: `1.25rem`
+- 用途: プロフィールページ
+
+### 2X Large (2xl)
+- サイズ: `80px × 80px`
+- フォントサイズ: `1.5rem`
+- 用途: ヘッダー・大型表示
+
+---
+
+## 形状
+
+### Circle (circle) - デフォルト
+完全な円形のアバターです。最も一般的な形状です。
+
+### Rounded (rounded)
+角が丸い四角形のアバターです。
+
+### Square (square)
+完全な四角形のアバターです。
+
+---
+
+## 使用方法
+
+### Pattern 1: WebComponents (Shadow DOM)
 
 ```html
-<div class="avatar avatar-md">
-  <img src="/path/to/image.jpg" alt="ユーザー名">
-</div>
+<!-- 画像アバター -->
+<ha-avatar size="md" shape="circle">
+  <img src="/user-photo.jpg" alt="User Name" />
+</ha-avatar>
+
+<!-- イニシャルアバター -->
+<ha-avatar size="md" color="primary">
+  <span>JD</span>
+</ha-avatar>
+
+<!-- アイコンアバター -->
+<ha-avatar size="lg" shape="rounded">
+  <svg>...</svg>
+</ha-avatar>
+
+<!-- ステータス付きアバター -->
+<ha-avatar size="md" status="online">
+  <img src="/user.jpg" alt="User" />
+</ha-avatar>
+
+<!-- インタラクティブアバター -->
+<ha-avatar size="md" interactive>
+  <img src="/user.jpg" alt="User" />
+</ha-avatar>
 ```
 
-### イニシャルアバター
+### Pattern 2: Plain HTML (推奨)
 
 ```html
-<div class="avatar avatar-md avatar-primary">
-  <span class="avatar-text">田中</span>
-</div>
-```
-
-### アイコンアバター
-
-```html
-<div class="avatar avatar-md avatar-default">
-  <svg class="avatar-icon" width="20" height="20">
-    <!-- アイコンSVG -->
-  </svg>
-</div>
-```
-
-## サイズバリアント
-
-6つのサイズオプションが利用可能です：
-
-```html
-<!-- 超小 (24px) -->
-<div class="avatar avatar-xs">
-  <img src="/image.jpg" alt="User">
-</div>
-
-<!-- 小 (32px) -->
-<div class="avatar avatar-sm">
-  <img src="/image.jpg" alt="User">
-</div>
-
-<!-- 中（デフォルト、40px） -->
-<div class="avatar avatar-md">
-  <img src="/image.jpg" alt="User">
-</div>
-
-<!-- 大 (48px) -->
-<div class="avatar avatar-lg">
-  <img src="/image.jpg" alt="User">
-</div>
-
-<!-- 特大 (64px) -->
-<div class="avatar avatar-xl">
-  <img src="/image.jpg" alt="User">
-</div>
-
-<!-- 超特大 (96px) -->
-<div class="avatar avatar-2xl">
-  <img src="/image.jpg" alt="User">
-</div>
-```
-
-## カラーバリアント
-
-イニシャルやアイコン表示時に使用できる6つのカラーバリアント：
-
-```html
-<!-- デフォルト（グレー） -->
-<div class="avatar avatar-md avatar-default">
-  <span class="avatar-text">A</span>
-</div>
-
-<!-- プライマリ -->
-<div class="avatar avatar-md avatar-primary">
-  <span class="avatar-text">B</span>
-</div>
-
-<!-- 成功（グリーン） -->
-<div class="avatar avatar-md avatar-success">
-  <span class="avatar-text">C</span>
-</div>
-
-<!-- 警告（イエロー） -->
-<div class="avatar avatar-md avatar-warning">
-  <span class="avatar-text">D</span>
-</div>
-
-<!-- エラー（レッド） -->
-<div class="avatar avatar-md avatar-error">
-  <span class="avatar-text">E</span>
-</div>
-
-<!-- 情報（ブルー） -->
-<div class="avatar avatar-md avatar-info">
-  <span class="avatar-text">F</span>
-</div>
-```
-
-## 形状バリアント
-
-3つの形状オプション：
-
-```html
-<!-- 円形（デフォルト） -->
-<div class="avatar avatar-md avatar-circle">
-  <img src="/image.jpg" alt="User">
-</div>
-
-<!-- 角丸 -->
-<div class="avatar avatar-md avatar-rounded">
-  <img src="/image.jpg" alt="User">
-</div>
-
-<!-- 四角 -->
-<div class="avatar avatar-md avatar-square">
-  <img src="/image.jpg" alt="User">
-</div>
-```
-
-## ステータスインジケーター
-
-オンライン状態を示すインジケーター：
-
-```html
-<!-- オンライン（グリーン） -->
-<div class="avatar avatar-md">
-  <img src="/image.jpg" alt="User">
-  <span class="avatar-status avatar-status-online"></span>
-</div>
-
-<!-- オフライン（グレー） -->
-<div class="avatar avatar-md">
-  <img src="/image.jpg" alt="User">
-  <span class="avatar-status avatar-status-offline"></span>
-</div>
-
-<!-- 離席（イエロー） -->
-<div class="avatar avatar-md">
-  <img src="/image.jpg" alt="User">
-  <span class="avatar-status avatar-status-away"></span>
-</div>
-
-<!-- 取り込み中（レッド） -->
-<div class="avatar avatar-md">
-  <img src="/image.jpg" alt="User">
-  <span class="avatar-status avatar-status-busy"></span>
-</div>
-```
-
-## グループアバター
-
-複数のアバターを重ねて表示：
-
-```html
-<div class="avatar-group">
-  <div class="avatar avatar-sm">
-    <img src="/user1.jpg" alt="User 1">
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/variables.css">
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/html/data-display/avatar.css">
+</head>
+<body>
+  <!-- 画像アバター -->
+  <div class="ha-avatar" size="md" shape="circle">
+    <div class="container">
+      <img class="image" src="/user-photo.jpg" alt="User Name" />
+    </div>
   </div>
-  <div class="avatar avatar-sm">
-    <img src="/user2.jpg" alt="User 2">
+
+  <!-- イニシャルアバター -->
+  <div class="ha-avatar" size="md" color="primary">
+    <div class="container">
+      <span class="initials">JD</span>
+    </div>
   </div>
-  <div class="avatar avatar-sm">
-    <img src="/user3.jpg" alt="User 3">
+
+  <!-- アイコンアバター -->
+  <div class="ha-avatar" size="lg" shape="rounded">
+    <div class="container">
+      <div class="icon">
+        <svg>...</svg>
+      </div>
+    </div>
   </div>
-  <div class="avatar avatar-sm avatar-default">
-    <span class="avatar-text">+5</span>
+
+  <!-- ステータス付きアバター -->
+  <div class="ha-avatar" size="md" status="online">
+    <div class="container">
+      <img class="image" src="/user.jpg" alt="User" />
+      <div class="status"></div>
+    </div>
   </div>
-</div>
+
+  <!-- インタラクティブアバター -->
+  <div class="ha-avatar" size="md" interactive>
+    <div class="container">
+      <img class="image" src="/user.jpg" alt="User" />
+    </div>
+  </div>
+</body>
+</html>
 ```
 
-## インタラクティブアバター
+### Pattern 3: React/Vue
 
-クリック可能なアバター（ホバー効果付き）：
+```javascript
+import { avatarStyles, avatarHtmlStyles } from '@hidearea-design/tokens/styles/avatar';
+
+// React例
+function Avatar({ size = 'md', shape = 'circle', src, initials, children, ...props }) {
+  return (
+    <div className="ha-avatar" data-size={size} data-shape={shape} {...props}>
+      <div className="container">
+        {src ? (
+          <img className="image" src={src} alt={props.alt || ''} />
+        ) : initials ? (
+          <span className="initials">{initials}</span>
+        ) : (
+          children
+        )}
+      </div>
+    </div>
+  );
+}
+
+// 使用例
+<Avatar size="md" src="/user.jpg" alt="John Doe" />
+<Avatar size="lg" initials="JD" color="primary" />
+<Avatar size="sm" shape="rounded" interactive />
+```
+
+### Pattern 4: 統合CSS
 
 ```html
-<a href="/profile" class="avatar avatar-md avatar-interactive">
-  <img src="/image.jpg" alt="プロフィールを表示">
-</a>
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/variables.css">
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/html/all.css">
+</head>
+<body>
+  <!-- 全コンポーネントが利用可能 -->
+  <div class="ha-avatar" size="md">
+    <div class="container">
+      <img class="image" src="/user.jpg" alt="User" />
+    </div>
+  </div>
+</body>
+</html>
 ```
 
-## デザイントークン
+---
 
-### サイズ
+## 属性
 
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.avatar.size.xs` | `1.5rem` | 超小サイズ (24px) |
-| `component.avatar.size.sm` | `2rem` | 小サイズ (32px) |
-| `component.avatar.size.md` | `2.5rem` | 中サイズ (40px) |
-| `component.avatar.size.lg` | `3rem` | 大サイズ (48px) |
-| `component.avatar.size.xl` | `4rem` | 特大サイズ (64px) |
-| `component.avatar.size.2xl` | `6rem` | 超特大サイズ (96px) |
+| 属性 | 値 | デフォルト | 説明 |
+|------|-----|-----------|------|
+| `size` | `xs` \| `sm` \| `md` \| `lg` \| `xl` \| `2xl` | `md` | アバターのサイズ |
+| `shape` | `circle` \| `rounded` \| `square` | `circle` | アバターの形状 |
+| `color` | `default` \| `primary` \| `success` \| `warning` \| `error` \| `info` | `default` | イニシャル背景色 |
+| `status` | `online` \| `offline` \| `away` \| `busy` | - | ステータスインジケーター |
+| `interactive` | boolean | `false` | クリック可能な状態 |
 
-### 背景色
+---
 
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.avatar.background.default` | `{background.tertiary}` | デフォルト背景 |
-| `component.avatar.background.primary` | `{primary.default}` | プライマリ背景 |
-| `component.avatar.background.success` | `{success.default}` | 成功背景 |
-| `component.avatar.background.warning` | `{warning.default}` | 警告背景 |
-| `component.avatar.background.error` | `{error.default}` | エラー背景 |
-| `component.avatar.background.info` | `{info.default}` | 情報背景 |
+## CSS変数
 
-### テキスト色
+アバターコンポーネントは以下のCSS変数（デザイントークン）を使用しています:
 
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.avatar.text.default` | `{foreground.secondary}` | デフォルトテキスト色 |
-| `component.avatar.text.onColor` | `{foreground.inverse}` | カラー背景上のテキスト色 |
+### サイズ関連
+- `--component-avatar-size-xs` - 24px
+- `--component-avatar-size-sm` - 32px
+- `--component-avatar-size-md` - 40px
+- `--component-avatar-size-lg` - 48px
+- `--component-avatar-size-xl` - 64px
+- `--component-avatar-size-2xl` - 80px
 
-### ボーダー
+### フォントサイズ
+- `--component-avatar-fontSize-xs` - 0.625rem
+- `--component-avatar-fontSize-sm` - 0.75rem
+- `--component-avatar-fontSize-md` - 0.875rem
+- `--component-avatar-fontSize-lg` - 1rem
+- `--component-avatar-fontSize-xl` - 1.25rem
+- `--component-avatar-fontSize-2xl` - 1.5rem
 
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.avatar.border.width` | `{border.width.2}` | ボーダー幅 (2px) |
-| `component.avatar.border.color` | `{border.default}` | ボーダー色 |
+### 色関連
+- `--component-avatar-background-default` - デフォルト背景
+- `--component-avatar-background-primary` - プライマリ背景
+- `--component-avatar-background-success` - 成功背景
+- `--component-avatar-background-warning` - 警告背景
+- `--component-avatar-background-error` - エラー背景
+- `--component-avatar-background-info` - 情報背景
+- `--component-avatar-text-default` - デフォルトテキスト
+- `--component-avatar-text-onColor` - カラー上のテキスト
 
-### 角丸
+### ボーダー・形状
+- `--component-avatar-borderRadius-circle` - 50% (円形)
+- `--component-avatar-borderRadius-rounded` - 0.5rem (角丸)
+- `--component-avatar-borderRadius-square` - 0 (四角)
+- `--component-avatar-border-width` - 2px
+- `--component-avatar-border-color` - ボーダー色
 
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.avatar.borderRadius.circle` | `{border.radius.full}` | 円形 (50%) |
-| `component.avatar.borderRadius.rounded` | `{border.radius.lg}` | 角丸 (0.5rem) |
-| `component.avatar.borderRadius.square` | `{border.radius.sm}` | 四角 (0.25rem) |
+### ステータス
+- `--component-avatar-status-background-online` - オンライン色
+- `--component-avatar-status-background-offline` - オフライン色
+- `--component-avatar-status-background-away` - 離席色
+- `--component-avatar-status-background-busy` - 取り込み中色
 
-### フォントサイズ（イニシャル）
+### インタラクティブ
+- `--component-avatar-hover-opacity` - 0.8
+- `--component-avatar-hover-scale` - 1.05
+- `--component-avatar-hover-transition-duration` - 200ms
 
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.avatar.fontSize.xs` | `0.625rem` | 超小サイズのフォント (10px) |
-| `component.avatar.fontSize.sm` | `0.75rem` | 小サイズのフォント (12px) |
-| `component.avatar.fontSize.md` | `0.875rem` | 中サイズのフォント (14px) |
-| `component.avatar.fontSize.lg` | `1rem` | 大サイズのフォント (16px) |
-| `component.avatar.fontSize.xl` | `1.25rem` | 特大サイズのフォント (20px) |
-| `component.avatar.fontSize.2xl` | `2rem` | 超特大サイズのフォント (32px) |
-
-### アイコンサイズ
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.avatar.icon.size.xs` | `0.875rem` | 超小サイズのアイコン (14px) |
-| `component.avatar.icon.size.sm` | `1rem` | 小サイズのアイコン (16px) |
-| `component.avatar.icon.size.md` | `1.25rem` | 中サイズのアイコン (20px) |
-| `component.avatar.icon.size.lg` | `1.5rem` | 大サイズのアイコン (24px) |
-| `component.avatar.icon.size.xl` | `2rem` | 特大サイズのアイコン (32px) |
-| `component.avatar.icon.size.2xl` | `3rem` | 超特大サイズのアイコン (48px) |
-
-### ステータスインジケーター
-
-#### サイズ
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.avatar.status.size.xs` | `0.375rem` | 超小サイズのステータス (6px) |
-| `component.avatar.status.size.sm` | `0.5rem` | 小サイズのステータス (8px) |
-| `component.avatar.status.size.md` | `0.625rem` | 中サイズのステータス (10px) |
-| `component.avatar.status.size.lg` | `0.75rem` | 大サイズのステータス (12px) |
-| `component.avatar.status.size.xl` | `1rem` | 特大サイズのステータス (16px) |
-| `component.avatar.status.size.2xl` | `1.5rem` | 超特大サイズのステータス (24px) |
-
-#### 背景色
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.avatar.status.background.online` | `{success.default}` | オンライン状態 |
-| `component.avatar.status.background.offline` | `{foreground.tertiary}` | オフライン状態 |
-| `component.avatar.status.background.away` | `{warning.default}` | 離席状態 |
-| `component.avatar.status.background.busy` | `{error.default}` | 取り込み中状態 |
-
-### ホバー効果
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.avatar.hover.opacity` | `0.8` | ホバー時の透明度 |
-| `component.avatar.hover.scale` | `1.05` | ホバー時の拡大率 |
-| `component.avatar.hover.transition.duration` | `{animation.duration.fast}` | トランジション時間 (150ms) |
-
-### グループアバター
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.avatar.group.overlap` | `-0.5rem` | アバター同士の重なり幅 (-8px) |
-| `component.avatar.group.zIndexIncrement` | `1` | 各アバターのz-index増分 |
+---
 
 ## アクセシビリティ
 
-### 代替テキスト
-
-画像には必ず`alt`属性を設定：
+- `img`要素には必ず`alt`属性を設定
+- イニシャルやアイコンのみの場合は`aria-label`で説明を提供
+- インタラクティブな場合は適切なロール（`button`、`link`）を使用
+- キーボードでフォーカス可能にする
 
 ```html
-<div class="avatar avatar-md">
-  <img src="/user.jpg" alt="田中太郎">
+<!-- 画像アバター -->
+<div class="ha-avatar" size="md">
+  <div class="container">
+    <img class="image" src="/user.jpg" alt="John Doe のプロフィール写真" />
+  </div>
 </div>
+
+<!-- イニシャルアバター -->
+<div class="ha-avatar" size="md" role="img" aria-label="John Doe">
+  <div class="container">
+    <span class="initials" aria-hidden="true">JD</span>
+  </div>
+</div>
+
+<!-- クリック可能なアバター -->
+<button class="ha-avatar" size="md" interactive aria-label="プロフィールを表示">
+  <div class="container">
+    <img class="image" src="/user.jpg" alt="" />
+  </div>
+</button>
+
+<!-- リンクとしてのアバター -->
+<a href="/profile" class="ha-avatar" size="md" interactive>
+  <div class="container">
+    <img class="image" src="/user.jpg" alt="John Doe のプロフィールへ" />
+  </div>
+</a>
 ```
+
+### キーボード操作
+
+インタラクティブなアバターの場合:
+- **Tab**: アバターにフォーカス
+- **Enter/Space**: アクションを実行
+- **Shift + Tab**: 前の要素にフォーカス
 
 ### ARIA属性
 
 ```html
-<div class="avatar avatar-md" role="img" aria-label="田中太郎のプロフィール画像">
-  <img src="/user.jpg" alt="">
+<!-- ステータス付きアバター -->
+<div class="ha-avatar" size="md" status="online" role="img" aria-label="John Doe (オンライン)">
+  <div class="container">
+    <img class="image" src="/user.jpg" alt="" />
+    <div class="status" aria-hidden="true"></div>
+  </div>
+</div>
+
+<!-- グループアバター -->
+<div role="group" aria-label="チームメンバー">
+  <div class="ha-avatar" size="sm"><div class="container">...</div></div>
+  <div class="ha-avatar" size="sm"><div class="container">...</div></div>
+  <div class="ha-avatar" size="sm"><div class="container">...</div></div>
 </div>
 ```
 
-### ステータス情報
-
-```html
-<div class="avatar avatar-md">
-  <img src="/user.jpg" alt="田中太郎">
-  <span class="avatar-status avatar-status-online"
-        aria-label="オンライン"></span>
-</div>
-```
-
-### インタラクティブアバター
-
-```html
-<button class="avatar avatar-md avatar-interactive"
-        aria-label="プロフィール設定を開く">
-  <img src="/user.jpg" alt="">
-</button>
-```
+---
 
 ## ベストプラクティス
 
-### 使用すべき場合
+### ✅ 推奨
 
-- ユーザープロフィール表示
-- コメントや投稿の作者表示
-- チームメンバー一覧
-- メッセージの送信者表示
-- 通知の発信元表示
+1. **適切なサイズの選択**
+   - コンテキストに応じて適切なサイズを使用
+   - 同じコンテキストでは一貫したサイズを維持
 
-### サイズの選択指針
+2. **画像の最適化**
+   - 適切な解像度の画像を使用（2x対応）
+   - 画像の読み込みエラーに対するフォールバックを用意
 
-- **xs (24px)**: コンパクトなリストや通知
-- **sm (32px)**: テーブルやカード内
-- **md (40px)**: 一般的な使用（デフォルト）
-- **lg (48px)**: プロフィールカード
-- **xl (64px)**: プロフィールヘッダー
-- **2xl (96px)**: ユーザー設定ページ
+3. **アクセシビリティの確保**
+   - 必ず代替テキストを提供
+   - インタラクティブな場合は適切なロールを設定
 
-### イニシャルの生成
-
-```javascript
-function getInitials(name) {
-  return name
-    .split(' ')
-    .map(part => part[0])
-    .join('')
-    .toUpperCase()
-    .slice(0, 2);
-}
-
-// 使用例
-const initials = getInitials('田中 太郎'); // "田太"
-```
-
-### カラーの自動割り当て
-
-```javascript
-function getAvatarColor(name) {
-  const colors = ['primary', 'success', 'warning', 'error', 'info'];
-  const hash = name.split('').reduce((acc, char) =>
-    acc + char.charCodeAt(0), 0);
-  return colors[hash % colors.length];
-}
-```
-
-### パフォーマンス最適化
-
-画像の最適化：
+4. **ステータスの明確化**
+   - ステータスインジケーターには適切な色を使用
+   - ツールチップで詳細情報を提供
 
 ```html
-<!-- srcsetで高解像度対応 -->
-<div class="avatar avatar-md">
-  <img src="/user-40.jpg"
-       srcset="/user-40.jpg 1x, /user-80.jpg 2x"
-       alt="User">
+<!-- 良い例: 適切なサイズとalt属性 -->
+<div class="ha-avatar" size="md">
+  <div class="container">
+    <img class="image" src="/user.jpg" alt="John Doe" />
+  </div>
 </div>
 
-<!-- 遅延読み込み -->
-<div class="avatar avatar-md">
-  <img src="/user.jpg" alt="User" loading="lazy">
+<!-- 良い例: イニシャルのフォールバック -->
+<div class="ha-avatar" size="md" color="primary" role="img" aria-label="John Doe">
+  <div class="container">
+    <span class="initials">JD</span>
+  </div>
+</div>
+
+<!-- 良い例: ステータス付き -->
+<div class="ha-avatar" size="md" status="online" role="img" aria-label="John Doe (オンライン)">
+  <div class="container">
+    <img class="image" src="/user.jpg" alt="" />
+    <div class="status"></div>
+  </div>
 </div>
 ```
 
-## 実装例
+### ❌ 非推奨
 
-### 動的アバター生成
+1. **alt属性の省略**
+   - アクセシビリティを損なう
 
-```javascript
-function createAvatar(user) {
-  const avatar = document.createElement('div');
-  avatar.className = `avatar avatar-md avatar-${getAvatarColor(user.name)}`;
+2. **過度に大きい画像の使用**
+   - パフォーマンスに影響
 
-  if (user.image) {
-    const img = document.createElement('img');
-    img.src = user.image;
-    img.alt = user.name;
-    avatar.appendChild(img);
-  } else {
-    const text = document.createElement('span');
-    text.className = 'avatar-text';
-    text.textContent = getInitials(user.name);
-    avatar.appendChild(text);
-  }
+3. **コンテキストに合わないサイズ**
+   - UI全体の統一感を損なう
 
-  // ステータス追加
-  if (user.status) {
-    const status = document.createElement('span');
-    status.className = `avatar-status avatar-status-${user.status}`;
-    status.setAttribute('aria-label', user.status);
-    avatar.appendChild(status);
-  }
+```html
+<!-- 悪い例: alt属性なし -->
+<div class="ha-avatar" size="md">
+  <div class="container">
+    <img class="image" src="/user.jpg" />
+  </div>
+</div>
 
-  return avatar;
-}
+<!-- 悪い例: 大きすぎる画像 -->
+<div class="ha-avatar" size="sm">
+  <div class="container">
+    <img class="image" src="/huge-photo-5000x5000.jpg" alt="User" />
+  </div>
+</div>
+
+<!-- 悪い例: サイズの不統一 -->
+<div style="display: flex; gap: 8px;">
+  <div class="ha-avatar" size="xs"><div class="container">...</div></div>
+  <div class="ha-avatar" size="lg"><div class="container">...</div></div>
+  <div class="ha-avatar" size="md"><div class="container">...</div></div>
+</div>
 ```
 
-### グループアバターの生成
+---
 
-```javascript
-function createAvatarGroup(users, maxVisible = 3) {
-  const group = document.createElement('div');
-  group.className = 'avatar-group';
+## テーマ対応
 
-  const visible = users.slice(0, maxVisible);
-  const remaining = users.length - maxVisible;
+全てのアバタートークンはテーマに対応しています。`data-theme` 属性を変更するだけで、自動的にダークモードに切り替わります。
 
-  visible.forEach(user => {
-    group.appendChild(createAvatar(user));
-  });
+```html
+<!-- ライトテーマ -->
+<html data-theme="light">
+  <div class="ha-avatar" size="md" color="primary">
+    <div class="container">
+      <span class="initials">JD</span>
+    </div>
+  </div>
+</html>
 
-  if (remaining > 0) {
-    const more = document.createElement('div');
-    more.className = 'avatar avatar-sm avatar-default';
-    more.innerHTML = `<span class="avatar-text">+${remaining}</span>`;
-    group.appendChild(more);
-  }
-
-  return group;
-}
+<!-- ダークテーマ -->
+<html data-theme="dark">
+  <div class="ha-avatar" size="md" color="primary">
+    <div class="container">
+      <span class="initials">JD</span>
+    </div>
+  </div>
+</html>
 ```
+
+---
 
 ## 関連コンポーネント
 
-- **Badge**: 通知数の表示
-- **Card**: ユーザープロフィールカード
-- **List**: ユーザーリスト表示
+- [Chip](./chip.md) - アバターをチップと組み合わせる
+- [Badge](./badge.md) - 通知バッジとの組み合わせ
+- [Card](../layout/card.md) - カード内でのユーザー表示
 
-## ブラウザ対応
+---
 
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
+## 関連ドキュメント
 
-## 変更履歴
+- [アーキテクチャガイド](../../アーキテクチャガイド.md)
+- [使用方法ガイド](../../使用方法ガイド.md)
+- [コンポーネントリファレンス](../README.md)
 
-- **Phase 4 (2025-12)**: 初回実装
-  - 6つのサイズバリアント
-  - 6つのカラーバリアント
-  - 3つの形状バリアント
-  - ステータスインジケーター
-  - グループアバター機能
-  - ホバー効果とインタラクティブサポート
+---
+
+**最終更新:** 2025-12-12

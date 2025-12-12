@@ -1,14 +1,14 @@
 # Alert (アラート) コンポーネント
 
 **カテゴリ:** Feedback
-**ファイル:** `src/components/feedback/alert.yaml`
-**ステータス:** ✅ 実装済み (Phase 3)
+**ファイル:** `src/css/components/feedback/alert.css`
+**ステータス:** ✅ 実装済み
 
 ---
 
 ## 概要
 
-Alertコンポーネントは、ユーザーに重要な情報、警告、エラー、成功メッセージを伝えるためのフィードバック要素です。4つのバリアント（success, warning, error, info）をサポートし、視覚的に目立つデザインで注意を引きます。
+Alertコンポーネントは、ユーザーに重要な情報、警告、エラー、成功メッセージを伝えるためのフィードバック要素です。3つのスタイルバリアント（filled, outlined, soft）と、4つのセベリティレベル（info, success, warning, error）をサポートしています。
 
 ### 用途
 
@@ -17,48 +17,44 @@ Alertコンポーネントは、ユーザーに重要な情報、警告、エラ
 - エラーメッセージの表示
 - 情報の提供
 - システムステータスの通知
+- フォームバリデーション結果の表示
 
 ---
 
 ## バリアント
 
-### 1. Success (成功)
+### スタイルバリアント
 
-操作が正常に完了したことを伝えます。
+#### 1. Filled (塗りつぶし) - デフォルト
 
-**使用場面:**
-- フォーム送信成功
-- データ保存完了
-- 処理完了通知
-- 設定変更の確認
-
-**トークンプレフィックス:** `component.alert.success.*`
-
-### 2. Warning (警告)
-
-注意が必要な状況を伝えます。
+背景が塗りつぶされたスタイルです。最も目立つデザインで、重要な通知に適しています。
 
 **使用場面:**
-- 重要な変更前の確認
-- 潜在的な問題の警告
-- 期限切れ間近の通知
-- 制限事項の案内
+- 重要なシステムメッセージ
+- 即座に注意を引く必要がある通知
+- ページ上部のグローバルアラート
 
-**トークンプレフィックス:** `component.alert.warning.*`
+#### 2. Outlined (アウトライン)
 
-### 3. Error (エラー)
-
-エラーや問題が発生したことを伝えます。
+背景が透明で、枠線のみのスタイルです。控えめで読みやすいデザインです。
 
 **使用場面:**
-- フォームバリデーションエラー
-- システムエラー
-- 処理失敗の通知
-- アクセス拒否メッセージ
+- フォーム内の補足情報
+- サイドバーやカード内の通知
+- 背景との対比が必要な場合
 
-**トークンプレフィックス:** `component.alert.error.*`
+#### 3. Soft (ソフト)
 
-### 4. Info (情報)
+薄い背景色を持つスタイルです。FilledとOutlinedの中間の目立ち具合です。
+
+**使用場面:**
+- インラインの通知
+- カード内の情報表示
+- 長時間表示されるアラート
+
+### セベリティレベル
+
+#### 1. Info (情報)
 
 一般的な情報や補足説明を提供します。
 
@@ -68,295 +64,212 @@ Alertコンポーネントは、ユーザーに重要な情報、警告、エラ
 - 補足情報
 - システムメンテナンス通知
 
-**トークンプレフィックス:** `component.alert.info.*`
+#### 2. Success (成功)
+
+操作が正常に完了したことを伝えます。
+
+**使用場面:**
+- フォーム送信成功
+- データ保存完了
+- 処理完了通知
+- 設定変更の確認
+
+#### 3. Warning (警告)
+
+注意が必要な状況を伝えます。
+
+**使用場面:**
+- 重要な変更前の確認
+- 潜在的な問題の警告
+- 期限切れ間近の通知
+- 制限事項の案内
+
+#### 4. Error (エラー)
+
+エラーや問題が発生したことを伝えます。
+
+**使用場面:**
+- フォームバリデーションエラー
+- システムエラー
+- 処理失敗の通知
+- アクセス拒否メッセージ
 
 ---
 
-## トークン一覧
+## 使用方法
 
-### Success アラート
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.alert.success.background` | `{success.subtle}` | 成功アラートの背景色 |
-| `component.alert.success.text` | `{foreground.primary}` | 成功アラートのテキスト色 |
-| `component.alert.success.border` | `{success.default}` | 成功アラートのボーダー色 |
-| `component.alert.success.icon` | `{success.active}` | 成功アラートのアイコン色 |
-
-### Warning アラート
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.alert.warning.background` | `{warning.subtle}` | 警告アラートの背景色 |
-| `component.alert.warning.text` | `{foreground.primary}` | 警告アラートのテキスト色 |
-| `component.alert.warning.border` | `{warning.default}` | 警告アラートのボーダー色 |
-| `component.alert.warning.icon` | `{warning.active}` | 警告アラートのアイコン色 |
-
-### Error アラート
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.alert.error.background` | `{error.subtle}` | エラーアラートの背景色 |
-| `component.alert.error.text` | `{foreground.primary}` | エラーアラートのテキスト色 |
-| `component.alert.error.border` | `{error.default}` | エラーアラートのボーダー色 |
-| `component.alert.error.icon` | `{error.active}` | エラーアラートのアイコン色 |
-
-### Info アラート
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.alert.info.background` | `{info.subtle}` | 情報アラートの背景色 |
-| `component.alert.info.text` | `{foreground.primary}` | 情報アラートのテキスト色 |
-| `component.alert.info.border` | `{info.default}` | 情報アラートのボーダー色 |
-| `component.alert.info.icon` | `{info.active}` | 情報アラートのアイコン色 |
-
----
-
-## 使用例
-
-### HTML/CSS
+### Pattern 1: WebComponents (Shadow DOM)
 
 ```html
-<!-- Success アラート -->
-<div
-  class="alert alert--success"
-  role="alert"
-  style="
-    background: var(--component-alert-success-background);
-    color: var(--component-alert-success-text);
-    border: 1px solid var(--component-alert-success-border);
-    border-left: 4px solid var(--component-alert-success-border);
-    padding: 12px 16px;
-    border-radius: 4px;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-  "
->
-  <svg style="color: var(--component-alert-success-icon); width: 20px; height: 20px; flex-shrink: 0;">
-    <!-- Success icon -->
-  </svg>
-  <div>
-    <strong>成功しました</strong>
-    <p>データが正常に保存されました。</p>
+<!-- カスタム要素として使用 -->
+<ha-alert variant="filled" severity="info">
+  <div class="alert">
+    <div class="alert__icon">
+      <svg><!-- Info icon --></svg>
+    </div>
+    <div class="alert__content">
+      <p class="alert__title">お知らせ</p>
+      <p class="alert__message">システムメンテナンスは2025年12月15日に実施されます。</p>
+    </div>
   </div>
-</div>
+</ha-alert>
 
-<!-- Warning アラート -->
-<div
-  class="alert alert--warning"
-  role="alert"
-  style="
-    background: var(--component-alert-warning-background);
-    color: var(--component-alert-warning-text);
-    border: 1px solid var(--component-alert-warning-border);
-    border-left: 4px solid var(--component-alert-warning-border);
-  "
->
-  <svg style="color: var(--component-alert-warning-icon);">
-    <!-- Warning icon -->
-  </svg>
-  <div>
-    <strong>注意</strong>
-    <p>この操作は元に戻せません。</p>
+<ha-alert variant="soft" severity="success">
+  <div class="alert">
+    <div class="alert__icon">
+      <svg><!-- Success icon --></svg>
+    </div>
+    <div class="alert__content">
+      <p class="alert__title">成功しました</p>
+      <p class="alert__message">データが正常に保存されました。</p>
+    </div>
   </div>
-</div>
-
-<!-- Error アラート -->
-<div
-  class="alert alert--error"
-  role="alert"
-  style="
-    background: var(--component-alert-error-background);
-    color: var(--component-alert-error-text);
-    border: 1px solid var(--component-alert-error-border);
-    border-left: 4px solid var(--component-alert-error-border);
-  "
->
-  <svg style="color: var(--component-alert-error-icon);">
-    <!-- Error icon -->
-  </svg>
-  <div>
-    <strong>エラー</strong>
-    <p>データの保存に失敗しました。もう一度お試しください。</p>
-  </div>
-</div>
-
-<!-- Info アラート -->
-<div
-  class="alert alert--info"
-  role="alert"
-  style="
-    background: var(--component-alert-info-background);
-    color: var(--component-alert-info-text);
-    border: 1px solid var(--component-alert-info-border);
-    border-left: 4px solid var(--component-alert-info-border);
-  "
->
-  <svg style="color: var(--component-alert-info-icon);">
-    <!-- Info icon -->
-  </svg>
-  <div>
-    <strong>お知らせ</strong>
-    <p>システムメンテナンスは2025年12月15日に実施されます。</p>
-  </div>
-</div>
-
-<!-- 閉じるボタン付きアラート -->
-<div class="alert alert--success" role="alert">
-  <svg style="color: var(--component-alert-success-icon);">
-    <!-- Icon -->
-  </svg>
-  <div style="flex: 1;">
-    <strong>完了</strong>
-    <p>ファイルのアップロードが完了しました。</p>
-  </div>
-  <button
-    class="alert__close"
-    aria-label="閉じる"
-    style="
-      background: transparent;
-      border: none;
-      padding: 4px;
-      cursor: pointer;
-      color: var(--component-alert-success-text);
-      opacity: 0.7;
-    "
-  >
-    ×
-  </button>
-</div>
+</ha-alert>
 ```
 
-### CSS Classes
+### Pattern 2: Plain HTML (推奨)
 
-```css
-/* ベーススタイル */
-.alert {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 12px 16px;
-  border-radius: 4px;
-  border: 1px solid;
-  border-left-width: 4px;
-  font-size: 14px;
-  line-height: 1.5;
-}
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/variables.css">
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/components/feedback/alert.css">
+</head>
+<body>
+  <!-- Info アラート (Filled) -->
+  <div class="ha-alert">
+    <div class="alert alert--filled alert--info">
+      <div class="alert__icon">
+        <svg viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+      <div class="alert__content">
+        <p class="alert__title">お知らせ</p>
+        <p class="alert__message">システムメンテナンスは2025年12月15日に実施されます。</p>
+      </div>
+    </div>
+  </div>
 
-.alert strong {
-  display: block;
-  margin-bottom: 4px;
-  font-weight: 600;
-}
+  <!-- Success アラート (Soft) -->
+  <div class="ha-alert">
+    <div class="alert alert--soft alert--success">
+      <div class="alert__icon">
+        <svg viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+      <div class="alert__content">
+        <p class="alert__title">成功しました</p>
+        <p class="alert__message">データが正常に保存されました。</p>
+      </div>
+    </div>
+  </div>
 
-.alert p {
-  margin: 0;
-}
+  <!-- Warning アラート (Outlined) -->
+  <div class="ha-alert">
+    <div class="alert alert--outlined alert--warning">
+      <div class="alert__icon">
+        <svg viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+      <div class="alert__content">
+        <p class="alert__title">注意</p>
+        <p class="alert__message">この操作は元に戻せません。</p>
+      </div>
+    </div>
+  </div>
 
-.alert svg {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
+  <!-- Error アラート (Filled) -->
+  <div class="ha-alert">
+    <div class="alert alert--filled alert--error">
+      <div class="alert__icon">
+        <svg viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+      <div class="alert__content">
+        <p class="alert__title">エラー</p>
+        <p class="alert__message">データの保存に失敗しました。もう一度お試しください。</p>
+      </div>
+    </div>
+  </div>
 
-/* Success */
-.alert--success {
-  background: var(--component-alert-success-background);
-  color: var(--component-alert-success-text);
-  border-color: var(--component-alert-success-border);
-}
+  <!-- 閉じるボタン付きアラート -->
+  <div class="ha-alert">
+    <div class="alert alert--soft alert--info">
+      <div class="alert__icon">
+        <svg viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+      <div class="alert__content">
+        <p class="alert__title">新機能のお知らせ</p>
+        <p class="alert__message">アカウント設定に新しいオプションが追加されました。</p>
+      </div>
+      <button class="alert__close" aria-label="アラートを閉じる">
+        <svg viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+    </div>
+  </div>
 
-.alert--success svg {
-  color: var(--component-alert-success-icon);
-}
+  <!-- アクションボタン付きアラート -->
+  <div class="ha-alert">
+    <div class="alert alert--outlined alert--warning">
+      <div class="alert__icon">
+        <svg viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+      <div class="alert__content">
+        <p class="alert__title">セッションの期限切れ</p>
+        <p class="alert__message">セキュリティのため、セッションの有効期限が近づいています。</p>
+        <div class="alert__actions">
+          <button class="btn btn-primary">延長する</button>
+          <button class="btn btn-secondary">ログアウト</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-/* Warning */
-.alert--warning {
-  background: var(--component-alert-warning-background);
-  color: var(--component-alert-warning-text);
-  border-color: var(--component-alert-warning-border);
-}
-
-.alert--warning svg {
-  color: var(--component-alert-warning-icon);
-}
-
-/* Error */
-.alert--error {
-  background: var(--component-alert-error-background);
-  color: var(--component-alert-error-text);
-  border-color: var(--component-alert-error-border);
-}
-
-.alert--error svg {
-  color: var(--component-alert-error-icon);
-}
-
-/* Info */
-.alert--info {
-  background: var(--component-alert-info-background);
-  color: var(--component-alert-info-text);
-  border-color: var(--component-alert-info-border);
-}
-
-.alert--info svg {
-  color: var(--component-alert-info-icon);
-}
-
-/* 閉じるボタン */
-.alert__close {
-  background: transparent;
-  border: none;
-  padding: 4px;
-  cursor: pointer;
-  font-size: 20px;
-  line-height: 1;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
-}
-
-.alert__close:hover {
-  opacity: 1;
-}
-
-/* コンパクトバージョン */
-.alert--compact {
-  padding: 8px 12px;
-  font-size: 13px;
-}
-
-.alert--compact svg {
-  width: 16px;
-  height: 16px;
-}
+  <!-- タイトルなしのシンプルなアラート -->
+  <div class="ha-alert">
+    <div class="alert alert--soft alert--success">
+      <div class="alert__icon">
+        <svg viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+      <div class="alert__content">
+        <p class="alert__message">ファイルのアップロードが完了しました。</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
 ```
 
-### React
+### Pattern 3: React/Vue
 
-```tsx
-import React, { useState } from 'react';
+```javascript
+import '@hidearea-design/tokens/css/variables.css';
+import '@hidearea-design/tokens/css/components/feedback/alert.css';
 
-type AlertVariant = 'success' | 'warning' | 'error' | 'info';
-
-interface AlertProps {
-  variant: AlertVariant;
-  title: string;
-  message: string;
-  dismissible?: boolean;
-  onDismiss?: () => void;
-  icon?: React.ReactNode;
-}
-
-export const Alert: React.FC<AlertProps> = ({
-  variant,
+// React例
+function Alert({
+  variant = 'filled',
+  severity = 'info',
   title,
   message,
   dismissible = false,
   onDismiss,
-  icon,
-}) => {
+  actions,
+  children
+}) {
   const [isVisible, setIsVisible] = useState(true);
 
   const handleDismiss = () => {
@@ -366,88 +279,106 @@ export const Alert: React.FC<AlertProps> = ({
 
   if (!isVisible) return null;
 
-  const defaultIcons = {
+  const icons = {
+    info: (
+      <svg viewBox="0 0 20 20" fill="currentColor">
+        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"/>
+      </svg>
+    ),
     success: (
       <svg viewBox="0 0 20 20" fill="currentColor">
-        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
       </svg>
     ),
     warning: (
       <svg viewBox="0 0 20 20" fill="currentColor">
-        <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" />
+        <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd"/>
       </svg>
     ),
     error: (
       <svg viewBox="0 0 20 20" fill="currentColor">
-        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" />
-      </svg>
-    ),
-    info: (
-      <svg viewBox="0 0 20 20" fill="currentColor">
-        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" />
+        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd"/>
       </svg>
     ),
   };
 
   return (
-    <div
-      className={`alert alert--${variant}`}
-      role="alert"
-      style={{
-        background: `var(--component-alert-${variant}-background)`,
-        color: `var(--component-alert-${variant}-text)`,
-        borderColor: `var(--component-alert-${variant}-border)`,
-      }}
-    >
-      <div
-        className="alert__icon"
-        style={{ color: `var(--component-alert-${variant}-icon)` }}
-      >
-        {icon || defaultIcons[variant]}
+    <div className="ha-alert">
+      <div className={`alert alert--${variant} alert--${severity}`}>
+        <div className="alert__icon">
+          {icons[severity]}
+        </div>
+        <div className="alert__content">
+          {title && <p className="alert__title">{title}</p>}
+          {message && <p className="alert__message">{message}</p>}
+          {children}
+          {actions && (
+            <div className="alert__actions">
+              {actions}
+            </div>
+          )}
+        </div>
+        {dismissible && (
+          <button
+            className="alert__close"
+            onClick={handleDismiss}
+            aria-label="アラートを閉じる"
+          >
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"/>
+            </svg>
+          </button>
+        )}
       </div>
-      <div className="alert__content" style={{ flex: 1 }}>
-        <strong>{title}</strong>
-        <p>{message}</p>
-      </div>
-      {dismissible && (
-        <button
-          className="alert__close"
-          onClick={handleDismiss}
-          aria-label="閉じる"
-          style={{ color: `var(--component-alert-${variant}-text)` }}
-        >
-          ×
-        </button>
-      )}
     </div>
   );
-};
+}
 
 // 使用例
 export default function Example() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <Alert
-        variant="success"
+        variant="filled"
+        severity="success"
         title="成功しました"
         message="データが正常に保存されました。"
         dismissible
       />
+
       <Alert
-        variant="warning"
+        variant="outlined"
+        severity="warning"
         title="注意"
         message="この操作は元に戻せません。"
       />
+
       <Alert
-        variant="error"
+        variant="soft"
+        severity="error"
         title="エラー"
         message="データの保存に失敗しました。もう一度お試しください。"
         dismissible
       />
+
       <Alert
-        variant="info"
+        variant="filled"
+        severity="info"
         title="お知らせ"
         message="システムメンテナンスは2025年12月15日に実施されます。"
+      />
+
+      <Alert
+        variant="outlined"
+        severity="warning"
+        title="セッションの期限切れ"
+        message="セキュリティのため、セッションの有効期限が近づいています。"
+        actions={
+          <>
+            <button className="btn btn-primary">延長する</button>
+            <button className="btn btn-secondary">ログアウト</button>
+          </>
+        }
       />
     </div>
   );
@@ -456,158 +387,486 @@ export default function Example() {
 
 ---
 
+## 属性
+
+| 属性 | 値 | デフォルト | 説明 |
+|------|-----|-----------|------|
+| `variant` | `filled` \| `outlined` \| `soft` | `filled` | アラートのスタイルバリアント |
+| `severity` | `info` \| `success` \| `warning` \| `error` | `info` | アラートのセベリティレベル |
+
+---
+
+## CSS変数
+
+Alertコンポーネントは以下のCSS変数（デザイントークン）を使用しています:
+
+### 色関連
+
+#### Info (情報)
+- `--info-default` - 情報カラー (ボーダー、テキスト)
+- `--info-hover` - 情報ホバーカラー (Filledボーダー)
+- `--info-subtle` - 情報サブトルカラー (Soft背景)
+- `--foreground-inverse` - 反転テキストカラー (Filledテキスト)
+
+#### Success (成功)
+- `--success-default` - 成功カラー (ボーダー、テキスト)
+- `--success-hover` - 成功ホバーカラー (Filledボーダー)
+- `--success-subtle` - 成功サブトルカラー (Soft背景)
+
+#### Warning (警告)
+- `--warning-default` - 警告カラー (ボーダー、テキスト)
+- `--warning-hover` - 警告ホバーカラー (Filledボーダー)
+- `--warning-subtle` - 警告サブトルカラー (Soft背景)
+
+#### Error (エラー)
+- `--error-default` - エラーカラー (ボーダー、テキスト)
+- `--error-hover` - エラーホバーカラー (Filledボーダー)
+- `--error-subtle` - エラーサブトルカラー (Soft背景)
+
+### スペーシング
+- `--spacing-1` - 0.25rem (タイトルとメッセージの間隔)
+- `--spacing-2` - 0.5rem (アクションボタンの間隔、アクションの上マージン)
+- `--spacing-3` - 0.75rem (アイコン、コンテンツ、閉じるボタンの間隔)
+- `--spacing-4` - 1rem (アラート全体のパディング)
+
+### タイポグラフィ
+- `--font-family-sans` - サンセリフフォントファミリー
+- `--font-size-sm` - 0.875rem (テキストサイズ)
+- `--font-line-height-normal` - 1.5 (行の高さ)
+- `--font-weight-semibold` - 600 (タイトルの太さ)
+
+### ボーダー
+- `--border-radius-md` - 0.375rem (角丸)
+- `--border-radius-sm` - 0.25rem (閉じるボタンフォーカス時)
+
+### アニメーション
+- `--animation-duration-base` - 200ms (閉じるボタンのホバートランジション)
+
+---
+
 ## アクセシビリティ
 
 ### ARIA属性
 
-- `role="alert"`: 重要な情報であることを示す（スクリーンリーダーが即座に読み上げる）
-- `aria-live="polite"`: 動的に表示されるアラートの場合
-- `aria-atomic="true"`: アラート全体を読み上げる
-
-### 例
-
 ```html
-<!-- 静的なアラート -->
-<div class="alert alert--error" role="alert">
-  <strong>エラー</strong>
-  <p>入力内容に誤りがあります。</p>
+<!-- 静的な重要なアラート -->
+<div class="ha-alert">
+  <div class="alert alert--filled alert--error" role="alert">
+    <div class="alert__icon">
+      <svg><!-- Error icon --></svg>
+    </div>
+    <div class="alert__content">
+      <p class="alert__title">エラー</p>
+      <p class="alert__message">入力内容に誤りがあります。</p>
+    </div>
+  </div>
 </div>
 
-<!-- 動的に表示されるアラート -->
-<div
-  class="alert alert--success"
-  role="status"
-  aria-live="polite"
-  aria-atomic="true"
->
-  <strong>保存しました</strong>
-  <p>変更が正常に保存されました。</p>
+<!-- 動的に表示される通知 -->
+<div class="ha-alert">
+  <div
+    class="alert alert--soft alert--success"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+  >
+    <div class="alert__icon">
+      <svg><!-- Success icon --></svg>
+    </div>
+    <div class="alert__content">
+      <p class="alert__title">保存しました</p>
+      <p class="alert__message">変更が正常に保存されました。</p>
+    </div>
+  </div>
 </div>
 
 <!-- 閉じるボタン付き -->
-<div class="alert alert--info" role="alert">
-  <strong>情報</strong>
-  <p>新しい機能が追加されました。</p>
-  <button aria-label="アラートを閉じる">×</button>
+<div class="ha-alert">
+  <div class="alert alert--outlined alert--info" role="alert">
+    <div class="alert__icon">
+      <svg><!-- Info icon --></svg>
+    </div>
+    <div class="alert__content">
+      <p class="alert__title">情報</p>
+      <p class="alert__message">新しい機能が追加されました。</p>
+    </div>
+    <button class="alert__close" aria-label="アラートを閉じる">
+      <svg><!-- Close icon --></svg>
+    </button>
+  </div>
 </div>
 ```
 
+### ARIA Role ガイドライン
+
+| Role | 用途 | aria-live | 説明 |
+|------|------|-----------|------|
+| `alert` | 重要で即座の注意が必要 | implicit `assertive` | ページロード時から存在するエラーや警告 |
+| `status` | 重要度が低い情報 | implicit `polite` | 動的に追加される成功メッセージなど |
+
 ### キーボード操作
 
-- 閉じるボタンがある場合、`Tab`キーでフォーカス可能
-- `Enter`または`Space`キーで閉じる
+- **Tab**: 閉じるボタンやアクションボタンにフォーカス
+- **Enter/Space**: フォーカスされたボタンを実行
+- **Escape**: 閉じるボタンがある場合、アラートを閉じる（JavaScript実装が必要）
+
+### フォーカススタイル
+
+閉じるボタンにはデフォルトでフォーカス可視化スタイルが適用されています:
+
+```css
+.alert__close:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
+}
+```
 
 ---
 
 ## ベストプラクティス
 
-### 1. 適切なバリアント選択
+### ✅ 推奨
+
+#### 1. 適切なセベリティレベルの選択
+
+状況に合ったセベリティレベルを使用してください。
 
 ```html
-<!-- Good: 状況に合ったバリアント -->
-<div class="alert alert--success">保存に成功しました</div>
-<div class="alert alert--error">エラーが発生しました</div>
-
-<!-- Bad: 誤解を招くバリアント -->
-<div class="alert alert--success">エラーが発生しました</div>
-<div class="alert alert--error">成功しました</div>
-```
-
-### 2. 明確なメッセージ
-
-```html
-<!-- Good: 具体的で行動可能 -->
-<div class="alert alert--error">
-  <strong>メールアドレスが無効です</strong>
-  <p>有効なメールアドレス形式で入力してください（例: user@example.com）</p>
-</div>
-
-<!-- Bad: 曖昧で不明確 -->
-<div class="alert alert--error">
-  <strong>エラー</strong>
-  <p>入力が正しくありません</p>
-</div>
-```
-
-### 3. アイコンの使用
-
-```html
-<!-- Good: アイコンとテキストの併用 -->
-<div class="alert alert--warning">
-  <svg><!-- Warning icon --></svg>
-  <div>
-    <strong>警告</strong>
-    <p>この操作は元に戻せません</p>
+<!-- 成功時は success -->
+<div class="ha-alert">
+  <div class="alert alert--soft alert--success">
+    <div class="alert__content">
+      <p class="alert__message">保存に成功しました。</p>
+    </div>
   </div>
 </div>
 
-<!-- Bad: アイコンのみ（テキストなし） -->
-<div class="alert alert--warning">
-  <svg><!-- Icon only --></svg>
+<!-- エラー時は error -->
+<div class="ha-alert">
+  <div class="alert alert--filled alert--error">
+    <div class="alert__content">
+      <p class="alert__message">エラーが発生しました。</p>
+    </div>
+  </div>
 </div>
 ```
 
-### 4. 適切な配置
+#### 2. 明確で具体的なメッセージ
+
+ユーザーが何が起きたか、どうすればいいかを理解できるメッセージを記述してください。
+
+```html
+<!-- Good: 具体的で行動可能 -->
+<div class="ha-alert">
+  <div class="alert alert--outlined alert--error">
+    <div class="alert__icon">
+      <svg><!-- Error icon --></svg>
+    </div>
+    <div class="alert__content">
+      <p class="alert__title">メールアドレスが無効です</p>
+      <p class="alert__message">有効なメールアドレス形式で入力してください（例: user@example.com）</p>
+    </div>
+  </div>
+</div>
+
+<!-- Bad: 曖昧で不明確 -->
+<div class="ha-alert">
+  <div class="alert alert--filled alert--error">
+    <div class="alert__content">
+      <p class="alert__message">エラー</p>
+    </div>
+  </div>
+</div>
+```
+
+#### 3. アイコンの使用
+
+視覚的な手がかりとしてアイコンを使用し、色だけに依存しないでください。
+
+```html
+<!-- Good: アイコンとテキストの併用 -->
+<div class="ha-alert">
+  <div class="alert alert--soft alert--warning">
+    <div class="alert__icon">
+      <svg viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+      </svg>
+    </div>
+    <div class="alert__content">
+      <p class="alert__title">警告</p>
+      <p class="alert__message">この操作は元に戻せません。</p>
+    </div>
+  </div>
+</div>
+```
+
+#### 4. 適切な配置
+
+フォームエラーはフォームの上部、グローバルな通知はページの上部に配置してください。
 
 ```html
 <!-- Good: フォームの上部に配置 -->
 <form>
-  <div class="alert alert--error" role="alert">
-    入力エラーがあります。以下を確認してください。
+  <div class="ha-alert">
+    <div class="alert alert--filled alert--error" role="alert">
+      <div class="alert__icon">
+        <svg><!-- Error icon --></svg>
+      </div>
+      <div class="alert__content">
+        <p class="alert__title">入力エラーがあります</p>
+        <p class="alert__message">以下のフィールドを確認してください。</p>
+      </div>
+    </div>
   </div>
   <!-- フォームフィールド -->
 </form>
+```
 
-<!-- Good: ページ上部に配置 -->
-<div class="page-alerts">
-  <div class="alert alert--success">
-    設定が保存されました
+#### 5. スタイルバリアントの使い分け
+
+重要度と表示場所に応じてスタイルバリアントを選択してください。
+
+```html
+<!-- ページ上部の重要な通知: Filled -->
+<div class="ha-alert">
+  <div class="alert alert--filled alert--error">
+    <div class="alert__content">
+      <p class="alert__message">システムエラーが発生しました。</p>
+    </div>
   </div>
 </div>
+
+<!-- カード内の補足情報: Soft -->
+<div class="card">
+  <div class="ha-alert">
+    <div class="alert alert--soft alert--info">
+      <div class="alert__content">
+        <p class="alert__message">この機能はベータ版です。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- フォーム内のヘルプテキスト: Outlined -->
+<div class="ha-alert">
+  <div class="alert alert--outlined alert--info">
+    <div class="alert__content">
+      <p class="alert__message">パスワードは8文字以上である必要があります。</p>
+    </div>
+  </div>
+</div>
+```
+
+### ❌ 非推奨
+
+#### 1. 誤解を招くセベリティレベル
+
+```html
+<!-- Bad: 成功メッセージにerrorを使用 -->
+<div class="ha-alert">
+  <div class="alert alert--filled alert--error">
+    <div class="alert__content">
+      <p class="alert__message">成功しました</p>
+    </div>
+  </div>
+</div>
+
+<!-- Bad: エラーメッセージにsuccessを使用 -->
+<div class="ha-alert">
+  <div class="alert alert--soft alert--success">
+    <div class="alert__content">
+      <p class="alert__message">エラーが発生しました</p>
+    </div>
+  </div>
+</div>
+```
+
+#### 2. 色のみに依存
+
+```html
+<!-- Bad: アイコンやテキストなしで色だけで伝える -->
+<div class="ha-alert">
+  <div class="alert alert--filled alert--error">
+    <!-- アイコンなし、明確な説明なし -->
+  </div>
+</div>
+```
+
+#### 3. 曖昧なメッセージ
+
+```html
+<!-- Bad: 何が起きたか、何をすべきか不明 -->
+<div class="ha-alert">
+  <div class="alert alert--outlined alert--error">
+    <div class="alert__content">
+      <p class="alert__message">エラー</p>
+    </div>
+  </div>
+</div>
+
+<!-- Bad: 技術的すぎる詳細 -->
+<div class="ha-alert">
+  <div class="alert alert--filled alert--error">
+    <div class="alert__content">
+      <p class="alert__message">Error code 0x80004005: HRESULT exception</p>
+    </div>
+  </div>
+</div>
+```
+
+#### 4. 過度な使用
+
+```html
+<!-- Bad: 同じページに多数のアラートを表示 -->
+<div class="ha-alert">
+  <div class="alert alert--filled alert--info">...</div>
+</div>
+<div class="ha-alert">
+  <div class="alert alert--soft alert--warning">...</div>
+</div>
+<div class="ha-alert">
+  <div class="alert alert--outlined alert--success">...</div>
+</div>
+<div class="ha-alert">
+  <div class="alert alert--filled alert--error">...</div>
+</div>
+<!-- これは多すぎる - 最も重要なアラート1-2個に絞る -->
+```
+
+---
+
+## バリエーション
+
+### タイトルなしのシンプルなアラート
+
+短いメッセージの場合、タイトルを省略できます。
+
+```html
+<div class="ha-alert">
+  <div class="alert alert--soft alert--success">
+    <div class="alert__icon">
+      <svg viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+      </svg>
+    </div>
+    <div class="alert__content">
+      <p class="alert__message">ファイルのアップロードが完了しました。</p>
+    </div>
+  </div>
+</div>
+```
+
+### アイコンなしのアラート
+
+アイコンを省略したシンプルなデザインも可能です。
+
+```html
+<div class="ha-alert">
+  <div class="alert alert--outlined alert--info">
+    <div class="alert__content">
+      <p class="alert__title">ヒント</p>
+      <p class="alert__message">Ctrl+Sでいつでも保存できます。</p>
+    </div>
+  </div>
+</div>
+```
+
+### リスト付きアラート
+
+複数のエラーや情報を箇条書きで表示できます。
+
+```html
+<div class="ha-alert">
+  <div class="alert alert--filled alert--error" role="alert">
+    <div class="alert__icon">
+      <svg viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+      </svg>
+    </div>
+    <div class="alert__content">
+      <p class="alert__title">以下のエラーを修正してください:</p>
+      <ul style="margin: 0.5rem 0 0 1.5rem; padding: 0;">
+        <li>メールアドレスが無効です</li>
+        <li>パスワードは8文字以上である必要があります</li>
+        <li>利用規約に同意してください</li>
+      </ul>
+    </div>
+  </div>
+</div>
+```
+
+### リンク付きアラート
+
+詳細情報へのリンクを含めることができます。
+
+```html
+<div class="ha-alert">
+  <div class="alert alert--soft alert--info">
+    <div class="alert__icon">
+      <svg viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+      </svg>
+    </div>
+    <div class="alert__content">
+      <p class="alert__message">
+        アカウント設定を更新しました。
+        <a href="/settings" style="text-decoration: underline; font-weight: 600;">設定を確認</a>
+      </p>
+    </div>
+  </div>
+</div>
+```
+
+---
+
+## テーマ対応
+
+全てのアラートトークンはテーマに対応しています。`data-theme` 属性を変更するだけで、自動的にダークモードに切り替わります。
+
+```html
+<!-- ライトテーマ -->
+<html data-theme="light">
+  <div class="ha-alert">
+    <div class="alert alert--filled alert--success">
+      <div class="alert__content">
+        <p class="alert__message">保存しました</p>
+      </div>
+    </div>
+  </div>
+</html>
+
+<!-- ダークテーマ -->
+<html data-theme="dark">
+  <div class="ha-alert">
+    <div class="alert alert--filled alert--success">
+      <div class="alert__content">
+        <p class="alert__message">保存しました</p>
+      </div>
+    </div>
+  </div>
+</html>
 ```
 
 ---
 
 ## 関連コンポーネント
 
-- **[Badge](./badge.md)** - 小さなステータス表示
-- **[Toast](./toast.md)** - 一時的な通知メッセージ
-- **[Modal](./modal.md)** - 重要な確認ダイアログ
-- **[Banner](./banner.md)** - ページ全体の通知バナー
+- [Badge](./badge.md) - 小さなステータス表示
+- [Toast](./toast.md) - 一時的な通知メッセージ（画面端に表示）
+- [Progress](./progress.md) - 進捗状況の表示
+- [Spinner](./spinner.md) - ローディング表示
+- [Dialog](../overlays/dialog.md) - モーダル形式の重要な確認ダイアログ
 
 ---
 
-## デザインガイドライン
+## 関連ドキュメント
 
-### サイズとスペーシング
-
-- **パディング:** 12px 16px（上下 左右）
-- **アイコンサイズ:** 20px × 20px
-- **アイコンとテキストの間隔:** 12px
-- **ボーダー幅:** 1px（左側は4px）
-- **ボーダー半径:** 4px
-
-### レイアウト
-
-- アイコンは左側に配置
-- タイトルは太字で表示
-- メッセージは通常の太さ
-- 閉じるボタンは右側に配置
-
-### カラーシステム
-
-- 背景色: `{variant}.subtle`（薄い色）
-- テキスト色: `{foreground.primary}`（読みやすい）
-- ボーダー色: `{variant}.default`（はっきり）
-- アイコン色: `{variant}.active`（強調）
-
-### アニメーション
-
-- フェードイン: 200ms ease-in
-- フェードアウト: 200ms ease-out
-- スライドイン（トップから）: 300ms ease-out
+- [アーキテクチャガイド](../../アーキテクチャガイド.md)
+- [使用方法ガイド](../../使用方法ガイド.md)
+- [コンポーネントリファレンス](../README.md)
+- [セマンティックトークンガイド](../../セマンティックトークンガイド.md)
 
 ---
 
 **最終更新:** 2025-12-12
-**バージョン:** 1.0.0

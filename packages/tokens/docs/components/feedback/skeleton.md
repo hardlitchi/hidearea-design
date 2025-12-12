@@ -1,175 +1,176 @@
-# Skeleton (スケルトンローダー) コンポーネント
+# Skeleton (スケルトン) コンポーネント
 
 **カテゴリ:** Feedback
-**ファイル:** `src/components/feedback/skeleton.yaml`
-**ステータス:** ✅ 実装済み (Phase 4)
+**ファイル:** `src/css/components/feedback/skeleton.css`
+**ステータス:** ✅ 実装済み
 
 ---
 
 ## 概要
 
-スケルトンコンポーネントは、コンテンツ読み込み中のプレースホルダーを表示します。実際のコンテンツの形状を模倣し、体感待ち時間を短縮します。
+スケルトンコンポーネントは、コンテンツの読み込み中にプレースホルダーとして表示されるコンポーネントです。
+4つのバリアント（text, circle, rectangle, rounded）と、2つのアニメーション（pulse, wave）をサポートしています。
 
 ### 用途
 
-- ページ初期読み込み
-- 無限スクロール
-- 遅延読み込みコンテンツ
-- API データ取得中
-- 画像読み込み待機
+- コンテンツ読み込み中のプレースホルダー
+- 画像読み込み前の表示
+- リスト項目のローディング状態
+- カードのローディング状態
 
 ---
 
 ## バリアント
 
-### Text (テキスト)
-**高さ:** 16px (default), 14px (small), 20px (large)
-**用途:** 段落、リスト項目
+### 1. Text (テキスト)
+テキスト行のスケルトンです。
 
-### Heading (見出し)
-**高さ:** H1: 32px, H2: 28px, H3: 24px, H4: 20px
-**用途:** タイトル、見出し
+**使用場面:**
+- タイトルのローディング
+- 段落のローディング
+- リストアイテムのローディング
 
-### Avatar (アバター)
-**サイズ:** 32px (small), 40px (default), 64px (large)
-**形状:** 円形
-**用途:** ユーザーアイコン
+### 2. Circle (サークル)
+円形のスケルトンです。
 
-### Image (画像)
-**最小高さ:** 128px
-**縦横比:** 16:9, 1:1, 3:4
-**用途:** サムネイル、ヒーロー画像
+**使用場面:**
+- アバターのローディング
+- アイコンのローディング
+- 円形画像のローディング
 
-### Button (ボタン)
-**高さ:** 32px (small), 40px (default), 48px (large)
-**幅:** 96px (small), 128px (default), 160px (large)
+### 3. Rectangle (矩形)
+長方形のスケルトンです。
 
-### Card (カード)
-複数要素の組み合わせ
+**使用場面:**
+- 画像のローディング
+- カードのローディング
+- バナーのローディング
 
-### List (リスト)
-**アイテム高さ:** 48px
-**間隔:** 8px
+### 4. Rounded (角丸矩形)
+角丸の長方形スケルトンです。
+
+**使用場面:**
+- カード画像のローディング
+- サムネイルのローディング
+- ボタンのローディング
 
 ---
 
 ## アニメーション
 
 ### Pulse (パルス)
-不透明度が変化するアニメーション。
-
-**トークン:**
-- `pulse.duration` - 1.5s
-- `pulse.timing` - ease-in-out
-- `pulse.opacity.start/middle/end` - 1 / 0.5 / 1
+透明度が変化する脈打つアニメーションです。
 
 ### Wave (ウェーブ)
-左から右に流れるグラデーション。
-
-**トークン:**
-- `wave.duration` - 1.5s
-- `wave.gradient.start/middle/end`
+光が流れるようなアニメーションです。
 
 ---
 
-## 主要トークン
+## 使用方法
 
-### 基本スタイル
-- `background.base` - ベース背景色
-- `background.highlight` - ハイライト色
-
-### 角丸
-- `borderRadius.default` - 6px (通常)
-- `borderRadius.small` - 4px
-- `borderRadius.large` - 8px
-- `borderRadius.full` - 完全な円形
-
----
-
-## 使用例
-
-### HTML
+### Pattern 1: WebComponents (Shadow DOM)
 
 ```html
 <!-- テキストスケルトン -->
-<div class="skeleton skeleton-text"></div>
-<div class="skeleton skeleton-text" style="width: 80%"></div>
-<div class="skeleton skeleton-text" style="width: 60%"></div>
+<ha-skeleton variant="text" width="200px" height="1em"></ha-skeleton>
 
-<!-- カードスケルトン -->
-<div class="skeleton-card">
-  <div class="skeleton skeleton-image"></div>
-  <div class="skeleton skeleton-heading"></div>
-  <div class="skeleton skeleton-text"></div>
-  <div class="skeleton skeleton-text" style="width: 90%"></div>
-  <div class="skeleton skeleton-button"></div>
-</div>
+<!-- サークルスケルトン -->
+<ha-skeleton variant="circle" width="40px" height="40px"></ha-skeleton>
 
-<!-- アバター + テキスト -->
-<div class="skeleton-demo">
-  <div class="skeleton skeleton-avatar"></div>
-  <div class="skeleton-content">
-    <div class="skeleton skeleton-text" style="width: 60%"></div>
-    <div class="skeleton skeleton-text" style="width: 40%"></div>
+<!-- 矩形スケルトン -->
+<ha-skeleton variant="rectangle" width="100%" height="200px"></ha-skeleton>
+
+<!-- ウェーブアニメーション -->
+<ha-skeleton variant="text" animation="wave" width="100%"></ha-skeleton>
+```
+
+### Pattern 2: Plain HTML (推奨)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/variables.css">
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/html/feedback/skeleton.css">
+</head>
+<body>
+  <!-- テキストスケルトン（パルス） -->
+  <div class="ha-skeleton">
+    <div class="skeleton skeleton--text skeleton--pulse" style="width: 200px;"></div>
   </div>
-</div>
+
+  <!-- サークルスケルトン -->
+  <div class="ha-skeleton">
+    <div class="skeleton skeleton--circular skeleton--pulse" style="width: 40px; height: 40px;"></div>
+  </div>
+
+  <!-- 矩形スケルトン（ウェーブ） -->
+  <div class="ha-skeleton">
+    <div class="skeleton skeleton--rectangular skeleton--wave" style="width: 100%; height: 200px;"></div>
+  </div>
+
+  <!-- 角丸矩形スケルトン -->
+  <div class="ha-skeleton">
+    <div class="skeleton skeleton--pulse" style="width: 100%; height: 150px; border-radius: 8px;"></div>
+  </div>
+
+  <!-- カードスケルトンの例 -->
+  <div class="card-skeleton">
+    <div class="skeleton skeleton--rectangular skeleton--wave" style="width: 100%; height: 200px;"></div>
+    <div class="skeleton skeleton--text skeleton--pulse" style="width: 80%; margin-top: 16px;"></div>
+    <div class="skeleton skeleton--text skeleton--pulse" style="width: 60%; margin-top: 8px;"></div>
+  </div>
+</body>
+</html>
 ```
 
-### React
+---
 
-```tsx
-interface SkeletonProps {
-  variant?: 'text' | 'heading' | 'avatar' | 'image' | 'button' | 'card';
-  width?: string | number;
-  height?: string | number;
-  animation?: 'pulse' | 'wave' | 'none';
-  count?: number;
-}
+## 属性
 
-export function Skeleton({
-  variant = 'text',
-  width,
-  height,
-  animation = 'pulse',
-  count = 1
-}: SkeletonProps) {
-  const skeletons = Array.from({ length: count }, (_, i) => (
-    <div
-      key={i}
-      className={`skeleton skeleton-${variant} skeleton-${animation}`}
-      style={{
-        ...(width && { width }),
-        ...(height && { height })
-      }}
-    />
-  ));
+| 属性 | 値 | デフォルト | 説明 |
+|------|-----|-----------|------|
+| `variant` | `text` \| `circle` \| `rectangle` \| `rounded` | `text` | スケルトンの形状 |
+| `animation` | `pulse` \| `wave` | `pulse` | アニメーションタイプ |
+| `width` | string | `100%` | 幅（CSS値） |
+| `height` | string | `1em` | 高さ（CSS値） |
 
-  return count > 1 ? <div className="skeleton-group">{skeletons}</div> : skeletons[0];
-}
+---
 
-// 使用例
-<Skeleton variant="text" count={3} />
-<Skeleton variant="avatar" />
-<Skeleton variant="image" width="100%" height="200px" />
-```
+## CSS変数
+
+スケルトンコンポーネントは以下のCSS変数（デザイントークン）を使用しています:
+
+### 色関連
+- `--skeleton-bg` - 背景色（デフォルト: `--color-neutral-200`）
+- `--skeleton-wave-color` - ウェーブ色（デフォルト: rgba(255, 255, 255, 0.4)）
+
+### ボーダー
+- `--skeleton-border-radius` - 角丸（デフォルト: `--border-radius-md`）
+- `--border-radius-full` - 円形用の完全な角丸
 
 ---
 
 ## アクセシビリティ
 
-- **aria-busy="true"** - 読み込み中を示す
-- **aria-label="読み込み中"** - スクリーンリーダー用
-- **role="status"** - ステータス更新を通知
+- `aria-busy="true"`を使用
+- `aria-label`で読み込み中であることを示す
+- 読み込み完了後は適切にコンテンツを置き換え
+- `role="status"`を使用
 
 ```html
-<div
-  className="skeleton-container"
-  aria-busy="true"
-  aria-label="コンテンツを読み込んでいます"
-  role="status"
->
-  <div className="skeleton skeleton-text"></div>
-  <div className="skeleton skeleton-text"></div>
+<!-- アクセシビリティ対応 -->
+<div role="status" aria-busy="true" aria-label="コンテンツ読み込み中">
+  <div class="skeleton skeleton--text skeleton--pulse" style="width: 100%;"></div>
+  <div class="skeleton skeleton--text skeleton--pulse" style="width: 80%;"></div>
+  <span class="sr-only">コンテンツを読み込んでいます...</span>
+</div>
+
+<!-- カードスケルトン -->
+<div class="card" role="status" aria-label="記事読み込み中">
+  <div class="skeleton skeleton--rectangular skeleton--wave" style="height: 200px;"></div>
+  <div class="skeleton skeleton--text skeleton--pulse" style="width: 80%; margin-top: 16px;"></div>
+  <div class="skeleton skeleton--text skeleton--pulse" style="width: 60%; margin-top: 8px;"></div>
 </div>
 ```
 
@@ -179,81 +180,95 @@ export function Skeleton({
 
 ### ✅ 推奨
 
-- 実際のコンテンツの形状に合わせる
-- 適切なアニメーション選択
-- 読み込み完了後は即座に置換
-- 複数行のテキストは適切に配置
-- パフォーマンスに配慮
+1. **実際のレイアウトを再現**
+   - 読み込み後のコンテンツと同じ構造を使用
+   - サイズや配置を一致させる
+
+2. **適切なアニメーションの選択**
+   - パフォーマンスを考慮
+   - prefers-reduced-motionに対応
+
+3. **複数行のテキスト**
+   - 最後の行は短めに（80%程度）
+
+```html
+<!-- 良い例: リストアイテムスケルトン -->
+<div class="list-item-skeleton">
+  <div class="skeleton skeleton--circular skeleton--pulse" style="width: 40px; height: 40px;"></div>
+  <div style="flex: 1; margin-left: 12px;">
+    <div class="skeleton skeleton--text skeleton--pulse" style="width: 100%;"></div>
+    <div class="skeleton skeleton--text skeleton--pulse" style="width: 70%; margin-top: 8px;"></div>
+  </div>
+</div>
+
+<!-- 良い例: カードスケルトン -->
+<div class="card-skeleton">
+  <div class="skeleton skeleton--wave" style="width: 100%; height: 180px; border-radius: 8px;"></div>
+  <div class="skeleton skeleton--text skeleton--pulse" style="width: 90%; margin-top: 16px;"></div>
+  <div class="skeleton skeleton--text skeleton--pulse" style="width: 80%; margin-top: 8px;"></div>
+  <div class="skeleton skeleton--text skeleton--pulse" style="width: 60%; margin-top: 8px;"></div>
+</div>
+```
 
 ### ❌ 非推奨
 
-- 長時間表示し続ける
-- 実際のレイアウトと大きく異なる
-- アニメーションが激しすぎる
-- エラー時もスケルトン表示
-- 小さすぎる要素
+1. **実際のコンテンツと異なるレイアウト**
+   - レイアウトシフトを引き起こす
+
+2. **過度なアニメーション**
+   - パフォーマンスに影響
+   - ユーザー体験を損なう
+
+3. **長時間の表示**
+   - タイムアウト処理を実装
 
 ---
 
-## パターン
+## パターン例
 
-### リストアイテム
+### プロフィールカードスケルトン
 
-```tsx
-function SkeletonListItem() {
-  return (
-    <div className="skeleton-list-item">
-      <Skeleton variant="avatar" />
-      <div className="skeleton-content">
-        <Skeleton variant="text" width="60%" />
-        <Skeleton variant="text" width="40%" />
-      </div>
-    </div>
-  );
-}
+```html
+<div class="profile-card-skeleton">
+  <!-- アバター -->
+  <div class="skeleton skeleton--circular skeleton--pulse" style="width: 80px; height: 80px; margin: 0 auto;"></div>
+  
+  <!-- 名前 -->
+  <div class="skeleton skeleton--text skeleton--pulse" style="width: 60%; margin: 16px auto 0;"></div>
+  
+  <!-- 説明 -->
+  <div class="skeleton skeleton--text skeleton--pulse" style="width: 80%; margin: 8px auto 0;"></div>
+  <div class="skeleton skeleton--text skeleton--pulse" style="width: 70%; margin: 4px auto 0;"></div>
+</div>
 ```
 
-### カードグリッド
+### ブログ記事スケルトン
 
-```tsx
-function SkeletonCard() {
-  return (
-    <div className="skeleton-card">
-      <Skeleton variant="image" height="200px" />
-      <div className="skeleton-card-body">
-        <Skeleton variant="heading" />
-        <Skeleton variant="text" count={2} />
-        <Skeleton variant="button" />
-      </div>
-    </div>
-  );
-}
-```
-
----
-
-## テーマ対応
-
-スケルトンカラーはテーマに応じて自動調整されます：
-
-```yaml
-# ライトテーマ
-skeleton.background.base: "{background.secondary}"  # 薄いグレー
-
-# ダークテーマ
-skeleton.background.base: "{background.secondary}"  # 濃いグレー
+```html
+<article class="blog-skeleton">
+  <!-- サムネイル -->
+  <div class="skeleton skeleton--wave" style="width: 100%; height: 300px; border-radius: 8px;"></div>
+  
+  <!-- タイトル -->
+  <div class="skeleton skeleton--text skeleton--pulse" style="width: 90%; margin-top: 24px; height: 2em;"></div>
+  
+  <!-- メタ情報 -->
+  <div class="skeleton skeleton--text skeleton--pulse" style="width: 40%; margin-top: 12px; height: 1em;"></div>
+  
+  <!-- 本文 -->
+  <div class="skeleton skeleton--text skeleton--pulse" style="width: 100%; margin-top: 16px;"></div>
+  <div class="skeleton skeleton--text skeleton--pulse" style="width: 95%; margin-top: 8px;"></div>
+  <div class="skeleton skeleton--text skeleton--pulse" style="width: 80%; margin-top: 8px;"></div>
+</article>
 ```
 
 ---
 
 ## 関連コンポーネント
 
-- [Spinner](./spinner.md) - シンプルなローディング
-- [Progress](./progress.md) - 進捗表示
+- [Spinner](./spinner.md) - ローディングスピナー
+- [Progress](./progress.md) - プログレスバー
 
 ---
 
-## 関連ドキュメント
-
-- [アーキテクチャガイド](../アーキテクチャガイド.md)
-- [使用方法ガイド](../使用方法ガイド.md)
+**最終更新:** 2025-12-12

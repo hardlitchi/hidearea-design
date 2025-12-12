@@ -1,364 +1,230 @@
 # Breadcrumb (パンくずリスト) コンポーネント
 
 **カテゴリ:** Navigation
-**ファイル:** `src/components/navigation/breadcrumb.yaml`
-**ステータス:** ✅ 実装済み (Phase 4 Option C)
+**ファイル:** `src/css/components/navigation/breadcrumb.css`
+**ステータス:** ✅ 実装済み
 
 ---
 
 ## 概要
 
-パンくずリストコンポーネントは、ユーザーが現在のページの位置をサイト階層内で理解し、上位階層に簡単に戻れるようにするナビゲーション要素です。複数のセパレータースタイルと、サイズバリアントをサポートしています。
+パンくずリストコンポーネントは、ユーザーの現在位置を階層的に表示するナビゲーション要素です。
+4つのセパレータースタイル（slash, chevron, dot, arrow）と、3つのサイズ（sm, md, lg）をサポートしています。
 
 ### 用途
 
-- Webサイトの階層ナビゲーション
-- ファイルシステムのパス表示
-- マルチステップフォームの進行状況表示
-- Eコマースサイトのカテゴリナビゲーション
-
-### Phase 4 で追加された機能
-
-- **クリックイベント処理**: リンククリック時のカスタムイベント発行
-- **キーボードナビゲーション**: Enter/Spaceキーでのリンク操作
-- **動的パス更新**: `updatePath()` メソッドによる動的な階層変更
-- **トースト通知統合**: ナビゲーション時の視覚的フィードバック
+- サイトの階層構造の表示
+- ユーザーの現在位置の明示
+- 上位階層への簡単なナビゲーション
+- SEO向上のための構造化データ
 
 ---
 
-## セパレータースタイル
+## セパレータータイプ
 
-パンくずリストの区切り文字は、デザインに合わせて選択できます。
+### 1. Slash (スラッシュ) - デフォルト
 
-### 1. スラッシュ (/) - デフォルト
-
-最も一般的なセパレーター。
-
-```html
-<li class="breadcrumb-separator">/</li>
-```
+スラッシュ（/）で項目を区切るスタイルです。最も一般的なパンくずリストの表示方法です。
 
 **使用場面:**
 - 標準的なWebサイト
-- ファイルパス表示
+- ファイルシステム風のナビゲーション
+- シンプルなデザイン
 
-### 2. シェブロン (›)
+### 2. Chevron (シェブロン)
 
-モダンで洗練された見た目。
-
-```html
-<li class="breadcrumb-separator">›</li>
-```
+右向き矢印（›）で項目を区切るスタイルです。視覚的な流れを強調します。
 
 **使用場面:**
-- モダンなUI
-- Eコマースサイト
+- モダンなUIデザイン
+- 明確な方向性が必要な場合
+- eコマースサイト
 
-### 3. 矢印 (→)
+### 3. Dot (ドット)
 
-方向性を強調したい場合。
+ドット（•）で項目を区切るスタイルです。控えめで洗練された印象を与えます。
 
-```html
-<li class="breadcrumb-separator">→</li>
-```
+**使用場面:**
+- ミニマルなデザイン
+- 視覚的な区切りを抑えたい場合
+- ブログや記事サイト
+
+### 4. Arrow (矢印)
+
+矢印（→）で項目を区切るスタイルです。明確な進行方向を示します。
 
 **使用場面:**
 - フロー型のナビゲーション
-- チュートリアル
+- プロセスの表示
+- チュートリアルやウィザード
 
-### 4. ドット (·)
+---
 
-ミニマルなデザイン。
+## サイズ
+
+### Small (sm)
+- フォントサイズ: `0.875rem`
+- ギャップ: `0.25rem`
+
+### Medium (md) - デフォルト
+- フォントサイズ: `1rem`
+- ギャップ: `0.5rem`
+
+### Large (lg)
+- フォントサイズ: `1.125rem`
+- ギャップ: `0.75rem`
+
+---
+
+## 使用方法
+
+### Pattern 1: WebComponents (Shadow DOM)
 
 ```html
-<li class="breadcrumb-separator">·</li>
+<!-- スラッシュセパレーター -->
+<ha-breadcrumb separator="slash" size="md">
+  <ha-breadcrumb-item>
+    <a href="/">ホーム</a>
+  </ha-breadcrumb-item>
+  <ha-breadcrumb-item>
+    <a href="/products">商品</a>
+  </ha-breadcrumb-item>
+  <ha-breadcrumb-item current>
+    <span>カテゴリ</span>
+  </ha-breadcrumb-item>
+</ha-breadcrumb>
+
+<!-- シェブロンセパレーター -->
+<ha-breadcrumb separator="chevron">
+  <ha-breadcrumb-item>
+    <a href="/">ホーム</a>
+  </ha-breadcrumb-item>
+  <ha-breadcrumb-item current>
+    <span>現在のページ</span>
+  </ha-breadcrumb-item>
+</ha-breadcrumb>
 ```
 
-**使用場面:**
-- シンプルなUI
-- スペースが限られている場合
-
----
-
-## サイズバリアント
-
-### Small (小)
-
-コンパクトなスペースに適したサイズ。
-
-- フォントサイズ: 0.75rem (12px)
-- アイコンサイズ: 0.75rem
-- アイテム間隔: 0.25rem
-
-### Default (デフォルト)
-
-標準的なサイズ。
-
-- フォントサイズ: 0.875rem (14px)
-- アイコンサイズ: 1rem
-- アイテム間隔: 0.5rem
-
-### Large (大)
-
-大きめで見やすいサイズ。
-
-- フォントサイズ: 1rem (16px)
-- アイコンサイズ: 1.25rem
-- アイテム間隔: 0.75rem
-
----
-
-## トークン一覧
-
-### コンテナ
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.breadcrumb.container.padding.vertical` | `{spacing.2}` | コンテナの垂直パディング (0.5rem) |
-| `component.breadcrumb.container.padding.horizontal` | `{spacing.0}` | コンテナの水平パディング |
-| `component.breadcrumb.container.gap` | `{spacing.2}` | アイテム間の間隔 (0.5rem) |
-
-### アイテム
-
-#### テキスト色
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.breadcrumb.item.text.default` | `{foreground.secondary}` | デフォルトのテキスト色 |
-| `component.breadcrumb.item.text.hover` | `{primary.default}` | ホバー時のテキスト色 |
-| `component.breadcrumb.item.text.active` | `{foreground.primary}` | 現在のページのテキスト色 |
-| `component.breadcrumb.item.text.disabled` | `{foreground.tertiary}` | 無効状態のテキスト色 |
-
-#### タイポグラフィ
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.breadcrumb.item.fontSize` | `{font.size.sm}` | アイテムのフォントサイズ (0.875rem) |
-| `component.breadcrumb.item.fontWeight` | `{font.weight.normal}` | アイテムのフォントウェイト |
-| `component.breadcrumb.item.lineHeight` | `{font.lineHeight.normal}` | アイテムの行高 |
-
-#### テキスト装飾
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.breadcrumb.item.textDecoration.default` | `none` | デフォルトのテキスト装飾 |
-| `component.breadcrumb.item.textDecoration.hover` | `underline` | ホバー時のテキスト装飾 |
-
-#### パディング・角丸
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.breadcrumb.item.padding.horizontal` | `{spacing.1}` | アイテムの水平パディング (0.25rem) |
-| `component.breadcrumb.item.padding.vertical` | `{spacing.1}` | アイテムの垂直パディング (0.25rem) |
-| `component.breadcrumb.item.borderRadius` | `{border.radius.sm}` | アイテムの角丸 |
-
-### セパレーター
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.breadcrumb.separator.color` | `{foreground.tertiary}` | セパレーターの色 |
-| `component.breadcrumb.separator.fontSize` | `{font.size.sm}` | セパレーターのフォントサイズ |
-| `component.breadcrumb.separator.margin.horizontal` | `{spacing.2}` | セパレーターの水平マージン (0.5rem) |
-| `component.breadcrumb.separator.content.default` | `"/"` | デフォルトのセパレーター |
-| `component.breadcrumb.separator.content.chevron` | `"›"` | シェブロンセパレーター |
-| `component.breadcrumb.separator.content.arrow` | `"→"` | 矢印セパレーター |
-| `component.breadcrumb.separator.content.dot` | `"·"` | ドットセパレーター |
-
-### アイコン
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.breadcrumb.icon.size` | `{spacing.4}` | アイコンのサイズ (1rem) |
-| `component.breadcrumb.icon.gap` | `{spacing.2}` | アイコンとテキストの間隔 |
-| `component.breadcrumb.icon.color.default` | `{foreground.tertiary}` | デフォルトのアイコン色 |
-| `component.breadcrumb.icon.color.hover` | `{primary.default}` | ホバー時のアイコン色 |
-| `component.breadcrumb.icon.color.active` | `{foreground.primary}` | アクティブアイテムのアイコン色 |
-
-### ホームアイコン
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.breadcrumb.home.size` | `{spacing.4}` | ホームアイコンのサイズ (1rem) |
-| `component.breadcrumb.home.color` | `{foreground.secondary}` | ホームアイコンの色 |
-
-### 省略表示
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.breadcrumb.ellipsis.color` | `{foreground.secondary}` | 省略記号の色 |
-| `component.breadcrumb.ellipsis.padding` | `{spacing.1}` | 省略記号のパディング |
-| `component.breadcrumb.ellipsis.cursor` | `pointer` | 省略記号のカーソル |
-| `component.breadcrumb.ellipsis.hover.color` | `{primary.default}` | ホバー時の色 |
-| `component.breadcrumb.ellipsis.hover.background` | `{background.secondary}` | ホバー時の背景色 |
-
-### トランジション
-
-| トークン | 値 | 説明 |
-|---------|-----|------|
-| `component.breadcrumb.transition.duration` | `{animation.duration.fast}` | トランジションの持続時間 |
-| `component.breadcrumb.transition.timing` | `{animation.easing.ease}` | トランジションのイージング |
-| `component.breadcrumb.transition.properties` | `color, background-color` | トランジション対象 |
-
----
-
-## 使用例
-
-### HTML
+### Pattern 2: Plain HTML (推奨)
 
 ```html
-<!-- 基本的なパンくずリスト -->
-<nav class="breadcrumb" aria-label="パンくずナビゲーション">
-  <ol class="breadcrumb-list">
-    <li class="breadcrumb-item">
-      <a href="/" class="breadcrumb-link">ホーム</a>
-    </li>
-    <li class="breadcrumb-separator">/</li>
-    <li class="breadcrumb-item">
-      <a href="/products" class="breadcrumb-link">プロダクト</a>
-    </li>
-    <li class="breadcrumb-separator">/</li>
-    <li class="breadcrumb-item">
-      <a href="/products/electronics" class="breadcrumb-link">電子機器</a>
-    </li>
-    <li class="breadcrumb-separator">/</li>
-    <li class="breadcrumb-item breadcrumb-item-active" aria-current="page">
-      ラップトップ
-    </li>
-  </ol>
-</nav>
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/variables.css">
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/html/navigation/breadcrumb.css">
+</head>
+<body>
+  <!-- 基本的なパンくずリスト（スラッシュ） -->
+  <nav class="ha-breadcrumb" aria-label="breadcrumb">
+    <ol class="breadcrumb size-md">
+      <li class="ha-breadcrumb-item">
+        <a href="/" class="breadcrumb-item">ホーム</a>
+        <span class="separator separator-slash"></span>
+      </li>
+      <li class="ha-breadcrumb-item">
+        <a href="/products" class="breadcrumb-item">商品</a>
+        <span class="separator separator-slash"></span>
+      </li>
+      <li class="ha-breadcrumb-item">
+        <span class="breadcrumb-item current" aria-current="page">電化製品</span>
+      </li>
+    </ol>
+  </nav>
 
-<!-- ホームアイコン付き -->
-<nav class="breadcrumb">
-  <ol class="breadcrumb-list">
-    <li class="breadcrumb-item">
-      <a href="/" class="breadcrumb-link">
-        <span class="breadcrumb-icon">🏠</span>
-        ホーム
-      </a>
-    </li>
-    <li class="breadcrumb-separator">›</li>
-    <li class="breadcrumb-item">
-      <a href="/docs" class="breadcrumb-link">ドキュメント</a>
-    </li>
-    <li class="breadcrumb-separator">›</li>
-    <li class="breadcrumb-item breadcrumb-item-active">
-      コンポーネント
-    </li>
-  </ol>
-</nav>
+  <!-- シェブロンセパレーター -->
+  <nav class="ha-breadcrumb" aria-label="breadcrumb">
+    <ol class="breadcrumb size-md">
+      <li class="ha-breadcrumb-item">
+        <a href="/" class="breadcrumb-item">ホーム</a>
+        <span class="separator separator-chevron"></span>
+      </li>
+      <li class="ha-breadcrumb-item">
+        <a href="/docs" class="breadcrumb-item">ドキュメント</a>
+        <span class="separator separator-chevron"></span>
+      </li>
+      <li class="ha-breadcrumb-item">
+        <a href="/docs/components" class="breadcrumb-item">コンポーネント</a>
+        <span class="separator separator-chevron"></span>
+      </li>
+      <li class="ha-breadcrumb-item">
+        <span class="breadcrumb-item current" aria-current="page">ボタン</span>
+      </li>
+    </ol>
+  </nav>
 
-<!-- 省略表示付き（長い階層） -->
-<nav class="breadcrumb">
-  <ol class="breadcrumb-list">
-    <li class="breadcrumb-item">
-      <a href="/" class="breadcrumb-link">ホーム</a>
-    </li>
-    <li class="breadcrumb-separator">/</li>
-    <li class="breadcrumb-item">
-      <button class="breadcrumb-ellipsis" aria-label="省略された階層を表示">
-        ...
-      </button>
-    </li>
-    <li class="breadcrumb-separator">/</li>
-    <li class="breadcrumb-item">
-      <a href="/category" class="breadcrumb-link">カテゴリ</a>
-    </li>
-    <li class="breadcrumb-separator">/</li>
-    <li class="breadcrumb-item breadcrumb-item-active">
-      現在のページ
-    </li>
-  </ol>
-</nav>
+  <!-- ドットセパレーター -->
+  <nav class="ha-breadcrumb" aria-label="breadcrumb">
+    <ol class="breadcrumb size-sm">
+      <li class="ha-breadcrumb-item">
+        <a href="/" class="breadcrumb-item">ホーム</a>
+        <span class="separator separator-dot"></span>
+      </li>
+      <li class="ha-breadcrumb-item">
+        <a href="/blog" class="breadcrumb-item">ブログ</a>
+        <span class="separator separator-dot"></span>
+      </li>
+      <li class="ha-breadcrumb-item">
+        <span class="breadcrumb-item current" aria-current="page">記事タイトル</span>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- 矢印セパレーター -->
+  <nav class="ha-breadcrumb" aria-label="breadcrumb">
+    <ol class="breadcrumb size-lg">
+      <li class="ha-breadcrumb-item">
+        <a href="/" class="breadcrumb-item">ステップ1</a>
+        <span class="separator separator-arrow"></span>
+      </li>
+      <li class="ha-breadcrumb-item">
+        <a href="/step2" class="breadcrumb-item">ステップ2</a>
+        <span class="separator separator-arrow"></span>
+      </li>
+      <li class="ha-breadcrumb-item">
+        <span class="breadcrumb-item current" aria-current="page">ステップ3</span>
+      </li>
+    </ol>
+  </nav>
+</body>
+</html>
 ```
 
-### CSS
+### Pattern 3: React/Vue
 
-```css
-.breadcrumb {
-  padding: var(--component-breadcrumb-container-padding-vertical)
-           var(--component-breadcrumb-container-padding-horizontal);
-}
+```javascript
+import '@hidearea-design/tokens/css/html/navigation/breadcrumb.css';
 
-.breadcrumb-list {
-  display: flex;
-  align-items: center;
-  gap: var(--component-breadcrumb-container-gap);
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+// React例
+function Breadcrumb({ items, separator = 'slash', size = 'md' }) {
+  const separatorClass = `separator-${separator}`;
 
-.breadcrumb-item {
-  display: inline-flex;
-  align-items: center;
-}
-
-.breadcrumb-link {
-  padding: var(--component-breadcrumb-item-padding-vertical)
-           var(--component-breadcrumb-item-padding-horizontal);
-  font-size: var(--component-breadcrumb-item-font-size);
-  font-weight: var(--component-breadcrumb-item-font-weight);
-  color: var(--component-breadcrumb-item-text-default);
-  text-decoration: var(--component-breadcrumb-item-text-decoration-default);
-  border-radius: var(--component-breadcrumb-item-border-radius);
-  transition: var(--component-breadcrumb-transition-properties)
-              var(--component-breadcrumb-transition-duration)
-              var(--component-breadcrumb-transition-timing);
-}
-
-.breadcrumb-link:hover {
-  color: var(--component-breadcrumb-item-text-hover);
-  text-decoration: var(--component-breadcrumb-item-text-decoration-hover);
-}
-
-.breadcrumb-item-active {
-  color: var(--component-breadcrumb-item-text-active);
-  font-weight: var(--component-breadcrumb-item-font-weight);
-}
-
-.breadcrumb-separator {
-  color: var(--component-breadcrumb-separator-color);
-  font-size: var(--component-breadcrumb-separator-font-size);
-  user-select: none;
-}
-```
-
-### React
-
-```tsx
-interface BreadcrumbItem {
-  label: string;
-  href?: string;
-}
-
-function Breadcrumb({ items, separator = '/' }: {
-  items: BreadcrumbItem[];
-  separator?: string;
-}) {
   return (
-    <nav className="breadcrumb" aria-label="パンくずナビゲーション">
-      <ol className="breadcrumb-list">
-        {items.map((item, index) => (
-          <React.Fragment key={index}>
-            <li className="breadcrumb-item">
-              {index === items.length - 1 ? (
+    <nav className="ha-breadcrumb" aria-label="breadcrumb">
+      <ol className={`breadcrumb size-${size}`}>
+        {items.map((item, index) => {
+          const isLast = index === items.length - 1;
+
+          return (
+            <li key={index} className="ha-breadcrumb-item">
+              {item.href && !isLast ? (
+                <a href={item.href} className="breadcrumb-item">
+                  {item.label}
+                </a>
+              ) : (
                 <span
-                  className="breadcrumb-item-active"
-                  aria-current="page"
+                  className={`breadcrumb-item ${isLast ? 'current' : ''}`}
+                  aria-current={isLast ? 'page' : undefined}
                 >
                   {item.label}
                 </span>
-              ) : (
-                <a href={item.href} className="breadcrumb-link">
-                  {item.label}
-                </a>
+              )}
+              {!isLast && (
+                <span className={`separator ${separatorClass}`}></span>
               )}
             </li>
-            {index < items.length - 1 && (
-              <li className="breadcrumb-separator">{separator}</li>
-            )}
-          </React.Fragment>
-        ))}
+          );
+        })}
       </ol>
     </nav>
   );
@@ -366,271 +232,338 @@ function Breadcrumb({ items, separator = '/' }: {
 
 // 使用例
 <Breadcrumb
+  separator="chevron"
+  size="md"
   items={[
     { label: 'ホーム', href: '/' },
-    { label: 'プロダクト', href: '/products' },
-    { label: 'カテゴリ', href: '/products/category' },
-    { label: '現在のページ' }
+    { label: '商品', href: '/products' },
+    { label: '電化製品', href: '/products/electronics' },
+    { label: 'ノートパソコン' }, // 現在のページ（hrefなし）
   ]}
-  separator="›"
 />
 ```
 
----
-
-## アクセシビリティ
-
-### ARIA属性
-
-- `aria-label="パンくずナビゲーション"`: navタグに設定
-- `aria-current="page"`: 現在のページを示すアイテムに設定
-- `aria-label`: 省略ボタンに説明を追加
-
-### セマンティックHTML
+### Pattern 4: 構造化データ付き（SEO最適化）
 
 ```html
-<nav aria-label="パンくずナビゲーション">
-  <ol><!-- 順序付きリスト -->
-    <li><!-- リストアイテム -->
-      <a href="...">...</a>
+<nav class="ha-breadcrumb" aria-label="breadcrumb">
+  <ol class="breadcrumb size-md" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <li class="ha-breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" class="breadcrumb-item" itemprop="item">
+        <span itemprop="name">ホーム</span>
+      </a>
+      <meta itemprop="position" content="1" />
+      <span class="separator separator-slash"></span>
+    </li>
+    <li class="ha-breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/products" class="breadcrumb-item" itemprop="item">
+        <span itemprop="name">商品</span>
+      </a>
+      <meta itemprop="position" content="2" />
+      <span class="separator separator-slash"></span>
+    </li>
+    <li class="ha-breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span class="breadcrumb-item current" aria-current="page" itemprop="item">
+        <span itemprop="name">電化製品</span>
+      </span>
+      <meta itemprop="position" content="3" />
     </li>
   </ol>
 </nav>
 ```
 
+---
+
+## 属性
+
+| 属性 | 値 | デフォルト | 説明 |
+|------|-----|-----------|------|
+| `separator` | `slash` \| `chevron` \| `dot` \| `arrow` | `slash` | セパレーターのスタイル |
+| `size` | `sm` \| `md` \| `lg` | `md` | パンくずリストのサイズ |
+| `current` | `boolean` | `false` | 現在のページを示す（breadcrumb-item） |
+
+---
+
+## CSS変数
+
+パンくずリストコンポーネントは以下のCSS変数（デザイントークン）を使用しています:
+
+### 色関連
+- `--primary-default` - ホバー時のリンク色
+- `--foreground-primary` - 現在のページのテキスト色
+- `--color-neutral-400` - セパレーターの色
+- `--color-neutral-600` - リンクのデフォルト色
+
+### スペーシング
+- `--spacing-1` - 0.25rem (小ギャップ)
+- `--spacing-2` - 0.5rem (中ギャップ)
+- `--spacing-3` - 0.75rem (大ギャップ)
+
+### フォント
+- `--font-size-sm` - 0.875rem
+- `--font-size-base` - 1rem
+- `--font-size-lg` - 1.125rem
+- `--font-weight-medium` - 500
+
+### ボーダー
+- `--border-radius-sm` - 小角丸（フォーカス時）
+
+### アニメーション
+- `--animation-duration-base` - 200ms
+- `--animation-easing-ease` - ease
+
+---
+
+## アクセシビリティ
+
+- `<nav>`要素で囲み、`aria-label="breadcrumb"`を指定
+- `<ol>`リストで階層構造を表現
+- `aria-current="page"`で現在のページを示す
+- リンクには明確なテキストを使用
+- 構造化データ（Schema.org）でSEOを向上
+
+```html
+<!-- アクセシビリティの良い例 -->
+<nav class="ha-breadcrumb" aria-label="パンくずリスト" role="navigation">
+  <ol class="breadcrumb">
+    <li class="ha-breadcrumb-item">
+      <a href="/" class="breadcrumb-item" aria-label="ホームページへ移動">
+        ホーム
+      </a>
+      <span class="separator separator-slash" aria-hidden="true"></span>
+    </li>
+    <li class="ha-breadcrumb-item">
+      <a href="/products" class="breadcrumb-item" aria-label="商品一覧へ移動">
+        商品
+      </a>
+      <span class="separator separator-slash" aria-hidden="true"></span>
+    </li>
+    <li class="ha-breadcrumb-item">
+      <span
+        class="breadcrumb-item current"
+        aria-current="page"
+        aria-label="現在のページ: 電化製品"
+      >
+        電化製品
+      </span>
+    </li>
+  </ol>
+</nav>
+```
+
+### キーボード操作
+
+- **Tab**: 次のリンクにフォーカス
+- **Shift + Tab**: 前のリンクにフォーカス
+- **Enter**: リンクを開く
+
 ### スクリーンリーダー対応
 
-- セパレーターを読み上げさせない: `aria-hidden="true"`
-- または視覚的にのみ表示: CSSの`::before`で挿入
+```html
+<!-- セパレーターを非表示 -->
+<span class="separator separator-slash" aria-hidden="true"></span>
 
-```css
-.breadcrumb-item:not(:last-child)::after {
-  content: '/';
-  margin: 0 0.5rem;
-  color: var(--component-breadcrumb-separator-color);
-}
+<!-- 視覚的には省略されたパスも提供 -->
+<nav class="ha-breadcrumb" aria-label="breadcrumb">
+  <span class="sr-only">現在の場所: </span>
+  <ol class="breadcrumb">
+    <!-- パンくずアイテム -->
+  </ol>
+</nav>
 ```
 
 ---
 
 ## ベストプラクティス
 
-### 階層の表示
+### ✅ 推奨
 
-1. **階層数の制限**
-   - モバイル: 3-4階層まで
-   - デスクトップ: 5-7階層まで
-   - それ以上は省略表示を使用
+1. **階層の明確化**
+   - サイトの階層構造を正確に反映
+   - 論理的な順序でリンクを配置
 
-2. **ラベルの簡潔性**
-   - 各アイテムは1-3単語に
-   - 長すぎる場合は省略（...）
+2. **現在のページを明示**
+   - 最後の項目は非リンク
+   - `aria-current="page"`を使用
 
-### 省略表示の実装
+3. **適切な省略**
+   - 深い階層では中間を省略可能
+   - ただし重要な階層は残す
 
-```javascript
-function collapseBreadcrumb(items, maxItems = 5) {
-  if (items.length <= maxItems) return items;
+4. **SEO最適化**
+   - 構造化データを追加
+   - 意味のあるテキストを使用
 
-  return [
-    items[0], // 最初のアイテム（ホーム）
-    { label: '...', onClick: () => showFullPath() }, // 省略
-    ...items.slice(-(maxItems - 2)) // 最後の数アイテム
-  ];
-}
+```html
+<!-- 適切なパンくずリスト -->
+<nav class="ha-breadcrumb" aria-label="breadcrumb">
+  <ol class="breadcrumb size-md">
+    <li class="ha-breadcrumb-item">
+      <a href="/" class="breadcrumb-item">ホーム</a>
+      <span class="separator separator-chevron"></span>
+    </li>
+    <li class="ha-breadcrumb-item">
+      <a href="/electronics" class="breadcrumb-item">電化製品</a>
+      <span class="separator separator-chevron"></span>
+    </li>
+    <li class="ha-breadcrumb-item">
+      <a href="/electronics/computers" class="breadcrumb-item">コンピューター</a>
+      <span class="separator separator-chevron"></span>
+    </li>
+    <li class="ha-breadcrumb-item">
+      <span class="breadcrumb-item current" aria-current="page">
+        ノートパソコン
+      </span>
+    </li>
+  </ol>
+</nav>
 ```
 
-### レスポンシブ対応
+### ❌ 非推奨
 
-```css
-/* モバイルでは最初と最後のみ表示 */
-@media (max-width: 640px) {
-  .breadcrumb-item:not(:first-child):not(:last-child),
-  .breadcrumb-separator:not(:first-of-type):not(:last-of-type) {
-    display: none;
-  }
+1. **現在のページをリンクにする**
+   - 混乱を招く
+   - アクセシビリティの問題
 
-  /* 省略記号を表示 */
-  .breadcrumb-item:first-child::after {
-    content: '...';
-    margin: 0 0.5rem;
-  }
-}
-```
+2. **階層が深すぎる**
+   - 5-7レベル以内に抑える
+   - 必要に応じて省略
 
-### URL構造との整合性
+3. **不明確なラベル**
+   - 「ページ1」「カテゴリ」などは避ける
+   - 具体的な名称を使用
 
-```javascript
-// URLからパンくずを自動生成
-function generateBreadcrumbFromURL() {
-  const path = window.location.pathname;
-  const segments = path.split('/').filter(Boolean);
+```html
+<!-- 現在のページがリンク（非推奨） -->
+<li class="ha-breadcrumb-item">
+  <a href="/current" class="breadcrumb-item current">現在のページ</a>
+</li>
 
-  return segments.map((segment, index) => ({
-    label: formatLabel(segment), // 'user-profile' -> 'User Profile'
-    href: '/' + segments.slice(0, index + 1).join('/')
-  }));
-}
+<!-- 階層が深すぎる（非推奨） -->
+<nav class="ha-breadcrumb" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li>ホーム</li>
+    <li>レベル1</li>
+    <li>レベル2</li>
+    <li>レベル3</li>
+    <li>レベル4</li>
+    <li>レベル5</li>
+    <li>レベル6</li>
+    <li>レベル7</li>
+    <li>レベル8</li>
+  </ol>
+</nav>
 
-function formatLabel(segment) {
-  return segment
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-}
+<!-- 不明確なラベル（非推奨） -->
+<li class="ha-breadcrumb-item">
+  <a href="/cat1" class="breadcrumb-item">カテゴリ1</a>
+</li>
 ```
 
 ---
 
-## パフォーマンス最適化
+## バリエーション
 
-### 構造化データ（SEO）
-
-検索エンジン向けに構造化データを追加：
+### アイコン付きホーム
 
 ```html
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "ホーム",
-      "item": "https://example.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "プロダクト",
-      "item": "https://example.com/products"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "現在のページ"
-    }
-  ]
-}
-</script>
+<li class="ha-breadcrumb-item">
+  <a href="/" class="breadcrumb-item">
+    <svg width="16" height="16"><!-- ホームアイコン --></svg>
+    <span>ホーム</span>
+  </a>
+  <span class="separator separator-chevron"></span>
+</li>
+```
+
+### 省略パンくずリスト
+
+```html
+<nav class="ha-breadcrumb" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="ha-breadcrumb-item">
+      <a href="/" class="breadcrumb-item">ホーム</a>
+      <span class="separator separator-slash"></span>
+    </li>
+    <li class="ha-breadcrumb-item">
+      <button class="breadcrumb-item" aria-label="省略された階層を表示">
+        ...
+      </button>
+      <span class="separator separator-slash"></span>
+    </li>
+    <li class="ha-breadcrumb-item">
+      <a href="/products/electronics/computers" class="breadcrumb-item">
+        コンピューター
+      </a>
+      <span class="separator separator-slash"></span>
+    </li>
+    <li class="ha-breadcrumb-item">
+      <span class="breadcrumb-item current" aria-current="page">
+        ノートパソコン
+      </span>
+    </li>
+  </ol>
+</nav>
+```
+
+---
+
+## テーマ対応
+
+全てのパンくずリストトークンはテーマに対応しています。`data-theme` 属性を変更するだけで、自動的にダークモードに切り替わります。
+
+```html
+<!-- ライトテーマ -->
+<html data-theme="light">
+  <nav class="ha-breadcrumb" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="ha-breadcrumb-item">
+        <a href="/" class="breadcrumb-item">ホーム</a>
+        <span class="separator separator-slash"></span>
+      </li>
+      <li class="ha-breadcrumb-item">
+        <span class="breadcrumb-item current" aria-current="page">
+          現在のページ
+        </span>
+      </li>
+    </ol>
+  </nav>
+</html>
+
+<!-- ダークテーマ -->
+<html data-theme="dark">
+  <nav class="ha-breadcrumb" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="ha-breadcrumb-item">
+        <a href="/" class="breadcrumb-item">ホーム</a>
+        <span class="separator separator-slash"></span>
+      </li>
+      <li class="ha-breadcrumb-item">
+        <span class="breadcrumb-item current" aria-current="page">
+          現在のページ
+        </span>
+      </li>
+    </ol>
+  </nav>
+</html>
 ```
 
 ---
 
 ## 関連コンポーネント
 
-- **Tabs**: タブナビゲーション
-- **Navigation**: メインナビゲーション
-- **Pagination**: ページネーション
+- [Tabs](./tabs.md) - タブナビゲーション
+- [Menu](./menu.md) - ドロップダウンメニュー
+- [Pagination](./pagination.md) - ページネーション
 
 ---
 
-## よくあるパターン
+## 関連ドキュメント
 
-### Eコマース
-
-```
-ホーム > カテゴリ > サブカテゴリ > 商品
-```
-
-### ドキュメント
-
-```
-🏠 ホーム › ドキュメント › API › コンポーネント
-```
-
-### ファイルシステム
-
-```
-/ > Users > Documents > Projects > design-system
-```
+- [アーキテクチャガイド](../アーキテクチャガイド.md)
+- [使用方法ガイド](../使用方法ガイド.md)
+- [コンポーネントリファレンス](./README.md)
 
 ---
 
-## インタラクティブ機能の実装 (Phase 4 改善)
-
-### カスタムイベントの発行
-
-パンくずリンクをクリックすると、`breadcrumb-navigate` イベントが発行されます：
-
-```javascript
-function initializeBreadcrumb(breadcrumb) {
-  const links = breadcrumb.querySelectorAll('.breadcrumb-link');
-
-  links.forEach((link, index) => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const href = link.getAttribute('href');
-
-      // カスタムイベントを発行
-      const navEvent = new CustomEvent('breadcrumb-navigate', {
-        detail: {
-          href,
-          index,
-          text: link.textContent.trim()
-        }
-      });
-      breadcrumb.dispatchEvent(navEvent);
-    });
-  });
-}
-
-// イベントのリスニング
-breadcrumb.addEventListener('breadcrumb-navigate', (e) => {
-  console.log('Navigate to:', e.detail.href);
-  // ルーティング処理などを実装
-});
-```
-
-### キーボードナビゲーション
-
-Enter キーまたは Space キーでリンクを操作できます：
-
-```javascript
-link.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    link.click();
-  }
-});
-```
-
-### 動的パス更新
-
-プログラムから階層パスを更新できます：
-
-```javascript
-const breadcrumb = initializeBreadcrumb(document.querySelector('.breadcrumb'));
-
-// パスを動的に更新
-breadcrumb.updatePath([
-  { text: 'ホーム', href: '/' },
-  { text: 'プロダクト', href: '/products' },
-  { text: 'カテゴリ', href: '/products/category' },
-  { text: '現在のページ' } // 最後の要素はリンクなし
-]);
-```
-
-### トースト通知との統合
-
-ナビゲーション時に視覚的フィードバックを提供：
-
-```javascript
-if (window.showToast) {
-  showToast(`パンくずナビゲーション: ${link.textContent.trim()}`, 'info', 3000);
-}
-```
-
----
-
-## デモページ
-
-実際の動作は以下のページで確認できます：
-
-https://example.tokens.design.sb.hidearea.net/examples/basic/index.html
-
----
-
-**最終更新:** 2025-12-11
-**Phase 4 Option C で実装、PR #92 で改善**
+**最終更新:** 2025-12-12
