@@ -5,20 +5,21 @@
   "type": "module",
   "main": "./build/js/index.js",
   "module": "./build/js/index.js",
-  "types": "./build/js/index.d.ts",
+  "types": "./build/ts/index.d.ts",
   "exports": {
     ".": {
-      "types": "./build/js/index.d.ts",
+      "types": "./build/ts/index.d.ts",
       "import": "./build/js/index.js"
     },
-    "./build/css/variables.css": "./build/css/variables.css",
     "./css": "./build/css/variables.css",
-    "./scss": "./build/scss/variables.scss",
+    "./css/variables": "./build/css/variables.css",
+    "./css/components/*": "./build/css/components/*.css",
     "./styles": {
       "types": "./build/js/styles/index.d.ts",
       "import": "./build/js/styles/index.js"
     },
     "./styles/*": {
+      "types": "./build/js/styles/*.d.ts",
       "import": "./build/js/styles/*.js"
     }
   },

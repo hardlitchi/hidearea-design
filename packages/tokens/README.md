@@ -17,18 +17,29 @@ npm install @hidearea-design/tokens
 ### JavaScript/TypeScript
 
 ```javascript
-
+// Import design tokens
 import { colors, spacing, typography } from '@hidearea-design/tokens';
 
 console.log(colors.primary[500]); // #3B82F6
 console.log(spacing.md); // 16px
 console.log(typography.fontSize.base); // 16px
+
+// Import component styles (CSS-in-JS)
+import buttonStyles from '@hidearea-design/tokens/styles/button';
+import inputStyles from '@hidearea-design/tokens/styles/input';
+
+console.log(buttonStyles); // Component style object
 ```
 
 ### CSS
 
 ```css
+/* Import all design tokens */
 @import '@hidearea-design/tokens/css';
+
+/* Or import specific component styles */
+@import '@hidearea-design/tokens/css/components/button.css';
+@import '@hidearea-design/tokens/css/components/input.css';
 
 .my-element {
   /* Base tokens */
@@ -43,18 +54,6 @@ console.log(typography.fontSize.base); // 16px
 
 .my-element:hover {
   background: var(--component-button-primary-background-hover);
-}
-```
-
-### SCSS
-
-```scss
-@import '@hidearea-design/tokens/scss';
-
-.my-element {
-  color: $ha-color-primary-500;
-  padding: $ha-spacing-md;
-  font-size: $ha-font-size-base;
 }
 ```
 
