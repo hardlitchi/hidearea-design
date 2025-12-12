@@ -872,11 +872,9 @@
       <div>
         <h3>Toast</h3>
 
-        <div style="position: relative; min-height: 400px; border: 1px dashed var(--border-default); border-radius: 8px; padding: 1rem; background: var(--background-secondary);">
+        <div>
           <p style="margin: 0 0 1rem 0;">Toast 通知の例（実際の表示イメージ）：</p>
 
-          <!-- トーストコンテナ -->
-          <div class="ha-toast-container" data-position="top-right" style="position: absolute;">
           <!-- 情報トースト -->
           <div class="ha-toast" variant="info" role="alert" aria-live="polite">
             <div class="container">
@@ -927,7 +925,6 @@
             </div>
           </div>
         </div>
-        </div>
       </div>
 
       <div>
@@ -935,125 +932,105 @@
 
         <!-- トーストコンテナ - 右上配置（デフォルト） -->
         <div class="ha-toast-container" position="top-right">
-          <div class="container">
-            <!-- トーストがここに動的に追加される -->
-          </div>
+          <!-- トーストがここに動的に追加される -->
         </div>
 
         <!-- トーストコンテナ - 上中央配置 -->
         <div class="ha-toast-container" position="top-center">
-          <div class="container">
-            <!-- トーストがここに動的に追加される -->
-          </div>
+          <!-- トーストがここに動的に追加される -->
         </div>
 
         <!-- トーストコンテナ - 左上配置 -->
         <div class="ha-toast-container" position="top-left">
-          <div class="container">
-            <!-- トーストがここに動的に追加される -->
-          </div>
+          <!-- トーストがここに動的に追加される -->
         </div>
 
         <!-- トーストコンテナ - 下中央配置 -->
         <div class="ha-toast-container" position="bottom-center">
-          <div class="container">
-            <!-- トーストがここに動的に追加される -->
-          </div>
+          <!-- トーストがここに動的に追加される -->
         </div>
 
         <!-- トーストコンテナ - 右下配置 -->
         <div class="ha-toast-container" position="bottom-right">
-          <div class="container">
-            <!-- トーストがここに動的に追加される -->
-          </div>
+          <!-- トーストがここに動的に追加される -->
         </div>
 
         <!-- トーストコンテナ - 左下配置 -->
         <div class="ha-toast-container" position="bottom-left">
-          <div class="container">
-            <!-- トーストがここに動的に追加される -->
-          </div>
+          <!-- トーストがここに動的に追加される -->
         </div>
 
         <script>
-          // トーストコンテナの取得
-          const container = document.querySelector('.ha-toast-container[position="top-right"] .container');
+          // トーストマネージャーの使用例
+          class ToastManager {
+            constructor(position = 'top-right') {
+              this.container = document.querySelector('.ha-toast-container[position="' + position + '"]');
+            }
 
-          // トーストを追加する関数
-          function addToast(message, variant = 'info', duration = 5000) {
-            // トースト要素を作成
-            const toast = document.createElement('div');
-            toast.className = 'ha-toast';
-            toast.setAttribute('variant', variant);
-            toast.setAttribute('role', 'status');
-            toast.setAttribute('aria-live', 'polite');
+            show(message, variant = 'info', duration = 5000) {
+              const toast = document.createElement('div');
+              toast.className = 'ha-toast';
+              toast.setAttribute('variant', variant);
+              toast.setAttribute('role', 'alert');
+              toast.setAttribute('aria-live', variant === 'error' ? 'assertive' : 'polite');
 
-            // アイコンを取得
-            const icons = {
-              info: 'ℹ️',
-              success: '✓',
-              warning: '⚠',
-              error: '✕'
-            };
-
-            toast.innerHTML = `
-        <div class="icon">${icons[variant] || icons.info}</div>
+              toast.innerHTML = `
+      <div class="container">
+        <div class="icon">${this.getIcon(variant)}</div>
         <div class="content">
-          <p class="message">${message}</p>
+          <div class="message">${message}</div>
         </div>
-        <button class="close-button" aria-label="通知を閉じる">×</button>
+        <button class="close-button" aria-label="閉じる">×</button>
         ${duration > 0 ? `
           <div class="progress">
             <div class="progress-bar" style="width: 100%; transition-duration: ${duration}ms;"></div>
           </div>
         ` : ''}
-      `;
+      </div>
+    `;
 
-            // コンテナに追加
-            container.appendChild(toast);
+              this.container.appendChild(toast);
 
-            // 閉じるボタンのイベント設定
-            const closeButton = toast.querySelector('.close-button');
-            closeButton.addEventListener('click', () => {
-              removeToast(toast);
-            });
+              // 閉じるボタンのイベント
+              toast.querySelector('.close-button').addEventListener('click', () => {
+                this.dismiss(toast);
+              });
 
-            // プログレスバーのアニメーション開始
-            if (duration > 0) {
-              const progressBar = toast.querySelector('.progress-bar');
-              setTimeout(() => {
-                progressBar.style.width = '0%';
-              }, 10);
+              // 自動消去
+              if (duration > 0) {
+                setTimeout(() => {
+                  const progressBar = toast.querySelector('.progress-bar');
+                  if (progressBar) progressBar.style.width = '0%';
+                }, 10);
 
-              // 自動削除
-              setTimeout(() => {
-                removeToast(toast);
-              }, duration);
+                setTimeout(() => {
+                  this.dismiss(toast);
+                }, duration);
+              }
+
+              return toast;
             }
 
-            return toast;
-          }
+            dismiss(toast) {
+              toast.setAttribute('closing', '');
+              setTimeout(() => toast.remove(), 200);
+            }
 
-          // トーストを削除する関数
-          function removeToast(toast) {
-            toast.setAttribute('closing', '');
-            setTimeout(() => {
-              if (toast.parentNode === container) {
-                container.removeChild(toast);
-              }
-            }, 200); // アニメーション時間
+            getIcon(variant) {
+              const icons = {
+                info: 'ℹ️',
+                success: '✓',
+                warning: '⚠',
+                error: '✕'
+              };
+              return icons[variant] || icons.info;
+            }
           }
 
           // 使用例
-          addToast('データを保存しました', 'success', 3000);
-          addToast('処理中です...', 'info', 5000);
-          addToast('エラーが発生しました', 'error', 5000);
-          addToast('接続が不安定です', 'warning', 4000);
-
-          // 複数のトーストを連続して表示
-          setTimeout(() => addToast('タスク1が完了しました', 'success', 3000), 1000);
-          setTimeout(() => addToast('タスク2が完了しました', 'success', 3000), 2000);
-          setTimeout(() => addToast('タスク3が完了しました', 'success', 3000), 3000);
+          const toastManager = new ToastManager('top-right');
+          toastManager.show('保存しました', 'success', 3000);
+          toastManager.show('エラーが発生しました', 'error', 0); // 自動消去なし
         </script>
       </div>
     </section>

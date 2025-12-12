@@ -18,6 +18,7 @@
   align-items: flex-start;
   gap: 12px;
   padding: var(--toast-padding, 16px);
+  padding-right: 40px; /* 閉じるボタンのスペースを確保 */
   background: var(--toast-bg, var(--background-primary, #ffffff));
   border-radius: var(--toast-border-radius, var(--radius-lg, 8px));
   box-shadow: var(--toast-shadow, var(--shadow-lg));
@@ -25,6 +26,7 @@
   min-width: var(--toast-min-width, 300px);
   max-width: var(--toast-max-width, 500px);
   animation: slideIn var(--duration-base, 200ms) var(--ease-out);
+  position: relative;
 }
 
 @keyframes slideIn {
@@ -75,6 +77,9 @@
 }
 
 .close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
   background: transparent;
   border: none;
   color: var(--toast-close-color, var(--foreground-secondary, #6b7280));
@@ -83,7 +88,6 @@
   border-radius: var(--radius-base, 4px);
   font-size: 18px;
   line-height: 1;
-  flex-shrink: 0;
   transition: background-color var(--duration-fast, 150ms) var(--ease);
 }
 
@@ -91,7 +95,7 @@
   background: var(--toast-close-hover-bg, var(--background-secondary, #f3f4f6));
 }
 
-.progress {
+.toast-progress {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -103,7 +107,7 @@
   overflow: hidden;
 }
 
-.progress-bar {
+.toast-progress-bar {
   height: 100%;
   background: var(--toast-progress-color, var(--primary-default, #3b82f6));
   transition: width linear;
