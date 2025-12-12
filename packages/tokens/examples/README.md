@@ -60,8 +60,16 @@
 
 **ファイル:**
 - `index.html` - メインデモページ
-- `styles.css` - 全コンポーネントのスタイル
+- `components.css` - トークンを使用したコンポーネントスタイル
+- `styles.css` - デモページのレイアウトスタイル
 - `script.js` - テーマ切り替えとモーダル制御
+
+**CSS構成:**
+```
+build/css/variables.css  → デザイントークン(CSS変数)
+examples/basic/components.css → トークンを使用したコンポーネントスタイル
+examples/basic/styles.css → レイアウトのみのカスタムスタイル
+```
 
 **実行方法:**
 ```bash
@@ -86,7 +94,14 @@ open examples/basic/index.html
 
 **ファイル:**
 - `index.html` - テーマデモページ
+- `styles.css` - デモページのスタイル(トークンを使用)
 - `script.js` - テーマ管理ロジック
+
+**CSS構成:**
+```
+build/css/variables.css  → デザイントークン(CSS変数)
+examples/theming/styles.css → トークンを使用したデモスタイル
+```
 
 **実行方法:**
 ```bash

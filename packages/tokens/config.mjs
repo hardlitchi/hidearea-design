@@ -220,8 +220,27 @@ const buildJsStylesDir = 'build/js/styles';
 mkdirSync(buildCssDir, { recursive: true });
 mkdirSync(buildJsStylesDir, { recursive: true });
 
-// Get all CSS files
-const cssFiles = readdirSync(srcCssDir).filter(file => file.endsWith('.css'));
+// Helper function to recursively get all CSS files
+const getAllCssFiles = (dir, baseDir = dir) => {
+  const entries = readdirSync(dir, { withFileTypes: true });
+  let files = [];
+
+  for (const entry of entries) {
+    const fullPath = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files = files.concat(getAllCssFiles(fullPath, baseDir));
+    } else if (entry.name.endsWith('.css')) {
+      // Store relative path from baseDir
+      const relativePath = fullPath.replace(baseDir + '/', '');
+      files.push(relativePath);
+    }
+  }
+
+  return files;
+};
+
+// Get all CSS files (including subdirectories)
+const cssFiles = getAllCssFiles(srcCssDir);
 
 console.log(`\n📦 Building component styles...`);
 
@@ -233,9 +252,14 @@ cssFiles.forEach(file => {
   const cssContent = readFileSync(srcPath, 'utf-8');
   const componentName = basename(file, '.css');
   const camelCaseName = kebabToCamel(componentName);
+  const category = file.includes('/') ? file.split('/')[0] : '';
 
-  // 1. Copy CSS to build/css/components/
+  // 1. Copy CSS to build/css/components/ (preserve directory structure)
   const destCssPath = join(buildCssDir, file);
+  const destCssDir = join(buildCssDir, category);
+  if (category) {
+    mkdirSync(destCssDir, { recursive: true });
+  }
   copyFileSync(srcPath, destCssPath);
   console.log(`   ✓ Copied ${file} → ${buildCssDir}/`);
 

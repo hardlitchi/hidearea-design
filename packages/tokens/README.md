@@ -37,9 +37,11 @@ console.log(buttonStyles); // コンポーネントスタイルオブジェク�
 /* すべてのデザイントークンをインポート */
 @import '@hidearea-design/tokens/css';
 
-/* または特定のコンポーネントスタイルをインポート */
-@import '@hidearea-design/tokens/css/components/button.css';
-@import '@hidearea-design/tokens/css/components/input.css';
+/* または特定のコンポーネントスタイルをインポート（カテゴリ別に整理） */
+@import '@hidearea-design/tokens/css/components/layout/button.css';
+@import '@hidearea-design/tokens/css/components/forms/input.css';
+@import '@hidearea-design/tokens/css/components/data-display/card.css';
+@import '@hidearea-design/tokens/css/components/feedback/alert.css';
 
 .my-element {
   /* ベーストークン */
@@ -373,15 +375,69 @@ tokens/
 │   │   ├── layout.json
 │   │   ├── interactions.json
 │   │   └── aliases.json
-│   └── themes/            # テーマオーバーライド
-│       ├── light/
-│       │   ├── colors.json
-│       │   └── semantic.json
-│       └── dark/
-│           ├── colors.json
-│           └── semantic.json
+│   ├── themes/            # テーマオーバーライド
+│   │   ├── light/
+│   │   │   ├── colors.json
+│   │   │   └── semantic.json
+│   │   └── dark/
+│   │       ├── colors.json
+│   │       └── semantic.json
+│   └── css/components/    # コンポーネントスタイル（カテゴリ別に整理）
+│       ├── forms/         # フォームコンポーネント (10)
+│       │   ├── button.css
+│       │   ├── input.css
+│       │   ├── checkbox.css
+│       │   ├── radio.css
+│       │   ├── select.css
+│       │   ├── textarea.css
+│       │   ├── switch.css
+│       │   ├── form-group.css
+│       │   ├── file-upload.css
+│       │   ├── date-picker.css
+│       │   └── time-picker.css
+│       ├── data-display/  # データ表示コンポーネント (11)
+│       │   ├── card.css
+│       │   ├── table.css
+│       │   ├── list-container.css
+│       │   ├── list-item.css
+│       │   ├── list-divider.css
+│       │   ├── avatar.css
+│       │   ├── avatar-group.css
+│       │   ├── badge.css
+│       │   ├── chip.css
+│       │   ├── accordion.css
+│       │   └── datagrid.css
+│       ├── navigation/    # ナビゲーションコンポーネント (4)
+│       │   ├── breadcrumb.css
+│       │   ├── menu.css
+│       │   ├── pagination.css
+│       │   └── tabs.css
+│       ├── overlays/      # オーバーレイコンポーネント (3)
+│       │   ├── modal.css
+│       │   ├── drawer.css
+│       │   └── tooltip.css
+│       ├── feedback/      # フィードバックコンポーネント (6)
+│       │   ├── alert.css
+│       │   ├── toast.css
+│       │   ├── toast-container.css
+│       │   ├── progress.css
+│       │   ├── skeleton.css
+│       │   └── spinner.css
+│       └── layout/        # レイアウトコンポーネント (4)
+│           ├── button.css
+│           ├── container.css
+│           ├── grid.css
+│           └── stack.css
 ├── build/                 # 生成された出力
 │   ├── css/
+│   │   ├── variables.css  # デザイントークン
+│   │   └── components/    # コンポーネントスタイル（同じ構造）
+│   │       ├── forms/
+│   │       ├── data-display/
+│   │       ├── navigation/
+│   │       ├── overlays/
+│   │       ├── feedback/
+│   │       └── layout/
 │   ├── js/
 │   └── ts/
 └── .performance/          # パフォーマンスレポート

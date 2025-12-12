@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hidearea Design Tokens - Basic Examples</title>
   <link rel="stylesheet" href="../../build/css/variables.css">
+  <link rel="stylesheet" href="./components.css">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -16,9 +17,9 @@
 
       <!-- Theme Toggle -->
       <button id="theme-toggle" class="btn btn-ghost" aria-label="テーマ切り替え">
-        <span class="theme-icon light-icon">☀️</span>
-        <span class="theme-icon dark-icon">🌙</span>
-        <span class="theme-label"></span>
+        <span>☀️</span>
+        <span>🌙</span>
+        <span></span>
       </button>
     </header>
 
@@ -40,47 +41,45 @@
       <div class="component-group">
         <h3>Checkbox - チェックボックス</h3>
         <div class="example-box">
-          <div class="checkbox-group">
-            <label class="checkbox-label">
-              <input type="checkbox" class="checkbox" checked>
-              <span class="checkbox-text">デフォルトチェックボックス</span>
-            </label>
-            <span class="checkbox-helper">これはヘルパーテキストです</span>
-          </div>
-
-          <div class="checkbox-group">
-            <label class="checkbox-label">
-              <input type="checkbox" class="checkbox checkbox-small">
-              <span class="checkbox-text">小さいチェックボックス</span>
+          <div class="checkbox-container">
+            <label>
+              <input type="checkbox" class="checkbox-box" checked>
+              <span>デフォルトチェックボックス</span>
             </label>
           </div>
 
-          <div class="checkbox-group">
-            <label class="checkbox-label">
-              <input type="checkbox" class="checkbox checkbox-large" checked>
-              <span class="checkbox-text">大きいチェックボックス</span>
+          <div class="checkbox-container">
+            <label>
+              <input type="checkbox" class="checkbox-box">
+              <span>小さいチェックボックス</span>
             </label>
           </div>
 
-          <div class="checkbox-group">
-            <label class="checkbox-label">
-              <input type="checkbox" class="checkbox checkbox-error">
-              <span class="checkbox-text">エラー状態</span>
-            </label>
-            <span class="checkbox-helper checkbox-helper-error">この項目は必須です</span>
-          </div>
-
-          <div class="checkbox-group">
-            <label class="checkbox-label">
-              <input type="checkbox" class="checkbox" disabled>
-              <span class="checkbox-text">無効なチェックボックス</span>
+          <div class="checkbox-container">
+            <label>
+              <input type="checkbox" class="checkbox-box" checked>
+              <span>大きいチェックボックス</span>
             </label>
           </div>
 
-          <div class="checkbox-group">
-            <label class="checkbox-label">
-              <input type="checkbox" class="checkbox" checked disabled>
-              <span class="checkbox-text">チェック済み・無効</span>
+          <div class="checkbox-container">
+            <label>
+              <input type="checkbox" class="checkbox-box">
+              <span>エラー状態</span>
+            </label>
+          </div>
+
+          <div class="checkbox-container">
+            <label>
+              <input type="checkbox" class="checkbox-box" disabled>
+              <span>無効なチェックボックス</span>
+            </label>
+          </div>
+
+          <div class="checkbox-container">
+            <label>
+              <input type="checkbox" class="checkbox-box" checked disabled>
+              <span>チェック済み・無効</span>
             </label>
           </div>
         </div>
@@ -90,90 +89,51 @@
         <h3>Radio - ラジオボタン</h3>
         <div class="example-box">
           <div class="radio-group">
-            <div class="radio-item">
-              <label class="radio-label">
-                <input type="radio" name="option" class="radio" value="1" checked>
-                <span class="radio-text">オプション 1</span>
-              </label>
-            </div>
-            <div class="radio-item">
-              <label class="radio-label">
-                <input type="radio" name="option" class="radio" value="2">
-                <span class="radio-text">オプション 2</span>
-              </label>
-            </div>
-            <div class="radio-item">
-              <label class="radio-label">
-                <input type="radio" name="option" class="radio" value="3">
-                <span class="radio-text">オプション 3</span>
-              </label>
-            </div>
-            <span class="radio-helper">1つのオプションを選択してください</span>
+            <label>
+              <input type="radio" name="option" value="1" checked>
+              <span>オプション 1</span>
+            </label>
+            <label>
+              <input type="radio" name="option" value="2">
+              <span>オプション 2</span>
+            </label>
+            <label>
+              <input type="radio" name="option" value="3">
+              <span>オプション 3</span>
+            </label>
           </div>
 
           <div class="radio-group">
-            <h4 style="margin-bottom: 0.5rem;">小さいサイズ</h4>
-            <div class="radio-item">
-              <label class="radio-label">
-                <input type="radio" name="size-small" class="radio radio-small" value="s" checked>
-                <span class="radio-text">Small</span>
-              </label>
-            </div>
-            <div class="radio-item">
-              <label class="radio-label">
-                <input type="radio" name="size-small" class="radio radio-small" value="m">
-                <span class="radio-text">Medium</span>
-              </label>
-            </div>
+            <label>
+              <input type="radio" name="size-small" value="s" checked>
+              <span>Small</span>
+            </label>
+            <label>
+              <input type="radio" name="size-small" value="m">
+              <span>Medium</span>
+            </label>
           </div>
 
           <div class="radio-group">
-            <h4 style="margin-bottom: 0.5rem;">大きいサイズ</h4>
-            <div class="radio-item">
-              <label class="radio-label">
-                <input type="radio" name="size-large" class="radio radio-large" value="l" checked>
-                <span class="radio-text">Large</span>
-              </label>
-            </div>
-            <div class="radio-item">
-              <label class="radio-label">
-                <input type="radio" name="size-large" class="radio radio-large" value="xl">
-                <span class="radio-text">Extra Large</span>
-              </label>
-            </div>
+            <label>
+              <input type="radio" name="size-large" value="l" checked>
+              <span>Large</span>
+            </label>
+            <label>
+              <input type="radio" name="size-large" value="xl">
+              <span>Extra Large</span>
+            </label>
           </div>
 
           <div class="radio-group">
-            <h4 style="margin-bottom: 0.5rem;">エラー状態</h4>
-            <div class="radio-item">
-              <label class="radio-label">
-                <input type="radio" name="error" class="radio radio-error" value="1">
-                <span class="radio-text">オプション A</span>
-              </label>
-            </div>
-            <div class="radio-item">
-              <label class="radio-label">
-                <input type="radio" name="error" class="radio radio-error" value="2">
-                <span class="radio-text">オプション B</span>
-              </label>
-            </div>
-            <span class="radio-helper radio-helper-error">このフィールドは必須です</span>
-          </div>
-
-          <div class="radio-group">
-            <h4 style="margin-bottom: 0.5rem;">無効状態</h4>
-            <div class="radio-item">
-              <label class="radio-label">
-                <input type="radio" name="disabled" class="radio" value="1" disabled>
-                <span class="radio-text">無効なオプション</span>
-              </label>
-            </div>
-            <div class="radio-item">
-              <label class="radio-label">
-                <input type="radio" name="disabled" class="radio" value="2" checked disabled>
-                <span class="radio-text">選択済み・無効</span>
-              </label>
-            </div>
+            <label>
+              <input type="radio" name="disabled" value="1" disabled>
+              <span>無効なオプション</span>
+            </label>
+            <label>
+              <input type="radio" name="disabled" value="2" checked disabled>
+              <span>選択済み・無効</span>
+            </label>
           </div>
         </div>
       </div>
@@ -182,32 +142,28 @@
         <h3>Input - テキスト入力</h3>
         <div class="example-box">
           <div class="input-group">
-            <label class="input-label" for="email">Email</label>
+            <label for="email">Email</label>
             <input
-              class="input"
               type="email"
               id="email"
               placeholder="your@email.com"
             >
-            <span class="input-helper">メールアドレスを入力してください</span>
           </div>
 
           <div class="input-group">
-            <label class="input-label" for="email-error">Email (Error)</label>
+            <label for="email-error">Email (Error)</label>
             <input
-              class="input input-error"
               type="email"
               id="email-error"
               placeholder="your@email.com"
               value="invalid-email"
+              aria-invalid="true"
             >
-            <span class="input-helper input-helper-error">正しいメールアドレスを入力してください</span>
           </div>
 
           <div class="input-group">
-            <label class="input-label" for="disabled">Disabled Input</label>
+            <label for="disabled">Disabled Input</label>
             <input
-              class="input"
               type="text"
               id="disabled"
               disabled
@@ -221,31 +177,29 @@
         <h3>Select - セレクトボックス</h3>
         <div class="example-box">
           <div class="select-group">
-            <label class="select-label" for="country">国を選択</label>
-            <select class="select" id="country">
+            <label for="country">国を選択</label>
+            <select id="country">
               <option value="">選択してください</option>
               <option value="jp">日本</option>
               <option value="us">アメリカ</option>
               <option value="uk">イギリス</option>
               <option value="de">ドイツ</option>
             </select>
-            <span class="select-helper">お住まいの国を選択してください</span>
           </div>
 
           <div class="select-group">
-            <label class="select-label" for="priority">優先度 (Error)</label>
-            <select class="select select-error" id="priority">
+            <label for="priority">優先度 (Error)</label>
+            <select id="priority" aria-invalid="true">
               <option value="">選択してください</option>
               <option value="high">高</option>
               <option value="medium">中</option>
               <option value="low">低</option>
             </select>
-            <span class="select-helper select-helper-error">優先度を選択してください</span>
           </div>
 
           <div class="select-group">
-            <label class="select-label" for="disabled-select">Disabled Select</label>
-            <select class="select" id="disabled-select" disabled>
+            <label for="disabled-select">Disabled Select</label>
+            <select id="disabled-select" disabled>
               <option value="1">Option 1</option>
               <option value="2">Option 2</option>
             </select>
@@ -257,31 +211,27 @@
         <h3>Textarea - テキストエリア</h3>
         <div class="example-box">
           <div class="textarea-group">
-            <label class="textarea-label" for="message">メッセージ</label>
+            <label for="message">メッセージ</label>
             <textarea
-              class="textarea"
               id="message"
               placeholder="メッセージを入力してください..."
               rows="4"
             ></textarea>
-            <span class="textarea-helper">最大500文字まで入力できます</span>
           </div>
 
           <div class="textarea-group">
-            <label class="textarea-label" for="feedback">フィードバック (Error)</label>
+            <label for="feedback">フィードバック (Error)</label>
             <textarea
-              class="textarea textarea-error"
               id="feedback"
               placeholder="フィードバックを入力..."
               rows="3"
+              aria-invalid="true"
             ></textarea>
-            <span class="textarea-helper textarea-helper-error">このフィールドは必須です</span>
           </div>
 
           <div class="textarea-group">
-            <label class="textarea-label" for="bio-small">小さいサイズ</label>
+            <label for="bio-small">小さいサイズ</label>
             <textarea
-              class="textarea textarea-small"
               id="bio-small"
               placeholder="短い説明..."
               rows="2"
@@ -289,9 +239,8 @@
           </div>
 
           <div class="textarea-group">
-            <label class="textarea-label" for="bio-large">大きいサイズ</label>
+            <label for="bio-large">大きいサイズ</label>
             <textarea
-              class="textarea textarea-large"
               id="bio-large"
               placeholder="詳細な説明..."
               rows="6"
@@ -299,9 +248,8 @@
           </div>
 
           <div class="textarea-group">
-            <label class="textarea-label" for="disabled-textarea">Disabled Textarea</label>
+            <label for="disabled-textarea">Disabled Textarea</label>
             <textarea
-              class="textarea"
               id="disabled-textarea"
               disabled
               rows="3"
@@ -314,63 +262,44 @@
         <h3>Switch - スイッチ</h3>
         <div class="example-box">
           <div class="switch-group">
-            <label class="switch-label">
-              <input type="checkbox" class="switch-input" checked>
-              <span class="switch-track">
-                <span class="switch-thumb"></span>
-              </span>
-              <span class="switch-text">通知を有効にする</span>
-            </label>
-            <span class="switch-helper">新しいメッセージの通知を受け取ります</span>
-          </div>
-
-          <div class="switch-group">
-            <label class="switch-label">
-              <input type="checkbox" class="switch-input">
-              <span class="switch-track">
-                <span class="switch-thumb"></span>
-              </span>
-              <span class="switch-text">ダークモード</span>
+            <label>
+              <input type="checkbox" role="switch" checked>
+              <span>通知を有効にする</span>
             </label>
           </div>
 
           <div class="switch-group">
-            <label class="switch-label switch-small">
-              <input type="checkbox" class="switch-input" checked>
-              <span class="switch-track">
-                <span class="switch-thumb"></span>
-              </span>
-              <span class="switch-text">小さいスイッチ</span>
+            <label>
+              <input type="checkbox" role="switch">
+              <span>ダークモード</span>
             </label>
           </div>
 
           <div class="switch-group">
-            <label class="switch-label switch-large">
-              <input type="checkbox" class="switch-input">
-              <span class="switch-track">
-                <span class="switch-thumb"></span>
-              </span>
-              <span class="switch-text">大きいスイッチ</span>
+            <label>
+              <input type="checkbox" role="switch" checked>
+              <span>小さいスイッチ</span>
             </label>
           </div>
 
           <div class="switch-group">
-            <label class="switch-label">
-              <input type="checkbox" class="switch-input" disabled>
-              <span class="switch-track">
-                <span class="switch-thumb"></span>
-              </span>
-              <span class="switch-text">無効なスイッチ</span>
+            <label>
+              <input type="checkbox" role="switch">
+              <span>大きいスイッチ</span>
             </label>
           </div>
 
           <div class="switch-group">
-            <label class="switch-label">
-              <input type="checkbox" class="switch-input" checked disabled>
-              <span class="switch-track">
-                <span class="switch-thumb"></span>
-              </span>
-              <span class="switch-text">オン・無効</span>
+            <label>
+              <input type="checkbox" role="switch" disabled>
+              <span>無効なスイッチ</span>
+            </label>
+          </div>
+
+          <div class="switch-group">
+            <label>
+              <input type="checkbox" role="switch" checked disabled>
+              <span>オン・無効</span>
             </label>
           </div>
         </div>
@@ -423,44 +352,20 @@
 
           <h4 style="margin-top: 2rem; margin-bottom: 1rem;">静的プレビュー</h4>
           <div class="toast-container">
-            <div class="toast toast-success">
-              <div class="toast-content">
-                <svg class="toast-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm-2 15l-5-5 1.41-1.41L8 12.17l7.59-7.59L17 6l-9 9z" fill="currentColor"/>
-                </svg>
-                <span>保存が完了しました</span>
-              </div>
-              <button class="toast-close" aria-label="閉じる">×</button>
+            <div class="alert alert-success">
+              保存が完了しました
             </div>
 
-            <div class="toast toast-error">
-              <div class="toast-content">
-                <svg class="toast-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm1 15H9v-2h2v2zm0-4H9V5h2v6z" fill="currentColor"/>
-                </svg>
-                <span>エラーが発生しました</span>
-              </div>
-              <button class="toast-close" aria-label="閉じる">×</button>
+            <div class="alert alert-error">
+              エラーが発生しました
             </div>
 
-            <div class="toast toast-warning">
-              <div class="toast-content">
-                <svg class="toast-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M1 17h18L10 1 1 17zm10-2H9v-2h2v2zm0-4H9V7h2v4z" fill="currentColor"/>
-                </svg>
-                <span>注意: 変更は保存されていません</span>
-              </div>
-              <button class="toast-close" aria-label="閉じる">×</button>
+            <div class="alert alert-warning">
+              注意: 変更は保存されていません
             </div>
 
-            <div class="toast toast-info">
-              <div class="toast-content">
-                <svg class="toast-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm1 15H9v-6h2v6zm0-8H9V5h2v2z" fill="currentColor"/>
-                </svg>
-                <span>新しいアップデートがあります</span>
-              </div>
-              <button class="toast-close" aria-label="閉じる">×</button>
+            <div class="alert alert-info">
+              新しいアップデートがあります
             </div>
           </div>
         </div>
@@ -479,53 +384,39 @@
             <button class="btn btn-ghost" onclick="window.resetProgress('demo-progress-1')">リセット</button>
           </div>
           <div class="progress-group">
-            <label class="progress-label" id="demo-progress-1-label">アニメーション (0%)</label>
-            <div class="progress" id="demo-progress-1">
-              <div class="progress-fill" style="width: 0%"></div>
-            </div>
+            <label id="demo-progress-1-label">アニメーション (0%)</label>
+            <progress id="demo-progress-1" value="0" max="100"></progress>
           </div>
 
-          <h4 style="margin-top: 2rem; margin-bottom: 1rem;">静的プレビュー</h4>
+          <h4>静的プレビュー</h4>
           <div class="progress-group">
-            <label class="progress-label">デフォルト (75%)</label>
-            <div class="progress">
-              <div class="progress-fill" style="width: 75%"></div>
-            </div>
+            <label>デフォルト (75%)</label>
+            <progress value="75" max="100"></progress>
           </div>
 
           <div class="progress-group">
-            <label class="progress-label">Success (100%)</label>
-            <div class="progress">
-              <div class="progress-fill progress-fill-success" style="width: 100%"></div>
-            </div>
+            <label>Success (100%)</label>
+            <progress value="100" max="100"></progress>
           </div>
 
           <div class="progress-group">
-            <label class="progress-label">Warning (60%)</label>
-            <div class="progress">
-              <div class="progress-fill progress-fill-warning" style="width: 60%"></div>
-            </div>
+            <label>Warning (60%)</label>
+            <progress value="60" max="100"></progress>
           </div>
 
           <div class="progress-group">
-            <label class="progress-label">Error (25%)</label>
-            <div class="progress">
-              <div class="progress-fill progress-fill-error" style="width: 25%"></div>
-            </div>
+            <label>Error (25%)</label>
+            <progress value="25" max="100"></progress>
           </div>
 
           <div class="progress-group">
-            <label class="progress-label">小サイズ (50%)</label>
-            <div class="progress progress-small">
-              <div class="progress-fill" style="width: 50%"></div>
-            </div>
+            <label>小サイズ (50%)</label>
+            <progress value="50" max="100"></progress>
           </div>
 
           <div class="progress-group">
-            <label class="progress-label">大サイズ (80%)</label>
-            <div class="progress progress-large">
-              <div class="progress-fill" style="width: 80%"></div>
-            </div>
+            <label>大サイズ (80%)</label>
+            <progress value="80" max="100"></progress>
           </div>
         </div>
       </div>
@@ -534,23 +425,23 @@
         <h3>Skeleton - スケルトンローダー</h3>
         <div class="example-box">
           <div class="skeleton-demo">
-            <div class="skeleton skeleton-avatar"></div>
+            <div aria-label="読み込み中"></div>
             <div class="skeleton-content">
-              <div class="skeleton skeleton-text" style="width: 60%"></div>
-              <div class="skeleton skeleton-text" style="width: 80%"></div>
-              <div class="skeleton skeleton-text" style="width: 40%"></div>
+              <div aria-label="読み込み中"></div>
+              <div aria-label="読み込み中"></div>
+              <div aria-label="読み込み中"></div>
             </div>
           </div>
 
           <div class="skeleton-demo">
-            <div class="skeleton skeleton-heading"></div>
-            <div class="skeleton skeleton-text"></div>
-            <div class="skeleton skeleton-text" style="width: 90%"></div>
-            <div class="skeleton skeleton-button"></div>
+            <div aria-label="読み込み中"></div>
+            <div aria-label="読み込み中"></div>
+            <div aria-label="読み込み中"></div>
+            <div aria-label="読み込み中"></div>
           </div>
 
           <div class="skeleton-demo">
-            <div class="skeleton skeleton-image"></div>
+            <div aria-label="読み込み中"></div>
           </div>
         </div>
       </div>
@@ -558,48 +449,36 @@
       <div class="component-group">
         <h3>Spinner - ローディングスピナー</h3>
         <div class="example-box">
-          <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
-            <div class="spinner-demo">
-              <div class="spinner spinner-small"></div>
-              <span>小</span>
-            </div>
-
-            <div class="spinner-demo">
-              <div class="spinner"></div>
-              <span>デフォルト</span>
-            </div>
-
-            <div class="spinner-demo">
-              <div class="spinner spinner-large"></div>
-              <span>大</span>
-            </div>
-
-            <div class="spinner-demo">
-              <div class="spinner spinner-xlarge"></div>
-              <span>特大</span>
-            </div>
+          <div class="spinner-demo">
+            <span>小</span>
           </div>
 
-          <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; margin-top: 2rem;">
-            <div class="spinner-demo">
-              <div class="spinner spinner-success"></div>
-              <span>Success</span>
-            </div>
+          <div class="spinner-demo">
+            <span>デフォルト</span>
+          </div>
 
-            <div class="spinner-demo">
-              <div class="spinner spinner-warning"></div>
-              <span>Warning</span>
-            </div>
+          <div class="spinner-demo">
+            <span>大</span>
+          </div>
 
-            <div class="spinner-demo">
-              <div class="spinner spinner-error"></div>
-              <span>Error</span>
-            </div>
+          <div class="spinner-demo">
+            <span>特大</span>
+          </div>
 
-            <div class="spinner-demo">
-              <div class="spinner spinner-info"></div>
-              <span>Info</span>
-            </div>
+          <div class="spinner-demo">
+            <span>Success</span>
+          </div>
+
+          <div class="spinner-demo">
+            <span>Warning</span>
+          </div>
+
+          <div class="spinner-demo">
+            <span>Error</span>
+          </div>
+
+          <div class="spinner-demo">
+            <span>Info</span>
           </div>
         </div>
       </div>
@@ -635,7 +514,7 @@
       <div class="component-group">
         <h3>Table - テーブル</h3>
         <div class="example-box">
-          <table class="table">
+          <table>
             <thead>
               <tr>
                 <th>名前</th>
@@ -650,7 +529,7 @@
                 <td>yamada@example.com</td>
                 <td><span class="badge badge-success">アクティブ</span></td>
                 <td>
-                  <button class="btn btn-ghost" style="padding: 0.25rem 0.5rem; font-size: 0.875rem;">編集</button>
+                  <button class="btn btn-ghost">編集</button>
                 </td>
               </tr>
               <tr>
@@ -658,7 +537,7 @@
                 <td>sato@example.com</td>
                 <td><span class="badge badge-warning">保留中</span></td>
                 <td>
-                  <button class="btn btn-ghost" style="padding: 0.25rem 0.5rem; font-size: 0.875rem;">編集</button>
+                  <button class="btn btn-ghost">編集</button>
                 </td>
               </tr>
               <tr>
@@ -666,7 +545,7 @@
                 <td>suzuki@example.com</td>
                 <td><span class="badge badge-error">停止</span></td>
                 <td>
-                  <button class="btn btn-ghost" style="padding: 0.25rem 0.5rem; font-size: 0.875rem;">編集</button>
+                  <button class="btn btn-ghost">編集</button>
                 </td>
               </tr>
             </tbody>
@@ -677,47 +556,44 @@
       <div class="component-group">
         <h3>List - リスト</h3>
         <div class="example-box">
-          <!-- Default List -->
-          <h4 style="margin-bottom: 0.75rem;">デフォルトリスト</h4>
-          <ul class="list">
-            <li class="list-item">リストアイテム 1</li>
-            <li class="list-item">リストアイテム 2</li>
-            <li class="list-item">リストアイテム 3</li>
+          <h4>デフォルトリスト</h4>
+          <ul>
+            <li>リストアイテム 1</li>
+            <li>リストアイテム 2</li>
+            <li>リストアイテム 3</li>
           </ul>
 
-          <!-- Interactive List with Icons -->
-          <h4 style="margin-top: 2rem; margin-bottom: 0.75rem;">アイコン付きインタラクティブリスト</h4>
-          <ul class="list">
-            <li class="list-item list-item-interactive">
-              <span class="list-item-icon">🏠</span>
-              <div class="list-item-content">
-                <div class="list-item-text">ホーム</div>
-                <div class="list-item-secondary">メインページに移動</div>
+          <h4>アイコン付きインタラクティブリスト</h4>
+          <ul>
+            <li>
+              <span>🏠</span>
+              <div>
+                <div>ホーム</div>
+                <div>メインページに移動</div>
               </div>
             </li>
-            <li class="list-item list-item-interactive">
-              <span class="list-item-icon">⚙️</span>
-              <div class="list-item-content">
-                <div class="list-item-text">設定</div>
-                <div class="list-item-secondary">アプリケーション設定</div>
+            <li>
+              <span>⚙️</span>
+              <div>
+                <div>設定</div>
+                <div>アプリケーション設定</div>
               </div>
             </li>
-            <li class="list-item list-item-interactive list-item-selected">
-              <span class="list-item-icon">📊</span>
-              <div class="list-item-content">
-                <div class="list-item-text">ダッシュボード</div>
-                <div class="list-item-secondary">統計とデータを表示</div>
+            <li>
+              <span>📊</span>
+              <div>
+                <div>ダッシュボード</div>
+                <div>統計とデータを表示</div>
               </div>
             </li>
           </ul>
 
-          <!-- Divided List (Compact) -->
-          <h4 style="margin-top: 2rem; margin-bottom: 0.75rem;">区切り線付きリスト（コンパクト）</h4>
-          <ul class="list list-divided list-compact">
-            <li class="list-item">アイテム A</li>
-            <li class="list-item">アイテム B</li>
-            <li class="list-item">アイテム C</li>
-            <li class="list-item">アイテム D</li>
+          <h4>区切り線付きリスト（コンパクト）</h4>
+          <ul>
+            <li>アイテム A</li>
+            <li>アイテム B</li>
+            <li>アイテム C</li>
+            <li>アイテム D</li>
           </ul>
         </div>
       </div>
@@ -725,79 +601,37 @@
       <div class="component-group">
         <h3>Avatar - アバター</h3>
         <div class="example-box">
-          <!-- Sizes -->
-          <h4 style="margin-bottom: 0.75rem;">サイズバリエーション</h4>
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
-            <div class="avatar avatar-xs">
-              <span class="avatar-initials">XS</span>
-            </div>
-            <div class="avatar avatar-sm">
-              <span class="avatar-initials">SM</span>
-            </div>
-            <div class="avatar avatar-md">
-              <span class="avatar-initials">MD</span>
-            </div>
-            <div class="avatar avatar-lg">
-              <span class="avatar-initials">LG</span>
-            </div>
-            <div class="avatar avatar-xl">
-              <span class="avatar-initials">XL</span>
-            </div>
+          <h4>サイズバリエーション</h4>
+          <div>
+            <span>XS</span>
+            <span>SM</span>
+            <span>MD</span>
+            <span>LG</span>
+            <span>XL</span>
           </div>
 
-          <!-- Colors -->
-          <h4 style="margin-bottom: 0.75rem;">カラーバリエーション</h4>
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
-            <div class="avatar avatar-md">
-              <span class="avatar-initials">AB</span>
-            </div>
-            <div class="avatar avatar-md avatar-primary">
-              <span class="avatar-initials">CD</span>
-            </div>
-            <div class="avatar avatar-md avatar-success">
-              <span class="avatar-initials">EF</span>
-            </div>
-            <div class="avatar avatar-md avatar-warning">
-              <span class="avatar-initials">GH</span>
-            </div>
-            <div class="avatar avatar-md avatar-error">
-              <span class="avatar-initials">IJ</span>
-            </div>
+          <h4>カラーバリエーション</h4>
+          <div>
+            <span>AB</span>
+            <span>CD</span>
+            <span>EF</span>
+            <span>GH</span>
+            <span>IJ</span>
           </div>
 
-          <!-- With Status -->
-          <h4 style="margin-bottom: 0.75rem;">ステータス付き</h4>
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
-            <div class="avatar avatar-lg avatar-primary">
-              <span class="avatar-initials">山田</span>
-              <span class="avatar-status avatar-status-online"></span>
-            </div>
-            <div class="avatar avatar-lg avatar-success">
-              <span class="avatar-initials">佐藤</span>
-              <span class="avatar-status avatar-status-offline"></span>
-            </div>
-            <div class="avatar avatar-lg avatar-warning">
-              <span class="avatar-initials">鈴木</span>
-              <span class="avatar-status avatar-status-away"></span>
-            </div>
-            <div class="avatar avatar-lg avatar-error">
-              <span class="avatar-initials">田中</span>
-              <span class="avatar-status avatar-status-busy"></span>
-            </div>
+          <h4>ステータス付き</h4>
+          <div>
+            <span>山田</span>
+            <span>佐藤</span>
+            <span>鈴木</span>
+            <span>田中</span>
           </div>
 
-          <!-- Shapes -->
-          <h4 style="margin-bottom: 0.75rem;">形状バリエーション</h4>
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            <div class="avatar avatar-lg avatar-primary">
-              <span class="avatar-initials">円</span>
-            </div>
-            <div class="avatar avatar-lg avatar-primary avatar-rounded">
-              <span class="avatar-initials">角丸</span>
-            </div>
-            <div class="avatar avatar-lg avatar-primary avatar-square">
-              <span class="avatar-initials">四角</span>
-            </div>
+          <h4>形状バリエーション</h4>
+          <div>
+            <span>円</span>
+            <span>角丸</span>
+            <span>四角</span>
           </div>
         </div>
       </div>
@@ -805,60 +639,56 @@
       <div class="component-group">
         <h3>Chip - チップ</h3>
         <div class="example-box">
-          <!-- Sizes -->
-          <h4 style="margin-bottom: 0.75rem;">サイズバリエーション</h4>
-          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap;">
-            <span class="chip chip-small">Small</span>
-            <span class="chip chip-medium">Medium</span>
-            <span class="chip chip-large">Large</span>
+          <h4>サイズバリエーション</h4>
+          <div>
+            <span class="badge">Small</span>
+            <span class="badge">Medium</span>
+            <span class="badge">Large</span>
           </div>
 
-          <!-- Colors -->
-          <h4 style="margin-bottom: 0.75rem;">カラーバリエーション</h4>
-          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap;">
-            <span class="chip">Default</span>
-            <span class="chip chip-primary">Primary</span>
-            <span class="chip chip-success">Success</span>
-            <span class="chip chip-warning">Warning</span>
-            <span class="chip chip-error">Error</span>
-            <span class="chip chip-info">Info</span>
+          <h4>カラーバリエーション</h4>
+          <div>
+            <span class="badge">Default</span>
+            <span class="badge">Primary</span>
+            <span class="badge badge-success">Success</span>
+            <span class="badge badge-warning">Warning</span>
+            <span class="badge badge-error">Error</span>
+            <span class="badge badge-info">Info</span>
           </div>
 
-          <!-- With Icons -->
-          <h4 style="margin-bottom: 0.75rem;">アイコン付き</h4>
-          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap;">
-            <span class="chip chip-primary">
-              <span class="chip-icon">✓</span>
+          <h4>アイコン付き</h4>
+          <div>
+            <span class="badge badge-success">
+              <span>✓</span>
               <span>承認済み</span>
             </span>
-            <span class="chip chip-warning">
-              <span class="chip-icon">⚠</span>
+            <span class="badge badge-warning">
+              <span>⚠</span>
               <span>警告</span>
             </span>
-            <span class="chip chip-error">
-              <span class="chip-icon">✕</span>
+            <span class="badge badge-error">
+              <span>✕</span>
               <span>エラー</span>
             </span>
           </div>
 
-          <!-- Deletable -->
-          <h4 style="margin-bottom: 0.75rem;">削除可能なチップ</h4>
-          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-            <span class="chip chip-primary chip-deletable">
+          <h4>削除可能なチップ</h4>
+          <div>
+            <span class="badge">
               <span>React</span>
-              <button class="chip-close" aria-label="削除">×</button>
+              <button aria-label="削除">×</button>
             </span>
-            <span class="chip chip-success chip-deletable">
+            <span class="badge badge-success">
               <span>Vue.js</span>
-              <button class="chip-close" aria-label="削除">×</button>
+              <button aria-label="削除">×</button>
             </span>
-            <span class="chip chip-info chip-deletable">
+            <span class="badge badge-info">
               <span>TypeScript</span>
-              <button class="chip-close" aria-label="削除">×</button>
+              <button aria-label="削除">×</button>
             </span>
-            <span class="chip chip-warning chip-deletable">
+            <span class="badge badge-warning">
               <span>JavaScript</span>
-              <button class="chip-close" aria-label="削除">×</button>
+              <button aria-label="削除">×</button>
             </span>
           </div>
         </div>
@@ -937,11 +767,11 @@
       <div class="component-group">
         <h3>Navigation - ナビゲーション</h3>
         <div class="example-box">
-          <nav class="navigation">
-            <a href="#" class="nav-link nav-link-active">ホーム</a>
-            <a href="#" class="nav-link">プロダクト</a>
-            <a href="#" class="nav-link">ドキュメント</a>
-            <a href="#" class="nav-link">サポート</a>
+          <nav>
+            <a href="#">ホーム</a>
+            <a href="#">プロダクト</a>
+            <a href="#">ドキュメント</a>
+            <a href="#">サポート</a>
           </nav>
         </div>
       </div>
@@ -949,35 +779,35 @@
       <div class="component-group">
         <h3>Tabs - タブ</h3>
         <div class="example-box">
-          <div class="tabs">
-            <div class="tabs-list">
-              <button class="tab tab-active">概要</button>
-              <button class="tab">ドキュメント</button>
-              <button class="tab">設定</button>
-              <button class="tab" disabled>無効</button>
+          <div>
+            <div>
+              <button>概要</button>
+              <button>ドキュメント</button>
+              <button>設定</button>
+              <button disabled>無効</button>
             </div>
-            <div class="tab-panels">
-              <div class="tab-panel tab-panel-active">
+            <div>
+              <div>
                 <p>概要タブの内容です。デフォルトで表示されています。</p>
               </div>
             </div>
           </div>
 
-          <h4 style="margin-top: 2rem; margin-bottom: 1rem;">アイコン付きタブ</h4>
-          <div class="tabs">
-            <div class="tabs-list">
-              <button class="tab tab-active">
-                <span class="tab-icon">🏠</span>
+          <h4>アイコン付きタブ</h4>
+          <div>
+            <div>
+              <button>
+                <span>🏠</span>
                 <span>ホーム</span>
-                <span class="tab-badge">5</span>
+                <span class="badge">5</span>
               </button>
-              <button class="tab">
-                <span class="tab-icon">📧</span>
+              <button>
+                <span>📧</span>
                 <span>メッセージ</span>
-                <span class="tab-badge">12</span>
+                <span class="badge">12</span>
               </button>
-              <button class="tab">
-                <span class="tab-icon">⚙️</span>
+              <button>
+                <span>⚙️</span>
                 <span>設定</span>
               </button>
             </div>
@@ -987,40 +817,40 @@
 
       <div class="component-group">
         <h3>Breadcrumb - パンくずリスト</h3>
-        <p style="margin-bottom: 1rem;">リンクをクリックすると、トースト通知でナビゲーション先が表示されます。キーボード操作（Enter、Space）にも対応しています。</p>
+        <p>リンクをクリックすると、トースト通知でナビゲーション先が表示されます。キーボード操作（Enter、Space）にも対応しています。</p>
         <div class="example-box">
-          <nav class="breadcrumb" aria-label="パンくずナビゲーション">
-            <ol class="breadcrumb-list">
-              <li class="breadcrumb-item">
-                <a href="#" class="breadcrumb-link">🏠 ホーム</a>
+          <nav aria-label="パンくずナビゲーション">
+            <ol>
+              <li>
+                <a href="#">🏠 ホーム</a>
               </li>
-              <li class="breadcrumb-separator">/</li>
-              <li class="breadcrumb-item">
-                <a href="#" class="breadcrumb-link">プロダクト</a>
+              <li>/</li>
+              <li>
+                <a href="#">プロダクト</a>
               </li>
-              <li class="breadcrumb-separator">/</li>
-              <li class="breadcrumb-item">
-                <a href="#" class="breadcrumb-link">カテゴリ</a>
+              <li>/</li>
+              <li>
+                <a href="#">カテゴリ</a>
               </li>
-              <li class="breadcrumb-separator">/</li>
-              <li class="breadcrumb-item breadcrumb-item-active" aria-current="page">
+              <li>/</li>
+              <li aria-current="page">
                 現在のページ
               </li>
             </ol>
           </nav>
 
-          <h4 style="margin-top: 2rem; margin-bottom: 1rem;">シェブロンセパレーター</h4>
-          <nav class="breadcrumb">
-            <ol class="breadcrumb-list">
-              <li class="breadcrumb-item">
-                <a href="#" class="breadcrumb-link">ホーム</a>
+          <h4>シェブロンセパレーター</h4>
+          <nav>
+            <ol>
+              <li>
+                <a href="#">ホーム</a>
               </li>
-              <li class="breadcrumb-separator">›</li>
-              <li class="breadcrumb-item">
-                <a href="#" class="breadcrumb-link">ドキュメント</a>
+              <li>›</li>
+              <li>
+                <a href="#">ドキュメント</a>
               </li>
-              <li class="breadcrumb-separator">›</li>
-              <li class="breadcrumb-item breadcrumb-item-active">
+              <li>›</li>
+              <li>
                 コンポーネント
               </li>
             </ol>
@@ -1031,49 +861,49 @@
       <div class="component-group">
         <h3>Pagination - ページネーション</h3>
         <div class="example-box">
-          <nav class="pagination" aria-label="ページネーション">
-            <button class="pagination-nav" aria-label="前のページ" disabled>
+          <nav aria-label="ページネーション">
+            <button aria-label="前のページ" disabled>
               <span>‹</span>
             </button>
-            <button class="pagination-item pagination-item-active" aria-current="page">1</button>
-            <button class="pagination-item">2</button>
-            <button class="pagination-item">3</button>
-            <button class="pagination-item">4</button>
-            <button class="pagination-item">5</button>
-            <button class="pagination-nav" aria-label="次のページ">
+            <button aria-current="page">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button aria-label="次のページ">
               <span>›</span>
             </button>
           </nav>
 
-          <h4 style="margin-top: 2rem; margin-bottom: 1rem;">省略表示付き</h4>
-          <nav class="pagination">
-            <button class="pagination-nav" aria-label="前のページ">
+          <h4>省略表示付き</h4>
+          <nav>
+            <button aria-label="前のページ">
               <span>‹</span>
             </button>
-            <button class="pagination-item">1</button>
-            <button class="pagination-item pagination-item-active">2</button>
-            <button class="pagination-item">3</button>
-            <span class="pagination-ellipsis">...</span>
-            <button class="pagination-item">10</button>
-            <button class="pagination-nav" aria-label="次のページ">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <span>...</span>
+            <button>10</button>
+            <button aria-label="次のページ">
               <span>›</span>
             </button>
           </nav>
 
-          <h4 style="margin-top: 2rem; margin-bottom: 1rem;">情報付き</h4>
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            <nav class="pagination">
-              <button class="pagination-nav" aria-label="前のページ">
+          <h4>情報付き</h4>
+          <div>
+            <nav>
+              <button aria-label="前のページ">
                 <span>‹</span>
               </button>
-              <button class="pagination-item">1</button>
-              <button class="pagination-item pagination-item-active">2</button>
-              <button class="pagination-item">3</button>
-              <button class="pagination-nav" aria-label="次のページ">
+              <button>1</button>
+              <button>2</button>
+              <button>3</button>
+              <button aria-label="次のページ">
                 <span>›</span>
               </button>
             </nav>
-            <span class="pagination-info">全30件中 11-20件を表示</span>
+            <span>全30件中 11-20件を表示</span>
           </div>
         </div>
       </div>
@@ -1088,7 +918,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
       <p>Hidearea Design System Tokens - Phase 3</p>
       <p>
         <a href="https://github.com/hardlitchi/hidearea-design" target="_blank">GitHub</a> |
@@ -1098,17 +928,17 @@
   </div>
 
   <!-- Modal -->
-  <div id="modal" class="modal-overlay" style="display: none;">
-    <div class="modal">
-      <div class="modal-header">
+  <div id="modal" style="display: none;">
+    <div>
+      <div>
         <h3>モーダルタイトル</h3>
-        <button class="modal-close" aria-label="閉じる">&times;</button>
+        <button aria-label="閉じる">&times;</button>
       </div>
-      <div class="modal-body">
+      <div>
         <p>これはモーダルコンポーネントの例です。</p>
         <p>背景、ボーダー、オーバーレイが適用されています。</p>
       </div>
-      <div class="modal-footer">
+      <div>
         <button class="btn btn-secondary" id="cancel-modal">キャンセル</button>
         <button class="btn btn-primary" id="confirm-modal">確認</button>
       </div>
