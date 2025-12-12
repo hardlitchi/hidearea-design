@@ -281,7 +281,48 @@ const convertHostToClass = (cssContent, componentName) => {
   converted = converted.replace(/::slotted\(\*\)/g, '> *');
   converted = converted.replace(/::slotted\(([^)]+)\)/g, '$1');
 
-  return converted;
+  // Scope global element selectors to component
+  // This converts element selectors like 'input {', 'button {' to '.ha-component input {', '.ha-component button {'
+
+  // Split into CSS rules to process selectors separately from properties
+  const rules = converted.split('}');
+  const scopedRules = rules.map((rule, index) => {
+    // Skip if this is the last empty segment after final }
+    if (!rule.trim()) return rule;
+
+    // Split into selector and declaration parts
+    const openBraceIndex = rule.indexOf('{');
+    if (openBraceIndex === -1) return rule; // No opening brace, return as-is
+
+    let selector = rule.substring(0, openBraceIndex);
+    const declaration = rule.substring(openBraceIndex);
+
+    // Skip @ rules (media queries, keyframes, etc)
+    if (selector.trim().startsWith('@')) return rule;
+
+    // Skip if already scoped
+    if (selector.includes(`.ha-${componentName}`)) return rule;
+
+    // Scope element selectors at the start of selector
+    // Match: whitespace + element-name + (space|colon|comma|bracket|{)
+    // Examples: "input ", "button:", "label,", "select["
+    selector = selector.replace(
+      /(^|\n)(\s*)([a-z][\w-]*)(\s+|:|,|\[)/gi,
+      (match, lineStart, indent, element, suffix) => {
+        // List of elements that should be scoped (common HTML elements in components)
+        const scopableElements = ['input', 'button', 'select', 'textarea', 'label', 'form', 'a', 'img', 'svg', 'span', 'div', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'table', 'thead', 'tbody', 'tr', 'th', 'td'];
+
+        if (scopableElements.includes(element.toLowerCase())) {
+          return `${lineStart}${indent}.ha-${componentName} ${element}${suffix}`;
+        }
+        return match;
+      }
+    );
+
+    return selector + declaration;
+  });
+
+  return scopedRules.join('}');
 };
 
 // Arrays to collect all CSS content for unified builds

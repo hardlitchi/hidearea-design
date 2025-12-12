@@ -58,45 +58,101 @@
     <button id="theme-toggle" onclick="toggleTheme()">テーマ切り替え</button>
   </header>
 
+  <!-- Start Form セクション-->
   <section>
     <h1>Form</h1>
     <p>ユーザ入力を受け付けるコンポーネント</p>
+
+    <!-- Start Form | Button セクション-->
     <section>
       <h2>Button Examples</h2>
       <div class="component-group">
+
         <!-- プライマリボタン -->
-        <button class="ha-button" variant="primary">送信</button>
+        <div class="ha-button" variant="primary">
+          <button>送信</button>
+        </div>
 
         <!-- セカンダリボタン -->
-        <button class="btn btn-secondary">キャンセル</button>
+        <div class="ha-button" variant="secondary">
+          <button>キャンセル</button>
+        </div>
 
         <!-- ゴーストボタン -->
-        <button class="btn btn-ghost">詳細</button>
+        <div class="ha-button" variant="ghost">
+          <button>詳細</button>
+        </div>
 
         <!-- デンジャーボタン -->
-        <button class="btn btn-danger">削除</button>
+        <div class="ha-button" variant="danger">
+          <button>削除</button>
+        </div>
 
         <!-- 無効化されたボタン -->
-        <button class="btn btn-primary" disabled>無効</button>
-      </div>
-    </section>
-  </section>
-  <section class="section">
-    <h2>Button Examples</h2>
-    <div class="component-group">
-      <h3>.ha-button を使用</h3>
-      <div class="example-box">
-        <div class="demo-grid">
-          <div class="ha-button">
-            <button>Default Button</button>
-          </div>
-          <div class="ha-button">
-            <button disabled>Disabled Button</button>
-          </div>
+        <div class="ha-button" variant="primary">
+          <button disabled>無効</button>
         </div>
       </div>
-    </div>
+    </section>
+    <!-- End Form | Button セクション-->
+
+    <!-- Start Input | Button セクション-->
+    <section>
+      <div class="ha-input" variant="default" size="md">
+        <label>default default
+          <div class="input-wrapper">
+            <input name="test" type="text">
+          </div>
+        </label>
+        <label>default readonly
+          <div class="input-wrapper">
+            <input name="test" type="text" readonly>
+          </div>
+        </label>
+        <label>default disabled
+          <div class="input-wrapper">
+            <input name="test" type="text" disabled>
+          </div>
+        </label>
+      </div>
+      <div class="ha-input" variant="filled" size="md">
+        <label>filled default
+          <div class="input-wrapper">
+            <input name="test" type="text">
+          </div>
+        </label>
+        <label>filled readonly
+          <div class="input-wrapper">
+            <input name="test" type="text" readonly>
+          </div>
+        </label>
+        <label>filled disabled
+          <div class="input-wrapper">
+            <input name="test" type="text" disabled>
+          </div>
+        </label>
+      </div>
+      <div class="ha-input" variant="outlined" size="md">
+        <label>outlined default
+          <div class="input-wrapper">
+            <input name="test" type="text">
+          </div>
+        </label>
+        <label>outlined readonly
+          <div class="input-wrapper">
+            <input name="test" type="text" readonly>
+          </div>
+        </label>
+        <label>outlined disabled
+          <div class="input-wrapper">
+            <input name="test" type="text" disabled>
+          </div>
+        </label>
+      </div>
+    </section>
+    <!-- End Input | Button セクション-->
   </section>
+  <!-- End Form セクション-->
 
   <section class="section">
     <h2>Card Examples</h2>
