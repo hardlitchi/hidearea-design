@@ -917,13 +917,15 @@
 
         <!-- 成功トースト（プログレスバー付き） -->
         <div class="ha-toast" variant="success" role="alert" aria-live="polite">
-          <div class="content">
+          <div class="container">
             <div class="icon">✓</div>
-            <div class="message">ファイルがアップロードされました</div>
+            <div class="content">
+              <div class="message">ファイルがアップロードされました（5秒後に自動で閉じます）</div>
+            </div>
+            <button class="close-button" aria-label="閉じる">×</button>
           </div>
-          <button class="close-button" aria-label="閉じる">×</button>
           <div class="toast-progress">
-            <div class="toast-progress-bar" style="width: 100%; transition-duration: 5s;"></div>
+            <div class="toast-progress-bar" style="animation: progressBar 5s linear forwards;"></div>
           </div>
         </div>
       </div>
