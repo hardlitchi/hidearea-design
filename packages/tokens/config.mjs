@@ -253,14 +253,25 @@ const kebabToCamel = (str) => str.replace(/-([a-z])/g, (g) => g[1].toUpperCase()
 
 // Helper function to convert :host selectors to class selectors for plain HTML
 const convertHostToClass = (cssContent, componentName) => {
-  // Convert :host to .component-name
-  let converted = cssContent.replace(/:host\b/g, `.ha-${componentName}`);
+  // IMPORTANT: Process specific patterns first, then general patterns
 
-  // Convert :host([attribute]) to .ha-component-name[attribute]
-  converted = converted.replace(/:host\(\[([^\]]+)\]\)/g, `.ha-${componentName}[$1]`);
+  // Convert :host([attribute][attribute]:pseudo-class) to .ha-component-name[attribute][attribute]:pseudo-class
+  // Example: :host([disabled][checked]:hover) → .ha-radio[disabled][checked]:hover
+  let converted = cssContent.replace(/:host\((\[[^\)]+\])(:[^)]+)\)/g, `.ha-${componentName}$1$2`);
+
+  // Convert :host([attribute][attribute]...) to .ha-component-name[attribute][attribute]...
+  // Example: :host([disabled][checked]) → .ha-radio[disabled][checked]
+  converted = converted.replace(/:host\((\[[^\)]+\])\)/g, `.ha-${componentName}$1`);
+
+  // Convert :host(:pseudo-class) to .ha-component-name:pseudo-class
+  // Example: :host(:focus) → .ha-card:focus
+  converted = converted.replace(/:host\((:[^)]+)\)/g, `.ha-${componentName}$1`);
 
   // Convert :host(.class) to .ha-component-name.class
   converted = converted.replace(/:host\(\.([^)]+)\)/g, `.ha-${componentName}.$1`);
+
+  // Convert :host to .ha-component-name (must be last to avoid breaking other patterns)
+  converted = converted.replace(/:host\b/g, `.ha-${componentName}`);
 
   // Convert ::slotted(*) to plain selectors
   // Handle cases where ::slotted is already preceded by a combinator (>, +, ~)

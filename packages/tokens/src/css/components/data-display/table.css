@@ -33,21 +33,21 @@
 }
 
 /* Table cells */
-.table :slotted(thead) {
+.table ::slotted(thead) {
   background-color: var(--table-header-bg);
   font-weight: var(--font-weight-semibold);
 }
 
-.table :slotted(th),
-.table :slotted(td) {
+.table ::slotted(th),
+.table ::slotted(td) {
   padding: var(--table-padding);
   text-align: left;
   vertical-align: middle;
 }
 
 /* Compact mode */
-.table--compact :slotted(th),
-.table--compact :slotted(td) {
+.table--compact ::slotted(th),
+.table--compact ::slotted(td) {
   padding: var(--table-padding-compact);
 }
 
@@ -56,18 +56,18 @@
   border: 1px solid var(--table-border-color);
 }
 
-.table--bordered :slotted(th),
-.table--bordered :slotted(td) {
+.table--bordered ::slotted(th),
+.table--bordered ::slotted(td) {
   border: 1px solid var(--table-border-color);
 }
 
 /* Striped */
-.table--striped :slotted(tbody tr:nth-child(even)) {
+.table--striped ::slotted(tbody tr:nth-child(even)) {
   background-color: var(--table-striped-bg);
 }
 
 /* Hoverable */
-.table--hoverable :slotted(tbody tr:hover) {
+.table--hoverable ::slotted(tbody tr:hover) {
   background-color: var(--table-row-hover-bg);
   cursor: pointer;
 }
