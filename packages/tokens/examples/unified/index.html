@@ -877,52 +877,53 @@
 
           <!-- 情報トースト -->
           <div class="ha-toast" variant="info" role="alert" aria-live="polite">
-            <div class="container">
+            <div class="content">
               <div class="icon">ℹ️</div>
-              <div class="content">
-                <div class="message">新しい通知があります</div>
-              </div>
-              <button class="close-button" aria-label="閉じる">×</button>
+              <div class="message">新しい通知があります</div>
             </div>
+            <button class="close-button" aria-label="閉じる">×</button>
           </div>
 
-          <!-- 成功トースト（プログレスバー付き） -->
+          <!-- 成功トースト -->
           <div class="ha-toast" variant="success" role="alert" aria-live="polite">
-            <div class="container">
+            <div class="content">
               <div class="icon">✓</div>
-              <div class="content">
-                <div class="message">ファイルがアップロードされました</div>
-              </div>
-              <button class="close-button" aria-label="閉じる">×</button>
-              <div class="progress">
-                <div class="progress-bar" style="width: 100%; transition-duration: 5s;"></div>
-              </div>
+              <div class="message">ファイルがアップロードされました</div>
             </div>
+            <button class="close-button" aria-label="閉じる">×</button>
           </div>
 
           <!-- アクション付きトースト -->
           <div class="ha-toast" variant="warning" role="alert" aria-live="polite">
-            <div class="container">
+            <div class="content">
               <div class="icon">⚠</div>
-              <div class="content">
-                <div class="message">アイテムを削除しました</div>
-              </div>
-              <div class="action">
-                <button>元に戻す</button>
-              </div>
-              <button class="close-button" aria-label="閉じる">×</button>
+              <div class="message">アイテムを削除しました</div>
             </div>
+            <div class="action">
+              <button>元に戻す</button>
+            </div>
+            <button class="close-button" aria-label="閉じる">×</button>
           </div>
 
           <!-- エラートースト -->
           <div class="ha-toast" variant="error" role="alert" aria-live="assertive">
-            <div class="container">
+            <div class="content">
               <div class="icon">✕</div>
-              <div class="content">
-                <div class="message">接続に失敗しました。再試行してください。</div>
-              </div>
-              <button class="close-button" aria-label="閉じる">×</button>
+              <div class="message">接続に失敗しました。再試行してください。</div>
             </div>
+            <button class="close-button" aria-label="閉じる">×</button>
+          </div>
+        </div>
+
+        <!-- 成功トースト（プログレスバー付き） -->
+        <div class="ha-toast" variant="success" role="alert" aria-live="polite">
+          <div class="content">
+            <div class="icon">✓</div>
+            <div class="message">ファイルがアップロードされました</div>
+          </div>
+          <button class="close-button" aria-label="閉じる">×</button>
+          <div class="toast-progress">
+            <div class="toast-progress-bar" style="width: 100%; transition-duration: 5s;"></div>
           </div>
         </div>
       </div>
@@ -975,18 +976,16 @@
               toast.setAttribute('aria-live', variant === 'error' ? 'assertive' : 'polite');
 
               toast.innerHTML = `
-      <div class="container">
-        <div class="icon">${this.getIcon(variant)}</div>
         <div class="content">
+          <div class="icon">${this.getIcon(variant)}</div>
           <div class="message">${message}</div>
         </div>
         <button class="close-button" aria-label="閉じる">×</button>
         ${duration > 0 ? `
-          <div class="progress">
-            <div class="progress-bar" style="width: 100%; transition-duration: ${duration}ms;"></div>
+          <div class="toast-progress">
+            <div class="toast-progress-bar" style="width: 100%; transition-duration: ${duration}ms;"></div>
           </div>
         ` : ''}
-      </div>
     `;
 
               this.container.appendChild(toast);

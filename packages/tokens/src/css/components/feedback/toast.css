@@ -9,11 +9,6 @@
  */
 
 :host {
-  display: block;
-  position: relative;
-}
-
-.container {
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -40,7 +35,7 @@
   }
 }
 
-:host([closing]) .container {
+:host([closing]) {
   animation: slideOut var(--duration-base, 200ms) var(--ease-in);
 }
 
@@ -120,7 +115,7 @@
 }
 
 /* Variants */
-:host([variant="info"]) .container {
+:host([variant="info"]) {
   border-color: var(--info-muted, #93c5fd);
 }
 
@@ -132,7 +127,7 @@
   background: var(--info-default, #3b82f6);
 }
 
-:host([variant="success"]) .container {
+:host([variant="success"]) {
   border-color: var(--success-muted, #86efac);
 }
 
@@ -144,7 +139,7 @@
   background: var(--success-default, #22c55e);
 }
 
-:host([variant="warning"]) .container {
+:host([variant="warning"]) {
   border-color: var(--warning-muted, #fde047);
 }
 
@@ -156,7 +151,7 @@
   background: var(--warning-default, #eab308);
 }
 
-:host([variant="error"]) .container {
+:host([variant="error"]) {
   border-color: var(--error-muted, #fca5a5);
 }
 
