@@ -208,16 +208,20 @@ await sd.buildAllPlatforms();
 console.log('✅ Design tokens built successfully!');
 
 /**
- * Build component CSS files
- * 1. Copy CSS files from src/css/components/ to build/css/components/
- * 2. Generate TypeScript exports in build/js/styles/
+ * Build component CSS files in 4 patterns:
+ * 1. WebComponents: CSS with :host selectors (src/css/components/)
+ * 2. HTML: Plain CSS with class selectors (build/css/html/)
+ * 3. React/Vue: JavaScript/TypeScript exports (build/js/styles/)
+ * 4. Unified: All components in single files (build/css/all.css, build/css/html/all.css)
  */
 const srcCssDir = 'src/css/components';
-const buildCssDir = 'build/css/components';
-const buildJsStylesDir = 'build/js/styles';
+const buildCssDirWebComponents = 'build/css/components';  // Pattern 1: WebComponents
+const buildCssDirHtml = 'build/css/html';                 // Pattern 2: HTML
+const buildJsStylesDir = 'build/js/styles';               // Pattern 3: React/Vue
 
 // Create output directories
-mkdirSync(buildCssDir, { recursive: true });
+mkdirSync(buildCssDirWebComponents, { recursive: true });
+mkdirSync(buildCssDirHtml, { recursive: true });
 mkdirSync(buildJsStylesDir, { recursive: true });
 
 // Helper function to recursively get all CSS files
@@ -247,6 +251,28 @@ console.log(`\n📦 Building component styles...`);
 // Helper function to convert kebab-case to camelCase
 const kebabToCamel = (str) => str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
 
+// Helper function to convert :host selectors to class selectors for plain HTML
+const convertHostToClass = (cssContent, componentName) => {
+  // Convert :host to .component-name
+  let converted = cssContent.replace(/:host\b/g, `.ha-${componentName}`);
+
+  // Convert :host([attribute]) to .ha-component-name[attribute]
+  converted = converted.replace(/:host\(\[([^\]]+)\]\)/g, `.ha-${componentName}[$1]`);
+
+  // Convert :host(.class) to .ha-component-name.class
+  converted = converted.replace(/:host\(\.([^)]+)\)/g, `.ha-${componentName}.$1`);
+
+  // Convert ::slotted(*) to plain selectors
+  converted = converted.replace(/::slotted\(\*\)/g, '> *');
+  converted = converted.replace(/::slotted\(([^)]+)\)/g, '$1');
+
+  return converted;
+};
+
+// Arrays to collect all CSS content for unified builds
+const allWebComponentsCSS = [];
+const allHtmlCSS = [];
+
 cssFiles.forEach(file => {
   const srcPath = join(srcCssDir, file);
   const cssContent = readFileSync(srcPath, 'utf-8');
@@ -254,49 +280,100 @@ cssFiles.forEach(file => {
   const camelCaseName = kebabToCamel(componentName);
   const category = file.includes('/') ? file.split('/')[0] : '';
 
-  // 1. Copy CSS to build/css/components/ (preserve directory structure)
-  const destCssPath = join(buildCssDir, file);
-  const destCssDir = join(buildCssDir, category);
+  // Pattern 1: WebComponents - Copy CSS to build/css/components/ (preserve directory structure)
+  const destCssPathWC = join(buildCssDirWebComponents, file);
+  const destCssDirWC = join(buildCssDirWebComponents, category);
   if (category) {
-    mkdirSync(destCssDir, { recursive: true });
+    mkdirSync(destCssDirWC, { recursive: true });
   }
-  copyFileSync(srcPath, destCssPath);
-  console.log(`   ✓ Copied ${file} → ${buildCssDir}/`);
+  copyFileSync(srcPath, destCssPathWC);
+  allWebComponentsCSS.push(`/* ${componentName} */\n${cssContent}`);
 
-  // 2. Generate JavaScript export in build/js/styles/
+  // Pattern 2: HTML - Convert :host to class selectors and save to build/css/html/
+  const htmlCssContent = convertHostToClass(cssContent, componentName);
+  const destCssPathHtml = join(buildCssDirHtml, file);
+  const destCssDirHtml = join(buildCssDirHtml, category);
+  if (category) {
+    mkdirSync(destCssDirHtml, { recursive: true });
+  }
+  writeFileSync(destCssPathHtml, htmlCssContent, 'utf-8');
+  allHtmlCSS.push(`/* ${componentName} */\n${htmlCssContent}`);
+  console.log(`   ✓ Generated ${file} → WebComponents & HTML`);
+
+  // Pattern 3: React/Vue - Generate JavaScript export in build/js/styles/
   const jsContent = `/**
  * ${camelCaseName.charAt(0).toUpperCase() + camelCaseName.slice(1)} Component Styles
  * Auto-generated from src/css/components/${file}
  * @hidearea-design/tokens
+ *
+ * For WebComponents: Use original :host selectors
+ * For HTML: Use .ha-${componentName} class
  */
 
+// WebComponents version (with :host)
 export const ${camelCaseName}Styles = \`${cssContent.replace(/`/g, '\\`')}\`;
+
+// HTML version (with class selectors)
+export const ${camelCaseName}HtmlStyles = \`${htmlCssContent.replace(/`/g, '\\`')}\`;
 `;
 
   const destJsPath = join(buildJsStylesDir, `${componentName}.js`);
   writeFileSync(destJsPath, jsContent, 'utf-8');
-  console.log(`   ✓ Generated ${componentName}.js → ${buildJsStylesDir}/`);
 
-  // 3. Generate TypeScript declaration in build/js/styles/
+  // Generate TypeScript declaration
   const dtsContent = `/**
  * ${camelCaseName.charAt(0).toUpperCase() + camelCaseName.slice(1)} Component Styles
  * Auto-generated from src/css/components/${file}
  * @hidearea-design/tokens
  */
 
+/** WebComponents version (with :host) */
 export declare const ${camelCaseName}Styles: string;
+
+/** HTML version (with class selectors) */
+export declare const ${camelCaseName}HtmlStyles: string;
 `;
 
   const destDtsPath = join(buildJsStylesDir, `${componentName}.d.ts`);
   writeFileSync(destDtsPath, dtsContent, 'utf-8');
-  console.log(`   ✓ Generated ${componentName}.d.ts → ${buildJsStylesDir}/`);
 });
 
-// Generate index file for easy imports
+// Pattern 4: Unified CSS files - All components in single files
+console.log(`\n📦 Building unified CSS files...`);
+
+// WebComponents unified CSS
+const unifiedWebComponentsCSS = `/**
+ * Hidearea Design System - All Components (WebComponents)
+ * Auto-generated unified CSS file
+ * @hidearea-design/tokens
+ */
+
+${allWebComponentsCSS.join('\n\n')}
+`;
+writeFileSync('build/css/all.css', unifiedWebComponentsCSS, 'utf-8');
+console.log(`   ✓ Generated all.css (WebComponents) → build/css/`);
+
+// HTML unified CSS
+const unifiedHtmlCSS = `/**
+ * Hidearea Design System - All Components (HTML)
+ * Auto-generated unified CSS file with class selectors
+ * @hidearea-design/tokens
+ *
+ * Usage: <div class="ha-button">...</div>
+ */
+
+${allHtmlCSS.join('\n\n')}
+`;
+writeFileSync('build/css/html/all.css', unifiedHtmlCSS, 'utf-8');
+console.log(`   ✓ Generated all.css (HTML) → build/css/html/`);
+
+// Generate index file for easy imports (React/Vue)
+console.log(`\n📦 Building JavaScript/TypeScript index files...`);
+
 const indexContent = cssFiles.map(file => {
   const componentName = basename(file, '.css');
   const camelCaseName = kebabToCamel(componentName);
-  return `export { ${camelCaseName}Styles } from './${componentName}.js';`;
+  return `export { ${camelCaseName}Styles, ${camelCaseName}HtmlStyles } from './${componentName}.js';`;
 }).join('\n') + '\n';
 
 writeFileSync(join(buildJsStylesDir, 'index.js'), indexContent, 'utf-8');
@@ -306,10 +383,14 @@ console.log(`   ✓ Generated index.js → ${buildJsStylesDir}/`);
 const indexDtsContent = cssFiles.map(file => {
   const componentName = basename(file, '.css');
   const camelCaseName = kebabToCamel(componentName);
-  return `export { ${camelCaseName}Styles } from './${componentName}.js';`;
+  return `export { ${camelCaseName}Styles, ${camelCaseName}HtmlStyles } from './${componentName}.js';`;
 }).join('\n') + '\n';
 
 writeFileSync(join(buildJsStylesDir, 'index.d.ts'), indexDtsContent, 'utf-8');
 console.log(`   ✓ Generated index.d.ts → ${buildJsStylesDir}/`);
 
-console.log(`\n✅ Component styles built successfully! (${cssFiles.length} files)`);
+console.log(`\n✅ Component styles built successfully!`);
+console.log(`   📁 Pattern 1 (WebComponents): ${cssFiles.length} files → build/css/components/`);
+console.log(`   📁 Pattern 2 (HTML): ${cssFiles.length} files → build/css/html/`);
+console.log(`   📁 Pattern 3 (React/Vue): ${cssFiles.length * 2} exports → build/js/styles/`);
+console.log(`   📄 Pattern 4 (Unified): 2 files → build/css/all.css, build/css/html/all.css`);

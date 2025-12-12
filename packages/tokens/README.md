@@ -33,16 +33,58 @@ console.log(buttonStyles); // コンポーネントスタイルオブジェク�
 
 ### CSS
 
+**4つのビルドパターンが利用可能です:**
+
+#### Pattern 1: WebComponents（`:host`セレクタ）
+
 ```css
-/* すべてのデザイントークンをインポート */
-@import '@hidearea-design/tokens/css';
-
-/* または特定のコンポーネントスタイルをインポート（カテゴリ別に整理） */
+/* WebComponents用 - Shadow DOM対応 */
 @import '@hidearea-design/tokens/css/components/layout/button.css';
-@import '@hidearea-design/tokens/css/components/forms/input.css';
-@import '@hidearea-design/tokens/css/components/data-display/card.css';
-@import '@hidearea-design/tokens/css/components/feedback/alert.css';
+/* :host セレクタを使用 */
+```
 
+#### Pattern 2: Plain HTML（クラスセレクタ）
+
+```css
+/* シンプルなHTML用 - examples/basic向け */
+@import '@hidearea-design/tokens/css/html/layout/button.css';
+/* .ha-button クラスを使用 */
+
+/* または全コンポーネントを一括インポート */
+@import '@hidearea-design/tokens/css/html/all.css';
+```
+
+```html
+<!-- 使用例 -->
+<div class="ha-button">クリック</div>
+```
+
+#### Pattern 3: React/Vue（JavaScriptインポート）
+
+```javascript
+// WebComponents版
+import { buttonStyles } from '@hidearea-design/tokens/styles/button';
+
+// HTML版（クラスセレクタ）
+import { buttonHtmlStyles } from '@hidearea-design/tokens/styles/button';
+
+// 全てインポート
+import * as styles from '@hidearea-design/tokens/styles';
+```
+
+#### Pattern 4: 統合CSS（全コンポーネント1ファイル）
+
+```css
+/* WebComponents版（147KB） */
+@import '@hidearea-design/tokens/css/all.css';
+
+/* HTML版（149KB） */
+@import '@hidearea-design/tokens/css/html/all.css';
+```
+
+#### デザイントークンの使用
+
+```css
 .my-element {
   /* ベーストークン */
   color: var(--color-primary-500);
@@ -357,6 +399,104 @@ https://example.tokens.design.sb.hidearea.net/examples/basic/index.html
 }
 ```
 
+## ビルドパターン
+
+このパッケージは4つの異なるビルドパターンを提供し、様々なユースケースに対応しています:
+
+### Pattern 1: WebComponents (Shadow DOM)
+
+**用途**: Web Components、Shadow DOM を使用するカスタム要素
+
+**特徴**:
+- `:host` セレクタを使用
+- Shadow DOM のカプセル化に対応
+- スコープ化されたスタイル
+
+**ファイル**: `build/css/components/**/*.css`
+
+```css
+/* 例: button.css */
+:host {
+  display: inline-block;
+}
+
+button {
+  padding: var(--spacing-2-5);
+}
+```
+
+### Pattern 2: Plain HTML (Class Selectors)
+
+**用途**: シンプルなHTML、静的サイト、examples/basic/
+
+**特徴**:
+- `.ha-*` プレフィックス付きクラスセレクタ
+- `:host` は `.ha-component-name` に変換
+- 直接HTMLから参照可能
+
+**ファイル**: `build/css/html/**/*.css`
+
+```css
+/* 例: button.css */
+.ha-button {
+  display: inline-block;
+}
+
+button {
+  padding: var(--spacing-2-5);
+}
+```
+
+```html
+<div class="ha-button">
+  <button>クリック</button>
+</div>
+```
+
+### Pattern 3: React/Vue/TypeScript (JavaScript Exports)
+
+**用途**: React、Vue、その他のJavaScriptフレームワーク
+
+**特徴**:
+- CSSをJavaScript文字列としてエクスポート
+- WebComponents版とHTML版の両方を提供
+- TypeScript型定義付き
+
+**ファイル**: `build/js/styles/*.js`, `*.d.ts`
+
+```typescript
+import { buttonStyles, buttonHtmlStyles } from '@hidearea-design/tokens/styles/button';
+
+// WebComponents版を使用
+const styleElement = document.createElement('style');
+styleElement.textContent = buttonStyles;
+
+// HTML版を使用（クラスセレクタ）
+const htmlStyleElement = document.createElement('style');
+htmlStyleElement.textContent = buttonHtmlStyles;
+```
+
+### Pattern 4: Unified CSS (All-in-One)
+
+**用途**: プロトタイピング、デモページ、一括インポート
+
+**特徴**:
+- 全38コンポーネントを1ファイルに統合
+- WebComponents版とHTML版の両方
+- ファイルサイズ: 約147-149KB
+
+**ファイル**:
+- `build/css/all.css` (WebComponents版)
+- `build/css/html/all.css` (HTML版)
+
+```html
+<!-- WebComponents版 -->
+<link rel="stylesheet" href="node_modules/@hidearea-design/tokens/css/all.css">
+
+<!-- HTML版 -->
+<link rel="stylesheet" href="node_modules/@hidearea-design/tokens/css/html/all.css">
+```
+
 ## トークン構造
 
 ```
@@ -428,10 +568,19 @@ tokens/
 │           ├── container.css
 │           ├── grid.css
 │           └── stack.css
-├── build/                 # 生成された出力
+├── build/                 # 生成された出力（4パターン）
 │   ├── css/
 │   │   ├── variables.css  # デザイントークン
-│   │   └── components/    # コンポーネントスタイル（同じ構造）
+│   │   ├── all.css        # 統合CSS（WebComponents版）
+│   │   ├── components/    # Pattern 1: WebComponents（:host）
+│   │   │   ├── forms/
+│   │   │   ├── data-display/
+│   │   │   ├── navigation/
+│   │   │   ├── overlays/
+│   │   │   ├── feedback/
+│   │   │   └── layout/
+│   │   └── html/          # Pattern 2: Plain HTML
+│   │       ├── all.css    # 統合CSS（HTML版）
 │   │       ├── forms/
 │   │       ├── data-display/
 │   │       ├── navigation/
@@ -439,6 +588,11 @@ tokens/
 │   │       ├── feedback/
 │   │       └── layout/
 │   ├── js/
+│   │   ├── index.js
+│   │   └── styles/        # Pattern 3: React/Vue
+│   │       ├── button.js  # buttonStyles, buttonHtmlStyles
+│   │       ├── input.js
+│   │       └── ...
 │   └── ts/
 └── .performance/          # パフォーマンスレポート
 ```
