@@ -1,53 +1,53 @@
 # @hidearea-design/tokens
 
-Design tokens for the Hidearea Design System.
+Hidearea Design Systemのデザイントークンパッケージ
 
-## Overview
+## 概要
 
-This package contains design tokens that define the visual design language of the Hidearea Design System. It includes both **base tokens** (foundational values) and **semantic tokens** (context-specific values).
+このパッケージは、Hidearea Design Systemの視覚的デザイン言語を定義するデザイントークンを提供します。**ベーストークン**（基礎的な値）と**セマンティックトークン**（文脈固有の値）の両方が含まれています。
 
-## Installation
+## インストール
 
 ```bash
 npm install @hidearea-design/tokens
 ```
 
-## Usage
+## 使用方法
 
 ### JavaScript/TypeScript
 
 ```javascript
-// Import design tokens
+// デザイントークンをインポート
 import { colors, spacing, typography } from '@hidearea-design/tokens';
 
 console.log(colors.primary[500]); // #3B82F6
 console.log(spacing.md); // 16px
 console.log(typography.fontSize.base); // 16px
 
-// Import component styles (CSS-in-JS)
+// コンポーネントスタイル（CSS-in-JS）をインポート
 import buttonStyles from '@hidearea-design/tokens/styles/button';
 import inputStyles from '@hidearea-design/tokens/styles/input';
 
-console.log(buttonStyles); // Component style object
+console.log(buttonStyles); // コンポーネントスタイルオブジェクト
 ```
 
 ### CSS
 
 ```css
-/* Import all design tokens */
+/* すべてのデザイントークンをインポート */
 @import '@hidearea-design/tokens/css';
 
-/* Or import specific component styles */
+/* または特定のコンポーネントスタイルをインポート */
 @import '@hidearea-design/tokens/css/components/button.css';
 @import '@hidearea-design/tokens/css/components/input.css';
 
 .my-element {
-  /* Base tokens */
+  /* ベーストークン */
   color: var(--color-primary-500);
   padding: var(--spacing-4);
   font-size: var(--font-size-base);
 
-  /* Semantic tokens */
+  /* セマンティックトークン */
   background: var(--component-button-primary-background-default);
   border: 1px solid var(--component-button-primary-border-default);
 }
@@ -57,285 +57,254 @@ console.log(buttonStyles); // Component style object
 }
 ```
 
-## Available Tokens
+## 利用可能なトークン
 
-- **Colors**: Primary, secondary, neutral, semantic colors
-- **Typography**: Font sizes, weights, line heights
-- **Spacing**: Consistent spacing scale
-- **Borders**: Border widths, radii
-- **Shadows**: Box shadows for depth
-- **Breakpoints**: Responsive design breakpoints
-- **Z-Index**: Layering scale
-- **Animations**: Timing functions and durations
+- **カラー**: プライマリ、セカンダリ、ニュートラル、セマンティックカラー
+- **タイポグラフィ**: フォントサイズ、ウェイト、行高
+- **スペーシング**: 一貫したスペーシングスケール
+- **ボーダー**: ボーダー幅、角丸
+- **シャドウ**: 奥行きを表現するボックスシャドウ
+- **ブレークポイント**: レスポンシブデザインブレークポイント
+- **Z-Index**: レイヤリングスケール
+- **アニメーション**: タイミング関数と期間
 
-  color: $color-primary-500;
-  padding: $spacing-4;
-  font-size: $font-size-base;
-}
-```
+## トークンカテゴリ
 
-## Token Categories
+### ベーストークン
 
-### Base Tokens
+コアとなる視覚言語を定義する基礎デザイントークン：
 
-Foundation design tokens that define the core visual language:
+- **カラー**: プライマリ、セカンダリ、ニュートラル、セマンティックカラー（青、グレー、赤など）
+- **タイポグラフィ**: フォントファミリー、サイズ、ウェイト、行高
+- **スペーシング**: 一貫したスペーシングスケール（0-96）
+- **ボーダー**: ボーダー幅、角丸
+- **シャドウ**: 奥行きを表現するボックスシャドウ
+- **ブレークポイント**: レスポンシブデザインブレークポイント
+- **アニメーション**: タイミング関数と期間
 
-- **Colors**: Primary, secondary, neutral, semantic colors (blue, gray, red, etc.)
-- **Typography**: Font families, sizes, weights, line heights
-- **Spacing**: Consistent spacing scale (0-96)
-- **Borders**: Border widths, radii
-- **Shadows**: Box shadows for depth
-- **Breakpoints**: Responsive design breakpoints
-- **Animations**: Timing functions and durations
+### セマンティックトークン
 
-### Semantic Tokens
+デザイン意図を特定のユースケースにマッピングする文脈固有のトークン：
 
-Context-specific tokens that map design intent to specific use cases:
+- **コンポーネントトークン**: Button、Input、Card、Badge、Alert、Table、Navigation、Modal、Tooltipなど
+- **状態トークン**: Focus、Hover、Disabled、Loading、Success、Warning、Error
+- **サーフェストークン**: Base、Raised、Overlay、Sunken、Interactive
+- **テキストトークン**: 見出し（h1-h6）、本文、キャプション、ラベル、ヘルパー、コード、リンク
+- **レイアウトトークン**: Container、Section、Grid、Stack、Inline
+- **インタラクショントークン**: トランジション、アニメーション、カーソル
 
-- **Component Tokens**: Button, Input, Card, Badge, Alert, Table, Navigation, Modal, Tooltip
-- **State Tokens**: Focus, hover, disabled, loading, success, warning, error
-- **Surface Tokens**: Base, raised, overlay, sunken, interactive
-- **Text Tokens**: Headings (h1-h6), body, caption, label, helper, code, links
-- **Layout Tokens**: Container, section, grid, stack, inline
-- **Interaction Tokens**: Transitions, animations, cursors
+詳細は[セマンティックトークンガイド](./docs/セマンティックトークンガイド.md)を参照してください。
 
-See [SEMANTIC-TOKENS.md](./SEMANTIC-TOKENS.md) for complete documentation.
+## テーマサポート
 
-## Theme Support
-
-Tokens automatically adapt to light and dark themes:
+トークンはライトテーマとダークテーマに自動的に対応します：
 
 ```html
-<!-- Light theme (default) -->
+<!-- ライトテーマ（デフォルト） -->
 <body data-theme="light">
-  <button class="button-primary">Click me</button>
+  <button class="button-primary">クリック</button>
 </body>
 
-<!-- Dark theme -->
+<!-- ダークテーマ -->
 <body data-theme="dark">
-  <button class="button-primary">Click me</button>
+  <button class="button-primary">クリック</button>
 </body>
 ```
 
-Components using semantic tokens will automatically update their appearance.
+セマンティックトークンを使用するコンポーネントは、自動的に外観が更新されます。
 
-## Development
+## 実装済みコンポーネント（全29コンポーネント）
 
-### Build
+### Forms（7コンポーネント）
+- **Button** - ボタン（4バリアント: primary, secondary, ghost, danger）
+- **Input** - テキスト入力（7状態: default, hover, focus, error, success, disabled, readonly）
+- **Checkbox** - チェックボックス（3サイズ: small, default, large）
+- **Radio** - ラジオボタン（3サイズ）
+- **Select** - セレクトボックス（7状態）
+- **Textarea** - テキストエリア（7状態）
+- **Switch** - スイッチトグル（インタラクティブAPI付き）
+
+### Feedback（6コンポーネント）
+- **Badge** - バッジ（6バリアント: primary, success, error, warning, info, neutral）
+- **Alert** - アラート（4バリアント: success, error, warning, info）
+- **Toast** - トースト通知（4バリアント）
+- **Progress** - プログレスバー（3バリアント）
+- **Skeleton** - スケルトンローディング（3種類）
+- **Spinner** - スピナー（3サイズ）
+
+### Overlays（6コンポーネント）
+- **Modal** - モーダル（3サイズ）
+- **Tooltip** - ツールチップ（4方向、複数行対応、自動配置調整）
+- **Dialog** - ダイアログ（3種類）
+- **Drawer** - ドロワー（4方向）
+- **Popover** - ポップオーバー（4方向）
+- **Dropdown** - ドロップダウン（複数バリアント）
+
+### Data Display（5コンポーネント）
+- **Card** - カード（3状態: default, hover, selected）
+- **Table** - テーブル（ソート可能、選択可能、レスポンシブ）
+- **List** - リスト（3密度、インタラクティブ状態）
+- **Avatar** - アバター（6サイズ、6カラー、3形状、ステータスインジケーター）
+- **Chip** - チップ（3サイズ、6カラー、削除可能）
+
+### Navigation（5コンポーネント）
+- **Navigation** - ナビゲーション（3状態: default, active, hover）
+- **Tabs** - タブ（3バリアント）
+- **Breadcrumb** - パンくずリスト（クリックイベント、キーボードナビゲーション）
+- **Pagination** - ページネーション（複数サイズ）
+- **Menu** - メニュー（階層構造サポート）
+
+## 開発
+
+### ビルド
 
 ```bash
 npm run build
 ```
 
-### Automated Deployment
+### 自動デプロイメント
 
-Design tokens are automatically deployed when changes are merged to main:
+デザイントークンはmainブランチへのマージ時に自動デプロイされます：
 
 ```bash
-# Detect changes locally
+# 変更をローカルで検出
 npm run changes
 
-# JSON/Markdown output
+# JSON/Markdown出力
 npm run changes:json
 npm run changes:markdown
 ```
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for complete documentation.
+詳細は[デプロイメントガイド](./docs/デプロイメントガイド.md)を参照してください。
 
-### Figma Token Synchronization
+### Figmaトークン同期
 
-Sync design tokens between Figma and Style Dictionary:
+FigmaとStyle Dictionary間でデザイントークンを同期：
 
 ```bash
-# Sync from Figma API (Enterprise accounts)
+# Figma APIから同期（Enterpriseアカウント）
 npm run figma:sync
 
-# Import from Figma Variables JSON export
+# Figma Variables JSONエクスポートからインポート
 npm run figma:import path/to/figma-export.json
 
-# Validate token structure
+# トークン構造の検証
 npm run figma:validate
 ```
 
-See [FIGMA-SYNC.md](./FIGMA-SYNC.md) for complete documentation on:
-- Setup and configuration
-- Figma API integration
-- Token transformation
-- Workflow automation
-- Troubleshooting
+詳細は[Figma連携ガイド](./docs/Figma連携ガイド.md)を参照してください。
 
-### Performance Monitoring
+### パフォーマンス監視
 
-This package includes comprehensive performance monitoring to ensure optimal bundle sizes.
+このパッケージには、最適なバンドルサイズを保証する包括的なパフォーマンス監視が含まれています。
 
 ```bash
-# Measure bundle sizes
+# バンドルサイズを測定
 npm run perf:bundle
 
-# Generate performance report
+# パフォーマンスレポートを生成
 npm run perf:report
 
-# Run both
+# 両方を実行
 npm run perf
 ```
 
-See [PERFORMANCE.md](./PERFORMANCE.md) for detailed documentation on performance monitoring, budgets, and best practices.
+詳細は[パフォーマンス監視ガイド](./docs/パフォーマンス監視ガイド.md)を参照してください。
 
-## Performance Budgets
+## パフォーマンスバジェット
 
-Current bundle sizes (with semantic tokens):
+現在のバンドルサイズ（セマンティックトークン含む）：
 
-| File | Current (Gzipped) | Budget | Usage | Status |
-|------|------------------|--------|-------|--------|
+| ファイル | 現在（Gzip圧縮後） | バジェット | 使用率 | ステータス |
+|---------|-------------------|-----------|--------|-----------|
 | `js/index.js` | 5.11 KB | 15 KB | 34.0% | ✓ OK |
 | `css/variables.css` | 5.22 KB | 20 KB | 26.1% | ✓ OK |
 | `scss/variables.scss` | N/A | 20 KB | N/A | ✓ OK |
 
-**Performance Score**: 161/100 (🟢 Excellent)
+**パフォーマンススコア**: 161/100（🟢 優秀）
 
-## Interactive Components (Phase 4)
-
-Phase 4 では、Tooltip、Breadcrumb、Switchコンポーネントにインタラクティブ機能を追加し、さらに3つの新しいデータ表示コンポーネントを実装しました：
-
-### ✨ 既存コンポーネントの機能強化
-
-#### Tooltip
-- 複数行テキストの自動折り返し対応
-- ビューポート内への自動配置調整
-- 200msの表示遅延でUX改善
-- CSS transform競合の解決による正確な位置計算
-
-#### Breadcrumb
-- クリックイベント処理（`breadcrumb-navigate` カスタムイベント）
-- キーボードナビゲーション（Enter/Space）
-- 動的パス更新API（`updatePath()`メソッド）
-- トースト通知との統合
-
-#### Switch
-- スムーズなアニメーション（200msトランジション）
-- カスタムイベント発行（`switch-change` イベント）
-- プログラマティックAPI（`setValue()`/`getValue()`）
-- ARIA属性の自動更新
-- 強化されたキーボードサポート
-
-### 🆕 新規コンポーネント
-
-#### List
-リスト形式でデータを表示するコンポーネント：
-- 3つの密度オプション（コンパクト/デフォルト/快適）
-- インタラクティブ状態（ホバー/選択/アクティブ/無効）
-- アイコンサポート
-- 区切り線スタイル
-- キーボードナビゲーション対応
-
-#### Avatar
-ユーザーやエンティティを表す画像/イニシャルを表示：
-- 6つのサイズバリアント（xs, sm, md, lg, xl, 2xl）
-- 6つのカラーバリアント（default, primary, success, warning, error, info）
-- 3つの形状バリアント（circle, rounded, square）
-- ステータスインジケーター（online, offline, away, busy）
-- グループアバター機能
-- ホバー効果と影のサポート
-
-#### Chip
-タグ、ラベル、フィルターを表示するコンポーネント：
-- 3つのサイズバリアント（small, medium, large）
-- 6つのカラーバリアント（意味的な色分け）
-- アイコンサポート（先頭アイコン）
-- 削除可能機能（クローズボタン）
-- スムーズな削除アニメーション
-- インタラクティブ状態とフォーカスリング
-
-### 📖 デモページ
+## デモページ
 
 実際の動作を確認できます：
 https://example.tokens.design.sb.hidearea.net/examples/basic/index.html
 
-### 📚 コンポーネントドキュメント
+## ドキュメント
 
-詳細なドキュメントは各コンポーネントのページを参照：
+詳細なドキュメントは[docs/](./docs/)ディレクトリを参照してください：
 
-**インタラクティブコンポーネント**
-- [Tooltip](./docs/components/tooltip.md)
-- [Breadcrumb](./docs/components/breadcrumb.md)
-- [Switch](./docs/components/switch.md)
+### 技術ガイド
+- **[使用方法ガイド](./docs/使用方法ガイド.md)** - 基本的な使用方法
+- **[アーキテクチャガイド](./docs/アーキテクチャガイド.md)** - システムアーキテクチャ
+- **[セマンティックトークンガイド](./docs/セマンティックトークンガイド.md)** - セマンティックトークン詳細
+- **[パフォーマンス監視ガイド](./docs/パフォーマンス監視ガイド.md)** - パフォーマンス計測
+- **[デプロイメントガイド](./docs/デプロイメントガイド.md)** - 自動デプロイメント
+- **[Figma連携ガイド](./docs/Figma連携ガイド.md)** - Figma同期方法
 
-**データ表示コンポーネント**
-- [List](./docs/components/list.md)
-- [Avatar](./docs/components/avatar.md)
-- [Chip](./docs/components/chip.md)
+### コンポーネントドキュメント
+- **[コンポーネント一覧](./docs/components/README.md)** - 全29コンポーネントのドキュメント
 
-**その他**
-- [全コンポーネント一覧](./docs/components/README.md)
+## ベストプラクティス
 
-## Documentation
+### 1. セマンティックトークンを優先
 
-- **[SEMANTIC-TOKENS.md](./SEMANTIC-TOKENS.md)** - Comprehensive semantic tokens guide
-- **[PERFORMANCE.md](./PERFORMANCE.md)** - Performance monitoring and optimization
-- **[FIGMA-SYNC.md](./FIGMA-SYNC.md)** - Figma token synchronization guide
-
-## Best Practices
-
-### 1. Prefer Semantic Tokens
-
-Use semantic tokens in component styles for better maintainability and theme support:
+保守性とテーマサポートのため、コンポーネントスタイルではセマンティックトークンを使用：
 
 ```css
-/* Good ✓ */
+/* 良い ✓ */
 .button {
   background: var(--component-button-primary-background-default);
 }
 
-/* Avoid ✗ */
+/* 避ける ✗ */
 .button {
   background: var(--color-blue-500);
 }
 ```
 
-### 2. Use Theme-Aware Tokens
+### 2. テーマ対応トークンを使用
 
-Semantic tokens automatically adapt to themes, reducing code duplication:
+セマンティックトークンは自動的にテーマに適応し、コードの重複を削減：
 
 ```css
-/* Automatically works with light/dark themes */
+/* ライト/ダークテーマで自動的に動作 */
 .card {
   background: var(--component-card-background-default);
   border: 1px solid var(--component-card-border-default);
 }
 ```
 
-### 3. Layer Your Tokens
+### 3. トークンを階層化
 
-Build a hierarchy from base → semantic → component-specific:
+ベース → セマンティック → コンポーネント固有の階層を構築：
 
 ```css
-/* Base token */
+/* ベーストークン */
 --color-blue-500: #3B82F6;
 
-/* Semantic token references base */
+/* セマンティックトークンがベースを参照 */
 --component-button-primary-background-default: var(--color-primary-500);
 
-/* Component uses semantic */
+/* コンポーネントがセマンティックを使用 */
 .button-primary {
   background: var(--component-button-primary-background-default);
 }
 ```
 
-## Examples
+## 使用例
 
-### Button Component
+### Buttonコンポーネント
 
 ```css
 .button {
-  /* Layout */
+  /* レイアウト */
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--border-radius-md);
 
-  /* Typography */
+  /* タイポグラフィ */
   font-size: var(--text-body-default-fontSize);
   font-weight: var(--font-weight-medium);
 
-  /* Interaction */
+  /* インタラクション */
   transition: all var(--interaction-transition-fast-duration);
   cursor: var(--interaction-cursor-pointer);
 }
@@ -362,7 +331,7 @@ Build a hierarchy from base → semantic → component-specific:
 }
 ```
 
-### Card Component
+### Cardコンポーネント
 
 ```css
 .card {
@@ -386,17 +355,17 @@ Build a hierarchy from base → semantic → component-specific:
 }
 ```
 
-## Token Structure
+## トークン構造
 
 ```
 tokens/
 ├── src/
-│   ├── base/              # Base tokens (YAML)
+│   ├── base/              # ベーストークン（YAML）
 │   │   ├── colors.yaml
 │   │   ├── typography.yaml
 │   │   ├── spacing.yaml
 │   │   └── ...
-│   ├── semantic/          # Semantic tokens (JSON)
+│   ├── semantic/          # セマンティックトークン（JSON）
 │   │   ├── components.json
 │   │   ├── states.json
 │   │   ├── surfaces.json
@@ -404,35 +373,35 @@ tokens/
 │   │   ├── layout.json
 │   │   ├── interactions.json
 │   │   └── aliases.json
-│   └── themes/            # Theme overrides
+│   └── themes/            # テーマオーバーライド
 │       ├── light/
 │       │   ├── colors.json
 │       │   └── semantic.json
 │       └── dark/
 │           ├── colors.json
 │           └── semantic.json
-├── build/                 # Generated output
+├── build/                 # 生成された出力
 │   ├── css/
 │   ├── js/
 │   └── ts/
-└── .performance/          # Performance reports
+└── .performance/          # パフォーマンスレポート
 ```
 
-## Contributing
+## コントリビュート
 
-When adding new tokens:
+新しいトークンを追加する際は：
 
-1. Determine if it should be a base or semantic token
-2. Follow existing naming conventions
-3. Add theme variants (light/dark) if needed
-4. Update documentation
-5. Run build and performance checks
+1. ベーストークンかセマンティックトークンかを決定
+2. 既存の命名規則に従う
+3. 必要に応じてテーマバリアント（ライト/ダーク）を追加
+4. ドキュメントを更新
+5. ビルドとパフォーマンスチェックを実行
 
 ```bash
 npm run build
 npm run perf
 ```
 
-## License
+## ライセンス
 
 MIT
