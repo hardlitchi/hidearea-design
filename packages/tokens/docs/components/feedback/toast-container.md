@@ -110,7 +110,7 @@ Bottom系の配置（bottom-left, bottom-center, bottom-right）では、新し�
 
 ## 使用方法
 
-### WebComponents 使用例
+### Pattern 1: WebComponents (Shadow DOM)
 
 ```html
 <!-- 右上配置（デフォルト） -->
@@ -151,35 +151,144 @@ Bottom系の配置（bottom-left, bottom-center, bottom-right）では、新し�
 </ha-toast-container>
 ```
 
-### Plain HTML での実装
+### Pattern 2: Plain HTML (推奨)
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <link rel="stylesheet" href="@hidearea-design/tokens/css/variables.css">
-  <link rel="stylesheet" href="@hidearea-design/tokens/css/components/feedback/toast-container.css">
-  <link rel="stylesheet" href="@hidearea-design/tokens/css/components/feedback/toast.css">
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/html/feedback/toast-container.css">
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/html/feedback/toast.css">
 </head>
 <body>
-  <!-- トーストコンテナ - 右上 -->
-  <div class="ha-toast-container" data-position="top-right">
+  <!-- トーストコンテナ - 右上配置（デフォルト） -->
+  <div class="ha-toast-container" position="top-right">
     <div class="container">
-      <!-- トーストがここに追加される -->
+      <!-- トーストがここに動的に追加される -->
     </div>
   </div>
 
-  <!-- トーストコンテナ - 下中央 -->
-  <div class="ha-toast-container" data-position="bottom-center">
+  <!-- トーストコンテナ - 上中央配置 -->
+  <div class="ha-toast-container" position="top-center">
     <div class="container">
-      <!-- トーストがここに追加される -->
+      <!-- トーストがここに動的に追加される -->
     </div>
   </div>
+
+  <!-- トーストコンテナ - 左上配置 -->
+  <div class="ha-toast-container" position="top-left">
+    <div class="container">
+      <!-- トーストがここに動的に追加される -->
+    </div>
+  </div>
+
+  <!-- トーストコンテナ - 下中央配置 -->
+  <div class="ha-toast-container" position="bottom-center">
+    <div class="container">
+      <!-- トーストがここに動的に追加される -->
+    </div>
+  </div>
+
+  <!-- トーストコンテナ - 右下配置 -->
+  <div class="ha-toast-container" position="bottom-right">
+    <div class="container">
+      <!-- トーストがここに動的に追加される -->
+    </div>
+  </div>
+
+  <!-- トーストコンテナ - 左下配置 -->
+  <div class="ha-toast-container" position="bottom-left">
+    <div class="container">
+      <!-- トーストがここに動的に追加される -->
+    </div>
+  </div>
+
+  <script>
+    // トーストコンテナの取得
+    const container = document.querySelector('.ha-toast-container[position="top-right"] .container');
+
+    // トーストを追加する関数
+    function addToast(message, variant = 'info', duration = 5000) {
+      // トースト要素を作成
+      const toast = document.createElement('div');
+      toast.className = 'ha-toast';
+      toast.setAttribute('variant', variant);
+      toast.setAttribute('role', 'status');
+      toast.setAttribute('aria-live', 'polite');
+
+      // アイコンを取得
+      const icons = {
+        info: 'ℹ️',
+        success: '✓',
+        warning: '⚠',
+        error: '✕'
+      };
+
+      toast.innerHTML = `
+        <div class="icon">${icons[variant] || icons.info}</div>
+        <div class="content">
+          <p class="message">${message}</p>
+        </div>
+        <button class="close-button" aria-label="通知を閉じる">×</button>
+        ${duration > 0 ? `
+          <div class="progress">
+            <div class="progress-bar" style="width: 100%; transition-duration: ${duration}ms;"></div>
+          </div>
+        ` : ''}
+      `;
+
+      // コンテナに追加
+      container.appendChild(toast);
+
+      // 閉じるボタンのイベント設定
+      const closeButton = toast.querySelector('.close-button');
+      closeButton.addEventListener('click', () => {
+        removeToast(toast);
+      });
+
+      // プログレスバーのアニメーション開始
+      if (duration > 0) {
+        const progressBar = toast.querySelector('.progress-bar');
+        setTimeout(() => {
+          progressBar.style.width = '0%';
+        }, 10);
+
+        // 自動削除
+        setTimeout(() => {
+          removeToast(toast);
+        }, duration);
+      }
+
+      return toast;
+    }
+
+    // トーストを削除する関数
+    function removeToast(toast) {
+      toast.setAttribute('closing', '');
+      setTimeout(() => {
+        if (toast.parentNode === container) {
+          container.removeChild(toast);
+        }
+      }, 200); // アニメーション時間
+    }
+
+    // 使用例
+    addToast('データを保存しました', 'success', 3000);
+    addToast('処理中です...', 'info', 5000);
+    addToast('エラーが発生しました', 'error', 5000);
+    addToast('接続が不安定です', 'warning', 4000);
+
+    // 複数のトーストを連続して表示
+    setTimeout(() => addToast('タスク1が完了しました', 'success', 3000), 1000);
+    setTimeout(() => addToast('タスク2が完了しました', 'success', 3000), 2000);
+    setTimeout(() => addToast('タスク3が完了しました', 'success', 3000), 3000);
+  </script>
 </body>
 </html>
 ```
 
-### JavaScript での動的管理
+### Pattern 3: JavaScript での動的管理
 
 ```javascript
 class ToastContainer {
@@ -300,10 +409,12 @@ showToast('処理中です...', 'info', 0);
 showToast('エラーが発生しました', 'error', 5000);
 ```
 
-### React での実装
+### Pattern 4: React/TypeScript
 
-```jsx
-import { useState, createContext, useContext } from 'react';
+```tsx
+import React, { useState, createContext, useContext, useEffect } from 'react';
+import '@hidearea-design/tokens/css/html/feedback/toast-container.css';
+import '@hidearea-design/tokens/css/html/feedback/toast.css';
 
 // Toast Context
 const ToastContext = createContext();

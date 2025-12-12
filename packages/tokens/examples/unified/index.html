@@ -96,7 +96,7 @@
     </section>
     <!-- End Form | Button セクション-->
 
-    <!-- Start Input | Button セクション-->
+    <!-- Start Form | Input セクション-->
     <section>
       <h2>Input Examples</h2>
       <div class="ha-input" variant="filled" size="md">
@@ -134,42 +134,1165 @@
         </label>
       </div>
     </section>
-    <!-- End Input | Button セクション-->
+    <!-- End Form | Input セクション-->
 
-    <!-- Start Checkbox | Checkbox セクション-->
+    <!-- Start Form | Checkbox セクション-->
     <section>
       <h2>Checkbox Examples</h2>
 
-      <div class="ha-checkbox">
-        <input type="checkbox" id="basic">
-        <span class="label">Accept terms and conditions</span>
+      <!-- 基本的なチェックボックス -->
+      <div class="ha-checkbox" size="md">
+        <div class="checkbox-container">
+          <input type="checkbox" id="basic">
+          <div class="checkbox-box">
+            <svg class="checkbox-icon" viewBox="0 0 16 16" fill="none">
+              <path d="M13 4L6 11L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+        <label class="label" for="basic">利用規約に同意する</label>
+      </div>
+
+      <!-- 説明付きチェックボックス -->
+      <div class="ha-checkbox" size="md">
+        <div class="checkbox-container">
+          <input type="checkbox" id="with-desc">
+          <div class="checkbox-box">
+            <svg class="checkbox-icon" viewBox="0 0 16 16" fill="none">
+              <path d="M13 4L6 11L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+        <label class="label" for="with-desc">ニュースレターを購読する</label>
+        <span class="description">週に1回、最新情報をお届けします</span>
+      </div>
+
+      <!-- エラー状態のチェックボックス -->
+      <div class="ha-checkbox" size="md" error>
+        <div class="checkbox-container">
+          <input type="checkbox" id="error-check" aria-invalid="true" aria-describedby="error-message">
+          <div class="checkbox-box">
+            <svg class="checkbox-icon" viewBox="0 0 16 16" fill="none">
+              <path d="M13 4L6 11L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+        <label class="label" for="error-check">利用規約に同意する</label>
+        <span id="error-message" class="description">続行するには同意が必要です</span>
+      </div>
+
+      <!-- 無効化されたチェックボックス -->
+      <div class="ha-checkbox" size="md" disabled>
+        <div class="checkbox-container">
+          <input type="checkbox" id="disabled-check" disabled>
+          <div class="checkbox-box">
+            <svg class="checkbox-icon" viewBox="0 0 16 16" fill="none">
+              <path d="M13 4L6 11L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+        <label class="label" for="disabled-check">利用できないオプション</label>
+      </div>
+
+      <!-- チェックボックスグループ -->
+      <fieldset>
+        <legend>興味のあるトピックを選択してください</legend>
+
+        <div class="ha-checkbox" size="md">
+          <div class="checkbox-container">
+            <input type="checkbox" id="tech" name="topics" value="technology">
+            <div class="checkbox-box">
+              <svg class="checkbox-icon" viewBox="0 0 16 16" fill="none">
+                <path d="M13 4L6 11L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <label class="label" for="tech">テクノロジー</label>
+        </div>
+
+        <div class="ha-checkbox" size="md">
+          <div class="checkbox-container">
+            <input type="checkbox" id="design" name="topics" value="design">
+            <div class="checkbox-box">
+              <svg class="checkbox-icon" viewBox="0 0 16 16" fill="none">
+                <path d="M13 4L6 11L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <label class="label" for="design">デザイン</label>
+        </div>
+
+        <div class="ha-checkbox" size="md">
+          <div class="checkbox-container">
+            <input type="checkbox" id="business" name="topics" value="business">
+            <div class="checkbox-box">
+              <svg class="checkbox-icon" viewBox="0 0 16 16" fill="none">
+                <path d="M13 4L6 11L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <label class="label" for="business">ビジネス</label>
+        </div>
+      </fieldset>
       </div>
     </section>
-    <!-- End Checkbox | Checkbox セクション-->
+    <!-- End Form | Checkbox セクション-->
 
-    <!-- Start Radio | Checkbox セクション-->
+    <!-- Start Form | Radio セクション-->
     <section>
       <h2>Radio Examples</h2>
-    </section>
-    <!-- End Radio | Checkbox セクション-->
 
-    <!-- Start Select | Checkbox セクション-->
+      <!-- 基本的なラジオボタン -->
+      <div class="ha-radio" size="md">
+        <div class="radio-container">
+          <input type="radio" id="basic-radio" name="basic" value="yes">
+          <div class="radio-circle">
+            <div class="radio-dot"></div>
+          </div>
+          <label for="basic-radio">はい</label>
+        </div>
+      </div>
+
+      <!-- ラジオボタングループ（相互排他的な選択） -->
+      <fieldset>
+        <legend>配送方法を選択してください</legend>
+
+        <div class="ha-radio" size="md" checked>
+          <div class="radio-container">
+            <input type="radio" id="standard-shipping" name="shipping" value="standard" checked>
+            <div class="radio-circle">
+              <div class="radio-dot"></div>
+            </div>
+            <label for="standard-shipping">通常配送（3-5日）</label>
+          </div>
+        </div>
+
+        <div class="ha-radio" size="md">
+          <div class="radio-container">
+            <input type="radio" id="express-shipping" name="shipping" value="express">
+            <div class="radio-circle">
+              <div class="radio-dot"></div>
+            </div>
+            <label for="express-shipping">速達配送（1-2日）</label>
+          </div>
+        </div>
+
+        <div class="ha-radio" size="md">
+          <div class="radio-container">
+            <input type="radio" id="overnight-shipping" name="shipping" value="overnight">
+            <div class="radio-circle">
+              <div class="radio-dot"></div>
+            </div>
+            <label for="overnight-shipping">翌日配送</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- 異なるサイズの例 -->
+      <h4>Small (sm)</h4>
+      <div class="ha-radio" size="sm">
+        <div class="radio-container">
+          <input type="radio" id="small-radio" name="size-demo" value="sm">
+          <div class="radio-circle">
+            <div class="radio-dot"></div>
+          </div>
+          <label for="small-radio">小サイズのラジオボタン</label>
+        </div>
+      </div>
+
+      <h4>Medium (md) - デフォルト</h4>
+      <div class="ha-radio" size="md">
+        <div class="radio-container">
+          <input type="radio" id="medium-radio" name="size-demo" value="md" checked>
+          <div class="radio-circle">
+            <div class="radio-dot"></div>
+          </div>
+          <label for="medium-radio">中サイズのラジオボタン</label>
+        </div>
+      </div>
+
+      <h4>Large (lg)</h4>
+      <div class="ha-radio" size="lg">
+        <div class="radio-container">
+          <input type="radio" id="large-radio" name="size-demo" value="lg">
+          <div class="radio-circle">
+            <div class="radio-dot"></div>
+          </div>
+          <label for="large-radio">大サイズのラジオボタン</label>
+        </div>
+      </div>
+
+      <!-- エラー状態のラジオボタン -->
+      <div class="ha-radio" size="md" error>
+        <div class="radio-container">
+          <input type="radio" id="error-radio" name="required" value="yes" error>
+          <div class="radio-circle">
+            <div class="radio-dot"></div>
+          </div>
+          <label for="error-radio">必須選択項目</label>
+        </div>
+      </div>
+
+      <!-- 無効化されたラジオボタン -->
+      <div class="ha-radio" size="md" disabled>
+        <div class="radio-container">
+          <input type="radio" id="disabled-radio" name="example" value="disabled" disabled>
+          <div class="radio-circle">
+            <div class="radio-dot"></div>
+          </div>
+          <label for="disabled-radio">選択できないオプション</label>
+        </div>
+      </div>
+
+      <script>
+        // ラジオボタンの選択状態を管理
+        document.querySelectorAll('.ha-radio input[type="radio"]').forEach(input => {
+          input.addEventListener('change', function () {
+            const name = this.name;
+            const radioGroup = document.querySelectorAll(`.ha-radio input[name="${name}"]`);
+
+            // 同じグループ内の全てのラジオボタンをリセット
+            radioGroup.forEach(radio => {
+              const radioElement = radio.closest('.ha-radio');
+              if (radio.checked) {
+                radioElement.setAttribute('checked', '');
+              } else {
+                radioElement.removeAttribute('checked');
+              }
+            });
+
+            console.log(`選択されました: ${this.value}`);
+          });
+        });
+      </script>
+    </section>
+    <!-- End Form | Radio セクション-->
+
+    <!-- Start Form | Select セクション-->
     <section>
       <h2>Select Examples</h2>
-    </section>
-    <!-- End Select | Checkbox セクション-->
 
-    <!-- Start Textarea | Checkbox セクション-->
+      <!-- デフォルトバリアント -->
+      <div class="ha-select" variant="default" size="md">
+        <select>
+          <option value="">選択してください</option>
+          <option value="jp">日本</option>
+          <option value="us">アメリカ</option>
+          <option value="uk">イギリス</option>
+        </select>
+      </div>
+
+      <!-- Filledバリアント -->
+      <div class="ha-select" variant="filled" size="md">
+        <select>
+          <option value="">カテゴリを選択</option>
+          <option value="tech">テクノロジー</option>
+          <option value="design">デザイン</option>
+          <option value="business">ビジネス</option>
+        </select>
+      </div>
+
+      <!-- Outlinedバリアント -->
+      <div class="ha-select" variant="outlined" size="lg">
+        <select>
+          <option value="">優先度を選択</option>
+          <option value="high">高</option>
+          <option value="medium">中</option>
+          <option value="low">低</option>
+        </select>
+      </div>
+
+      <!-- エラー状態 -->
+      <div class="ha-select" variant="default" size="md" error>
+        <select aria-invalid="true" aria-describedby="country-error">
+          <option value="">選択してください</option>
+          <option value="jp">日本</option>
+          <option value="us">アメリカ</option>
+        </select>
+      </div>
+
+      <!-- 無効状態 -->
+      <div class="ha-select" variant="default" size="md">
+        <select disabled>
+          <option>利用不可</option>
+        </select>
+      </div>
+    </section>
+    <!-- End Form | Select セクション-->
+
+    <!-- Start Form | Textarea セクション-->
     <section>
       <h2>Textarea Examples</h2>
-    </section>
-    <!-- End Textarea | Checkbox セクション-->
 
-    <!-- Start Switch | Checkbox セクション-->
+      <!-- デフォルトバリアント -->
+      <div class="ha-textarea" variant="default" size="md">
+        <div class="textarea-wrapper">
+          <textarea placeholder="メッセージを入力してください..."></textarea>
+        </div>
+      </div>
+
+      <!-- Filledバリアント -->
+      <div class="ha-textarea" variant="filled" size="md">
+        <div class="textarea-wrapper">
+          <textarea placeholder="コメントを入力..."></textarea>
+        </div>
+      </div>
+
+      <!-- Outlinedバリアント -->
+      <div class="ha-textarea" variant="outlined" size="lg">
+        <div class="textarea-wrapper">
+          <textarea placeholder="詳細説明..."></textarea>
+        </div>
+      </div>
+
+      <!-- フルWidth -->
+      <div class="ha-textarea" variant="default" full-width>
+        <div class="textarea-wrapper">
+          <textarea placeholder="フルワイド入力..."></textarea>
+        </div>
+      </div>
+    </section>
+    <!-- End Form | Textarea セクション-->
+
+    <!-- Start Form | Switch セクション-->
     <section>
       <h2>Switch Examples</h2>
+
+      <!-- 基本的なスイッチ -->
+      <div class="ha-switch" size="md">
+        <div class="switch-container">
+          <input type="checkbox" id="basic-switch" role="switch" aria-checked="false">
+          <div class="switch-track">
+            <div class="switch-thumb"></div>
+          </div>
+          <label for="basic-switch">通知を有効にする</label>
+        </div>
+      </div>
+
+      <!-- 説明付きスイッチ -->
+      <div class="ha-switch" size="md">
+        <div class="switch-container">
+          <input type="checkbox" id="with-desc" role="switch" aria-checked="false">
+          <div class="switch-track">
+            <div class="switch-thumb"></div>
+          </div>
+          <div class="label-wrapper">
+            <label for="with-desc">ダークモード</label>
+            <span class="description">目に優しい暗い配色に切り替えます</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- オン状態のスイッチ -->
+      <div class="ha-switch" size="md" checked>
+        <div class="switch-container">
+          <input type="checkbox" id="checked-switch" checked role="switch" aria-checked="true">
+          <div class="switch-track">
+            <div class="switch-thumb"></div>
+          </div>
+          <label for="checked-switch">自動保存</label>
+        </div>
+      </div>
+
+      <!-- エラー状態のスイッチ -->
+      <div class="ha-switch" size="md" error>
+        <div class="switch-container">
+          <input type="checkbox" id="error-switch" role="switch" aria-checked="false" aria-invalid="true">
+          <div class="switch-track">
+            <div class="switch-thumb"></div>
+          </div>
+          <div class="label-wrapper">
+            <label for="error-switch">利用規約への同意</label>
+            <span class="description">続行するには同意が必要です</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 無効化されたスイッチ -->
+      <div class="ha-switch" size="md" disabled>
+        <div class="switch-container">
+          <input type="checkbox" id="disabled-switch" disabled role="switch" aria-checked="false">
+          <div class="switch-track">
+            <div class="switch-thumb"></div>
+          </div>
+          <div class="label-wrapper">
+            <label for="disabled-switch">ベータ機能</label>
+            <span class="description">アップグレードでアクセス可能</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- サイズバリエーション -->
+      <div class="ha-switch" size="sm">
+        <div class="switch-container">
+          <input type="checkbox" id="small-switch" role="switch" aria-checked="false">
+          <div class="switch-track">
+            <div class="switch-thumb"></div>
+          </div>
+          <label for="small-switch">小サイズ</label>
+        </div>
+      </div>
+
+      <div class="ha-switch" size="lg">
+        <div class="switch-container">
+          <input type="checkbox" id="large-switch" role="switch" aria-checked="false">
+          <div class="switch-track">
+            <div class="switch-thumb"></div>
+          </div>
+          <label for="large-switch">大サイズ</label>
+        </div>
+      </div>
+
+      <script>
+        // スイッチの切り替え処理
+        document.querySelectorAll('.ha-switch input[type="checkbox"]').forEach(input => {
+          input.addEventListener('change', function () {
+            const switchElement = this.closest('.ha-switch');
+            const isChecked = this.checked;
+
+            // aria-checked属性を更新
+            this.setAttribute('aria-checked', isChecked);
+
+            // checked属性をスイッチ要素に反映
+            if (isChecked) {
+              switchElement.setAttribute('checked', '');
+            } else {
+              switchElement.removeAttribute('checked');
+            }
+
+            console.log(`スイッチ ${this.id}: ${isChecked ? 'オン' : 'オフ'}`);
+          });
+        });
+      </script>
     </section>
-    <!-- End Switch | Checkbox セクション-->
+    <!-- End Form | Switch セクション-->
+  </section>
+  <!-- End Form セクション-->
+
+  <!-- Start Feedback セクション-->
+  <section>
+    <h1>Feedback</h1>
+    <p>ユーザーへの通知や状態表示を行うコンポーネント</p>
+
+    <!-- Start Feedback | Badge セクション-->
+    <section>
+      <h2>Badge Examples</h2>
+
+      <div>
+        <h3>基本的な使用</h3>
+
+        <!-- 基本構造 -->
+        <div class="ha-badge">
+          <span class="badge badge--md badge--primary badge--standard">
+            New
+          </span>
+        </div>
+        <!-- インライン使用 -->
+        <span class="badge badge--md badge--success badge--standard">完了</span>
+        <span class="badge badge--md badge--warning badge--standard">保留中</span>
+        <span class="badge badge--md badge--error badge--standard">エラー</span>
+        <span class="badge badge--md badge--info badge--standard">お知らせ</span>
+      </div>
+
+      <div>
+        <h3>サイズバリエーション</h3>
+
+        <!-- Small -->
+        <span class="badge badge--sm badge--primary badge--standard">Small</span>
+        <!-- Medium (デフォルト) -->
+        <span class="badge badge--md badge--primary badge--standard">Medium</span>
+        <!-- Large -->
+        <span class="badge badge--lg badge--primary badge--standard">Large</span>
+      </div>
+
+      <div>
+        <h3>カラーバリエーション</h3>
+
+        <!-- Primary -->
+        <span class="badge badge--md badge--primary badge--standard">Primary</span>
+        <!-- Secondary -->
+        <span class="badge badge--md badge--secondary badge--standard">Secondary</span>
+        <!-- Success -->
+        <span class="badge badge--md badge--success badge--standard">Success</span>
+        <!-- Warning -->
+        <span class="badge badge--md badge--warning badge--standard">Warning</span>
+        <!-- Error -->
+        <span class="badge badge--md badge--error badge--standard">Error</span>
+        <!-- Info -->
+        <span class="badge badge--md badge--info badge--standard">Info</span>
+      </div>
+
+      <div>
+        <h3>スタイルバリエーション</h3>
+
+        <!-- Standard (デフォルト) -->
+        <span class="badge badge--md badge--primary badge--standard">Standard</span>
+        <!-- Outlined -->
+        <span class="badge badge--md badge--primary badge--outlined">Outlined</span>
+        <!-- Soft -->
+        <span class="badge badge--md badge--primary badge--soft">Soft</span>
+      </div>
+
+      <div>
+        <h3>形状バリエーション</h3>
+
+        <!-- Pill Shape -->
+        <span class="badge badge--md badge--primary badge--standard badge--pill">
+          Pill Badge
+        </span>
+        <!-- Dot (ステータスインジケーター) -->
+        <span class="badge badge--md badge--success badge--standard badge--dot"></span>
+        <span class="badge badge--md badge--error badge--standard badge--dot"></span>
+        <span class="badge badge--md badge--warning badge--standard badge--dot"></span>
+      </div>
+
+      <div>
+        <h3>アイコン付きバッジ</h3>
+
+        <!-- アイコン + テキスト -->
+        <span class="badge badge--md badge--success badge--standard">
+          <span class="badge__icon">
+            <svg width="14" height="14" viewBox="0 0 16 16">
+              <path
+                d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+            </svg>
+          </span>
+          <span class="badge__content">完了</span>
+        </span>
+        <!-- アイコンのみ -->
+        <span class="badge badge--md badge--info badge--standard">
+          <span class="badge__icon">
+            <svg width="14" height="14" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+              <path
+                d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z" />
+              <circle cx="8" cy="4.5" r="1" />
+            </svg>
+          </span>
+        </span>
+      </div>
+
+      <div>
+        <h3>通知カウントバッジ</h3>
+
+        <!-- ボタンに通知バッジ -->
+        <button class="button" style="position: relative;">
+          メッセージ
+          <span class="badge badge--sm badge--error badge--standard badge--pill"
+            style="position: absolute; top: -4px; right: -4px;">
+            3
+          </span>
+        </button>
+        <!-- アイコンに通知ドット -->
+        <div style="position: relative; display: inline-block;">
+          <svg width="24" height="24" viewBox="0 0 16 16">
+            <path
+              d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+          </svg>
+          <span class="badge badge--sm badge--error badge--standard badge--dot"
+            style="position: absolute; top: 0; right: 0;"></span>
+        </div>
+      </div>
+
+      <div>
+        <h3>実用例</h3>
+
+        <!-- リストアイテムのステータス -->
+        <ul class="list">
+          <li class="list-item">
+            <span>プロジェクトA</span>
+            <span class="badge badge--sm badge--success badge--standard">進行中</span>
+          </li>
+          <li class="list-item">
+            <span>プロジェクトB</span>
+            <span class="badge badge--sm badge--warning badge--standard">保留</span>
+          </li>
+          <li class="list-item">
+            <span>プロジェクトC</span>
+            <span class="badge badge--sm badge--error badge--standard">停止</span>
+          </li>
+        </ul>
+
+        <!-- タグとして使用 -->
+        <div class="tags">
+          <span class="badge badge--sm badge--secondary badge--outlined badge--pill">React</span>
+          <span class="badge badge--sm badge--secondary badge--outlined badge--pill">TypeScript</span>
+          <span class="badge badge--sm badge--secondary badge--outlined badge--pill">CSS</span>
+        </div>
+
+        <!-- ステータスインジケーター -->
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="badge badge--md badge--success badge--standard badge--dot"></span>
+          <span>オンライン</span>
+        </div>
+      </div>
+    </section>
+    <!-- End Feedback | Badge セクション-->
+
+    <!-- Start Feedback | Alert セクション-->
+    <section>
+      <h2>Alert Examples</h2>
+
+
+      <!-- Info アラート (Filled) -->
+      <div class="ha-alert">
+        <div class="alert alert--filled alert--info">
+          <div class="alert__icon">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="alert__content">
+            <p class="alert__title">お知らせ</p>
+            <p class="alert__message">システムメンテナンスは2025年12月15日に実施されます。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success アラート (Soft) -->
+      <div class="ha-alert">
+        <div class="alert alert--soft alert--success">
+          <div class="alert__icon">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="alert__content">
+            <p class="alert__title">成功しました</p>
+            <p class="alert__message">データが正常に保存されました。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warning アラート (Outlined) -->
+      <div class="ha-alert">
+        <div class="alert alert--outlined alert--warning">
+          <div class="alert__icon">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="alert__content">
+            <p class="alert__title">注意</p>
+            <p class="alert__message">この操作は元に戻せません。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error アラート (Filled) -->
+      <div class="ha-alert">
+        <div class="alert alert--filled alert--error">
+          <div class="alert__icon">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="alert__content">
+            <p class="alert__title">エラー</p>
+            <p class="alert__message">データの保存に失敗しました。もう一度お試しください。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 閉じるボタン付きアラート -->
+      <div class="ha-alert">
+        <div class="alert alert--soft alert--info">
+          <div class="alert__icon">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="alert__content">
+            <p class="alert__title">新機能のお知らせ</p>
+            <p class="alert__message">アカウント設定に新しいオプションが追加されました。</p>
+          </div>
+          <button class="alert__close" aria-label="アラートを閉じる">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- アクションボタン付きアラート -->
+      <div class="ha-alert">
+        <div class="alert alert--outlined alert--warning">
+          <div class="alert__icon">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="alert__content">
+            <p class="alert__title">セッションの期限切れ</p>
+            <p class="alert__message">セキュリティのため、セッションの有効期限が近づいています。</p>
+            <div class="alert__actions">
+              <button class="btn btn-primary">延長する</button>
+              <button class="btn btn-secondary">ログアウト</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- タイトルなしのシンプルなアラート -->
+      <div class="ha-alert">
+        <div class="alert alert--soft alert--success">
+          <div class="alert__icon">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="alert__content">
+            <p class="alert__message">ファイルのアップロードが完了しました。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Feedback | Alert セクション-->
+
+    <!-- Start Feedback | Toast セクション-->
+    <section>
+      <h2>Toast Examples</h2>
+
+      <div>
+        <h3>Toast</h3>
+
+        <!-- トーストコンテナ -->
+        <div class="ha-toast-container" data-position="top-right">
+          <!-- 情報トースト -->
+          <div class="ha-toast" variant="info" role="alert" aria-live="polite">
+            <div class="container">
+              <div class="icon">ℹ️</div>
+              <div class="content">
+                <div class="message">新しい通知があります</div>
+              </div>
+              <button class="close-button" aria-label="閉じる">×</button>
+            </div>
+          </div>
+
+          <!-- 成功トースト（プログレスバー付き） -->
+          <div class="ha-toast" variant="success" role="alert" aria-live="polite">
+            <div class="container">
+              <div class="icon">✓</div>
+              <div class="content">
+                <div class="message">ファイルがアップロードされました</div>
+              </div>
+              <button class="close-button" aria-label="閉じる">×</button>
+              <div class="progress">
+                <div class="progress-bar" style="width: 100%; transition-duration: 5s;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- アクション付きトースト -->
+          <div class="ha-toast" variant="warning" role="alert" aria-live="polite">
+            <div class="container">
+              <div class="icon">⚠</div>
+              <div class="content">
+                <div class="message">アイテムを削除しました</div>
+              </div>
+              <div class="action">
+                <button>元に戻す</button>
+              </div>
+              <button class="close-button" aria-label="閉じる">×</button>
+            </div>
+          </div>
+
+          <!-- エラートースト -->
+          <div class="ha-toast" variant="error" role="alert" aria-live="assertive">
+            <div class="container">
+              <div class="icon">✕</div>
+              <div class="content">
+                <div class="message">接続に失敗しました。再試行してください。</div>
+              </div>
+              <button class="close-button" aria-label="閉じる">×</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3>Toast container</h3>
+
+        <!-- トーストコンテナ - 右上配置（デフォルト） -->
+        <div class="ha-toast-container" position="top-right">
+          <div class="container">
+            <!-- トーストがここに動的に追加される -->
+          </div>
+        </div>
+
+        <!-- トーストコンテナ - 上中央配置 -->
+        <div class="ha-toast-container" position="top-center">
+          <div class="container">
+            <!-- トーストがここに動的に追加される -->
+          </div>
+        </div>
+
+        <!-- トーストコンテナ - 左上配置 -->
+        <div class="ha-toast-container" position="top-left">
+          <div class="container">
+            <!-- トーストがここに動的に追加される -->
+          </div>
+        </div>
+
+        <!-- トーストコンテナ - 下中央配置 -->
+        <div class="ha-toast-container" position="bottom-center">
+          <div class="container">
+            <!-- トーストがここに動的に追加される -->
+          </div>
+        </div>
+
+        <!-- トーストコンテナ - 右下配置 -->
+        <div class="ha-toast-container" position="bottom-right">
+          <div class="container">
+            <!-- トーストがここに動的に追加される -->
+          </div>
+        </div>
+
+        <!-- トーストコンテナ - 左下配置 -->
+        <div class="ha-toast-container" position="bottom-left">
+          <div class="container">
+            <!-- トーストがここに動的に追加される -->
+          </div>
+        </div>
+
+        <script>
+          // トーストコンテナの取得
+          const container = document.querySelector('.ha-toast-container[position="top-right"] .container');
+
+          // トーストを追加する関数
+          function addToast(message, variant = 'info', duration = 5000) {
+            // トースト要素を作成
+            const toast = document.createElement('div');
+            toast.className = 'ha-toast';
+            toast.setAttribute('variant', variant);
+            toast.setAttribute('role', 'status');
+            toast.setAttribute('aria-live', 'polite');
+
+            // アイコンを取得
+            const icons = {
+              info: 'ℹ️',
+              success: '✓',
+              warning: '⚠',
+              error: '✕'
+            };
+
+            toast.innerHTML = `
+        <div class="icon">${icons[variant] || icons.info}</div>
+        <div class="content">
+          <p class="message">${message}</p>
+        </div>
+        <button class="close-button" aria-label="通知を閉じる">×</button>
+        ${duration > 0 ? `
+          <div class="progress">
+            <div class="progress-bar" style="width: 100%; transition-duration: ${duration}ms;"></div>
+          </div>
+        ` : ''}
+      `;
+
+            // コンテナに追加
+            container.appendChild(toast);
+
+            // 閉じるボタンのイベント設定
+            const closeButton = toast.querySelector('.close-button');
+            closeButton.addEventListener('click', () => {
+              removeToast(toast);
+            });
+
+            // プログレスバーのアニメーション開始
+            if (duration > 0) {
+              const progressBar = toast.querySelector('.progress-bar');
+              setTimeout(() => {
+                progressBar.style.width = '0%';
+              }, 10);
+
+              // 自動削除
+              setTimeout(() => {
+                removeToast(toast);
+              }, duration);
+            }
+
+            return toast;
+          }
+
+          // トーストを削除する関数
+          function removeToast(toast) {
+            toast.setAttribute('closing', '');
+            setTimeout(() => {
+              if (toast.parentNode === container) {
+                container.removeChild(toast);
+              }
+            }, 200); // アニメーション時間
+          }
+
+          // 使用例
+          addToast('データを保存しました', 'success', 3000);
+          addToast('処理中です...', 'info', 5000);
+          addToast('エラーが発生しました', 'error', 5000);
+          addToast('接続が不安定です', 'warning', 4000);
+
+          // 複数のトーストを連続して表示
+          setTimeout(() => addToast('タスク1が完了しました', 'success', 3000), 1000);
+          setTimeout(() => addToast('タスク2が完了しました', 'success', 3000), 2000);
+          setTimeout(() => addToast('タスク3が完了しました', 'success', 3000), 3000);
+        </script>
+      </div>
+    </section>
+    <!-- End Feedback | Toast セクション-->
+
+    <!-- Start Feedback | Progress セクション-->
+    <section>
+      <h2>Progress Examples</h2>
+
+
+      <!-- 確定的プログレス -->
+      <div class="ha-progress" size="md">
+        <div class="progress progress--md">
+          <div class="progress__bar progress__bar--primary" style="width: 60%"></div>
+        </div>
+      </div>
+
+      <!-- ラベル付きプログレス -->
+      <div class="ha-progress" size="md">
+        <div class="progress__label">
+          <span>アップロード中</span>
+          <span class="progress__percentage">60%</span>
+        </div>
+        <div class="progress progress--md">
+          <div class="progress__bar progress__bar--primary" style="width: 60%"></div>
+        </div>
+      </div>
+
+      <!-- 不確定的プログレス（アニメーション） -->
+      <div class="ha-progress" size="md">
+        <div class="progress progress--md">
+          <div class="progress__bar progress__bar--primary progress__bar--animated" style="width: 100%"></div>
+        </div>
+      </div>
+    </section>
+    <!-- End Feedback | Progress セクション-->
+
+    <!-- Start Feedback | Skeleton セクション-->
+    <section>
+      <h2>Skeleton Examples</h2>
+
+      <div>
+        <h3>Skelton 例</h3>
+
+
+        <!-- テキストスケルトン（パルス） -->
+        <div class="ha-skeleton">
+          <div class="skeleton skeleton--text skeleton--pulse" style="width: 200px;"></div>
+        </div>
+
+        <!-- サークルスケルトン -->
+        <div class="ha-skeleton">
+          <div class="skeleton skeleton--circular skeleton--pulse" style="width: 40px; height: 40px;"></div>
+        </div>
+
+        <!-- 矩形スケルトン（ウェーブ） -->
+        <div class="ha-skeleton">
+          <div class="skeleton skeleton--rectangular skeleton--wave" style="width: 100%; height: 200px;"></div>
+        </div>
+
+        <!-- 角丸矩形スケルトン -->
+        <div class="ha-skeleton">
+          <div class="skeleton skeleton--pulse" style="width: 100%; height: 150px; border-radius: 8px;"></div>
+        </div>
+
+        <!-- カードスケルトンの例 -->
+        <div class="card-skeleton">
+          <div class="skeleton skeleton--rectangular skeleton--wave" style="width: 100%; height: 200px;"></div>
+          <div class="skeleton skeleton--text skeleton--pulse" style="width: 80%; margin-top: 16px;"></div>
+          <div class="skeleton skeleton--text skeleton--pulse" style="width: 60%; margin-top: 8px;"></div>
+        </div>
+      </div>
+
+      <div>
+        <h3>プロフィールカードスケルトン</h3>
+
+        <div class="profile-card-skeleton">
+          <!-- アバター -->
+          <div class="skeleton skeleton--circular skeleton--pulse" style="width: 80px; height: 80px; margin: 0 auto;">
+          </div>
+
+          <!-- 名前 -->
+          <div class="skeleton skeleton--text skeleton--pulse" style="width: 60%; margin: 16px auto 0;"></div>
+
+          <!-- 説明 -->
+          <div class="skeleton skeleton--text skeleton--pulse" style="width: 80%; margin: 8px auto 0;"></div>
+          <div class="skeleton skeleton--text skeleton--pulse" style="width: 70%; margin: 4px auto 0;"></div>
+        </div>
+      </div>
+
+      <div>
+        <h3>ブログ記事スケルトン</h3>
+
+        <article class="blog-skeleton">
+          <!-- サムネイル -->
+          <div class="skeleton skeleton--wave" style="width: 100%; height: 300px; border-radius: 8px;"></div>
+
+          <!-- タイトル -->
+          <div class="skeleton skeleton--text skeleton--pulse" style="width: 90%; margin-top: 24px; height: 2em;"></div>
+
+          <!-- メタ情報 -->
+          <div class="skeleton skeleton--text skeleton--pulse" style="width: 40%; margin-top: 12px; height: 1em;"></div>
+
+          <!-- 本文 -->
+          <div class="skeleton skeleton--text skeleton--pulse" style="width: 100%; margin-top: 16px;"></div>
+          <div class="skeleton skeleton--text skeleton--pulse" style="width: 95%; margin-top: 8px;"></div>
+          <div class="skeleton skeleton--text skeleton--pulse" style="width: 80%; margin-top: 8px;"></div>
+        </article>
+      </div>
+    </section>
+    <!-- End Feedback | Skeleton セクション-->
+
+    <!-- Start Feedback | Spinner セクション-->
+    <section>
+      <h2>Spinner Examples</h2>
+
+
+      <!-- サークルスピナー -->
+      <div class="ha-spinner" size="md">
+        <div class="spinner spinner--md spinner--circular spinner--primary"></div>
+      </div>
+
+      <!-- ドットスピナー -->
+      <div class="ha-spinner" size="md">
+        <div class="spinner spinner--md spinner--dots">
+          <div class="spinner__dot"></div>
+          <div class="spinner__dot"></div>
+          <div class="spinner__dot"></div>
+        </div>
+      </div>
+
+      <!-- パルススピナー -->
+      <div class="ha-spinner" size="md">
+        <div class="spinner spinner--md spinner--pulse spinner--primary"></div>
+      </div>
+
+      <!-- ラベル付きスピナー -->
+      <div class="ha-spinner" size="lg" role="status">
+        <div class="spinner spinner--lg spinner--circular spinner--primary"></div>
+        <span class="spinner__label">読み込み中...</span>
+      </div>
+    </section>
+    <!-- End Feedback | Spinner セクション-->
+  </section>
+  <!-- End Feedback セクション-->
+
+  <!-- Start Overlays セクション-->
+  <section>
+    <h1>Overlays</h1>
+    <p>画面上に重なって表示される要素</p>
+
+    <!-- Start Overlays | Modal セクション-->
+    <section>
+      <h2>Modal Examples</h2>
+    </section>
+    <!-- End Overlays | Modal セクション-->
+
+    <!-- Start Overlays | Tooltip セクション-->
+    <section>
+      <h2>Tooltip Examples</h2>
+    </section>
+    <!-- End Overlays | Tooltip セクション-->
+
+    <!-- Start Overlays | Dialog セクション-->
+    <section>
+      <h2>Dialog Examples</h2>
+    </section>
+    <!-- End Overlays | Dialog セクション-->
+
+    <!-- Start Overlays | Drawer セクション-->
+    <section>
+      <h2>Drawer Examples</h2>
+    </section>
+    <!-- End Overlays | Drawer セクション-->
+
+    <!-- Start Overlays | Popover セクション-->
+    <section>
+      <h2>Popover Examples</h2>
+    </section>
+    <!-- End Overlays | Popover セクション-->
+
+    <!-- Start Overlays | Dropdown セクション-->
+    <section>
+      <h2>Dropdown Examples</h2>
+    </section>
+    <!-- End Overlays | Dropdown セクション-->
+  </section>
+  <!-- End Overlays セクション-->
+
+  <!-- Start Data Display セクション-->
+  <section>
+    <h1>Data Display</h1>
+    <p>データを表示するコンポーネント</p>
+
+    <!-- Start Data Display | Card セクション-->
+    <section>
+      <h2>Card Examples</h2>
+    </section>
+    <!-- End Data Display | Card セクション-->
+
+    <!-- Start Data Display | Table セクション-->
+    <section>
+      <h2>Table Examples</h2>
+    </section>
+    <!-- End Data Display | Table セクション-->
+
+    <!-- Start Data Display | List セクション-->
+    <section>
+      <h2>List Examples</h2>
+    </section>
+    <!-- End Data Display | List セクション-->
+
+    <!-- Start Data Display | Avatar セクション-->
+    <section>
+      <h2>Avatar Examples</h2>
+    </section>
+    <!-- End Data Display | Avatar セクション-->
+
+    <!-- Start Data Display | Chip セクション-->
+    <section>
+      <h2>Chip Examples</h2>
+    </section>
+    <!-- End Data Display | Chip セクション-->
+  </section>
+  <!-- End Data Display セクション-->
+
+  <!-- Start Form セクション-->
+  <section>
+    <h1>Form</h1>
+    <p>ユーザ入力を受け付けるコンポーネント</p>
+
+    <!-- Start Input | Checkbox セクション-->
+    <section>
+      <h2>Input Examples</h2>
+    </section>
+    <!-- End Input | Checkbox セクション-->
   </section>
   <!-- End Form セクション-->
 

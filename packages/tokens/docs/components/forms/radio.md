@@ -186,6 +186,381 @@
 
 ---
 
+## 使用方法
+
+### Pattern 1: WebComponents (Shadow DOM)
+
+```html
+<!-- 基本的なラジオボタン -->
+<ha-radio size="md">
+  <input type="radio" id="option1" name="choice" value="option1">
+  <label for="option1">オプション 1</label>
+</ha-radio>
+
+<!-- ラジオボタングループ -->
+<ha-radio size="md">
+  <input type="radio" id="standard" name="shipping" value="standard" checked>
+  <label for="standard">通常配送</label>
+</ha-radio>
+
+<ha-radio size="md">
+  <input type="radio" id="express" name="shipping" value="express">
+  <label for="express">速達配送</label>
+</ha-radio>
+
+<!-- サイズバリアント -->
+<ha-radio size="sm">
+  <input type="radio" id="small" name="size" value="sm">
+  <label for="small">小サイズ</label>
+</ha-radio>
+
+<ha-radio size="lg">
+  <input type="radio" id="large" name="size" value="lg">
+  <label for="large">大サイズ</label>
+</ha-radio>
+
+<!-- 状態の例 -->
+<ha-radio disabled>
+  <input type="radio" id="disabled" name="example" disabled>
+  <label for="disabled">無効な選択肢</label>
+</ha-radio>
+
+<ha-radio error>
+  <input type="radio" id="error" name="example">
+  <label for="error">エラー状態</label>
+</ha-radio>
+```
+
+### Pattern 2: Plain HTML (推奨)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/variables.css">
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/html/forms/radio.css">
+</head>
+<body>
+  <!-- 基本的なラジオボタン -->
+  <div class="ha-radio" size="md">
+    <div class="radio-container">
+      <input type="radio" id="basic-radio" name="basic" value="yes">
+      <div class="radio-circle">
+        <div class="radio-dot"></div>
+      </div>
+      <label for="basic-radio">はい</label>
+    </div>
+  </div>
+
+  <!-- ラジオボタングループ（相互排他的な選択） -->
+  <fieldset>
+    <legend>配送方法を選択してください</legend>
+
+    <div class="ha-radio" size="md" checked>
+      <div class="radio-container">
+        <input type="radio" id="standard-shipping" name="shipping" value="standard" checked>
+        <div class="radio-circle">
+          <div class="radio-dot"></div>
+        </div>
+        <label for="standard-shipping">通常配送（3-5日）</label>
+      </div>
+    </div>
+
+    <div class="ha-radio" size="md">
+      <div class="radio-container">
+        <input type="radio" id="express-shipping" name="shipping" value="express">
+        <div class="radio-circle">
+          <div class="radio-dot"></div>
+        </div>
+        <label for="express-shipping">速達配送（1-2日）</label>
+      </div>
+    </div>
+
+    <div class="ha-radio" size="md">
+      <div class="radio-container">
+        <input type="radio" id="overnight-shipping" name="shipping" value="overnight">
+        <div class="radio-circle">
+          <div class="radio-dot"></div>
+        </div>
+        <label for="overnight-shipping">翌日配送</label>
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- 異なるサイズの例 -->
+  <h4>Small (sm)</h4>
+  <div class="ha-radio" size="sm">
+    <div class="radio-container">
+      <input type="radio" id="small-radio" name="size-demo" value="sm">
+      <div class="radio-circle">
+        <div class="radio-dot"></div>
+      </div>
+      <label for="small-radio">小サイズのラジオボタン</label>
+    </div>
+  </div>
+
+  <h4>Medium (md) - デフォルト</h4>
+  <div class="ha-radio" size="md">
+    <div class="radio-container">
+      <input type="radio" id="medium-radio" name="size-demo" value="md" checked>
+      <div class="radio-circle">
+        <div class="radio-dot"></div>
+      </div>
+      <label for="medium-radio">中サイズのラジオボタン</label>
+    </div>
+  </div>
+
+  <h4>Large (lg)</h4>
+  <div class="ha-radio" size="lg">
+    <div class="radio-container">
+      <input type="radio" id="large-radio" name="size-demo" value="lg">
+      <div class="radio-circle">
+        <div class="radio-dot"></div>
+      </div>
+      <label for="large-radio">大サイズのラジオボタン</label>
+    </div>
+  </div>
+
+  <!-- エラー状態のラジオボタン -->
+  <div class="ha-radio" size="md" error>
+    <div class="radio-container">
+      <input type="radio" id="error-radio" name="required" value="yes" error>
+      <div class="radio-circle">
+        <div class="radio-dot"></div>
+      </div>
+      <label for="error-radio">必須選択項目</label>
+    </div>
+  </div>
+
+  <!-- 無効化されたラジオボタン -->
+  <div class="ha-radio" size="md" disabled>
+    <div class="radio-container">
+      <input type="radio" id="disabled-radio" name="example" value="disabled" disabled>
+      <div class="radio-circle">
+        <div class="radio-dot"></div>
+      </div>
+      <label for="disabled-radio">選択できないオプション</label>
+    </div>
+  </div>
+
+  <script>
+    // ラジオボタンの選択状態を管理
+    document.querySelectorAll('.ha-radio input[type="radio"]').forEach(input => {
+      input.addEventListener('change', function() {
+        const name = this.name;
+        const radioGroup = document.querySelectorAll(`.ha-radio input[name="${name}"]`);
+
+        // 同じグループ内の全てのラジオボタンをリセット
+        radioGroup.forEach(radio => {
+          const radioElement = radio.closest('.ha-radio');
+          if (radio.checked) {
+            radioElement.setAttribute('checked', '');
+          } else {
+            radioElement.removeAttribute('checked');
+          }
+        });
+
+        console.log(`選択されました: ${this.value}`);
+      });
+    });
+  </script>
+</body>
+</html>
+```
+
+**重要なポイント:**
+
+1. **HTML構造:** ラジオボタンには必ず `.ha-radio` > `.radio-container` > `input`, `.radio-circle` (内部に `.radio-dot`)、`label` の構造が必要です。
+2. **CSSファイル参照:**
+   - `css/variables.css` - デザイントークンの定義
+   - `css/html/forms/radio.css` - Radio コンポーネントのスタイル
+3. **相互排他性:** 同じ `name` 属性を持つラジオボタンは自動的に相互排他的になります。1つ選択すると、同じグループの他のラジオボタンは自動的に解除されます。
+4. **name属性の重要性:** グループ化には必ず同じ `name` 属性を設定してください。
+5. **checked属性:** デフォルトで選択状態にしたい場合は、HTMLの `input` 要素と親要素の両方に `checked` 属性を設定します。
+
+### Pattern 3: React/TypeScript
+
+```typescript
+import React, { useState } from 'react';
+import '@hidearea-design/tokens/css/html/forms/radio.css';
+
+interface RadioProps {
+  id: string;
+  name: string;
+  value: string;
+  label: string;
+  size?: 'sm' | 'md' | 'lg';
+  checked?: boolean;
+  disabled?: boolean;
+  error?: boolean;
+  onChange?: (value: string) => void;
+}
+
+function Radio({
+  id,
+  name,
+  value,
+  label,
+  size = 'md',
+  checked = false,
+  disabled = false,
+  error = false,
+  onChange,
+}: RadioProps) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange && e.target.checked) {
+      onChange(e.target.value);
+    }
+  };
+
+  return (
+    <div
+      className="ha-radio"
+      {...(size && { size })}
+      {...(checked && { checked: '' })}
+      {...(disabled && { disabled: '' })}
+      {...(error && { error: '' })}
+    >
+      <div className="radio-container">
+        <input
+          type="radio"
+          id={id}
+          name={name}
+          value={value}
+          checked={checked}
+          onChange={handleChange}
+          disabled={disabled}
+        />
+        <div className="radio-circle">
+          <div className="radio-dot"></div>
+        </div>
+        <label htmlFor={id}>{label}</label>
+      </div>
+    </div>
+  );
+}
+
+// ラジオグループコンポーネント
+interface RadioGroupProps {
+  name: string;
+  options: Array<{
+    id: string;
+    value: string;
+    label: string;
+    disabled?: boolean;
+  }>;
+  value?: string;
+  onChange: (value: string) => void;
+  size?: 'sm' | 'md' | 'lg';
+  error?: boolean;
+}
+
+function RadioGroup({
+  name,
+  options,
+  value,
+  onChange,
+  size = 'md',
+  error = false,
+}: RadioGroupProps) {
+  return (
+    <div className="radio-group">
+      {options.map((option) => (
+        <Radio
+          key={option.id}
+          id={option.id}
+          name={name}
+          value={option.value}
+          label={option.label}
+          size={size}
+          checked={value === option.value}
+          disabled={option.disabled}
+          error={error}
+          onChange={onChange}
+        />
+      ))}
+    </div>
+  );
+}
+
+// 使用例: 配送方法の選択
+function ShippingForm() {
+  const [shippingMethod, setShippingMethod] = useState('standard');
+
+  const shippingOptions = [
+    { id: 'standard', value: 'standard', label: '通常配送（3-5日）' },
+    { id: 'express', value: 'express', label: '速達配送（1-2日）' },
+    { id: 'overnight', value: 'overnight', label: '翌日配送' },
+  ];
+
+  return (
+    <fieldset>
+      <legend>配送方法を選択してください</legend>
+      <RadioGroup
+        name="shipping"
+        options={shippingOptions}
+        value={shippingMethod}
+        onChange={setShippingMethod}
+        size="md"
+      />
+      <p>選択された配送方法: {shippingMethod}</p>
+    </fieldset>
+  );
+}
+
+// 使用例: プラン選択
+function PlanSelector() {
+  const [selectedPlan, setSelectedPlan] = useState('basic');
+
+  const planOptions = [
+    { id: 'basic', value: 'basic', label: 'ベーシックプラン（¥1,000/月）' },
+    { id: 'pro', value: 'pro', label: 'プロプラン（¥3,000/月）' },
+    { id: 'enterprise', value: 'enterprise', label: 'エンタープライズ（カスタム価格）' },
+  ];
+
+  return (
+    <fieldset>
+      <legend>プランを選択</legend>
+      <RadioGroup
+        name="plan"
+        options={planOptions}
+        value={selectedPlan}
+        onChange={setSelectedPlan}
+        size="lg"
+      />
+    </fieldset>
+  );
+}
+
+export { Radio, RadioGroup, ShippingForm, PlanSelector };
+```
+
+### Pattern 4: 統合CSS
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/variables.css">
+  <link rel="stylesheet" href="@hidearea-design/tokens/css/html/all.css">
+</head>
+<body>
+  <!-- 全コンポーネントが利用可能 -->
+  <div class="ha-radio" size="md">
+    <div class="radio-container">
+      <input type="radio" id="example" name="group" value="option1">
+      <div class="radio-circle">
+        <div class="radio-dot"></div>
+      </div>
+      <label for="example">ラベルテキスト</label>
+    </div>
+  </div>
+</body>
+</html>
+```
+
+---
+
 ## ラジオボタングループ
 
 ラジオボタンは通常、グループで使用されます。同じ `name` 属性を持つラジオボタンは自動的に相互排他的な選択を実現します。

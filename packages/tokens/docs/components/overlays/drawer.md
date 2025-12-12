@@ -896,6 +896,693 @@ function App() {
 
 ---
 
+## 使用方法
+
+### Pattern 1: Web Components (推奨)
+
+```html
+<!-- Web Componentsを使用した実装 -->
+<script type="module" src="/build/js/components/overlays/drawer.js"></script>
+
+<!-- 基本的な使用 -->
+<ha-drawer id="myDrawer" placement="right" size="md">
+  <div slot="header">
+    <ha-drawer-title>タイトル</ha-drawer-title>
+  </div>
+  <div slot="body">
+    <p>ドロワーの内容がここに入ります。</p>
+  </div>
+  <div slot="footer">
+    <ha-button variant="secondary">キャンセル</ha-button>
+    <ha-button variant="primary">保存</ha-button>
+  </div>
+</ha-drawer>
+
+<ha-button id="openDrawer">ドロワーを開く</ha-button>
+
+<script>
+  const drawer = document.getElementById('myDrawer');
+  const openBtn = document.getElementById('openDrawer');
+
+  openBtn.addEventListener('click', () => {
+    drawer.open();
+  });
+</script>
+```
+
+### Pattern 2: Plain HTML (推奨)
+
+Plain HTMLとCSSを使用した実装。JavaScriptで開閉を制御します。
+
+#### 必要なファイル
+
+```html
+<!-- CSSファイルの読み込み -->
+<link rel="stylesheet" href="/build/css/html/overlays/drawer.css">
+```
+
+#### 基本的な構造
+
+```html
+<!-- ドロワーコンテナ -->
+<div class="ha-drawer" id="myDrawer">
+  <!-- 背景オーバーレイ -->
+  <div class="drawer-backdrop"></div>
+
+  <!-- ドロワー本体 -->
+  <div class="drawer drawer--placement-right drawer--size-md">
+    <header class="drawer-header">
+      <h2 class="drawer-title">タイトル</h2>
+      <button class="drawer-close" aria-label="閉じる">×</button>
+    </header>
+    <div class="drawer-body">
+      <p>ドロワーの内容がここに入ります。</p>
+    </div>
+    <footer class="drawer-footer">
+      <button class="button button--secondary">キャンセル</button>
+      <button class="button button--primary">保存</button>
+    </footer>
+  </div>
+</div>
+
+<!-- トリガーボタン -->
+<button id="openDrawer">ドロワーを開く</button>
+```
+
+#### 4つの配置バリアント
+
+**1. 左からスライドイン（ナビゲーション）**
+
+```html
+<div class="ha-drawer" id="leftDrawer">
+  <div class="drawer-backdrop"></div>
+  <div class="drawer drawer--placement-left drawer--size-sm">
+    <header class="drawer-header">
+      <h2 class="drawer-title">ナビゲーション</h2>
+      <button class="drawer-close" aria-label="閉じる">×</button>
+    </header>
+    <div class="drawer-body">
+      <nav>
+        <a href="#home" class="nav-item">ホーム</a>
+        <a href="#products" class="nav-item">製品</a>
+        <a href="#about" class="nav-item">会社情報</a>
+        <a href="#contact" class="nav-item">お問い合わせ</a>
+      </nav>
+    </div>
+  </div>
+</div>
+```
+
+**2. 右からスライドイン（詳細パネル）**
+
+```html
+<div class="ha-drawer" id="rightDrawer">
+  <div class="drawer-backdrop"></div>
+  <div class="drawer drawer--placement-right drawer--size-md">
+    <header class="drawer-header">
+      <h2 class="drawer-title">商品詳細</h2>
+      <button class="drawer-close" aria-label="閉じる">×</button>
+    </header>
+    <div class="drawer-body">
+      <img src="product.jpg" alt="商品画像" class="product-image" />
+      <h3>商品名</h3>
+      <p>商品の詳細説明がここに入ります...</p>
+    </div>
+    <footer class="drawer-footer">
+      <button class="button button--secondary">お気に入り</button>
+      <button class="button button--primary">カートに追加</button>
+    </footer>
+  </div>
+</div>
+```
+
+**3. 上からスライドイン（検索パネル）**
+
+```html
+<div class="ha-drawer" id="topDrawer">
+  <div class="drawer-backdrop"></div>
+  <div class="drawer drawer--placement-top drawer--size-md">
+    <header class="drawer-header">
+      <h2 class="drawer-title">検索</h2>
+      <button class="drawer-close" aria-label="閉じる">×</button>
+    </header>
+    <div class="drawer-body">
+      <input type="search" placeholder="検索キーワードを入力..." class="search-input" />
+      <div class="search-results">
+        <!-- 検索結果がここに表示されます -->
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+**4. 下からスライドイン（モバイルメニュー）**
+
+```html
+<div class="ha-drawer" id="bottomDrawer">
+  <div class="drawer-backdrop"></div>
+  <div class="drawer drawer--placement-bottom drawer--size-sm">
+    <header class="drawer-header">
+      <h2 class="drawer-title">アクション</h2>
+      <button class="drawer-close" aria-label="閉じる">×</button>
+    </header>
+    <div class="drawer-body">
+      <button class="action-item">共有</button>
+      <button class="action-item">編集</button>
+      <button class="action-item">複製</button>
+      <button class="action-item action-item--danger">削除</button>
+    </div>
+  </div>
+</div>
+```
+
+#### サイズバリアント
+
+```html
+<!-- 小サイズ (320px) - ナビゲーション、フィルター -->
+<div class="drawer drawer--placement-left drawer--size-sm">
+  <!-- コンテンツ -->
+</div>
+
+<!-- 中サイズ (480px) - デフォルト、詳細表示 -->
+<div class="drawer drawer--placement-right drawer--size-md">
+  <!-- コンテンツ -->
+</div>
+
+<!-- 大サイズ (640px) - フォーム、複雑なコンテンツ -->
+<div class="drawer drawer--placement-right drawer--size-lg">
+  <!-- コンテンツ -->
+</div>
+```
+
+#### JavaScript実装（開閉とアニメーション）
+
+```javascript
+class DrawerController {
+  constructor(drawerId) {
+    this.container = document.getElementById(drawerId);
+    if (!this.container) return;
+
+    this.backdrop = this.container.querySelector('.drawer-backdrop');
+    this.drawer = this.container.querySelector('.drawer');
+    this.closeButton = this.container.querySelector('.drawer-close');
+    this.isOpen = false;
+    this.previousActiveElement = null;
+
+    this.init();
+  }
+
+  init() {
+    // 閉じるボタンのクリック
+    if (this.closeButton) {
+      this.closeButton.addEventListener('click', () => this.close());
+    }
+
+    // 背景クリックで閉じる
+    if (this.backdrop) {
+      this.backdrop.addEventListener('click', () => this.close());
+    }
+
+    // ESCキーで閉じる
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.isOpen) {
+        this.close();
+      }
+    });
+  }
+
+  open() {
+    this.isOpen = true;
+    this.container.classList.add('drawer--open');
+
+    // 背景のスクロールを無効化
+    document.body.style.overflow = 'hidden';
+
+    // フォーカス管理
+    this.previousActiveElement = document.activeElement;
+
+    // スライドインアニメーション後にフォーカスを移動
+    setTimeout(() => {
+      const firstFocusable = this.drawer.querySelector(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (firstFocusable) {
+        firstFocusable.focus();
+      }
+    }, 200); // アニメーション時間に合わせる
+
+    // フォーカストラップを有効化
+    this.trapFocus();
+  }
+
+  close() {
+    this.isOpen = false;
+    this.container.classList.remove('drawer--open');
+
+    // 背景のスクロールを復元
+    document.body.style.overflow = '';
+
+    // フォーカスを元の位置に戻す
+    if (this.previousActiveElement) {
+      this.previousActiveElement.focus();
+      this.previousActiveElement = null;
+    }
+  }
+
+  toggle() {
+    if (this.isOpen) {
+      this.close();
+    } else {
+      this.open();
+    }
+  }
+
+  trapFocus() {
+    const focusableElements = this.drawer.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    const handleTabKey = (e) => {
+      if (e.key !== 'Tab' || !this.isOpen) return;
+
+      if (e.shiftKey) {
+        // Shift + Tab
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        // Tab
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    };
+
+    this.drawer.addEventListener('keydown', handleTabKey);
+  }
+}
+
+// 使用例
+const myDrawer = new DrawerController('myDrawer');
+
+// トリガーボタンに接続
+document.getElementById('openDrawer')?.addEventListener('click', () => {
+  myDrawer.open();
+});
+```
+
+#### スライドインアニメーションのカスタマイズ
+
+デフォルトのアニメーションは200msですが、カスタマイズできます:
+
+```css
+/* アニメーション速度の調整 */
+.ha-drawer.drawer--open .drawer {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ha-drawer.drawer--open .drawer-backdrop {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* バウンス効果 */
+.ha-drawer.drawer--open .drawer {
+  animation: slideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+```
+
+#### 完全な実装例
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drawer Example</title>
+  <link rel="stylesheet" href="/build/css/html/overlays/drawer.css">
+</head>
+<body>
+  <!-- 左ドロワー（ナビゲーション） -->
+  <div class="ha-drawer" id="navDrawer">
+    <div class="drawer-backdrop"></div>
+    <div class="drawer drawer--placement-left drawer--size-sm">
+      <header class="drawer-header">
+        <h2 class="drawer-title">メニュー</h2>
+        <button class="drawer-close" aria-label="閉じる">×</button>
+      </header>
+      <div class="drawer-body">
+        <nav>
+          <a href="#home">ホーム</a>
+          <a href="#products">製品</a>
+          <a href="#about">会社情報</a>
+          <a href="#contact">お問い合わせ</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- 右ドロワー（詳細） -->
+  <div class="ha-drawer" id="detailDrawer">
+    <div class="drawer-backdrop"></div>
+    <div class="drawer drawer--placement-right drawer--size-md">
+      <header class="drawer-header">
+        <h2 class="drawer-title">商品詳細</h2>
+        <button class="drawer-close" aria-label="閉じる">×</button>
+      </header>
+      <div class="drawer-body">
+        <p>詳細情報がここに表示されます。</p>
+      </div>
+      <footer class="drawer-footer">
+        <button class="button button--secondary">キャンセル</button>
+        <button class="button button--primary">保存</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- トリガーボタン -->
+  <button id="openNav">ナビゲーション</button>
+  <button id="openDetail">詳細を見る</button>
+
+  <script src="drawer-controller.js"></script>
+  <script>
+    // ドロワーの初期化
+    const navDrawer = new DrawerController('navDrawer');
+    const detailDrawer = new DrawerController('detailDrawer');
+
+    // ボタンに接続
+    document.getElementById('openNav').addEventListener('click', () => {
+      navDrawer.open();
+    });
+
+    document.getElementById('openDetail').addEventListener('click', () => {
+      detailDrawer.open();
+    });
+  </script>
+</body>
+</html>
+```
+
+### Pattern 3: React
+
+```tsx
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+
+type DrawerPlacement = 'left' | 'right' | 'top' | 'bottom';
+type DrawerSize = 'sm' | 'md' | 'lg';
+
+interface DrawerProps {
+  isOpen: boolean;
+  onClose: () => void;
+  placement?: DrawerPlacement;
+  size?: DrawerSize;
+  title?: string;
+  footer?: React.ReactNode;
+  children: React.ReactNode;
+}
+
+function Drawer({
+  isOpen,
+  onClose,
+  placement = 'right',
+  size = 'md',
+  title,
+  footer,
+  children,
+}: DrawerProps) {
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const previousActiveElement = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      // フォーカスを保存
+      previousActiveElement.current = document.activeElement as HTMLElement;
+
+      // 背景のスクロールを無効化
+      document.body.style.overflow = 'hidden';
+
+      // ESCキーで閉じる
+      const handleEscape = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') onClose();
+      };
+
+      document.addEventListener('keydown', handleEscape);
+
+      // フォーカスを移動
+      setTimeout(() => {
+        const firstFocusable = drawerRef.current?.querySelector<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        firstFocusable?.focus();
+      }, 200);
+
+      return () => {
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', handleEscape);
+
+        // フォーカスを復元
+        previousActiveElement.current?.focus();
+      };
+    }
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return createPortal(
+    <div className={`ha-drawer ${isOpen ? 'drawer--open' : ''}`}>
+      <div className="drawer-backdrop" onClick={onClose} />
+      <div
+        ref={drawerRef}
+        className={`drawer drawer--placement-${placement} drawer--size-${size}`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={title ? 'drawer-title' : undefined}
+      >
+        <header className="drawer-header">
+          {title && <h2 id="drawer-title" className="drawer-title">{title}</h2>}
+          <button className="drawer-close" onClick={onClose} aria-label="閉じる">
+            ×
+          </button>
+        </header>
+        <div className="drawer-body">{children}</div>
+        {footer && <footer className="drawer-footer">{footer}</footer>}
+      </div>
+    </div>,
+    document.body
+  );
+}
+
+// 使用例
+function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>ドロワーを開く</button>
+
+      <Drawer
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        placement="right"
+        size="md"
+        title="商品詳細"
+        footer={
+          <>
+            <button className="button button--secondary">キャンセル</button>
+            <button className="button button--primary">保存</button>
+          </>
+        }
+      >
+        <div className="product-details">
+          <p>商品の詳細情報がここに表示されます。</p>
+        </div>
+      </Drawer>
+    </>
+  );
+}
+
+export default App;
+```
+
+### Pattern 4: Vue
+
+```vue
+<template>
+  <Teleport to="body">
+    <Transition name="drawer">
+      <div v-if="isOpen" class="ha-drawer drawer--open">
+        <div class="drawer-backdrop" @click="handleClose" />
+        <div
+          ref="drawerRef"
+          :class="[
+            'drawer',
+            `drawer--placement-${placement}`,
+            `drawer--size-${size}`
+          ]"
+          role="dialog"
+          aria-modal="true"
+          :aria-labelledby="title ? 'drawer-title' : undefined"
+        >
+          <header class="drawer-header">
+            <h2 v-if="title" id="drawer-title" class="drawer-title">
+              {{ title }}
+            </h2>
+            <button
+              class="drawer-close"
+              @click="handleClose"
+              aria-label="閉じる"
+            >
+              ×
+            </button>
+          </header>
+          <div class="drawer-body">
+            <slot />
+          </div>
+          <footer v-if="$slots.footer" class="drawer-footer">
+            <slot name="footer" />
+          </footer>
+        </div>
+      </div>
+    </Transition>
+  </Teleport>
+</template>
+
+<script setup lang="ts">
+import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
+
+type DrawerPlacement = 'left' | 'right' | 'top' | 'bottom';
+type DrawerSize = 'sm' | 'md' | 'lg';
+
+interface Props {
+  isOpen: boolean;
+  placement?: DrawerPlacement;
+  size?: DrawerSize;
+  title?: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  placement: 'right',
+  size: 'md',
+});
+
+const emit = defineEmits<{
+  close: [];
+}>();
+
+const drawerRef = ref<HTMLElement | null>(null);
+let previousActiveElement: HTMLElement | null = null;
+
+const handleClose = () => {
+  emit('close');
+};
+
+const handleEscape = (e: KeyboardEvent) => {
+  if (e.key === 'Escape' && props.isOpen) {
+    handleClose();
+  }
+};
+
+watch(() => props.isOpen, (newValue) => {
+  if (newValue) {
+    // フォーカスを保存
+    previousActiveElement = document.activeElement as HTMLElement;
+
+    // 背景のスクロールを無効化
+    document.body.style.overflow = 'hidden';
+
+    // フォーカスを移動
+    setTimeout(() => {
+      const firstFocusable = drawerRef.value?.querySelector<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      firstFocusable?.focus();
+    }, 200);
+  } else {
+    // 背景のスクロールを復元
+    document.body.style.overflow = '';
+
+    // フォーカスを復元
+    previousActiveElement?.focus();
+    previousActiveElement = null;
+  }
+});
+
+onMounted(() => {
+  document.addEventListener('keydown', handleEscape);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('keydown', handleEscape);
+  document.body.style.overflow = '';
+});
+</script>
+
+<style scoped>
+.drawer-enter-active,
+.drawer-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.drawer-enter-from,
+.drawer-leave-to {
+  opacity: 0;
+}
+</style>
+```
+
+使用例:
+
+```vue
+<template>
+  <div>
+    <button @click="isOpen = true">ドロワーを開く</button>
+
+    <Drawer
+      :is-open="isOpen"
+      @close="isOpen = false"
+      placement="right"
+      size="md"
+      title="商品詳細"
+    >
+      <div class="product-details">
+        <p>商品の詳細情報がここに表示されます。</p>
+      </div>
+
+      <template #footer>
+        <button class="button button--secondary">キャンセル</button>
+        <button class="button button--primary">保存</button>
+      </template>
+    </Drawer>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import Drawer from './Drawer.vue';
+
+const isOpen = ref(false);
+</script>
+```
+
+---
+
 ## アクセシビリティ
 
 ### ARIA属性

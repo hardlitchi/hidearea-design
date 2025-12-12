@@ -30,6 +30,348 @@
 
 ---
 
+## 使用方法
+
+### Pattern 1: Web Components
+
+Web Componentsを使用した実装方法については、Hidearea Design Systemの公式ドキュメントを参照してください。
+
+### Pattern 2: Plain HTML (推奨)
+
+Plain HTMLとCSSを使用してツールチップを実装する方法です。この方法はフレームワークに依存せず、最も柔軟性が高い実装方法です。
+
+#### 必要なファイル
+
+```html
+<!-- デザイントークン（必須） -->
+<link rel="stylesheet" href="css/variables.css">
+
+<!-- Tooltipコンポーネントスタイル -->
+<link rel="stylesheet" href="css/html/overlays/tooltip.css">
+```
+
+#### 基本的な使用例
+
+最もシンプルなツールチップの実装:
+
+```html
+<div class="ha-tooltip">
+  <div class="tooltip-trigger">
+    ホバーしてください
+  </div>
+  <div class="tooltip-content variant-default size-md" data-placement="top">
+    <div class="tooltip-arrow"></div>
+    ツールチップテキスト
+  </div>
+</div>
+```
+
+#### バリアント
+
+##### デフォルト (Default)
+
+標準的なグレーの背景色:
+
+```html
+<div class="ha-tooltip">
+  <div class="tooltip-trigger">
+    デフォルト
+  </div>
+  <div class="tooltip-content variant-default size-md" data-placement="top">
+    <div class="tooltip-arrow"></div>
+    デフォルトスタイルのツールチップ
+  </div>
+</div>
+```
+
+##### ダーク (Dark)
+
+より濃い背景色で強調:
+
+```html
+<div class="ha-tooltip">
+  <div class="tooltip-trigger">
+    ダーク
+  </div>
+  <div class="tooltip-content variant-dark size-md" data-placement="top">
+    <div class="tooltip-arrow"></div>
+    ダークスタイルのツールチップ
+  </div>
+</div>
+```
+
+##### ライト (Light)
+
+明るい背景色でソフトな印象:
+
+```html
+<div class="ha-tooltip">
+  <div class="tooltip-trigger">
+    ライト
+  </div>
+  <div class="tooltip-content variant-light size-md" data-placement="top">
+    <div class="tooltip-arrow"></div>
+    ライトスタイルのツールチップ
+  </div>
+</div>
+```
+
+#### サイズバリエーション
+
+##### Small
+
+```html
+<div class="ha-tooltip">
+  <div class="tooltip-trigger">
+    小サイズ
+  </div>
+  <div class="tooltip-content variant-default size-sm" data-placement="top">
+    <div class="tooltip-arrow"></div>
+    小さいツールチップ
+  </div>
+</div>
+```
+
+##### Medium (デフォルト)
+
+```html
+<div class="ha-tooltip">
+  <div class="tooltip-trigger">
+    中サイズ
+  </div>
+  <div class="tooltip-content variant-default size-md" data-placement="top">
+    <div class="tooltip-arrow"></div>
+    標準サイズのツールチップ
+  </div>
+</div>
+```
+
+##### Large
+
+```html
+<div class="ha-tooltip">
+  <div class="tooltip-trigger">
+    大サイズ
+  </div>
+  <div class="tooltip-content variant-default size-lg" data-placement="top">
+    <div class="tooltip-arrow"></div>
+    大きいツールチップで、より多くの情報を表示できます
+  </div>
+</div>
+```
+
+#### 配置オプション
+
+##### Top (上)
+
+```html
+<div class="ha-tooltip">
+  <div class="tooltip-trigger">
+    上に表示
+  </div>
+  <div class="tooltip-content variant-default size-md" data-placement="top">
+    <div class="tooltip-arrow"></div>
+    要素の上に表示
+  </div>
+</div>
+```
+
+##### Bottom (下)
+
+```html
+<div class="ha-tooltip">
+  <div class="tooltip-trigger">
+    下に表示
+  </div>
+  <div class="tooltip-content variant-default size-md" data-placement="bottom">
+    <div class="tooltip-arrow"></div>
+    要素の下に表示
+  </div>
+</div>
+```
+
+##### Left (左)
+
+```html
+<div class="ha-tooltip">
+  <div class="tooltip-trigger">
+    左に表示
+  </div>
+  <div class="tooltip-content variant-default size-md" data-placement="left">
+    <div class="tooltip-arrow"></div>
+    要素の左に表示
+  </div>
+</div>
+```
+
+##### Right (右)
+
+```html
+<div class="ha-tooltip">
+  <div class="tooltip-trigger">
+    右に表示
+  </div>
+  <div class="tooltip-content variant-default size-md" data-placement="right">
+    <div class="tooltip-arrow"></div>
+    要素の右に表示
+  </div>
+</div>
+```
+
+#### JavaScriptによる制御
+
+ツールチップの表示/非表示と位置計算を行うJavaScript:
+
+```javascript
+class TooltipController {
+  constructor() {
+    this.tooltips = [];
+    this.init();
+  }
+
+  init() {
+    // すべてのツールチップを初期化
+    document.querySelectorAll('.ha-tooltip').forEach(container => {
+      const trigger = container.querySelector('.tooltip-trigger');
+      const content = container.querySelector('.tooltip-content');
+
+      if (!trigger || !content) return;
+
+      // アクセシビリティ: IDを生成して関連付け
+      if (!content.id) {
+        content.id = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
+      }
+      trigger.setAttribute('aria-describedby', content.id);
+
+      // イベントリスナーを追加
+      trigger.addEventListener('mouseenter', () => this.show(content, trigger));
+      trigger.addEventListener('mouseleave', () => this.hide(content));
+      trigger.addEventListener('focus', () => this.show(content, trigger));
+      trigger.addEventListener('blur', () => this.hide(content));
+    });
+  }
+
+  show(content, trigger) {
+    // 位置を計算
+    this.position(content, trigger);
+
+    // 表示
+    requestAnimationFrame(() => {
+      content.classList.add('visible');
+    });
+  }
+
+  hide(content) {
+    content.classList.remove('visible');
+  }
+
+  position(content, trigger) {
+    const placement = content.getAttribute('data-placement') || 'top';
+    const triggerRect = trigger.getBoundingClientRect();
+    const contentRect = content.getBoundingClientRect();
+    const gap = 8; // 要素との間隔
+
+    let top = 0;
+    let left = 0;
+
+    // 配置位置に応じて座標を計算
+    switch (placement) {
+      case 'top':
+        top = triggerRect.top - contentRect.height - gap;
+        left = triggerRect.left + (triggerRect.width - contentRect.width) / 2;
+        break;
+
+      case 'bottom':
+        top = triggerRect.bottom + gap;
+        left = triggerRect.left + (triggerRect.width - contentRect.width) / 2;
+        break;
+
+      case 'left':
+        top = triggerRect.top + (triggerRect.height - contentRect.height) / 2;
+        left = triggerRect.left - contentRect.width - gap;
+        break;
+
+      case 'right':
+        top = triggerRect.top + (triggerRect.height - contentRect.height) / 2;
+        left = triggerRect.right + gap;
+        break;
+    }
+
+    // ビューポート内に収まるように調整
+    const margin = 8;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    // 左右の調整
+    if (left < margin) {
+      left = margin;
+    } else if (left + contentRect.width > viewportWidth - margin) {
+      left = viewportWidth - contentRect.width - margin;
+    }
+
+    // 上下の調整
+    if (top < margin) {
+      top = margin;
+    } else if (top + contentRect.height > viewportHeight - margin) {
+      top = viewportHeight - contentRect.height - margin;
+    }
+
+    // スクロール位置を考慮
+    top += window.scrollY;
+    left += window.scrollX;
+
+    // スタイルを適用
+    content.style.top = `${top}px`;
+    content.style.left = `${left}px`;
+  }
+}
+
+// 初期化
+document.addEventListener('DOMContentLoaded', () => {
+  new TooltipController();
+});
+```
+
+#### アクセシビリティ対応
+
+アクセシビリティを向上させた実装例:
+
+```html
+<div class="ha-tooltip">
+  <button
+    class="tooltip-trigger"
+    aria-describedby="help-tooltip"
+  >
+    ヘルプ
+  </button>
+  <div
+    id="help-tooltip"
+    class="tooltip-content variant-default size-md"
+    data-placement="top"
+    role="tooltip"
+  >
+    <div class="tooltip-arrow"></div>
+    この機能についてのヘルプ情報
+  </div>
+</div>
+```
+
+重要なポイント:
+
+- `aria-describedby`: トリガー要素とツールチップを関連付け
+- `role="tooltip"`: スクリーンリーダーにツールチップであることを伝える
+- キーボードフォーカスでも表示されるようイベントを設定
+
+### Pattern 3: React
+
+Reactを使用した実装については、後述の「使用例」セクションのReactコード例を参照してください。
+
+### Pattern 4: Vue/その他のフレームワーク
+
+その他のフレームワークでの実装も、Pattern 2のHTML構造とJavaScriptロジックを参考に実装できます。
+
+---
+
 ## トークン一覧
 
 ### 背景色
