@@ -263,6 +263,10 @@ const convertHostToClass = (cssContent, componentName) => {
   converted = converted.replace(/:host\(\.([^)]+)\)/g, `.ha-${componentName}.$1`);
 
   // Convert ::slotted(*) to plain selectors
+  // Handle cases where ::slotted is already preceded by a combinator (>, +, ~)
+  converted = converted.replace(/\s*>\s*::slotted\(\*\)/g, ' > *');
+  converted = converted.replace(/\s*>\s*::slotted\(([^)]+)\)/g, ' > $1');
+  // Handle standalone ::slotted
   converted = converted.replace(/::slotted\(\*\)/g, '> *');
   converted = converted.replace(/::slotted\(([^)]+)\)/g, '$1');
 

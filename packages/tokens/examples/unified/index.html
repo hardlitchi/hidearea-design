@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja" data-theme="light">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,13 +21,13 @@
       color: var(--foreground-primary);
     }
 
-    .header {
+    header {
       margin-bottom: 3rem;
       padding-bottom: 2rem;
       border-bottom: 2px solid var(--border-default);
     }
 
-    .section {
+    section {
       margin-bottom: 3rem;
     }
 
@@ -48,14 +49,38 @@
     }
   </style>
 </head>
+
 <body>
-  <div class="header">
+  <header>
     <h1>🎨 Unified CSS Demo</h1>
     <p>統合CSS（build/css/html/all.css）を使用した例</p>
     <p>全38コンポーネントが1ファイルにまとめられています（149KB）</p>
     <button id="theme-toggle" onclick="toggleTheme()">テーマ切り替え</button>
-  </div>
+  </header>
 
+  <section>
+    <h1>Form</h1>
+    <p>ユーザ入力を受け付けるコンポーネント</p>
+    <section>
+      <h2>Button Examples</h2>
+      <div class="component-group">
+        <!-- プライマリボタン -->
+        <button class="ha-button primary">送信</button>
+
+        <!-- セカンダリボタン -->
+        <button class="btn btn-secondary">キャンセル</button>
+
+        <!-- ゴーストボタン -->
+        <button class="btn btn-ghost">詳細</button>
+
+        <!-- デンジャーボタン -->
+        <button class="btn btn-danger">削除</button>
+
+        <!-- 無効化されたボタン -->
+        <button class="btn btn-primary" disabled>無効</button>
+      </div>
+    </section>
+  </section>
   <section class="section">
     <h2>Button Examples</h2>
     <div class="component-group">
@@ -118,7 +143,7 @@
       <h3>.ha-alert を使用</h3>
       <div class="example-box">
         <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <div class="ha-alert">
+          <div class="ha-alert alert--outlined alert--info">
             <div role="alert">これはアラートメッセージです</div>
           </div>
           <div class="ha-alert">
@@ -151,4 +176,5 @@
     }
   </script>
 </body>
+
 </html>
