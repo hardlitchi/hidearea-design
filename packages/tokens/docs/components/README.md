@@ -33,7 +33,7 @@
 
 | コンポーネント | バリアント数 | ステータス | ドキュメント |
 |--------------|------------|----------|------------|
-| **Badge** | 6 (primary, success, error, warning, info, neutral) | ✅ 実装済み | [feedback/badge.md](./feedback/badge.md) |
+| **Badge** | 6 (primary, success, error, warning, info, neutral) | ✅ 実装済み | [data-display/badge.md](../data-display/badge.md) |
 | **Alert** | 4 (success, error, warning, info) | ✅ 実装済み | [feedback/alert.md](./feedback/alert.md) |
 | **Toast** | 4 (success, error, warning, info) | ✅ 実装済み | [feedback/toast.md](./feedback/toast.md) |
 | **Progress** | 5色 + 3サイズ + circle型 | ✅ 実装済み | [feedback/progress.md](./feedback/progress.md) |

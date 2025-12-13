@@ -20,14 +20,16 @@
 - [ ] Form Group - 📝 ドキュメント未作成
 - [ ] Time Picker - 📝 ドキュメント未作成
 
-### Feedback カテゴリ (6コンポーネント)
+### Feedback カテゴリ (5コンポーネント)
 - [ ] Alert - docs/components/feedback/alert.md
-- [ ] Badge - docs/components/feedback/badge.md
 - [ ] Progress - docs/components/feedback/progress.md
 - [ ] Skeleton - docs/components/feedback/skeleton.md
 - [ ] Spinner - docs/components/feedback/spinner.md
 - [ ] Toast - docs/components/feedback/toast.md
 - [ ] Toast Container - 📝 ドキュメント未作成
+
+### Data Display カテゴリ追加
+- [ ] Badge - docs/components/data-display/badge.md (Feedback → Data Display に移動済み)
 
 ### Data Display カテゴリ (11コンポーネント)
 - [ ] Avatar - docs/components/data-display/avatar.md

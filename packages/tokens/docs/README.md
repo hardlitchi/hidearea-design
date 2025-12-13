@@ -51,7 +51,7 @@
 - **Accordion** - アコーディオン 📝 ドキュメント準備中
 - **[Avatar](./components/data-display/avatar.md)** - アバター (6サイズ + 6色 + 3形状)
 - **Avatar Group** - アバターグループ 📝 ドキュメント準備中
-- **[Badge](./components/feedback/badge.md)** - バッジ (6種類)
+- **[Badge](./components/data-display/badge.md)** - バッジ (6種類)
 - **[Card](./components/data-display/card.md)** - カード (3状態)
 - **[Chip](./components/data-display/chip.md)** - チップ (3サイズ + 6色)
 - **Datagrid** - データグリッド 📝 ドキュメント準備中
