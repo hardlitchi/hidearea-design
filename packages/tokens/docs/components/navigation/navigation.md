@@ -91,176 +91,188 @@ Navigationコンポーネントは、アプリケーション内のページ間�
 
 #### 基本的な構造
 
-Navigation コンポーネントは `.navigation` クラスを使用し、ブランド、メニューアイテム、アクションボタンを含みます。
+Navigation コンポーネントは `.ha-navigation` をルート要素とし、その中に `<nav class="navigation">` を配置します。
 
 ```html
-<nav class="navigation">
-  <a href="/" class="navigation-brand">
-    <img src="/logo.svg" alt="ロゴ" class="navigation-brand-logo">
-    <span>サイト名</span>
-  </a>
+<div class="ha-navigation">
+  <nav class="navigation">
+    <a href="/" class="navigation-brand">
+      <img src="/logo.svg" alt="ロゴ" class="navigation-brand-logo">
+      <span>サイト名</span>
+    </a>
 
-  <ul class="navigation-menu navigation-menu-start">
-    <li class="navigation-item">
-      <a href="/home" class="navigation-link" aria-current="page">
-        ホーム
-      </a>
-    </li>
-    <li class="navigation-item">
-      <a href="/about" class="navigation-link">
-        概要
-      </a>
-    </li>
-    <li class="navigation-item">
-      <a href="/contact" class="navigation-link">
-        お問い合わせ
-      </a>
-    </li>
-  </ul>
+    <ul class="navigation-menu navigation-menu-start">
+      <li class="navigation-item">
+        <a href="/home" class="navigation-link" aria-current="page">
+          ホーム
+        </a>
+      </li>
+      <li class="navigation-item">
+        <a href="/about" class="navigation-link">
+          概要
+        </a>
+      </li>
+      <li class="navigation-item">
+        <a href="/contact" class="navigation-link">
+          お問い合わせ
+        </a>
+      </li>
+    </ul>
 
-  <ul class="navigation-menu navigation-menu-end">
-    <li class="navigation-item">
-      <button class="navigation-link">ログイン</button>
-    </li>
-  </ul>
+    <ul class="navigation-menu navigation-menu-end">
+      <li class="navigation-item">
+        <button class="navigation-link">ログイン</button>
+      </li>
+    </ul>
 
-  <button class="navigation-toggle" aria-label="メニューを開く">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-      <path d="M3 12h18M3 6h18M3 18h18"/>
-    </svg>
-  </button>
-</nav>
+    <button class="navigation-toggle" aria-label="メニューを開く">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M3 12h18M3 6h18M3 18h18"/>
+      </svg>
+    </button>
+  </nav>
+</div>
 ```
 
 #### アイコン付きリンク
 
 ```html
-<nav class="navigation">
-  <a href="/" class="navigation-brand">
-    <img src="/logo.svg" alt="ロゴ" class="navigation-brand-logo">
-    <span>サイト名</span>
-  </a>
+<div class="ha-navigation">
+  <nav class="navigation">
+    <a href="/" class="navigation-brand">
+      <img src="/logo.svg" alt="ロゴ" class="navigation-brand-logo">
+      <span>サイト名</span>
+    </a>
 
-  <ul class="navigation-menu navigation-menu-start">
-    <li class="navigation-item">
-      <a href="/home" class="navigation-link">
-        <svg class="navigation-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-          <path d="M8 1l7 6v8H1V7l7-6z"/>
-        </svg>
-        ホーム
-      </a>
-    </li>
-    <li class="navigation-item">
-      <a href="/dashboard" class="navigation-link">
-        <svg class="navigation-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-          <path d="M0 0h7v7H0V0zm9 0h7v7H9V0zM0 9h7v7H0V9zm9 0h7v7H9V9z"/>
-        </svg>
-        ダッシュボード
-      </a>
-    </li>
-    <li class="navigation-item">
-      <a href="/settings" class="navigation-link">
-        <svg class="navigation-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-          <path d="M8 4.754a3.246 3.246 0 100 6.492 3.246 3.246 0 000-6.492zM5.754 8a2.246 2.246 0 114.492 0 2.246 2.246 0 01-4.492 0z"/>
-        </svg>
-        設定
-      </a>
-    </li>
-  </ul>
-</nav>
+    <ul class="navigation-menu navigation-menu-start">
+      <li class="navigation-item">
+        <a href="/home" class="navigation-link">
+          <svg class="navigation-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 1l7 6v8H1V7l7-6z"/>
+          </svg>
+          ホーム
+        </a>
+      </li>
+      <li class="navigation-item">
+        <a href="/dashboard" class="navigation-link">
+          <svg class="navigation-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M0 0h7v7H0V0zm9 0h7v7H9V0zM0 9h7v7H0V9zm9 0h7v7H9V9z"/>
+          </svg>
+          ダッシュボード
+        </a>
+      </li>
+      <li class="navigation-item">
+        <a href="/settings" class="navigation-link">
+          <svg class="navigation-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 4.754a3.246 3.246 0 100 6.492 3.246 3.246 0 000-6.492zM5.754 8a2.246 2.246 0 114.492 0 2.246 2.246 0 01-4.492 0z"/>
+          </svg>
+          設定
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
 ```
 
 #### ディバイダー
 
 ```html
-<nav class="navigation">
-  <a href="/" class="navigation-brand">サイト名</a>
+<div class="ha-navigation">
+  <nav class="navigation">
+    <a href="/" class="navigation-brand">サイト名</a>
 
-  <ul class="navigation-menu navigation-menu-start">
-    <li class="navigation-item">
-      <a href="/home" class="navigation-link">ホーム</a>
-    </li>
-    <li class="navigation-item">
-      <a href="/products" class="navigation-link">製品</a>
-    </li>
-  </ul>
+    <ul class="navigation-menu navigation-menu-start">
+      <li class="navigation-item">
+        <a href="/home" class="navigation-link">ホーム</a>
+      </li>
+      <li class="navigation-item">
+        <a href="/products" class="navigation-link">製品</a>
+      </li>
+    </ul>
 
-  <div class="navigation-divider"></div>
+    <div class="navigation-divider"></div>
 
-  <ul class="navigation-menu navigation-menu-end">
-    <li class="navigation-item">
-      <button class="navigation-link">ログイン</button>
-    </li>
-  </ul>
-</nav>
+    <ul class="navigation-menu navigation-menu-end">
+      <li class="navigation-item">
+        <button class="navigation-link">ログイン</button>
+      </li>
+    </ul>
+  </nav>
+</div>
 ```
 
 #### ドロップダウンメニュー
 
 ```html
-<nav class="navigation">
-  <a href="/" class="navigation-brand">サイト名</a>
+<div class="ha-navigation">
+  <nav class="navigation">
+    <a href="/" class="navigation-brand">サイト名</a>
 
-  <ul class="navigation-menu navigation-menu-start">
-    <li class="navigation-item">
-      <a href="/home" class="navigation-link">ホーム</a>
-    </li>
+    <ul class="navigation-menu navigation-menu-start">
+      <li class="navigation-item">
+        <a href="/home" class="navigation-link">ホーム</a>
+      </li>
 
-    <li class="navigation-item navigation-dropdown" aria-expanded="false">
-      <button class="navigation-link">
-        製品
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-          <path d="M6 8L2 4h8L6 8z"/>
-        </svg>
-      </button>
-      <div class="navigation-dropdown-menu">
-        <a href="/products/a" class="navigation-dropdown-item">製品 A</a>
-        <a href="/products/b" class="navigation-dropdown-item">製品 B</a>
-        <a href="/products/c" class="navigation-dropdown-item">製品 C</a>
-      </div>
-    </li>
+      <li class="navigation-item navigation-dropdown" aria-expanded="false">
+        <button class="navigation-link">
+          製品
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <path d="M6 8L2 4h8L6 8z"/>
+          </svg>
+        </button>
+        <div class="navigation-dropdown-menu">
+          <a href="/products/a" class="navigation-dropdown-item">製品 A</a>
+          <a href="/products/b" class="navigation-dropdown-item">製品 B</a>
+          <a href="/products/c" class="navigation-dropdown-item">製品 C</a>
+        </div>
+      </li>
 
-    <li class="navigation-item">
-      <a href="/about" class="navigation-link">概要</a>
-    </li>
-  </ul>
-</nav>
+      <li class="navigation-item">
+        <a href="/about" class="navigation-link">概要</a>
+      </li>
+    </ul>
+  </nav>
+</div>
 ```
 
 #### 無効化されたリンク
 
 ```html
-<nav class="navigation">
-  <a href="/" class="navigation-brand">サイト名</a>
+<div class="ha-navigation">
+  <nav class="navigation">
+    <a href="/" class="navigation-brand">サイト名</a>
 
-  <ul class="navigation-menu navigation-menu-start">
-    <li class="navigation-item">
-      <a href="/home" class="navigation-link">ホーム</a>
-    </li>
-    <li class="navigation-item">
-      <a href="/premium" class="navigation-link" aria-disabled="true">
-        プレミアム機能
-      </a>
-    </li>
-  </ul>
-</nav>
+    <ul class="navigation-menu navigation-menu-start">
+      <li class="navigation-item">
+        <a href="/home" class="navigation-link">ホーム</a>
+      </li>
+      <li class="navigation-item">
+        <a href="/premium" class="navigation-link" aria-disabled="true">
+          プレミアム機能
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
 ```
 
 #### Sticky（固定）ナビゲーション
 
 ```html
-<nav class="navigation sticky">
-  <a href="/" class="navigation-brand">サイト名</a>
+<div class="ha-navigation">
+  <nav class="navigation sticky">
+    <a href="/" class="navigation-brand">サイト名</a>
 
-  <ul class="navigation-menu navigation-menu-start">
-    <li class="navigation-item">
-      <a href="/home" class="navigation-link">ホーム</a>
-    </li>
-    <li class="navigation-item">
-      <a href="/about" class="navigation-link">概要</a>
-    </li>
-  </ul>
-</nav>
+    <ul class="navigation-menu navigation-menu-start">
+      <li class="navigation-item">
+        <a href="/home" class="navigation-link">ホーム</a>
+      </li>
+      <li class="navigation-item">
+        <a href="/about" class="navigation-link">概要</a>
+      </li>
+    </ul>
+  </nav>
+</div>
 ```
 
 #### バリアント
@@ -268,52 +280,58 @@ Navigation コンポーネントは `.navigation` クラスを使用し、ブラ
 **Compact（コンパクト）**
 
 ```html
-<nav class="navigation compact">
-  <a href="/" class="navigation-brand">サイト名</a>
+<div class="ha-navigation">
+  <nav class="navigation compact">
+    <a href="/" class="navigation-brand">サイト名</a>
 
-  <ul class="navigation-menu navigation-menu-start">
-    <li class="navigation-item">
-      <a href="/home" class="navigation-link">ホーム</a>
-    </li>
-    <li class="navigation-item">
-      <a href="/about" class="navigation-link">概要</a>
-    </li>
-  </ul>
-</nav>
+    <ul class="navigation-menu navigation-menu-start">
+      <li class="navigation-item">
+        <a href="/home" class="navigation-link">ホーム</a>
+      </li>
+      <li class="navigation-item">
+        <a href="/about" class="navigation-link">概要</a>
+      </li>
+    </ul>
+  </nav>
+</div>
 ```
 
 **Filled（塗りつぶし）**
 
 ```html
-<nav class="navigation filled">
-  <a href="/" class="navigation-brand">サイト名</a>
+<div class="ha-navigation">
+  <nav class="navigation filled">
+    <a href="/" class="navigation-brand">サイト名</a>
 
-  <ul class="navigation-menu navigation-menu-start">
-    <li class="navigation-item">
-      <a href="/home" class="navigation-link">ホーム</a>
-    </li>
-    <li class="navigation-item">
-      <a href="/about" class="navigation-link">概要</a>
-    </li>
-  </ul>
-</nav>
+    <ul class="navigation-menu navigation-menu-start">
+      <li class="navigation-item">
+        <a href="/home" class="navigation-link">ホーム</a>
+      </li>
+      <li class="navigation-item">
+        <a href="/about" class="navigation-link">概要</a>
+      </li>
+    </ul>
+  </nav>
+</div>
 ```
 
 **Bordered（ボーダー付き）**
 
 ```html
-<nav class="navigation bordered">
-  <a href="/" class="navigation-brand">サイト名</a>
+<div class="ha-navigation">
+  <nav class="navigation bordered">
+    <a href="/" class="navigation-brand">サイト名</a>
 
-  <ul class="navigation-menu navigation-menu-start">
-    <li class="navigation-item">
-      <a href="/home" class="navigation-link">ホーム</a>
-    </li>
-    <li class="navigation-item">
-      <a href="/about" class="navigation-link">概要</a>
-    </li>
-  </ul>
-</nav>
+    <ul class="navigation-menu navigation-menu-start">
+      <li class="navigation-item">
+        <a href="/home" class="navigation-link">ホーム</a>
+      </li>
+      <li class="navigation-item">
+        <a href="/about" class="navigation-link">概要</a>
+      </li>
+    </ul>
+  </nav>
+</div>
 ```
 
 #### JavaScript による制御
@@ -422,7 +440,7 @@ class NavigationController {
 }
 
 // 使用例
-const navigation = document.querySelector('.navigation');
+const navigation = document.querySelector('.ha-navigation');
 const controller = new NavigationController(navigation);
 ```
 
@@ -494,46 +512,48 @@ Navigation は ARIA 属性とセマンティック HTML を適切に使用する
 **必須の ARIA 属性とセマンティック HTML**
 
 ```html
-<nav class="navigation" role="navigation" aria-label="メインナビゲーション">
-  <a href="/" class="navigation-brand">
-    <img src="/logo.svg" alt="会社ロゴ" class="navigation-brand-logo">
-    <span>サイト名</span>
-  </a>
+<div class="ha-navigation">
+  <nav class="navigation" role="navigation" aria-label="メインナビゲーション">
+    <a href="/" class="navigation-brand">
+      <img src="/logo.svg" alt="会社ロゴ" class="navigation-brand-logo">
+      <span>サイト名</span>
+    </a>
 
-  <ul class="navigation-menu navigation-menu-start">
-    <li class="navigation-item">
-      <a href="/home" class="navigation-link" aria-current="page">
-        ホーム
-      </a>
-    </li>
-
-    <li class="navigation-item navigation-dropdown" aria-expanded="false">
-      <button
-        class="navigation-link"
-        aria-haspopup="true"
-        aria-expanded="false">
-        製品
-      </button>
-      <div class="navigation-dropdown-menu" role="menu">
-        <a href="/products/a" class="navigation-dropdown-item" role="menuitem">
-          製品 A
+    <ul class="navigation-menu navigation-menu-start">
+      <li class="navigation-item">
+        <a href="/home" class="navigation-link" aria-current="page">
+          ホーム
         </a>
-      </div>
-    </li>
+      </li>
 
-    <li class="navigation-item">
-      <a href="/disabled" class="navigation-link" aria-disabled="true">
-        無効なリンク
-      </a>
-    </li>
-  </ul>
+      <li class="navigation-item navigation-dropdown" aria-expanded="false">
+        <button
+          class="navigation-link"
+          aria-haspopup="true"
+          aria-expanded="false">
+          製品
+        </button>
+        <div class="navigation-dropdown-menu" role="menu">
+          <a href="/products/a" class="navigation-dropdown-item" role="menuitem">
+            製品 A
+          </a>
+        </div>
+      </li>
 
-  <button class="navigation-toggle" aria-label="メニューを開く" aria-expanded="false">
-    <svg aria-hidden="true" width="24" height="24">
-      <path d="M3 12h18M3 6h18M3 18h18"/>
-    </svg>
-  </button>
-</nav>
+      <li class="navigation-item">
+        <a href="/disabled" class="navigation-link" aria-disabled="true">
+          無効なリンク
+        </a>
+      </li>
+    </ul>
+
+    <button class="navigation-toggle" aria-label="メニューを開く" aria-expanded="false">
+      <svg aria-hidden="true" width="24" height="24">
+        <path d="M3 12h18M3 6h18M3 18h18"/>
+      </svg>
+    </button>
+  </nav>
+</div>
 ```
 
 **キーボード操作**
