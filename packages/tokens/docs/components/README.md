@@ -11,7 +11,7 @@
 
 ---
 
-## 実装済みコンポーネント (36)
+## 実装済みコンポーネント (40)
 
 ### Forms (フォーム) ✅ 完成 10/10
 
@@ -43,17 +43,17 @@
 | **Toast** | 4 (success, error, warning, info) | ✅ 実装済み | [feedback/toast.md](./feedback/toast.md) |
 | **Toast Container** | 4配置 + スタック管理 | ✅ 実装済み | [feedback/toast-container.md](./feedback/toast-container.md) |
 
-### Overlays (オーバーレイ) 3/6
+### Overlays (オーバーレイ) ✅ 完成 6/6
 
 画面上に重なって表示される要素
 
 | コンポーネント | バリアント数 | ステータス | ドキュメント |
 |--------------|------------|----------|------------|
-| **Dialog** | 5 (confirmation, warning, destructive, info, success) | ⏸️ CSS未完了 | [overlays/dialog.md](./overlays/dialog.md) |
+| **Dialog** | 5 (confirmation, warning, destructive, info, success) | ✅ 実装済み | [overlays/dialog.md](./overlays/dialog.md) |
 | **Drawer** | 4位置 (left, right, top, bottom) | ✅ 実装済み | [overlays/drawer.md](./overlays/drawer.md) |
-| **Dropdown** | 1 (default) + search | ⏸️ CSS未完了 | [overlays/dropdown.md](./overlays/dropdown.md) |
-| **Modal** | 1 (default) | ✅ 実装済み | [overlays/modal.md](./overlays/modal.md) |
-| **Popover** | 3サイズ + arrow | ⏸️ CSS未完了 | [overlays/popover.md](./overlays/popover.md) |
+| **Dropdown** | 検索機能付き | ✅ 実装済み | [overlays/dropdown.md](./overlays/dropdown.md) |
+| **Modal** | 3サイズ (sm, md, lg) | ✅ 実装済み | [overlays/modal.md](./overlays/modal.md) |
+| **Popover** | 3サイズ + arrow | ✅ 実装済み | [overlays/popover.md](./overlays/popover.md) |
 | **Tooltip** | 4方向配置 | ✅ 実装済み | [overlays/tooltip.md](./overlays/tooltip.md) |
 
 ### Data Display (データ表示) ✅ 完成 9/9
@@ -83,7 +83,7 @@
 | **Grid** | 12カラムシステム | ✅ 実装済み | [layout/grid.md](../layout/grid.md) |
 | **Stack** | 垂直/水平スペーシング | ✅ 実装済み | [layout/stack.md](../layout/stack.md) |
 
-### Navigation (ナビゲーション) 4/5
+### Navigation (ナビゲーション) ✅ 完成 5/5
 
 ページ間やセクション間の移動
 
@@ -91,7 +91,7 @@
 |--------------|------------|----------|------------|
 | **Breadcrumb** | 4種セパレーター + 3サイズ | ✅ 実装済み | [navigation/breadcrumb.md](./navigation/breadcrumb.md) |
 | **Menu** | 3サイズ (compact, default, comfortable) | ✅ 実装済み | [navigation/menu.md](./navigation/menu.md) |
-| **Navigation** | 1 (default) | ⏸️ CSS未完了 | [navigation/navigation.md](./navigation/navigation.md) |
+| **Navigation** | モバイル対応 + ドロップダウン | ✅ 実装済み | [navigation/navigation.md](./navigation/navigation.md) |
 | **Pagination** | 3 (default, simple, rounded) | ✅ 実装済み | [navigation/pagination.md](./navigation/pagination.md) |
 | **Tabs** | 3 (line, enclosed, soft) + 3サイズ | ✅ 実装済み | [navigation/tabs.md](./navigation/tabs.md) |
 
@@ -99,14 +99,16 @@
 
 ## コンポーネント実装完了状況
 
-**CSS実装済み**: 32/36コンポーネント (89%)
+**CSS実装済み**: 40/40コンポーネント (100%)
 
 - **Forms**: 10/10 ✅
 - **Feedback**: 6/6 ✅
 - **Data Display**: 9/9 ✅
 - **Layout**: 4/4 ✅
-- **Overlays**: 3/6 ⏸️ (Dialog, Dropdown, Popover はYAML定義のみ)
-- **Navigation**: 4/5 ⏸️ (Navigation はYAML定義のみ)
+- **Overlays**: 6/6 ✅
+- **Navigation**: 5/5 ✅
+
+**すべてのコンポーネントのCSS実装が完了しました！** 🎉
 
 ---
 

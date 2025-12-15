@@ -25,7 +25,7 @@
 
 ## 🎨 コンポーネントリファレンス
 
-全36コンポーネントの詳細ドキュメント:
+全40コンポーネントの詳細ドキュメント:
 
 ### Forms (10)
 - **[Checkbox](./components/forms/checkbox.md)** - チェックボックス (3サイズ)
@@ -64,14 +64,18 @@
 - **[Grid](./components/layout/grid.md)** - グリッドレイアウト (12カラムシステム)
 - **[Stack](./components/layout/stack.md)** - スタックレイアウト (垂直/水平スペーシング)
 
-### Overlays (3)
+### Overlays (6)
+- **[Dialog](./components/overlays/dialog.md)** - ダイアログ (5種類: confirmation/warning/destructive/info/success)
 - **[Drawer](./components/overlays/drawer.md)** - ドロワー (4位置)
+- **[Dropdown](./components/overlays/dropdown.md)** - ドロップダウン (検索機能付き)
 - **[Modal](./components/overlays/modal.md)** - モーダル
+- **[Popover](./components/overlays/popover.md)** - ポップオーバー (矢印付き + 3サイズ)
 - **[Tooltip](./components/overlays/tooltip.md)** - ツールチップ (4方向)
 
-### Navigation (4)
+### Navigation (5)
 - **[Breadcrumb](./components/navigation/breadcrumb.md)** - パンくずリスト (4種セパレーター)
 - **[Menu](./components/navigation/menu.md)** - メニュー (3サイズ)
+- **[Navigation](./components/navigation/navigation.md)** - ナビゲーションバー (モバイル対応)
 - **[Pagination](./components/navigation/pagination.md)** - ページネーション (3種類)
 - **[Tabs](./components/navigation/tabs.md)** - タブ (3種類 + 3サイズ)
 

@@ -1,8 +1,8 @@
 # Dropdown (ドロップダウン) コンポーネント
 
 **カテゴリ:** Overlays
-**ファイル:** `src/components/overlays/dropdown.yaml`
-**ステータス:** ⏸️ CSS実装未完了（Phase 4 - YAML定義のみ）
+**ファイル:** `src/css/components/overlays/dropdown.css`
+**ステータス:** ✅ 実装済み
 
 ---
 

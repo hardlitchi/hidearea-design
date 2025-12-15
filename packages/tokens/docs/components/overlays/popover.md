@@ -1,8 +1,8 @@
 # Popover (ポップオーバー) コンポーネント
 
 **カテゴリ:** Overlays
-**ファイル:** `src/components/overlays/popover.yaml`
-**ステータス:** ⏸️ CSS実装未完了（Phase 4 - YAML定義のみ）
+**ファイル:** `src/css/components/overlays/popover.css`
+**ステータス:** ✅ 実装済み
 
 ---
 
