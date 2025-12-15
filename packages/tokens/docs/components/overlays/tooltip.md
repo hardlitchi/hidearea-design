@@ -1,8 +1,8 @@
 # Tooltip (ツールチップ) コンポーネント
 
 **カテゴリ:** Overlays
-**ファイル:** `src/components/overlays/tooltip.yaml`
-**ステータス:** ✅ 実装済み (Phase 4 Option D)
+**ファイル:** `src/css/components/overlays/tooltip.css`
+**ステータス:** ✅ 実装済み
 
 ---
 

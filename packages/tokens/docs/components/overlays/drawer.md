@@ -1,8 +1,8 @@
 # Drawer (ドロワー) コンポーネント
 
 **カテゴリ:** Overlays
-**ファイル:** `src/components/overlays/drawer.yaml`
-**ステータス:** ✅ 実装済み (Phase 4 Option D)
+**ファイル:** `src/css/components/overlays/drawer.css`
+**ステータス:** ✅ 実装済み
 
 ---
 

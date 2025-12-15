@@ -1,8 +1,8 @@
 # Modal (モーダル) コンポーネント
 
 **カテゴリ:** Overlays
-**ファイル:** `src/components/overlays/modal.yaml`
-**ステータス:** ✅ 実装済み (Phase 4 Option D)
+**ファイル:** `src/css/components/overlays/modal.css`
+**ステータス:** ✅ 実装済み
 
 ---
 

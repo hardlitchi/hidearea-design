@@ -2,7 +2,7 @@
 
 **カテゴリ:** Overlays
 **ファイル:** `src/components/overlays/dialog.yaml`
-**ステータス:** ✅ 実装済み (Phase 4 Option D)
+**ステータス:** ⏸️ CSS実装未完了（Phase 4 - YAML定義のみ）
 
 ---
 
