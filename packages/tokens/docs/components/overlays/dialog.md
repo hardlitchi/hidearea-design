@@ -236,414 +236,476 @@
 
 ### Pattern 2: Plain HTML (推奨)
 
-### HTML
+#### CSSファイルの読み込み
 
 ```html
-<!-- 破壊的アクションダイアログ -->
-<div class="dialog-overlay" role="presentation">
-  <div
-    class="dialog dialog-destructive"
-    role="alertdialog"
-    aria-labelledby="dialog-title"
-    aria-describedby="dialog-description"
-  >
-    <button class="dialog-close" aria-label="閉じる">
-      ×
-    </button>
-
-    <div class="dialog-icon">
-      <svg><!-- 警告アイコン --></svg>
-    </div>
-
-    <div class="dialog-content">
-      <h2 id="dialog-title" class="dialog-title">
-        ファイルを削除しますか?
-      </h2>
-
-      <p id="dialog-description" class="dialog-description">
-        この操作は取り消せません。本当にこのファイルを削除してもよろしいですか?
-      </p>
-    </div>
-
-    <div class="dialog-footer">
-      <button class="button button-secondary" type="button">
-        キャンセル
-      </button>
-      <button class="button button-danger" type="button">
-        削除
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- 確認ダイアログ -->
-<div class="dialog-overlay">
-  <div class="dialog dialog-confirmation" role="dialog">
-    <div class="dialog-icon">
-      <svg><!-- 確認アイコン --></svg>
-    </div>
-
-    <div class="dialog-content">
-      <h2 class="dialog-title">変更を保存しますか?</h2>
-      <p class="dialog-description">
-        保存しない場合、変更内容は失われます。
-      </p>
-    </div>
-
-    <div class="dialog-footer">
-      <button class="button button-secondary">保存しない</button>
-      <button class="button button-primary">保存</button>
-    </div>
-  </div>
-</div>
-
-<!-- 成功ダイアログ -->
-<div class="dialog-overlay">
-  <div class="dialog dialog-success" role="dialog">
-    <div class="dialog-icon">
-      <svg><!-- チェックマークアイコン --></svg>
-    </div>
-
-    <div class="dialog-content">
-      <h2 class="dialog-title">保存完了</h2>
-      <p class="dialog-description">
-        変更が正常に保存されました。
-      </p>
-    </div>
-
-    <div class="dialog-footer">
-      <button class="button button-primary">OK</button>
-    </div>
-  </div>
-</div>
+<link rel="stylesheet" href="@hidearea-design/tokens/build/css/html/overlays/dialog.css">
 ```
 
-### CSS
+#### 基本的な構造
 
-```css
-/* オーバーレイ */
-.dialog-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--component-dialog-background-overlay);
-  z-index: var(--component-dialog-z-index-overlay);
-  padding: 1rem;
-  animation: fade-in var(--component-dialog-animation-duration)
-             var(--component-dialog-animation-timing);
-}
+Dialog コンポーネントは `.ha-dialog` をルート要素とし、`variant` と `size` 属性で外観を制御します。
 
-/* ダイアログコンテナ */
-.dialog {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--component-dialog-gap);
-  width: 100%;
-  max-width: var(--component-dialog-width-default);
-  max-height: var(--component-dialog-max-height);
-  padding: var(--component-dialog-padding);
-  background-color: var(--component-dialog-background-default);
-  border-radius: var(--component-dialog-border-radius);
-  box-shadow: var(--component-dialog-shadow);
-  z-index: var(--component-dialog-z-index-content);
-  animation: scale-in var(--component-dialog-animation-duration)
-             var(--component-dialog-animation-timing);
-}
-
-/* アイコン */
-.dialog-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--component-dialog-icon-size);
-  height: var(--component-dialog-icon-size);
-  border-radius: 50%;
-}
-
-.dialog-confirmation .dialog-icon {
-  background-color: var(--component-dialog-icon-confirmation-background);
-  color: var(--component-dialog-icon-confirmation-color);
-}
-
-.dialog-warning .dialog-icon {
-  background-color: var(--component-dialog-icon-warning-background);
-  color: var(--component-dialog-icon-warning-color);
-}
-
-.dialog-destructive .dialog-icon {
-  background-color: var(--component-dialog-icon-destructive-background);
-  color: var(--component-dialog-icon-destructive-color);
-}
-
-.dialog-info .dialog-icon {
-  background-color: var(--component-dialog-icon-info-background);
-  color: var(--component-dialog-icon-info-color);
-}
-
-.dialog-success .dialog-icon {
-  background-color: var(--component-dialog-icon-success-background);
-  color: var(--component-dialog-icon-success-color);
-}
-
-.dialog-icon svg {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-/* コンテンツ */
-.dialog-content {
-  text-align: center;
-  width: 100%;
-}
-
-.dialog-title {
-  margin: 0 0 var(--component-dialog-title-margin-bottom);
-  font-size: var(--component-dialog-title-font-size);
-  font-weight: var(--component-dialog-title-font-weight);
-  line-height: var(--component-dialog-title-line-height);
-  color: var(--component-dialog-title-color);
-}
-
-.dialog-description {
-  margin: 0;
-  font-size: var(--component-dialog-description-font-size);
-  font-weight: var(--component-dialog-description-font-weight);
-  line-height: var(--component-dialog-description-line-height);
-  color: var(--component-dialog-description-color);
-}
-
-/* フッター */
-.dialog-footer {
-  display: flex;
-  gap: var(--component-dialog-footer-gap);
-  justify-content: var(--component-dialog-footer-justify-content);
-  width: 100%;
-  margin-top: var(--component-dialog-footer-margin-top);
-}
-
-/* 閉じるボタン */
-.dialog-close {
-  position: absolute;
-  top: var(--component-dialog-close-button-position-top);
-  right: var(--component-dialog-close-button-position-right);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--component-dialog-close-button-size);
-  height: var(--component-dialog-close-button-size);
-  padding: 0;
-  background: var(--component-dialog-close-button-background-default);
-  border: none;
-  border-radius: var(--component-dialog-close-button-border-radius);
-  color: var(--component-dialog-close-button-color-default);
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: var(--component-dialog-transition-properties)
-              var(--component-dialog-transition-duration)
-              var(--component-dialog-transition-timing);
-}
-
-.dialog-close:hover {
-  background: var(--component-dialog-close-button-background-hover);
-  color: var(--component-dialog-close-button-color-hover);
-}
-
-/* アニメーション */
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* サイズバリアント */
-.dialog-small {
-  max-width: var(--component-dialog-width-small);
-}
-
-.dialog-large {
-  max-width: var(--component-dialog-width-large);
-}
-```
-
-### React
-
-```tsx
-import { useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
-
-type DialogType = 'confirmation' | 'warning' | 'destructive' | 'info' | 'success';
-
-interface DialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  type: DialogType;
-  title: string;
-  description: string;
-  actions: {
-    label: string;
-    onClick: () => void;
-    variant?: 'primary' | 'secondary' | 'danger';
-  }[];
-  showCloseButton?: boolean;
-}
-
-function Dialog({
-  isOpen,
-  onClose,
-  type,
-  title,
-  description,
-  actions,
-  showCloseButton = true,
-}: DialogProps) {
-  const dialogRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (isOpen) {
-      // bodyのスクロールを無効化
-      document.body.style.overflow = 'hidden';
-
-      // Escキーで閉じる
-      const handleEscape = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') onClose();
-      };
-
-      document.addEventListener('keydown', handleEscape);
-
-      // フォーカスを移動
-      dialogRef.current?.focus();
-
-      return () => {
-        document.body.style.overflow = '';
-        document.removeEventListener('keydown', handleEscape);
-      };
-    }
-  }, [isOpen, onClose]);
-
-  if (!isOpen) return null;
-
-  const getIcon = () => {
-    switch (type) {
-      case 'confirmation':
-        return '?';
-      case 'warning':
-        return '⚠';
-      case 'destructive':
-        return '🗑';
-      case 'info':
-        return 'ℹ';
-      case 'success':
-        return '✓';
-    }
-  };
-
-  return createPortal(
-    <div
-      className="dialog-overlay"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
-      }}
-    >
-      <div
-        ref={dialogRef}
-        className={`dialog dialog-${type}`}
-        role={type === 'destructive' || type === 'warning' ? 'alertdialog' : 'dialog'}
-        aria-modal="true"
-        aria-labelledby="dialog-title"
-        aria-describedby="dialog-description"
-        tabIndex={-1}
-      >
-        {showCloseButton && (
-          <button className="dialog-close" onClick={onClose} aria-label="閉じる">
-            ×
-          </button>
-        )}
-
-        <div className="dialog-icon">{getIcon()}</div>
-
-        <div className="dialog-content">
-          <h2 id="dialog-title" className="dialog-title">
-            {title}
-          </h2>
-          <p id="dialog-description" className="dialog-description">
-            {description}
-          </p>
+```html
+<div class="ha-dialog" variant="confirmation" open>
+  <div class="overlay">
+    <div class="container">
+      <div class="dialog">
+        <div class="dialog-header">
+          <div class="dialog-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+          </div>
+          <div class="dialog-content">
+            <h2 class="dialog-title">変更を保存しますか?</h2>
+            <p class="dialog-description">保存しない場合、変更内容は失われます。</p>
+          </div>
         </div>
+        <div class="dialog-footer">
+          <button class="button button-secondary">キャンセル</button>
+          <button class="button button-primary">保存</button>
+        </div>
+        <button class="close-button" aria-label="閉じる">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+```
 
-        <div className="dialog-footer">
-          {actions.map((action, index) => (
-            <button
-              key={index}
-              className={`button button-${action.variant || 'secondary'}`}
-              onClick={() => {
-                action.onClick();
-                onClose();
-              }}
-            >
-              {action.label}
-            </button>
-          ))}
+#### バリアント
+
+5つのバリアントが用意されています。
+
+**Confirmation（確認）**
+
+```html
+<div class="ha-dialog" variant="confirmation" open>
+  <div class="overlay">
+    <div class="container">
+      <div class="dialog">
+        <div class="dialog-header">
+          <div class="dialog-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 16v-4m0-4h.01"/>
+            </svg>
+          </div>
+          <div class="dialog-content">
+            <h2 class="dialog-title">変更を保存しますか?</h2>
+            <p class="dialog-description">保存しない場合、変更内容は失われます。</p>
+          </div>
+        </div>
+        <div class="dialog-footer">
+          <button class="button button-secondary">保存しない</button>
+          <button class="button button-primary">保存</button>
         </div>
       </div>
-    </div>,
-    document.body
-  );
+    </div>
+  </div>
+</div>
+```
+
+**Warning（警告）**
+
+```html
+<div class="ha-dialog" variant="warning" open>
+  <div class="overlay">
+    <div class="container">
+      <div class="dialog">
+        <div class="dialog-header">
+          <div class="dialog-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+          </div>
+          <div class="dialog-content">
+            <h2 class="dialog-title">古いブラウザを使用しています</h2>
+            <p class="dialog-description">セキュリティのため、最新のブラウザへのアップグレードを推奨します。</p>
+          </div>
+        </div>
+        <div class="dialog-footer">
+          <button class="button button-secondary">後で</button>
+          <button class="button button-warning">今すぐアップグレード</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+**Destructive（破壊的アクション）**
+
+```html
+<div class="ha-dialog" variant="destructive" open>
+  <div class="overlay">
+    <div class="container">
+      <div class="dialog">
+        <div class="dialog-header">
+          <div class="dialog-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+            </svg>
+          </div>
+          <div class="dialog-content">
+            <h2 class="dialog-title">ファイルを削除しますか?</h2>
+            <p class="dialog-description">この操作は取り消せません。本当にこのファイルを削除してもよろしいですか?</p>
+          </div>
+        </div>
+        <div class="dialog-footer">
+          <button class="button button-secondary">キャンセル</button>
+          <button class="button button-danger">削除</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+**Info（情報）**
+
+```html
+<div class="ha-dialog" variant="info" open>
+  <div class="overlay">
+    <div class="container">
+      <div class="dialog">
+        <div class="dialog-header">
+          <div class="dialog-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 16v-4m0-4h.01"/>
+            </svg>
+          </div>
+          <div class="dialog-content">
+            <h2 class="dialog-title">メンテナンスのお知らせ</h2>
+            <p class="dialog-description">2024年1月15日 2:00〜4:00の間、システムメンテナンスを実施します。</p>
+          </div>
+        </div>
+        <div class="dialog-footer">
+          <button class="button button-primary">了解</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+**Success（成功）**
+
+```html
+<div class="ha-dialog" variant="success" open>
+  <div class="overlay">
+    <div class="container">
+      <div class="dialog">
+        <div class="dialog-header">
+          <div class="dialog-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <div class="dialog-content">
+            <h2 class="dialog-title">保存完了</h2>
+            <p class="dialog-description">変更が正常に保存されました。</p>
+          </div>
+        </div>
+        <div class="dialog-footer">
+          <button class="button button-primary">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+#### サイズバリアント
+
+3つのサイズが用意されています。
+
+**Small（320px）**
+
+```html
+<div class="ha-dialog" variant="confirmation" size="sm" open>
+  <div class="overlay">
+    <div class="container">
+      <div class="dialog">
+        <div class="dialog-header">
+          <div class="dialog-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 16v-4m0-4h.01"/>
+            </svg>
+          </div>
+          <div class="dialog-content">
+            <h2 class="dialog-title">続行しますか?</h2>
+            <p class="dialog-description">この操作を実行します。</p>
+          </div>
+        </div>
+        <div class="dialog-footer">
+          <button class="button button-secondary">いいえ</button>
+          <button class="button button-primary">はい</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+**Medium（480px - デフォルト）**
+
+```html
+<div class="ha-dialog" variant="confirmation" size="md" open>
+  <!-- または size 属性を省略 -->
+  <div class="overlay">
+    <div class="container">
+      <div class="dialog">
+        <!-- コンテンツ -->
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+**Large（640px）**
+
+```html
+<div class="ha-dialog" variant="info" size="lg" open>
+  <div class="overlay">
+    <div class="container">
+      <div class="dialog">
+        <div class="dialog-header">
+          <div class="dialog-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 16v-4m0-4h.01"/>
+            </svg>
+          </div>
+          <div class="dialog-content">
+            <h2 class="dialog-title">利用規約の更新</h2>
+            <p class="dialog-description">利用規約が更新されました。以下の内容をご確認ください。</p>
+          </div>
+        </div>
+        <div class="dialog-body">
+          <!-- 長いコンテンツ -->
+          <p>更新内容の詳細...</p>
+        </div>
+        <div class="dialog-footer">
+          <button class="button button-primary">同意する</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+#### JavaScript による制御
+
+Dialog の開閉とアクセシビリティ機能を実装するコントローラークラス:
+
+```javascript
+class DialogController {
+  constructor(dialogElement) {
+    this.dialog = dialogElement;
+    this.overlay = dialogElement.querySelector('.overlay');
+    this.closeButton = dialogElement.querySelector('.close-button');
+    this.focusableElements = null;
+    this.previousActiveElement = null;
+
+    this.init();
+  }
+
+  init() {
+    // 閉じるボタンのイベント
+    if (this.closeButton) {
+      this.closeButton.addEventListener('click', () => this.close());
+    }
+
+    // オーバーレイクリックで閉じる
+    this.overlay.addEventListener('click', (e) => {
+      if (e.target === this.overlay) {
+        this.close();
+      }
+    });
+
+    // Escキーで閉じる
+    this.handleEscape = (e) => {
+      if (e.key === 'Escape' && this.isOpen()) {
+        this.close();
+      }
+    };
+
+    // Tab キーのフォーカストラップ
+    this.handleTab = (e) => {
+      if (e.key === 'Tab' && this.isOpen()) {
+        this.trapFocus(e);
+      }
+    };
+  }
+
+  open() {
+    // 現在のフォーカス要素を保存
+    this.previousActiveElement = document.activeElement;
+
+    // ダイアログを表示
+    this.dialog.setAttribute('open', '');
+
+    // body のスクロールを無効化
+    document.body.style.overflow = 'hidden';
+
+    // フォーカス可能な要素を取得
+    this.updateFocusableElements();
+
+    // 最初のフォーカス可能要素にフォーカス
+    if (this.focusableElements.length > 0) {
+      this.focusableElements[0].focus();
+    }
+
+    // キーボードイベントを追加
+    document.addEventListener('keydown', this.handleEscape);
+    document.addEventListener('keydown', this.handleTab);
+  }
+
+  close() {
+    // ダイアログを非表示
+    this.dialog.removeAttribute('open');
+
+    // body のスクロールを復元
+    document.body.style.overflow = '';
+
+    // フォーカスを元の要素に戻す
+    if (this.previousActiveElement) {
+      this.previousActiveElement.focus();
+    }
+
+    // キーボードイベントを削除
+    document.removeEventListener('keydown', this.handleEscape);
+    document.removeEventListener('keydown', this.handleTab);
+  }
+
+  isOpen() {
+    return this.dialog.hasAttribute('open');
+  }
+
+  updateFocusableElements() {
+    const focusableSelectors = [
+      'button:not([disabled])',
+      'a[href]',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])'
+    ];
+
+    this.focusableElements = Array.from(
+      this.dialog.querySelectorAll(focusableSelectors.join(','))
+    );
+  }
+
+  trapFocus(e) {
+    if (this.focusableElements.length === 0) return;
+
+    const firstElement = this.focusableElements[0];
+    const lastElement = this.focusableElements[this.focusableElements.length - 1];
+
+    if (e.shiftKey) {
+      // Shift + Tab
+      if (document.activeElement === firstElement) {
+        lastElement.focus();
+        e.preventDefault();
+      }
+    } else {
+      // Tab
+      if (document.activeElement === lastElement) {
+        firstElement.focus();
+        e.preventDefault();
+      }
+    }
+  }
 }
 
 // 使用例
-function App() {
-  const [isOpen, setIsOpen] = useState(false);
+const dialog = document.querySelector('.ha-dialog');
+const controller = new DialogController(dialog);
 
-  const handleDelete = () => {
-    // 削除処理
-    console.log('削除しました');
-  };
+// ダイアログを開く
+document.querySelector('#open-button').addEventListener('click', () => {
+  controller.open();
+});
 
-  return (
-    <>
-      <button onClick={() => setIsOpen(true)}>削除</button>
-
-      <Dialog
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        type="destructive"
-        title="ファイルを削除しますか?"
-        description="この操作は取り消せません。本当にこのファイルを削除してもよろしいですか?"
-        actions={[
-          {
-            label: 'キャンセル',
-            onClick: () => {},
-            variant: 'secondary',
-          },
-          {
-            label: '削除',
-            onClick: handleDelete,
-            variant: 'danger',
-          },
-        ]}
-      />
-    </>
-  );
-}
+// ダイアログ内のアクションボタン
+dialog.querySelectorAll('.dialog-footer button').forEach(button => {
+  button.addEventListener('click', () => {
+    // アクションを実行
+    console.log('Button clicked:', button.textContent);
+    controller.close();
+  });
+});
 ```
+
+#### アクセシビリティ
+
+Dialog は ARIA 属性を適切に設定する必要があります:
+
+**必須の ARIA 属性**
+
+```html
+<div class="ha-dialog" variant="destructive" open>
+  <div class="overlay">
+    <div class="container">
+      <!-- role: destructive/warning は alertdialog、それ以外は dialog -->
+      <div class="dialog"
+           role="alertdialog"
+           aria-modal="true"
+           aria-labelledby="dialog-title"
+           aria-describedby="dialog-description">
+
+        <div class="dialog-header">
+          <div class="dialog-icon">
+            <svg aria-hidden="true" width="24" height="24">
+              <!-- アイコン -->
+            </svg>
+          </div>
+          <div class="dialog-content">
+            <h2 id="dialog-title" class="dialog-title">
+              ファイルを削除しますか?
+            </h2>
+            <p id="dialog-description" class="dialog-description">
+              この操作は取り消せません。
+            </p>
+          </div>
+        </div>
+
+        <div class="dialog-footer">
+          <button type="button">キャンセル</button>
+          <button type="button">削除</button>
+        </div>
+
+        <button class="close-button" aria-label="ダイアログを閉じる">
+          <svg aria-hidden="true">×</svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+**キーボード操作**
+
+- `Esc`: ダイアログを閉じる
+- `Tab`: 次のフォーカス可能要素へ移動（ダイアログ内でループ）
+- `Shift + Tab`: 前のフォーカス可能要素へ移動（ダイアログ内でループ）
+
+**スクリーンリーダー対応**
+
+- `role="dialog"` または `role="alertdialog"` でダイアログであることを明示
+- `aria-modal="true"` でモーダルダイアログであることを示す
+- `aria-labelledby` でタイトル要素を関連付け
+- `aria-describedby` で説明要素を関連付け
+- アイコンには `aria-hidden="true"` を設定（装飾的要素のため）
+- 閉じるボタンには `aria-label` で明確なラベルを提供
 
 ---
 

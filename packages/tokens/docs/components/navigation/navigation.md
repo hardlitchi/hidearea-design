@@ -79,614 +79,491 @@ Navigationコンポーネントは、アプリケーション内のページ間�
 
 ## 使用方法
 
+
+
 ### Pattern 2: Plain HTML (推奨)
 
-### HTML/CSS
+#### CSSファイルの読み込み
 
 ```html
-<!-- 水平ナビゲーション -->
-<nav
-  class="navigation"
-  role="navigation"
-  aria-label="メインナビゲーション"
-  style="
-    background: var(--component-navigation-background-default);
-    padding: 16px;
-    border-bottom: 1px solid var(--border-default);
-  "
->
-  <ul style="display: flex; gap: 8px; list-style: none; margin: 0; padding: 0;">
-    <li>
-      <a
-        href="/dashboard"
-        class="nav-item nav-item--active"
-        aria-current="page"
-        style="
-          display: block;
-          padding: 8px 16px;
-          border-radius: 6px;
-          background: var(--component-navigation-background-active);
-          color: var(--component-navigation-text-active);
-          text-decoration: none;
-          font-weight: 500;
-          transition: all 0.2s ease;
-        "
-      >
-        ダッシュボード
-      </a>
-    </li>
-    <li>
-      <a
-        href="/projects"
-        class="nav-item"
-        style="
-          display: block;
-          padding: 8px 16px;
-          border-radius: 6px;
-          color: var(--component-navigation-text-default);
-          text-decoration: none;
-          transition: all 0.2s ease;
-        "
-      >
-        プロジェクト
-      </a>
-    </li>
-    <li>
-      <a href="/team" class="nav-item">チーム</a>
-    </li>
-    <li>
-      <a href="/settings" class="nav-item">設定</a>
-    </li>
-  </ul>
-</nav>
+<link rel="stylesheet" href="@hidearea-design/tokens/build/css/html/navigation/navigation.css">
+```
 
-<!-- 垂直ナビゲーション（サイドバー） -->
-<aside
-  class="sidebar"
-  style="
-    width: 250px;
-    background: var(--component-navigation-background-default);
-    padding: 16px;
-    min-height: 100vh;
-  "
->
-  <nav aria-label="サイドバーナビゲーション">
-    <ul style="list-style: none; margin: 0; padding: 0;">
-      <li style="margin-bottom: 4px;">
-        <a
-          href="/home"
-          class="nav-item nav-item--active"
-          aria-current="page"
-          style="
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 12px;
-            border-radius: 6px;
-            background: var(--component-navigation-background-active);
-            color: var(--component-navigation-text-active);
-            text-decoration: none;
-          "
-        >
-          <svg width="20" height="20" fill="currentColor">
-            <!-- Home icon -->
-          </svg>
-          <span>ホーム</span>
-        </a>
-      </li>
-      <li style="margin-bottom: 4px;">
-        <a
-          href="/documents"
-          class="nav-item"
-          style="
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 12px;
-            border-radius: 6px;
-            color: var(--component-navigation-text-default);
-            text-decoration: none;
-          "
-        >
-          <svg width="20" height="20" fill="currentColor">
-            <!-- Documents icon -->
-          </svg>
-          <span>ドキュメント</span>
-        </a>
-      </li>
-      <li style="margin-bottom: 4px;">
-        <a href="/analytics" class="nav-item">
-          <svg width="20" height="20" fill="currentColor">
-            <!-- Analytics icon -->
-          </svg>
-          <span>分析</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-</aside>
+#### 基本的な構造
 
-<!-- タブナビゲーション -->
-<div class="tabs" role="tablist">
-  <button
-    role="tab"
-    aria-selected="true"
-    aria-controls="overview-panel"
-    class="tab tab--active"
-    style="
-      padding: 12px 24px;
-      border: none;
-      border-bottom: 2px solid var(--component-navigation-text-active);
-      background: transparent;
-      color: var(--component-navigation-text-active);
-      font-weight: 600;
-      cursor: pointer;
-    "
-  >
-    概要
-  </button>
-  <button
-    role="tab"
-    aria-selected="false"
-    aria-controls="details-panel"
-    class="tab"
-    style="
-      padding: 12px 24px;
-      border: none;
-      border-bottom: 2px solid transparent;
-      background: transparent;
-      color: var(--component-navigation-text-default);
-      cursor: pointer;
-    "
-  >
-    詳細
-  </button>
-  <button
-    role="tab"
-    aria-selected="false"
-    aria-controls="settings-panel"
-    class="tab"
-  >
-    設定
-  </button>
-</div>
+Navigation コンポーネントは `.navigation` クラスを使用し、ブランド、メニューアイテム、アクションボタンを含みます。
 
-<!-- ブレッドクラム -->
-<nav aria-label="パンくずリスト">
-  <ol style="display: flex; gap: 8px; list-style: none; margin: 0; padding: 0;">
-    <li>
-      <a
-        href="/"
-        style="
-          color: var(--component-navigation-text-default);
-          text-decoration: none;
-        "
-      >
+```html
+<nav class="navigation">
+  <a href="/" class="navigation-brand">
+    <img src="/logo.svg" alt="ロゴ" class="navigation-brand-logo">
+    <span>サイト名</span>
+  </a>
+
+  <ul class="navigation-menu navigation-menu-start">
+    <li class="navigation-item">
+      <a href="/home" class="navigation-link" aria-current="page">
         ホーム
       </a>
     </li>
-    <li aria-hidden="true" style="color: var(--foreground-tertiary);">/</li>
-    <li>
-      <a href="/products" style="color: var(--component-navigation-text-default);">
-        商品
+    <li class="navigation-item">
+      <a href="/about" class="navigation-link">
+        概要
       </a>
     </li>
-    <li aria-hidden="true" style="color: var(--foreground-tertiary);">/</li>
-    <li aria-current="page" style="color: var(--component-navigation-text-active); font-weight: 500;">
-      商品詳細
+    <li class="navigation-item">
+      <a href="/contact" class="navigation-link">
+        お問い合わせ
+      </a>
     </li>
-  </ol>
+  </ul>
+
+  <ul class="navigation-menu navigation-menu-end">
+    <li class="navigation-item">
+      <button class="navigation-link">ログイン</button>
+    </li>
+  </ul>
+
+  <button class="navigation-toggle" aria-label="メニューを開く">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path d="M3 12h18M3 6h18M3 18h18"/>
+    </svg>
+  </button>
 </nav>
 ```
 
-### CSS Classes
+#### アイコン付きリンク
 
-```css
-/* 水平ナビゲーション */
-.navigation {
-  background: var(--component-navigation-background-default);
-  padding: 16px;
-  border-bottom: 1px solid var(--border-default);
-}
+```html
+<nav class="navigation">
+  <a href="/" class="navigation-brand">
+    <img src="/logo.svg" alt="ロゴ" class="navigation-brand-logo">
+    <span>サイト名</span>
+  </a>
 
-.navigation ul {
-  display: flex;
-  gap: 8px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-item {
-  display: block;
-  padding: 8px 16px;
-  border-radius: 6px;
-  color: var(--component-navigation-text-default);
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.nav-item:hover {
-  color: var(--component-navigation-text-hover);
-  background: var(--background-secondary);
-}
-
-.nav-item--active,
-.nav-item[aria-current="page"] {
-  background: var(--component-navigation-background-active);
-  color: var(--component-navigation-text-active);
-}
-
-/* 垂直ナビゲーション */
-.sidebar {
-  width: 250px;
-  background: var(--component-navigation-background-default);
-  padding: 16px;
-  min-height: 100vh;
-  border-right: 1px solid var(--border-default);
-}
-
-.sidebar .nav-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 12px;
-  border-radius: 6px;
-  margin-bottom: 4px;
-}
-
-.sidebar .nav-item svg {
-  width: 20px;
-  height: 20px;
-}
-
-/* タブナビゲーション */
-.tabs {
-  display: flex;
-  gap: 0;
-  border-bottom: 1px solid var(--border-default);
-}
-
-.tab {
-  padding: 12px 24px;
-  border: none;
-  border-bottom: 2px solid transparent;
-  background: transparent;
-  color: var(--component-navigation-text-default);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.tab:hover {
-  color: var(--component-navigation-text-hover);
-  background: var(--background-secondary);
-}
-
-.tab--active,
-.tab[aria-selected="true"] {
-  color: var(--component-navigation-text-active);
-  border-bottom-color: var(--component-navigation-text-active);
-}
-
-/* ブレッドクラム */
-.breadcrumb {
-  display: flex;
-  gap: 8px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-}
-
-.breadcrumb a {
-  color: var(--component-navigation-text-default);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.breadcrumb a:hover {
-  color: var(--component-navigation-text-hover);
-  text-decoration: underline;
-}
-
-.breadcrumb [aria-current="page"] {
-  color: var(--component-navigation-text-active);
-  font-weight: 500;
-}
-
-/* レスポンシブメニュー */
-@media (max-width: 768px) {
-  .navigation ul {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    min-height: auto;
-  }
-}
-
-/* モバイルメニューボタン */
-.menu-toggle {
-  display: none;
-  padding: 8px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  .navigation ul {
-    display: none;
-  }
-
-  .navigation ul.open {
-    display: flex;
-  }
-}
+  <ul class="navigation-menu navigation-menu-start">
+    <li class="navigation-item">
+      <a href="/home" class="navigation-link">
+        <svg class="navigation-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 1l7 6v8H1V7l7-6z"/>
+        </svg>
+        ホーム
+      </a>
+    </li>
+    <li class="navigation-item">
+      <a href="/dashboard" class="navigation-link">
+        <svg class="navigation-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M0 0h7v7H0V0zm9 0h7v7H9V0zM0 9h7v7H0V9zm9 0h7v7H9V9z"/>
+        </svg>
+        ダッシュボード
+      </a>
+    </li>
+    <li class="navigation-item">
+      <a href="/settings" class="navigation-link">
+        <svg class="navigation-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 4.754a3.246 3.246 0 100 6.492 3.246 3.246 0 000-6.492zM5.754 8a2.246 2.246 0 114.492 0 2.246 2.246 0 01-4.492 0z"/>
+        </svg>
+        設定
+      </a>
+    </li>
+  </ul>
+</nav>
 ```
 
-### React
+#### ディバイダー
 
-```tsx
-import React, { useState } from 'react';
-import { useRouter } from 'next/router'; // または React Router
+```html
+<nav class="navigation">
+  <a href="/" class="navigation-brand">サイト名</a>
 
-interface NavItem {
-  label: string;
-  href: string;
-  icon?: React.ReactNode;
-  badge?: number;
-}
+  <ul class="navigation-menu navigation-menu-start">
+    <li class="navigation-item">
+      <a href="/home" class="navigation-link">ホーム</a>
+    </li>
+    <li class="navigation-item">
+      <a href="/products" class="navigation-link">製品</a>
+    </li>
+  </ul>
 
-interface NavigationProps {
-  items: NavItem[];
-  variant?: 'horizontal' | 'vertical' | 'tabs';
-  onItemClick?: (href: string) => void;
-}
+  <div class="navigation-divider"></div>
 
-export const Navigation: React.FC<NavigationProps> = ({
-  items,
-  variant = 'horizontal',
-  onItemClick,
-}) => {
-  const router = useRouter();
-  const currentPath = router.pathname;
+  <ul class="navigation-menu navigation-menu-end">
+    <li class="navigation-item">
+      <button class="navigation-link">ログイン</button>
+    </li>
+  </ul>
+</nav>
+```
 
-  const isActive = (href: string) => {
-    return currentPath === href || currentPath.startsWith(href + '/');
-  };
+#### ドロップダウンメニュー
 
-  const handleClick = (e: React.MouseEvent, href: string) => {
-    if (onItemClick) {
-      e.preventDefault();
-      onItemClick(href);
-    }
-  };
+```html
+<nav class="navigation">
+  <a href="/" class="navigation-brand">サイト名</a>
 
-  if (variant === 'tabs') {
-    return (
-      <div className="tabs" role="tablist">
-        {items.map((item) => (
-          <button
-            key={item.href}
-            role="tab"
-            aria-selected={isActive(item.href)}
-            onClick={(e) => handleClick(e, item.href)}
-            className={`tab ${isActive(item.href) ? 'tab--active' : ''}`}
-            style={{
-              padding: '12px 24px',
-              border: 'none',
-              borderBottom: `2px solid ${
-                isActive(item.href)
-                  ? 'var(--component-navigation-text-active)'
-                  : 'transparent'
-              }`,
-              background: 'transparent',
-              color: isActive(item.href)
-                ? 'var(--component-navigation-text-active)'
-                : 'var(--component-navigation-text-default)',
-              fontWeight: isActive(item.href) ? 600 : 500,
-              cursor: 'pointer',
-            }}
-          >
-            {item.label}
-          </button>
-        ))}
+  <ul class="navigation-menu navigation-menu-start">
+    <li class="navigation-item">
+      <a href="/home" class="navigation-link">ホーム</a>
+    </li>
+
+    <li class="navigation-item navigation-dropdown" aria-expanded="false">
+      <button class="navigation-link">
+        製品
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+          <path d="M6 8L2 4h8L6 8z"/>
+        </svg>
+      </button>
+      <div class="navigation-dropdown-menu">
+        <a href="/products/a" class="navigation-dropdown-item">製品 A</a>
+        <a href="/products/b" class="navigation-dropdown-item">製品 B</a>
+        <a href="/products/c" class="navigation-dropdown-item">製品 C</a>
       </div>
-    );
+    </li>
+
+    <li class="navigation-item">
+      <a href="/about" class="navigation-link">概要</a>
+    </li>
+  </ul>
+</nav>
+```
+
+#### 無効化されたリンク
+
+```html
+<nav class="navigation">
+  <a href="/" class="navigation-brand">サイト名</a>
+
+  <ul class="navigation-menu navigation-menu-start">
+    <li class="navigation-item">
+      <a href="/home" class="navigation-link">ホーム</a>
+    </li>
+    <li class="navigation-item">
+      <a href="/premium" class="navigation-link" aria-disabled="true">
+        プレミアム機能
+      </a>
+    </li>
+  </ul>
+</nav>
+```
+
+#### Sticky（固定）ナビゲーション
+
+```html
+<nav class="navigation sticky">
+  <a href="/" class="navigation-brand">サイト名</a>
+
+  <ul class="navigation-menu navigation-menu-start">
+    <li class="navigation-item">
+      <a href="/home" class="navigation-link">ホーム</a>
+    </li>
+    <li class="navigation-item">
+      <a href="/about" class="navigation-link">概要</a>
+    </li>
+  </ul>
+</nav>
+```
+
+#### バリアント
+
+**Compact（コンパクト）**
+
+```html
+<nav class="navigation compact">
+  <a href="/" class="navigation-brand">サイト名</a>
+
+  <ul class="navigation-menu navigation-menu-start">
+    <li class="navigation-item">
+      <a href="/home" class="navigation-link">ホーム</a>
+    </li>
+    <li class="navigation-item">
+      <a href="/about" class="navigation-link">概要</a>
+    </li>
+  </ul>
+</nav>
+```
+
+**Filled（塗りつぶし）**
+
+```html
+<nav class="navigation filled">
+  <a href="/" class="navigation-brand">サイト名</a>
+
+  <ul class="navigation-menu navigation-menu-start">
+    <li class="navigation-item">
+      <a href="/home" class="navigation-link">ホーム</a>
+    </li>
+    <li class="navigation-item">
+      <a href="/about" class="navigation-link">概要</a>
+    </li>
+  </ul>
+</nav>
+```
+
+**Bordered（ボーダー付き）**
+
+```html
+<nav class="navigation bordered">
+  <a href="/" class="navigation-brand">サイト名</a>
+
+  <ul class="navigation-menu navigation-menu-start">
+    <li class="navigation-item">
+      <a href="/home" class="navigation-link">ホーム</a>
+    </li>
+    <li class="navigation-item">
+      <a href="/about" class="navigation-link">概要</a>
+    </li>
+  </ul>
+</nav>
+```
+
+#### JavaScript による制御
+
+Navigation のモバイルメニューとドロップダウンを制御するコントローラークラス:
+
+```javascript
+class NavigationController {
+  constructor(navigationElement) {
+    this.navigation = navigationElement;
+    this.toggle = navigationElement.querySelector('.navigation-toggle');
+    this.menus = Array.from(navigationElement.querySelectorAll('.navigation-menu'));
+    this.dropdowns = Array.from(navigationElement.querySelectorAll('.navigation-dropdown'));
+
+    this.init();
   }
 
-  const containerStyle = variant === 'vertical'
-    ? { flexDirection: 'column' as const, width: '250px' }
-    : { flexDirection: 'row' as const, gap: '8px' };
+  init() {
+    // モバイルメニュートグル
+    if (this.toggle) {
+      this.toggle.addEventListener('click', () => {
+        this.toggleMobileMenu();
+      });
+    }
 
-  return (
-    <nav
-      className={`navigation navigation--${variant}`}
-      style={{
-        background: 'var(--component-navigation-background-default)',
-        padding: '16px',
-      }}
-    >
-      <ul
-        style={{
-          display: 'flex',
-          ...containerStyle,
-          listStyle: 'none',
-          margin: 0,
-          padding: 0,
-        }}
-      >
-        {items.map((item) => {
-          const active = isActive(item.href);
-          return (
-            <li key={item.href} style={{ marginBottom: variant === 'vertical' ? '4px' : 0 }}>
-              <a
-                href={item.href}
-                onClick={(e) => handleClick(e, item.href)}
-                aria-current={active ? 'page' : undefined}
-                className={`nav-item ${active ? 'nav-item--active' : ''}`}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: item.icon ? '12px' : undefined,
-                  padding: variant === 'vertical' ? '10px 12px' : '8px 16px',
-                  borderRadius: '6px',
-                  background: active
-                    ? 'var(--component-navigation-background-active)'
-                    : 'transparent',
-                  color: active
-                    ? 'var(--component-navigation-text-active)'
-                    : 'var(--component-navigation-text-default)',
-                  textDecoration: 'none',
-                  fontWeight: active ? 600 : 500,
-                  position: 'relative',
-                }}
-              >
-                {item.icon && <span style={{ width: '20px', height: '20px' }}>{item.icon}</span>}
-                <span>{item.label}</span>
-                {item.badge && item.badge > 0 && (
-                  <span
-                    className="badge badge--error"
-                    style={{
-                      position: variant === 'horizontal' ? 'absolute' : 'static',
-                      top: variant === 'horizontal' ? '-4px' : undefined,
-                      right: variant === 'horizontal' ? '-4px' : undefined,
-                      minWidth: '20px',
-                      height: '20px',
-                      padding: '0 6px',
-                      borderRadius: '10px',
-                      background: 'var(--component-badge-error-background)',
-                      color: 'var(--component-badge-error-text)',
-                      fontSize: '11px',
-                      fontWeight: 600,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    {item.badge}
-                  </span>
-                )}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
-  );
-};
+    // ドロップダウンの初期化
+    this.dropdowns.forEach(dropdown => {
+      const button = dropdown.querySelector('.navigation-link');
 
-// ブレッドクラムコンポーネント
-interface BreadcrumbItem {
-  label: string;
-  href?: string;
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.toggleDropdown(dropdown);
+      });
+
+      // 外部クリックで閉じる
+      document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) {
+          this.closeDropdown(dropdown);
+        }
+      });
+    });
+
+    // Escキーでドロップダウンを閉じる
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        this.closeAllDropdowns();
+      }
+    });
+
+    // ウィンドウリサイズ時の処理
+    window.addEventListener('resize', () => {
+      this.handleResize();
+    });
+  }
+
+  toggleMobileMenu() {
+    this.menus.forEach(menu => {
+      menu.classList.toggle('open');
+    });
+
+    const isOpen = this.menus[0]?.classList.contains('open');
+    this.toggle.setAttribute('aria-expanded', isOpen.toString());
+    this.toggle.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+  }
+
+  toggleDropdown(dropdown) {
+    const isOpen = dropdown.getAttribute('aria-expanded') === 'true';
+
+    // 他のドロップダウンを閉じる
+    this.closeAllDropdowns();
+
+    if (!isOpen) {
+      this.openDropdown(dropdown);
+    }
+  }
+
+  openDropdown(dropdown) {
+    dropdown.setAttribute('aria-expanded', 'true');
+  }
+
+  closeDropdown(dropdown) {
+    dropdown.setAttribute('aria-expanded', 'false');
+  }
+
+  closeAllDropdowns() {
+    this.dropdowns.forEach(dropdown => {
+      this.closeDropdown(dropdown);
+    });
+  }
+
+  handleResize() {
+    const isMobile = window.innerWidth <= 768;
+
+    if (!isMobile) {
+      // デスクトップ表示時はモバイルメニューを閉じる
+      this.menus.forEach(menu => {
+        menu.classList.remove('open');
+      });
+
+      if (this.toggle) {
+        this.toggle.setAttribute('aria-expanded', 'false');
+        this.toggle.setAttribute('aria-label', 'メニューを開く');
+      }
+    }
+  }
 }
-
-interface BreadcrumbProps {
-  items: BreadcrumbItem[];
-}
-
-export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
-  return (
-    <nav aria-label="パンくずリスト">
-      <ol
-        style={{
-          display: 'flex',
-          gap: '8px',
-          listStyle: 'none',
-          margin: 0,
-          padding: 0,
-          fontSize: '14px',
-        }}
-      >
-        {items.map((item, index) => (
-          <React.Fragment key={index}>
-            <li>
-              {item.href ? (
-                <a
-                  href={item.href}
-                  style={{
-                    color: 'var(--component-navigation-text-default)',
-                    textDecoration: 'none',
-                  }}
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <span
-                  aria-current="page"
-                  style={{
-                    color: 'var(--component-navigation-text-active)',
-                    fontWeight: 500,
-                  }}
-                >
-                  {item.label}
-                </span>
-              )}
-            </li>
-            {index < items.length - 1 && (
-              <li aria-hidden="true" style={{ color: 'var(--foreground-tertiary)' }}>
-                /
-              </li>
-            )}
-          </React.Fragment>
-        ))}
-      </ol>
-    </nav>
-  );
-};
 
 // 使用例
-export default function Example() {
-  const navItems: NavItem[] = [
-    { label: 'ダッシュボード', href: '/dashboard', icon: <DashboardIcon /> },
-    { label: 'プロジェクト', href: '/projects', icon: <ProjectsIcon />, badge: 3 },
-    { label: 'チーム', href: '/team', icon: <TeamIcon /> },
-    { label: '設定', href: '/settings', icon: <SettingsIcon /> },
-  ];
-
-  const breadcrumbItems: BreadcrumbItem[] = [
-    { label: 'ホーム', href: '/' },
-    { label: '商品', href: '/products' },
-    { label: '商品詳細' },
-  ];
-
-  return (
-    <div>
-      {/* 水平ナビゲーション */}
-      <Navigation items={navItems} variant="horizontal" />
-
-      {/* 垂直ナビゲーション */}
-      <Navigation items={navItems} variant="vertical" />
-
-      {/* タブナビゲーション */}
-      <Navigation
-        items={[
-          { label: '概要', href: '/overview' },
-          { label: '詳細', href: '/details' },
-          { label: '設定', href: '/settings' },
-        ]}
-        variant="tabs"
-      />
-
-      {/* ブレッドクラム */}
-      <Breadcrumb items={breadcrumbItems} />
-    </div>
-  );
-}
+const navigation = document.querySelector('.navigation');
+const controller = new NavigationController(navigation);
 ```
 
----
+#### アクティブリンクの管理
 
+現在のページに応じてアクティブリンクを設定:
+
+```javascript
+class ActiveLinkManager {
+  constructor(navigationElement) {
+    this.navigation = navigationElement;
+    this.links = Array.from(navigationElement.querySelectorAll('.navigation-link[href]'));
+
+    this.init();
+  }
+
+  init() {
+    this.updateActiveLink();
+
+    // SPA の場合はルート変更を監視
+    window.addEventListener('popstate', () => {
+      this.updateActiveLink();
+    });
+  }
+
+  updateActiveLink() {
+    const currentPath = window.location.pathname;
+
+    this.links.forEach(link => {
+      const linkPath = new URL(link.href).pathname;
+
+      if (linkPath === currentPath) {
+        link.setAttribute('aria-current', 'page');
+        link.classList.add('active');
+      } else {
+        link.removeAttribute('aria-current');
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  setActive(path) {
+    this.links.forEach(link => {
+      const linkPath = new URL(link.href).pathname;
+
+      if (linkPath === path) {
+        link.setAttribute('aria-current', 'page');
+        link.classList.add('active');
+      } else {
+        link.removeAttribute('aria-current');
+        link.classList.remove('active');
+      }
+    });
+  }
+}
+
+// 使用例
+const navigation = document.querySelector('.navigation');
+const activeLinkManager = new ActiveLinkManager(navigation);
+
+// プログラムからアクティブリンクを設定
+activeLinkManager.setActive('/dashboard');
+```
+
+#### アクセシビリティ
+
+Navigation は ARIA 属性とセマンティック HTML を適切に使用する必要があります:
+
+**必須の ARIA 属性とセマンティック HTML**
+
+```html
+<nav class="navigation" role="navigation" aria-label="メインナビゲーション">
+  <a href="/" class="navigation-brand">
+    <img src="/logo.svg" alt="会社ロゴ" class="navigation-brand-logo">
+    <span>サイト名</span>
+  </a>
+
+  <ul class="navigation-menu navigation-menu-start">
+    <li class="navigation-item">
+      <a href="/home" class="navigation-link" aria-current="page">
+        ホーム
+      </a>
+    </li>
+
+    <li class="navigation-item navigation-dropdown" aria-expanded="false">
+      <button
+        class="navigation-link"
+        aria-haspopup="true"
+        aria-expanded="false">
+        製品
+      </button>
+      <div class="navigation-dropdown-menu" role="menu">
+        <a href="/products/a" class="navigation-dropdown-item" role="menuitem">
+          製品 A
+        </a>
+      </div>
+    </li>
+
+    <li class="navigation-item">
+      <a href="/disabled" class="navigation-link" aria-disabled="true">
+        無効なリンク
+      </a>
+    </li>
+  </ul>
+
+  <button class="navigation-toggle" aria-label="メニューを開く" aria-expanded="false">
+    <svg aria-hidden="true" width="24" height="24">
+      <path d="M3 12h18M3 6h18M3 18h18"/>
+    </svg>
+  </button>
+</nav>
+```
+
+**キーボード操作**
+
+- `Tab`: 次のナビゲーションアイテムへ移動
+- `Shift + Tab`: 前のナビゲーションアイテムへ移動
+- `Enter / Space`: リンクを開く、ドロップダウンを開閉
+- `Esc`: ドロップダウンを閉じる
+- `↓ / ArrowDown`: ドロップダウン内の次のアイテムへ移動（ドロップダウンが開いている場合）
+- `↑ / ArrowUp`: ドロップダウン内の前のアイテムへ移動（ドロップダウンが開いている場合）
+
+**スクリーンリーダー対応**
+
+- `<nav>` 要素でナビゲーション領域を明示
+- `aria-label` でナビゲーションの目的を説明
+- `aria-current="page"` で現在のページを示す
+- `aria-disabled="true"` で無効なリンクを示す
+- `aria-haspopup="true"` でドロップダウンの存在を示す
+- `aria-expanded` でドロップダウンの開閉状態を示す
+- ブランドロゴには適切な `alt` 属性を設定
+- アイコンには `aria-hidden="true"` を設定（テキストラベルがある場合）
+
+**モバイルアクセシビリティ**
+
+- トグルボタンには明確な `aria-label` を提供
+- メニューの開閉状態を `aria-expanded` で示す
+- タッチターゲットは最低 44x44px を確保
+- フォーカス状態を視覚的に明示
+
+---
 ## アクセシビリティ
 
 ### ARIA属性

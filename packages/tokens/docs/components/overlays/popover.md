@@ -208,575 +208,394 @@
 
 ### Pattern 2: Plain HTML (推奨)
 
-### HTML
+#### CSSファイルの読み込み
 
 ```html
-<!-- 基本的なポップオーバー -->
-<button
-  id="trigger-1"
-  class="button"
-  aria-describedby="popover-1"
-  aria-expanded="false"
->
-  詳細を表示
-</button>
+<link rel="stylesheet" href="@hidearea-design/tokens/build/css/html/overlays/popover.css">
+```
 
-<div
-  id="popover-1"
-  class="popover popover-default"
-  role="dialog"
-  aria-labelledby="popover-title-1"
-  hidden
->
-  <div class="popover-arrow"></div>
-  <div class="popover-header">
-    <button class="popover-close" aria-label="閉じる">×</button>
-    <h3 id="popover-title-1" class="popover-title">詳細情報</h3>
-  </div>
-  <div class="popover-body">
-    <p>ここに詳細な説明が入ります。</p>
-  </div>
-</div>
+#### 基本的な構造
 
-<!-- フォーム付きポップオーバー -->
-<button id="trigger-2" class="button">設定</button>
+Popover コンポーネントは `.ha-popover` をルート要素とし、`open` 属性で表示・非表示を制御します。
 
-<div id="popover-2" class="popover popover-large" role="dialog" hidden>
-  <div class="popover-arrow"></div>
-  <div class="popover-header">
-    <h3 class="popover-title">通知設定</h3>
-  </div>
-  <div class="popover-body">
-    <form>
-      <div class="form-field">
-        <label>
-          <input type="checkbox" checked />
-          メール通知を受け取る
-        </label>
-      </div>
-      <div class="form-field">
-        <label>
-          <input type="checkbox" />
-          プッシュ通知を受け取る
-        </label>
-      </div>
-    </form>
-  </div>
-  <div class="popover-footer">
-    <button class="button button-secondary">キャンセル</button>
-    <button class="button button-primary">保存</button>
-  </div>
-</div>
-
-<!-- リスト付きポップオーバー -->
-<button id="trigger-3" class="icon-button">⋮</button>
-
-<div id="popover-3" class="popover popover-small" role="menu" hidden>
-  <div class="popover-arrow"></div>
-  <div class="popover-body">
-    <button role="menuitem" class="menu-item">編集</button>
-    <button role="menuitem" class="menu-item">複製</button>
-    <button role="menuitem" class="menu-item">共有</button>
-    <hr class="menu-divider" />
-    <button role="menuitem" class="menu-item danger">削除</button>
+```html
+<div class="ha-popover" open placement="bottom">
+  <div class="popover-content">
+    <div class="popover-arrow"></div>
+    <div class="popover-header">
+      <h3 class="popover-title">ポップオーバーのタイトル</h3>
+      <button class="popover-close" aria-label="閉じる">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="popover-body">
+      ここにポップオーバーのコンテンツを配置します。
+    </div>
   </div>
 </div>
 ```
 
-### CSS
+#### 配置バリアント
 
-```css
-/* ポップオーバーコンテナ */
-.popover {
-  position: absolute;
-  z-index: var(--component-popover-z-index);
-  width: var(--component-popover-width-default);
-  min-width: var(--component-popover-min-width);
-  max-width: var(--component-popover-max-width);
-  max-height: var(--component-popover-max-height);
-  background-color: var(--component-popover-background-default);
-  border: var(--component-popover-border-width) solid var(--component-popover-border-color);
-  border-radius: var(--component-popover-border-radius);
-  box-shadow: var(--component-popover-shadow);
-  opacity: 0;
-  transition: opacity var(--component-popover-animation-duration)
-              var(--component-popover-animation-timing),
-              transform var(--component-popover-animation-duration)
-              var(--component-popover-animation-timing);
-}
+Popover は12の配置方向をサポートしています。
 
-.popover[hidden] {
-  display: none;
-}
+**Top（上）**
 
-.popover.is-visible {
-  opacity: 1;
-}
-
-/* サイズバリアント */
-.popover-small {
-  width: var(--component-popover-width-small);
-}
-
-.popover-large {
-  width: var(--component-popover-width-large);
-}
-
-/* 矢印 */
-.popover-arrow {
-  position: absolute;
-  width: calc(var(--component-popover-arrow-size) * 2);
-  height: calc(var(--component-popover-arrow-size) * 2);
-  background-color: var(--component-popover-arrow-background);
-  border: var(--component-popover-arrow-border-width) solid
-          var(--component-popover-arrow-border-color);
-  transform: rotate(45deg);
-}
-
-/* 位置別矢印配置 */
-.popover[data-position="top"] .popover-arrow {
-  bottom: calc(var(--component-popover-arrow-size) * -1);
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg);
-  border-top: none;
-  border-left: none;
-}
-
-.popover[data-position="bottom"] .popover-arrow {
-  top: calc(var(--component-popover-arrow-size) * -1);
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg);
-  border-bottom: none;
-  border-right: none;
-}
-
-.popover[data-position="left"] .popover-arrow {
-  right: calc(var(--component-popover-arrow-size) * -1);
-  top: 50%;
-  transform: translateY(-50%) rotate(45deg);
-  border-left: none;
-  border-bottom: none;
-}
-
-.popover[data-position="right"] .popover-arrow {
-  left: calc(var(--component-popover-arrow-size) * -1);
-  top: 50%;
-  transform: translateY(-50%) rotate(45deg);
-  border-right: none;
-  border-top: none;
-}
-
-/* 位置別アニメーション */
-.popover[data-position="top"] {
-  transform: translateY(-8px);
-}
-
-.popover[data-position="bottom"] {
-  transform: translateY(8px);
-}
-
-.popover[data-position="left"] {
-  transform: translateX(-8px);
-}
-
-.popover[data-position="right"] {
-  transform: translateX(8px);
-}
-
-.popover.is-visible {
-  transform: translate(0, 0);
-}
-
-/* ヘッダー */
-.popover-header {
-  position: relative;
-  padding: var(--component-popover-header-padding);
-  border-bottom: var(--component-popover-header-border-bottom);
-}
-
-.popover-title {
-  margin: 0;
-  font-size: var(--component-popover-header-title-font-size);
-  font-weight: var(--component-popover-header-title-font-weight);
-  line-height: var(--component-popover-header-title-line-height);
-  color: var(--component-popover-header-title-color);
-}
-
-/* ボディ */
-.popover-body {
-  padding: var(--component-popover-body-padding);
-  font-size: var(--component-popover-body-font-size);
-  line-height: var(--component-popover-body-line-height);
-  color: var(--component-popover-body-color);
-  max-height: var(--component-popover-body-max-height);
-  overflow: var(--component-popover-body-overflow);
-}
-
-/* フッター */
-.popover-footer {
-  display: flex;
-  gap: var(--component-popover-footer-gap);
-  justify-content: var(--component-popover-footer-justify-content);
-  padding: var(--component-popover-footer-padding);
-  border-top: var(--component-popover-footer-border-top);
-}
-
-/* 閉じるボタン */
-.popover-close {
-  position: absolute;
-  top: var(--component-popover-close-button-position-top);
-  right: var(--component-popover-close-button-position-right);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--component-popover-close-button-size);
-  height: var(--component-popover-close-button-size);
-  padding: 0;
-  background: var(--component-popover-close-button-background-default);
-  border: none;
-  border-radius: var(--component-popover-close-button-border-radius);
-  color: var(--component-popover-close-button-color-default);
-  font-size: 1.25rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: var(--component-popover-transition-properties)
-              var(--component-popover-transition-duration)
-              var(--component-popover-transition-timing);
-}
-
-.popover-close:hover {
-  background: var(--component-popover-close-button-background-hover);
-  color: var(--component-popover-close-button-color-hover);
-}
+```html
+<div class="ha-popover" open placement="top">
+  <div class="popover-content">
+    <div class="popover-arrow"></div>
+    <div class="popover-body">上に表示されます</div>
+  </div>
+</div>
 ```
 
-### JavaScript
+**Top Start（上左）**
+
+```html
+<div class="ha-popover" open placement="top-start">
+  <div class="popover-content">
+    <div class="popover-arrow"></div>
+    <div class="popover-body">上左に表示されます</div>
+  </div>
+</div>
+```
+
+**Top End（上右）**
+
+```html
+<div class="ha-popover" open placement="top-end">
+  <div class="popover-content">
+    <div class="popover-arrow"></div>
+    <div class="popover-body">上右に表示されます</div>
+  </div>
+</div>
+```
+
+**Bottom（下）**
+
+```html
+<div class="ha-popover" open placement="bottom">
+  <div class="popover-content">
+    <div class="popover-arrow"></div>
+    <div class="popover-body">下に表示されます</div>
+  </div>
+</div>
+```
+
+**Bottom Start（下左）**
+
+```html
+<div class="ha-popover" open placement="bottom-start">
+  <div class="popover-content">
+    <div class="popover-arrow"></div>
+    <div class="popover-body">下左に表示されます</div>
+  </div>
+</div>
+```
+
+**Bottom End（下右）**
+
+```html
+<div class="ha-popover" open placement="bottom-end">
+  <div class="popover-content">
+    <div class="popover-arrow"></div>
+    <div class="popover-body">下右に表示されます</div>
+  </div>
+</div>
+```
+
+**Left（左）**
+
+```html
+<div class="ha-popover" open placement="left">
+  <div class="popover-content">
+    <div class="popover-arrow"></div>
+    <div class="popover-body">左に表示されます</div>
+  </div>
+</div>
+```
+
+**Right（右）**
+
+```html
+<div class="ha-popover" open placement="right">
+  <div class="popover-content">
+    <div class="popover-arrow"></div>
+    <div class="popover-body">右に表示されます</div>
+  </div>
+</div>
+```
+
+#### サイズバリアント
+
+3つのサイズが用意されています。
+
+**Small（240px）**
+
+```html
+<div class="ha-popover" open placement="bottom" size="sm">
+  <div class="popover-content">
+    <div class="popover-arrow"></div>
+    <div class="popover-body">Small サイズのポップオーバー</div>
+  </div>
+</div>
+```
+
+**Medium（320px - デフォルト）**
+
+```html
+<div class="ha-popover" open placement="bottom" size="md">
+  <div class="popover-content">
+    <div class="popover-arrow"></div>
+    <div class="popover-body">Medium サイズのポップオーバー</div>
+  </div>
+</div>
+```
+
+**Large（480px）**
+
+```html
+<div class="ha-popover" open placement="bottom" size="lg">
+  <div class="popover-content">
+    <div class="popover-arrow"></div>
+    <div class="popover-body">Large サイズのポップオーバー</div>
+  </div>
+</div>
+```
+
+#### ヘッダーとフッター付き
+
+```html
+<div class="ha-popover" open placement="bottom">
+  <div class="popover-content">
+    <div class="popover-arrow"></div>
+    <div class="popover-header">
+      <h3 class="popover-title">アカウント設定</h3>
+      <button class="popover-close" aria-label="閉じる">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="popover-body">
+      プロフィール情報を更新しますか?
+    </div>
+    <div class="popover-footer">
+      <button class="button button-secondary">キャンセル</button>
+      <button class="button button-primary">更新</button>
+    </div>
+  </div>
+</div>
+```
+
+#### JavaScript による制御
+
+Popover の開閉と位置制御を実装するコントローラークラス:
 
 ```javascript
-class Popover {
-  constructor(trigger, popover) {
-    this.trigger = trigger;
-    this.popover = popover;
-    this.isOpen = false;
-    this.position = 'bottom';
+class PopoverController {
+  constructor(popoverElement, triggerElement) {
+    this.popover = popoverElement;
+    this.trigger = triggerElement;
+    this.content = popoverElement.querySelector('.popover-content');
+    this.closeButton = popoverElement.querySelector('.popover-close');
 
     this.init();
   }
 
   init() {
-    // トリガーイベント
-    this.trigger.addEventListener('click', () => this.toggle());
+    // トリガーボタンのクリックイベント
+    this.trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.toggle();
+    });
 
-    // 閉じるボタン
-    const closeButton = this.popover.querySelector('.popover-close');
-    if (closeButton) {
-      closeButton.addEventListener('click', () => this.close());
+    // 閉じるボタンのイベント
+    if (this.closeButton) {
+      this.closeButton.addEventListener('click', () => {
+        this.close();
+      });
     }
 
-    // 外側クリック
+    // 外部クリックで閉じる
     document.addEventListener('click', (e) => {
-      if (
-        this.isOpen &&
-        !this.trigger.contains(e.target) &&
-        !this.popover.contains(e.target)
-      ) {
+      if (this.isOpen() &&
+          !this.popover.contains(e.target) &&
+          !this.trigger.contains(e.target)) {
         this.close();
       }
     });
 
-    // Escキー
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.isOpen) {
+    // Escキーで閉じる
+    this.handleEscape = (e) => {
+      if (e.key === 'Escape' && this.isOpen()) {
         this.close();
+        this.trigger.focus();
       }
-    });
+    };
+
+    document.addEventListener('keydown', this.handleEscape);
   }
 
   open() {
-    this.isOpen = true;
-    this.popover.hidden = false;
+    this.popover.setAttribute('open', '');
     this.trigger.setAttribute('aria-expanded', 'true');
-
-    // 位置を計算
     this.updatePosition();
-
-    // アニメーション
-    requestAnimationFrame(() => {
-      this.popover.classList.add('is-visible');
-    });
   }
 
   close() {
-    this.isOpen = false;
-    this.popover.classList.remove('is-visible');
+    this.popover.removeAttribute('open');
     this.trigger.setAttribute('aria-expanded', 'false');
-
-    // アニメーション終了後に非表示
-    setTimeout(() => {
-      if (!this.isOpen) {
-        this.popover.hidden = true;
-      }
-    }, 150);
   }
 
   toggle() {
-    if (this.isOpen) {
+    if (this.isOpen()) {
       this.close();
     } else {
       this.open();
     }
   }
 
+  isOpen() {
+    return this.popover.hasAttribute('open');
+  }
+
   updatePosition() {
+    const placement = this.popover.getAttribute('placement') || 'bottom';
     const triggerRect = this.trigger.getBoundingClientRect();
-    const popoverRect = this.popover.getBoundingClientRect();
-    const offset = 12; // 矢印付きオフセット
+    const popoverRect = this.content.getBoundingClientRect();
 
-    let position = 'bottom';
-    let top = 0;
-    let left = 0;
+    let top, left;
 
-    // 位置を自動決定
-    const spaceAbove = triggerRect.top;
-    const spaceBelow = window.innerHeight - triggerRect.bottom;
-    const spaceLeft = triggerRect.left;
-    const spaceRight = window.innerWidth - triggerRect.right;
-
-    if (spaceBelow >= popoverRect.height + offset) {
-      position = 'bottom';
-      top = triggerRect.bottom + offset;
-      left = triggerRect.left + (triggerRect.width - popoverRect.width) / 2;
-    } else if (spaceAbove >= popoverRect.height + offset) {
-      position = 'top';
-      top = triggerRect.top - popoverRect.height - offset;
-      left = triggerRect.left + (triggerRect.width - popoverRect.width) / 2;
-    } else if (spaceRight >= popoverRect.width + offset) {
-      position = 'right';
-      top = triggerRect.top + (triggerRect.height - popoverRect.height) / 2;
-      left = triggerRect.right + offset;
-    } else if (spaceLeft >= popoverRect.width + offset) {
-      position = 'left';
-      top = triggerRect.top + (triggerRect.height - popoverRect.height) / 2;
-      left = triggerRect.left - popoverRect.width - offset;
+    // 配置方向に応じた位置計算
+    switch (placement) {
+      case 'top':
+        top = triggerRect.top - popoverRect.height - 8;
+        left = triggerRect.left + (triggerRect.width - popoverRect.width) / 2;
+        break;
+      case 'top-start':
+        top = triggerRect.top - popoverRect.height - 8;
+        left = triggerRect.left;
+        break;
+      case 'top-end':
+        top = triggerRect.top - popoverRect.height - 8;
+        left = triggerRect.right - popoverRect.width;
+        break;
+      case 'bottom':
+        top = triggerRect.bottom + 8;
+        left = triggerRect.left + (triggerRect.width - popoverRect.width) / 2;
+        break;
+      case 'bottom-start':
+        top = triggerRect.bottom + 8;
+        left = triggerRect.left;
+        break;
+      case 'bottom-end':
+        top = triggerRect.bottom + 8;
+        left = triggerRect.right - popoverRect.width;
+        break;
+      case 'left':
+        top = triggerRect.top + (triggerRect.height - popoverRect.height) / 2;
+        left = triggerRect.left - popoverRect.width - 8;
+        break;
+      case 'right':
+        top = triggerRect.top + (triggerRect.height - popoverRect.height) / 2;
+        left = triggerRect.right + 8;
+        break;
+      default:
+        top = triggerRect.bottom + 8;
+        left = triggerRect.left;
     }
 
-    // 画面外に出ないように調整
-    const margin = 8;
-    top = Math.max(margin, Math.min(top, window.innerHeight - popoverRect.height - margin));
-    left = Math.max(margin, Math.min(left, window.innerWidth - popoverRect.width - margin));
+    // ビューポート内に収まるように調整
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
 
-    // 位置を適用
-    this.popover.style.top = `${top + window.scrollY}px`;
-    this.popover.style.left = `${left + window.scrollX}px`;
-    this.popover.setAttribute('data-position', position);
-    this.position = position;
+    if (left < 0) left = 8;
+    if (left + popoverRect.width > viewportWidth) {
+      left = viewportWidth - popoverRect.width - 8;
+    }
+
+    if (top < 0) top = 8;
+    if (top + popoverRect.height > viewportHeight) {
+      top = viewportHeight - popoverRect.height - 8;
+    }
+
+    this.content.style.position = 'fixed';
+    this.content.style.top = `${top}px`;
+    this.content.style.left = `${left}px`;
+  }
+
+  destroy() {
+    document.removeEventListener('keydown', this.handleEscape);
   }
 }
 
 // 使用例
-document.querySelectorAll('[aria-describedby]').forEach((trigger) => {
-  const popoverId = trigger.getAttribute('aria-describedby');
-  const popover = document.getElementById(popoverId);
-  if (popover) {
-    new Popover(trigger, popover);
-  }
-});
+const popover = document.querySelector('.ha-popover');
+const trigger = document.querySelector('#popover-trigger');
+const controller = new PopoverController(popover, trigger);
 ```
 
-### React
+#### アクセシビリティ
 
-```tsx
-import { useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+Popover は ARIA 属性を適切に設定する必要があります:
 
-type PopoverPosition = 'top' | 'bottom' | 'left' | 'right';
-type PopoverSize = 'small' | 'default' | 'large';
+**必須の ARIA 属性**
 
-interface PopoverProps {
-  trigger: React.ReactElement;
-  position?: PopoverPosition;
-  size?: PopoverSize;
-  title?: string;
-  footer?: React.ReactNode;
-  closeOnOutsideClick?: boolean;
-  children: React.ReactNode;
-}
+```html
+<!-- トリガーボタン -->
+<button
+  id="popover-trigger"
+  aria-haspopup="dialog"
+  aria-expanded="false"
+  aria-controls="popover-content">
+  詳細を表示
+</button>
 
-function Popover({
-  trigger,
-  position: preferredPosition = 'bottom',
-  size = 'default',
-  title,
-  footer,
-  closeOnOutsideClick = true,
-  children,
-}: PopoverProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [position, setPosition] = useState<PopoverPosition>(preferredPosition);
-  const [coords, setCoords] = useState({ top: 0, left: 0 });
-  const triggerRef = useRef<HTMLElement>(null);
-  const popoverRef = useRef<HTMLDivElement>(null);
+<!-- ポップオーバー -->
+<div class="ha-popover">
+  <div
+    id="popover-content"
+    class="popover-content"
+    role="dialog"
+    aria-labelledby="popover-title">
 
-  const updatePosition = () => {
-    if (!triggerRef.current || !popoverRef.current) return;
+    <div class="popover-arrow" aria-hidden="true"></div>
 
-    const triggerRect = triggerRef.current.getBoundingClientRect();
-    const popoverRect = popoverRef.current.getBoundingClientRect();
-    const offset = 12;
-
-    let finalPosition = preferredPosition;
-    let top = 0;
-    let left = 0;
-
-    const spaceAbove = triggerRect.top;
-    const spaceBelow = window.innerHeight - triggerRect.bottom;
-    const spaceLeft = triggerRect.left;
-    const spaceRight = window.innerWidth - triggerRect.right;
-
-    // 自動位置決定
-    if (preferredPosition === 'bottom' && spaceBelow >= popoverRect.height + offset) {
-      finalPosition = 'bottom';
-      top = triggerRect.bottom + offset;
-      left = triggerRect.left + (triggerRect.width - popoverRect.width) / 2;
-    } else if (preferredPosition === 'top' && spaceAbove >= popoverRect.height + offset) {
-      finalPosition = 'top';
-      top = triggerRect.top - popoverRect.height - offset;
-      left = triggerRect.left + (triggerRect.width - popoverRect.width) / 2;
-    } else if (spaceBelow >= popoverRect.height + offset) {
-      finalPosition = 'bottom';
-      top = triggerRect.bottom + offset;
-      left = triggerRect.left + (triggerRect.width - popoverRect.width) / 2;
-    } else if (spaceAbove >= popoverRect.height + offset) {
-      finalPosition = 'top';
-      top = triggerRect.top - popoverRect.height - offset;
-      left = triggerRect.left + (triggerRect.width - popoverRect.width) / 2;
-    }
-
-    // 画面外に出ないように調整
-    const margin = 8;
-    top = Math.max(margin, Math.min(top, window.innerHeight - popoverRect.height - margin));
-    left = Math.max(margin, Math.min(left, window.innerWidth - popoverRect.width - margin));
-
-    setPosition(finalPosition);
-    setCoords({ top: top + window.scrollY, left: left + window.scrollX });
-  };
-
-  useEffect(() => {
-    if (isOpen) {
-      updatePosition();
-
-      const handleEscape = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') setIsOpen(false);
-      };
-
-      const handleClickOutside = (e: MouseEvent) => {
-        if (
-          closeOnOutsideClick &&
-          popoverRef.current &&
-          !popoverRef.current.contains(e.target as Node) &&
-          triggerRef.current &&
-          !triggerRef.current.contains(e.target as Node)
-        ) {
-          setIsOpen(false);
-        }
-      };
-
-      document.addEventListener('keydown', handleEscape);
-      document.addEventListener('click', handleClickOutside);
-
-      return () => {
-        document.removeEventListener('keydown', handleEscape);
-        document.removeEventListener('click', handleClickOutside);
-      };
-    }
-  }, [isOpen, closeOnOutsideClick]);
-
-  const triggerElement = React.cloneElement(trigger, {
-    ref: triggerRef,
-    onClick: () => setIsOpen(!isOpen),
-    'aria-expanded': isOpen,
-  });
-
-  return (
-    <>
-      {triggerElement}
-      {isOpen &&
-        createPortal(
-          <div
-            ref={popoverRef}
-            className={`popover popover-${size} ${isOpen ? 'is-visible' : ''}`}
-            role="dialog"
-            aria-labelledby={title ? 'popover-title' : undefined}
-            data-position={position}
-            style={{
-              position: 'absolute',
-              top: `${coords.top}px`,
-              left: `${coords.left}px`,
-            }}
-          >
-            <div className="popover-arrow" />
-
-            {title && (
-              <div className="popover-header">
-                <button
-                  className="popover-close"
-                  onClick={() => setIsOpen(false)}
-                  aria-label="閉じる"
-                >
-                  ×
-                </button>
-                <h3 id="popover-title" className="popover-title">
-                  {title}
-                </h3>
-              </div>
-            )}
-
-            <div className="popover-body">{children}</div>
-
-            {footer && <div className="popover-footer">{footer}</div>}
-          </div>,
-          document.body
-        )}
-    </>
-  );
-}
-
-// 使用例
-function App() {
-  return (
-    <div>
-      <Popover
-        trigger={<button className="button">詳細を表示</button>}
-        title="詳細情報"
-        size="default"
-      >
-        <p>ここに詳細な説明が入ります。</p>
-      </Popover>
-
-      <Popover
-        trigger={<button className="button">設定</button>}
-        title="通知設定"
-        size="large"
-        footer={
-          <>
-            <button className="button button-secondary">キャンセル</button>
-            <button className="button button-primary">保存</button>
-          </>
-        }
-      >
-        <form>
-          <label>
-            <input type="checkbox" /> メール通知を受け取る
-          </label>
-        </form>
-      </Popover>
+    <div class="popover-header">
+      <h3 id="popover-title" class="popover-title">
+        タイトル
+      </h3>
+      <button class="popover-close" aria-label="ポップオーバーを閉じる">
+        <svg aria-hidden="true" width="20" height="20">×</svg>
+      </button>
     </div>
-  );
-}
+
+    <div class="popover-body">
+      コンテンツ
+    </div>
+  </div>
+</div>
 ```
+
+**キーボード操作**
+
+- `Esc`: ポップオーバーを閉じる
+- `Tab`: フォーカス可能要素間を移動
+
+**スクリーンリーダー対応**
+
+- `role="dialog"` でダイアログであることを明示
+- `aria-haspopup="dialog"` でポップオーバーの存在を示す
+- `aria-expanded` でポップオーバーの開閉状態を示す
+- `aria-labelledby` でタイトル要素を関連付け
+- 矢印には `aria-hidden="true"` を設定（装飾的要素のため）
+- 閉じるボタンには `aria-label` で明確なラベルを提供
 
 ---
-
 ## アクセシビリティ
 
 ### ARIA属性

@@ -192,21 +192,19 @@
 
 ### Pattern 2: Plain HTML (推奨)
 
-### HTML
+#### CSSファイルの読み込み
 
 ```html
-<!-- 基本的なドロップダウン -->
-<div class="dropdown">
-  <button
-    class="dropdown-trigger"
-    aria-haspopup="listbox"
-    aria-expanded="false"
-  >
-    選択してください
-    <span class="dropdown-arrow">▼</span>
-  </button>
+<link rel="stylesheet" href="@hidearea-design/tokens/build/css/html/overlays/dropdown.css">
+```
 
-  <div class="dropdown-menu" role="listbox" hidden>
+#### 基本的な構造
+
+Dropdown コンポーネントは `.ha-dropdown` をルート要素とし、`open` 属性でメニューの表示・非表示を制御します。
+
+```html
+<div class="ha-dropdown" open>
+  <div class="dropdown-menu">
     <button class="dropdown-item" role="option" aria-selected="false">
       オプション 1
     </button>
@@ -218,699 +216,552 @@
     </button>
   </div>
 </div>
+```
 
-<!-- アイコン付きドロップダウン -->
-<div class="dropdown">
-  <button class="dropdown-trigger">アクション</button>
+#### アイコン付きアイテム
 
-  <div class="dropdown-menu" role="menu">
+```html
+<div class="ha-dropdown" open>
+  <div class="dropdown-menu">
     <button class="dropdown-item" role="menuitem">
-      <span class="dropdown-icon">✏️</span>
+      <svg class="dropdown-item-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M13.5 1a1.5 1.5 0 010 3h-11a1.5 1.5 0 010-3h11zM13.5 6a1.5 1.5 0 010 3h-11a1.5 1.5 0 010-3h11zM13.5 11a1.5 1.5 0 010 3h-11a1.5 1.5 0 010-3h11z"/>
+      </svg>
       編集
     </button>
     <button class="dropdown-item" role="menuitem">
-      <span class="dropdown-icon">📋</span>
+      <svg class="dropdown-item-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M4 2a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2V2z"/>
+      </svg>
       複製
     </button>
     <button class="dropdown-item" role="menuitem">
-      <span class="dropdown-icon">📤</span>
+      <svg class="dropdown-item-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M8 0a1 1 0 011 1v6h6a1 1 0 110 2H9v6a1 1 0 11-2 0V9H1a1 1 0 010-2h6V1a1 1 0 011-1z"/>
+      </svg>
       共有
     </button>
-    <hr class="dropdown-divider" />
-    <button class="dropdown-item danger" role="menuitem">
-      <span class="dropdown-icon">🗑️</span>
-      削除
-    </button>
   </div>
 </div>
+```
 
-<!-- 選択状態付きドロップダウン -->
-<div class="dropdown">
-  <button class="dropdown-trigger">並び順</button>
+#### 選択インジケーター付き
 
-  <div class="dropdown-menu" role="listbox">
-    <button class="dropdown-item selected" role="option" aria-selected="true">
-      <span class="dropdown-checkmark">✓</span>
-      名前順
+```html
+<div class="ha-dropdown" open>
+  <div class="dropdown-menu">
+    <button class="dropdown-item" role="option" aria-selected="true">
+      <svg class="dropdown-item-checkmark" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M13.485 1.929a1 1 0 011.414 1.414l-8 8a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L6 9.657l7.485-7.728z"/>
+      </svg>
+      日本語
     </button>
     <button class="dropdown-item" role="option" aria-selected="false">
-      日付順
+      <svg class="dropdown-item-checkmark" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M13.485 1.929a1 1 0 011.414 1.414l-8 8a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L6 9.657l7.485-7.728z"/>
+      </svg>
+      English
     </button>
     <button class="dropdown-item" role="option" aria-selected="false">
-      サイズ順
+      <svg class="dropdown-item-checkmark" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M13.485 1.929a1 1 0 011.414 1.414l-8 8a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L6 9.657l7.485-7.728z"/>
+      </svg>
+      中文
     </button>
   </div>
 </div>
+```
 
-<!-- グループ化ドロップダウン -->
-<div class="dropdown">
-  <button class="dropdown-trigger">カテゴリ選択</button>
+#### ディバイダー
 
-  <div class="dropdown-menu" role="listbox">
-    <div class="dropdown-group-header">最近使用</div>
-    <button class="dropdown-item" role="option">プロジェクトA</button>
-    <button class="dropdown-item" role="option">プロジェクトB</button>
-
-    <hr class="dropdown-divider" />
-
-    <div class="dropdown-group-header">すべて</div>
-    <button class="dropdown-item" role="option">プロジェクトC</button>
-    <button class="dropdown-item" role="option">プロジェクトD</button>
-    <button class="dropdown-item" role="option">プロジェクトE</button>
+```html
+<div class="ha-dropdown" open>
+  <div class="dropdown-menu">
+    <button class="dropdown-item" role="menuitem">プロフィール</button>
+    <button class="dropdown-item" role="menuitem">設定</button>
+    <div class="dropdown-divider"></div>
+    <button class="dropdown-item" role="menuitem">ログアウト</button>
   </div>
 </div>
+```
 
-<!-- 検索機能付きドロップダウン -->
-<div class="dropdown">
-  <button class="dropdown-trigger">国を選択</button>
+#### グループヘッダー
 
-  <div class="dropdown-menu dropdown-searchable" role="listbox">
+```html
+<div class="ha-dropdown" open>
+  <div class="dropdown-menu">
+    <div class="dropdown-group-header">アカウント</div>
+    <button class="dropdown-item" role="menuitem">プロフィール</button>
+    <button class="dropdown-item" role="menuitem">設定</button>
+
+    <div class="dropdown-group-header">その他</div>
+    <button class="dropdown-item" role="menuitem">ヘルプ</button>
+    <button class="dropdown-item" role="menuitem">フィードバック</button>
+  </div>
+</div>
+```
+
+#### 検索機能付き
+
+```html
+<div class="ha-dropdown" open>
+  <div class="dropdown-menu">
     <div class="dropdown-search">
-      <input
-        type="text"
-        class="dropdown-search-input"
-        placeholder="検索..."
-        aria-label="国を検索"
-      />
+      <input type="text" placeholder="検索...">
     </div>
-
-    <button class="dropdown-item" role="option">日本</button>
-    <button class="dropdown-item" role="option">アメリカ</button>
-    <button class="dropdown-item" role="option">イギリス</button>
-    <button class="dropdown-item" role="option">フランス</button>
-    <button class="dropdown-item" role="option">ドイツ</button>
-
-    <div class="dropdown-empty" hidden>
-      検索結果が見つかりません
-    </div>
+    <button class="dropdown-item" role="option">オプション 1</button>
+    <button class="dropdown-item" role="option">オプション 2</button>
+    <button class="dropdown-item" role="option">オプション 3</button>
   </div>
 </div>
 ```
 
-### CSS
+#### 無効化されたアイテム
 
-```css
-/* ドロップダウンコンテナ */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* ドロップダウンメニュー */
-.dropdown-menu {
-  position: absolute;
-  top: calc(100% + var(--component-dropdown-offset));
-  left: 0;
-  z-index: var(--component-dropdown-z-index);
-  min-width: var(--component-dropdown-container-min-width);
-  max-width: var(--component-dropdown-container-max-width);
-  max-height: var(--component-dropdown-container-max-height);
-  padding: var(--component-dropdown-container-padding-vertical)
-           var(--component-dropdown-container-padding-horizontal);
-  background-color: var(--component-dropdown-container-background);
-  border: var(--component-dropdown-container-border-width) solid
-          var(--component-dropdown-container-border-color);
-  border-radius: var(--component-dropdown-container-border-radius);
-  box-shadow: var(--component-dropdown-container-shadow);
-  overflow: var(--component-dropdown-container-overflow);
-  opacity: 0;
-  transform: translateY(-8px);
-  transition: opacity var(--component-dropdown-animation-duration)
-              var(--component-dropdown-animation-timing),
-              transform var(--component-dropdown-animation-duration)
-              var(--component-dropdown-animation-timing);
-  pointer-events: none;
-}
-
-.dropdown-menu[hidden] {
-  display: none;
-}
-
-.dropdown-menu.is-open {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-/* ドロップダウンアイテム */
-.dropdown-item {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  min-height: var(--component-dropdown-item-min-height-default);
-  padding: var(--component-dropdown-item-padding-vertical)
-           var(--component-dropdown-item-padding-horizontal);
-  background: var(--component-dropdown-item-background-default);
-  border: none;
-  color: var(--component-dropdown-item-text-default);
-  font-size: var(--component-dropdown-item-font-size);
-  font-weight: var(--component-dropdown-item-font-weight-default);
-  line-height: var(--component-dropdown-item-line-height);
-  text-align: left;
-  cursor: var(--component-dropdown-item-cursor-default);
-  transition: var(--component-dropdown-transition-properties)
-              var(--component-dropdown-transition-duration)
-              var(--component-dropdown-transition-timing);
-}
-
-.dropdown-item:hover {
-  background: var(--component-dropdown-item-background-hover);
-  color: var(--component-dropdown-item-text-hover);
-}
-
-.dropdown-item:active {
-  background: var(--component-dropdown-item-background-active);
-}
-
-.dropdown-item.selected {
-  background: var(--component-dropdown-item-background-selected);
-  color: var(--component-dropdown-item-text-selected);
-  font-weight: var(--component-dropdown-item-font-weight-selected);
-}
-
-.dropdown-item:disabled,
-.dropdown-item.disabled {
-  background: var(--component-dropdown-item-background-disabled);
-  color: var(--component-dropdown-item-text-disabled);
-  cursor: var(--component-dropdown-item-cursor-disabled);
-}
-
-/* チェックマーク */
-.dropdown-checkmark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--component-dropdown-checkmark-size);
-  height: var(--component-dropdown-checkmark-size);
-  margin-right: var(--component-dropdown-checkmark-margin-right);
-  color: var(--component-dropdown-checkmark-color);
-}
-
-.dropdown-item:not(.selected) .dropdown-checkmark {
-  opacity: 0;
-}
-
-/* アイコン */
-.dropdown-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--component-dropdown-icon-size);
-  height: var(--component-dropdown-icon-size);
-  margin-right: var(--component-dropdown-icon-margin-right);
-  color: var(--component-dropdown-icon-color-default);
-}
-
-.dropdown-item:hover .dropdown-icon {
-  color: var(--component-dropdown-icon-color-hover);
-}
-
-.dropdown-item:disabled .dropdown-icon,
-.dropdown-item.disabled .dropdown-icon {
-  color: var(--component-dropdown-icon-color-disabled);
-}
-
-/* ディバイダー */
-.dropdown-divider {
-  height: var(--component-dropdown-divider-height);
-  margin: var(--component-dropdown-divider-margin-vertical)
-          var(--component-dropdown-divider-margin-horizontal);
-  background: var(--component-dropdown-divider-background);
-  border: none;
-}
-
-/* グループヘッダー */
-.dropdown-group-header {
-  padding: var(--component-dropdown-group-header-padding-vertical)
-           var(--component-dropdown-group-header-padding-horizontal);
-  margin-top: var(--component-dropdown-group-header-margin-top);
-  font-size: var(--component-dropdown-group-header-font-size);
-  font-weight: var(--component-dropdown-group-header-font-weight);
-  text-transform: var(--component-dropdown-group-header-text-transform);
-  letter-spacing: var(--component-dropdown-group-header-letter-spacing);
-  color: var(--component-dropdown-group-header-color);
-}
-
-.dropdown-group-header:first-child {
-  margin-top: 0;
-}
-
-/* 検索 */
-.dropdown-search {
-  padding: var(--component-dropdown-search-padding);
-  border-bottom: var(--component-dropdown-search-border-bottom);
-  background: var(--component-dropdown-search-background);
-}
-
-.dropdown-search-input {
-  width: 100%;
-  padding: var(--component-dropdown-search-input-padding);
-  background: var(--component-dropdown-search-input-background);
-  border: none;
-  border-radius: var(--component-dropdown-search-input-border-radius);
-  font-size: var(--component-dropdown-search-input-font-size);
-  outline: none;
-}
-
-.dropdown-search-input:focus {
-  box-shadow: 0 0 0 2px var(--primary-default);
-}
-
-/* 空状態 */
-.dropdown-empty {
-  padding: var(--component-dropdown-empty-padding-vertical)
-           var(--component-dropdown-empty-padding-horizontal);
-  font-size: var(--component-dropdown-empty-font-size);
-  color: var(--component-dropdown-empty-color);
-  text-align: var(--component-dropdown-empty-text-align);
-}
-
-/* サイズバリアント */
-.dropdown-item.dropdown-item-small {
-  min-height: var(--component-dropdown-item-min-height-small);
-}
-
-.dropdown-item.dropdown-item-large {
-  min-height: var(--component-dropdown-item-min-height-large);
-}
+```html
+<div class="ha-dropdown" open>
+  <div class="dropdown-menu">
+    <button class="dropdown-item" role="menuitem">有効なアイテム</button>
+    <button class="dropdown-item" role="menuitem" aria-disabled="true">無効なアイテム</button>
+    <button class="dropdown-item" role="menuitem" disabled>無効なアイテム</button>
+  </div>
+</div>
 ```
 
-### JavaScript
+#### サイズバリアント
+
+```html
+<!-- Small -->
+<div class="ha-dropdown" size="sm" open>
+  <div class="dropdown-menu">
+    <button class="dropdown-item">Small アイテム</button>
+  </div>
+</div>
+
+<!-- Medium (デフォルト) -->
+<div class="ha-dropdown" size="md" open>
+  <div class="dropdown-menu">
+    <button class="dropdown-item">Medium アイテム</button>
+  </div>
+</div>
+
+<!-- Large -->
+<div class="ha-dropdown" size="lg" open>
+  <div class="dropdown-menu">
+    <button class="dropdown-item">Large アイテム</button>
+  </div>
+</div>
+```
+
+#### 配置バリアント
+
+```html
+<!-- Top -->
+<div class="ha-dropdown" placement="top" open>
+  <div class="dropdown-menu">
+    <button class="dropdown-item">アイテム</button>
+  </div>
+</div>
+
+<!-- Left -->
+<div class="ha-dropdown" placement="left" open>
+  <div class="dropdown-menu">
+    <button class="dropdown-item">アイテム</button>
+  </div>
+</div>
+
+<!-- Right -->
+<div class="ha-dropdown" placement="right" open>
+  <div class="dropdown-menu">
+    <button class="dropdown-item">アイテム</button>
+  </div>
+</div>
+```
+
+#### JavaScript による制御
+
+Dropdown の開閉とキーボードナビゲーションを実装するコントローラークラス:
 
 ```javascript
-class Dropdown {
-  constructor(element) {
-    this.dropdown = element;
-    this.trigger = element.querySelector('.dropdown-trigger');
-    this.menu = element.querySelector('.dropdown-menu');
-    this.items = Array.from(element.querySelectorAll('.dropdown-item'));
-    this.searchInput = element.querySelector('.dropdown-search-input');
-    this.emptyState = element.querySelector('.dropdown-empty');
-    this.isOpen = false;
-    this.selectedIndex = -1;
+class DropdownController {
+  constructor(dropdownElement, triggerElement) {
+    this.dropdown = dropdownElement;
+    this.trigger = triggerElement;
+    this.menu = dropdownElement.querySelector('.dropdown-menu');
+    this.items = [];
+    this.currentIndex = -1;
+    this.searchQuery = '';
+    this.searchTimeout = null;
 
     this.init();
   }
 
   init() {
-    // トリガークリック
-    this.trigger.addEventListener('click', () => this.toggle());
-
-    // アイテムクリック
-    this.items.forEach((item, index) => {
-      item.addEventListener('click', () => this.selectItem(index));
+    // トリガーボタンのクリックイベント
+    this.trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.toggle();
     });
 
-    // 外側クリック
+    // 外部クリックで閉じる
     document.addEventListener('click', (e) => {
-      if (!this.dropdown.contains(e.target) && this.isOpen) {
+      if (this.isOpen() && !this.dropdown.contains(e.target)) {
         this.close();
       }
     });
 
-    // キーボードナビゲーション
-    this.trigger.addEventListener('keydown', (e) => this.handleKeydown(e));
-    this.menu.addEventListener('keydown', (e) => this.handleKeydown(e));
+    // キーボードイベント
+    this.handleKeyDown = (e) => {
+      if (!this.isOpen()) return;
 
-    // 検索
-    if (this.searchInput) {
-      this.searchInput.addEventListener('input', (e) => this.handleSearch(e));
-    }
+      switch (e.key) {
+        case 'Escape':
+          e.preventDefault();
+          this.close();
+          this.trigger.focus();
+          break;
+        case 'ArrowDown':
+          e.preventDefault();
+          this.navigateNext();
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          this.navigatePrevious();
+          break;
+        case 'Home':
+          e.preventDefault();
+          this.navigateFirst();
+          break;
+        case 'End':
+          e.preventDefault();
+          this.navigateLast();
+          break;
+        case 'Enter':
+        case ' ':
+          e.preventDefault();
+          this.selectCurrent();
+          break;
+        default:
+          // タイプアヘッド検索
+          if (e.key.length === 1) {
+            this.handleTypeAhead(e.key);
+          }
+      }
+    };
+
+    document.addEventListener('keydown', this.handleKeyDown);
+
+    // アイテムのクリックイベント
+    this.updateItems();
+  }
+
+  updateItems() {
+    this.items = Array.from(
+      this.menu.querySelectorAll('.dropdown-item:not([disabled]):not([aria-disabled="true"])')
+    );
+
+    this.items.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        this.selectItem(index);
+      });
+    });
   }
 
   open() {
-    this.isOpen = true;
-    this.menu.hidden = false;
+    this.dropdown.setAttribute('open', '');
     this.trigger.setAttribute('aria-expanded', 'true');
-
-    requestAnimationFrame(() => {
-      this.menu.classList.add('is-open');
-    });
-
-    // 検索入力にフォーカス
-    if (this.searchInput) {
-      this.searchInput.focus();
-    }
+    this.updateItems();
+    this.currentIndex = -1;
   }
 
   close() {
-    this.isOpen = false;
-    this.menu.classList.remove('is-open');
+    this.dropdown.removeAttribute('open');
     this.trigger.setAttribute('aria-expanded', 'false');
-
-    setTimeout(() => {
-      if (!this.isOpen) {
-        this.menu.hidden = true;
-      }
-    }, 150);
-
-    this.trigger.focus();
+    this.currentIndex = -1;
   }
 
   toggle() {
-    if (this.isOpen) {
+    if (this.isOpen()) {
       this.close();
     } else {
       this.open();
     }
   }
 
+  isOpen() {
+    return this.dropdown.hasAttribute('open');
+  }
+
+  navigateNext() {
+    if (this.items.length === 0) return;
+
+    this.currentIndex = (this.currentIndex + 1) % this.items.length;
+    this.focusCurrentItem();
+  }
+
+  navigatePrevious() {
+    if (this.items.length === 0) return;
+
+    this.currentIndex = this.currentIndex <= 0
+      ? this.items.length - 1
+      : this.currentIndex - 1;
+    this.focusCurrentItem();
+  }
+
+  navigateFirst() {
+    if (this.items.length === 0) return;
+    this.currentIndex = 0;
+    this.focusCurrentItem();
+  }
+
+  navigateLast() {
+    if (this.items.length === 0) return;
+    this.currentIndex = this.items.length - 1;
+    this.focusCurrentItem();
+  }
+
+  focusCurrentItem() {
+    if (this.currentIndex >= 0 && this.currentIndex < this.items.length) {
+      this.items[this.currentIndex].focus();
+    }
+  }
+
+  selectCurrent() {
+    if (this.currentIndex >= 0 && this.currentIndex < this.items.length) {
+      this.selectItem(this.currentIndex);
+    }
+  }
+
   selectItem(index) {
-    // 以前の選択を解除
-    this.items.forEach((item) => {
-      item.classList.remove('selected');
-      item.setAttribute('aria-selected', 'false');
-    });
-
-    // 新しい選択
     const item = this.items[index];
-    item.classList.add('selected');
+
+    // 選択状態を更新
+    this.items.forEach(i => i.setAttribute('aria-selected', 'false'));
     item.setAttribute('aria-selected', 'true');
-    this.selectedIndex = index;
 
-    // トリガーのテキストを更新
-    const text = item.textContent.trim();
-    this.trigger.querySelector('.dropdown-label')?.textContent = text;
-
-    this.close();
-  }
-
-  handleKeydown(e) {
-    const visibleItems = this.items.filter((item) => {
-      return item.offsetParent !== null && !item.disabled;
-    });
-
-    switch (e.key) {
-      case 'Escape':
-        e.preventDefault();
-        this.close();
-        break;
-
-      case 'ArrowDown':
-        e.preventDefault();
-        if (!this.isOpen) {
-          this.open();
-        } else {
-          this.selectedIndex = Math.min(
-            this.selectedIndex + 1,
-            visibleItems.length - 1
-          );
-          visibleItems[this.selectedIndex]?.focus();
-        }
-        break;
-
-      case 'ArrowUp':
-        e.preventDefault();
-        if (this.isOpen) {
-          this.selectedIndex = Math.max(this.selectedIndex - 1, 0);
-          visibleItems[this.selectedIndex]?.focus();
-        }
-        break;
-
-      case 'Home':
-        e.preventDefault();
-        if (this.isOpen) {
-          this.selectedIndex = 0;
-          visibleItems[0]?.focus();
-        }
-        break;
-
-      case 'End':
-        e.preventDefault();
-        if (this.isOpen) {
-          this.selectedIndex = visibleItems.length - 1;
-          visibleItems[this.selectedIndex]?.focus();
-        }
-        break;
-
-      case 'Enter':
-      case ' ':
-        e.preventDefault();
-        if (this.isOpen && this.selectedIndex >= 0) {
-          const index = this.items.indexOf(visibleItems[this.selectedIndex]);
-          this.selectItem(index);
-        } else if (!this.isOpen) {
-          this.open();
-        }
-        break;
-    }
-  }
-
-  handleSearch(e) {
-    const query = e.target.value.toLowerCase();
-    let visibleCount = 0;
-
-    this.items.forEach((item) => {
-      const text = item.textContent.toLowerCase();
-      const matches = text.includes(query);
-
-      item.hidden = !matches;
-
-      if (matches) visibleCount++;
-    });
-
-    // 空状態の表示/非表示
-    if (this.emptyState) {
-      this.emptyState.hidden = visibleCount > 0;
-    }
-  }
-}
-
-// 初期化
-document.querySelectorAll('.dropdown').forEach((element) => {
-  new Dropdown(element);
-});
-```
-
-### React
-
-```tsx
-import { useEffect, useRef, useState } from 'react';
-
-interface DropdownOption {
-  value: string;
-  label: string;
-  icon?: React.ReactNode;
-  disabled?: boolean;
-}
-
-interface DropdownProps {
-  options: DropdownOption[];
-  value?: string;
-  onChange: (value: string) => void;
-  placeholder?: string;
-  searchable?: boolean;
-  size?: 'small' | 'default' | 'large';
-  grouped?: boolean;
-  groups?: { [key: string]: DropdownOption[] };
-}
-
-function Dropdown({
-  options,
-  value,
-  onChange,
-  placeholder = '選択してください',
-  searchable = false,
-  size = 'default',
-  grouped = false,
-  groups,
-}: DropdownProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedIndex, setSelectedIndex] = useState(-1);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
-
-  const selectedOption = options.find((opt) => opt.value === value);
-
-  const filteredOptions = searchable
-    ? options.filter((opt) =>
-        opt.label.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : options;
-
-  useEffect(() => {
-    if (isOpen && searchable && searchInputRef.current) {
-      searchInputRef.current.focus();
-    }
-  }, [isOpen, searchable]);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target as Node)
-      ) {
-        setIsOpen(false);
+    // カスタムイベントを発火
+    const event = new CustomEvent('dropdown:select', {
+      detail: {
+        value: item.textContent.trim(),
+        index: index,
+        item: item
       }
-    };
+    });
+    this.dropdown.dispatchEvent(event);
 
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, []);
+    // ドロップダウンを閉じる
+    this.close();
+    this.trigger.focus();
+  }
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    const visibleOptions = filteredOptions.filter((opt) => !opt.disabled);
+  handleTypeAhead(key) {
+    clearTimeout(this.searchTimeout);
 
-    switch (e.key) {
-      case 'Escape':
-        e.preventDefault();
-        setIsOpen(false);
-        break;
+    this.searchQuery += key.toLowerCase();
 
-      case 'ArrowDown':
-        e.preventDefault();
-        if (!isOpen) {
-          setIsOpen(true);
-        } else {
-          setSelectedIndex((prev) =>
-            Math.min(prev + 1, visibleOptions.length - 1)
-          );
-        }
-        break;
+    // 検索にマッチするアイテムを探す
+    const matchIndex = this.items.findIndex(item =>
+      item.textContent.trim().toLowerCase().startsWith(this.searchQuery)
+    );
 
-      case 'ArrowUp':
-        e.preventDefault();
-        if (isOpen) {
-          setSelectedIndex((prev) => Math.max(prev - 1, 0));
-        }
-        break;
-
-      case 'Enter':
-      case ' ':
-        e.preventDefault();
-        if (isOpen && selectedIndex >= 0) {
-          onChange(visibleOptions[selectedIndex].value);
-          setIsOpen(false);
-          setSearchQuery('');
-        } else {
-          setIsOpen(!isOpen);
-        }
-        break;
+    if (matchIndex !== -1) {
+      this.currentIndex = matchIndex;
+      this.focusCurrentItem();
     }
-  };
 
-  return (
-    <div ref={dropdownRef} className="dropdown" onKeyDown={handleKeyDown}>
-      <button
-        className="dropdown-trigger"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-haspopup="listbox"
-        aria-expanded={isOpen}
-      >
-        <span className="dropdown-label">
-          {selectedOption?.label || placeholder}
-        </span>
-        <span className="dropdown-arrow">▼</span>
-      </button>
+    // 1秒後に検索クエリをリセット
+    this.searchTimeout = setTimeout(() => {
+      this.searchQuery = '';
+    }, 1000);
+  }
 
-      <div
-        className={`dropdown-menu ${isOpen ? 'is-open' : ''}`}
-        role="listbox"
-        hidden={!isOpen}
-      >
-        {searchable && (
-          <div className="dropdown-search">
-            <input
-              ref={searchInputRef}
-              type="text"
-              className="dropdown-search-input"
-              placeholder="検索..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              aria-label="検索"
-            />
-          </div>
-        )}
-
-        {grouped && groups ? (
-          Object.entries(groups).map(([groupName, groupOptions]) => (
-            <div key={groupName}>
-              <div className="dropdown-group-header">{groupName}</div>
-              {groupOptions.map((option) => (
-                <button
-                  key={option.value}
-                  className={`dropdown-item dropdown-item-${size} ${
-                    option.value === value ? 'selected' : ''
-                  }`}
-                  role="option"
-                  aria-selected={option.value === value}
-                  disabled={option.disabled}
-                  onClick={() => {
-                    onChange(option.value);
-                    setIsOpen(false);
-                    setSearchQuery('');
-                  }}
-                >
-                  {option.value === value && (
-                    <span className="dropdown-checkmark">✓</span>
-                  )}
-                  {option.icon && (
-                    <span className="dropdown-icon">{option.icon}</span>
-                  )}
-                  {option.label}
-                </button>
-              ))}
-            </div>
-          ))
-        ) : (
-          <>
-            {filteredOptions.map((option) => (
-              <button
-                key={option.value}
-                className={`dropdown-item dropdown-item-${size} ${
-                  option.value === value ? 'selected' : ''
-                }`}
-                role="option"
-                aria-selected={option.value === value}
-                disabled={option.disabled}
-                onClick={() => {
-                  onChange(option.value);
-                  setIsOpen(false);
-                  setSearchQuery('');
-                }}
-              >
-                {option.value === value && (
-                  <span className="dropdown-checkmark">✓</span>
-                )}
-                {option.icon && (
-                  <span className="dropdown-icon">{option.icon}</span>
-                )}
-                {option.label}
-              </button>
-            ))}
-          </>
-        )}
-
-        {searchable && filteredOptions.length === 0 && (
-          <div className="dropdown-empty">検索結果が見つかりません</div>
-        )}
-      </div>
-    </div>
-  );
+  destroy() {
+    document.removeEventListener('keydown', this.handleKeyDown);
+  }
 }
 
 // 使用例
-function App() {
-  const [selected, setSelected] = useState('option1');
+const dropdown = document.querySelector('.ha-dropdown');
+const trigger = document.querySelector('#dropdown-trigger');
+const controller = new DropdownController(dropdown, trigger);
 
-  const options = [
-    { value: 'option1', label: 'オプション 1', icon: '📄' },
-    { value: 'option2', label: 'オプション 2', icon: '📁' },
-    { value: 'option3', label: 'オプション 3', icon: '🖼️' },
-  ];
-
-  return (
-    <Dropdown
-      options={options}
-      value={selected}
-      onChange={setSelected}
-      searchable
-      size="default"
-    />
-  );
-}
+// 選択イベントをリスン
+dropdown.addEventListener('dropdown:select', (e) => {
+  console.log('Selected:', e.detail.value);
+  trigger.textContent = e.detail.value;
+});
 ```
+
+#### 検索機能の実装
+
+```javascript
+class SearchableDropdownController extends DropdownController {
+  constructor(dropdownElement, triggerElement) {
+    super(dropdownElement, triggerElement);
+    this.searchInput = dropdownElement.querySelector('.dropdown-search input');
+    this.allItems = [];
+
+    if (this.searchInput) {
+      this.initSearch();
+    }
+  }
+
+  initSearch() {
+    // すべてのアイテムを保存
+    this.allItems = Array.from(
+      this.menu.querySelectorAll('.dropdown-item')
+    );
+
+    // 検索入力イベント
+    this.searchInput.addEventListener('input', (e) => {
+      this.filterItems(e.target.value);
+    });
+
+    // 検索入力のキーイベント（矢印キーなど）
+    this.searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        this.navigateFirst();
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        this.close();
+        this.trigger.focus();
+      }
+    });
+  }
+
+  filterItems(query) {
+    const lowerQuery = query.toLowerCase();
+    let visibleCount = 0;
+
+    this.allItems.forEach(item => {
+      const text = item.textContent.trim().toLowerCase();
+      const matches = text.includes(lowerQuery);
+
+      if (matches) {
+        item.style.display = '';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    // アイテムリストを更新
+    this.updateItems();
+
+    // 空の状態を表示/非表示
+    this.toggleEmptyState(visibleCount === 0);
+  }
+
+  toggleEmptyState(show) {
+    let emptyState = this.menu.querySelector('.dropdown-empty');
+
+    if (show && !emptyState) {
+      emptyState = document.createElement('div');
+      emptyState.className = 'dropdown-empty';
+      emptyState.textContent = '結果が見つかりません';
+      this.menu.appendChild(emptyState);
+    } else if (!show && emptyState) {
+      emptyState.remove();
+    }
+  }
+
+  open() {
+    super.open();
+
+    // 検索入力をクリア
+    if (this.searchInput) {
+      this.searchInput.value = '';
+      this.filterItems('');
+
+      // 検索入力にフォーカス
+      setTimeout(() => this.searchInput.focus(), 10);
+    }
+  }
+}
+
+// 使用例
+const searchableDropdown = document.querySelector('.ha-dropdown');
+const searchableTrigger = document.querySelector('#searchable-trigger');
+const searchableController = new SearchableDropdownController(
+  searchableDropdown,
+  searchableTrigger
+);
+```
+
+#### アクセシビリティ
+
+Dropdown は ARIA 属性を適切に設定する必要があります:
+
+**必須の ARIA 属性**
+
+```html
+<!-- トリガーボタン -->
+<button
+  id="dropdown-trigger"
+  aria-haspopup="listbox"
+  aria-expanded="false"
+  aria-controls="dropdown-menu">
+  選択してください
+</button>
+
+<!-- ドロップダウンメニュー -->
+<div class="ha-dropdown">
+  <div
+    id="dropdown-menu"
+    class="dropdown-menu"
+    role="listbox"
+    aria-labelledby="dropdown-trigger">
+
+    <button
+      class="dropdown-item"
+      role="option"
+      aria-selected="false">
+      オプション 1
+    </button>
+
+    <button
+      class="dropdown-item"
+      role="option"
+      aria-selected="true">
+      オプション 2
+    </button>
+  </div>
+</div>
+```
+
+**メニューとリストボックスの使い分け**
+
+```html
+<!-- Listbox: 単一/複数選択 -->
+<div class="dropdown-menu" role="listbox">
+  <button class="dropdown-item" role="option" aria-selected="false">項目</button>
+</div>
+
+<!-- Menu: アクション -->
+<div class="dropdown-menu" role="menu">
+  <button class="dropdown-item" role="menuitem">アクション</button>
+</div>
+```
+
+**キーボード操作**
+
+- `↓ / ArrowDown`: 次のアイテムへ移動
+- `↑ / ArrowUp`: 前のアイテムへ移動
+- `Home`: 最初のアイテムへ移動
+- `End`: 最後のアイテムへ移動
+- `Enter / Space`: 現在のアイテムを選択
+- `Esc`: ドロップダウンを閉じる
+- `a-z`: タイプアヘッド検索（入力した文字で始まるアイテムへ移動）
+
+**スクリーンリーダー対応**
+
+- `role="listbox"` または `role="menu"` でドロップダウンの種類を明示
+- `aria-haspopup` でポップアップの種類を示す
+- `aria-expanded` でメニューの開閉状態を示す
+- `aria-selected` でアイテムの選択状態を示す
+- `aria-disabled` で無効なアイテムを示す
+- グループヘッダーは装飾的要素として扱う（role不要）
 
 ---
 
