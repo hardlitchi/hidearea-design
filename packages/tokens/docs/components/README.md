@@ -1,7 +1,7 @@
 # コンポーネントリファレンス
 
 **Hidearea Design System Tokens**
-**最終更新:** 2025-12-10
+**最終更新:** 2025-12-15
 
 ---
 
@@ -11,21 +11,24 @@
 
 ---
 
-## 実装済みコンポーネント (29)
+## 実装済みコンポーネント (36)
 
-### Forms (フォーム) ✅ 完成 7/7
+### Forms (フォーム) ✅ 完成 10/10
 
 ユーザー入力を受け付けるコンポーネント
 
 | コンポーネント | バリアント数 | ステータス | ドキュメント |
 |--------------|------------|----------|------------|
-| **Button** | 4 (primary, secondary, ghost, danger) | ✅ 実装済み | [forms/button.md](./forms/button.md) |
-| **Input** | 1 (default) + 状態 (error, success) | ✅ 実装済み | [forms/input.md](./forms/input.md) |
-| **Checkbox** | 3サイズ (small, default, large) | ✅ 実装済み | [forms/checkbox.md](./forms/checkbox.md) |
-| **Radio** | 3サイズ (small, default, large) | ✅ 実装済み | [forms/radio.md](./forms/radio.md) |
-| **Select** | 1 (default) + 状態 | ✅ 実装済み | [forms/select.md](./forms/select.md) |
-| **Textarea** | 3サイズ (small, default, large) | ✅ 実装済み | [forms/textarea.md](./forms/textarea.md) |
-| **Switch** | 3サイズ (small, default, large) | ✅ 実装済み | [forms/switch.md](./forms/switch.md) |
+| **Checkbox** | 3サイズ (small, medium, large) | ✅ 実装済み | [forms/checkbox.md](./forms/checkbox.md) |
+| **Date Picker** | カレンダー + 範囲選択 | ✅ 実装済み | [forms/date-picker.md](./forms/date-picker.md) |
+| **File Upload** | ドラッグ&ドロップ対応 | ✅ 実装済み | [forms/file-upload.md](./forms/file-upload.md) |
+| **Form Group** | ラベル + 検証 | ✅ 実装済み | [forms/form-group.md](./forms/form-group.md) |
+| **Input** | 3バリアント × 3サイズ | ✅ 実装済み | [forms/input.md](./forms/input.md) |
+| **Radio** | 3サイズ (small, medium, large) | ✅ 実装済み | [forms/radio.md](./forms/radio.md) |
+| **Select** | 3バリアント + 状態 | ✅ 実装済み | [forms/select.md](./forms/select.md) |
+| **Switch** | 3サイズ (small, medium, large) | ✅ 実装済み | [forms/switch.md](./forms/switch.md) |
+| **Textarea** | 3バリアント × 3サイズ | ✅ 実装済み | [forms/textarea.md](./forms/textarea.md) |
+| **Time Picker** | 12/24時間形式 | ✅ 実装済み | [forms/time-picker.md](./forms/time-picker.md) |
 
 ### Feedback (フィードバック) ✅ 完成 6/6
 
@@ -33,61 +36,77 @@
 
 | コンポーネント | バリアント数 | ステータス | ドキュメント |
 |--------------|------------|----------|------------|
-| **Badge** | 6 (primary, success, error, warning, info, neutral) | ✅ 実装済み | [data-display/badge.md](../data-display/badge.md) |
 | **Alert** | 4 (success, error, warning, info) | ✅ 実装済み | [feedback/alert.md](./feedback/alert.md) |
-| **Toast** | 4 (success, error, warning, info) | ✅ 実装済み | [feedback/toast.md](./feedback/toast.md) |
 | **Progress** | 5色 + 3サイズ + circle型 | ✅ 実装済み | [feedback/progress.md](./feedback/progress.md) |
 | **Skeleton** | 7種類 (text, heading, avatar, etc) | ✅ 実装済み | [feedback/skeleton.md](./feedback/skeleton.md) |
 | **Spinner** | 4サイズ + 7色 | ✅ 実装済み | [feedback/spinner.md](./feedback/spinner.md) |
+| **Toast** | 4 (success, error, warning, info) | ✅ 実装済み | [feedback/toast.md](./feedback/toast.md) |
+| **Toast Container** | 4配置 + スタック管理 | ✅ 実装済み | [feedback/toast-container.md](./feedback/toast-container.md) |
 
-### Overlays (オーバーレイ) ✅ 完成 6/6
+### Overlays (オーバーレイ) 3/6
 
 画面上に重なって表示される要素
 
 | コンポーネント | バリアント数 | ステータス | ドキュメント |
 |--------------|------------|----------|------------|
-| **Modal** | 1 (default) | ✅ 実装済み | [overlays/modal.md](./overlays/modal.md) |
-| **Tooltip** | 1 (default) | ✅ 実装済み | [overlays/tooltip.md](./overlays/tooltip.md) |
-| **Dialog** | 5 (confirmation, warning, destructive, info, success) | ✅ 実装済み | [overlays/dialog.md](./overlays/dialog.md) |
+| **Dialog** | 5 (confirmation, warning, destructive, info, success) | ⏸️ CSS未完了 | [overlays/dialog.md](./overlays/dialog.md) |
 | **Drawer** | 4位置 (left, right, top, bottom) | ✅ 実装済み | [overlays/drawer.md](./overlays/drawer.md) |
-| **Popover** | 3サイズ + arrow | ✅ 実装済み | [overlays/popover.md](./overlays/popover.md) |
-| **Dropdown** | 1 (default) + search | ✅ 実装済み | [overlays/dropdown.md](./overlays/dropdown.md) |
+| **Dropdown** | 1 (default) + search | ⏸️ CSS未完了 | [overlays/dropdown.md](./overlays/dropdown.md) |
+| **Modal** | 1 (default) | ✅ 実装済み | [overlays/modal.md](./overlays/modal.md) |
+| **Popover** | 3サイズ + arrow | ⏸️ CSS未完了 | [overlays/popover.md](./overlays/popover.md) |
+| **Tooltip** | 4方向配置 | ✅ 実装済み | [overlays/tooltip.md](./overlays/tooltip.md) |
 
-### Data Display (データ表示) ✅ 完成 5/5
+### Data Display (データ表示) ✅ 完成 9/9
 
 データを表示するコンポーネント
 
 | コンポーネント | バリアント数 | ステータス | ドキュメント |
 |--------------|------------|----------|------------|
-| **Card** | 1 (default) + 状態 | ✅ 実装済み | [data-display/card.md](./data-display/card.md) |
-| **Table** | 1 (default) | ✅ 実装済み | [data-display/table.md](./data-display/table.md) |
-| **List** | 3密度 (compact, default, comfortable) | ✅ 実装済み | [data-display/list.md](./data-display/list.md) |
+| **Accordion** | 展開/折りたたみ | ✅ 実装済み | [data-display/accordion.md](./data-display/accordion.md) |
 | **Avatar** | 6サイズ + 6色 + 3形状 + ステータス | ✅ 実装済み | [data-display/avatar.md](./data-display/avatar.md) |
+| **Avatar Group** | 最大表示数制御 | ✅ 実装済み | [data-display/avatar-group.md](./data-display/avatar-group.md) |
+| **Badge** | 6 (primary, success, error, warning, info, neutral) | ✅ 実装済み | [data-display/badge.md](./data-display/badge.md) |
+| **Card** | 1 (default) + 状態 | ✅ 実装済み | [data-display/card.md](./data-display/card.md) |
 | **Chip** | 3サイズ + 6色 + アイコン対応 | ✅ 実装済み | [data-display/chip.md](./data-display/chip.md) |
+| **Datagrid** | ソート・フィルタ・ページング | ✅ 実装済み | [data-display/datagrid.md](./data-display/datagrid.md) |
+| **List** | 3コンポーネント (Container/Divider/Item) | ✅ 実装済み | [data-display/list.md](./data-display/list.md) |
+| **Table** | ソート・選択対応 | ✅ 実装済み | [data-display/table.md](./data-display/table.md) |
 
-### Navigation (ナビゲーション) ✅ 完成 5/5
+### Layout (レイアウト) ✅ 完成 4/4
+
+レイアウトとコンテナ
+
+| コンポーネント | バリアント数 | ステータス | ドキュメント |
+|--------------|------------|----------|------------|
+| **Button** | 5バリアント | ✅ 実装済み | [layout/button.md](../layout/button.md) |
+| **Container** | レスポンシブ幅制御 | ✅ 実装済み | [layout/container.md](../layout/container.md) |
+| **Grid** | 12カラムシステム | ✅ 実装済み | [layout/grid.md](../layout/grid.md) |
+| **Stack** | 垂直/水平スペーシング | ✅ 実装済み | [layout/stack.md](../layout/stack.md) |
+
+### Navigation (ナビゲーション) 4/5
 
 ページ間やセクション間の移動
 
 | コンポーネント | バリアント数 | ステータス | ドキュメント |
 |--------------|------------|----------|------------|
-| **Navigation** | 1 (default) | ✅ 実装済み | [navigation/navigation.md](./navigation/navigation.md) |
-| **Tabs** | 3 (line, enclosed, soft) + 3サイズ | ✅ 実装済み | [navigation/tabs.md](./navigation/tabs.md) |
 | **Breadcrumb** | 4種セパレーター + 3サイズ | ✅ 実装済み | [navigation/breadcrumb.md](./navigation/breadcrumb.md) |
-| **Pagination** | 3 (default, simple, rounded) | ✅ 実装済み | [navigation/pagination.md](./navigation/pagination.md) |
 | **Menu** | 3サイズ (compact, default, comfortable) | ✅ 実装済み | [navigation/menu.md](./navigation/menu.md) |
+| **Navigation** | 1 (default) | ⏸️ CSS未完了 | [navigation/navigation.md](./navigation/navigation.md) |
+| **Pagination** | 3 (default, simple, rounded) | ✅ 実装済み | [navigation/pagination.md](./navigation/pagination.md) |
+| **Tabs** | 3 (line, enclosed, soft) + 3サイズ | ✅ 実装済み | [navigation/tabs.md](./navigation/tabs.md) |
 
 ---
 
 ## コンポーネント実装完了状況
 
-全29コンポーネントが実装完了しました！
+**CSS実装済み**: 32/36コンポーネント (89%)
 
-- **Forms**: 7/7 ✅
+- **Forms**: 10/10 ✅
 - **Feedback**: 6/6 ✅
-- **Overlays**: 6/6 ✅
-- **Data Display**: 5/5 ✅
-- **Navigation**: 5/5 ✅
+- **Data Display**: 9/9 ✅
+- **Layout**: 4/4 ✅
+- **Overlays**: 3/6 ⏸️ (Dialog, Dropdown, Popover はYAML定義のみ)
+- **Navigation**: 4/5 ⏸️ (Navigation はYAML定義のみ)
 
 ---
 
