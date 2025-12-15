@@ -77,7 +77,9 @@ Navigationコンポーネントは、アプリケーション内のページ間�
 
 ---
 
-## 使用例
+## 使用方法
+
+### Pattern 2: Plain HTML (推奨)
 
 ### HTML/CSS
 
