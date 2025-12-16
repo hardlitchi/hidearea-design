@@ -160,7 +160,7 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--spacing-4);
-  border-bottom: 1px solid var(--color-neutral-300);
+  border-bottom: 1px solid var(--border-default);
 }
 
 .drawer__close {
@@ -169,7 +169,7 @@
   font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
-  color: var(--color-neutral-600);
+  color: var(--foreground-secondary);
   padding: var(--spacing-1);
   margin: calc(var(--spacing-1) * -1);
   transition: color var(--animation-duration-fast) ease;
@@ -187,7 +187,7 @@
 
 .drawer__footer {
   padding: var(--spacing-4);
-  border-top: 1px solid var(--color-neutral-300);
+  border-top: 1px solid var(--border-default);
 }
 
 /* ========================================
@@ -260,7 +260,7 @@
     transform: translateX(-50%);
     width: 40px;
     height: 4px;
-    background-color: var(--color-neutral-400);
+    background-color: var(--foreground-tertiary);
     border-radius: var(--border-radius-full, 9999px);
     opacity: 0.5;
   }
@@ -286,7 +286,7 @@
 /* Hover effects only for devices that support hover */
 @media (hover: none) {
   .drawer__close:hover {
-    color: var(--color-neutral-600);
+    color: var(--foreground-secondary);
   }
 }
 
