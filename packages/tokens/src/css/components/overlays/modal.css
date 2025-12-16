@@ -62,7 +62,7 @@
    ======================================== */
 
 .dialog {
-  background: var(--modal-bg, var(--color-white));
+  background: var(--modal-bg, var(--foreground-inverse));
   border-radius: var(--modal-border-radius, var(--radius-lg, 8px));
   box-shadow: var(--modal-shadow, var(--shadow-2xl));
   width: 100%;
@@ -139,7 +139,7 @@
 
 .header {
   padding: var(--modal-header-padding, 20px 24px);
-  border-bottom: 1px solid var(--modal-border-color, var(--color-gray-200));
+  border-bottom: 1px solid var(--modal-border-color, var(--border-default));
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -160,7 +160,7 @@
 
 .footer {
   padding: var(--modal-footer-padding, 16px 24px);
-  border-top: 1px solid var(--modal-border-color, var(--color-gray-200));
+  border-top: 1px solid var(--modal-border-color, var(--border-default));
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -174,7 +174,7 @@
 .close-button {
   background: transparent;
   border: none;
-  color: var(--modal-close-color, var(--color-gray-600));
+  color: var(--modal-close-color, var(--foreground-secondary));
   cursor: pointer;
   padding: 8px;
   border-radius: var(--radius-base, 4px);
@@ -188,7 +188,7 @@
 }
 
 .close-button:hover {
-  background: var(--modal-close-hover-bg, var(--color-gray-100));
+  background: var(--modal-close-hover-bg, var(--background-tertiary));
 }
 
 .close-button:focus {
