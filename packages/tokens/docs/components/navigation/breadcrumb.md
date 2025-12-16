@@ -291,8 +291,8 @@ function Breadcrumb({ items, separator = 'slash', size = 'md' }) {
 ### 色関連
 - `--primary-default` - ホバー時のリンク色
 - `--foreground-primary` - 現在のページのテキスト色
-- `--color-neutral-400` - セパレーターの色
-- `--color-neutral-600` - リンクのデフォルト色
+- `--foreground-tertiary` - セパレーターの色
+- `--foreground-secondary` - リンクのデフォルト色
 
 ### スペーシング
 - `--spacing-1` - 0.25rem (小ギャップ)

@@ -372,15 +372,15 @@ function toggleRowSelection(checkbox) {
 Datagridコンポーネントは以下のCSS変数（デザイントークン）を使用しています:
 
 ### 色関連
-- `--datagrid-bg` - テーブルの背景色（デフォルト: `--color-neutral-50` #ffffff）
+- `--datagrid-bg` - テーブルの背景色（デフォルト: `--foreground-inverse`）
 - `--datagrid-color` - テキスト色（デフォルト: `--foreground-primary`）
 - `--datagrid-header-bg` - ヘッダーの背景色（デフォルト: `--foreground-inverse`）
-- `--datagrid-header-hover-bg` - ヘッダーホバー背景色（デフォルト: `--color-neutral-200`）
-- `--datagrid-row-hover-bg` - 行ホバー背景色（デフォルト: `--color-neutral-50`）
+- `--datagrid-header-hover-bg` - ヘッダーホバー背景色（デフォルト: `--background-tertiary`）
+- `--datagrid-row-hover-bg` - 行ホバー背景色（デフォルト: `--background-tertiary`）
 - `--datagrid-selected-bg` - 選択行の背景色（デフォルト: `--primary-default`）
 - `--datagrid-selected-hover-bg` - 選択行ホバー背景色
-- `--datagrid-stripe-bg` - ストライプ背景色（デフォルト: `--color-neutral-50`）
-- `--datagrid-border-color` - 境界線の色（デフォルト: `--color-neutral-200`）
+- `--datagrid-stripe-bg` - ストライプ背景色（デフォルト: `--background-tertiary`）
+- `--datagrid-border-color` - 境界線の色（デフォルト: `--border-default`）
 
 ### スペーシング
 - `--datagrid-cell-padding` - セルのパディング（デフォルト: `--spacing-3`）

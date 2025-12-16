@@ -142,7 +142,7 @@
 スケルトンコンポーネントは以下のCSS変数（デザイントークン）を使用しています:
 
 ### 色関連
-- `--skeleton-bg` - 背景色（デフォルト: `--color-neutral-200`）
+- `--skeleton-bg` - 背景色（デフォルト: `--background-tertiary`）
 - `--skeleton-wave-color` - ウェーブ色（デフォルト: rgba(255, 255, 255, 0.4)）
 
 ### ボーダー

@@ -335,12 +335,12 @@ function Pagination({ current, total, variant = 'full', size = 'md', onChange })
 ### ボタン関連
 - `--pagination-button-size` - 36px（デフォルトボタンサイズ）
 - `--pagination-button-bg` - transparent（背景色）
-- `--pagination-button-border` - var(--color-gray-300)（ボーダー色）
-- `--pagination-button-color` - var(--color-gray-700)（テキスト色）
+- `--pagination-button-border` - var(--border-default)（ボーダー色）
+- `--pagination-button-color` - var(--foreground-primary)（テキスト色）
 - `--pagination-button-radius` - var(--radius-base, 4px)（角丸）
 
 ### ホバー状態
-- `--pagination-button-hover-bg` - var(--color-gray-50)
+- `--pagination-button-hover-bg` - var(--background-tertiary)
 - `--pagination-button-hover-border` - var(--color-primary-500)
 - `--pagination-button-hover-color` - var(--color-primary-500)
 
