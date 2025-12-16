@@ -6,12 +6,30 @@ import yaml from 'yaml';
 /**
  * Token Consistency Test
  *
- * Validates design token consistency and integrity:
- * - Token references are resolvable
- * - No circular references
- * - No missing token definitions
- * - Theme tokens (light/dark) are symmetric
- * - Semantic tokens follow naming conventions
+ * @fileoverview
+ * デザイントークンの整合性と完全性を検証するテストスイート。
+ * トークン参照の解決、循環参照の検出、命名規則の確認を行います。
+ *
+ * @description
+ * このテストは、デザイントークンシステムの内部整合性を保証し、
+ * ビルドプロセスでトークンが正しく解決されることを確認します。
+ *
+ * 検証項目:
+ * - トークン参照の解決可能性（{token.reference}形式）
+ * - 循環参照の不在（A→B→A のような参照）
+ * - トークンファイル構造（base/, semantic/, themes/）
+ * - ライト/ダークテーマトークンの対称性
+ * - 命名規則の遵守（kebab-case、有効なプレフィックス）
+ * - トークン値の型妥当性（色、スペーシング、フォントサイズ）
+ * - CSS変数の生成確認
+ *
+ * @example
+ * // テストの実行
+ * npm test tests/token-consistency.test.js
+ *
+ * @see {@link ../../src/base/} - ベーストークン定義
+ * @see {@link ../../src/semantic/} - セマンティックトークン定義
+ * @see {@link ../../src/themes/} - テーマ別トークンオーバーライド
  */
 
 const TOKENS_DIR = './src';

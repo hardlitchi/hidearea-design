@@ -334,9 +334,62 @@ pnpm --filter @hidearea-design/core test
 pnpm --filter @hidearea-design/core test src/components/button/button.test.ts
 ```
 
+#### Tokensパッケージのテスト
+
+Tokensパッケージには、ビルドシステムとドキュメントの品質を保証する包括的なテストスイートがあります：
+
+```bash
+# Tokensパッケージのテスト実行
+pnpm --filter @hidearea-design/tokens test
+
+# UIダッシュボード付きでテスト実行
+pnpm --filter @hidearea-design/tokens test:ui
+
+# 特定のテストスイートを実行
+pnpm --filter @hidearea-design/tokens test tests/build.test.js
+pnpm --filter @hidearea-design/tokens test tests/css-validation.test.js
+pnpm --filter @hidearea-design/tokens test tests/token-consistency.test.js
+pnpm --filter @hidearea-design/tokens test tests/documentation-consistency.test.js
+```
+
+**Tokensテストの種類:**
+
+1. **ビルドシステムテスト** (`tests/build.test.js`)
+   - 4つのビルドパターンの生成を検証
+   - ファイル数とディレクトリ構造を確認
+   - デザイントークンの出力を検証
+
+2. **CSS検証テスト** (`tests/css-validation.test.js`)
+   - CSS構文の正しさを検証
+   - セレクタの使用（`:host` vs `.ha-*`）を確認
+   - デザイントークン参照を検証
+
+3. **トークン整合性テスト** (`tests/token-consistency.test.js`)
+   - トークン参照の解決可能性を確認
+   - 循環参照を検出
+   - ライト/ダークテーマの対称性を検証
+
+4. **ドキュメント整合性テスト** (`tests/documentation-consistency.test.js`)
+   - コンポーネントドキュメントの存在を確認
+   - Pattern 2実装例を検証
+   - CSS実装との整合性を確認
+
+**新しいコンポーネントを追加する場合:**
+
+1. CSSファイルを `src/css/components/` に追加
+2. `docs/components/` に対応するMarkdownドキュメントを作成
+3. Pattern 2の実装例をドキュメントに含める
+4. `.ha-{component}` ラッパークラスを使用
+5. テストを実行して整合性を確認：
+   ```bash
+   pnpm --filter @hidearea-design/tokens build
+   pnpm --filter @hidearea-design/tokens test
+   ```
+
 ### カバレッジ要件
 
-- すべてのメトリクス（行、関数、分岐、ステートメント）で最低80%のカバレッジ
+- **Core/React/Vue**: すべてのメトリクス（行、関数、分岐、ステートメント）で最低80%のカバレッジ
+- **Tokens**: ビルド出力検証テストのため、カバレッジ要件は適用されません
 - すべての新しいコードにはテストを含める
 - 既存のコードを変更する場合はテストを更新
 

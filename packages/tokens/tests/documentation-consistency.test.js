@@ -5,12 +5,35 @@ import { join } from 'path';
 /**
  * Documentation Consistency Test (Phase 2)
  *
- * Validates that component documentation is consistent with CSS implementation:
- * - All 40 components have documentation
- * - All docs use correct .ha-* wrapper classes
- * - Pattern 2 implementation examples exist
- * - Documentation matches CSS implementation
- * - Code examples are syntactically valid HTML
+ * @fileoverview
+ * コンポーネントドキュメントとCSS実装の整合性を検証するテストスイート。
+ * ドキュメントの完全性、コード例の正確性、実装との一致を確認します。
+ *
+ * @description
+ * このテストは、各コンポーネントのドキュメントが実際のCSS実装と
+ * 一致していることを保証し、開発者が正しい使用方法を学べるようにします。
+ *
+ * 検証項目:
+ * - 全コンポーネントのドキュメント存在確認
+ * - Pattern 2実装例（HTML + CSS）の存在
+ * - .ha-*ラッパークラスの正しい使用
+ * - HTMLコード例の構文妥当性
+ * - CSS実装とドキュメントのバリアント一致
+ * - アクセシビリティ情報の記載
+ * - コンポーネント説明の充実度
+ *
+ * @example
+ * // テストの実行
+ * npm test tests/documentation-consistency.test.js
+ *
+ * // 新しいコンポーネントのドキュメント作成時
+ * // 1. docs/components/{category}/{component}.md を作成
+ * // 2. Pattern 2セクションを含める
+ * // 3. .ha-{component} ラッパークラスを使用
+ * // 4. このテストを実行して検証
+ *
+ * @see {@link ../../docs/components/} - コンポーネントドキュメント
+ * @see {@link ../../build/css/html/} - Pattern 2 CSS実装
  */
 
 const DOCS_DIR = './docs/components';

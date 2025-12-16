@@ -5,12 +5,29 @@ import { join } from 'path';
 /**
  * CSS Validation Test
  *
- * Validates that all generated CSS files are syntactically correct:
- * - No syntax errors
- * - Valid selectors
- * - Proper CSS variable references
- * - Media queries are valid
- * - No duplicate selectors
+ * @fileoverview
+ * 生成されたCSSファイルの品質と正確性を検証するテストスイート。
+ * 構文エラー、セレクタの正しさ、デザイントークン参照を確認します。
+ *
+ * @description
+ * このテストは、ビルドプロセスで生成されたCSSファイルが
+ * 正しい構文とセマンティクスを持つことを保証します。
+ *
+ * 検証項目:
+ * - CSS構文の妥当性（タグの閉じ忘れ、括弧の不一致など）
+ * - Pattern 1: :hostセレクタの正しい使用
+ * - Pattern 2: .ha-*クラスセレクタの正しい使用
+ * - デザイントークン参照（var(--token-name)）の存在
+ * - トークンプレフィックスの妥当性
+ * - メディアクエリの構文
+ * - セレクタの正確性（擬似クラス、属性セレクタ）
+ *
+ * @example
+ * // テストの実行
+ * npm test tests/css-validation.test.js
+ *
+ * @see {@link ../../build/css/} - 生成されたCSSファイル
+ * @see {@link ../../config.mjs} - CSS変換ロジック（convertHostToClass関数）
  */
 
 const BUILD_CSS_DIR = './build/css';

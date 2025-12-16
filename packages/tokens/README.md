@@ -206,6 +206,58 @@ import * as styles from '@hidearea-design/tokens/styles';
 npm run build
 ```
 
+### テスト
+
+このパッケージには包括的なテストスイートが含まれています：
+
+```bash
+# 全テストを実行
+npm test
+
+# ウォッチモードでテスト実行
+npm run test:watch
+
+# UIダッシュボードでテスト実行
+npm run test:ui
+
+# カバレッジレポート付きでテスト実行
+npm run test:coverage
+```
+
+**テストスイート（68テスト）:**
+
+#### Phase 1: ビルドシステムとCSS品質（37テスト）
+- **ビルドシステムテスト** (21テスト) - `tests/build.test.js`
+  - 4つのビルドパターン検証（WebComponents, HTML, React/Vue, Unified）
+  - 175ファイルの生成確認
+  - ディレクトリ構造検証
+  - トークンファイル生成確認
+
+- **CSS検証テスト** (16テスト) - `tests/css-validation.test.js`
+  - CSS構文の妥当性チェック
+  - `:host`セレクタと`.ha-*`クラスの正しい使用
+  - デザイントークン参照の検証
+  - メディアクエリとセレクタの検証
+
+#### Phase 2: トークンとドキュメント整合性（31テスト）
+- **トークン整合性テスト** (16テスト) - `tests/token-consistency.test.js`
+  - トークン参照の解決可能性
+  - 循環参照の検出
+  - ライト/ダークテーマの対称性
+  - 命名規則の検証
+  - トークン値の型チェック
+
+- **ドキュメント整合性テスト** (15テスト) - `tests/documentation-consistency.test.js`
+  - 全コンポーネントのドキュメント存在確認
+  - Pattern 2実装例の検証
+  - `.ha-*`ラッパークラスの使用確認
+  - HTMLコード例の構文チェック
+  - CSS実装との整合性確認
+
+**CI/CD統合:**
+
+テストはGitHub Actionsで自動実行され、カバレッジレポートはCodecovに送信されます。詳細は[TEST_STRATEGY.md](./TEST_STRATEGY.md)を参照してください。
+
 ### 自動デプロイメント
 
 デザイントークンはmainブランチへのマージ時に自動デプロイされます：

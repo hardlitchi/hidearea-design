@@ -5,13 +5,33 @@ import { join } from 'path';
 /**
  * Build System Test
  *
- * Verifies that the build process generates all required files correctly:
+ * @fileoverview
+ * ビルドシステムの完全性を検証するテストスイート。
+ * StyleDictionaryによるトークン変換と4つのビルドパターンの生成を検証します。
+ *
+ * @description
+ * このテストは、デザイントークンのビルドプロセスが正しく動作し、
+ * 必要なすべてのファイルが期待通りに生成されることを確認します。
+ *
+ * 検証内容:
  * - Pattern 1: WebComponents (42 files with :host selectors)
+ *   Shadow DOM対応のWeb Components用CSS
  * - Pattern 2: HTML (42 files with .ha-* class selectors)
+ *   プレーンHTMLで使用可能なクラスベースCSS
  * - Pattern 3: React/Vue (84 JS/TS exports)
+ *   JavaScriptフレームワーク用のスタイルエクスポート
  * - Pattern 4: Unified CSS (2 files)
+ *   全コンポーネントを含む統合CSSファイル
  *
  * Total expected: 175 files (42 + 42 + 84 + 2 + metadata files)
+ *
+ * @example
+ * // テストの実行方法
+ * npm run build  // ビルドを実行
+ * npm test tests/build.test.js  // このテストを実行
+ *
+ * @see {@link ../../config.mjs} - ビルド設定
+ * @see {@link ../../TEST_STRATEGY.md} - テスト戦略ドキュメント
  */
 
 const BUILD_DIR = './build';
