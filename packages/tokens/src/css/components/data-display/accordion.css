@@ -9,10 +9,10 @@
 :host {
   display: block;
   box-sizing: border-box;
-  --accordion-border-color: var(--color-neutral-3, #e5e5e5);
+  --accordion-border-color: var(--border-default);
   --accordion-item-padding: var(--spacing-4);
   --accordion-header-bg: var(--foreground-inverse);
-  --accordion-header-hover-bg: var(--color-neutral-2, #f5f5f5);
+  --accordion-header-hover-bg: var(--background-tertiary);
 }
 
 *, *:before, *:after {

@@ -109,7 +109,7 @@
 }
 
 .spinner--neutral {
-  color: var(--color-neutral-500);
+  color: var(--foreground-tertiary);
 }
 
 /* Animations */
