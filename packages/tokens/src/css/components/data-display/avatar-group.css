@@ -23,8 +23,8 @@
 
 :host([layout="stack"]) ::slotted(*) {
   margin-left: calc(var(--avatar-size, 40px) * -0.3);
-  border: 2px solid var(--color-neutral-0, #ffffff);
-  box-shadow: 0 0 0 1px var(--color-neutral-200, #e5e7eb);
+  border: 2px solid var(--foreground-inverse);
+  box-shadow: 0 0 0 1px var(--border-default);
   position: relative;
   transition: transform var(--duration-fast, 150ms) var(--ease-out);
 }
@@ -57,12 +57,12 @@
   width: var(--avatar-size, 40px);
   height: var(--avatar-size, 40px);
   border-radius: 50%;
-  background: var(--color-neutral-100, #f3f4f6);
-  color: var(--color-neutral-600, #4b5563);
+  background: var(--background-tertiary);
+  color: var(--foreground-secondary);
   font-size: var(--avatar-font-size, 14px);
   font-weight: 500;
-  border: 2px solid var(--color-neutral-0, #ffffff);
-  box-shadow: 0 0 0 1px var(--color-neutral-200, #e5e7eb);
+  border: 2px solid var(--foreground-inverse);
+  box-shadow: 0 0 0 1px var(--border-default);
   margin-left: calc(var(--avatar-size, 40px) * -0.3);
 }
 
