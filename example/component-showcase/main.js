@@ -21,21 +21,13 @@ import '@hidearea-design/core/components/pagination';
 import '@hidearea-design/core/components/container';
 import '@hidearea-design/core/components/stack';
 import '@hidearea-design/core/components/accordion';
+import '@hidearea-design/core/components/theme-switcher';
 
 // Import theme utilities
-import { setTheme, initTheme } from '@hidearea-design/core';
+import { initTheme } from '@hidearea-design/core';
 
-// Initialize theme
+// Initialize theme (theme-switcher component handles switching)
 initTheme();
-
-// Theme switcher
-document.getElementById('light-theme')?.addEventListener('click', () => {
-  setTheme('light');
-});
-
-document.getElementById('dark-theme')?.addEventListener('click', () => {
-  setTheme('dark');
-});
 
 // Handle chip removal
 document.querySelectorAll('ha-chip[removable]').forEach(chip => {

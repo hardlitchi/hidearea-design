@@ -11,9 +11,10 @@ export default defineConfig(({ command, mode }) => {
   return {
     resolve: {
       alias: {
+        '@hidearea-design/tokens/css': resolve(__dirname, 'node_modules/@hidearea-design/tokens/build/css/variables.css'),
+        '@hidearea-design/tokens/styles': resolve(__dirname, 'node_modules/@hidearea-design/tokens/build/js/styles'),
         '@hidearea-design/core': resolve(__dirname, 'node_modules/@hidearea-design/core/dist'),
-        '@hidearea-design/tokens': resolve(__dirname, 'node_modules/@hidearea-design/tokens/build'),
-        '@hidearea-design/tokens/css': resolve(__dirname, 'node_modules/@hidearea-design/tokens/build/css/variables.css')
+        '@hidearea-design/tokens': resolve(__dirname, 'node_modules/@hidearea-design/tokens/build')
       }
     },
     server: {
