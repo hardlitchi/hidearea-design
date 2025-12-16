@@ -103,9 +103,9 @@
 }
 
 .badge--secondary {
-  background-color: var(--color-neutral-500);
+  background-color: var(--foreground-secondary);
   color: white;
-  border-color: var(--color-neutral-600);
+  border-color: var(--foreground-primary);
 }
 
 .badge--success {
@@ -141,8 +141,8 @@
 
 .badge--outlined.badge--secondary {
   background-color: transparent;
-  color: var(--color-neutral-700);
-  border-color: var(--color-neutral-500);
+  color: var(--foreground-primary);
+  border-color: var(--border-default);
 }
 
 .badge--outlined.badge--success {
@@ -177,9 +177,9 @@
 }
 
 .badge--soft.badge--secondary {
-  background-color: var(--color-neutral-50);
-  color: var(--color-neutral-700);
-  border-color: var(--color-neutral-200);
+  background-color: var(--background-tertiary);
+  color: var(--foreground-primary);
+  border-color: var(--border-default);
 }
 
 .badge--soft.badge--success {
