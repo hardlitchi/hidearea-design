@@ -8,7 +8,7 @@
 
 :host {
   display: block;
-  --table-border-color: var(--color-neutral-300);
+  --table-border-color: var(--border-default);
   --table-header-bg: var(--foreground-inverse);
   --table-row-hover-bg: var(--foreground-inverse);
   --table-striped-bg: var(--foreground-inverse);
