@@ -38,6 +38,7 @@ export { HaDataGrid } from "./components/datagrid";
 export type { DataGridColumn, DataGridRow } from "./components/datagrid";
 export { HaFileUpload } from "./components/file-upload";
 export type { FileUploadFile, FileUploadVariant } from "./components/file-upload";
+export { ThemeSwitcher } from "./components/theme-switcher";
 
 // Export types if needed
 export type { HaButton as HaButtonElement } from "./components/button/button";

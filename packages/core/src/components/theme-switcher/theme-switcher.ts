@@ -2,7 +2,7 @@
  * Theme Switcher Web Component
  *
  * A customizable theme switcher component for the Hidearea Design System.
- * Supports toggle button, dropdown, and custom layouts.
+ * Supports toggle button, dropdown, and segmented control layouts.
  *
  * @element ha-theme-switcher
  *
@@ -19,7 +19,7 @@
  * <ha-theme-switcher variant="segmented" show-auto></ha-theme-switcher>
  */
 
-import { getCurrentTheme, setTheme, THEMES, getStoredTheme } from '../utils/theme.js';
+import { getTheme, setTheme, getEffectiveTheme, type Theme } from '../../utils/theme';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -145,48 +145,54 @@ template.innerHTML = `
   </div>
 `;
 
+type Variant = 'toggle' | 'dropdown' | 'segmented';
+
 class ThemeSwitcher extends HTMLElement {
-  static get observedAttributes() {
+  private _currentTheme: 'light' | 'dark' = 'light';
+  private _currentPreference: Theme = 'light';
+  private _themeChangeHandler?: (e: Event) => void;
+
+  static get observedAttributes(): string[] {
     return ['variant', 'size', 'show-label', 'show-auto'];
   }
 
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this._currentTheme = getCurrentTheme();
-    this._currentPreference = getStoredTheme() || THEMES.AUTO;
+    this.shadowRoot!.appendChild(template.content.cloneNode(true));
+    this._currentTheme = getEffectiveTheme();
+    this._currentPreference = getTheme();
   }
 
-  connectedCallback() {
+  connectedCallback(): void {
     this.render();
     this._setupListeners();
   }
 
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     this._removeListeners();
   }
 
-  attributeChangedCallback() {
+  attributeChangedCallback(): void {
     if (this.isConnected) {
       this.render();
     }
   }
 
-  get variant() {
-    return this.getAttribute('variant') || 'toggle';
+  get variant(): Variant {
+    return (this.getAttribute('variant') as Variant) || 'toggle';
   }
 
-  get showLabel() {
+  get showLabel(): boolean {
     return this.hasAttribute('show-label');
   }
 
-  get showAuto() {
+  get showAuto(): boolean {
     return this.hasAttribute('show-auto');
   }
 
-  _getIcon(theme) {
-    const icons = {
+  private _getIcon(theme: string): string {
+    const icons: Record<string, string> = {
       light: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.5C9.5 17.5 7.5 15.5 7.5 13S9.5 8.5 12 8.5 16.5 10.5 16.5 13 14.5 17.5 12 17.5zM12 7C11.4 7 11 6.6 11 6V3C11 2.4 11.4 2 12 2S13 2.4 13 3V6C13 6.6 12.6 7 12 7zM12 22C11.4 22 11 21.6 11 21V18C11 17.4 11.4 17 12 17S13 17.4 13 18V21C13 21.6 12.6 22 12 22zM19.8 7.8C19.5 7.5 19.5 7 19.8 6.7L21.9 4.6C22.2 4.3 22.7 4.3 23 4.6 23.3 4.9 23.3 5.4 23 5.7L20.9 7.8C20.6 8.1 20.1 8.1 19.8 7.8zM2.7 19.9C2.4 19.6 2.4 19.1 2.7 18.8L4.8 16.7C5.1 16.4 5.6 16.4 5.9 16.7 6.2 17 6.2 17.5 5.9 17.8L3.8 19.9C3.5 20.2 3 20.2 2.7 19.9zM18 13C18 13.6 18.4 14 19 14H22C22.6 14 23 13.6 23 13S22.6 12 22 12H19C18.4 12 18 12.4 18 13zM2 13C2 13.6 2.4 14 3 14H6C6.6 14 7 13.6 7 13S6.6 12 6 12H3C2.4 12 2 12.4 2 13zM18.7 17.8C18.4 17.5 18.4 17 18.7 16.7L20.8 14.6C21.1 14.3 21.6 14.3 21.9 14.6 22.2 14.9 22.2 15.4 21.9 15.7L19.8 17.8C19.5 18.1 19 18.1 18.7 17.8zM4.1 7.8C3.8 7.5 3.8 7 4.1 6.7L6.2 4.6C6.5 4.3 7 4.3 7.3 4.6 7.6 4.9 7.6 5.4 7.3 5.7L5.2 7.8C4.9 8.1 4.4 8.1 4.1 7.8z"/></svg>`,
       dark: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3C7.03 3 3 7.03 3 12S7.03 21 12 21 21 16.97 21 12C21 11.5 20.96 11.02 20.89 10.55 20.7 11.38 20.33 12.15 19.82 12.82 18.61 14.4 16.65 15.41 14.5 15.41 11.01 15.41 8.17 12.57 8.17 9.08 8.17 6.93 9.18 4.97 10.76 3.76 11.43 3.25 12.2 2.88 13.03 2.69 12.69 2.56 12.35 2.5 12 2.5 11.83 2.5 11.66 2.51 11.5 2.53 11.66 2.51 11.83 2.5 12 2.5 7.31 2.5 3.5 6.31 3.5 11 3.5 15.69 7.31 19.5 12 19.5 16.69 19.5 20.5 15.69 20.5 11 20.5 10.43 20.44 9.88 20.33 9.34 20.44 9.88 20.5 10.43 20.5 11 20.5 12.32 20.39 13.62 20.18 14.88 20.39 13.62 20.5 12.32 20.5 11 20.5 5.76 16.24 1.5 11 1.5 5.76 1.5 1.5 5.76 1.5 11 1.5 16.24 5.76 20.5 11 20.5 11.34 20.5 11.67 20.48 12 20.45 11.67 20.48 11.34 20.5 11 20.5 6.03 20.5 2 16.47 2 11.5 2 6.53 6.03 2.5 11 2.5 12 2.5 12 2.5 12 3z"/></svg>`,
       auto: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3C10.9 3 10 3.9 10 5V8C10 9.1 10.9 10 12 10S14 9.1 14 8V5C14 3.9 13.1 3 12 3zM19 11C17.9 11 17 11.9 17 13S17.9 15 19 15H22C23.1 15 24 14.1 24 13S23.1 11 22 11H19zM5 11H2C0.9 11 0 11.9 0 13S0.9 15 2 15H5C6.1 15 7 14.1 7 13S6.1 11 5 11zM16.5 17.3L19.4 20.2C20.2 21 21.5 21 22.3 20.2S23.3 18.3 22.5 17.5L19.6 14.6C18.8 13.8 17.5 13.8 16.7 14.6S15.7 16.5 16.5 17.3zM16.5 8.7C17.3 9.5 18.6 9.5 19.4 8.7L22.3 5.8C23.1 5 23.1 3.7 22.3 2.9S20.4 1.9 19.6 2.7L16.7 5.6C15.9 6.4 15.9 7.7 16.7 8.5zM7.5 17.3C6.7 16.5 5.4 16.5 4.6 17.3L1.7 20.2C0.9 21 0.9 22.3 1.7 23.1S3.6 24.1 4.4 23.3L7.3 20.4C8.1 19.6 8.1 18.3 7.3 17.5zM7.5 8.7L4.6 5.8C3.8 5 2.5 5 1.7 5.8S0.7 7.7 1.5 8.5L4.4 11.4C5.2 12.2 6.5 12.2 7.3 11.4S8.3 9.5 7.5 8.7zM12 14C10.3 14 9 15.3 9 17V20C9 21.7 10.3 23 12 23S15 21.7 15 20V17C15 15.3 13.7 14 12 14z"/></svg>`
@@ -194,8 +200,8 @@ class ThemeSwitcher extends HTMLElement {
     return icons[theme] || icons.light;
   }
 
-  _getLabel(theme) {
-    const labels = {
+  private _getLabel(theme: string): string {
+    const labels: Record<string, string> = {
       light: 'Light',
       dark: 'Dark',
       auto: 'Auto'
@@ -203,8 +209,8 @@ class ThemeSwitcher extends HTMLElement {
     return labels[theme] || labels.light;
   }
 
-  render() {
-    const switcher = this.shadowRoot.getElementById('switcher');
+  render(): void {
+    const switcher = this.shadowRoot!.getElementById('switcher')!;
     switcher.className = `theme-switcher theme-switcher--${this.variant}`;
 
     if (this.variant === 'toggle') {
@@ -216,9 +222,9 @@ class ThemeSwitcher extends HTMLElement {
     }
   }
 
-  _renderToggle(container) {
+  private _renderToggle(container: HTMLElement): void {
     const preference = this._currentPreference;
-    const theme = preference === THEMES.AUTO ? 'auto' : this._currentTheme;
+    const theme = preference === 'auto' ? 'auto' : this._currentTheme;
 
     container.innerHTML = `
       <button type="button" aria-label="Toggle theme" id="toggle-btn">
@@ -228,30 +234,30 @@ class ThemeSwitcher extends HTMLElement {
     `;
   }
 
-  _renderDropdown(container) {
+  private _renderDropdown(container: HTMLElement): void {
     const preference = this._currentPreference;
 
     container.innerHTML = `
       <select id="theme-select" aria-label="Select theme">
-        <option value="${THEMES.LIGHT}" ${preference === THEMES.LIGHT ? 'selected' : ''}>
-          ${this._getLabel(THEMES.LIGHT)}
+        <option value="light" ${preference === 'light' ? 'selected' : ''}>
+          ${this._getLabel('light')}
         </option>
-        <option value="${THEMES.DARK}" ${preference === THEMES.DARK ? 'selected' : ''}>
-          ${this._getLabel(THEMES.DARK)}
+        <option value="dark" ${preference === 'dark' ? 'selected' : ''}>
+          ${this._getLabel('dark')}
         </option>
         ${this.showAuto ? `
-          <option value="${THEMES.AUTO}" ${preference === THEMES.AUTO ? 'selected' : ''}>
-            ${this._getLabel(THEMES.AUTO)}
+          <option value="auto" ${preference === 'auto' ? 'selected' : ''}>
+            ${this._getLabel('auto')}
           </option>
         ` : ''}
       </select>
     `;
   }
 
-  _renderSegmented(container) {
+  private _renderSegmented(container: HTMLElement): void {
     const preference = this._currentPreference;
-    const options = [THEMES.LIGHT, THEMES.DARK];
-    if (this.showAuto) options.push(THEMES.AUTO);
+    const options: Theme[] = ['light', 'dark'];
+    if (this.showAuto) options.push('auto');
 
     container.innerHTML = options.map(theme => `
       <button
@@ -267,63 +273,68 @@ class ThemeSwitcher extends HTMLElement {
     `).join('');
   }
 
-  _setupListeners() {
+  private _setupListeners(): void {
     if (this.variant === 'toggle') {
-      const btn = this.shadowRoot.getElementById('toggle-btn');
+      const btn = this.shadowRoot!.getElementById('toggle-btn');
       btn?.addEventListener('click', this._handleToggle.bind(this));
     } else if (this.variant === 'dropdown') {
-      const select = this.shadowRoot.getElementById('theme-select');
+      const select = this.shadowRoot!.getElementById('theme-select') as HTMLSelectElement;
       select?.addEventListener('change', this._handleSelect.bind(this));
     } else if (this.variant === 'segmented') {
-      this.shadowRoot.querySelectorAll('button[data-theme]').forEach(btn => {
+      this.shadowRoot!.querySelectorAll('button[data-theme]').forEach(btn => {
         btn.addEventListener('click', this._handleSegmentedClick.bind(this));
       });
     }
 
     // Listen for external theme changes
     this._themeChangeHandler = this._handleThemeChange.bind(this);
-    window.addEventListener('theme-changed', this._themeChangeHandler);
+    window.addEventListener('theme-change', this._themeChangeHandler);
   }
 
-  _removeListeners() {
-    window.removeEventListener('theme-changed', this._themeChangeHandler);
+  private _removeListeners(): void {
+    if (this._themeChangeHandler) {
+      window.removeEventListener('theme-change', this._themeChangeHandler);
+    }
   }
 
-  _handleToggle() {
+  private _handleToggle(): void {
     const preference = this._currentPreference;
 
-    let newPreference;
+    let newPreference: Theme;
     if (this.showAuto) {
       // Cycle through: light -> dark -> auto -> light
-      if (preference === THEMES.LIGHT) newPreference = THEMES.DARK;
-      else if (preference === THEMES.DARK) newPreference = THEMES.AUTO;
-      else newPreference = THEMES.LIGHT;
+      if (preference === 'light') newPreference = 'dark';
+      else if (preference === 'dark') newPreference = 'auto';
+      else newPreference = 'light';
     } else {
       // Toggle between light and dark
-      newPreference = preference === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT;
+      newPreference = preference === 'light' ? 'dark' : 'light';
     }
 
     setTheme(newPreference);
   }
 
-  _handleSelect(e) {
-    setTheme(e.target.value);
+  private _handleSelect(e: Event): void {
+    const target = e.target as HTMLSelectElement;
+    setTheme(target.value as Theme);
   }
 
-  _handleSegmentedClick(e) {
-    const theme = e.currentTarget.dataset.theme;
+  private _handleSegmentedClick(e: Event): void {
+    const target = e.currentTarget as HTMLElement;
+    const theme = target.dataset.theme as Theme;
     setTheme(theme);
   }
 
-  _handleThemeChange(e) {
-    this._currentTheme = e.detail.theme;
-    this._currentPreference = e.detail.preference;
+  private _handleThemeChange(e: Event): void {
+    const customEvent = e as CustomEvent<{ theme: Theme; effective: 'light' | 'dark' }>;
+    this._currentTheme = customEvent.detail.effective;
+    this._currentPreference = customEvent.detail.theme;
     this.render();
     this._setupListeners();
 
     // Dispatch event
     this.dispatchEvent(new CustomEvent('theme-change', {
-      detail: e.detail,
+      detail: customEvent.detail,
       bubbles: true,
       composed: true
     }));
