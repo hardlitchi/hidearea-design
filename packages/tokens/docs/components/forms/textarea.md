@@ -28,8 +28,8 @@ Textareaコンポーネントは、ユーザーが複数行のテキストを入
 標準的なアウトラインスタイルです。最も一般的に使用されます。
 
 **特徴:**
-- ボーダー: 1px solid (--color-gray-300)
-- 背景: 白色 (--color-white)
+- ボーダー: 1px solid (--border-default)
+- 背景: 白色 (--foreground-inverse)
 - ホバー時: ボーダーが濃いグレーに変更
 - フォーカス時: プライマリカラーのボーダー + シャドウ効果
 
@@ -52,7 +52,7 @@ Textareaコンポーネントは、ユーザーが複数行のテキストを入
 
 **特徴:**
 - ボーダー: 1px solid transparent
-- 背景: ライトグレー (--color-gray-100)
+- 背景: ライトグレー (--background-tertiary)
 - ホバー時: 背景は変わらない
 - フォーカス時: 背景が白に、ボーダーが表示
 
@@ -74,8 +74,8 @@ Textareaコンポーネントは、ユーザーが複数行のテキストを入
 2pxの太いボーダーで強調されたスタイルです。重要な入力フィールドを目立たせます。
 
 **特徴:**
-- ボーダー: 2px solid (--color-gray-300)
-- 背景: 白色 (--color-white)
+- ボーダー: 2px solid (--border-default)
+- 背景: 白色 (--foreground-inverse)
 - フォーカス時: ボーダーがプライマリカラーに変更
 
 **使用場面:**
@@ -350,7 +350,7 @@ function Textarea({
 操作できない状態です。視覚的に無効であることが明確に表示されます。
 
 **特徴:**
-- 背景: ライトグレー (--color-gray-50)
+- 背景: ライトグレー (--background-tertiary)
 - 不透明度: 60%
 - リサイズ: 不可
 - カーソル: not-allowed
@@ -458,12 +458,11 @@ Textareaコンポーネントは以下のCSS変数（デザイントークン）
 |---------|-----|------|
 | `--theme-light-primary-default` | #3b82f6 | フォーカス時のボーダーカラー |
 | `--theme-light-primary-subtle` | rgba(59, 130, 246, 0.1) | フォーカスリング背景 |
-| `--color-white` | #ffffff | デフォルト背景色 |
-| `--color-gray-50` | #f9fafb | 無効時の背景色 |
-| `--color-gray-100` | #f3f4f6 | Filled背景色 |
-| `--color-gray-300` | #d1d5db | デフォルトボーダー色 |
-| `--color-gray-400` | #9ca3af | ホバーボーダー色 |
-| `--color-gray-900` | #111827 | テキスト色 |
+| `--foreground-inverse` | デフォルト背景色 |
+| `--background-tertiary` | 無効時・Filled背景色 |
+| `--border-default` | デフォルトボーダー色 |
+| `--foreground-tertiary` | ホバーボーダー色 |
+| `--foreground-primary` | テキスト色 |
 | `--color-red-500` | #ef4444 | エラーボーダー色 |
 
 ### スペーシング

@@ -327,11 +327,11 @@ File Uploadコンポーネントは、ユーザーがファイルを選択・ア
 --fileupload-icon-size: 48px;                           /* アイコンサイズ */
 
 /* 色 */
---fileupload-bg: var(--color-neutral-50);               /* 背景色 */
---fileupload-border-color: var(--color-neutral-300);    /* ボーダー色 */
+--fileupload-bg: var(--background-tertiary);            /* 背景色 */
+--fileupload-border-color: var(--border-default);       /* ボーダー色 */
 --fileupload-border-width: 2px;                         /* ボーダー幅 */
---fileupload-text-color: var(--color-neutral-600);      /* テキスト色 */
---fileupload-icon-color: var(--color-neutral-400);      /* アイコン色 */
+--fileupload-text-color: var(--foreground-secondary);   /* テキスト色 */
+--fileupload-icon-color: var(--foreground-tertiary);    /* アイコン色 */
 
 /* ドラッグ状態 */
 --fileupload-drag-bg: var(--primary-default);           /* ドラッグ時の背景色 */
