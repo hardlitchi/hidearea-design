@@ -349,10 +349,10 @@ toastManager.show('エラーが発生しました', 'error', 0); // 自動消去
 トーストコンポーネントは以下のCSS変数（デザイントークン）を使用しています:
 
 ### 色関連
-- `--color-white` - 背景色
-- `--color-gray-200` - ボーダーカラー
-- `--color-gray-600` - 閉じるボタンのカラー
-- `--color-gray-900` - メッセージテキストカラー
+- `--foreground-inverse` - 背景色
+- `--border-default` - ボーダーカラー
+- `--foreground-secondary` - 閉じるボタンのカラー
+- `--foreground-primary` - メッセージテキストカラー
 - `--color-info-300`, `--color-info-500` - Info バリアントカラー
 - `--color-success-300`, `--color-success-500` - Success バリアントカラー
 - `--color-warning-300`, `--color-warning-500` - Warning バリアントカラー

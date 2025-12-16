@@ -245,10 +245,10 @@ Avatar Groupコンポーネントは以下のCSS変数（デザイントーク�
 - `--avatar-font-size` - max-indicatorのフォントサイズ
 
 ### 色関連
-- `--color-neutral-0` (#ffffff) - 境界線の色
-- `--color-neutral-100` (#f3f4f6) - max-indicatorの背景色
-- `--color-neutral-200` (#e5e7eb) - シャドウの色
-- `--color-neutral-600` (#4b5563) - max-indicatorのテキスト色
+- `--foreground-inverse` - 境界線の色
+- `--background-tertiary` - max-indicatorの背景色
+- `--border-default` - シャドウの色
+- `--foreground-secondary` - max-indicatorのテキスト色
 
 ### スペーシング
 - `--spacing-2` (8px) - grid/listレイアウトのギャップ

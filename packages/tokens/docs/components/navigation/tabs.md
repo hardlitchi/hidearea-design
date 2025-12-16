@@ -467,7 +467,7 @@ function activateTab(index) {
 }
 
 .tabs-list::-webkit-scrollbar-thumb {
-  background-color: var(--color-neutral-300);
+  background-color: var(--border-default);
   border-radius: var(--border-radius-full);
 }
 ```
