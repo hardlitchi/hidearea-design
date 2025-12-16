@@ -14,6 +14,7 @@ import { metadata as breadcrumbMetadata } from './components/breadcrumb/metadata
 import { metadata as buttonMetadata } from './components/button/metadata.js';
 import { metadata as cardMetadata } from './components/card/metadata.js';
 import { metadata as checkboxMetadata } from './components/checkbox/metadata.js';
+import { metadata as chipMetadata } from './components/chip/metadata.js';
 import { metadata as colorPickerMetadata } from './components/color-picker/metadata.js';
 import { metadata as containerMetadata } from './components/container/metadata.js';
 import { metadata as datagridMetadata } from './components/datagrid/metadata.js';
@@ -51,6 +52,7 @@ export const ALL_COMPONENT_METADATA: ComponentMetadata[] = [
   buttonMetadata,
   cardMetadata,
   checkboxMetadata,
+  chipMetadata,
   colorPickerMetadata,
   containerMetadata,
   datagridMetadata,
