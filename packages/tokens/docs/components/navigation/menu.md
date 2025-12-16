@@ -326,9 +326,9 @@ function Dropdown({ trigger, items, size = 'md' }) {
 ### 色関連
 - \`--primary-default\` - ホバー時の背景色/テキスト色
 - \`--error-default\` - 危険なアクションの色
-- \`--color-neutral-200\` - ボーダー、区切り線
-- \`--color-neutral-400\` - 無効テキストの色
-- \`--color-neutral-700\` - デフォルトテキスト色
+- \`--border-default\` - ボーダー、区切り線
+- \`--foreground-tertiary\` - 無効テキストの色
+- \`--foreground-primary\` - デフォルトテキスト色
 
 ### スペーシング
 - \`--spacing-1\` - 0.25rem (sm パディング縦、区切り線マージン)

@@ -157,7 +157,7 @@
 - `--warning-default` - 警告色
 - `--error-default` - エラー色
 - `--info-default` - 情報色
-- `--color-neutral-500` - ニュートラル色
+- `--foreground-tertiary` - ニュートラル色
 
 ### アニメーション
 - `--spinner-speed` - 0.8s (アニメーション速度)

@@ -369,7 +369,7 @@ function Table({ data, columns, variant = 'default', selectable = false }) {
 Tableコンポーネントは以下のCSS変数（デザイントークン）を使用しています:
 
 ### 色関連
-- `--table-border-color` - `var(--color-neutral-300)` - ボーダーカラー
+- `--table-border-color` - `var(--border-default)` - ボーダーカラー
 - `--table-header-bg` - `var(--foreground-inverse)` - ヘッダー背景色
 - `--table-row-hover-bg` - `var(--foreground-inverse)` - ホバー時背景色
 - `--table-striped-bg` - `var(--foreground-inverse)` - ストライプ背景色
