@@ -37,11 +37,22 @@ jobs:
       - name: Build core package
         run: pnpm --filter @hidearea-design/core build
 
+      - name: Run tests (Tokens)
+        run: pnpm --filter @hidearea-design/tokens test:coverage
+
       - name: Run tests (Core)
         run: pnpm --filter @hidearea-design/core test:coverage
 
       - name: Run tests (React)
         run: pnpm --filter @hidearea-design/react test:coverage
+
+      - name: Upload coverage reports to Codecov (Tokens)
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./packages/tokens/coverage/coverage-final.json
+          flags: tokens
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
 
       - name: Upload coverage reports to Codecov (Core)
         uses: codecov/codecov-action@v4

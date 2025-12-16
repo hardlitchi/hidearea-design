@@ -227,9 +227,18 @@ importers:
 
   packages/tokens:
     devDependencies:
+      '@vitest/coverage-v8':
+        specifier: ^4.0.8
+        version: 4.0.8(vitest@4.0.8)
+      '@vitest/ui':
+        specifier: ^4.0.8
+        version: 4.0.8(vitest@4.0.8)
       style-dictionary:
         specifier: ^4.0.0
         version: 4.4.0
+      vitest:
+        specifier: ^4.0.8
+        version: 4.0.8(@types/node@22.19.1)(@vitest/ui@4.0.8)(happy-dom@20.0.10)(yaml@2.8.1)
       yaml:
         specifier: ^2.8.1
         version: 2.8.1
@@ -4884,7 +4893,7 @@ snapshots:
       magicast: 0.5.1
       std-env: 3.10.0
       tinyrainbow: 3.0.3
-      vitest: 4.0.8(@types/node@20.19.25)(@vitest/ui@4.0.8)(happy-dom@20.0.10)(yaml@2.8.1)
+      vitest: 4.0.8(@types/node@22.19.1)(@vitest/ui@4.0.8)(happy-dom@20.0.10)(yaml@2.8.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -4963,7 +4972,7 @@ snapshots:
       sirv: 3.0.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vitest: 4.0.8(@types/node@20.19.25)(@vitest/ui@4.0.8)(happy-dom@20.0.10)(yaml@2.8.1)
+      vitest: 4.0.8(@types/node@22.19.1)(@vitest/ui@4.0.8)(happy-dom@20.0.10)(yaml@2.8.1)
 
   '@vitest/utils@3.2.4':
     dependencies:
