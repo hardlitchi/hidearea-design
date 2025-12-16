@@ -15,11 +15,11 @@
   --fileupload-gap: var(--spacing-3);
 
   /* Color variables */
-  --fileupload-bg: var(--color-neutral-50, #f9fafb);
-  --fileupload-border-color: var(--color-neutral-300, #d1d5db);
+  --fileupload-bg: var(--background-tertiary);
+  --fileupload-border-color: var(--border-default);
   --fileupload-border-width: 2px;
   --fileupload-border-radius: var(--border-radius-md);
-  --fileupload-text-color: var(--color-neutral-600, #4b5563);
+  --fileupload-text-color: var(--foreground-secondary);
 
   /* Drag state */
   --fileupload-drag-bg: var(--primary-default);
@@ -40,7 +40,7 @@
 
   /* Icon */
   --fileupload-icon-size: 48px;
-  --fileupload-icon-color: var(--color-neutral-400, #9ca3af);
+  --fileupload-icon-color: var(--foreground-tertiary);
 }
 
 .file-upload {
@@ -54,7 +54,7 @@
   display: block;
   font-weight: 500;
   font-size: 0.875rem;
-  color: var(--color-neutral-700, #374151);
+  color: var(--foreground-primary);
   margin-bottom: 0.25rem;
 }
 
@@ -163,9 +163,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-neutral-200, #e5e7eb);
+  background-color: var(--background-tertiary);
   border-radius: var(--border-radius-sm);
-  color: var(--color-neutral-500, #6b7280);
+  color: var(--foreground-tertiary);
   flex-shrink: 0;
 }
 
@@ -193,7 +193,7 @@
 
 .file-upload__file-size {
   font-size: 0.75rem;
-  color: var(--color-neutral-500, #6b7280);
+  color: var(--foreground-tertiary);
 }
 
 .file-upload__file-error {
@@ -211,15 +211,15 @@
   background: transparent;
   border: none;
   border-radius: var(--border-radius-sm);
-  color: var(--color-neutral-500, #6b7280);
+  color: var(--foreground-tertiary);
   cursor: pointer;
   transition: all 0.2s ease;
   padding: 0;
 }
 
 .file-upload__remove-button:hover {
-  background-color: var(--color-neutral-200, #e5e7eb);
-  color: var(--color-neutral-700, #374151);
+  background-color: var(--background-tertiary);
+  color: var(--foreground-primary);
 }
 
 .file-upload__remove-button:focus-visible {
@@ -236,7 +236,7 @@
 .file-upload__helper-text {
   margin: 0;
   font-size: 0.75rem;
-  color: var(--color-neutral-500, #6b7280);
+  color: var(--foreground-tertiary);
 }
 
 .file-upload__error-message,

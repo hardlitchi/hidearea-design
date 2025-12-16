@@ -14,7 +14,7 @@
 .datagrid {
   width: 100%;
   border-collapse: collapse;
-  background-color: var(--datagrid-bg, var(--color-neutral-50, #ffffff));
+  background-color: var(--datagrid-bg, var(--foreground-inverse));
   color: var(--datagrid-color, var(--foreground-primary));
   font-size: var(--font-size-sm);
 }
@@ -28,7 +28,7 @@
 .datagrid-cell {
   padding: var(--datagrid-cell-padding, var(--spacing-3));
   text-align: left;
-  border-bottom: 1px solid var(--datagrid-border-color, var(--color-neutral-200, #e5e7eb));
+  border-bottom: 1px solid var(--datagrid-border-color, var(--border-default));
 }
 
 .datagrid-header-cell {
@@ -41,12 +41,12 @@
 }
 
 .datagrid-header-cell--sortable:hover {
-  background-color: var(--datagrid-header-hover-bg, var(--color-neutral-200, #e5e7eb));
+  background-color: var(--datagrid-header-hover-bg, var(--background-tertiary));
 }
 
 .sort-icon {
   margin-left: var(--spacing-1);
-  color: var(--color-neutral-500, #6b7280);
+  color: var(--foreground-tertiary);
   font-size: var(--font-size-xs);
 }
 
@@ -56,7 +56,7 @@
 }
 
 .datagrid--hoverable .datagrid-row:hover {
-  background-color: var(--datagrid-row-hover-bg, var(--color-neutral-50, #f9fafb));
+  background-color: var(--datagrid-row-hover-bg, var(--background-tertiary));
 }
 
 .datagrid-row--selected {
@@ -69,16 +69,16 @@
 
 /* Striped */
 .datagrid--striped tbody tr:nth-child(even) {
-  background-color: var(--datagrid-stripe-bg, var(--color-neutral-50, #f9fafb));
+  background-color: var(--datagrid-stripe-bg, var(--background-tertiary));
 }
 
 /* Bordered */
 .datagrid--bordered {
-  border: 1px solid var(--datagrid-border-color, var(--color-neutral-200, #e5e7eb));
+  border: 1px solid var(--datagrid-border-color, var(--border-default));
 }
 
 .datagrid--bordered .datagrid-cell {
-  border-right: 1px solid var(--datagrid-border-color, var(--color-neutral-200, #e5e7eb));
+  border-right: 1px solid var(--datagrid-border-color, var(--border-default));
 }
 
 .datagrid--bordered .datagrid-cell:last-child {
@@ -104,13 +104,13 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-3) var(--spacing-4);
-  border-top: 1px solid var(--datagrid-border-color, var(--color-neutral-200, #e5e7eb));
-  background-color: var(--datagrid-bg, var(--color-neutral-50, #ffffff));
+  border-top: 1px solid var(--datagrid-border-color, var(--border-default));
+  background-color: var(--datagrid-bg, var(--foreground-inverse));
   font-size: var(--font-size-sm);
 }
 
 .pagination-info {
-  color: var(--color-neutral-600, #4b5563);
+  color: var(--foreground-secondary);
 }
 
 .pagination-controls {
@@ -120,7 +120,7 @@
 }
 
 .pagination-page {
-  color: var(--color-neutral-600, #4b5563);
+  color: var(--foreground-secondary);
   padding: 0 var(--spacing-2);
 }
 
@@ -131,10 +131,10 @@
   min-width: 32px;
   height: 32px;
   padding: 0 var(--spacing-2);
-  border: 1px solid var(--datagrid-border-color, var(--color-neutral-200, #e5e7eb));
+  border: 1px solid var(--datagrid-border-color, var(--border-default));
   border-radius: var(--border-radius-md);
-  background-color: var(--color-neutral-50, #ffffff);
-  color: var(--color-neutral-700, #374151);
+  background-color: var(--foreground-inverse);
+  color: var(--foreground-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
@@ -143,11 +143,11 @@
 
 .pagination-button:hover:not(:disabled) {
   background-color: var(--foreground-inverse);
-  border-color: var(--color-neutral-300, #d1d5db);
+  border-color: var(--border-default);
 }
 
 .pagination-button:active:not(:disabled) {
-  background-color: var(--color-neutral-200, #e5e7eb);
+  background-color: var(--background-tertiary);
 }
 
 .pagination-button:disabled {
@@ -159,7 +159,7 @@
 .datagrid-empty {
   padding: var(--spacing-8);
   text-align: center;
-  color: var(--color-neutral-500, #6b7280);
+  color: var(--foreground-tertiary);
 }
 
 /* Responsive */
