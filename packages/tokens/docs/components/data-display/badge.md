@@ -417,8 +417,8 @@ function Badge({ variant = 'primary', size = 'md', outlined = false, soft = fals
 - `white` - テキストカラー
 
 #### Secondary
-- `--color-neutral-500` - セカンダリ背景
-- `--color-neutral-600` - セカンダリ枠線
+- `--foreground-secondary` - セカンダリ背景
+- `--foreground-primary` - セカンダリ枠線
 - `white` - テキストカラー
 
 #### Success
@@ -446,8 +446,8 @@ function Badge({ variant = 'primary', size = 'md', outlined = false, soft = fals
 Outlinedスタイルでは背景が透明になり、枠線とテキストに色が適用されます:
 
 - `--primary-default` - Primary文字色と枠線
-- `--color-neutral-700` - Secondary文字色
-- `--color-neutral-500` - Secondary枠線
+- `--foreground-primary` - Secondary文字色
+- `--border-default` - Secondary枠線
 - `--success-default` - Success文字色と枠線
 - `--warning-default` - Warning文字色と枠線
 - `--error-default` - Error文字色と枠線
@@ -458,9 +458,9 @@ Outlinedスタイルでは背景が透明になり、枠線とテキストに色
 Softスタイルでは淡い背景と濃いテキストが適用されます（※実装では各色に対して同じトークンが使用されているため、要調整の可能性があります）:
 
 - `--primary-default` - Primary背景・文字色・枠線
-- `--color-neutral-50` - Secondary背景
-- `--color-neutral-700` - Secondary文字色
-- `--color-neutral-200` - Secondary枠線
+- `--background-tertiary` - Secondary背景
+- `--foreground-primary` - Secondary文字色
+- `--border-default` - Secondary枠線
 - `--success-default` - Success背景・文字色・枠線
 - `--warning-default` - Warning背景・文字色・枠線
 - `--error-default` - Error背景・文字色・枠線

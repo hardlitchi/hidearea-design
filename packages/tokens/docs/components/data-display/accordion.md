@@ -248,9 +248,9 @@ function Accordion({ items }) {
 アコーディオンコンポーネントは以下のCSS変数(デザイントークン)を使用しています:
 
 ### 色関連
-- `--accordion-border-color` - ボーダーカラー (デフォルト: `var(--color-neutral-3, #e5e5e5)`)
+- `--accordion-border-color` - ボーダーカラー (デフォルト: `var(--border-default)`)
 - `--accordion-header-bg` - ヘッダー背景色 (デフォルト: `var(--foreground-inverse)`)
-- `--accordion-header-hover-bg` - ヘッダーホバー背景色 (デフォルト: `var(--color-neutral-2, #f5f5f5)`)
+- `--accordion-header-hover-bg` - ヘッダーホバー背景色 (デフォルト: `var(--background-tertiary)`)
 - `--foreground-primary` - テキストカラー
 - `--primary-default` - フォーカス時のアウトラインカラー
 

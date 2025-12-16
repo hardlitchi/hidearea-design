@@ -230,10 +230,10 @@ function Tabs({ variant = 'default', activeTab, onChange, tabs }) {
 
 ### 色関連
 - `--primary-default` - アクティブタブの色
-- `--color-neutral-200` - ボーダーカラー
-- `--color-neutral-400` - 無効タブの色
-- `--color-neutral-600` - デフォルトタブの色
-- `--color-neutral-700` - ホバー時の色
+- `--border-default` - ボーダーカラー
+- `--foreground-tertiary` - 無効タブの色
+- `--foreground-secondary` - デフォルトタブの色
+- `--foreground-primary` - ホバー時の色
 - `--foreground-inverse` - ピルバリアントの背景色
 
 ### スペーシング
