@@ -4,7 +4,6 @@ export default defineConfig({
   title: 'Hidearea Design',
   description: 'モダンなWebコンポーネントライブラリ',
   lang: 'ja',
-  base: '/hidearea-design/',
 
   themeConfig: {
     nav: [
