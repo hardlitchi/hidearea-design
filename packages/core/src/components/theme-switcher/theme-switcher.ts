@@ -286,9 +286,11 @@ class ThemeSwitcher extends HTMLElement {
       });
     }
 
-    // Listen for external theme changes
-    this._themeChangeHandler = this._handleThemeChange.bind(this);
-    window.addEventListener('theme-change', this._themeChangeHandler);
+    // Listen for external theme changes (only add once)
+    if (!this._themeChangeHandler) {
+      this._themeChangeHandler = this._handleThemeChange.bind(this);
+      window.addEventListener('theme-change', this._themeChangeHandler);
+    }
   }
 
   private _removeListeners(): void {
@@ -330,7 +332,18 @@ class ThemeSwitcher extends HTMLElement {
     this._currentTheme = customEvent.detail.effective;
     this._currentPreference = customEvent.detail.theme;
     this.render();
-    this._setupListeners();
+    // Re-attach listeners to newly rendered elements
+    if (this.variant === 'toggle') {
+      const btn = this.shadowRoot!.getElementById('toggle-btn');
+      btn?.addEventListener('click', this._handleToggle.bind(this));
+    } else if (this.variant === 'dropdown') {
+      const select = this.shadowRoot!.getElementById('theme-select') as HTMLSelectElement;
+      select?.addEventListener('change', this._handleSelect.bind(this));
+    } else if (this.variant === 'segmented') {
+      this.shadowRoot!.querySelectorAll('button[data-theme]').forEach(btn => {
+        btn.addEventListener('click', this._handleSegmentedClick.bind(this));
+      });
+    }
 
     // Dispatch event
     this.dispatchEvent(new CustomEvent('theme-change', {
