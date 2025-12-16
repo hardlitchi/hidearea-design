@@ -39,6 +39,7 @@ import { metadata as switchMetadata } from './components/switch/metadata.js';
 import { metadata as tableMetadata } from './components/table/metadata.js';
 import { metadata as tabsMetadata } from './components/tabs/metadata.js';
 import { metadata as textareaMetadata } from './components/textarea/metadata.js';
+import { metadata as themeSwitcherMetadata } from './components/theme-switcher/metadata.js';
 import { metadata as timePickerMetadata } from './components/time-picker/metadata.js';
 import { metadata as toastMetadata } from './components/toast/metadata.js';
 import { metadata as tooltipMetadata } from './components/tooltip/metadata.js';
@@ -77,6 +78,7 @@ export const ALL_COMPONENT_METADATA: ComponentMetadata[] = [
   tableMetadata,
   tabsMetadata,
   textareaMetadata,
+  themeSwitcherMetadata,
   timePickerMetadata,
   toastMetadata,
   tooltipMetadata,
