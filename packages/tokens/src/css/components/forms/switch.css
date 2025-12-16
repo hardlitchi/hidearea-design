@@ -52,7 +52,7 @@ input {
   display: inline-flex;
   align-items: center;
   border-radius: 9999px;
-  background-color: var(--color-neutral-300, #d1d5db);
+  background-color: var(--background-tertiary);
   transition: background-color 0.2s ease;
   flex-shrink: 0;
   position: relative;
@@ -151,11 +151,11 @@ input:focus-visible + .switch-track {
    ======================================== */
 
 :host([disabled]) .switch-track {
-  background-color: var(--color-neutral-200, #e5e7eb);
+  background-color: var(--background-secondary);
 }
 
 :host([disabled][checked]) .switch-track {
-  background-color: var(--color-neutral-400, #9ca3af);
+  background-color: var(--border-hover);
 }
 
 /* ========================================
