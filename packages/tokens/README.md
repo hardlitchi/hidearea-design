@@ -664,6 +664,68 @@ npm run build
 npm run perf
 ```
 
+## テーマシステム
+
+Hidearea Design Systemは、ライトモード・ダークモードの完全なテーマ切り替えをサポートしています。
+
+### テーマの仕組み
+
+すべてのセマンティックトークンは、テーマに応じて自動的に切り替わります：
+
+```css
+/* ライトモード */
+[data-theme="light"] {
+  --theme-background-primary: #ffffff;
+  --theme-foreground-primary: #171717;
+  --theme-border-default: #e5e5e5;
+}
+
+/* ダークモード */
+[data-theme="dark"] {
+  --theme-background-primary: #171717;
+  --theme-foreground-primary: #fafafa;
+  --theme-border-default: #404040;
+}
+```
+
+### テーマの使用方法
+
+テーマ切り替え機能は `@hidearea-design/core` パッケージで提供されます：
+
+```bash
+npm install @hidearea-design/core
+```
+
+**JavaScriptで使用:**
+
+```javascript
+import { initTheme, setTheme, toggleTheme } from '@hidearea-design/core';
+
+// 初期化
+initTheme();
+
+// テーマを設定
+setTheme('dark');  // 'light', 'dark', 'auto'
+
+// トグル
+toggleTheme();
+```
+
+**Web Componentで使用:**
+
+```html
+<ha-theme-switcher variant="segmented" show-auto></ha-theme-switcher>
+
+<script type="module">
+  import '@hidearea-design/core';
+  import { initTheme } from '@hidearea-design/core';
+
+  initTheme();
+</script>
+```
+
+詳細は [Theme System Guide](../docs/guide/theme-system.md) を参照してください。
+
 ## ライセンス
 
 MIT

@@ -85,4 +85,5 @@ export type ComponentCategory =
   | 'Feedback'
   | 'Navigation'
   | 'Layout'
-  | 'Overlay';
+  | 'Overlay'
+  | 'Utility';
