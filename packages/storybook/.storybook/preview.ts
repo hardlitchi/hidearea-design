@@ -1,6 +1,6 @@
 import { spyOn } from "storybook/test";
 import type { Preview, Decorator } from "@storybook/web-components-vite";
-import "@hidearea-design/tokens/build/css/variables.css";
+import "@hidearea-design/tokens/css";
 import { initTheme, setTheme } from "@hidearea-design/core";
 
 // Initialize theme on load
