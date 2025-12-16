@@ -144,7 +144,7 @@
 - `--warning-default` - 警告色
 - `--error-default` - エラー色
 - `--info-default` - 情報色
-- `--color-neutral-200` - 背景色
+- `--border-default` - 背景色
 
 ### ボーダー
 - `--border-radius-full` - 完全な角丸

@@ -148,7 +148,7 @@
 ```
 
 **視覚的プロパティ:**
-- トラック背景: `--color-neutral-300` (#d1d5db) - ライトグレー
+- トラック背景: `--border-default` - ライトグレー
 - サム位置: 左（0pxオフセット）
 - カーソル: pointer
 - 不透明度: 100%
@@ -235,7 +235,7 @@
 ```
 
 **視覚的プロパティ:**
-- トラック背景: `--color-neutral-200` (#e5e7eb) - より薄いグレー
+- トラック背景: `--background-tertiary` - より薄いグレー
 - ラベルカラー: `--color-text-disabled` (#9ca3af) - 無効化グレー
 - カーソル: not-allowed
 - ホスト不透明度: 0.6
@@ -257,7 +257,7 @@
 ```
 
 **視覚的プロパティ:**
-- トラック背景: `--color-neutral-400` (#9ca3af) - ミディアムグレー
+- トラック背景: `--foreground-tertiary` - ミディアムグレー
 - ラベルカラー: `--color-text-disabled` (#9ca3af)
 - カーソル: not-allowed
 - ホスト不透明度: 0.6
@@ -641,9 +641,9 @@ export { Switch, SettingsPage };
 スイッチコンポーネントは以下のデザイントークンを使用しています:
 
 ### カラー
-- `--color-neutral-200` - #e5e7eb（無効化オフ）
-- `--color-neutral-300` - #d1d5db（デフォルトオフ）
-- `--color-neutral-400` - #9ca3af（無効化オン）
+- `--background-tertiary` - 無効化オフ
+- `--border-default` - デフォルトオフ
+- `--foreground-tertiary` - 無効化オン
 - `--color-primary-600` - #4f46e5（プライマリ/チェック済み）
 - `--color-danger-200` - #fecaca（エラーオフ）
 - `--color-danger-600` - #dc2626（エラーオン）
@@ -1406,7 +1406,7 @@ function applyFeature(featureName, enabled) {
 }
 
 .notification-settings fieldset {
-  border: 1px solid var(--color-neutral-200);
+  border: 1px solid var(--border-default);
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
