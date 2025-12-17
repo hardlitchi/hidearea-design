@@ -1,7 +1,9 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { setTheme, getTheme } from '../../utils/theme';
+import * as themeUtils from '../../utils/theme';
 import './theme-switcher';
 import { expectNoA11yViolations } from '../../test-utils/accessibility';
+
+const { setTheme, getTheme } = themeUtils;
 
 describe('ThemeSwitcher', () => {
   let element: HTMLElement;
@@ -14,7 +16,11 @@ describe('ThemeSwitcher', () => {
   });
 
   afterEach(() => {
-    document.body.removeChild(element);
+    if (document.body.contains(element)) {
+      document.body.removeChild(element);
+    }
+    // Reset theme to light after each test
+    setTheme('light');
   });
 
   describe('Basic rendering', () => {
@@ -377,6 +383,118 @@ describe('ThemeSwitcher', () => {
       const button2 = element.shadowRoot!.querySelector('#toggle-btn');
       expect(button2).toBeTruthy();
       expect(button1).not.toBe(button2); // Different DOM element after re-render
+    });
+  });
+
+  describe('Handler method logic', () => {
+    it('should call setTheme with correct value on toggle (no auto)', () => {
+      const setThemeSpy = vi.spyOn(themeUtils, 'setTheme').mockImplementation(() => {});
+
+      element.setAttribute('variant', 'toggle');
+      const comp = element as any;
+
+      // Directly call the handler to execute the code
+      comp._handleToggle();
+
+      expect(setThemeSpy).toHaveBeenCalledWith('dark');
+
+      setThemeSpy.mockRestore();
+    });
+
+    it('should call setTheme when cycling through themes with auto enabled', () => {
+      const setThemeSpy = vi.spyOn(themeUtils, 'setTheme').mockImplementation(() => {});
+
+      element.setAttribute('variant', 'toggle');
+      element.setAttribute('show-auto', '');
+      const comp = element as any;
+
+      // Set internal state to light
+      comp._currentPreference = 'light';
+
+      comp._handleToggle();
+      expect(setThemeSpy).toHaveBeenCalledWith('dark');
+
+      setThemeSpy.mockClear();
+
+      // Set to dark, should cycle to auto
+      comp._currentPreference = 'dark';
+      comp._handleToggle();
+      expect(setThemeSpy).toHaveBeenCalledWith('auto');
+
+      setThemeSpy.mockClear();
+
+      // Set to auto, should cycle to light
+      comp._currentPreference = 'auto';
+      comp._handleToggle();
+      expect(setThemeSpy).toHaveBeenCalledWith('light');
+
+      setThemeSpy.mockRestore();
+    });
+
+    it('should call setTheme on dropdown selection', () => {
+      const setThemeSpy = vi.spyOn(themeUtils, 'setTheme').mockImplementation(() => {});
+
+      element.setAttribute('variant', 'dropdown');
+      const select = element.shadowRoot!.querySelector('#theme-select') as HTMLSelectElement;
+
+      select.value = 'dark';
+      const event = { target: select } as any;
+
+      const comp = element as any;
+      comp._handleSelect(event);
+
+      expect(setThemeSpy).toHaveBeenCalledWith('dark');
+
+      setThemeSpy.mockRestore();
+    });
+
+    it('should call setTheme on segmented button click', () => {
+      const setThemeSpy = vi.spyOn(themeUtils, 'setTheme').mockImplementation(() => {});
+
+      element.setAttribute('variant', 'segmented');
+      const button = document.createElement('button');
+      button.dataset.theme = 'dark';
+
+      const event = { currentTarget: button } as any;
+      const comp = element as any;
+      comp._handleSegmentedClick(event);
+
+      expect(setThemeSpy).toHaveBeenCalledWith('dark');
+
+      setThemeSpy.mockRestore();
+    });
+
+    it('should have theme change handler defined', () => {
+      const comp = element as any;
+      expect(comp._handleThemeChange).toBeDefined();
+      expect(typeof comp._handleThemeChange).toBe('function');
+    });
+
+    it('should render toggle button with proper setup', () => {
+      element.setAttribute('variant', 'toggle');
+      const button = element.shadowRoot!.querySelector('#toggle-btn') as HTMLButtonElement;
+      expect(button).toBeTruthy();
+      expect(button.tagName).toBe('BUTTON');
+      expect(button.type).toBe('button');
+    });
+
+    it('should render dropdown select with proper setup', () => {
+      element.setAttribute('variant', 'dropdown');
+      const select = element.shadowRoot!.querySelector('#theme-select') as HTMLSelectElement;
+      expect(select).toBeTruthy();
+      expect(select.tagName).toBe('SELECT');
+    });
+
+    it('should render segmented buttons with data-theme attributes', () => {
+      element.setAttribute('variant', 'segmented');
+      const buttons = element.shadowRoot!.querySelectorAll('button[data-theme]');
+
+      expect(buttons.length).toBeGreaterThan(0);
+
+      buttons.forEach(button => {
+        expect(button.tagName).toBe('BUTTON');
+        expect((button as HTMLElement).dataset.theme).toBeTruthy();
+      });
     });
   });
 
