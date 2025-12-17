@@ -184,6 +184,20 @@ MIT
 - **[使用例](./docs/guides/examples.md)** - ログインフォーム、検索、設定パネルなどの実装例
 - **[コントリビューティング](./CONTRIBUTING.md)** ([日本語](./CONTRIBUTING.ja.md)) - プロジェクトへの貢献方法
 
+### Changelog
+
+プロジェクトの変更履歴は以下で確認できます：
+
+- **[GitHubリリース](https://github.com/hardlitchi/hidearea-design/releases)** - すべてのリリースの詳細
+- **パッケージごとのCHANGELOG**:
+  - [@hidearea-design/core](./packages/core/CHANGELOG.md)
+  - [@hidearea-design/tokens](./packages/tokens/CHANGELOG.md)
+  - [@hidearea-design/react](./packages/react/CHANGELOG.md)
+  - [@hidearea-design/vue](./packages/vue/CHANGELOG.md)
+  - [@hidearea-design/mcp-server](./packages/mcp-server/CHANGELOG.md)
+
+変更履歴は [Changesets](https://github.com/changesets/changesets) により自動生成されています。
+
 ### プロジェクトメモ
 
 開発プロセスの詳細は [./notes/](./notes/) を参照してください。
