@@ -11,7 +11,7 @@ interface TableArgs {
 }
 
 const meta: Meta<TableArgs> = {
-  title: "Components/Table",
+  title: "Data Display/Table",
   tags: ["autodocs"],
   argTypes: {
     striped: {

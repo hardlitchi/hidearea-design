@@ -12,7 +12,7 @@ interface ChipArgs {
 }
 
 const meta: Meta<ChipArgs> = {
-  title: "Components/Chip",
+  title: "Data Display/Chip",
   tags: ["autodocs"],
   argTypes: {
     size: {

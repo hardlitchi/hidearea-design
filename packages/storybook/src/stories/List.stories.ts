@@ -9,7 +9,7 @@ interface ListArgs {
 }
 
 const meta: Meta<ListArgs> = {
-  title: "Components/List",
+  title: "Data Display/List",
   tags: ["autodocs"],
   argTypes: {
     bordered: {

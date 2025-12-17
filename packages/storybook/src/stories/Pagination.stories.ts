@@ -12,7 +12,7 @@ interface PaginationArgs {
 }
 
 const meta: Meta<PaginationArgs> = {
-  title: "Components/Pagination",
+  title: "Navigation/Pagination",
   tags: ["autodocs"],
   argTypes: {
     current: {

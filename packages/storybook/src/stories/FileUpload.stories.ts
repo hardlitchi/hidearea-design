@@ -21,7 +21,7 @@ interface FileUploadArgs {
 }
 
 const meta: Meta<FileUploadArgs> = {
-  title: "Components/FileUpload",
+  title: "Other/FileUpload",
   tags: ["autodocs"],
   argTypes: {
     variant: {

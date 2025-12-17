@@ -12,7 +12,7 @@ interface ProgressArgs {
 }
 
 const meta: Meta<ProgressArgs> = {
-  title: "Components/Progress",
+  title: "Feedback/Progress",
   argTypes: {
     value: {
       control: { type: "range", min: 0, max: 100, step: 1 },

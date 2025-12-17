@@ -10,7 +10,7 @@ interface ThemeSwitcherArgs {
 }
 
 const meta: Meta<ThemeSwitcherArgs> = {
-  title: "Components/ThemeSwitcher",
+  title: "Other/ThemeSwitcher",
   tags: ["autodocs"],
   argTypes: {
     variant: {

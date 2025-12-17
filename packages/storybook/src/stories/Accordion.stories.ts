@@ -8,7 +8,7 @@ interface AccordionArgs {
 }
 
 const meta: Meta<AccordionArgs> = {
-  title: "Components/Accordion",
+  title: "Other/Accordion",
   tags: ["autodocs"],
   argTypes: {
     allowMultiple: {

@@ -13,7 +13,7 @@ interface BadgeArgs {
 }
 
 const meta: Meta<BadgeArgs> = {
-  title: "Components/Badge",
+  title: "Data Display/Badge",
   tags: ["autodocs"],
   argTypes: {
     variant: {

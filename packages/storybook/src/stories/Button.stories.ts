@@ -13,7 +13,7 @@ interface ButtonArgs {
 }
 
 const meta: Meta<ButtonArgs> = {
-  title: "Components/Button",
+  title: "Forms/Button",
   tags: ["autodocs"],
   argTypes: {
     variant: {

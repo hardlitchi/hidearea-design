@@ -12,7 +12,7 @@ interface AlertArgs {
 }
 
 const meta: Meta<AlertArgs> = {
-  title: "Components/Alert",
+  title: "Feedback/Alert",
   tags: ["autodocs"],
   argTypes: {
     variant: {

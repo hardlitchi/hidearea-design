@@ -3,7 +3,7 @@ import { html } from "lit";
 import "@hidearea-design/core";
 
 const meta: Meta = {
-  title: "Components/Tooltip",
+  title: "Feedback/Tooltip",
   tags: ["autodocs"],
   argTypes: {
     content: {

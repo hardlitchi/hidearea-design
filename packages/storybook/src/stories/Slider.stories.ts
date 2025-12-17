@@ -18,7 +18,7 @@ interface SliderArgs {
 }
 
 const meta: Meta<SliderArgs> = {
-  title: "Components/Slider",
+  title: "Forms/Slider",
   argTypes: {
     min: {
       control: { type: "number" },

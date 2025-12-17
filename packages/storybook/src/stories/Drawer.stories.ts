@@ -11,7 +11,7 @@ interface DrawerArgs {
 }
 
 const meta: Meta<DrawerArgs> = {
-  title: "Components/Drawer",
+  title: "Overlays/Drawer",
   tags: ["autodocs"],
   argTypes: {
     placement: {

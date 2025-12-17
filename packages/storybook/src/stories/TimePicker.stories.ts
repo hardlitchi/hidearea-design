@@ -27,7 +27,7 @@ interface TimePickerArgs {
 }
 
 const meta: Meta<TimePickerArgs> = {
-  title: "Components/TimePicker",
+  title: "Other/TimePicker",
   tags: ["autodocs"],
   argTypes: {
     value: {

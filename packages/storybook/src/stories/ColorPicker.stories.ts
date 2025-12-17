@@ -13,7 +13,7 @@ interface ColorPickerArgs {
 }
 
 const meta: Meta<ColorPickerArgs> = {
-  title: "Components/ColorPicker",
+  title: "Other/ColorPicker",
   argTypes: {
     value: {
       control: "color",

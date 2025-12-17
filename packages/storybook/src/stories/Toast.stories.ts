@@ -18,7 +18,7 @@ interface ToastArgs {
 }
 
 const meta: Meta<ToastArgs> = {
-  title: "Components/Toast",
+  title: "Feedback/Toast",
   tags: ["autodocs"],
   argTypes: {
     variant: {

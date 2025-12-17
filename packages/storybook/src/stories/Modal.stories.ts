@@ -15,7 +15,7 @@ interface ModalArgs {
 }
 
 const meta: Meta<ModalArgs> = {
-  title: "Components/Modal",
+  title: "Overlays/Modal",
   tags: ["autodocs"],
   argTypes: {
     open: {

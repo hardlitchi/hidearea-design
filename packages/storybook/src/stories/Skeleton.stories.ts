@@ -3,7 +3,7 @@ import { html } from "lit";
 import "@hidearea-design/core";
 
 const meta: Meta = {
-  title: "Components/Skeleton",
+  title: "Feedback/Skeleton",
   component: "ha-skeleton",
   tags: ["autodocs"],
   argTypes: {

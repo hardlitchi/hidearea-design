@@ -27,7 +27,7 @@ interface DatePickerArgs {
 }
 
 const meta: Meta<DatePickerArgs> = {
-  title: "Components/DatePicker",
+  title: "Other/DatePicker",
   tags: ["autodocs"],
   argTypes: {
     mode: {

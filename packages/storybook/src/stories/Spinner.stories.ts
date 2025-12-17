@@ -9,7 +9,7 @@ interface SpinnerArgs {
 }
 
 const meta: Meta<SpinnerArgs> = {
-  title: "Components/Spinner",
+  title: "Feedback/Spinner",
   argTypes: {
     size: {
       control: "select",

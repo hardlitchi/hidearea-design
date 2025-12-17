@@ -10,7 +10,7 @@ interface CardArgs {
 }
 
 const meta: Meta<CardArgs> = {
-  title: "Components/Card",
+  title: "Data Display/Card",
   tags: ["autodocs"],
   argTypes: {
     variant: {

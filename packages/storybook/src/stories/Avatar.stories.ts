@@ -12,7 +12,7 @@ interface AvatarArgs {
 }
 
 const meta: Meta<AvatarArgs> = {
-  title: "Components/Avatar",
+  title: "Data Display/Avatar",
   tags: ["autodocs"],
   argTypes: {
     src: {

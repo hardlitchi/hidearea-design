@@ -17,7 +17,7 @@ interface InputArgs {
 }
 
 const meta: Meta<InputArgs> = {
-  title: "Components/Input",
+  title: "Forms/Input",
   tags: ["autodocs"],
   argTypes: {
     variant: {

@@ -15,7 +15,7 @@ interface CheckboxArgs {
 }
 
 const meta: Meta<CheckboxArgs> = {
-  title: "Components/Checkbox",
+  title: "Forms/Checkbox",
   tags: ["autodocs"],
   argTypes: {
     size: {
