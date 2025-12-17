@@ -960,10 +960,9 @@ export class HaColorPicker extends HTMLElement {
           height: 40px;
           border-radius: 0.25rem;
           border: 1px solid var(--color-picker-border, #e5e7eb);
-          background-color: ${currentColorWithAlpha};
-          background-image: repeating-conic-gradient(#e5e7eb 0% 25%, #fff 0% 50%);
-          background-size: 10px 10px;
-          background-position: 50% 50%;
+          background:
+            linear-gradient(${currentColorWithAlpha}, ${currentColorWithAlpha}),
+            repeating-conic-gradient(#e5e7eb 0% 25%, #fff 0% 50%) 50% / 10px 10px;
           flex-shrink: 0;
         }
 
