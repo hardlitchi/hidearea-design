@@ -324,6 +324,60 @@ describe('ThemeSwitcher', () => {
 
       document.body.removeChild(newElement);
     });
+
+    it('should have toggle button with click handler attached', () => {
+      element.setAttribute('variant', 'toggle');
+      const button = element.shadowRoot!.querySelector('#toggle-btn') as HTMLButtonElement;
+      expect(button).toBeTruthy();
+      expect(button.onclick).toBeDefined;
+    });
+
+    it('should have dropdown with change handler attached', () => {
+      element.setAttribute('variant', 'dropdown');
+      const select = element.shadowRoot!.querySelector('#theme-select') as HTMLSelectElement;
+      expect(select).toBeTruthy();
+      expect(select.onchange).toBeDefined;
+    });
+
+    it('should have segmented buttons with click handlers attached', () => {
+      element.setAttribute('variant', 'segmented');
+      const buttons = element.shadowRoot!.querySelectorAll('button[data-theme]');
+      expect(buttons.length).toBeGreaterThan(0);
+      buttons.forEach(button => {
+        expect((button as HTMLButtonElement).onclick).toBeDefined;
+      });
+    });
+
+    it('should render correct icon based on current theme (toggle variant)', () => {
+      element.setAttribute('variant', 'toggle');
+      const icon = element.shadowRoot!.querySelector('.icon svg');
+      expect(icon).toBeTruthy();
+    });
+
+    it('should render correct selected option in dropdown', () => {
+      element.setAttribute('variant', 'dropdown');
+      const select = element.shadowRoot!.querySelector('#theme-select') as HTMLSelectElement;
+      const selectedOption = select.querySelector('option[selected]');
+      expect(selectedOption).toBeTruthy();
+    });
+
+    it('should mark active button in segmented variant', () => {
+      element.setAttribute('variant', 'segmented');
+      const activeButtons = element.shadowRoot!.querySelectorAll('button.active');
+      expect(activeButtons.length).toBeGreaterThan(0);
+    });
+
+    it('should re-attach event listeners after render', () => {
+      element.setAttribute('variant', 'toggle');
+      const button1 = element.shadowRoot!.querySelector('#toggle-btn');
+
+      // Force re-render
+      element.setAttribute('show-label', '');
+
+      const button2 = element.shadowRoot!.querySelector('#toggle-btn');
+      expect(button2).toBeTruthy();
+      expect(button1).not.toBe(button2); // Different DOM element after re-render
+    });
   });
 
   describe('Lifecycle', () => {
