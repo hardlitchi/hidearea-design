@@ -99,10 +99,8 @@ describe("HaDropdown", () => {
     expect(menuContainer?.getAttribute("part")).toBe("menu-container");
   });
 
-  /*
   describe("Dropdown Interactions", () => {
-    let dropdown: HaDropdown;
-    let trigger: HTMLButtonElement;
+    let dropdown: any;
 
     beforeEach(() => {
       document.body.innerHTML = `
@@ -113,20 +111,19 @@ describe("HaDropdown", () => {
           </ha-menu>
         </ha-dropdown>
       `;
-      dropdown = document.querySelector("ha-dropdown") as HaDropdown;
-      trigger = document.querySelector('[slot="trigger"]') as HTMLButtonElement;
+      dropdown = document.querySelector("ha-dropdown");
     });
-    
-    it("should open on trigger click", async () => {
+
+    it("should open on toggle", async () => {
       dropdown.toggleDropdown();
-      await new Promise(resolve => setTimeout(resolve, 0));
+      await new Promise(resolve => setTimeout(resolve, 10));
       const menu = dropdown.shadowRoot?.querySelector('.menu-container');
       expect(menu?.classList.contains('open')).toBe(true);
     });
 
     it("should close on outside click", async () => {
       dropdown.showDropdown();
-      await new Promise(resolve => setTimeout(resolve, 10));
+      await new Promise(resolve => setTimeout(resolve, 20));
       document.body.click();
       await new Promise(resolve => setTimeout(resolve, 10));
       expect(dropdown.open).toBe(false);
@@ -134,76 +131,81 @@ describe("HaDropdown", () => {
 
     it("should close on Escape key", async () => {
       dropdown.showDropdown();
-      await new Promise(resolve => setTimeout(resolve, 10));
+      await new Promise(resolve => setTimeout(resolve, 20));
       document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
       await new Promise(resolve => setTimeout(resolve, 10));
       expect(dropdown.open).toBe(false);
     });
-    
-    it("should open on hover if trigger is hover", async () => {
-      dropdown.triggerMode = "hover";
+
+    it("should open with showDropdown method", async () => {
       dropdown.showDropdown();
-      await new Promise(resolve => setTimeout(resolve, 0));
+      await new Promise(resolve => setTimeout(resolve, 10));
       const menu = dropdown.shadowRoot?.querySelector('.menu-container');
       expect(menu?.classList.contains('open')).toBe(true);
     });
 
-    it("should close on mouseleave if trigger is hover", async () => {
-      dropdown.triggerMode = "hover";
+    it("should close with hideDropdown method", async () => {
       dropdown.showDropdown();
-      await new Promise(resolve => setTimeout(resolve, 0));
-      dropdown.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
-      await new Promise(resolve => setTimeout(resolve, 0));
+      await new Promise(resolve => setTimeout(resolve, 10));
+      dropdown.hideDropdown();
+      await new Promise(resolve => setTimeout(resolve, 10));
       expect(dropdown.open).toBe(false);
     });
-    
+
     it("should show/hide when open attribute changes", async () => {
       const menu = dropdown.shadowRoot?.querySelector('.menu-container');
-      
+
       dropdown.setAttribute('open', '');
-      await new Promise(resolve => setTimeout(resolve, 0));
+      await new Promise(resolve => setTimeout(resolve, 10));
       expect(menu?.classList.contains('open')).toBe(true);
-      
+
       dropdown.removeAttribute('open');
-      await new Promise(resolve => setTimeout(resolve, 0));
+      await new Promise(resolve => setTimeout(resolve, 10));
       expect(menu?.classList.contains('open')).toBe(false);
     });
-    
-    it("should not re-show if already open", () => {
-      const dispatchSpy = vi.spyOn(dropdown, "dispatchEvent");
+
+    it("should dispatch open event when opened", async () => {
+      const openHandler = vi.fn();
+      dropdown.addEventListener("open", openHandler);
+
       dropdown.showDropdown();
-      dispatchSpy.mockClear();
-      dropdown.showDropdown();
-      expect(dispatchSpy).not.toHaveBeenCalledWith(new CustomEvent("open"));
+      await new Promise(resolve => setTimeout(resolve, 10));
+
+      expect(openHandler).toHaveBeenCalled();
     });
 
-    it("should remove event listeners on disconnect", () => {
-        const removeSpy = vi.spyOn(document, "removeEventListener");
-        dropdown.connectedCallback();
-        dropdown.disconnectedCallback();
-        expect(removeSpy).toHaveBeenCalledWith("click", expect.any(Function));
-        expect(removeSpy).toHaveBeenCalledWith("keydown", expect.any(Function));
+    it("should dispatch close event when closed", async () => {
+      const closeHandler = vi.fn();
+      dropdown.addEventListener("close", closeHandler);
+
+      dropdown.showDropdown();
+      await new Promise(resolve => setTimeout(resolve, 10));
+      dropdown.hideDropdown();
+      await new Promise(resolve => setTimeout(resolve, 10));
+
+      expect(closeHandler).toHaveBeenCalled();
     });
   });
 
   describe("Dropdown Positioning", () => {
-    it("should update position for all placements", () => {
-        const dropdown = document.createElement("ha-dropdown");
+    it("should update position for all placements", async () => {
+        const dropdown = document.createElement("ha-dropdown") as any;
         document.body.appendChild(dropdown);
-        dropdown.showDropdown();
-        
-        const placements = ["top", "top-start", "top-end", "bottom", "bottom-end", "left", "right"];
-        
+
+        const placements = ["top", "top-start", "top-end", "bottom", "bottom-start", "bottom-end", "left", "right"];
+
         for (const p of placements) {
             dropdown.placement = p;
-            (dropdown as any).updatePosition();
+            dropdown.showDropdown();
+            await new Promise(resolve => setTimeout(resolve, 10));
             const menu = dropdown.shadowRoot?.querySelector('.menu-container') as HTMLDivElement;
             expect(menu.style.top).not.toBe("");
             expect(menu.style.left).not.toBe("");
+            dropdown.hideDropdown();
+            await new Promise(resolve => setTimeout(resolve, 10));
         }
     });
   });
-  */
 });
 
 describe("HaMenu", () => {
