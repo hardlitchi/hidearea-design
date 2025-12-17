@@ -487,6 +487,62 @@ describe("HaTooltip", () => {
       expect(contentElement.style.left).toBeTruthy();
     });
 
+    it("should calculate position for bottom-start placement", async () => {
+      tooltip.content = "Test";
+      tooltip.placement = "bottom-start";
+      tooltip.showTooltip();
+
+      await new Promise((resolve) => setTimeout(resolve, 250));
+
+      const contentElement = tooltip.shadowRoot?.querySelector(
+        ".tooltip-content",
+      ) as HTMLElement;
+      expect(contentElement.style.top).toBeTruthy();
+      expect(contentElement.style.left).toBeTruthy();
+    });
+
+    it("should calculate position for bottom-end placement", async () => {
+      tooltip.content = "Test";
+      tooltip.placement = "bottom-end";
+      tooltip.showTooltip();
+
+      await new Promise((resolve) => setTimeout(resolve, 250));
+
+      const contentElement = tooltip.shadowRoot?.querySelector(
+        ".tooltip-content",
+      ) as HTMLElement;
+      expect(contentElement.style.top).toBeTruthy();
+      expect(contentElement.style.left).toBeTruthy();
+    });
+
+    it("should calculate position for left-start placement", async () => {
+      tooltip.content = "Test";
+      tooltip.placement = "left-start";
+      tooltip.showTooltip();
+
+      await new Promise((resolve) => setTimeout(resolve, 250));
+
+      const contentElement = tooltip.shadowRoot?.querySelector(
+        ".tooltip-content",
+      ) as HTMLElement;
+      expect(contentElement.style.top).toBeTruthy();
+      expect(contentElement.style.left).toBeTruthy();
+    });
+
+    it("should calculate position for left-end placement", async () => {
+      tooltip.content = "Test";
+      tooltip.placement = "left-end";
+      tooltip.showTooltip();
+
+      await new Promise((resolve) => setTimeout(resolve, 250));
+
+      const contentElement = tooltip.shadowRoot?.querySelector(
+        ".tooltip-content",
+      ) as HTMLElement;
+      expect(contentElement.style.top).toBeTruthy();
+      expect(contentElement.style.left).toBeTruthy();
+    });
+
     it("should adjust position when exceeding left viewport boundary", async () => {
       const triggerElement = tooltip.shadowRoot?.querySelector(
         ".tooltip-trigger",
