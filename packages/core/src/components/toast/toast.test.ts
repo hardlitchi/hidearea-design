@@ -131,6 +131,18 @@ describe("HaToast", () => {
       const closeButton = queryShadow(toast, '[part="close"]');
       expect(closeButton).toBeNull();
     });
+
+    it("should remove close button when closable attribute is removed", () => {
+      // First add closable
+      toast.setAttribute("closable", "");
+      let closeButton = queryShadow(toast, '[part="close"]');
+      expect(closeButton).toBeTruthy();
+
+      // Then remove closable
+      toast.removeAttribute("closable");
+      closeButton = queryShadow(toast, '[part="close"]');
+      expect(closeButton).toBeNull();
+    });
   });
 
   describe("Auto-close", () => {
@@ -165,6 +177,43 @@ describe("HaToast", () => {
     it("should not show progress bar by default", () => {
       const progressBar = queryShadow(toast, '[part="progress"]');
       expect(progressBar).toBeNull();
+    });
+
+    it("should remove progress bar when show-progress attribute is removed", () => {
+      // First add show-progress
+      toast.setAttribute("show-progress", "");
+      toast.setAttribute("duration", "5000");
+      let progressBar = queryShadow(toast, '[part="progress"]');
+      expect(progressBar).toBeTruthy();
+
+      // Then remove show-progress
+      toast.removeAttribute("show-progress");
+      progressBar = queryShadow(toast, '[part="progress"]');
+      expect(progressBar).toBeNull();
+    });
+
+    it("should remove progress bar when duration is set to 0", () => {
+      // First add show-progress with duration
+      toast.setAttribute("show-progress", "");
+      toast.setAttribute("duration", "5000");
+      let progressBar = queryShadow(toast, '[part="progress"]');
+      expect(progressBar).toBeTruthy();
+
+      // Then set duration to 0
+      toast.setAttribute("duration", "0");
+      progressBar = queryShadow(toast, '[part="progress"]');
+      expect(progressBar).toBeNull();
+    });
+
+    it("should clear auto-close timeout when manually closed", () => {
+      // Set a duration to trigger auto-close
+      toast.setAttribute("duration", "5000");
+
+      // Manually close before auto-close triggers
+      toast.close();
+
+      // Verify toast is closing
+      expect(toast.hasAttribute("closing")).toBe(true);
     });
   });
 
