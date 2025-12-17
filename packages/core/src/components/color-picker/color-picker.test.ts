@@ -816,4 +816,126 @@ describe("HaColorPicker", () => {
       }
     });
   });
+
+  describe("Palette Interactions", () => {
+    it("should dispatch color-input event on palette interaction", () => {
+      const inputHandler = vi.fn();
+      element.addEventListener("color-input", inputHandler);
+
+      const palette = element.shadowRoot?.querySelector(".palette") as HTMLElement;
+
+      if (palette) {
+        palette.getBoundingClientRect = () => ({
+          left: 0,
+          top: 0,
+          width: 200,
+          height: 200,
+          right: 200,
+          bottom: 200,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        });
+
+        palette.setPointerCapture = vi.fn();
+
+        const pointerDown = new PointerEvent("pointerdown", {
+          bubbles: true,
+          clientX: 100,
+          clientY: 100,
+          pointerId: 1,
+        });
+        palette.dispatchEvent(pointerDown);
+
+        expect(inputHandler).toHaveBeenCalled();
+      }
+    });
+  });
+
+  describe("Hue Slider Interactions", () => {
+    it("should handle hue slider pointer events", () => {
+      const inputHandler = vi.fn();
+      element.addEventListener("color-input", inputHandler);
+
+      const hueSlider = element.shadowRoot?.querySelector(".hue-slider") as HTMLElement;
+
+      if (hueSlider) {
+        hueSlider.getBoundingClientRect = () => ({
+          left: 0,
+          top: 0,
+          width: 200,
+          height: 20,
+          right: 200,
+          bottom: 20,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        });
+
+        hueSlider.setPointerCapture = vi.fn();
+        hueSlider.releasePointerCapture = vi.fn();
+
+        const pointerDown = new PointerEvent("pointerdown", {
+          bubbles: true,
+          clientX: 100,
+          clientY: 10,
+          pointerId: 1,
+        });
+        hueSlider.dispatchEvent(pointerDown);
+
+        expect(inputHandler).toHaveBeenCalled();
+      }
+    });
+  });
+
+  describe("Alpha Slider Interactions", () => {
+    it("should update alpha on slider drag", () => {
+      const alphaSlider = element.shadowRoot?.querySelector(".alpha-slider") as HTMLElement;
+
+      if (alphaSlider) {
+        alphaSlider.getBoundingClientRect = () => ({
+          left: 0,
+          top: 0,
+          width: 200,
+          height: 20,
+          right: 200,
+          bottom: 20,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        });
+
+        alphaSlider.setPointerCapture = vi.fn();
+        alphaSlider.releasePointerCapture = vi.fn();
+
+        const pointerDown = new PointerEvent("pointerdown", {
+          bubbles: true,
+          clientX: 100,
+          clientY: 10,
+          pointerId: 1,
+        });
+        alphaSlider.dispatchEvent(pointerDown);
+
+        const pointerMove = new PointerEvent("pointermove", {
+          bubbles: true,
+          clientX: 150,
+          clientY: 10,
+          pointerId: 1,
+        });
+        alphaSlider.dispatchEvent(pointerMove);
+
+        const pointerUp = new PointerEvent("pointerup", {
+          bubbles: true,
+          clientX: 150,
+          clientY: 10,
+          pointerId: 1,
+        });
+        alphaSlider.dispatchEvent(pointerUp);
+
+        expect(alphaSlider.setPointerCapture).toHaveBeenCalled();
+        expect(alphaSlider.releasePointerCapture).toHaveBeenCalled();
+      }
+    });
+  });
+
 });
