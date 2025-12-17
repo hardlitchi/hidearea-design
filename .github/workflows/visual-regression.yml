@@ -16,25 +16,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: '20'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Build packages
         run: |
-          npm run build --workspace=@hidearea-design/tokens
-          npm run build --workspace=@hidearea-design/core
+          pnpm --filter @hidearea-design/tokens build
+          pnpm --filter @hidearea-design/core build
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+        run: pnpm exec playwright install --with-deps chromium
 
       - name: Run visual regression tests
-        run: npm run test --workspace=@hidearea-design/visual-tests
+        run: pnpm --filter @hidearea-design/visual-tests test
         env:
           CI: true
 
@@ -77,7 +80,7 @@ Visual differences were detected. Please review the test results:
 - Check the \`visual-test-results\` artifact for full test output
 
 If these changes are intentional:
-1. Run \`npm run test:update --workspace=@hidearea-design/visual-tests\` locally
+1. Run \`pnpm --filter @hidearea-design/visual-tests test:update\` locally
 2. Commit the updated snapshots
 3. Push the changes
 

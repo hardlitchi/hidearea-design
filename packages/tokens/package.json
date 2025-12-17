@@ -2,6 +2,11 @@
   "name": "@hidearea-design/tokens",
   "version": "0.1.0",
   "description": "Design tokens for hidearea-design",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hardlitchi/hidearea-design.git",
+    "directory": "packages/tokens"
+  },
   "type": "module",
   "main": "./build/js/index.js",
   "module": "./build/js/index.js",

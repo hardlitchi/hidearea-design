@@ -2,6 +2,11 @@
   "name": "@hidearea-design/visual-tests",
   "version": "0.0.1",
   "description": "Visual regression testing for Hidearea Design System",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hardlitchi/hidearea-design.git",
+    "directory": "packages/visual-tests"
+  },
   "private": true,
   "type": "module",
   "scripts": {

@@ -2,6 +2,11 @@
   "name": "@hidearea-design/storybook",
   "version": "0.0.1",
   "description": "Storybook for hidearea-design components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hardlitchi/hidearea-design.git",
+    "directory": "packages/storybook"
+  },
   "private": true,
   "type": "module",
   "scripts": {

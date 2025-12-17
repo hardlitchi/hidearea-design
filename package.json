@@ -5,7 +5,7 @@
   "description": "Web Component-based design system for Vanilla JS, React, and Vue",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hidearea-design/hidearea-design.git"
+    "url": "https://github.com/hardlitchi/hidearea-design.git"
   },
   "license": "MIT",
   "author": "hidearea",
@@ -39,7 +39,7 @@
     "eslint": "^8.57.1",
     "prettier": "^3.2.5",
     "turbo": "^2.6.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5.7.2"
   },
   "engines": {
     "node": ">=18.0.0",

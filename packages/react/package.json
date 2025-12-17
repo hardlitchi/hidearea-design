@@ -2,6 +2,11 @@
   "name": "@hidearea-design/react",
   "version": "0.1.0",
   "description": "React wrapper for hidearea-design components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hardlitchi/hidearea-design.git",
+    "directory": "packages/react"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

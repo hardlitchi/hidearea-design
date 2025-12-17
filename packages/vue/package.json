@@ -2,6 +2,11 @@
   "name": "@hidearea-design/vue",
   "version": "0.1.0",
   "description": "Vue 3 wrapper for hidearea-design components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hardlitchi/hidearea-design.git",
+    "directory": "packages/vue"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

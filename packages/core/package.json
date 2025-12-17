@@ -2,6 +2,11 @@
   "name": "@hidearea-design/core",
   "version": "0.1.0",
   "description": "Web Components core library for hidearea-design",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hardlitchi/hidearea-design.git",
+    "directory": "packages/core"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
