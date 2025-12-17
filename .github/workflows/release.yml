@@ -8,6 +8,8 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
+  issues: write
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -42,6 +44,9 @@ jobs:
           publish: pnpm release
           commit: "chore: version packages"
           title: "chore: version packages"
+          setupGitUser: true
+          createGithubReleases: true
+          commitMode: git-cli
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
