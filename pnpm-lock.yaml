@@ -49,7 +49,7 @@ importers:
         specifier: ^2.6.3
         version: 2.6.3
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.7.2
         version: 5.9.3
 
   packages/core:
@@ -80,7 +80,7 @@ importers:
         specifier: ^20.0.10
         version: 20.0.10
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.7.2
         version: 5.9.3
       vite:
         specifier: ^5.2.0
@@ -173,7 +173,7 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.7.2
         version: 5.9.3
       vite:
         specifier: ^5.2.0
@@ -252,7 +252,7 @@ importers:
         specifier: ^20.10.0
         version: 20.19.25
       typescript:
-        specifier: ^5.3.3
+        specifier: ^5.7.2
         version: 5.9.3
 
   packages/vue:
@@ -280,7 +280,7 @@ importers:
         specifier: ^20.0.10
         version: 20.0.10
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.7.2
         version: 5.9.3
       vite:
         specifier: ^5.2.0
@@ -4893,7 +4893,7 @@ snapshots:
       magicast: 0.5.1
       std-env: 3.10.0
       tinyrainbow: 3.0.3
-      vitest: 4.0.8(@types/node@22.19.1)(@vitest/ui@4.0.8)(happy-dom@20.0.10)(yaml@2.8.1)
+      vitest: 4.0.8(@types/node@20.19.25)(@vitest/ui@4.0.8)(happy-dom@20.0.10)(yaml@2.8.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -4972,7 +4972,7 @@ snapshots:
       sirv: 3.0.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vitest: 4.0.8(@types/node@22.19.1)(@vitest/ui@4.0.8)(happy-dom@20.0.10)(yaml@2.8.1)
+      vitest: 4.0.8(@types/node@20.19.25)(@vitest/ui@4.0.8)(happy-dom@20.0.10)(yaml@2.8.1)
 
   '@vitest/utils@3.2.4':
     dependencies:
