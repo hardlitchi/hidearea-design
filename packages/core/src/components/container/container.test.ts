@@ -226,4 +226,53 @@ describe("HaContainer", () => {
       expect(container.getAttribute("role")).toBeNull();
     });
   });
+
+  describe("Branch Coverage - Default Value Handling", () => {
+    it("should not override existing max-width attribute on connection", () => {
+      const container = document.createElement("ha-container") as HaContainer;
+      container.setAttribute("max-width", "sm");
+      document.body.appendChild(container);
+
+      expect(container.getAttribute("max-width")).toBe("sm");
+
+      document.body.removeChild(container);
+    });
+
+    it("should not override existing padding attribute on connection", () => {
+      const container = document.createElement("ha-container") as HaContainer;
+      container.setAttribute("padding", "lg");
+      document.body.appendChild(container);
+
+      expect(container.getAttribute("padding")).toBe("lg");
+
+      document.body.removeChild(container);
+    });
+
+    it("should return default value when max-width attribute is null", () => {
+      const container = document.createElement("ha-container") as HaContainer;
+      // Remove the attribute to trigger the || 'lg' branch
+      container.removeAttribute("max-width");
+      expect(container.maxWidth).toBe("lg");
+    });
+
+    it("should return default value when padding attribute is null", () => {
+      const container = document.createElement("ha-container") as HaContainer;
+      // Remove the attribute to trigger the || 'md' branch
+      container.removeAttribute("padding");
+      expect(container.padding).toBe("md");
+    });
+
+    it("should handle attributeChangedCallback with same old and new values", () => {
+      const container = document.createElement("ha-container") as HaContainer;
+      document.body.appendChild(container);
+
+      // Set attribute twice to same value
+      container.setAttribute("max-width", "xl");
+      container.setAttribute("max-width", "xl");
+
+      expect(container.getAttribute("max-width")).toBe("xl");
+
+      document.body.removeChild(container);
+    });
+  });
 });
