@@ -7,21 +7,13 @@ import '@hidearea-design/core/components/input';
 import '@hidearea-design/core/components/checkbox';
 import '@hidearea-design/core/components/card';
 import '@hidearea-design/core/components/alert';
+import '@hidearea-design/core/components/theme-switcher';
 
 // Import theme utilities
-import { setTheme, initTheme } from '@hidearea-design/core';
+import { initTheme } from '@hidearea-design/core';
 
-// Initialize theme
+// Initialize theme (theme-switcher component handles switching)
 initTheme();
-
-// Theme switcher
-document.getElementById('light-theme')?.addEventListener('click', () => {
-  setTheme('light');
-});
-
-document.getElementById('dark-theme')?.addEventListener('click', () => {
-  setTheme('dark');
-});
 
 // Form validation
 const form = document.getElementById('login-form');
