@@ -1,6 +1,7 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
 import { waitForCustomElement, queryShadow } from "../../../vitest.setup";
 import { HaButton } from "./button";
+import { expectNoA11yViolations } from "../../test-utils/accessibility";
 
 describe("HaButton", () => {
   beforeEach(async () => {
@@ -547,6 +548,113 @@ describe("HaButton", () => {
 
       // Component should still have shadow root after disconnect
       expect(button.shadowRoot).toBe(shadowRoot);
+    });
+  });
+
+  describe("Accessibility", () => {
+    let button: HaButton;
+
+    beforeEach(() => {
+      button = document.createElement("ha-button") as HaButton;
+      button.textContent = "Click me";
+    });
+
+    afterEach(() => {
+      if (button.parentNode) {
+        button.parentNode.removeChild(button);
+      }
+    });
+
+    it("should have no accessibility violations (default state)", async () => {
+      document.body.appendChild(button);
+      await expectNoA11yViolations(button);
+    });
+
+    it("should have no accessibility violations (all variants)", async () => {
+      const variants = ["primary", "secondary", "outline", "ghost", "danger"] as const;
+
+      for (const variant of variants) {
+        button.variant = variant;
+        document.body.appendChild(button);
+        await expectNoA11yViolations(button);
+        document.body.removeChild(button);
+      }
+    });
+
+    it("should have no accessibility violations (all sizes)", async () => {
+      const sizes = ["sm", "md", "lg"] as const;
+
+      for (const size of sizes) {
+        button.size = size;
+        document.body.appendChild(button);
+        await expectNoA11yViolations(button);
+        document.body.removeChild(button);
+      }
+    });
+
+    it("should have no accessibility violations (disabled state)", async () => {
+      button.disabled = true;
+      document.body.appendChild(button);
+      await expectNoA11yViolations(button);
+    });
+
+    it("should have no accessibility violations (loading state)", async () => {
+      button.loading = true;
+      document.body.appendChild(button);
+      await expectNoA11yViolations(button);
+    });
+
+    it("should have no accessibility violations (full-width)", async () => {
+      button.fullWidth = true;
+      document.body.appendChild(button);
+      await expectNoA11yViolations(button);
+    });
+
+    it("should be keyboard accessible", () => {
+      document.body.appendChild(button);
+
+      // Shadow button should be focusable via delegation or internal button
+      const shadowButton = button.shadowRoot?.querySelector("button");
+      expect(shadowButton).not.toBeNull();
+
+      // Native button element is inherently keyboard accessible
+      expect(shadowButton?.tagName).toBe("BUTTON");
+      expect(shadowButton?.getAttribute("role")).toBeNull(); // Native button doesn't need role
+    });
+
+    it("should have accessible name from text content", () => {
+      document.body.appendChild(button);
+      const shadowButton = button.shadowRoot?.querySelector("button");
+
+      // Text content provides accessible name
+      expect(button.textContent?.trim()).toBe("Click me");
+      // Shadow button gets text from slot, check if slot exists
+      const slot = shadowButton?.querySelector("slot");
+      expect(slot).not.toBeNull();
+    });
+
+    it("should maintain accessible name with aria-label", () => {
+      button.setAttribute("aria-label", "Custom label");
+      document.body.appendChild(button);
+
+      expect(button.getAttribute("aria-label")).toBe("Custom label");
+    });
+
+    it("should indicate disabled state to assistive technology", () => {
+      button.disabled = true;
+      document.body.appendChild(button);
+
+      const shadowButton = button.shadowRoot?.querySelector("button");
+      expect(shadowButton?.hasAttribute("disabled")).toBe(true);
+      expect(shadowButton?.getAttribute("aria-disabled")).toBe("true");
+    });
+
+    it("should indicate loading state to assistive technology", () => {
+      button.loading = true;
+      document.body.appendChild(button);
+
+      const shadowButton = button.shadowRoot?.querySelector("button");
+      expect(shadowButton?.getAttribute("aria-busy")).toBe("true");
     });
   });
 });
