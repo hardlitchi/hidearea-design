@@ -1,6 +1,6 @@
 {
   "name": "@hidearea-design/docs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Documentation site for hidearea-design",
   "private": true,
   "type": "module",

@@ -1,6 +1,6 @@
 {
   "name": "@hidearea-design/storybook",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Storybook for hidearea-design components",
   "private": true,
   "type": "module",
