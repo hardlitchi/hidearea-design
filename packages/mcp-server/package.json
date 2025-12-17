@@ -8,6 +8,12 @@
   "bin": {
     "hidearea-mcp": "./build/index.js"
   },
+  "files": [
+    "build"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
