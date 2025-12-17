@@ -721,19 +721,57 @@ describe("HaTimePicker", () => {
   });
 
   describe("Panel Interaction", () => {
+    it("should select hour from panel", () => {
+        element.open();
+        const hourItem = element.shadowRoot?.querySelector('[data-type="hour"][data-value="14"]');
+        (hourItem as HTMLElement)?.click();
+        const value = element.getValue();
+        expect(value).toContain("14:") || expect(value).toContain("02:");
+    });
+
     it("should select minute from panel", () => {
         element.open();
         const minuteItem = element.shadowRoot?.querySelector('[data-type="minute"][data-value="30"]');
         (minuteItem as HTMLElement)?.click();
         expect(element.getValue()).toContain(":30");
     });
-    
+
     it("should select second from panel", () => {
         element.setAttribute("show-seconds", "");
         element.open();
         const secondItem = element.shadowRoot?.querySelector('[data-type="second"][data-value="45"]');
         (secondItem as HTMLElement)?.click();
         expect(element.getValue()).toContain(":45");
+    });
+
+    it("should toggle period from AM to PM", () => {
+        element.setAttribute("format", "12");
+        element.setValue("10:00 AM");
+        element.open();
+
+        const pmButton = element.shadowRoot?.querySelector('[data-period="PM"]') as HTMLElement;
+        expect(pmButton).toBeTruthy();
+
+        pmButton?.click();
+
+        // Check internal period state
+        const period = (element as any)._period;
+        expect(period).toBe("PM");
+    });
+
+    it("should toggle period from PM to AM", () => {
+        element.setAttribute("format", "12");
+        element.setValue("10:00 PM");
+        element.open();
+
+        const amButton = element.shadowRoot?.querySelector('[data-period="AM"]') as HTMLElement;
+        expect(amButton).toBeTruthy();
+
+        amButton?.click();
+
+        // Check internal period state
+        const period = (element as any)._period;
+        expect(period).toBe("AM");
     });
 
     it("should call setNow on Now button click", () => {
