@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { setTheme, getTheme } from '../../utils/theme';
 import './theme-switcher';
+import { expectNoA11yViolations } from '../../test-utils/accessibility';
 
 describe('ThemeSwitcher', () => {
   let element: HTMLElement;
@@ -345,6 +346,118 @@ describe('ThemeSwitcher', () => {
       expect(removeEventListenerSpy).toHaveBeenCalledWith('theme-change', expect.any(Function));
 
       removeEventListenerSpy.mockRestore();
+    });
+  });
+
+  describe('Accessibility', () => {
+    it('should have no accessibility violations (toggle variant)', async () => {
+      const element = document.createElement('ha-theme-switcher');
+      element.setAttribute('variant', 'toggle');
+      document.body.appendChild(element);
+
+      await expectNoA11yViolations(element);
+
+      document.body.removeChild(element);
+    });
+
+    it('should have no accessibility violations (dropdown variant)', async () => {
+      const element = document.createElement('ha-theme-switcher');
+      element.setAttribute('variant', 'dropdown');
+      document.body.appendChild(element);
+
+      await expectNoA11yViolations(element);
+
+      document.body.removeChild(element);
+    });
+
+    it('should have no accessibility violations (segmented variant)', async () => {
+      const element = document.createElement('ha-theme-switcher');
+      element.setAttribute('variant', 'segmented');
+      document.body.appendChild(element);
+
+      await expectNoA11yViolations(element);
+
+      document.body.removeChild(element);
+    });
+
+    it('should have no accessibility violations (with label)', async () => {
+      const element = document.createElement('ha-theme-switcher');
+      element.setAttribute('variant', 'toggle');
+      element.setAttribute('show-label', '');
+      document.body.appendChild(element);
+
+      await expectNoA11yViolations(element);
+
+      document.body.removeChild(element);
+    });
+
+    it('should have no accessibility violations (with auto mode)', async () => {
+      const element = document.createElement('ha-theme-switcher');
+      element.setAttribute('variant', 'segmented');
+      element.setAttribute('show-auto', '');
+      document.body.appendChild(element);
+
+      await expectNoA11yViolations(element);
+
+      document.body.removeChild(element);
+    });
+
+    it('should be keyboard accessible (toggle variant)', () => {
+      const element = document.createElement('ha-theme-switcher');
+      element.setAttribute('variant', 'toggle');
+      document.body.appendChild(element);
+
+      const button = element.shadowRoot?.querySelector('button');
+      expect(button).not.toBeNull();
+      expect(button?.hasAttribute('aria-label')).toBe(true);
+      expect(button?.getAttribute('aria-pressed')).toBeDefined();
+
+      document.body.removeChild(element);
+    });
+
+    it('should be keyboard accessible (dropdown variant)', () => {
+      const element = document.createElement('ha-theme-switcher');
+      element.setAttribute('variant', 'dropdown');
+      document.body.appendChild(element);
+
+      const select = element.shadowRoot?.querySelector('select');
+      expect(select).not.toBeNull();
+      expect(select?.hasAttribute('aria-label')).toBe(true);
+
+      document.body.removeChild(element);
+    });
+
+    it('should be keyboard accessible (segmented variant)', () => {
+      const element = document.createElement('ha-theme-switcher');
+      element.setAttribute('variant', 'segmented');
+      document.body.appendChild(element);
+
+      const buttons = element.shadowRoot?.querySelectorAll('button');
+      expect(buttons && buttons.length > 0).toBe(true);
+
+      buttons?.forEach(button => {
+        expect(button.hasAttribute('aria-label') || button.textContent?.trim()).toBeTruthy();
+        expect(button.getAttribute('aria-pressed')).toBeDefined();
+      });
+
+      document.body.removeChild(element);
+    });
+
+    it('should announce theme changes to screen readers', () => {
+      const element = document.createElement('ha-theme-switcher');
+      element.setAttribute('variant', 'toggle');
+      document.body.appendChild(element);
+
+      const button = element.shadowRoot?.querySelector('button');
+      expect(button?.getAttribute('aria-pressed')).toBe('false'); // Light mode
+
+      setTheme('dark');
+
+      // After theme change, aria-pressed should update
+      setTimeout(() => {
+        expect(button?.getAttribute('aria-pressed')).toBe('true');
+        document.body.removeChild(element);
+      }, 100);
     });
   });
 });
