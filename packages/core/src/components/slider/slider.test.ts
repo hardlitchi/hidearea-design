@@ -378,4 +378,172 @@ describe('HaSlider', () => {
       expect(element.hasAttribute('readonly')).toBe(true);
     });
   });
+
+  describe('Keyboard Interaction', () => {
+    it('should increase value on ArrowRight key', () => {
+      element.value = 50;
+      const event = new KeyboardEvent('keydown', { key: 'ArrowRight' });
+      element.dispatchEvent(event);
+      expect(element.value).toBe(51);
+    });
+
+    it('should decrease value on ArrowLeft key', () => {
+      element.value = 50;
+      const event = new KeyboardEvent('keydown', { key: 'ArrowLeft' });
+      element.dispatchEvent(event);
+      expect(element.value).toBe(49);
+    });
+
+    it('should increase value on ArrowUp key', () => {
+      element.value = 50;
+      const event = new KeyboardEvent('keydown', { key: 'ArrowUp' });
+      element.dispatchEvent(event);
+      expect(element.value).toBe(51);
+    });
+
+    it('should decrease value on ArrowDown key', () => {
+      element.value = 50;
+      const event = new KeyboardEvent('keydown', { key: 'ArrowDown' });
+      element.dispatchEvent(event);
+      expect(element.value).toBe(49);
+    });
+
+    it('should set value to min on Home key', () => {
+      element.value = 50;
+      element.min = 10;
+      const event = new KeyboardEvent('keydown', { key: 'Home' });
+      element.dispatchEvent(event);
+      expect(element.value).toBe(10);
+    });
+
+    it('should set value to max on End key', () => {
+      element.value = 50;
+      element.max = 90;
+      const event = new KeyboardEvent('keydown', { key: 'End' });
+      element.dispatchEvent(event);
+      expect(element.value).toBe(90);
+    });
+
+    it('should dispatch slider-change event on keyboard interaction', () => {
+      const handler = vi.fn();
+      element.addEventListener('slider-change', handler);
+      element.value = 50;
+
+      const event = new KeyboardEvent('keydown', { key: 'ArrowRight' });
+      element.dispatchEvent(event);
+
+      expect(handler).toHaveBeenCalled();
+      expect((handler.mock.calls[0][0] as CustomEvent).detail.value).toBe(51);
+    });
+
+    it('should not respond to keyboard when disabled', () => {
+      element.disabled = true;
+      element.value = 50;
+      const event = new KeyboardEvent('keydown', { key: 'ArrowRight' });
+      element.dispatchEvent(event);
+      // Value should not change when disabled
+      expect(element.value).toBe(50);
+    });
+
+    it('should not respond to keyboard when readonly', () => {
+      element.readonly = true;
+      element.value = 50;
+      const event = new KeyboardEvent('keydown', { key: 'ArrowRight' });
+      element.dispatchEvent(event);
+      // Value should not change when readonly
+      expect(element.value).toBe(50);
+    });
+  });
+
+  describe('Pointer Interaction', () => {
+    it('should dispatch slider-input event during pointer move', () => {
+      const handler = vi.fn();
+      element.addEventListener('slider-input', handler);
+
+      const track = element.shadowRoot?.querySelector('.slider__track') as HTMLElement;
+      if (track) {
+        // Mock setPointerCapture for happy-dom compatibility
+        track.setPointerCapture = vi.fn();
+        track.releasePointerCapture = vi.fn();
+
+        // Mock getBoundingClientRect
+        track.getBoundingClientRect = vi.fn(() => ({
+          left: 0,
+          top: 0,
+          width: 100,
+          height: 20,
+          right: 100,
+          bottom: 20,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        }));
+
+        // Simulate pointer down
+        const pointerDown = new PointerEvent('pointerdown', {
+          bubbles: true,
+          clientX: 0,
+          clientY: 0,
+          pointerId: 1,
+        });
+        track.dispatchEvent(pointerDown);
+
+        // Simulate pointer move
+        const pointerMove = new PointerEvent('pointermove', {
+          bubbles: true,
+          clientX: 50,
+          clientY: 0,
+          pointerId: 1,
+        });
+        track.dispatchEvent(pointerMove);
+
+        expect(handler).toHaveBeenCalled();
+      }
+    });
+
+    it('should dispatch slider-change event on pointer up', () => {
+      const handler = vi.fn();
+      element.addEventListener('slider-change', handler);
+
+      const track = element.shadowRoot?.querySelector('.slider__track') as HTMLElement;
+      if (track) {
+        // Mock setPointerCapture for happy-dom compatibility
+        track.setPointerCapture = vi.fn();
+        track.releasePointerCapture = vi.fn();
+
+        // Mock getBoundingClientRect
+        track.getBoundingClientRect = vi.fn(() => ({
+          left: 0,
+          top: 0,
+          width: 100,
+          height: 20,
+          right: 100,
+          bottom: 20,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        }));
+
+        // Simulate pointer down
+        const pointerDown = new PointerEvent('pointerdown', {
+          bubbles: true,
+          clientX: 0,
+          clientY: 0,
+          pointerId: 1,
+        });
+        track.dispatchEvent(pointerDown);
+
+        // Simulate pointer up
+        const pointerUp = new PointerEvent('pointerup', {
+          bubbles: true,
+          clientX: 50,
+          clientY: 0,
+          pointerId: 1,
+        });
+        track.dispatchEvent(pointerUp);
+
+        expect(handler).toHaveBeenCalled();
+      }
+    });
+  });
 });
