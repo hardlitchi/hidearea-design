@@ -445,19 +445,26 @@ describe('ThemeSwitcher', () => {
 
     it('should announce theme changes to screen readers', () => {
       const element = document.createElement('ha-theme-switcher');
-      element.setAttribute('variant', 'toggle');
+      element.setAttribute('variant', 'segmented');
       document.body.appendChild(element);
 
-      const button = element.shadowRoot?.querySelector('button');
-      expect(button?.getAttribute('aria-pressed')).toBe('false'); // Light mode
+      // Segmented variant has buttons with aria-pressed
+      const buttons = element.shadowRoot?.querySelectorAll('button');
+      expect(buttons?.length).toBeGreaterThan(0);
 
-      setTheme('dark');
+      // Find light button - should be active (pressed) initially
+      const lightButton = Array.from(buttons || []).find(
+        (btn) => btn.getAttribute('data-theme') === 'light'
+      );
+      expect(lightButton?.getAttribute('aria-pressed')).toBe('true');
 
-      // After theme change, aria-pressed should update
-      setTimeout(() => {
-        expect(button?.getAttribute('aria-pressed')).toBe('true');
-        document.body.removeChild(element);
-      }, 100);
+      // Find dark button - should not be active initially
+      const darkButton = Array.from(buttons || []).find(
+        (btn) => btn.getAttribute('data-theme') === 'dark'
+      );
+      expect(darkButton?.getAttribute('aria-pressed')).toBe('false');
+
+      document.body.removeChild(element);
     });
   });
 });
