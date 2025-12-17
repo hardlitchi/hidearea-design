@@ -13,27 +13,42 @@
 
 ### 2. npmトークンの生成
 
-#### オプション A: Classic Token（推奨）
+⚠️ **重要**: 2FA（二要素認証）が有効な場合、特別な設定が必要です
+
+#### オプション A: Granular Access Token（推奨 - 2FA対応）
+
+**2FAが有効なアカウントで公開する場合はこちらを使用してください**
+
+1. [npmjs.com](https://www.npmjs.com/)にログイン
+2. 右上のプロフィール → **Access Tokens** をクリック
+3. **Generate New Token** → **Granular Access Token** をクリック
+4. 以下の設定を行う:
+   - **Token name**: `hidearea-design-ci` と入力
+   - **Expiration**: 有効期限を設定（推奨: 1年以上）
+   - **Packages and scopes**:
+     - **Permissions**: `Read and write` を選択
+     - **Organizations and scopes**: 何も選択しない（全スコープに適用）
+   - 🔑 **重要**: **"Require two-factor authentication for this token"** のチェックを**外す**
+     - これにより、CI/CDでの公開時に2FAをバイパスできます
+5. **Generate Token** をクリック
+6. 2FA認証コードを入力（アプリまたはSMSから）
+7. トークンをコピー（一度しか表示されません！）
+
+#### オプション B: Classic Token（2FA無効の場合のみ）
+
+**2FAが無効な場合のみ使用可能**
 
 1. [npmjs.com](https://www.npmjs.com/)にログイン
 2. 右上のプロフィール → **Access Tokens** をクリック
 3. **Generate New Token** → **Classic Token** をクリック
 4. トークン名を入力（例: `hidearea-design-ci`）
 5. トークンタイプを選択:
-   - **Automation**: CI/CDでの使用に推奨
-   - **Publish**: パッケージの公開のみ
+   - **Automation**: CI/CDでの使用に推奨（2FAをバイパス可能）
+   - ~~**Publish**: パッケージの公開のみ（2FAバイパス不可）~~
 6. **Generate Token** をクリック
 7. トークンをコピー（一度しか表示されません！）
 
-#### オプション B: Granular Access Token（より細かい制御）
-
-1. **Generate New Token** → **Granular Access Token** をクリック
-2. 以下の設定を行う:
-   - **Expiration**: 有効期限を設定（推奨: 1年）
-   - **Packages and scopes**:
-     - **Organizations and scopes**: `@hidearea-design` を選択
-     - **Permissions**: `Read and write` を選択
-3. **Generate Token** をクリック
+**注意**: Classic Tokenは将来的に廃止される予定のため、Granular Access Tokenの使用を推奨します
 
 ### 3. GitHub Secretsへの登録
 
@@ -57,6 +72,44 @@
    - Settings → Secrets and variables → Actions
    - `NPM_TOKEN`の横の **Update** をクリック
    - 新しいトークンを貼り付けて保存
+
+### エラー: "Two-factor authentication or granular access token with bypass 2fa enabled is required"
+
+**エラー詳細**:
+```
+E403 403 Forbidden - PUT https://registry.npmjs.org/@hidearea-design%2fcore
+Two-factor authentication or granular access token with bypass 2fa enabled is required to publish packages.
+```
+
+**原因**: npmアカウントで2FA（二要素認証）が有効になっており、使用しているトークンが2FAをバイパスする権限を持っていない
+
+**解決方法**:
+
+**推奨: Granular Access Tokenを使用**
+
+1. 新しいGranular Access Tokenを生成:
+   - https://www.npmjs.com/ にログイン
+   - プロフィール → Access Tokens → Generate New Token → **Granular Access Token**
+   - 以下の設定:
+     - Token name: `hidearea-design-ci`
+     - Expiration: 1年以上
+     - Permissions: `Read and write`
+     - 🔑 **最重要**: **"Require two-factor authentication for this token"** のチェックを**外す**
+   - Generate Token → 2FA認証コード入力 → トークンをコピー
+
+2. GitHub Secretsを更新:
+   - https://github.com/hardlitchi/hidearea-design/settings/secrets/actions
+   - `NPM_TOKEN` を Update
+   - 新しいトークンを貼り付け
+
+3. リリースを再実行:
+   ```bash
+   gh workflow run release.yml
+   ```
+
+**代替案: Classic Token (Automation) を使用**
+
+Classic TokenでAutomationタイプを選択すると、2FAをバイパスできます（ただし、将来廃止予定）
 
 ### エラー: "404 Not found" または "not in this registry"
 
