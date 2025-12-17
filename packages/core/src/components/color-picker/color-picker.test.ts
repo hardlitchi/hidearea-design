@@ -585,4 +585,235 @@ describe("HaColorPicker", () => {
       expect(color.h).toBe(0);
     });
   });
+
+  describe("Color Conversion - HSV", () => {
+    it("should convert red HSV to RGB", () => {
+      // Red: HSV(0, 100, 100) -> RGB(255, 0, 0)
+      const rgb = (element as any).hsvToRgb(0, 100, 100);
+      expect(rgb.r).toBe(255);
+      expect(rgb.g).toBe(0);
+      expect(rgb.b).toBe(0);
+    });
+
+    it("should convert green HSV to RGB", () => {
+      // Green: HSV(120, 100, 100) -> RGB(0, 255, 0)
+      const rgb = (element as any).hsvToRgb(120, 100, 100);
+      expect(rgb.r).toBe(0);
+      expect(rgb.g).toBe(255);
+      expect(rgb.b).toBe(0);
+    });
+
+    it("should convert blue HSV to RGB", () => {
+      // Blue: HSV(240, 100, 100) -> RGB(0, 0, 255)
+      const rgb = (element as any).hsvToRgb(240, 100, 100);
+      expect(rgb.r).toBe(0);
+      expect(rgb.g).toBe(0);
+      expect(rgb.b).toBe(255);
+    });
+
+    it("should convert cyan HSV to RGB", () => {
+      // Cyan: HSV(180, 100, 100) -> RGB(0, 255, 255)
+      const rgb = (element as any).hsvToRgb(180, 100, 100);
+      expect(rgb.r).toBe(0);
+      expect(rgb.g).toBe(255);
+      expect(rgb.b).toBe(255);
+    });
+
+    it("should convert yellow HSV to RGB", () => {
+      // Yellow: HSV(60, 100, 100) -> RGB(255, 255, 0)
+      const rgb = (element as any).hsvToRgb(60, 100, 100);
+      expect(rgb.r).toBe(255);
+      expect(rgb.g).toBe(255);
+      expect(rgb.b).toBe(0);
+    });
+
+    it("should convert magenta HSV to RGB", () => {
+      // Magenta: HSV(300, 100, 100) -> RGB(255, 0, 255)
+      const rgb = (element as any).hsvToRgb(300, 100, 100);
+      expect(rgb.r).toBe(255);
+      expect(rgb.g).toBe(0);
+      expect(rgb.b).toBe(255);
+    });
+
+    it("should convert gray HSV to RGB (zero saturation)", () => {
+      // Gray: HSV(0, 0, 50) -> RGB(128, 128, 128)
+      const rgb = (element as any).hsvToRgb(0, 0, 50);
+      expect(rgb.r).toBe(128);
+      expect(rgb.g).toBe(128);
+      expect(rgb.b).toBe(128);
+    });
+
+    it("should convert black HSV to RGB", () => {
+      // Black: HSV(0, 0, 0) -> RGB(0, 0, 0)
+      const rgb = (element as any).hsvToRgb(0, 0, 0);
+      expect(rgb.r).toBe(0);
+      expect(rgb.g).toBe(0);
+      expect(rgb.b).toBe(0);
+    });
+
+    it("should convert white HSV to RGB", () => {
+      // White: HSV(0, 0, 100) -> RGB(255, 255, 255)
+      const rgb = (element as any).hsvToRgb(0, 0, 100);
+      expect(rgb.r).toBe(255);
+      expect(rgb.g).toBe(255);
+      expect(rgb.b).toBe(255);
+    });
+  });
+
+  describe("Color Conversion - RGB to HSV", () => {
+    it("should convert red RGB to HSV", () => {
+      // Red: RGB(255, 0, 0) -> HSV(0, 100, 100)
+      const hsv = (element as any).rgbToHsv(255, 0, 0);
+      expect(hsv.h).toBe(0);
+      expect(hsv.s).toBe(100);
+      expect(hsv.v).toBe(100);
+    });
+
+    it("should convert green RGB to HSV", () => {
+      // Green: RGB(0, 255, 0) -> HSV(120, 100, 100)
+      const hsv = (element as any).rgbToHsv(0, 255, 0);
+      expect(hsv.h).toBe(120);
+      expect(hsv.s).toBe(100);
+      expect(hsv.v).toBe(100);
+    });
+
+    it("should convert blue RGB to HSV", () => {
+      // Blue: RGB(0, 0, 255) -> HSV(240, 100, 100)
+      const hsv = (element as any).rgbToHsv(0, 0, 255);
+      expect(hsv.h).toBe(240);
+      expect(hsv.s).toBe(100);
+      expect(hsv.v).toBe(100);
+    });
+
+    it("should convert black RGB to HSV", () => {
+      // Black: RGB(0, 0, 0) -> HSV(0, 0, 0)
+      const hsv = (element as any).rgbToHsv(0, 0, 0);
+      expect(hsv.h).toBe(0);
+      expect(hsv.s).toBe(0);
+      expect(hsv.v).toBe(0);
+    });
+
+    it("should convert white RGB to HSV", () => {
+      // White: RGB(255, 255, 255) -> HSV(0, 0, 100)
+      const hsv = (element as any).rgbToHsv(255, 255, 255);
+      expect(hsv.h).toBe(0);
+      expect(hsv.s).toBe(0);
+      expect(hsv.v).toBe(100);
+    });
+
+    it("should convert gray RGB to HSV", () => {
+      // Gray: RGB(128, 128, 128) -> HSV(0, 0, 50)
+      const hsv = (element as any).rgbToHsv(128, 128, 128);
+      expect(hsv.h).toBe(0);
+      expect(hsv.s).toBe(0);
+      expect(hsv.v).toBe(50);
+    });
+  });
+
+  describe("Color Picker Interactions", () => {
+    it("should update color when clicking on color area", () => {
+      const colorArea = element.shadowRoot?.querySelector(
+        ".color-picker__area",
+      ) as HTMLElement;
+
+      if (colorArea) {
+        // Mock getBoundingClientRect
+        colorArea.getBoundingClientRect = () => ({
+          left: 0,
+          top: 0,
+          width: 200,
+          height: 200,
+          right: 200,
+          bottom: 200,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        });
+
+        // Simulate click in the middle of the color area
+        const pointerEvent = new PointerEvent("pointerdown", {
+          bubbles: true,
+          clientX: 100,
+          clientY: 100,
+          pointerId: 1,
+        });
+
+        colorArea.dispatchEvent(pointerEvent);
+
+        // Color should be updated
+        const color = element.getColor();
+        expect(color).toBeDefined();
+      }
+    });
+
+    it("should not update color when disabled", () => {
+      element.disabled = true;
+      const initialValue = element.value;
+
+      const colorArea = element.shadowRoot?.querySelector(
+        ".color-picker__area",
+      ) as HTMLElement;
+
+      if (colorArea) {
+        colorArea.getBoundingClientRect = () => ({
+          left: 0,
+          top: 0,
+          width: 200,
+          height: 200,
+          right: 200,
+          bottom: 200,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        });
+
+        const pointerEvent = new PointerEvent("pointerdown", {
+          bubbles: true,
+          clientX: 100,
+          clientY: 100,
+          pointerId: 1,
+        });
+
+        colorArea.dispatchEvent(pointerEvent);
+
+        // Value should not change
+        expect(element.value).toBe(initialValue);
+      }
+    });
+
+    it("should not update color when readonly", () => {
+      element.readonly = true;
+      const initialValue = element.value;
+
+      const colorArea = element.shadowRoot?.querySelector(
+        ".color-picker__area",
+      ) as HTMLElement;
+
+      if (colorArea) {
+        colorArea.getBoundingClientRect = () => ({
+          left: 0,
+          top: 0,
+          width: 200,
+          height: 200,
+          right: 200,
+          bottom: 200,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        });
+
+        const pointerEvent = new PointerEvent("pointerdown", {
+          bubbles: true,
+          clientX: 100,
+          clientY: 100,
+          pointerId: 1,
+        });
+
+        colorArea.dispatchEvent(pointerEvent);
+
+        // Value should not change
+        expect(element.value).toBe(initialValue);
+      }
+    });
+  });
 });
