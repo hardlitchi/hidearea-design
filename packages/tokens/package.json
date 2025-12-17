@@ -1,6 +1,6 @@
 {
   "name": "@hidearea-design/tokens",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Design tokens for hidearea-design",
   "type": "module",
   "main": "./build/js/index.js",

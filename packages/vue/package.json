@@ -1,6 +1,6 @@
 {
   "name": "@hidearea-design/vue",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Vue 3 wrapper for hidearea-design components",
   "type": "module",
   "main": "./dist/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@hidearea-design/core",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Web Components core library for hidearea-design",
   "type": "module",
   "main": "./dist/index.js",
