@@ -140,9 +140,14 @@ StyleDictionary.registerFormat({
         const semanticName = token.path.slice(2).join('-');
         const themeName = `--theme-${semanticName}`;
         darkTokens.push(`  ${themeName}: ${value};`);
-      } else if (token.path[0] !== 'theme' && !aliasTokens.has(token.path[0])) {
-        // ベーストークン（エイリアスを除く）
-        baseTokens.push(`  ${cssVar}: ${value};`);
+      } else if (token.path[0] !== 'theme') {
+        // ベーストークン or セマンティックエイリアス
+        // セマンティックエイリアスでも、下層のプロパティ（border.radius.*, border.width.*など）は基本トークンとして扱う
+        const isSemanticAlias = aliasTokens.has(token.path[0]) && token.path.length === 1;
+
+        if (!isSemanticAlias) {
+          baseTokens.push(`  ${cssVar}: ${value};`);
+        }
       }
     });
 
