@@ -20,10 +20,10 @@ test.describe('Modal Visual Regression', () => {
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');
-    await expect(modal).toBeVisible();
 
     // Wait for animation
-    await page.waitForTimeout(300);
+    await page.waitForTimeout(500);
+    await expect(modal).toBeVisible();
 
     await expect(page).toHaveScreenshot('modal-default.png', {
       fullPage: true,
@@ -38,9 +38,10 @@ test.describe('Modal Visual Regression', () => {
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');
-    await expect(modal).toBeVisible();
 
-    await page.waitForTimeout(300);
+    // Wait for animation
+    await page.waitForTimeout(500);
+    await expect(modal).toBeVisible();
 
     await expect(page).toHaveScreenshot('modal-sizes.png', {
       fullPage: true,
@@ -55,9 +56,10 @@ test.describe('Modal Visual Regression', () => {
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');
-    await expect(modal).toBeVisible();
 
-    await page.waitForTimeout(300);
+    // Wait for animation
+    await page.waitForTimeout(500);
+    await expect(modal).toBeVisible();
 
     await expect(page).toHaveScreenshot('modal-variants.png', {
       fullPage: true,
@@ -71,9 +73,10 @@ test.describe('Modal Visual Regression', () => {
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');
-    await expect(modal).toBeVisible();
 
-    await page.waitForTimeout(300);
+    // Wait for animation
+    await page.waitForTimeout(500);
+    await expect(modal).toBeVisible();
 
     await expect(page).toHaveScreenshot('modal-with-footer.png', {
       fullPage: true,
@@ -87,9 +90,10 @@ test.describe('Modal Visual Regression', () => {
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');
-    await expect(modal).toBeVisible();
 
-    await page.waitForTimeout(300);
+    // Wait for animation
+    await page.waitForTimeout(500);
+    await expect(modal).toBeVisible();
 
     await expect(page).toHaveScreenshot('modal-long-content.png', {
       fullPage: true,
@@ -108,9 +112,10 @@ test.describe('Modal Visual Regression', () => {
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');
-    await expect(modal).toBeVisible();
 
-    await page.waitForTimeout(300);
+    // Wait for animation
+    await page.waitForTimeout(500);
+    await expect(modal).toBeVisible();
 
     await expect(page).toHaveScreenshot('modal-dark-theme.png', {
       fullPage: true,
@@ -125,9 +130,10 @@ test.describe('Modal Visual Regression', () => {
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');
-    await expect(modal).toBeVisible();
 
-    await page.waitForTimeout(300);
+    // Wait for animation
+    await page.waitForTimeout(500);
+    await expect(modal).toBeVisible();
 
     await expect(page).toHaveScreenshot('modal-mobile.png', {
       fullPage: true,
