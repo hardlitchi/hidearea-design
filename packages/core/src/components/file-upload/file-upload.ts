@@ -1,5 +1,21 @@
 import { fileUploadStyles } from "@hidearea-design/tokens/styles";
 
+/**
+ * Escapes HTML special characters to prevent XSS attacks.
+ * @param str - The string to escape
+ * @returns The escaped string safe for use in HTML
+ */
+function escapeHtml(str: string): string {
+  const htmlEscapes: Record<string, string> = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  };
+  return str.replace(/[&<>"']/g, (char) => htmlEscapes[char]);
+}
+
 export interface FileUploadFile {
   file: File;
   id: string;
@@ -451,11 +467,17 @@ export class HaFileUpload extends HTMLElement {
 
     this.fileListElement.innerHTML = this._files
       .map(
-        (fileObj) => `
-      <div class="file-upload__file-item ${fileObj.error ? "file-upload__file-item--error" : ""}" part="file-item" data-file-id="${fileObj.id}">
+        (fileObj) => {
+          // Escape user-controlled content to prevent XSS attacks
+          const safeFileName = escapeHtml(fileObj.file.name);
+          const safeFileId = escapeHtml(fileObj.id);
+          const safeError = fileObj.error ? escapeHtml(fileObj.error) : "";
+
+          return `
+      <div class="file-upload__file-item ${fileObj.error ? "file-upload__file-item--error" : ""}" part="file-item" data-file-id="${safeFileId}">
         ${
           fileObj.preview
-            ? `<img src="${fileObj.preview}" alt="${fileObj.file.name}" class="file-upload__file-preview" part="file-preview" />`
+            ? `<img src="${fileObj.preview}" alt="${safeFileName}" class="file-upload__file-preview" part="file-preview" />`
             : `<div class="file-upload__file-icon" part="file-icon">
                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -463,17 +485,18 @@ export class HaFileUpload extends HTMLElement {
                </div>`
         }
         <div class="file-upload__file-info">
-          <span class="file-upload__file-name" part="file-name">${fileObj.file.name}</span>
+          <span class="file-upload__file-name" part="file-name">${safeFileName}</span>
           <span class="file-upload__file-size" part="file-size">${this.formatBytes(fileObj.file.size)}</span>
-          ${fileObj.error ? `<span class="file-upload__file-error">${fileObj.error}</span>` : ""}
+          ${fileObj.error ? `<span class="file-upload__file-error">${safeError}</span>` : ""}
         </div>
-        <button type="button" class="file-upload__remove-button" part="remove-button" data-file-id="${fileObj.id}" aria-label="Remove ${fileObj.file.name}">
+        <button type="button" class="file-upload__remove-button" part="remove-button" data-file-id="${safeFileId}" aria-label="Remove ${safeFileName}">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
-    `
+    `;
+        }
       )
       .join("");
 
