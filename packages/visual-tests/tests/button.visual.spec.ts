@@ -5,7 +5,7 @@ import { test, expect } from '@playwright/test';
  * Tests various states, variants, and sizes
  */
 
-const BUTTON_STORY_URL = '/iframe.html?id=components-button--';
+const BUTTON_STORY_URL = '/iframe.html?id=forms-button--';
 
 test.describe('Button Visual Regression', () => {
   test.beforeEach(async ({ page }) => {
@@ -14,7 +14,7 @@ test.describe('Button Visual Regression', () => {
   });
 
   test('default button renders correctly', async ({ page }) => {
-    await page.goto(`${BUTTON_STORY_URL}default`);
+    await page.goto(`${BUTTON_STORY_URL}primary`);
 
     const button = page.locator('ha-button');
     await expect(button).toBeVisible();

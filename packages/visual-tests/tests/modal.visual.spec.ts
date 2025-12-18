@@ -5,7 +5,7 @@ import { test, expect } from '@playwright/test';
  * Tests various sizes and states
  */
 
-const MODAL_STORY_URL = '/iframe.html?id=components-modal--';
+const MODAL_STORY_URL = '/iframe.html?id=overlays-modal--';
 
 test.describe('Modal Visual Regression', () => {
   test.beforeEach(async ({ page }) => {

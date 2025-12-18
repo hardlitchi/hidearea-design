@@ -5,7 +5,7 @@ import { test, expect } from '@playwright/test';
  * Tests various states, sizes, and types
  */
 
-const INPUT_STORY_URL = '/iframe.html?id=components-input--';
+const INPUT_STORY_URL = '/iframe.html?id=forms-input--';
 
 test.describe('Input Visual Regression', () => {
   test.beforeEach(async ({ page }) => {
