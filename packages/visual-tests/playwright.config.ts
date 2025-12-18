@@ -89,7 +89,7 @@ export default defineConfig({
 
   /* Run Storybook dev server before starting the tests */
   webServer: {
-    command: 'npm run storybook --workspace=@hidearea-design/storybook',
+    command: 'cd ../storybook && pnpm run dev',
     url: 'http://localhost:6006',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,

@@ -22,7 +22,7 @@ test.describe('Modal Visual Regression', () => {
     const modal = page.locator('ha-modal[open]');
 
     // Wait for animation
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
     await expect(modal).toBeVisible();
 
     await expect(page).toHaveScreenshot('modal-default.png', {
@@ -40,7 +40,7 @@ test.describe('Modal Visual Regression', () => {
     const modal = page.locator('ha-modal[open]');
 
     // Wait for animation
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
     await expect(modal).toBeVisible();
 
     await expect(page).toHaveScreenshot('modal-sizes.png', {
@@ -58,7 +58,7 @@ test.describe('Modal Visual Regression', () => {
     const modal = page.locator('ha-modal[open]');
 
     // Wait for animation
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
     await expect(modal).toBeVisible();
 
     await expect(page).toHaveScreenshot('modal-variants.png', {
@@ -75,7 +75,7 @@ test.describe('Modal Visual Regression', () => {
     const modal = page.locator('ha-modal[open]');
 
     // Wait for animation
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
     await expect(modal).toBeVisible();
 
     await expect(page).toHaveScreenshot('modal-with-footer.png', {
@@ -92,7 +92,7 @@ test.describe('Modal Visual Regression', () => {
     const modal = page.locator('ha-modal[open]');
 
     // Wait for animation
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
     await expect(modal).toBeVisible();
 
     await expect(page).toHaveScreenshot('modal-long-content.png', {
@@ -114,7 +114,7 @@ test.describe('Modal Visual Regression', () => {
     const modal = page.locator('ha-modal[open]');
 
     // Wait for animation
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
     await expect(modal).toBeVisible();
 
     await expect(page).toHaveScreenshot('modal-dark-theme.png', {
@@ -132,7 +132,7 @@ test.describe('Modal Visual Regression', () => {
     const modal = page.locator('ha-modal[open]');
 
     // Wait for animation
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
     await expect(modal).toBeVisible();
 
     await expect(page).toHaveScreenshot('modal-mobile.png', {
