@@ -14,16 +14,16 @@ import { join } from 'path';
  * 必要なすべてのファイルが期待通りに生成されることを確認します。
  *
  * 検証内容:
- * - Pattern 1: WebComponents (42 files with :host selectors)
+ * - Pattern 1: WebComponents (44 files with :host selectors)
  *   Shadow DOM対応のWeb Components用CSS
- * - Pattern 2: HTML (42 files with .ha-* class selectors)
+ * - Pattern 2: HTML (44 files with .ha-* class selectors)
  *   プレーンHTMLで使用可能なクラスベースCSS
- * - Pattern 3: React/Vue (84 JS/TS exports)
+ * - Pattern 3: React/Vue (88 JS/TS exports)
  *   JavaScriptフレームワーク用のスタイルエクスポート
  * - Pattern 4: Unified CSS (2 files)
  *   全コンポーネントを含む統合CSSファイル
  *
- * Total expected: 175 files (42 + 42 + 84 + 2 + metadata files)
+ * Total expected: 183 files (44 + 44 + 88 + 2 + metadata files)
  *
  * @example
  * // テストの実行方法
@@ -35,7 +35,7 @@ import { join } from 'path';
  */
 
 const BUILD_DIR = './build';
-const EXPECTED_COMPONENT_COUNT = 42;
+const EXPECTED_COMPONENT_COUNT = 44;
 
 describe('Build System Tests', () => {
   beforeAll(() => {
@@ -95,7 +95,7 @@ describe('Build System Tests', () => {
       });
     });
 
-    it('should generate exactly 42 component CSS files', () => {
+    it('should generate exactly 44 component CSS files', () => {
       const allCssFiles = getAllCssFiles(COMPONENTS_DIR);
       expect(allCssFiles.length).toBe(EXPECTED_COMPONENT_COUNT);
     });
@@ -136,7 +136,7 @@ describe('Build System Tests', () => {
       });
     });
 
-    it('should generate exactly 42 HTML component CSS files', () => {
+    it('should generate exactly 44 HTML component CSS files', () => {
       const allCssFiles = getAllCssFiles(HTML_DIR);
       expect(allCssFiles.length).toBe(EXPECTED_COMPONENT_COUNT);
     });
@@ -182,14 +182,14 @@ describe('Build System Tests', () => {
       expect(existsSync(join(STYLES_DIR, 'index.d.ts'))).toBe(true);
     });
 
-    it('should generate exactly 42 component JS exports', () => {
+    it('should generate exactly 44 component JS exports', () => {
       const jsFiles = readdirSync(STYLES_DIR)
         .filter(f => f.endsWith('.js') && f !== 'index.js');
 
       expect(jsFiles.length).toBe(EXPECTED_COMPONENT_COUNT);
     });
 
-    it('should generate exactly 42 component TS definitions', () => {
+    it('should generate exactly 44 component TS definitions', () => {
       const tsFiles = readdirSync(STYLES_DIR)
         .filter(f => f.endsWith('.d.ts') && f !== 'index.d.ts');
 
@@ -244,12 +244,12 @@ describe('Build System Tests', () => {
   });
 
   describe('Total File Count', () => {
-    it('should generate approximately 175 files total', () => {
+    it('should generate approximately 183 files total', () => {
       const totalFiles = countAllFiles(BUILD_DIR);
 
-      // Allow some variance for metadata files, but should be around 175
-      expect(totalFiles, 'Total build files').toBeGreaterThanOrEqual(170);
-      expect(totalFiles, 'Total build files').toBeLessThanOrEqual(180);
+      // Allow some variance for metadata files, but should be around 183
+      expect(totalFiles, 'Total build files').toBeGreaterThanOrEqual(178);
+      expect(totalFiles, 'Total build files').toBeLessThanOrEqual(188);
     });
 
     it('should have correct file distribution', () => {

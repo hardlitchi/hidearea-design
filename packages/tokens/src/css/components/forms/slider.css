@@ -1,0 +1,251 @@
+/**
+ * Slider Component Styles
+ * Design tokens: @hidearea-design/tokens
+ *
+ * This CSS file defines the complete visual styling for the Slider component.
+ * All values reference design tokens (CSS custom properties) defined in
+ * the design tokens system.
+ */
+
+/* ========================================
+   Host
+   ======================================== */
+
+:host {
+  display: inline-block;
+  width: 100%;
+}
+
+:host([orientation="vertical"]) {
+  width: auto;
+  height: var(--component-slider-vertical-height, 200px);
+}
+
+:host([disabled]) {
+  opacity: var(--component-slider-disabled-opacity, 0.5);
+  cursor: var(--component-slider-disabled-cursor, not-allowed);
+}
+
+/* ========================================
+   Container
+   ======================================== */
+
+.slider {
+  position: relative;
+  padding: var(--component-slider-spacing-padding-vertical, 12px) var(--component-slider-spacing-padding-horizontal, 0);
+}
+
+:host([orientation="vertical"]) .slider {
+  padding: var(--component-slider-vertical-padding-vertical, 0) var(--component-slider-vertical-padding-horizontal, 12px);
+  height: 100%;
+}
+
+/* ========================================
+   Label
+   ======================================== */
+
+.slider__label {
+  display: block;
+  margin-bottom: var(--component-slider-label-margin-bottom, 8px);
+  font-size: var(--component-slider-label-font-size, var(--font-size-sm));
+  font-weight: var(--component-slider-label-font-weight, var(--font-weight-medium));
+  color: var(--component-slider-label-color, var(--foreground-primary));
+}
+
+/* ========================================
+   Track
+   ======================================== */
+
+.slider__track {
+  position: relative;
+  width: 100%;
+  height: var(--component-slider-track-height, 6px);
+  background-color: var(--component-slider-track-background, var(--background-tertiary));
+  border-radius: var(--component-slider-track-radius, 999px);
+  cursor: pointer;
+  touch-action: none;
+}
+
+:host([orientation="vertical"]) .slider__track {
+  width: var(--component-slider-track-height, 6px);
+  height: 100%;
+}
+
+:host([disabled]) .slider__track,
+:host([readonly]) .slider__track {
+  cursor: var(--component-slider-disabled-cursor, not-allowed);
+}
+
+/* ========================================
+   Fill
+   ======================================== */
+
+.slider__fill {
+  position: absolute;
+  background-color: var(--component-slider-fill-background, var(--primary-default));
+  border-radius: var(--component-slider-track-radius, 999px);
+  height: 100%;
+  transition:
+    width var(--component-slider-transition-duration, 0.1s) var(--component-slider-transition-timing, ease),
+    height var(--component-slider-transition-duration, 0.1s) var(--component-slider-transition-timing, ease);
+}
+
+:host([orientation="vertical"]) .slider__fill {
+  width: 100%;
+  bottom: 0;
+}
+
+/* ========================================
+   Thumb
+   ======================================== */
+
+.slider__thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--component-slider-thumb-size, 18px);
+  height: var(--component-slider-thumb-size, 18px);
+  background-color: var(--component-slider-thumb-background, var(--primary-default));
+  border: var(--component-slider-thumb-border-width, 2px) solid var(--component-slider-thumb-border-color, var(--background-primary));
+  border-radius: 50%;
+  box-shadow: var(--component-slider-thumb-shadow, var(--shadow-sm));
+  cursor: var(--component-slider-thumb-cursor, grab);
+  transition:
+    transform var(--component-slider-transition-duration, 0.1s) var(--component-slider-transition-timing, ease),
+    box-shadow var(--component-slider-transition-duration, 0.1s) var(--component-slider-transition-timing, ease);
+}
+
+:host([orientation="vertical"]) .slider__thumb {
+  left: 50%;
+  top: auto;
+  transform: translate(-50%, 50%);
+}
+
+.slider__thumb:hover {
+  transform: translate(-50%, -50%) scale(var(--component-slider-thumb-scale-hover, 1.1));
+  box-shadow: var(--component-slider-thumb-shadow-hover, var(--shadow-md));
+}
+
+:host([orientation="vertical"]) .slider__thumb:hover {
+  transform: translate(-50%, 50%) scale(var(--component-slider-thumb-scale-hover, 1.1));
+}
+
+.slider__thumb:active {
+  cursor: var(--component-slider-thumb-cursor-active, grabbing);
+}
+
+:host([disabled]) .slider__thumb,
+:host([readonly]) .slider__thumb {
+  cursor: var(--component-slider-disabled-cursor, not-allowed);
+}
+
+/* ========================================
+   Marks
+   ======================================== */
+
+.slider__marks {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+:host([orientation="vertical"]) .slider__marks {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  right: auto;
+}
+
+.slider__mark {
+  position: absolute;
+  width: var(--component-slider-mark-size, 4px);
+  height: var(--component-slider-mark-size, 4px);
+  background-color: var(--component-slider-mark-color, var(--foreground-tertiary));
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+:host([orientation="vertical"]) .slider__mark {
+  transform: translate(-50%, 50%);
+}
+
+.slider__mark.active {
+  background-color: var(--component-slider-mark-active-color, var(--primary-default));
+}
+
+/* ========================================
+   Tooltip
+   ======================================== */
+
+.slider__tooltip {
+  position: absolute;
+  bottom: calc(100% + var(--component-slider-tooltip-offset, 8px));
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--component-slider-tooltip-padding, 0.25rem 0.5rem);
+  background-color: var(--component-slider-tooltip-background, var(--foreground-primary));
+  color: var(--component-slider-tooltip-color, var(--background-primary));
+  font-size: var(--component-slider-tooltip-font-size, var(--font-size-xs));
+  border-radius: var(--component-slider-tooltip-radius, var(--border-radius-sm));
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--component-slider-transition-duration, 0.1s) var(--component-slider-transition-timing, ease);
+}
+
+:host([orientation="vertical"]) .slider__tooltip {
+  bottom: auto;
+  left: calc(100% + var(--component-slider-tooltip-offset, 8px));
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.slider__thumb:hover + .slider__tooltip,
+.slider__thumb:active + .slider__tooltip,
+:host([show-tooltip]) .slider__tooltip {
+  opacity: 1;
+}
+
+/* ========================================
+   Touch Device Optimization
+   ======================================== */
+
+@media (pointer: coarse) {
+  .slider {
+    padding: var(--spacing-4, 1rem) 0;
+  }
+
+  :host([orientation="vertical"]) .slider {
+    padding: 0 var(--spacing-4, 1rem);
+  }
+
+  .slider__track {
+    height: 8px;
+  }
+
+  :host([orientation="vertical"]) .slider__track {
+    width: 8px;
+  }
+
+  .slider__thumb {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* ========================================
+   Hover Effects (Hover-capable Devices Only)
+   ======================================== */
+
+@media (hover: none) {
+  .slider__thumb:hover {
+    transform: translate(-50%, -50%);
+    box-shadow: var(--component-slider-thumb-shadow, var(--shadow-sm));
+  }
+
+  :host([orientation="vertical"]) .slider__thumb:hover {
+    transform: translate(-50%, 50%);
+  }
+}

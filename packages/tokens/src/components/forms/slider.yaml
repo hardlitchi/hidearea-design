@@ -1,0 +1,139 @@
+# スライダーコンポーネントトークン - hidearea-design
+# 値選択スライダーの外観を定義
+
+component:
+  slider:
+    # トラック設定
+    track:
+      height:
+        value: "6px"
+        comment: "トラックの高さ"
+      background:
+        value: "{background.tertiary}"
+        comment: "トラック背景色（テーマ対応）"
+      radius:
+        value: "999px"
+        comment: "トラックの角丸（完全な丸）"
+
+    # フィル（選択範囲）設定
+    fill:
+      background:
+        value: "{primary.default}"
+        comment: "フィル背景色（テーマ対応）"
+
+    # サム（つまみ）設定
+    thumb:
+      size:
+        value: "18px"
+        comment: "サムのサイズ"
+      background:
+        value: "{primary.default}"
+        comment: "サム背景色（テーマ対応）"
+      border-width:
+        value: "2px"
+        comment: "サムのボーダー幅"
+      border-color:
+        value: "{background.primary}"
+        comment: "サムのボーダー色（テーマ対応）"
+      shadow:
+        value: "{shadow.sm}"
+        comment: "サムの影"
+      shadow-hover:
+        value: "{shadow.md}"
+        comment: "ホバー時のサムの影"
+      scale-hover:
+        value: "1.1"
+        comment: "ホバー時の拡大率"
+      cursor:
+        value: "grab"
+        comment: "サムのカーソル"
+      cursor-active:
+        value: "grabbing"
+        comment: "ドラッグ中のカーソル"
+
+    # ラベル設定
+    label:
+      font-size:
+        value: "{font.size.sm}"
+        comment: "ラベルのフォントサイズ"
+      font-weight:
+        value: "{font.weight.medium}"
+        comment: "ラベルのフォントウェイト"
+      color:
+        value: "{foreground.primary}"
+        comment: "ラベルの色（テーマ対応）"
+      margin-bottom:
+        value: "{spacing.2}"
+        comment: "ラベルの下マージン"
+
+    # マーク設定
+    mark:
+      size:
+        value: "4px"
+        comment: "マークのサイズ"
+      color:
+        value: "{foreground.tertiary}"
+        comment: "マークの色（テーマ対応）"
+      active-color:
+        value: "{primary.default}"
+        comment: "アクティブなマークの色（テーマ対応）"
+
+    # ツールチップ設定
+    tooltip:
+      background:
+        value: "{foreground.primary}"
+        comment: "ツールチップ背景色（テーマ対応）"
+      color:
+        value: "{background.primary}"
+        comment: "ツールチップテキスト色（テーマ対応）"
+      padding:
+        value: "{spacing.1} {spacing.2}"
+        comment: "ツールチップのパディング"
+      font-size:
+        value: "{font.size.xs}"
+        comment: "ツールチップのフォントサイズ"
+      radius:
+        value: "{border.radius.sm}"
+        comment: "ツールチップの角丸"
+      offset:
+        value: "8px"
+        comment: "サムからのオフセット"
+
+    # 間隔設定
+    spacing:
+      padding-vertical:
+        value: "{spacing.3}"
+        comment: "垂直方向のパディング"
+      padding-horizontal:
+        value: "0"
+        comment: "水平方向のパディング"
+
+    # 垂直スライダー設定
+    vertical:
+      height:
+        value: "200px"
+        comment: "垂直スライダーのデフォルト高さ"
+      padding-vertical:
+        value: "0"
+        comment: "垂直スライダーの垂直パディング"
+      padding-horizontal:
+        value: "{spacing.3}"
+        comment: "垂直スライダーの水平パディング"
+
+    # 無効状態
+    disabled:
+      opacity:
+        value: "0.5"
+        comment: "無効時の不透明度"
+      cursor:
+        value: "not-allowed"
+        comment: "無効時のカーソル"
+
+    # アニメーション
+    transition:
+      duration:
+        value: "0.1s"
+        comment: "トランジションの時間"
+      timing:
+        value: "ease"
+        comment: "トランジションのタイミング関数"
