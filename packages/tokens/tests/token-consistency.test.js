@@ -249,6 +249,8 @@ describe('Token Consistency Tests', () => {
         const isValidSpacing =
           /^\d+(\.\d+)?(px|rem|em|%)$/.test(value) ||
           value === '0' ||
+          /^clamp\([^)]+\)$/.test(value) || // clamp() for responsive spacing
+          /^calc\([^)]+\)$/.test(value) || // calc() for computed spacing
           value.startsWith('{'); // reference
 
         expect(isValidSpacing, `Spacing token ${name} should have valid spacing value: ${value}`).toBe(true);
@@ -466,7 +468,20 @@ function extractTokensByType(tokens, type) {
   const result = [];
 
   Object.entries(tokens).forEach(([name, value]) => {
-    if (name.includes(type) || name.includes('color')) {
+    // Check if token path includes type-specific categories
+    const pathSegments = name.split('.');
+
+    // For color type, check if any path segment indicates a color property
+    if (type === 'color') {
+      const colorIndicators = ['color', 'background', 'foreground', 'border-color', 'fill', 'stroke'];
+      const hasColorIndicator = pathSegments.some(segment =>
+        colorIndicators.some(indicator => segment === indicator || segment.endsWith('-color'))
+      );
+
+      if (hasColorIndicator) {
+        result.push({ name, value });
+      }
+    } else if (name.includes(type)) {
       result.push({ name, value });
     }
   });

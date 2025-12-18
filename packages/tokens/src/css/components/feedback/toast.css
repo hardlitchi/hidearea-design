@@ -76,7 +76,7 @@
 }
 
 .message {
-  color: var(--foreground-primary, #111827));
+  color: var(--foreground-primary, #111827);
   font-size: var(--component-toast-font-size, 14px);
   line-height: 1.5;
 }
@@ -101,7 +101,7 @@
 }
 
 .close-button:hover {
-  background: var(--background-secondary, #f3f4f6));
+  background: var(--background-secondary, #f3f4f6);
 }
 
 .toast-progress {
@@ -110,7 +110,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--background-secondary, #e5e5e5));
+  background: var(--background-secondary, #e5e5e5);
   border-radius: 0 0 var(--component-toast-border-radius-default, var(--border-radius-lg, 8px))
     var(--component-toast-border-radius-default, var(--border-radius-lg, 8px));
   overflow: hidden;
@@ -118,7 +118,7 @@
 
 .toast-progress-bar {
   height: 100%;
-  background: var(--primary-default, #3b82f6));
+  background: var(--primary-default, #3b82f6);
   transition: width linear;
   width: 0;
 }
