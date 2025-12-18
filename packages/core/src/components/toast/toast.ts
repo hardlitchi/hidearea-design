@@ -192,6 +192,10 @@ export class HaToast extends HTMLElement {
     // Update icon with default
     const iconSlot = this.iconElement.querySelector("slot") as HTMLSlotElement;
     if (iconSlot && iconSlot.assignedNodes().length === 0) {
+      // Clear existing default icons before adding new one
+      while (iconSlot.childNodes.length > 0) {
+        iconSlot.removeChild(iconSlot.childNodes[0]);
+      }
       const defaultIcon = document.createTextNode(this.getDefaultIcon());
       iconSlot.appendChild(defaultIcon);
     }

@@ -237,6 +237,67 @@ describe("HaToast", () => {
       expect(progress).toBeTruthy();
     });
   });
+
+  describe("Icon Rendering", () => {
+    let toast: HaToast;
+
+    beforeEach(() => {
+      toast = document.createElement("ha-toast") as HaToast;
+      document.body.appendChild(toast);
+    });
+
+    afterEach(() => {
+      document.body.removeChild(toast);
+    });
+
+    it("should render only one default icon", async () => {
+      toast.setAttribute("variant", "info");
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      const iconSlot = queryShadow(toast, '[part="icon"] slot') as HTMLSlotElement;
+      expect(iconSlot).toBeTruthy();
+
+      // Check that only one icon is rendered
+      const childNodes = iconSlot?.childNodes || [];
+      expect(childNodes.length).toBe(1);
+      expect(childNodes[0].textContent).toBe("ℹ️");
+    });
+
+    it("should not duplicate icons on multiple renders", async () => {
+      toast.setAttribute("variant", "info");
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
+      // Trigger re-render by changing attributes
+      toast.setAttribute("message", "First message");
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
+      toast.setAttribute("message", "Second message");
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
+      const iconSlot = queryShadow(toast, '[part="icon"] slot') as HTMLSlotElement;
+      const childNodes = iconSlot?.childNodes || [];
+
+      // Should still have only one icon
+      expect(childNodes.length).toBe(1);
+      expect(childNodes[0].textContent).toBe("ℹ️");
+    });
+
+    it("should update icon when variant changes", async () => {
+      toast.setAttribute("variant", "info");
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
+      let iconSlot = queryShadow(toast, '[part="icon"] slot') as HTMLSlotElement;
+      expect(iconSlot?.childNodes[0]?.textContent).toBe("ℹ️");
+
+      // Change variant
+      toast.setAttribute("variant", "success");
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
+      iconSlot = queryShadow(toast, '[part="icon"] slot') as HTMLSlotElement;
+      expect(iconSlot?.childNodes.length).toBe(1);
+      expect(iconSlot?.childNodes[0]?.textContent).toBe("✓");
+    });
+  });
 });
 
 describe("HaToastContainer", () => {
