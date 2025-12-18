@@ -26,6 +26,7 @@ import { paginationStyles } from "@hidearea-design/tokens/styles";
  */
 export class HaPagination extends HTMLElement {
   private containerElement: HTMLDivElement;
+  private _boundHandleClick: (e: Event) => void;
 
   static get observedAttributes() {
     return ["total", "page", "page-size", "size", "variant", "show-info"];
@@ -49,10 +50,19 @@ export class HaPagination extends HTMLElement {
 
     shadow.appendChild(style);
     shadow.appendChild(this.containerElement);
+
+    // Bind event handler once for event delegation
+    this._boundHandleClick = this.handleContainerClick.bind(this);
   }
 
   connectedCallback() {
+    // Use event delegation - single listener on container
+    this.containerElement.addEventListener("click", this._boundHandleClick);
     this.render();
+  }
+
+  disconnectedCallback() {
+    this.containerElement.removeEventListener("click", this._boundHandleClick);
   }
 
   attributeChangedCallback(_name: string, oldValue: string, newValue: string) {
@@ -100,6 +110,28 @@ export class HaPagination extends HTMLElement {
     );
   }
 
+  // Event delegation handler - handles all button clicks
+  private handleContainerClick(e: Event) {
+    const target = e.target as HTMLElement;
+    const button = target.closest("button") as HTMLButtonElement;
+    if (!button || button.disabled) return;
+
+    const action = button.dataset.action;
+    const page = button.dataset.page;
+
+    if (action === "first") {
+      this.handlePageChange(1);
+    } else if (action === "prev") {
+      this.handlePageChange(this.currentPage - 1);
+    } else if (action === "next") {
+      this.handlePageChange(this.currentPage + 1);
+    } else if (action === "last") {
+      this.handlePageChange(this.totalPages);
+    } else if (page) {
+      this.handlePageChange(parseInt(page, 10));
+    }
+  }
+
   private getPageNumbers(): (number | "ellipsis")[] {
     const pages: (number | "ellipsis")[] = [];
     const totalPages = this.totalPages;
@@ -143,16 +175,16 @@ export class HaPagination extends HTMLElement {
 
     this.containerElement.innerHTML = "";
 
-    // First button
+    // First button (uses event delegation via data-action)
     if (variant !== "simple") {
       const firstButton = this.createButton("««", "first", currentPage === 1);
-      firstButton.addEventListener("click", () => this.handlePageChange(1));
+      firstButton.dataset.action = "first";
       this.containerElement.appendChild(firstButton);
     }
 
     // Previous button
     const prevButton = this.createButton("‹", "prev", currentPage === 1);
-    prevButton.addEventListener("click", () => this.handlePageChange(currentPage - 1));
+    prevButton.dataset.action = "prev";
     this.containerElement.appendChild(prevButton);
 
     // Page numbers
@@ -171,7 +203,7 @@ export class HaPagination extends HTMLElement {
             false,
             pageNum === currentPage
           );
-          pageButton.addEventListener("click", () => this.handlePageChange(pageNum));
+          pageButton.dataset.page = pageNum.toString();
           if (pageNum === currentPage) {
             pageButton.setAttribute("aria-current", "page");
           }
@@ -191,13 +223,13 @@ export class HaPagination extends HTMLElement {
 
     // Next button
     const nextButton = this.createButton("›", "next", currentPage === totalPages);
-    nextButton.addEventListener("click", () => this.handlePageChange(currentPage + 1));
+    nextButton.dataset.action = "next";
     this.containerElement.appendChild(nextButton);
 
     // Last button
     if (variant !== "simple") {
       const lastButton = this.createButton("»»", "last", currentPage === totalPages);
-      lastButton.addEventListener("click", () => this.handlePageChange(totalPages));
+      lastButton.dataset.action = "last";
       this.containerElement.appendChild(lastButton);
     }
 
