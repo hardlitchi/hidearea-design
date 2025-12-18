@@ -34,7 +34,7 @@ test.describe('Modal Visual Regression', () => {
     await page.goto(`${MODAL_STORY_URL}sizes`);
 
     // Open first modal (extra small)
-    const openButton = page.locator('button').first();
+    const openButton = page.getByRole('button', { name: 'Open Extra Small Modal' });
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');
@@ -52,7 +52,7 @@ test.describe('Modal Visual Regression', () => {
     await page.goto(`${MODAL_STORY_URL}variants`);
 
     // Open first modal (default)
-    const openButton = page.locator('button').first();
+    const openButton = page.getByRole('button', { name: 'Open Default Modal' });
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');
