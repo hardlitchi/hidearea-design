@@ -179,3 +179,8 @@ component:
       opacity:
         value: "0.3"
         comment: "プログレスバーの不透明度"
+
+    # Z-index（コンテナ用）
+    zIndex:
+      value: "9999"
+      comment: "トーストコンテナのz-index - 最前面に表示"

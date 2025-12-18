@@ -10,11 +10,11 @@
 
 :host {
   position: fixed;
-  z-index: var(--toast-container-z-index, 9999);
+  z-index: var(--component-toast-z-index, 9999);
   display: flex;
   flex-direction: column;
-  gap: var(--toast-gap, 12px);
-  padding: var(--toast-container-padding, 16px);
+  gap: var(--component-toast-gap, 12px);
+  padding: var(--component-toast-position-offset, 1rem, 16px);
   pointer-events: auto;
 }
 

@@ -633,6 +633,7 @@
   --component-toast-progress-bar-height: 3px;
   --component-toast-progress-bar-background: var(--foreground-inverse);
   --component-toast-progress-bar-opacity: 0.3;
+  --component-toast-z-index: 9999;
   --component-button-primary-background-default: var(--primary-default);
   --component-button-primary-background-hover: var(--primary-hover);
   --component-button-primary-background-active: var(--primary-active);

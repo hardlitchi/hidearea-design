@@ -11,15 +11,15 @@
 :host {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: var(--toast-padding, 16px);
-  padding-right: 40px; /* 閉じるボタンのスペースを確保 */
-  background: var(--toast-bg, var(--background-primary, #ffffff));
-  border-radius: var(--toast-border-radius, var(--border-radius-lg, 8px));
-  box-shadow: var(--toast-shadow, var(--shadow-lg));
-  border: 1px solid var(--toast-border-color, var(--border-default, #e5e5e5));
-  min-width: var(--toast-min-width, 300px);
-  max-width: var(--toast-max-width, 500px);
+  gap: var(--component-toast-gap, 0.75rem);
+  padding: var(--component-toast-padding-vertical, 0.75rem) var(--component-toast-padding-horizontal, 1rem);
+  padding-right: 2.5rem; /* 閉じるボタンのスペースを確保 */
+  background: var(--background-primary, #ffffff);
+  border-radius: var(--component-toast-border-radius-default, var(--border-radius-md, 0.375rem));
+  box-shadow: var(--component-toast-shadow-default, var(--shadow-lg));
+  border: 1px solid var(--border-default, #e5e5e5);
+  min-width: var(--component-toast-min-width, 18rem);
+  max-width: var(--component-toast-max-width, 24rem);
   animation: slideIn var(--animation-duration-base, 200ms) var(--animation-easing-ease-out);
   position: relative;
 }
@@ -76,8 +76,8 @@
 }
 
 .message {
-  color: var(--toast-message-color, var(--foreground-primary, #111827));
-  font-size: var(--toast-font-size, 14px);
+  color: var(--foreground-primary, #111827));
+  font-size: var(--component-toast-font-size, 14px);
   line-height: 1.5;
 }
 
@@ -91,7 +91,7 @@
   right: 8px;
   background: transparent;
   border: none;
-  color: var(--toast-close-color, var(--foreground-secondary, #6b7280));
+  color: var(--component-toast-close-button-color-default, var(--foreground-secondary, #6b7280));
   cursor: pointer;
   padding: 4px;
   border-radius: var(--border-radius-base, 4px);
@@ -101,7 +101,7 @@
 }
 
 .close-button:hover {
-  background: var(--toast-close-hover-bg, var(--background-secondary, #f3f4f6));
+  background: var(--background-secondary, #f3f4f6));
 }
 
 .toast-progress {
@@ -110,22 +110,22 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--toast-progress-bg, var(--background-secondary, #e5e5e5));
-  border-radius: 0 0 var(--toast-border-radius, var(--border-radius-lg, 8px))
-    var(--toast-border-radius, var(--border-radius-lg, 8px));
+  background: var(--background-secondary, #e5e5e5));
+  border-radius: 0 0 var(--component-toast-border-radius-default, var(--border-radius-lg, 8px))
+    var(--component-toast-border-radius-default, var(--border-radius-lg, 8px));
   overflow: hidden;
 }
 
 .toast-progress-bar {
   height: 100%;
-  background: var(--toast-progress-color, var(--primary-default, #3b82f6));
+  background: var(--primary-default, #3b82f6));
   transition: width linear;
   width: 0;
 }
 
 /* Variants */
 :host([variant="info"]) {
-  border-color: var(--info-muted, #93c5fd);
+  border-color: var(--info-subtle, #93c5fd);
 }
 
 :host([variant="info"]) .icon {
@@ -137,7 +137,7 @@
 }
 
 :host([variant="success"]) {
-  border-color: var(--success-muted, #86efac);
+  border-color: var(--success-subtle, #86efac);
 }
 
 :host([variant="success"]) .icon {
@@ -149,7 +149,7 @@
 }
 
 :host([variant="warning"]) {
-  border-color: var(--warning-muted, #fde047);
+  border-color: var(--warning-subtle, #fde047);
 }
 
 :host([variant="warning"]) .icon {
@@ -161,7 +161,7 @@
 }
 
 :host([variant="error"]) {
-  border-color: var(--error-muted, #fca5a5);
+  border-color: var(--error-subtle, #fca5a5);
 }
 
 :host([variant="error"]) .icon {
