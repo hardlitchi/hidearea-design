@@ -67,7 +67,7 @@
   right: var(--component-avatar-status-position, 0);
   width: var(--component-avatar-status-size-md);
   height: var(--component-avatar-status-size-md);
-  border-radius: var(--component-avatar-status-borderRadius);
+  border-radius: var(--border-radius-full);
   border: var(--component-avatar-status-border-width) solid var(--component-avatar-status-border-color);
   background: var(--component-avatar-status-background-offline);
 }
