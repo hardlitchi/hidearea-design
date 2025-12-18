@@ -8,7 +8,7 @@
 
 :host {
   display: inline-block;
-  width: var(--time-picker-width, 280px);
+  width: var(--component-time-picker-width, 280px);
   font-family: var(--font-family-sans);
   font-size: var(--font-size-base);
 }
@@ -36,11 +36,11 @@ label {
   display: flex;
   align-items: center;
   gap: var(--spacing-2);
-  height: var(--time-picker-input-height, 40px);
-  padding: var(--time-picker-input-padding, var(--spacing-2));
-  background: var(--time-picker-input-bg, var(--background-primary));
-  border: var(--time-picker-input-border, 1px solid var(--border-default));
-  border-radius: var(--time-picker-border-radius, var(--border-radius-md));
+  height: var(--component-time-picker-input-height, 40px);
+  padding: var(--component-time-picker-input-padding, var(--spacing-2));
+  background: var(--component-time-picker-input-background, var(--background-primary));
+  border: var(--component-time-picker-input-border, 1px solid var(--border-default));
+  border-radius: var(--component-time-picker-border-radius, var(--border-radius-md));
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -62,7 +62,7 @@ label {
 }
 
 .container.error .input-wrapper {
-  border-color: var(--time-picker-error-border, var(--error-default));
+  border-color: var(--component-time-picker-error-border, var(--error-default));
 }
 
 .container.readonly .input-wrapper {
@@ -81,7 +81,7 @@ label {
   flex: 1;
   border: none;
   background: transparent;
-  color: var(--time-picker-input-color, var(--foreground-primary));
+  color: var(--component-time-picker-input-color, var(--foreground-primary));
   font-size: inherit;
   font-family: inherit;
   outline: none;
@@ -110,12 +110,12 @@ label {
   top: calc(100% + 4px);
   left: 0;
   z-index: 1000;
-  width: var(--time-picker-panel-width, 280px);
-  max-height: var(--time-picker-panel-max-height, 300px);
-  background: var(--time-picker-panel-bg, var(--background-primary));
+  width: var(--component-time-picker-panel-width, 280px);
+  max-height: var(--component-time-picker-panel-max-height, 300px);
+  background: var(--component-time-picker-panel-background, var(--background-primary));
   border: 1px solid var(--border-default);
-  border-radius: var(--time-picker-border-radius, var(--border-radius-md));
-  box-shadow: var(--time-picker-panel-shadow, var(--shadow-lg));
+  border-radius: var(--component-time-picker-border-radius, var(--border-radius-md));
+  box-shadow: var(--component-time-picker-panel-shadow, var(--shadow-lg));
   overflow: hidden;
 }
 
@@ -183,7 +183,7 @@ label {
 
 /* Item */
 .item {
-  padding: var(--time-picker-item-padding, var(--spacing-2));
+  padding: var(--component-time-picker-item-padding, var(--spacing-2));
   text-align: center;
   cursor: pointer;
   transition: background-color 0.15s, color 0.15s;
@@ -191,18 +191,18 @@ label {
 }
 
 .item:hover:not(.disabled) {
-  background: var(--time-picker-item-hover-bg, var(--primary-default));
+  background: var(--component-time-picker-item-hover-background, var(--primary-default));
 }
 
 .item.selected {
-  background: var(--time-picker-item-selected-bg, var(--primary-default));
-  color: var(--time-picker-item-selected-color, var(--primary-default));
+  background: var(--component-time-picker-item-selected-background, var(--primary-default));
+  color: var(--component-time-picker-item-selected-color, var(--primary-default));
   font-weight: var(--font-weight-medium);
 }
 
 .item.disabled {
-  color: var(--time-picker-item-disabled-color, var(--foreground-primary));
-  background: var(--time-picker-item-disabled-bg, transparent);
+  color: var(--component-time-picker-item-disabled-color, var(--foreground-primary));
+  background: var(--component-time-picker-item-disabled-background, transparent);
   cursor: not-allowed;
   opacity: 0.5;
 }
@@ -284,7 +284,7 @@ label {
 .error-text {
   margin-top: var(--spacing-1);
   font-size: var(--font-size-xs);
-  color: var(--time-picker-error-color, var(--error-default));
+  color: var(--component-time-picker-error-color, var(--error-default));
 }
 
 /* Disabled State */

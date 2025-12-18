@@ -1,0 +1,80 @@
+# Time Pickerコンポーネントトークン - hidearea-design
+# 時刻選択インターフェースの外観と振る舞いを定義
+
+component:
+  timePicker:
+    # 全体サイズ
+    width:
+      value: "10rem"
+      comment: "Time Pickerの幅 (160px)"
+
+    # 入力フィールド
+    input:
+      height:
+        value: "2.5rem"
+        comment: "入力フィールドの高さ (40px)"
+      padding:
+        value: "{spacing.3}"
+        comment: "入力フィールドのパディング (12px)"
+      background:
+        value: "{background.primary}"
+        comment: "入力フィールドの背景色"
+      border:
+        value: "{border.default}"
+        comment: "入力フィールドのボーダー色"
+      color:
+        value: "{foreground.primary}"
+        comment: "入力フィールドのテキスト色"
+
+    # ボーダー半径
+    borderRadius:
+      value: "{border.radius.md}"
+      comment: "Time Pickerの角丸 (6px)"
+
+    # エラー状態
+    error:
+      border:
+        value: "{error.default}"
+        comment: "エラー時のボーダー色"
+      color:
+        value: "{error.default}"
+        comment: "エラー時のテキスト色"
+
+    # 時刻選択パネル
+    panel:
+      width:
+        value: "12rem"
+        comment: "時刻選択パネルの幅 (192px)"
+      maxHeight:
+        value: "15rem"
+        comment: "時刻選択パネルの最大高さ (240px)"
+      background:
+        value: "{background.primary}"
+        comment: "パネルの背景色"
+      shadow:
+        value: "{shadow.lg}"
+        comment: "パネルの影"
+
+    # 時刻アイテム
+    item:
+      padding:
+        value: "{spacing.2} {spacing.3}"
+        comment: "時刻アイテムのパディング (8px 12px)"
+      hover:
+        background:
+          value: "{background.secondary}"
+          comment: "時刻アイテムホバー時の背景色"
+      selected:
+        background:
+          value: "{primary.default}"
+          comment: "選択された時刻アイテムの背景色"
+        color:
+          value: "{foreground.inverse}"
+          comment: "選択された時刻アイテムのテキスト色"
+      disabled:
+        color:
+          value: "{foreground.tertiary}"
+          comment: "無効な時刻アイテムのテキスト色"
+        background:
+          value: "{background.secondary}"
+          comment: "無効な時刻アイテムの背景色"

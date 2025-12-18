@@ -1,0 +1,104 @@
+# Date Pickerコンポーネントトークン - hidearea-design
+# 日付選択インターフェースの外観と振る舞いを定義
+
+component:
+  datePicker:
+    # 全体サイズ
+    width:
+      value: "18rem"
+      comment: "Date Pickerの幅 (288px)"
+
+    # 入力フィールド
+    input:
+      height:
+        value: "2.5rem"
+        comment: "入力フィールドの高さ (40px)"
+      padding:
+        value: "{spacing.3}"
+        comment: "入力フィールドのパディング (12px)"
+      fontSize:
+        value: "{font.size.base}"
+        comment: "入力フィールドのフォントサイズ (16px)"
+      background:
+        value: "{background.primary}"
+        comment: "入力フィールドの背景色"
+      border:
+        value: "{border.default}"
+        comment: "入力フィールドのボーダー色"
+
+    # カレンダーパネル
+    panel:
+      background:
+        value: "{background.primary}"
+        comment: "カレンダーパネルの背景色"
+      borderColor:
+        value: "{border.default}"
+        comment: "カレンダーパネルのボーダー色"
+      borderRadius:
+        value: "{border.radius.lg}"
+        comment: "カレンダーパネルの角丸 (8px)"
+      shadow:
+        value: "{shadow.lg}"
+        comment: "カレンダーパネルの影"
+      padding:
+        value: "{spacing.4}"
+        comment: "カレンダーパネルのパディング (16px)"
+      gap:
+        value: "{spacing.2}"
+        comment: "カレンダー内の要素間隔 (8px)"
+
+    # ヘッダー
+    header:
+      height:
+        value: "2.5rem"
+        comment: "ヘッダーの高さ (40px)"
+      fontWeight:
+        value: "{font.weight.semibold}"
+        comment: "ヘッダーのフォントウェイト (600)"
+
+    # 日付セル
+    day:
+      size:
+        value: "2rem"
+        comment: "日付セルのサイズ (32px)"
+      fontSize:
+        value: "{font.size.sm}"
+        comment: "日付のフォントサイズ (14px)"
+      hover:
+        background:
+          value: "{background.secondary}"
+          comment: "日付セルホバー時の背景色"
+      today:
+        borderColor:
+          value: "{primary.default}"
+          comment: "今日の日付のボーダー色"
+      selected:
+        background:
+          value: "{primary.default}"
+          comment: "選択された日付の背景色"
+        color:
+          value: "{foreground.inverse}"
+          comment: "選択された日付のテキスト色"
+      outside:
+        opacity:
+          value: "0.4"
+          comment: "月外の日付の不透明度"
+      disabled:
+        opacity:
+          value: "0.3"
+          comment: "無効な日付の不透明度"
+
+    # 範囲選択
+    range:
+      background:
+        value: "{primary.subtle}"
+        comment: "範囲選択時の背景色"
+      color:
+        value: "{foreground.primary}"
+        comment: "範囲選択時のテキスト色"
+
+    # エラー状態
+    error:
+      borderColor:
+        value: "{error.default}"
+        comment: "エラー時のボーダー色"
