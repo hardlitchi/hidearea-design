@@ -63,8 +63,24 @@ export class HaTimePicker extends HTMLElement {
   public secondStep = 1;
   public minTime: string | null = null;
   public maxTime: string | null = null;
-  public disabledHours: number[] = [];
-  public disabledMinutes: number[] = [];
+  // Use Sets for O(1) lookup performance
+  private _disabledHoursSet: Set<number> = new Set();
+  private _disabledMinutesSet: Set<number> = new Set();
+
+  // Public API for disabled hours/minutes (array interface, Set storage)
+  get disabledHours(): number[] {
+    return Array.from(this._disabledHoursSet);
+  }
+  set disabledHours(value: number[]) {
+    this._disabledHoursSet = new Set(value);
+  }
+  get disabledMinutes(): number[] {
+    return Array.from(this._disabledMinutesSet);
+  }
+  set disabledMinutes(value: number[]) {
+    this._disabledMinutesSet = new Set(value);
+  }
+
   public inline = false;
   public placeholder = "";
   public disabled = false;
@@ -160,14 +176,14 @@ export class HaTimePicker extends HTMLElement {
         this.maxTime = newValue;
         break;
       case "disabled-hours":
-        this.disabledHours = newValue
-          ? newValue.split(",").map((h) => parseInt(h.trim(), 10))
-          : [];
+        this._disabledHoursSet = new Set(
+          newValue ? newValue.split(",").map((h) => parseInt(h.trim(), 10)) : []
+        );
         break;
       case "disabled-minutes":
-        this.disabledMinutes = newValue
-          ? newValue.split(",").map((m) => parseInt(m.trim(), 10))
-          : [];
+        this._disabledMinutesSet = new Set(
+          newValue ? newValue.split(",").map((m) => parseInt(m.trim(), 10)) : []
+        );
         break;
       case "inline":
         this.inline = newValue !== null;
@@ -353,8 +369,8 @@ export class HaTimePicker extends HTMLElement {
       }
     }
 
-    // Check disabledHours
-    if (this.disabledHours.includes(hour24)) {
+    // Check disabledHours - O(1) Set lookup
+    if (this._disabledHoursSet.has(hour24)) {
       return true;
     }
 
@@ -384,8 +400,8 @@ export class HaTimePicker extends HTMLElement {
    * Check if a specific minute value is disabled in the minute column
    */
   private isMinuteDisabled(minuteValue: number): boolean {
-    // Check disabledMinutes
-    if (this.disabledMinutes.includes(minuteValue)) {
+    // Check disabledMinutes - O(1) Set lookup
+    if (this._disabledMinutesSet.has(minuteValue)) {
       return true;
     }
 
@@ -455,13 +471,13 @@ export class HaTimePicker extends HTMLElement {
       }
     }
 
-    // Check disabled hours
-    if (this.disabledHours.includes(hour24)) {
+    // Check disabled hours - O(1) Set lookup
+    if (this._disabledHoursSet.has(hour24)) {
       return true;
     }
 
-    // Check disabled minutes
-    if (this.disabledMinutes.includes(minute)) {
+    // Check disabled minutes - O(1) Set lookup
+    if (this._disabledMinutesSet.has(minute)) {
       return true;
     }
 
@@ -978,53 +994,59 @@ export class HaTimePicker extends HTMLElement {
   }
 
   private attachPanelEventListeners(): void {
-    // Item clicks
-    const items = this._shadowRoot.querySelectorAll(".item");
-    items.forEach((item) => {
-      item.addEventListener("click", () => {
-        const type = item.getAttribute("data-type");
-        const value = parseInt(item.getAttribute("data-value") || "0", 10);
-        const disabled = item.classList.contains("disabled");
-
-        if (disabled) return;
-
-        switch (type) {
-          case "hour": {
-            this.handleHourSelect(value);
-            break;
-          }
-          case "minute": {
-            this.handleMinuteSelect(value);
-            break;
-          }
-          case "second": {
-            this.handleSecondSelect(value);
-            break;
-          }
-        }
-      });
-    });
-
-    // Period toggle
-    const periodButtons = this._shadowRoot.querySelectorAll(".period-button");
-    periodButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const period = button.getAttribute("data-period") as TimePickerPeriod;
-        this.handlePeriodToggle(period);
-      });
-    });
-
-    // Action buttons
-    const nowButton = this._shadowRoot.querySelector(".now-button");
-    if (nowButton) {
-      nowButton.addEventListener("click", () => this.handleNowClick());
-    }
-
-    const clearButton = this._shadowRoot.querySelector(".clear-button");
-    if (clearButton) {
-      clearButton.addEventListener("click", () => this.handleClearClick());
+    // Use event delegation - single listener on panel handles all clicks
+    const panel = this._shadowRoot.querySelector(".panel");
+    if (panel) {
+      panel.addEventListener("click", this.handlePanelClick);
     }
   }
+
+  // Event delegation handler for all panel interactions
+  private handlePanelClick = (e: Event): void => {
+    const target = e.target as HTMLElement;
+
+    // Handle time item clicks
+    const item = target.closest(".item") as HTMLElement;
+    if (item) {
+      const type = item.getAttribute("data-type");
+      const value = parseInt(item.getAttribute("data-value") || "0", 10);
+      const isDisabled = item.classList.contains("disabled");
+
+      if (isDisabled) return;
+
+      switch (type) {
+        case "hour":
+          this.handleHourSelect(value);
+          break;
+        case "minute":
+          this.handleMinuteSelect(value);
+          break;
+        case "second":
+          this.handleSecondSelect(value);
+          break;
+      }
+      return;
+    }
+
+    // Handle period button clicks
+    const periodButton = target.closest(".period-button") as HTMLElement;
+    if (periodButton) {
+      const period = periodButton.getAttribute("data-period") as TimePickerPeriod;
+      this.handlePeriodToggle(period);
+      return;
+    }
+
+    // Handle action button clicks
+    if (target.closest(".now-button")) {
+      this.handleNowClick();
+      return;
+    }
+
+    if (target.closest(".clear-button")) {
+      this.handleClearClick();
+      return;
+    }
+  };
 }
 
 customElements.define("ha-time-picker", HaTimePicker);

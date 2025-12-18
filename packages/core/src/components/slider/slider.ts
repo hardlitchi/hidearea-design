@@ -414,24 +414,14 @@ export class HaSlider extends HTMLElement {
   };
 
   private attachEventListeners(): void {
-    const track = this._shadowRoot.querySelector('.slider__track');
-    if (track) {
-      track.addEventListener('pointerdown', this.handlePointerDown as EventListener);
-      track.addEventListener('pointermove', this.handlePointerMove as EventListener);
-      track.addEventListener('pointerup', this.handlePointerUp as EventListener);
-      track.addEventListener('pointercancel', this.handlePointerUp as EventListener);
-    }
+    // Only attach host-level listeners here (keydown)
+    // Track listeners are attached in render() after innerHTML
     this.addEventListener('keydown', this.handleKeyDown as EventListener);
   }
 
   private detachEventListeners(): void {
-    const track = this._shadowRoot.querySelector('.slider__track');
-    if (track) {
-      track.removeEventListener('pointerdown', this.handlePointerDown as EventListener);
-      track.removeEventListener('pointermove', this.handlePointerMove as EventListener);
-      track.removeEventListener('pointerup', this.handlePointerUp as EventListener);
-      track.removeEventListener('pointercancel', this.handlePointerUp as EventListener);
-    }
+    // Track listeners are automatically removed when innerHTML destroys elements
+    // Only need to remove host-level listeners
     this.removeEventListener('keydown', this.handleKeyDown as EventListener);
   }
 

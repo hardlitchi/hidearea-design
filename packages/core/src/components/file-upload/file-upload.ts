@@ -292,6 +292,11 @@ export class HaFileUpload extends HTMLElement {
       this.dropzoneElement.addEventListener("dragleave", this.handleDragLeave);
       this.dropzoneElement.addEventListener("drop", this.handleDrop);
     }
+
+    // Use event delegation for file list remove buttons
+    if (this.fileListElement) {
+      this.fileListElement.addEventListener("click", this.handleFileListClick);
+    }
   }
 
   private detachEventListeners() {
@@ -306,6 +311,10 @@ export class HaFileUpload extends HTMLElement {
       this.dropzoneElement.removeEventListener("dragover", this.handleDragOver);
       this.dropzoneElement.removeEventListener("dragleave", this.handleDragLeave);
       this.dropzoneElement.removeEventListener("drop", this.handleDrop);
+    }
+
+    if (this.fileListElement) {
+      this.fileListElement.removeEventListener("click", this.handleFileListClick);
     }
   }
 
@@ -368,6 +377,18 @@ export class HaFileUpload extends HTMLElement {
     const files = e.dataTransfer?.files;
     if (files && files.length > 0) {
       this.addFiles(Array.from(files));
+    }
+  };
+
+  // Event delegation handler for file list clicks
+  private handleFileListClick = (e: Event) => {
+    const target = e.target as HTMLElement;
+    const removeButton = target.closest(".file-upload__remove-button") as HTMLElement;
+    if (removeButton) {
+      const fileId = removeButton.dataset.fileId;
+      if (fileId) {
+        this.removeFile(fileId);
+      }
     }
   };
 
@@ -476,17 +497,7 @@ export class HaFileUpload extends HTMLElement {
     `
       )
       .join("");
-
-    // Attach remove button listeners
-    const removeButtons = this.fileListElement.querySelectorAll(".file-upload__remove-button");
-    removeButtons.forEach((button) => {
-      button.addEventListener("click", (e) => {
-        const fileId = (e.currentTarget as HTMLElement).dataset.fileId;
-        if (fileId) {
-          this.removeFile(fileId);
-        }
-      });
-    });
+    // Event delegation handles remove button clicks - no need to attach individual listeners
   }
 
   private generateFileId(file: File): string {
