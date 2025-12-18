@@ -29,7 +29,7 @@
   position: absolute;
   background: var(--background-primary);
   border: 1px solid var(--border-default);
-  border-radius: var(--radius-md, 6px);
+  border-radius: var(--border-radius-md, 6px);
   box-shadow: var(--shadow-lg);
   min-width: 160px;
   max-width: 320px;
@@ -192,7 +192,7 @@
   padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
   font-size: var(--font-size-sm, 14px);
   border: 1px solid var(--border-default);
-  border-radius: var(--radius-sm, 4px);
+  border-radius: var(--border-radius-sm, 4px);
   background: var(--background-secondary);
   color: var(--foreground-primary);
   outline: none;

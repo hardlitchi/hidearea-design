@@ -217,22 +217,22 @@ button {
 @media (pointer: coarse) {
   /* Ensure minimum touch target size (WCAG 2.1 AA) */
   button {
-    min-height: var(--touch-target-minimum, 44px);
-    min-width: var(--touch-target-minimum, 44px);
+    min-height: var(--accessibility-touch-target-minimum, 44px);
+    min-width: var(--accessibility-touch-target-minimum, 44px);
   }
 
   :host([size="sm"]) button {
-    min-height: var(--touch-target-minimum, 44px);
+    min-height: var(--accessibility-touch-target-minimum, 44px);
     padding: var(--spacing-2, 0.5rem) var(--spacing-4, 1rem);
   }
 
   :host([size="md"]) button,
   button {
-    min-height: var(--touch-target-comfortable, 48px);
+    min-height: var(--accessibility-touch-target-comfortable, 48px);
   }
 
   :host([size="lg"]) button {
-    min-height: var(--touch-target-large, 56px);
+    min-height: var(--accessibility-touch-target-large, 56px);
   }
 
   /* Remove active transform on touch (causes flicker) */

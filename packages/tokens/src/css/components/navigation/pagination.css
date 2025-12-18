@@ -25,11 +25,11 @@
   padding: 0 12px;
   background: var(--pagination-button-bg, transparent);
   border: 1px solid var(--pagination-button-border, var(--border-default));
-  border-radius: var(--pagination-button-radius, var(--radius-base, 4px));
+  border-radius: var(--pagination-button-radius, var(--border-radius-base, 4px));
   color: var(--pagination-button-color, var(--foreground-primary));
   font-size: var(--pagination-font-size, 14px);
   cursor: pointer;
-  transition: all var(--duration-fast, 150ms) var(--ease);
+  transition: all var(--animation-duration-fast, 150ms) var(--animation-easing-ease);
   user-select: none;
 }
 

@@ -29,7 +29,7 @@
   position: absolute;
   background: var(--background-primary);
   border: 1px solid var(--border-default);
-  border-radius: var(--radius-md, 6px);
+  border-radius: var(--border-radius-md, 6px);
   box-shadow: var(--shadow-lg);
   z-index: 1100;
   width: 320px;
@@ -184,7 +184,7 @@
   border: none;
   background: transparent;
   color: var(--foreground-tertiary);
-  border-radius: var(--radius-sm, 4px);
+  border-radius: var(--border-radius-sm, 4px);
   cursor: pointer;
   display: flex;
   align-items: center;

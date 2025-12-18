@@ -15,12 +15,12 @@
   padding: var(--toast-padding, 16px);
   padding-right: 40px; /* 閉じるボタンのスペースを確保 */
   background: var(--toast-bg, var(--background-primary, #ffffff));
-  border-radius: var(--toast-border-radius, var(--radius-lg, 8px));
+  border-radius: var(--toast-border-radius, var(--border-radius-lg, 8px));
   box-shadow: var(--toast-shadow, var(--shadow-lg));
   border: 1px solid var(--toast-border-color, var(--border-default, #e5e5e5));
   min-width: var(--toast-min-width, 300px);
   max-width: var(--toast-max-width, 500px);
-  animation: slideIn var(--duration-base, 200ms) var(--ease-out);
+  animation: slideIn var(--animation-duration-base, 200ms) var(--animation-easing-ease-out);
   position: relative;
 }
 
@@ -36,7 +36,7 @@
 }
 
 :host([closing]) {
-  animation: slideOut var(--duration-base, 200ms) var(--ease-in);
+  animation: slideOut var(--animation-duration-base, 200ms) var(--animation-easing-ease-in);
 }
 
 @keyframes slideOut {
@@ -94,10 +94,10 @@
   color: var(--toast-close-color, var(--foreground-secondary, #6b7280));
   cursor: pointer;
   padding: 4px;
-  border-radius: var(--radius-base, 4px);
+  border-radius: var(--border-radius-base, 4px);
   font-size: 18px;
   line-height: 1;
-  transition: background-color var(--duration-fast, 150ms) var(--ease);
+  transition: background-color var(--animation-duration-fast, 150ms) var(--animation-easing-ease);
 }
 
 .close-button:hover {
@@ -111,8 +111,8 @@
   right: 0;
   height: 3px;
   background: var(--toast-progress-bg, var(--background-secondary, #e5e5e5));
-  border-radius: 0 0 var(--toast-border-radius, var(--radius-lg, 8px))
-    var(--toast-border-radius, var(--radius-lg, 8px));
+  border-radius: 0 0 var(--toast-border-radius, var(--border-radius-lg, 8px))
+    var(--toast-border-radius, var(--border-radius-lg, 8px));
   overflow: hidden;
 }
 

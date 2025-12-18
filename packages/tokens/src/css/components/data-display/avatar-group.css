@@ -26,7 +26,7 @@
   border: 2px solid var(--foreground-inverse);
   box-shadow: 0 0 0 1px var(--border-default);
   position: relative;
-  transition: transform var(--duration-fast, 150ms) var(--ease-out);
+  transition: transform var(--animation-duration-fast, 150ms) var(--animation-easing-ease-out);
 }
 
 :host([layout="stack"]) ::slotted(*:first-child) {

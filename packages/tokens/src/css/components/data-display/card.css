@@ -208,7 +208,7 @@
 
   /* Ensure clickable cards have proper touch target */
   .card--clickable {
-    min-height: var(--touch-target-minimum, 44px);
+    min-height: var(--accessibility-touch-target-minimum, 44px);
   }
 
   /* Remove hover transform on touch (causes flicker) */

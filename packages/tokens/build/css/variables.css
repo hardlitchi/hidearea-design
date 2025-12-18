@@ -1,4 +1,7 @@
 :root {
+  --accessibility-touch-target-minimum: 44px;
+  --accessibility-touch-target-comfortable: 48px;
+  --accessibility-touch-target-large: 56px;
   --animation-duration-fast: 150ms;
   --animation-duration-base: 200ms;
   --animation-duration-slow: 300ms;

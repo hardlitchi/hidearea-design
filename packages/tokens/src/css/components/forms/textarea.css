@@ -43,7 +43,7 @@ textarea {
 
   /* Typography */
   font-family: var(--font-family-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
-  font-weight: var(--font-weight-regular, 400);
+  font-weight: var(--font-weight-normal, 400);
   line-height: var(--font-line-height-normal, 1.5);
   color: var(--foreground-primary, #111827);
 
@@ -60,7 +60,7 @@ textarea::placeholder {
 textarea:disabled {
   cursor: not-allowed;
   opacity: 0.6;
-  background-color: var(--background-disabled, #f9fafb);
+  background-color: var(--background-secondary, #f9fafb);
   resize: none;
 }
 

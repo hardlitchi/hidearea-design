@@ -197,7 +197,7 @@ input[type="checkbox"]:indeterminate + .checkbox-box .checkbox-icon {
    ======================================== */
 
 .label {
-  font-weight: var(--font-weight-regular, 400);
+  font-weight: var(--font-weight-normal, 400);
   line-height: var(--font-line-height-normal, 1.5);
   color: var(--foreground-primary);
   user-select: none;

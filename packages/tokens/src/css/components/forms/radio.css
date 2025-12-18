@@ -16,7 +16,7 @@
   align-items: flex-start;
   cursor: pointer;
   user-select: none;
-  font-family: var(--font-family-base, system-ui, -apple-system, sans-serif);
+  font-family: var(--font-family-sans, system-ui, -apple-system, sans-serif);
 }
 
 :host([disabled]) {
@@ -54,7 +54,7 @@ input {
   justify-content: center;
   border-radius: 50%;
   border: 2px solid var(--border-default);
-  background-color: var(--color-background, #ffffff);
+  background-color: var(--background-primary, #ffffff);
   transition: all 0.2s ease;
   flex-shrink: 0;
 }
@@ -113,7 +113,7 @@ input {
 
 :host([checked]) .radio-circle {
   border-color: var(--color-primary-600, #4f46e5);
-  background-color: var(--color-background, #ffffff);
+  background-color: var(--background-primary, #ffffff);
 }
 
 :host(:not([checked])) .radio-dot {
@@ -156,15 +156,15 @@ input:focus-visible + .radio-circle {
    ======================================== */
 
 :host([error]) .radio-circle {
-  border-color: var(--color-danger-600, #dc2626);
+  border-color: var(--error-default, #dc2626);
 }
 
 :host([error][checked]) .radio-circle {
-  border-color: var(--color-danger-600, #dc2626);
+  border-color: var(--error-default, #dc2626);
 }
 
 :host([error][checked]) .radio-dot {
-  background-color: var(--color-danger-600, #dc2626);
+  background-color: var(--error-default, #dc2626);
 }
 
 /* ========================================
@@ -185,8 +185,8 @@ input:focus-visible + .radio-circle {
   display: block;
   font-size: var(--font-size-base, 1rem);
   font-weight: var(--font-weight-normal, 400);
-  color: var(--color-text-primary, #1a1a1a);
-  line-height: var(--line-height-normal, 1.5);
+  color: var(--foreground-primary, #1a1a1a);
+  line-height: var(--font-line-height-normal, 1.5);
 }
 
 :host([size="sm"]) .label {
@@ -198,7 +198,7 @@ input:focus-visible + .radio-circle {
 }
 
 :host([disabled]) .label {
-  color: var(--color-text-disabled, #9ca3af);
+  color: var(--foreground-tertiary, #9ca3af);
 }
 
 /* ========================================
@@ -208,8 +208,8 @@ input:focus-visible + .radio-circle {
 .description {
   display: none;
   font-size: var(--font-size-sm, 0.875rem);
-  color: var(--color-text-secondary, #6b7280);
-  line-height: var(--line-height-normal, 1.5);
+  color: var(--foreground-secondary, #6b7280);
+  line-height: var(--font-line-height-normal, 1.5);
 }
 
 :host([description]) .description,
@@ -218,10 +218,10 @@ input:focus-visible + .radio-circle {
 }
 
 :host([disabled]) .description {
-  color: var(--color-text-disabled, #9ca3af);
+  color: var(--foreground-tertiary, #9ca3af);
 }
 
 :host([error]) .label,
 :host([error]) .description {
-  color: var(--color-danger-700, #b91c1c);
+  color: var(--error-default, #b91c1c);
 }

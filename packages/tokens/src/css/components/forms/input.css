@@ -43,7 +43,7 @@ input {
 
   /* Typography */
   font-family: var(--font-family-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
-  font-weight: var(--font-weight-regular, 400);
+  font-weight: var(--font-weight-normal, 400);
   line-height: var(--font-line-height-normal, 1.5);
   color: var(--foreground-primary);
 
@@ -233,21 +233,21 @@ input {
 @media (pointer: coarse) {
   /* Ensure comfortable touch target size */
   .input-wrapper {
-    min-height: var(--touch-target-minimum, 44px);
+    min-height: var(--accessibility-touch-target-minimum, 44px);
   }
 
   :host([size="sm"]) .input-wrapper {
-    min-height: var(--touch-target-minimum, 44px);
+    min-height: var(--accessibility-touch-target-minimum, 44px);
     padding: var(--spacing-2, 0.5rem) var(--spacing-3, 0.75rem);
   }
 
   :host([size="md"]) .input-wrapper,
   .input-wrapper {
-    min-height: var(--touch-target-comfortable, 48px);
+    min-height: var(--accessibility-touch-target-comfortable, 48px);
   }
 
   :host([size="lg"]) .input-wrapper {
-    min-height: var(--touch-target-large, 56px);
+    min-height: var(--accessibility-touch-target-large, 56px);
   }
 
   /* Increase font size to prevent auto-zoom on iOS */

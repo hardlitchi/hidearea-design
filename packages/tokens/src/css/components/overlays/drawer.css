@@ -242,8 +242,8 @@
 
   /* Ensure close button meets touch target size */
   .drawer__close {
-    min-width: var(--touch-target-minimum, 44px);
-    min-height: var(--touch-target-minimum, 44px);
+    min-width: var(--accessibility-touch-target-minimum, 44px);
+    min-height: var(--accessibility-touch-target-minimum, 44px);
     padding: var(--spacing-2, 0.5rem);
   }
 

@@ -1,0 +1,18 @@
+# ========================================
+# Accessibility Tokens
+# アクセシビリティ関連のトークン
+# ========================================
+
+accessibility:
+  # タッチターゲットサイズ
+  # https://www.w3.org/WAI/WCAG21/Understanding/target-size.html
+  touchTarget:
+    minimum:
+      value: "44px"
+      comment: "WCAG AA準拠の最小タッチターゲットサイズ (2.5.5 Target Size Level AAA では44x44px)"
+    comfortable:
+      value: "48px"
+      comment: "より快適なタッチターゲットサイズ"
+    large:
+      value: "56px"
+      comment: "大きなタッチターゲットサイズ"

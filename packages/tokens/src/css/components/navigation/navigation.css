@@ -81,7 +81,7 @@
   align-items: center;
   gap: var(--spacing-2, 8px);
   padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
-  border-radius: var(--radius-md, 6px);
+  border-radius: var(--border-radius-md, 6px);
   color: var(--foreground-secondary);
   text-decoration: none;
   font-size: var(--font-size-sm, 14px);
@@ -147,7 +147,7 @@
   border: none;
   background: transparent;
   color: var(--foreground-primary);
-  border-radius: var(--radius-md, 6px);
+  border-radius: var(--border-radius-md, 6px);
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -179,7 +179,7 @@
   left: 0;
   background: var(--background-primary);
   border: 1px solid var(--border-default);
-  border-radius: var(--radius-md, 6px);
+  border-radius: var(--border-radius-md, 6px);
   box-shadow: var(--shadow-lg);
   min-width: 200px;
   padding: var(--spacing-1, 4px) 0;
@@ -311,5 +311,5 @@
 :host([variant="bordered"]) .navigation,
 .navigation.bordered {
   border: 1px solid var(--border-default);
-  border-radius: var(--radius-md, 6px);
+  border-radius: var(--border-radius-md, 6px);
 }

@@ -16,7 +16,7 @@
   align-items: center;
   cursor: pointer;
   user-select: none;
-  font-family: var(--font-family-base, system-ui, -apple-system, sans-serif);
+  font-family: var(--font-family-sans, system-ui, -apple-system, sans-serif);
 }
 
 :host([disabled]) {
@@ -87,7 +87,7 @@ input {
 
 .switch-thumb {
   border-radius: 50%;
-  background-color: var(--color-background, #ffffff);
+  background-color: var(--background-primary, #ffffff);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease;
 }
@@ -155,7 +155,7 @@ input:focus-visible + .switch-track {
 }
 
 :host([disabled][checked]) .switch-track {
-  background-color: var(--border-hover);
+  background-color: var(--border-default);
 }
 
 /* ========================================
@@ -163,7 +163,7 @@ input:focus-visible + .switch-track {
    ======================================== */
 
 :host([error]) .switch-track {
-  background-color: var(--color-danger-600, #dc2626);
+  background-color: var(--error-default, #dc2626);
 }
 
 :host([error]:not([checked])) .switch-track {
@@ -178,8 +178,8 @@ input:focus-visible + .switch-track {
   display: block;
   font-size: var(--font-size-base, 1rem);
   font-weight: var(--font-weight-normal, 400);
-  color: var(--color-text-primary, #1a1a1a);
-  line-height: var(--line-height-normal, 1.5);
+  color: var(--foreground-primary, #1a1a1a);
+  line-height: var(--font-line-height-normal, 1.5);
 }
 
 :host([size="sm"]) .label {
@@ -191,11 +191,11 @@ input:focus-visible + .switch-track {
 }
 
 :host([disabled]) .label {
-  color: var(--color-text-disabled, #9ca3af);
+  color: var(--foreground-tertiary, #9ca3af);
 }
 
 :host([error]) .label {
-  color: var(--color-danger-700, #b91c1c);
+  color: var(--error-default, #b91c1c);
 }
 
 /* ========================================
@@ -211,8 +211,8 @@ input:focus-visible + .switch-track {
 .description {
   display: none;
   font-size: var(--font-size-sm, 0.875rem);
-  color: var(--color-text-secondary, #6b7280);
-  line-height: var(--line-height-normal, 1.5);
+  color: var(--foreground-secondary, #6b7280);
+  line-height: var(--font-line-height-normal, 1.5);
 }
 
 :host([description]) .description,
@@ -221,9 +221,9 @@ input:focus-visible + .switch-track {
 }
 
 :host([disabled]) .description {
-  color: var(--color-text-disabled, #9ca3af);
+  color: var(--foreground-tertiary, #9ca3af);
 }
 
 :host([error]) .description {
-  color: var(--color-danger-700, #b91c1c);
+  color: var(--error-default, #b91c1c);
 }
