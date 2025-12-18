@@ -24,9 +24,9 @@
   height: var(--component-avatar-size-md);
   background: var(--component-avatar-background-default);
   color: var(--component-avatar-text-default);
-  font-size: var(--component-avatar-fontSize-md);
+  font-size: var(--component-avatar-font-size-md);
   font-weight: var(--font-weight-medium, 500);
-  border-radius: var(--component-avatar-borderRadius-circle);
+  border-radius: var(--component-avatar-border-radius-circle);
   border: var(--component-avatar-border-width) solid var(--component-avatar-border-color);
   overflow: hidden;
   user-select: none;
@@ -79,7 +79,7 @@
 :host([size="xs"]) .container {
   width: var(--component-avatar-size-xs);
   height: var(--component-avatar-size-xs);
-  font-size: var(--component-avatar-fontSize-xs);
+  font-size: var(--component-avatar-font-size-xs);
 }
 
 :host([size="xs"]) .icon {
@@ -95,7 +95,7 @@
 :host([size="sm"]) .container {
   width: var(--component-avatar-size-sm);
   height: var(--component-avatar-size-sm);
-  font-size: var(--component-avatar-fontSize-sm);
+  font-size: var(--component-avatar-font-size-sm);
 }
 
 :host([size="sm"]) .icon {
@@ -111,7 +111,7 @@
 :host([size="md"]) .container {
   width: var(--component-avatar-size-md);
   height: var(--component-avatar-size-md);
-  font-size: var(--component-avatar-fontSize-md);
+  font-size: var(--component-avatar-font-size-md);
 }
 
 :host([size="md"]) .icon {
@@ -127,7 +127,7 @@
 :host([size="lg"]) .container {
   width: var(--component-avatar-size-lg);
   height: var(--component-avatar-size-lg);
-  font-size: var(--component-avatar-fontSize-lg);
+  font-size: var(--component-avatar-font-size-lg);
 }
 
 :host([size="lg"]) .icon {
@@ -143,7 +143,7 @@
 :host([size="xl"]) .container {
   width: var(--component-avatar-size-xl);
   height: var(--component-avatar-size-xl);
-  font-size: var(--component-avatar-fontSize-xl);
+  font-size: var(--component-avatar-font-size-xl);
 }
 
 :host([size="xl"]) .icon {
@@ -159,7 +159,7 @@
 :host([size="2xl"]) .container {
   width: var(--component-avatar-size-2xl);
   height: var(--component-avatar-size-2xl);
-  font-size: var(--component-avatar-fontSize-2xl);
+  font-size: var(--component-avatar-font-size-2xl);
 }
 
 :host([size="2xl"]) .icon {
@@ -178,17 +178,17 @@
 
 :host([shape="square"]) .container,
 :host([variant="square"]) .container {
-  border-radius: var(--component-avatar-borderRadius-square);
+  border-radius: var(--component-avatar-border-radius-square);
 }
 
 :host([shape="rounded"]) .container,
 :host([variant="rounded"]) .container {
-  border-radius: var(--component-avatar-borderRadius-rounded);
+  border-radius: var(--component-avatar-border-radius-rounded);
 }
 
 :host([shape="circle"]) .container,
 :host([variant="circle"]) .container {
-  border-radius: var(--component-avatar-borderRadius-circle);
+  border-radius: var(--component-avatar-border-radius-circle);
 }
 
 /* ========================================
