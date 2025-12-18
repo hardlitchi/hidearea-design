@@ -20,14 +20,14 @@
 }
 
 .accordion {
-  border: 1px solid var(--accordion-border-color);
+  border: 1px solid var(--component-accordion-border-color);
   border-radius: var(--border-radius-md);
   overflow: hidden;
-  background-color: var(--accordion-header-bg);
+  background-color: var(--component-accordion-header-background);
 }
 
 .accordion-item {
-  border-bottom: 1px solid var(--accordion-border-color);
+  border-bottom: 1px solid var(--component-accordion-border-color);
 }
 
 .accordion-item:last-child {
@@ -36,8 +36,8 @@
 
 .accordion-item__header {
   width: 100%;
-  padding: var(--accordion-item-padding);
-  background-color: var(--accordion-header-bg);
+  padding: var(--component-accordion-item-padding);
+  background-color: var(--component-accordion-header-background);
   border: none;
   text-align: left;
   cursor: pointer;
@@ -57,7 +57,7 @@
 }
 
 .accordion-item__header:hover:not(:disabled) {
-  background-color: var(--accordion-header-hover-bg);
+  background-color: var(--component-accordion-header-hover-background);
 }
 
 /* アクセシビリティ: キーボード操作時のフォーカス表示 */
@@ -97,7 +97,7 @@
 
 /* コンテンツ内のスロット要素へのスタイル */
 .accordion-item__content > ::slotted(*) {
-  padding: var(--accordion-item-padding);
+  padding: var(--component-accordion-item-padding);
   margin: 0; /* 意図しない余白の重複を防ぐ */
   display: block;
 }

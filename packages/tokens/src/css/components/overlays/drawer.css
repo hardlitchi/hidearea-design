@@ -34,8 +34,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--drawer-backdrop-bg);
-  z-index: var(--drawer-z-index);
+  background-color: var(--component-drawer-backdrop-background);
+  z-index: var(--component-drawer-z-index);
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--animation-duration-base) ease,
@@ -55,9 +55,9 @@
 
 .drawer {
   position: fixed;
-  background-color: var(--drawer-bg);
-  box-shadow: var(--drawer-shadow);
-  z-index: calc(var(--drawer-z-index) + 1);
+  background-color: var(--component-drawer-background);
+  box-shadow: var(--component-drawer-shadow);
+  z-index: calc(var(--component-drawer-z-index) + 1);
   display: flex;
   flex-direction: column;
   transition: transform var(--animation-duration-slow) ease;
@@ -122,33 +122,33 @@
 /* Sizes for left/right placement */
 .drawer--placement-left.drawer--size-sm,
 .drawer--placement-right.drawer--size-sm {
-  width: var(--drawer-width-sm);
+  width: var(--component-drawer-width-sm);
 }
 
 .drawer--placement-left.drawer--size-md,
 .drawer--placement-right.drawer--size-md {
-  width: var(--drawer-width-md);
+  width: var(--component-drawer-width-md);
 }
 
 .drawer--placement-left.drawer--size-lg,
 .drawer--placement-right.drawer--size-lg {
-  width: var(--drawer-width-lg);
+  width: var(--component-drawer-width-lg);
 }
 
 /* Sizes for top/bottom placement */
 .drawer--placement-top.drawer--size-sm,
 .drawer--placement-bottom.drawer--size-sm {
-  height: var(--drawer-height-sm);
+  height: var(--component-drawer-height-sm);
 }
 
 .drawer--placement-top.drawer--size-md,
 .drawer--placement-bottom.drawer--size-md {
-  height: var(--drawer-height-md);
+  height: var(--component-drawer-height-md);
 }
 
 .drawer--placement-top.drawer--size-lg,
 .drawer--placement-bottom.drawer--size-lg {
-  height: var(--drawer-height-lg);
+  height: var(--component-drawer-height-lg);
 }
 
 /* ========================================
@@ -294,32 +294,32 @@
 @media (pointer: coarse) and (min-width: 768px) {
   .drawer--placement-left.drawer--size-sm,
   .drawer--placement-right.drawer--size-sm {
-    width: var(--drawer-width-sm);
+    width: var(--component-drawer-width-sm);
   }
 
   .drawer--placement-left.drawer--size-md,
   .drawer--placement-right.drawer--size-md {
-    width: var(--drawer-width-md);
+    width: var(--component-drawer-width-md);
   }
 
   .drawer--placement-left.drawer--size-lg,
   .drawer--placement-right.drawer--size-lg {
-    width: var(--drawer-width-lg);
+    width: var(--component-drawer-width-lg);
   }
 
   .drawer--placement-top.drawer--size-sm,
   .drawer--placement-bottom.drawer--size-sm {
-    height: var(--drawer-height-sm);
+    height: var(--component-drawer-height-sm);
   }
 
   .drawer--placement-top.drawer--size-md,
   .drawer--placement-bottom.drawer--size-md {
-    height: var(--drawer-height-md);
+    height: var(--component-drawer-height-md);
   }
 
   .drawer--placement-top.drawer--size-lg,
   .drawer--placement-bottom.drawer--size-lg {
-    height: var(--drawer-height-lg);
+    height: var(--component-drawer-height-lg);
   }
 
   /* Hide swipe handle on larger screens */

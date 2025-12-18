@@ -167,7 +167,7 @@ input:focus-visible + .switch-track {
 }
 
 :host([error]:not([checked])) .switch-track {
-  background-color: var(--color-danger-200, #fecaca);
+  background-color: var(--error-subtle, #fecaca);
 }
 
 /* ========================================

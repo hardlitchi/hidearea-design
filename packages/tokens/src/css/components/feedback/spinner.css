@@ -49,7 +49,7 @@
   border: 2px solid transparent;
   border-top-color: currentColor;
   border-right-color: currentColor;
-  animation: spinner-rotate var(--spinner-speed, 0.8s) linear infinite;
+  animation: spinner-rotate var(--component-spinner-speed, 0.8s) linear infinite;
 }
 
 /* Dots variant */
@@ -65,7 +65,7 @@
   height: 25%;
   background-color: currentColor;
   border-radius: 50%;
-  animation: spinner-dot var(--spinner-speed, 0.8s) ease-in-out infinite;
+  animation: spinner-dot var(--component-spinner-speed, 0.8s) ease-in-out infinite;
 }
 
 .spinner__dot:nth-child(1) {
@@ -84,7 +84,7 @@
 .spinner--pulse {
   border-radius: 50%;
   background-color: currentColor;
-  animation: spinner-pulse var(--spinner-speed, 0.8s) ease-in-out infinite;
+  animation: spinner-pulse var(--component-spinner-speed, 0.8s) ease-in-out infinite;
 }
 
 /* Color variants */

@@ -34,13 +34,13 @@
 
 /* Table cells */
 .table ::slotted(thead) {
-  background-color: var(--table-header-bg);
+  background-color: var(--component-table-header-background);
   font-weight: var(--font-weight-semibold);
 }
 
 .table ::slotted(th),
 .table ::slotted(td) {
-  padding: var(--table-padding);
+  padding: var(--component-table-padding-default);
   text-align: left;
   vertical-align: middle;
 }
@@ -48,26 +48,26 @@
 /* Compact mode */
 .table--compact ::slotted(th),
 .table--compact ::slotted(td) {
-  padding: var(--table-padding-compact);
+  padding: var(--component-table-padding-compact);
 }
 
 /* Bordered */
 .table--bordered {
-  border: 1px solid var(--table-border-color);
+  border: 1px solid var(--component-table-border-color);
 }
 
 .table--bordered ::slotted(th),
 .table--bordered ::slotted(td) {
-  border: 1px solid var(--table-border-color);
+  border: 1px solid var(--component-table-border-color);
 }
 
 /* Striped */
 .table--striped ::slotted(tbody tr:nth-child(even)) {
-  background-color: var(--table-striped-bg);
+  background-color: var(--component-table-striped-background);
 }
 
 /* Hoverable */
 .table--hoverable ::slotted(tbody tr:hover) {
-  background-color: var(--table-row-hover-bg);
+  background-color: var(--component-table-row-hover-background);
   cursor: pointer;
 }

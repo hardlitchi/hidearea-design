@@ -63,8 +63,8 @@
 
 .status {
   position: absolute;
-  bottom: var(--component-avatar-status-position, 0);
-  right: var(--component-avatar-status-position, 0);
+  bottom: var(--component-avatar-status-position-offset, 0);
+  right: var(--component-avatar-status-position-offset, 0);
   width: var(--component-avatar-status-size-md);
   height: var(--component-avatar-status-size-md);
   border-radius: var(--border-radius-full);

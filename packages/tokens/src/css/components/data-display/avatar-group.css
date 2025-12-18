@@ -73,31 +73,31 @@
 
 /* Size variants */
 :host([size="xs"]) {
-  --avatar-size: 24px;
-  --avatar-font-size: 10px;
+  --avatar-size: var(--component-avatar-size-xs);
+  --avatar-font-size: var(--component-avatar-font-size-xs);
 }
 
 :host([size="sm"]) {
-  --avatar-size: 32px;
-  --avatar-font-size: 12px;
+  --avatar-size: var(--component-avatar-size-sm);
+  --avatar-font-size: var(--component-avatar-font-size-sm);
 }
 
 :host([size="md"]) {
-  --avatar-size: 40px;
-  --avatar-font-size: 14px;
+  --avatar-size: var(--component-avatar-size-md);
+  --avatar-font-size: var(--component-avatar-font-size-md);
 }
 
 :host([size="lg"]) {
-  --avatar-size: 48px;
-  --avatar-font-size: 16px;
+  --avatar-size: var(--component-avatar-size-lg);
+  --avatar-font-size: var(--component-avatar-font-size-lg);
 }
 
 :host([size="xl"]) {
-  --avatar-size: 64px;
-  --avatar-font-size: 20px;
+  --avatar-size: var(--component-avatar-size-xl);
+  --avatar-font-size: var(--component-avatar-font-size-xl);
 }
 
 :host([size="2xl"]) {
-  --avatar-size: 96px;
-  --avatar-font-size: 28px;
+  --avatar-size: var(--component-avatar-size-2xl);
+  --avatar-font-size: var(--component-avatar-font-size-2xl);
 }

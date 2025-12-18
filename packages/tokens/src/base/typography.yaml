@@ -55,6 +55,15 @@ font:
       value: "8rem"
       comment: "128px"
 
+    # レスポンシブフォントサイズ（clamp関数を使用してビューポートに応じて変化）
+    responsive:
+      sm:
+        value: "clamp(0.875rem, 0.8rem + 0.375vw, 1rem)"
+        comment: "レスポンシブ小フォントサイズ (14-16px)"
+      base:
+        value: "clamp(1rem, 0.9rem + 0.5vw, 1.125rem)"
+        comment: "レスポンシブ基本フォントサイズ (16-18px)"
+
   # フォントウェイト
   weight:
     thin:

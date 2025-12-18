@@ -90,7 +90,7 @@ textarea:focus {
 
 :host([variant="default"]) textarea:hover:not(:disabled):not(:focus) ~ .textarea-wrapper,
 :host([variant="default"]) .textarea-wrapper:has(textarea:hover:not(:disabled):not(:focus)) {
-  border-color: var(--border-hover, #9ca3af);
+  border-color: var(--border-default, #9ca3af);
 }
 
 /* ========================================

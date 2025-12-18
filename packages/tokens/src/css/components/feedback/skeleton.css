@@ -13,8 +13,8 @@
 }
 
 .skeleton {
-  background: var(--skeleton-bg, var(--background-tertiary, #e5e7eb));
-  border-radius: var(--skeleton-border-radius, var(--border-radius-md));
+  background: var(--component-skeleton-background, var(--background-tertiary, #e5e7eb));
+  border-radius: var(--component-skeleton-border-radius, var(--border-radius-md));
   position: relative;
   overflow: hidden;
 }
@@ -33,7 +33,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    var(--skeleton-wave-color, rgba(255, 255, 255, 0.4)),
+    var(--component-skeleton-wave-color, rgba(255, 255, 255, 0.4)),
     transparent
   );
   animation: skeleton-wave 2s linear infinite;

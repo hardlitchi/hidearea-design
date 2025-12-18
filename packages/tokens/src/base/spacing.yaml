@@ -106,3 +106,12 @@ spacing:
   96:
     value: "24rem"
     comment: "384px"
+
+  # レスポンシブスペーシング（clamp関数を使用してビューポートに応じて変化）
+  responsive:
+    sm:
+      value: "clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem)"
+      comment: "レスポンシブ小スペーシング (8-12px)"
+    md:
+      value: "clamp(1rem, 0.8rem + 1vw, 1.5rem)"
+      comment: "レスポンシブ中スペーシング (16-24px)"

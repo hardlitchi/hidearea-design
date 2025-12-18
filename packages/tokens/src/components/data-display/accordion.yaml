@@ -1,0 +1,17 @@
+component:
+  accordion:
+    borderColor:
+      value: "{border.default}"
+      comment: "アコーディオンのボーダー色"
+    header:
+      background:
+        value: "{background.primary}"
+        comment: "ヘッダーの背景色"
+      hover:
+        background:
+          value: "{background.secondary}"
+          comment: "ヘッダーホバー時の背景色"
+    item:
+      padding:
+        value: "{spacing.4}"
+        comment: "アイテムのパディング"

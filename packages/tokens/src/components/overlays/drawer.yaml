@@ -1,253 +1,48 @@
-# ドロワーコンポーネントトークン - hidearea-design
-# 画面端からスライドインするサイドパネルUI
+# Drawerコンポーネントトークン - hidearea-design
+# サイドパネル/ドロワーの外観と振る舞いを定義
 
 component:
   drawer:
-    # サイズバリアント（幅/高さ）
-    size:
-      small:
-        value: "320px"
-        comment: "小サイズ - ナビゲーションやフィルター"
-      default:
-        value: "480px"
-        comment: "デフォルトサイズ - 詳細表示"
-      large:
-        value: "640px"
-        comment: "大サイズ - フォームや複雑なコンテンツ"
-      full:
-        value: "100%"
-        comment: "フルサイズ - 画面全体"
-
-    maxSize:
-      value: "90vw"
-      comment: "最大サイズ - 画面幅/高さの90%"
-
-    # スペーシング
-    padding:
-      header:
-        value: "{spacing.6}"
-        comment: "ヘッダーパディング (24px)"
-      body:
-        value: "{spacing.6}"
-        comment: "ボディパディング (24px)"
-      footer:
-        value: "{spacing.6}"
-        comment: "フッターパディング (24px)"
-
-    # 背景とオーバーレイ
-    background:
-      default:
-        value: "{background.primary}"
-        comment: "ドロワー背景色（テーマ対応）"
-      overlay:
-        value: "rgba(0, 0, 0, 0.5)"
-        comment: "背景オーバーレイ - 半透明黒"
-
-    # ボーダー
-    border:
-      width:
-        value: "{border.width.1}"
-        comment: "ボーダー幅 (1px)"
-      color:
-        value: "{border.default}"
-        comment: "ボーダー色（テーマ対応）"
-
-    # 位置別ボーダー
-    position:
-      left:
-        borderRight:
-          value: "1px solid {border.default}"
-          comment: "左ドロワーの右ボーダー"
-      right:
-        borderLeft:
-          value: "1px solid {border.default}"
-          comment: "右ドロワーの左ボーダー"
-      top:
-        borderBottom:
-          value: "1px solid {border.default}"
-          comment: "上ドロワーの下ボーダー"
-      bottom:
-        borderTop:
-          value: "1px solid {border.default}"
-          comment: "下ドロワーの上ボーダー"
-
-    # シャドウ
-    shadow:
-      value: "{shadow.2xl}"
-      comment: "大きな影で浮き上がり効果"
-
     # Z-index
     zIndex:
-      overlay:
-        value: "1000"
-        comment: "オーバーレイのz-index"
-      content:
-        value: "1001"
-        comment: "ドロワーコンテンツのz-index"
+      value: "1000"
+      comment: "ドロワーのz-index"
 
-    # アニメーション
-    animation:
-      duration:
-        value: "{animation.duration.base}"
-        comment: "アニメーション時間 (0.2s)"
-      timing:
-        value: "{animation.easing.easeOut}"
-        comment: "イージング"
-
-    # ヘッダー
-    header:
+    # 背景
+    background:
+      value: "{background.primary}"
+      comment: "ドロワーの背景色"
+    
+    backdrop:
       background:
-        value: "transparent"
-        comment: "ヘッダー背景 - 透明"
-      borderBottom:
-        value: "1px solid {border.default}"
-        comment: "ヘッダー下ボーダー"
-      padding:
-        value: "{component.drawer.padding.header}"
-        comment: "ヘッダーパディング"
-      minHeight:
-        value: "{spacing.16}"
-        comment: "ヘッダー最小高さ (64px)"
+        value: "rgba(0, 0, 0, 0.5)"
+        comment: "背景オーバーレイ色"
 
-      title:
-        fontSize:
-          value: "{font.size.lg}"
-          comment: "タイトル文字サイズ (18px)"
-        fontWeight:
-          value: "{font.weight.semibold}"
-          comment: "タイトル太さ (600)"
-        lineHeight:
-          value: "{font.lineHeight.tight}"
-          comment: "行高"
-        color:
-          value: "{foreground.primary}"
-          comment: "タイトル色（テーマ対応）"
+    # 影
+    shadow:
+      value: "{shadow.xl}"
+      comment: "ドロワーの影"
 
-      subtitle:
-        fontSize:
-          value: "{font.size.sm}"
-          comment: "サブタイトル文字サイズ (14px)"
-        fontWeight:
-          value: "{font.weight.normal}"
-          comment: "サブタイトル太さ (400)"
-        lineHeight:
-          value: "{font.lineHeight.normal}"
-          comment: "行高"
-        color:
-          value: "{foreground.secondary}"
-          comment: "サブタイトル色（テーマ対応）"
-        marginTop:
-          value: "{spacing.1}"
-          comment: "サブタイトル上マージン (4px)"
+    # 幅（左右のドロワー）
+    width:
+      sm:
+        value: "16rem"
+        comment: "小サイズの幅 (256px)"
+      md:
+        value: "20rem"
+        comment: "中サイズの幅 (320px)"
+      lg:
+        value: "24rem"
+        comment: "大サイズの幅 (384px)"
 
-    # ボディ
-    body:
-      padding:
-        value: "{component.drawer.padding.body}"
-        comment: "ボディパディング"
-      overflow:
-        value: "auto"
-        comment: "スクロール可能"
-
-    # フッター
-    footer:
-      background:
-        value: "{background.secondary}"
-        comment: "フッター背景（テーマ対応）"
-      borderTop:
-        value: "1px solid {border.default}"
-        comment: "フッター上ボーダー"
-      padding:
-        value: "{component.drawer.padding.footer}"
-        comment: "フッターパディング"
-      gap:
-        value: "{spacing.3}"
-        comment: "ボタン間の間隔 (12px)"
-      justifyContent:
-        value: "flex-end"
-        comment: "ボタンを右寄せ"
-      minHeight:
-        value: "{spacing.16}"
-        comment: "フッター最小高さ (64px)"
-
-    # 閉じるボタン
-    closeButton:
-      size:
-        value: "{spacing.8}"
-        comment: "閉じるボタンサイズ (32px)"
-      position:
-        top:
-          value: "{spacing.4}"
-          comment: "上からの位置 (16px)"
-        right:
-          value: "{spacing.4}"
-          comment: "右からの位置 (16px)"
-      background:
-        default:
-          value: "transparent"
-          comment: "デフォルト背景 - 透明"
-        hover:
-          value: "{background.secondary}"
-          comment: "ホバー時背景"
-      color:
-        default:
-          value: "{foreground.tertiary}"
-          comment: "デフォルト色"
-        hover:
-          value: "{foreground.primary}"
-          comment: "ホバー時色"
-      borderRadius:
-        value: "{border.radius.md}"
-        comment: "角丸 (6px)"
-
-    # ハンドル（モバイル用スワイプインジケーター）
-    handle:
-      width:
-        value: "{spacing.8}"
-        comment: "ハンドル幅 (32px)"
-      height:
-        value: "{spacing.1}"
-        comment: "ハンドル高さ (4px)"
-      background:
-        value: "{foreground.tertiary}"
-        comment: "ハンドル色"
-      borderRadius:
-        value: "{border.radius.full}"
-        comment: "完全な角丸"
-      marginTop:
-        value: "{spacing.2}"
-        comment: "上マージン (8px)"
-      marginBottom:
-        value: "{spacing.2}"
-        comment: "下マージン (8px)"
-
-    # トランジション
-    transition:
-      duration:
-        value: "{animation.duration.fast}"
-        comment: "トランジション時間 (0.15s)"
-      timing:
-        value: "{animation.easing.ease}"
-        comment: "イージング"
-      properties:
-        value: "background-color, color, transform, opacity"
-        comment: "トランジション対象プロパティ"
-
-    # リサイズハンドル
-    resizeHandle:
-      width:
-        value: "{spacing.1}"
-        comment: "リサイズハンドル幅 (4px)"
-      background:
-        default:
-          value: "transparent"
-          comment: "デフォルト背景 - 透明"
-        hover:
-          value: "{primary.default}"
-          comment: "ホバー時背景 - プライマリ"
-        active:
-          value: "{primary.active}"
-          comment: "アクティブ時背景"
-      cursor:
-        value: "col-resize"
-        comment: "リサイズカーソル（左右ドロワー）"
+    # 高さ（上下のドロワー）
+    height:
+      sm:
+        value: "16rem"
+        comment: "小サイズの高さ (256px)"
+      md:
+        value: "20rem"
+        comment: "中サイズの高さ (320px)"
+      lg:
+        value: "24rem"
+        comment: "大サイズの高さ (384px)"

@@ -13,12 +13,12 @@
 .list-item {
   display: flex;
   align-items: center;
-  gap: var(--component-list-icon-gap);
+  gap: var(--component-list-item-icon-gap);
   padding: var(--component-list-item-padding-vertical-default) var(--component-list-item-padding-horizontal);
   background: var(--component-list-item-background-default);
   color: var(--component-list-item-text-default);
-  font-size: var(--component-list-item-fontSize-default);
-  line-height: var(--component-list-item-lineHeight);
+  font-size: var(--component-list-item-font-size-default);
+  line-height: var(--component-list-item-line-height);
   border-radius: var(--component-list-item-border-radius);
   transition: var(--component-list-interactive-transition-properties) var(--component-list-interactive-transition-duration) var(--component-list-interactive-transition-timing);
   cursor: default;
@@ -34,9 +34,9 @@
 }
 
 .list-item__prefix ::slotted(*) {
-  width: var(--component-list-icon-size-default);
-  height: var(--component-list-icon-size-default);
-  color: var(--component-list-icon-color-default);
+  width: var(--component-list-item-icon-size-default);
+  height: var(--component-list-item-icon-size-default);
+  color: var(--component-list-item-icon-color-default);
 }
 
 .list-item__content {

@@ -14,21 +14,21 @@
 .datagrid {
   width: 100%;
   border-collapse: collapse;
-  background-color: var(--datagrid-bg, var(--foreground-inverse));
-  color: var(--datagrid-color, var(--foreground-primary));
+  background-color: var(--component-datagrid-background, var(--foreground-inverse));
+  color: var(--component-datagrid-color, var(--foreground-primary));
   font-size: var(--font-size-sm);
 }
 
 /* Header */
 .datagrid thead {
-  background-color: var(--datagrid-header-bg, var(--foreground-inverse));
+  background-color: var(--component-datagrid-header-background, var(--foreground-inverse));
   font-weight: var(--font-weight-semibold);
 }
 
 .datagrid-cell {
-  padding: var(--datagrid-cell-padding, var(--spacing-3));
+  padding: var(--component-datagrid-cell-padding, var(--spacing-3));
   text-align: left;
-  border-bottom: 1px solid var(--datagrid-border-color, var(--border-default));
+  border-bottom: 1px solid var(--component-datagrid-border-color, var(--border-default));
 }
 
 .datagrid-header-cell {
@@ -41,7 +41,7 @@
 }
 
 .datagrid-header-cell--sortable:hover {
-  background-color: var(--datagrid-header-hover-bg, var(--background-tertiary));
+  background-color: var(--component-datagrid-header-hover-background, var(--background-tertiary));
 }
 
 .sort-icon {
@@ -56,29 +56,29 @@
 }
 
 .datagrid--hoverable .datagrid-row:hover {
-  background-color: var(--datagrid-row-hover-bg, var(--background-tertiary));
+  background-color: var(--component-datagrid-row-hover-background, var(--background-tertiary));
 }
 
 .datagrid-row--selected {
-  background-color: var(--datagrid-selected-bg, var(--primary-default));
+  background-color: var(--component-datagrid-selected-background, var(--primary-default));
 }
 
 .datagrid--hoverable .datagrid-row--selected:hover {
-  background-color: var(--datagrid-selected-hover-bg, var(--primary-default));
+  background-color: var(--component-datagrid-selected-hover-background, var(--primary-default));
 }
 
 /* Striped */
 .datagrid--striped tbody tr:nth-child(even) {
-  background-color: var(--datagrid-stripe-bg, var(--background-tertiary));
+  background-color: var(--component-datagrid-stripe-background, var(--background-tertiary));
 }
 
 /* Bordered */
 .datagrid--bordered {
-  border: 1px solid var(--datagrid-border-color, var(--border-default));
+  border: 1px solid var(--component-datagrid-border-color, var(--border-default));
 }
 
 .datagrid--bordered .datagrid-cell {
-  border-right: 1px solid var(--datagrid-border-color, var(--border-default));
+  border-right: 1px solid var(--component-datagrid-border-color, var(--border-default));
 }
 
 .datagrid--bordered .datagrid-cell:last-child {
@@ -104,8 +104,8 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-3) var(--spacing-4);
-  border-top: 1px solid var(--datagrid-border-color, var(--border-default));
-  background-color: var(--datagrid-bg, var(--foreground-inverse));
+  border-top: 1px solid var(--component-datagrid-border-color, var(--border-default));
+  background-color: var(--component-datagrid-background, var(--foreground-inverse));
   font-size: var(--font-size-sm);
 }
 
@@ -131,7 +131,7 @@
   min-width: 32px;
   height: 32px;
   padding: 0 var(--spacing-2);
-  border: 1px solid var(--datagrid-border-color, var(--border-default));
+  border: 1px solid var(--component-datagrid-border-color, var(--border-default));
   border-radius: var(--border-radius-md);
   background-color: var(--foreground-inverse);
   color: var(--foreground-primary);

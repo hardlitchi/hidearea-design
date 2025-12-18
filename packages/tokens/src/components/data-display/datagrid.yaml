@@ -1,0 +1,54 @@
+# Datagridコンポーネントトークン - hidearea-design
+# データグリッド/テーブルの外観と振る舞いを定義
+
+component:
+  datagrid:
+    # 基本スタイル
+    background:
+      value: "{background.primary}"
+      comment: "データグリッドの背景色"
+    color:
+      value: "{foreground.primary}"
+      comment: "テキストの色"
+    borderColor:
+      value: "{border.default}"
+      comment: "ボーダー色"
+
+    # セル
+    cell:
+      padding:
+        value: "{spacing.3}"
+        comment: "セルのパディング (12px)"
+
+    # ヘッダー
+    header:
+      background:
+        value: "{background.secondary}"
+        comment: "ヘッダーの背景色"
+      hover:
+        background:
+          value: "{background.tertiary}"
+          comment: "ヘッダーホバー時の背景色"
+
+    # 行
+    row:
+      hover:
+        background:
+          value: "{background.secondary}"
+          comment: "行ホバー時の背景色"
+
+    # 選択状態
+    selected:
+      background:
+        value: "{primary.subtle}"
+        comment: "選択された行の背景色"
+      hover:
+        background:
+          value: "{primary.subtle}"
+          comment: "選択された行のホバー背景色"
+
+    # ストライプ
+    stripe:
+      background:
+        value: "{background.secondary}"
+        comment: "交互行の背景色"
