@@ -23,7 +23,7 @@ test.describe('Modal Visual Regression', () => {
 
     // Wait for animation
     await page.waitForTimeout(1000);
-    await expect(modal).toBeVisible();
+    await expect(modal).toHaveAttribute("open");
 
     await expect(page).toHaveScreenshot('modal-default.png', {
       fullPage: true,
@@ -41,7 +41,7 @@ test.describe('Modal Visual Regression', () => {
 
     // Wait for animation
     await page.waitForTimeout(1000);
-    await expect(modal).toBeVisible();
+    await expect(modal).toHaveAttribute("open");
 
     await expect(page).toHaveScreenshot('modal-sizes.png', {
       fullPage: true,
@@ -59,7 +59,7 @@ test.describe('Modal Visual Regression', () => {
 
     // Wait for animation
     await page.waitForTimeout(1000);
-    await expect(modal).toBeVisible();
+    await expect(modal).toHaveAttribute("open");
 
     await expect(page).toHaveScreenshot('modal-variants.png', {
       fullPage: true,
@@ -76,7 +76,7 @@ test.describe('Modal Visual Regression', () => {
 
     // Wait for animation
     await page.waitForTimeout(1000);
-    await expect(modal).toBeVisible();
+    await expect(modal).toHaveAttribute("open");
 
     await expect(page).toHaveScreenshot('modal-with-footer.png', {
       fullPage: true,
@@ -93,7 +93,7 @@ test.describe('Modal Visual Regression', () => {
 
     // Wait for animation
     await page.waitForTimeout(1000);
-    await expect(modal).toBeVisible();
+    await expect(modal).toHaveAttribute("open");
 
     await expect(page).toHaveScreenshot('modal-long-content.png', {
       fullPage: true,
@@ -115,7 +115,7 @@ test.describe('Modal Visual Regression', () => {
 
     // Wait for animation
     await page.waitForTimeout(1000);
-    await expect(modal).toBeVisible();
+    await expect(modal).toHaveAttribute("open");
 
     await expect(page).toHaveScreenshot('modal-dark-theme.png', {
       fullPage: true,
@@ -133,7 +133,7 @@ test.describe('Modal Visual Regression', () => {
 
     // Wait for animation
     await page.waitForTimeout(1000);
-    await expect(modal).toBeVisible();
+    await expect(modal).toHaveAttribute("open");
 
     await expect(page).toHaveScreenshot('modal-mobile.png', {
       fullPage: true,
