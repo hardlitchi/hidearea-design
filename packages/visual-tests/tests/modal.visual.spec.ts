@@ -16,7 +16,7 @@ test.describe('Modal Visual Regression', () => {
     await page.goto(`${MODAL_STORY_URL}default`);
 
     // Open modal
-    const openButton = page.locator('button');
+    const openButton = page.getByRole('button', { name: 'Open Modal' });
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');
@@ -30,10 +30,11 @@ test.describe('Modal Visual Regression', () => {
     });
   });
 
-  test('small modal renders correctly', async ({ page }) => {
-    await page.goto(`${MODAL_STORY_URL}small`);
+  test('sizes story renders correctly', async ({ page }) => {
+    await page.goto(`${MODAL_STORY_URL}sizes`);
 
-    const openButton = page.locator('button');
+    // Open first modal (extra small)
+    const openButton = page.locator('button').first();
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');
@@ -41,15 +42,16 @@ test.describe('Modal Visual Regression', () => {
 
     await page.waitForTimeout(300);
 
-    await expect(page).toHaveScreenshot('modal-small.png', {
+    await expect(page).toHaveScreenshot('modal-sizes.png', {
       fullPage: true,
     });
   });
 
-  test('large modal renders correctly', async ({ page }) => {
-    await page.goto(`${MODAL_STORY_URL}large`);
+  test('variants story renders correctly', async ({ page }) => {
+    await page.goto(`${MODAL_STORY_URL}variants`);
 
-    const openButton = page.locator('button');
+    // Open first modal (default)
+    const openButton = page.locator('button').first();
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');
@@ -57,15 +59,15 @@ test.describe('Modal Visual Regression', () => {
 
     await page.waitForTimeout(300);
 
-    await expect(page).toHaveScreenshot('modal-large.png', {
+    await expect(page).toHaveScreenshot('modal-variants.png', {
       fullPage: true,
     });
   });
 
-  test('fullscreen modal renders correctly', async ({ page }) => {
-    await page.goto(`${MODAL_STORY_URL}fullscreen`);
+  test('with footer story renders correctly', async ({ page }) => {
+    await page.goto(`${MODAL_STORY_URL}with-footer`);
 
-    const openButton = page.locator('button');
+    const openButton = page.getByRole('button', { name: 'Open Modal' });
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');
@@ -73,15 +75,15 @@ test.describe('Modal Visual Regression', () => {
 
     await page.waitForTimeout(300);
 
-    await expect(page).toHaveScreenshot('modal-fullscreen.png', {
+    await expect(page).toHaveScreenshot('modal-with-footer.png', {
       fullPage: true,
     });
   });
 
-  test('modal with long content renders correctly', async ({ page }) => {
-    await page.goto(`${MODAL_STORY_URL}with-long-content`);
+  test('long content story renders correctly', async ({ page }) => {
+    await page.goto(`${MODAL_STORY_URL}long-content`);
 
-    const openButton = page.locator('button');
+    const openButton = page.getByRole('button', { name: /Open.*Modal/i });
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');
@@ -102,7 +104,7 @@ test.describe('Modal Visual Regression', () => {
       document.documentElement.setAttribute('data-theme', 'dark');
     });
 
-    const openButton = page.locator('button');
+    const openButton = page.getByRole('button', { name: 'Open Modal' });
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');
@@ -119,7 +121,7 @@ test.describe('Modal Visual Regression', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto(`${MODAL_STORY_URL}default`);
 
-    const openButton = page.locator('button');
+    const openButton = page.getByRole('button', { name: 'Open Modal' });
     await openButton.click();
 
     const modal = page.locator('ha-modal[open]');

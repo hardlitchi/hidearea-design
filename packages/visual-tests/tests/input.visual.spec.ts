@@ -21,22 +21,22 @@ test.describe('Input Visual Regression', () => {
     await expect(page).toHaveScreenshot('input-default.png');
   });
 
-  test('with placeholder renders correctly', async ({ page }) => {
-    await page.goto(`${INPUT_STORY_URL}with-placeholder`);
+  test('filled variant renders correctly', async ({ page }) => {
+    await page.goto(`${INPUT_STORY_URL}filled`);
 
     const input = page.locator('ha-input');
     await expect(input).toBeVisible();
 
-    await expect(page).toHaveScreenshot('input-placeholder.png');
+    await expect(page).toHaveScreenshot('input-filled.png');
   });
 
-  test('with value renders correctly', async ({ page }) => {
-    await page.goto(`${INPUT_STORY_URL}with-value`);
+  test('outlined variant renders correctly', async ({ page }) => {
+    await page.goto(`${INPUT_STORY_URL}outlined`);
 
     const input = page.locator('ha-input');
     await expect(input).toBeVisible();
 
-    await expect(page).toHaveScreenshot('input-value.png');
+    await expect(page).toHaveScreenshot('input-outlined.png');
   });
 
   test('small size renders correctly', async ({ page }) => {
