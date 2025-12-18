@@ -17,3 +17,57 @@ component:
       default:
         value: "{border.default}"
         comment: "モーダルのボーダー色（テーマ対応）"
+
+    # Z-index
+    zIndex:
+      value: "1000"
+      comment: "モーダルのz-index"
+
+    # オーバーレイ
+    overlay:
+      padding:
+        value: "{spacing.4}"
+        comment: "オーバーレイのパディング (16px)"
+
+    # コンテナ
+    container:
+      padding:
+        value: "{spacing.6}"
+        comment: "モーダルコンテナのパディング (24px)"
+      borderRadius:
+        value: "{border.radius.lg}"
+        comment: "モーダルの角丸 (8px)"
+      shadow:
+        value: "{shadow.xl}"
+        comment: "モーダルの影"
+      maxWidth:
+        value: "32rem"
+        comment: "モーダルの最大幅 (512px)"
+
+    # ヘッダー
+    header:
+      padding:
+        value: "{spacing.6}"
+        comment: "ヘッダーのパディング (24px)"
+
+    # ボディ
+    body:
+      padding:
+        value: "{spacing.6}"
+        comment: "ボディのパディング (24px)"
+
+    # フッター
+    footer:
+      padding:
+        value: "{spacing.6}"
+        comment: "フッターのパディング (24px)"
+
+    # 閉じるボタン
+    close:
+      color:
+        value: "{foreground.secondary}"
+        comment: "閉じるボタンの色"
+      hover:
+        background:
+          value: "{background.secondary}"
+          comment: "閉じるボタンホバー時の背景色"

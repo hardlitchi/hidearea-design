@@ -1,0 +1,81 @@
+# File Uploadコンポーネントトークン - hidearea-design
+# ファイルアップロードインターフェースの外観と振る舞いを定義
+
+component:
+  fileUpload:
+    # ドロップゾーン
+    gap:
+      value: "{spacing.4}"
+      comment: "要素間の間隔 (16px)"
+    minHeight:
+      value: "10rem"
+      comment: "ドロップゾーンの最小高さ (160px)"
+    padding:
+      value: "{spacing.6}"
+      comment: "ドロップゾーンのパディング (24px)"
+    background:
+      value: "{background.primary}"
+      comment: "ドロップゾーンの背景色"
+    borderWidth:
+      value: "{border.width.2}"
+      comment: "ドロップゾーンのボーダー幅 (2px)"
+    borderColor:
+      value: "{border.default}"
+      comment: "ドロップゾーンのボーダー色"
+    borderRadius:
+      value: "{border.radius.lg}"
+      comment: "ドロップゾーンの角丸 (8px)"
+
+    # ドラッグ中の状態
+    drag:
+      borderColor:
+        value: "{primary.default}"
+        comment: "ドラッグ中のボーダー色"
+      background:
+        value: "{primary.subtle}"
+        comment: "ドラッグ中の背景色"
+
+    # アイコン
+    icon:
+      size:
+        value: "3rem"
+        comment: "アイコンのサイズ (48px)"
+      color:
+        value: "{foreground.tertiary}"
+        comment: "アイコンの色"
+
+    # テキスト
+    text:
+      color:
+        value: "{foreground.secondary}"
+        comment: "テキストの色"
+
+    # アップロード済みファイルアイテム
+    item:
+      gap:
+        value: "{spacing.2}"
+        comment: "ファイルアイテム間の間隔 (8px)"
+      padding:
+        value: "{spacing.3}"
+        comment: "ファイルアイテムのパディング (12px)"
+      background:
+        value: "{background.secondary}"
+        comment: "ファイルアイテムの背景色"
+      borderRadius:
+        value: "{border.radius.md}"
+        comment: "ファイルアイテムの角丸 (6px)"
+
+    # プレビュー
+    preview:
+      size:
+        value: "4rem"
+        comment: "プレビュー画像のサイズ (64px)"
+
+    # エラー状態
+    error:
+      borderColor:
+        value: "{error.default}"
+        comment: "エラー時のボーダー色"
+      textColor:
+        value: "{error.default}"
+        comment: "エラーテキストの色"

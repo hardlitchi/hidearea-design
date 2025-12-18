@@ -1,279 +1,54 @@
-# ページネーションコンポーネントトークン - hidearea-design
+# Paginationコンポーネントトークン - hidearea-design
 # ページネーションナビゲーションの外観と振る舞いを定義
 
 component:
   pagination:
-    # コンテナ
-    container:
-      gap:
-        value: "{spacing.2}"
-        comment: "ページネーションアイテム間の間隔"
-      justifyContent:
-        value: "center"
-        comment: "アイテムの配置"
+    # 全体
+    gap:
+      value: "{spacing.2}"
+      comment: "ボタン間の間隔 (8px)"
+    fontSize:
+      value: "{font.size.sm}"
+      comment: "フォントサイズ (14px)"
 
-    # ページアイテム（数字ボタン）
-    item:
-      # サイズ
+    # ボタン
+    button:
       size:
-        default:
-          value: "{spacing.10}"
-          comment: "デフォルトサイズ（40px）"
-        small:
-          value: "{spacing.8}"
-          comment: "小サイズ（32px）"
-        large:
-          value: "{spacing.12}"
-          comment: "大サイズ（48px）"
-
-      # 角丸
-      borderRadius:
-        value: "{border.radius.md}"
-        comment: "アイテムの角丸"
-
-      # タイポグラフィ
-      fontSize:
-        default:
-          value: "{font.size.sm}"
-          comment: "デフォルトのフォントサイズ"
-        small:
-          value: "{font.size.xs}"
-          comment: "小サイズのフォントサイズ"
-        large:
-          value: "{font.size.base}"
-          comment: "大サイズのフォントサイズ"
-      fontWeight:
-        default:
-          value: "{font.weight.medium}"
-          comment: "デフォルトのフォントウェイト"
-        active:
-          value: "{font.weight.semibold}"
-          comment: "アクティブページのフォントウェイト"
-      lineHeight:
-        value: "{font.lineHeight.none}"
-        comment: "アイテムの行高"
-
-      # 色
+        value: "2.5rem"
+        comment: "ボタンのサイズ (40px)"
       background:
-        default:
-          value: "transparent"
-          comment: "デフォルトの背景色"
-        hover:
+        value: "{background.primary}"
+        comment: "ボタンの背景色"
+      border:
+        value: "{border.default}"
+        comment: "ボタンのボーダー色"
+      radius:
+        value: "{border.radius.md}"
+        comment: "ボタンの角丸 (6px)"
+      color:
+        value: "{foreground.primary}"
+        comment: "ボタンのテキスト色"
+
+      # ホバー状態
+      hover:
+        background:
           value: "{background.secondary}"
           comment: "ホバー時の背景色"
-        active:
+        border:
           value: "{primary.default}"
-          comment: "アクティブページの背景色"
-        disabled:
-          value: "transparent"
-          comment: "無効状態の背景色"
-
-      text:
-        default:
-          value: "{foreground.secondary}"
-          comment: "デフォルトのテキスト色"
-        hover:
-          value: "{foreground.primary}"
+          comment: "ホバー時のボーダー色"
+        color:
+          value: "{primary.default}"
           comment: "ホバー時のテキスト色"
-        active:
-          value: "{foreground.inverse}"
-          comment: "アクティブページのテキスト色"
-        disabled:
-          value: "{foreground.tertiary}"
-          comment: "無効状態のテキスト色"
 
-      border:
-        width:
-          value: "{border.width.1}"
-          comment: "ボーダーの幅"
-        color:
-          default:
-            value: "{border.default}"
-            comment: "デフォルトのボーダー色"
-          hover:
-            value: "{border.strong}"
-            comment: "ホバー時のボーダー色"
-          active:
-            value: "{primary.default}"
-            comment: "アクティブページのボーダー色"
-
-    # ナビゲーションボタン（前へ/次へ）
-    nav:
-      # サイズ
-      size:
-        default:
-          value: "{spacing.10}"
-          comment: "デフォルトサイズ"
-        small:
-          value: "{spacing.8}"
-          comment: "小サイズ"
-        large:
-          value: "{spacing.12}"
-          comment: "大サイズ"
-
-      # アイコン
-      icon:
-        size:
-          default:
-            value: "{spacing.4}"
-            comment: "デフォルトのアイコンサイズ"
-          small:
-            value: "{spacing.3}"
-            comment: "小サイズのアイコンサイズ"
-          large:
-            value: "{spacing.5}"
-            comment: "大サイズのアイコンサイズ"
-        color:
-          default:
-            value: "{foreground.secondary}"
-            comment: "デフォルトのアイコン色"
-          hover:
-            value: "{foreground.primary}"
-            comment: "ホバー時のアイコン色"
-          disabled:
-            value: "{foreground.tertiary}"
-            comment: "無効状態のアイコン色"
-
-      # 色
+    # アクティブ（現在のページ）
+    active:
       background:
-        default:
-          value: "transparent"
-          comment: "デフォルトの背景色"
-        hover:
-          value: "{background.secondary}"
-          comment: "ホバー時の背景色"
-        disabled:
-          value: "transparent"
-          comment: "無効状態の背景色"
-
+        value: "{primary.default}"
+        comment: "アクティブページの背景色"
       border:
-        color:
-          default:
-            value: "{border.default}"
-            comment: "デフォルトのボーダー色"
-          hover:
-            value: "{border.strong}"
-            comment: "ホバー時のボーダー色"
-
-      # 角丸
-      borderRadius:
-        value: "{border.radius.md}"
-        comment: "ナビゲーションボタンの角丸"
-
-    # 省略記号（...）
-    ellipsis:
+        value: "{primary.default}"
+        comment: "アクティブページのボーダー色"
       color:
-        value: "{foreground.tertiary}"
-        comment: "省略記号の色"
-      fontSize:
-        default:
-          value: "{font.size.sm}"
-          comment: "デフォルトのフォントサイズ"
-        small:
-          value: "{font.size.xs}"
-          comment: "小サイズのフォントサイズ"
-        large:
-          value: "{font.size.base}"
-          comment: "大サイズのフォントサイズ"
-      padding:
-        value: "{spacing.2}"
-        comment: "省略記号のパディング"
-
-    # ジャンプ入力（ページ番号直接入力）
-    jump:
-      input:
-        width:
-          value: "{spacing.16}"
-          comment: "入力フィールドの幅"
-        height:
-          default:
-            value: "{spacing.10}"
-            comment: "デフォルトの高さ"
-          small:
-            value: "{spacing.8}"
-            comment: "小サイズの高さ"
-          large:
-            value: "{spacing.12}"
-            comment: "大サイズの高さ"
-        fontSize:
-          default:
-            value: "{font.size.sm}"
-            comment: "デフォルトのフォントサイズ"
-        padding:
-          value: "{spacing.2}"
-          comment: "入力フィールドのパディング"
-        border:
-          value: "1px solid {border.default}"
-          comment: "入力フィールドのボーダー"
-        borderRadius:
-          value: "{border.radius.md}"
-          comment: "入力フィールドの角丸"
-
-    # ページサイズセレクター
-    sizeSelector:
-      gap:
-        value: "{spacing.2}"
-        comment: "セレクターとラベルの間隔"
-      fontSize:
-        value: "{font.size.sm}"
-        comment: "セレクターのフォントサイズ"
-      width:
-        value: "{spacing.20}"
-        comment: "セレクターの幅"
-
-    # 情報表示（「全100件中 1-10件を表示」）
-    info:
-      fontSize:
-        default:
-          value: "{font.size.sm}"
-          comment: "デフォルトのフォントサイズ"
-        small:
-          value: "{font.size.xs}"
-          comment: "小サイズのフォントサイズ"
-      color:
-        value: "{foreground.secondary}"
-        comment: "情報テキストの色"
-      marginLeft:
-        value: "{spacing.4}"
-        comment: "情報テキストの左マージン"
-
-    # トランジション
-    transition:
-      duration:
-        value: "{animation.duration.fast}"
-        comment: "トランジションの持続時間"
-      timing:
-        value: "{animation.easing.ease}"
-        comment: "トランジションのイージング"
-      properties:
-        value: "background-color, color, border-color"
-        comment: "トランジション対象のプロパティ"
-
-    # バリアント
-    variant:
-      # デフォルト（ボーダー付き）
-      default:
-        border:
-          value: "1px solid {border.default}"
-          comment: "デフォルトのボーダー"
-
-      # シンプル（ボーダーなし）
-      simple:
-        border:
-          value: "none"
-          comment: "ボーダーなし"
-
-      # 丸型
-      rounded:
-        borderRadius:
-          value: "{border.radius.full}"
-          comment: "完全な丸型"
-
-    # コンパクトモード
-    compact:
-      gap:
-        value: "{spacing.1}"
-        comment: "コンパクトモードのアイテム間隔"
-      maxVisiblePages:
-        value: "5"
-        comment: "表示する最大ページ数"
+        value: "{foreground.inverse}"
+        comment: "アクティブページのテキスト色"

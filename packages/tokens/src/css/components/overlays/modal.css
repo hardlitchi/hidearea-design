@@ -30,11 +30,11 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: var(--modal-z-index, 1000);
+  z-index: var(--component-modal-z-index, 1000);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--modal-overlay-padding, 16px);
+  padding: var(--component-modal-overlay-padding, 16px);
   overflow-y: auto;
   animation: fadeIn var(--animation-duration-base, 200ms) var(--animation-easing-ease-out);
 }
@@ -54,7 +54,7 @@
   justify-content: center;
   min-height: 100%;
   width: 100%;
-  padding: var(--modal-container-padding, 16px 0);
+  padding: var(--component-modal-container-padding, 16px 0);
 }
 
 /* ========================================
@@ -62,11 +62,11 @@
    ======================================== */
 
 .dialog {
-  background: var(--modal-bg, var(--foreground-inverse));
-  border-radius: var(--modal-border-radius, var(--border-radius-lg, 8px));
-  box-shadow: var(--modal-shadow, var(--shadow-2xl));
+  background: var(--component-modal-background-default, var(--foreground-inverse));
+  border-radius: var(--component-modal-container-border-radius, var(--border-radius-lg, 8px));
+  box-shadow: var(--component-modal-container-shadow, var(--shadow-2xl));
   width: 100%;
-  max-width: var(--modal-max-width, 600px);
+  max-width: var(--component-modal-container-max-width, 600px);
   max-height: calc(100vh - 32px);
   display: flex;
   flex-direction: column;
@@ -138,8 +138,8 @@
    ======================================== */
 
 .header {
-  padding: var(--modal-header-padding, 20px 24px);
-  border-bottom: 1px solid var(--modal-border-color, var(--border-default));
+  padding: var(--component-modal-header-padding, 20px 24px);
+  border-bottom: 1px solid var(--component-modal-border-default, var(--border-default));
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -152,15 +152,15 @@
 }
 
 .body {
-  padding: var(--modal-body-padding, 24px);
+  padding: var(--component-modal-body-padding, 24px);
   overflow-y: auto;
   flex: 1;
   min-height: 0;
 }
 
 .footer {
-  padding: var(--modal-footer-padding, 16px 24px);
-  border-top: 1px solid var(--modal-border-color, var(--border-default));
+  padding: var(--component-modal-footer-padding, 16px 24px);
+  border-top: 1px solid var(--component-modal-border-default, var(--border-default));
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -174,7 +174,7 @@
 .close-button {
   background: transparent;
   border: none;
-  color: var(--modal-close-color, var(--foreground-secondary));
+  color: var(--component-modal-close-color, var(--foreground-secondary));
   cursor: pointer;
   padding: 8px;
   border-radius: var(--border-radius-base, 4px);
@@ -188,7 +188,7 @@
 }
 
 .close-button:hover {
-  background: var(--modal-close-hover-bg, var(--background-tertiary));
+  background: var(--component-modal-close-hover-background, var(--background-tertiary));
 }
 
 .close-button:focus {
@@ -273,17 +273,17 @@
 /* Larger screens - restore dialog layout */
 @media (pointer: coarse) and (min-width: 768px) {
   .dialog {
-    max-width: var(--modal-max-width, 600px);
+    max-width: var(--component-modal-container-max-width, 600px);
     max-height: calc(100vh - 32px);
-    border-radius: var(--modal-border-radius, var(--border-radius-lg, 8px));
+    border-radius: var(--component-modal-container-border-radius, var(--border-radius-lg, 8px));
   }
 
   .overlay {
-    padding: var(--modal-overlay-padding, 16px);
+    padding: var(--component-modal-overlay-padding, 16px);
   }
 
   .container {
-    padding: var(--modal-container-padding, 16px 0);
+    padding: var(--component-modal-container-padding, 16px 0);
   }
 
   :host([size="sm"]) .dialog {
