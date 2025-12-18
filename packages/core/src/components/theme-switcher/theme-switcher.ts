@@ -329,6 +329,12 @@ class ThemeSwitcher extends HTMLElement {
 
   private _handleThemeChange(e: Event): void {
     const customEvent = e as CustomEvent<{ theme: Theme; effective: 'light' | 'dark' }>;
+
+    // Don't re-dispatch events that originated from this component
+    if (e.target === this) {
+      return;
+    }
+
     this._currentTheme = customEvent.detail.effective;
     this._currentPreference = customEvent.detail.theme;
     this.render();
@@ -344,13 +350,6 @@ class ThemeSwitcher extends HTMLElement {
         btn.addEventListener('click', this._handleSegmentedClick.bind(this));
       });
     }
-
-    // Dispatch event
-    this.dispatchEvent(new CustomEvent('theme-change', {
-      detail: customEvent.detail,
-      bubbles: true,
-      composed: true
-    }));
   }
 }
 
