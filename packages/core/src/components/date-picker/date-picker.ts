@@ -23,8 +23,9 @@ export class HaDatePicker extends HTMLElement {
   private _currentMonth: number;
   private _isOpen = false;
   private _tempStartDate: Date | null = null; // For range selection
-  private _disabledDates: Date[] = [];
-  private _disabledDaysOfWeek: number[] = [];
+  // Use Sets for O(1) lookup performance
+  private _disabledDatesSet: Set<string> = new Set();
+  private _disabledDaysOfWeekSet: Set<number> = new Set();
 
   private inputElement!: HTMLInputElement;
   private calendarElement!: HTMLDivElement;
@@ -261,21 +262,30 @@ export class HaDatePicker extends HTMLElement {
     this.setAttribute("error-text", value);
   }
 
+  // Helper to convert Date to string key for Set lookup
+  private dateToKey(date: Date): string {
+    return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  }
+
   get disabledDates(): Date[] {
-    return this._disabledDates;
+    // Convert Set keys back to Date objects for API compatibility
+    return Array.from(this._disabledDatesSet).map((key) => {
+      const [year, month, day] = key.split("-").map(Number);
+      return new Date(year, month, day);
+    });
   }
 
   set disabledDates(value: Date[]) {
-    this._disabledDates = value.map((d) => new Date(d));
+    this._disabledDatesSet = new Set(value.map((d) => this.dateToKey(new Date(d))));
     this.renderCalendar();
   }
 
   get disabledDaysOfWeek(): number[] {
-    return this._disabledDaysOfWeek;
+    return Array.from(this._disabledDaysOfWeekSet);
   }
 
   set disabledDaysOfWeek(value: number[]) {
-    this._disabledDaysOfWeek = value;
+    this._disabledDaysOfWeekSet = new Set(value);
     this.renderCalendar();
   }
 
@@ -392,8 +402,9 @@ export class HaDatePicker extends HTMLElement {
   isDateDisabled(date: Date): boolean {
     if (this.minDate && date < this.minDate) return true;
     if (this.maxDate && date > this.maxDate) return true;
-    if (this._disabledDates.some((d) => this.isSameDay(d, date))) return true;
-    if (this._disabledDaysOfWeek.includes(date.getDay())) return true;
+    // O(1) Set lookup instead of O(n) array search
+    if (this._disabledDatesSet.has(this.dateToKey(date))) return true;
+    if (this._disabledDaysOfWeekSet.has(date.getDay())) return true;
     return false;
   }
 
@@ -734,6 +745,7 @@ export class HaDatePicker extends HTMLElement {
       button.setAttribute("part", "day day--disabled");
     }
 
+    // Individual listener on each button - cleaned up when innerHTML clears the parent
     button.addEventListener("click", () => this.handleDayClick(date));
 
     return button;
