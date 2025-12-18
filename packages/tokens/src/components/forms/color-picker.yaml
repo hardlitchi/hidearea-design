@@ -1,0 +1,121 @@
+# カラーピッカーコンポーネントトークン - hidearea-design
+# 色選択インターフェースの外観を定義
+
+component:
+  color-picker:
+    # 背景色
+    background:
+      default:
+        value: "{background.primary}"
+        comment: "コンテナ背景色（テーマ対応）"
+      disabled:
+        value: "{background.tertiary}"
+        comment: "無効時の入力欄背景色（テーマ対応）"
+
+    # ボーダー色
+    border:
+      default:
+        value: "{border.default}"
+        comment: "デフォルトボーダー色（テーマ対応）"
+      focus:
+        value: "{primary.default}"
+        comment: "フォーカス時ボーダー色（テーマ対応）"
+
+    # サイズ設定
+    size:
+      width:
+        value: "280px"
+        comment: "カラーピッカーの幅"
+      palette-height:
+        value: "200px"
+        comment: "パレットの高さ"
+      slider-height:
+        value: "12px"
+        comment: "スライダーの高さ"
+      preview-size:
+        value: "40px"
+        comment: "プレビューボックスのサイズ"
+      swatch-size:
+        value: "24px"
+        comment: "スウォッチのサイズ"
+
+    # カーソル設定
+    cursor:
+      palette-size:
+        value: "12px"
+        comment: "パレットカーソルのサイズ"
+      slider-size:
+        value: "16px"
+        comment: "スライダーカーソルのサイズ"
+      border-color:
+        value: "#ffffff"
+        comment: "カーソルのボーダー色"
+
+    # 間隔
+    spacing:
+      gap:
+        value: "{spacing.3}"
+        comment: "要素間のギャップ"
+      padding:
+        value: "{spacing.4}"
+        comment: "コンテナのパディング"
+      controls-gap:
+        value: "{spacing.2}"
+        comment: "コントロールパネルのギャップ"
+      swatch-gap:
+        value: "{spacing.2}"
+        comment: "スウォッチ間のギャップ"
+
+    # ボーダー半径
+    radius:
+      container:
+        value: "{border.radius.md}"
+        comment: "コンテナの角丸"
+      palette:
+        value: "{border.radius.sm}"
+        comment: "パレットの角丸"
+      slider:
+        value: "6px"
+        comment: "スライダーの角丸"
+      preview:
+        value: "{border.radius.sm}"
+        comment: "プレビューの角丸"
+      swatch:
+        value: "{border.radius.sm}"
+        comment: "スウォッチの角丸"
+      input:
+        value: "{border.radius.sm}"
+        comment: "入力欄の角丸"
+
+    # シャドウ
+    shadow:
+      cursor:
+        value: "0 0 0 1px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2)"
+        comment: "カーソルの影"
+      swatch-hover:
+        value: "0 0 0 2px rgba(59, 130, 246, 0.5)"
+        comment: "スウォッチホバー時の影"
+      focus-ring:
+        value: "0 0 0 3px rgba(59, 130, 246, 0.1)"
+        comment: "フォーカスリングの影"
+
+    # 入力欄
+    input:
+      padding:
+        value: "{spacing.2}"
+        comment: "入力欄のパディング"
+      font-size:
+        value: "{font.size.sm}"
+        comment: "入力欄のフォントサイズ"
+
+    # チェッカーボードパターン（透明度表示用）
+    checkerboard:
+      color-light:
+        value: "#ffffff"
+        comment: "チェッカーボード明色"
+      color-dark:
+        value: "#e5e7eb"
+        comment: "チェッカーボード暗色"
+      size:
+        value: "10px"
+        comment: "チェッカーボードのサイズ"

@@ -1,3 +1,5 @@
+import { colorPickerStyles } from "@hidearea-design/tokens/styles";
+
 /**
  * @element ha-color-picker
  * @fires {CustomEvent} color-change - Fired when the color value changes
@@ -850,95 +852,29 @@ export class HaColorPicker extends HTMLElement {
     const hueX = (this._hue / 360) * 100;
     const alphaX = this._alpha * 100;
 
-    this.shadowRoot.innerHTML = `
+        this.shadowRoot.innerHTML = `
       <style>
-        :host {
-          display: inline-block;
-          font-family: var(--font-family-sans);
-        }
+        ${colorPickerStyles}
 
-        :host([disabled]) {
-          opacity: 0.5;
-          pointer-events: none;
-        }
-
-        .container {
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-          padding: 1rem;
-          background: var(--color-picker-bg, #ffffff);
-          border: 1px solid var(--color-picker-border, #e5e7eb);
-          border-radius: var(--color-picker-radius, 0.5rem);
-          width: var(--color-picker-width, 280px);
-        }
-
+        /* Dynamic gradient backgrounds */
         .palette {
-          position: relative;
-          width: 100%;
-          height: 200px;
           background: linear-gradient(to right, #fff, ${hueColor}),
                       linear-gradient(to top, #000, transparent);
           background-blend-mode: multiply;
-          border-radius: 0.25rem;
-          cursor: crosshair;
-          touch-action: none;
         }
 
         .palette-cursor {
-          position: absolute;
-          width: 12px;
-          height: 12px;
-          border: 2px solid #fff;
-          border-radius: 50%;
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3),
-                      0 2px 4px rgba(0, 0, 0, 0.2);
-          pointer-events: none;
           left: calc(${paletteX}% - 6px);
           top: calc(${paletteY}% - 6px);
-        }
-
-        .hue-slider,
-        .alpha-slider {
-          position: relative;
-          width: 100%;
-          height: 12px;
-          border-radius: 6px;
-          cursor: pointer;
-          touch-action: none;
-        }
-
-        .hue-slider {
-          background: linear-gradient(to right,
-            hsl(0, 100%, 50%),
-            hsl(60, 100%, 50%),
-            hsl(120, 100%, 50%),
-            hsl(180, 100%, 50%),
-            hsl(240, 100%, 50%),
-            hsl(300, 100%, 50%),
-            hsl(360, 100%, 50%)
-          );
         }
 
         .alpha-slider {
           background:
             linear-gradient(to right, transparent, ${currentColor}),
-            repeating-conic-gradient(#e5e7eb 0% 25%, #fff 0% 50%) 50% / 10px 10px;
-        }
-
-        .hue-cursor,
-        .alpha-cursor {
-          position: absolute;
-          width: 16px;
-          height: 16px;
-          border: 2px solid #fff;
-          border-radius: 50%;
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3),
-                      0 2px 4px rgba(0, 0, 0, 0.2);
-          transform: translateX(-50%);
-          top: 50%;
-          margin-top: -8px;
-          pointer-events: none;
+            repeating-conic-gradient(
+              var(--component-color-picker-checkerboard-color-dark, #e5e7eb) 0% 25%,
+              var(--component-color-picker-checkerboard-color-light, #fff) 0% 50%
+            ) 50% / var(--component-color-picker-checkerboard-size, 10px) var(--component-color-picker-checkerboard-size, 10px);
         }
 
         .hue-cursor {
@@ -949,73 +885,13 @@ export class HaColorPicker extends HTMLElement {
           left: ${alphaX}%;
         }
 
-        .controls {
-          display: flex;
-          gap: 0.5rem;
-          align-items: center;
-        }
-
         .preview {
-          width: 40px;
-          height: 40px;
-          border-radius: 0.25rem;
-          border: 1px solid var(--color-picker-border, #e5e7eb);
           background:
             linear-gradient(${currentColorWithAlpha}, ${currentColorWithAlpha}),
-            repeating-conic-gradient(#e5e7eb 0% 25%, #fff 0% 50%) 50% / 10px 10px;
-          flex-shrink: 0;
-        }
-
-        input {
-          flex: 1;
-          padding: 0.5rem;
-          border: 1px solid var(--color-picker-border, #e5e7eb);
-          border-radius: 0.25rem;
-          font-family: inherit;
-          font-size: 0.875rem;
-          outline: none;
-        }
-
-        input:focus {
-          border-color: var(--color-picker-focus, #3b82f6);
-          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        input:disabled,
-        input:read-only {
-          background: var(--color-picker-disabled-bg, #f3f4f6);
-          cursor: not-allowed;
-        }
-
-        .swatches {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(24px, 1fr));
-          gap: 0.5rem;
-        }
-
-        .swatch {
-          width: 24px;
-          height: 24px;
-          border-radius: 0.25rem;
-          border: 1px solid var(--color-picker-border, #e5e7eb);
-          cursor: pointer;
-          transition: transform 0.1s;
-        }
-
-        .swatch:hover {
-          transform: scale(1.1);
-        }
-
-        .swatch:active {
-          transform: scale(0.95);
-        }
-
-        :host([readonly]) .palette,
-        :host([readonly]) .hue-slider,
-        :host([readonly]) .alpha-slider,
-        :host([readonly]) .swatch {
-          cursor: default;
-          pointer-events: none;
+            repeating-conic-gradient(
+              var(--component-color-picker-checkerboard-color-dark, #e5e7eb) 0% 25%,
+              var(--component-color-picker-checkerboard-color-light, #fff) 0% 50%
+            ) 50% / var(--component-color-picker-checkerboard-size, 10px) var(--component-color-picker-checkerboard-size, 10px);
         }
       </style>
 
