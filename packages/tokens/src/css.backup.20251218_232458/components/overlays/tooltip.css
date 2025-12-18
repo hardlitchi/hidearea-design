@@ -1,0 +1,214 @@
+/**
+ * Tooltip Component Styles
+ * Design tokens: @hidearea-design/tokens
+ *
+ * This CSS file defines the complete visual styling for the Tooltip component.
+ * All values reference design tokens (CSS custom properties) defined in
+ * src/components/overlay/tooltip.yaml
+ */
+
+/* ========================================
+   Host & Trigger
+   ======================================== */
+
+:host {
+  display: inline-block;
+  position: relative;
+}
+
+.tooltip-trigger {
+  display: inline-block;
+  cursor: help;
+}
+
+/* ========================================
+   Tooltip Content
+   ======================================== */
+
+.tooltip-content {
+  position: fixed;
+  z-index: 9999;
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--border-radius-base);
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-normal);
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 300px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--animation-duration-base) ease, visibility var(--animation-duration-base) ease;
+}
+
+.tooltip-content.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ========================================
+   Variant Styles
+   ======================================== */
+
+.tooltip-content.variant-default {
+  background-color: var(--foreground-primary);
+  color: var(--foreground-inverse);
+  box-shadow: var(--shadow-md);
+}
+
+.tooltip-content.variant-dark {
+  background-color: var(--foreground-primary);
+  color: var(--foreground-inverse);
+  box-shadow: var(--shadow-lg);
+}
+
+.tooltip-content.variant-light {
+  background-color: var(--foreground-inverse);
+  color: var(--foreground-primary);
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-md);
+}
+
+/* ========================================
+   Size Variants
+   ======================================== */
+
+.tooltip-content.size-sm {
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: var(--font-size-xs);
+  max-width: 200px;
+}
+
+.tooltip-content.size-md {
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--font-size-sm);
+  max-width: 300px;
+}
+
+.tooltip-content.size-lg {
+  padding: var(--spacing-3) var(--spacing-4);
+  font-size: var(--font-size-base);
+  max-width: 400px;
+}
+
+/* ========================================
+   Arrow Base
+   ======================================== */
+
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* ========================================
+   Arrow Positioning - Top
+   ======================================== */
+
+.tooltip-content[data-placement^="top"] .tooltip-arrow {
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px 6px 0 6px;
+}
+
+.tooltip-content[data-placement^="top"].variant-default .tooltip-arrow {
+  border-color: var(--foreground-primary) transparent transparent transparent;
+}
+
+.tooltip-content[data-placement^="top"].variant-dark .tooltip-arrow {
+  border-color: var(--foreground-primary) transparent transparent transparent;
+}
+
+.tooltip-content[data-placement^="top"].variant-light .tooltip-arrow {
+  border-color: var(--foreground-inverse) transparent transparent transparent;
+}
+
+/* ========================================
+   Arrow Positioning - Bottom
+   ======================================== */
+
+.tooltip-content[data-placement^="bottom"] .tooltip-arrow {
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 6px 6px 6px;
+}
+
+.tooltip-content[data-placement^="bottom"].variant-default .tooltip-arrow {
+  border-color: transparent transparent var(--foreground-primary) transparent;
+}
+
+.tooltip-content[data-placement^="bottom"].variant-dark .tooltip-arrow {
+  border-color: transparent transparent var(--foreground-primary) transparent;
+}
+
+.tooltip-content[data-placement^="bottom"].variant-light .tooltip-arrow {
+  border-color: transparent transparent var(--foreground-inverse) transparent;
+}
+
+/* ========================================
+   Arrow Positioning - Left
+   ======================================== */
+
+.tooltip-content[data-placement^="left"] .tooltip-arrow {
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 6px;
+}
+
+.tooltip-content[data-placement^="left"].variant-default .tooltip-arrow {
+  border-color: transparent transparent transparent var(--foreground-primary);
+}
+
+.tooltip-content[data-placement^="left"].variant-dark .tooltip-arrow {
+  border-color: transparent transparent transparent var(--foreground-primary);
+}
+
+.tooltip-content[data-placement^="left"].variant-light .tooltip-arrow {
+  border-color: transparent transparent transparent var(--foreground-inverse);
+}
+
+/* ========================================
+   Arrow Positioning - Right
+   ======================================== */
+
+.tooltip-content[data-placement^="right"] .tooltip-arrow {
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 6px 6px 0;
+}
+
+.tooltip-content[data-placement^="right"].variant-default .tooltip-arrow {
+  border-color: transparent var(--foreground-primary) transparent transparent;
+}
+
+.tooltip-content[data-placement^="right"].variant-dark .tooltip-arrow {
+  border-color: transparent var(--foreground-primary) transparent transparent;
+}
+
+.tooltip-content[data-placement^="right"].variant-light .tooltip-arrow {
+  border-color: transparent var(--foreground-inverse) transparent transparent;
+}
+
+/* ========================================
+   Animation
+   ======================================== */
+
+@keyframes tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.tooltip-content.visible {
+  animation: tooltip-fade-in var(--animation-duration-base) ease;
+}

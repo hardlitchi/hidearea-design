@@ -1,0 +1,73 @@
+/**
+ * Table Component Styles
+ * Design tokens: @hidearea-design/tokens
+ *
+ * This CSS file defines the complete visual styling for the Table component.
+ * All values reference design tokens (CSS custom properties) defined in the tokens package.
+ */
+
+:host {
+  display: block;
+  --table-border-color: var(--border-default);
+  --table-header-bg: var(--foreground-inverse);
+  --table-row-hover-bg: var(--foreground-inverse);
+  --table-striped-bg: var(--foreground-inverse);
+  --table-padding: var(--spacing-3);
+  --table-padding-compact: var(--spacing-2);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--border-radius-base);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-base);
+  color: var(--foreground-primary);
+}
+
+.table--full-width {
+  width: 100%;
+}
+
+/* Table cells */
+.table ::slotted(thead) {
+  background-color: var(--table-header-bg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.table ::slotted(th),
+.table ::slotted(td) {
+  padding: var(--table-padding);
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Compact mode */
+.table--compact ::slotted(th),
+.table--compact ::slotted(td) {
+  padding: var(--table-padding-compact);
+}
+
+/* Bordered */
+.table--bordered {
+  border: 1px solid var(--table-border-color);
+}
+
+.table--bordered ::slotted(th),
+.table--bordered ::slotted(td) {
+  border: 1px solid var(--table-border-color);
+}
+
+/* Striped */
+.table--striped ::slotted(tbody tr:nth-child(even)) {
+  background-color: var(--table-striped-bg);
+}
+
+/* Hoverable */
+.table--hoverable ::slotted(tbody tr:hover) {
+  background-color: var(--table-row-hover-bg);
+  cursor: pointer;
+}

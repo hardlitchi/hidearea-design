@@ -1,0 +1,38 @@
+/**
+ * List Container Styles
+ * Design tokens: @hidearea-design/tokens
+ *
+ * Styles for the ha-list component container
+ */
+
+:host {
+  display: block;
+}
+
+.list {
+  background: var(--component-list-container-background);
+  padding: var(--component-list-container-padding);
+  border-radius: var(--component-list-container-borderRadius, 0.375rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--component-list-container-gap);
+}
+
+/* Divided variant */
+.list--divided ::slotted(ha-list-item:not(:last-child)) {
+  border-bottom: var(--component-list-divider-width) solid var(--component-list-divider-color);
+}
+
+/* Bordered variant */
+.list--bordered {
+  border: 1px solid var(--component-list-divider-color);
+}
+
+/* Hoverable variant */
+.list--hoverable ::slotted(ha-list-item) {
+  cursor: pointer;
+}
+
+.list--hoverable ::slotted(ha-list-item:hover) {
+  background: var(--component-list-item-background-hover);
+}
