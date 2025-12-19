@@ -200,6 +200,9 @@ MIT
 - **[Performance Optimization](./docs/guides/performance-optimization.md)** - パフォーマンス最適化ガイド
 - **[Performance Testing](./docs/guides/performance-testing.md)** - 自動パフォーマンステストガイド
 
+#### テスト
+- **[Storybook Testing Guide](./docs/guides/storybook-testing-guide.md)** - Storybookテスト戦略（インタラクション、ビジュアルリグレッション、アクセシビリティ）
+
 #### 開発ガイド
 - **[コントリビューティング](./CONTRIBUTING.md)** ([日本語](./CONTRIBUTING.ja.md)) - プロジェクトへの貢献方法
 
@@ -268,7 +271,12 @@ MIT
   - ✅ アクセシビリティパターン（フォーカストラップ、キーボードナビゲーション、ARIA）
   - ✅ パフォーマンスパターン（メモリリーク防止、効率的DOM更新、遅延初期化）
   - [パターンガイド](./docs/guides/advanced-component-patterns.md) | [実践レシピ](./docs/guides/component-pattern-recipes.md)
-- Storybook 機能強化（ビジュアルリグレッション、インタラクションテスト）
+- ✅ Storybook テスト戦略ドキュメント（完了）
+  - ✅ インタラクションテストガイド（play関数、ユーザーイベント、フォーム検証）
+  - ✅ ビジュアルリグレッションテストガイド（Playwright、スナップショット、レスポンシブ）
+  - ✅ アクセシビリティテストガイド（WCAG 2.1 AA、ARIA検証）
+  - ✅ CI/CD統合パターン（GitHub Actions、自動レポート）
+  - [テストガイド](./docs/guides/storybook-testing-guide.md)
 
 **長期（3ヶ月以上）**:
 - SSRサポート（Next.js、Nuxt）
