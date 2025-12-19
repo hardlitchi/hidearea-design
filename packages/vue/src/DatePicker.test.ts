@@ -134,7 +134,11 @@ describe('DatePicker (Vue Wrapper)', () => {
   });
 
   it('should pass disabledDates and disabledDaysOfWeek to the web component', async () => {
-    const disabledDates = [new Date('2024-07-01'), new Date('2024-07-05')];
+    // Use UTC to avoid timezone-dependent test failures
+    const disabledDates = [
+      new Date(Date.UTC(2024, 6, 1)), // July 1, 2024 UTC
+      new Date(Date.UTC(2024, 6, 5))  // July 5, 2024 UTC
+    ];
     const disabledDaysOfWeek = [0, 6]; // Sunday and Saturday
 
     const wrapper = mount(DatePicker, {
@@ -147,7 +151,10 @@ describe('DatePicker (Vue Wrapper)', () => {
     const webComponent = wrapper.find('ha-date-picker').element as HaDatePicker;
     await wrapper.vm.$nextTick(); // Ensure props are propagated
 
-    expect(webComponent.disabledDates).toEqual(disabledDates);
+    // Compare by date string to avoid timezone issues
+    const expectedDates = disabledDates.map(d => d.toDateString());
+    const actualDates = webComponent.disabledDates.map(d => d.toDateString());
+    expect(actualDates).toEqual(expectedDates);
     expect(webComponent.disabledDaysOfWeek).toEqual(disabledDaysOfWeek);
   });
 });
