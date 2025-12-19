@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface SelectArgs {
   variant: "default" | "filled" | "outlined";
@@ -78,6 +79,7 @@ export const Default: Story = {
   },
   render: (args) => html`
     <ha-select
+      id="test-select"
       variant="${args.variant}"
       size="${args.size}"
       placeholder="${args.placeholder}"
@@ -85,10 +87,57 @@ export const Default: Story = {
       ?required="${args.required}"
       ?error="${args.error}"
       ?full-width="${args.fullWidth}"
+      @change="${fn()}"
     >
       ${countryOptions}
     </ha-select>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Select element should be present", async () => {
+      const select = canvasElement.querySelector("#test-select");
+      await expect(select).toBeTruthy();
+    });
+
+    await step("Select should have correct variant and size", async () => {
+      const select = canvasElement.querySelector("#test-select");
+      await expect(select?.getAttribute("variant")).toBe("default");
+      await expect(select?.getAttribute("size")).toBe("md");
+    });
+
+    await step("Select should not be disabled", async () => {
+      const select = canvasElement.querySelector("#test-select");
+      await expect(select?.hasAttribute("disabled")).toBe(false);
+    });
+
+    await step("Select should have correct number of options", async () => {
+      const select = canvasElement.querySelector("#test-select");
+      const nativeSelect = select?.querySelector("select") as HTMLSelectElement;
+      const options = nativeSelect?.querySelectorAll("option");
+      await expect(options?.length).toBe(11); // 1 placeholder + 10 countries
+    });
+
+    await step("Selecting an option should work", async () => {
+      const select = canvasElement.querySelector("#test-select");
+      const nativeSelect = select?.querySelector("select") as HTMLSelectElement;
+
+      // Select United States
+      await userEvent.selectOptions(nativeSelect, "us");
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(nativeSelect.value).toBe("us");
+    });
+
+    await step("Changing selection should work", async () => {
+      const select = canvasElement.querySelector("#test-select");
+      const nativeSelect = select?.querySelector("select") as HTMLSelectElement;
+
+      // Change to Japan
+      await userEvent.selectOptions(nativeSelect, "jp");
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(nativeSelect.value).toBe("jp");
+    });
+  },
 };
 
 export const Variants: Story = {
@@ -134,18 +183,51 @@ export const States: Story = {
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Normal</h4>
-        <ha-select> ${countryOptions} </ha-select>
+        <ha-select id="normal-select"> ${countryOptions} </ha-select>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Error</h4>
-        <ha-select error> ${countryOptions} </ha-select>
+        <ha-select id="error-select" error> ${countryOptions} </ha-select>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Disabled</h4>
-        <ha-select disabled> ${countryOptions} </ha-select>
+        <ha-select id="disabled-select" disabled> ${countryOptions} </ha-select>
       </div>
     </div>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Normal select should not have error or disabled attributes", async () => {
+      const select = canvasElement.querySelector("#normal-select");
+      await expect(select?.hasAttribute("error")).toBe(false);
+      await expect(select?.hasAttribute("disabled")).toBe(false);
+    });
+
+    await step("Error select should have error attribute", async () => {
+      const select = canvasElement.querySelector("#error-select");
+      await expect(select?.hasAttribute("error")).toBe(true);
+    });
+
+    await step("Error select should still be functional", async () => {
+      const select = canvasElement.querySelector("#error-select");
+      const nativeSelect = select?.querySelector("select") as HTMLSelectElement;
+
+      await userEvent.selectOptions(nativeSelect, "ca");
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(nativeSelect.value).toBe("ca");
+    });
+
+    await step("Disabled select should have disabled attribute", async () => {
+      const select = canvasElement.querySelector("#disabled-select");
+      await expect(select?.hasAttribute("disabled")).toBe(true);
+    });
+
+    await step("Disabled select native element should be disabled", async () => {
+      const select = canvasElement.querySelector("#disabled-select");
+      const nativeSelect = select?.querySelector("select") as HTMLSelectElement;
+      await expect(nativeSelect?.disabled).toBe(true);
+    });
+  },
 };
 
 export const FullWidth: Story = {
@@ -182,15 +264,46 @@ export const WithFormGroupError: Story = {
   render: () => html`
     <div style="max-width: 400px;">
       <ha-form-group
+        id="error-form-group"
         label="Country"
         error-text="Please select a country"
         required
         error
       >
-        <ha-select full-width error> ${countryOptions} </ha-select>
+        <ha-select id="error-form-select" full-width error> ${countryOptions} </ha-select>
       </ha-form-group>
     </div>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Form group should be present with error state", async () => {
+      const formGroup = canvasElement.querySelector("#error-form-group");
+      await expect(formGroup).toBeTruthy();
+      await expect(formGroup?.hasAttribute("error")).toBe(true);
+      await expect(formGroup?.hasAttribute("required")).toBe(true);
+    });
+
+    await step("Select should have error attribute", async () => {
+      const select = canvasElement.querySelector("#error-form-select");
+      await expect(select?.hasAttribute("error")).toBe(true);
+      await expect(select?.hasAttribute("full-width")).toBe(true);
+    });
+
+    await step("Error text should be displayed", async () => {
+      const formGroup = canvasElement.querySelector("#error-form-group");
+      const errorText = formGroup?.getAttribute("error-text");
+      await expect(errorText).toBe("Please select a country");
+    });
+
+    await step("Selecting a value should work despite error state", async () => {
+      const select = canvasElement.querySelector("#error-form-select");
+      const nativeSelect = select?.querySelector("select") as HTMLSelectElement;
+
+      await userEvent.selectOptions(nativeSelect, "uk");
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(nativeSelect.value).toBe("uk");
+    });
+  },
 };
 
 export const LanguageSelector: Story = {
