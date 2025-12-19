@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tree-shaking Test</title>
+</head>
+<body>
+  <h1>Tree-shaking Test Cases</h1>
+
+  <div id="test-results"></div>
+
+  <script type="module">
+    // Test Case 1: Import only Button component
+    import { Button } from '../packages/core/dist/index.es.js';
+
+    console.log('Test 1: Single component import (Button)');
+    console.log('Expected: Only Button code should be included');
+    console.log('Button:', Button);
+
+    // Test Case 2: Import multiple components
+    import { Input, Alert } from '../packages/core/dist/index.es.js';
+
+    console.log('Test 2: Multiple component imports (Input, Alert)');
+    console.log('Input:', Input);
+    console.log('Alert:', Alert);
+
+    // Display results
+    const results = document.getElementById('test-results');
+    results.innerHTML = `
+      <h2>Test Results</h2>
+      <p>Check browser console for import verification</p>
+      <p>Use browser DevTools → Network tab to verify bundle size</p>
+      <p>Expected: Tree-shaking should reduce bundle size when importing only specific components</p>
+    `;
+  </script>
+</body>
+</html>

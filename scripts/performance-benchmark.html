@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance Benchmark - Hidearea Design</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    h1 {
+      color: #333;
+    }
+    .benchmark-section {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .result {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      margin: 5px 0;
+      background: #f9f9f9;
+      border-radius: 4px;
+    }
+    .result.fast {
+      border-left: 4px solid #22c55e;
+    }
+    .result.medium {
+      border-left: 4px solid #f59e0b;
+    }
+    .result.slow {
+      border-left: 4px solid #ef4444;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px 5px;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    #test-container {
+      min-height: 200px;
+      border: 1px dashed #ccc;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .metric {
+      font-weight: bold;
+      color: #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <h1>🚀 Hidearea Design - Performance Benchmark</h1>
+
+  <div class="benchmark-section">
+    <h2>📊 Bundle Load Time</h2>
+    <div id="load-time-results"></div>
+  </div>
+
+  <div class="benchmark-section">
+    <h2>⚡ Component Render Performance</h2>
+    <button onclick="runRenderBenchmark()">Run Render Benchmark</button>
+    <div id="render-results"></div>
+    <div id="test-container"></div>
+  </div>
+
+  <div class="benchmark-section">
+    <h2>💾 Memory Usage</h2>
+    <button onclick="runMemoryBenchmark()">Run Memory Benchmark</button>
+    <div id="memory-results"></div>
+  </div>
+
+  <div class="benchmark-section">
+    <h2>🔄 Re-render Performance</h2>
+    <button onclick="runReRenderBenchmark()">Run Re-render Benchmark</button>
+    <div id="rerender-results"></div>
+  </div>
+
+  <script type="module">
+    // Import components
+    import {
+      HaButton,
+      HaInput,
+      HaCard,
+      HaAlert,
+      HaBadge,
+      HaProgress,
+      HaSpinner,
+      HaDataGrid,
+      HaDatePicker,
+      HaColorPicker,
+    } from '../packages/core/dist/index.es.js';
+
+    // Measure initial load time
+    window.addEventListener('load', () => {
+      const loadTime = performance.now();
+      const navigation = performance.getEntriesByType('navigation')[0];
+
+      const results = document.getElementById('load-time-results');
+      results.innerHTML = `
+        <div class="result ${loadTime < 1000 ? 'fast' : loadTime < 3000 ? 'medium' : 'slow'}">
+          <span>Bundle Load Time</span>
+          <span class="metric">${loadTime.toFixed(2)} ms</span>
+        </div>
+        <div class="result ${navigation.domContentLoadedEventEnd < 2000 ? 'fast' : navigation.domContentLoadedEventEnd < 5000 ? 'medium' : 'slow'}">
+          <span>DOM Content Loaded</span>
+          <span class="metric">${navigation.domContentLoadedEventEnd.toFixed(2)} ms</span>
+        </div>
+      `;
+    });
+
+    // Component render benchmark
+    window.runRenderBenchmark = function() {
+      const container = document.getElementById('test-container');
+      const results = document.getElementById('render-results');
+      results.innerHTML = '<p>Running benchmark...</p>';
+
+      const benchmarks = [];
+
+      // Test 1: Simple component (Button)
+      const t1Start = performance.now();
+      for (let i = 0; i < 100; i++) {
+        const btn = document.createElement('ha-button');
+        btn.textContent = `Button ${i}`;
+        container.appendChild(btn);
+      }
+      const t1End = performance.now();
+      benchmarks.push({
+        name: 'Button (100 instances)',
+        time: t1End - t1Start,
+        avgPerComponent: (t1End - t1Start) / 100
+      });
+      container.innerHTML = '';
+
+      // Test 2: Complex component (Card)
+      const t2Start = performance.now();
+      for (let i = 0; i < 50; i++) {
+        const card = document.createElement('ha-card');
+        card.innerHTML = `
+          <h3 slot="header">Card ${i}</h3>
+          <p>This is card content with some text.</p>
+          <div slot="footer">
+            <ha-button>Action</ha-button>
+          </div>
+        `;
+        container.appendChild(card);
+      }
+      const t2End = performance.now();
+      benchmarks.push({
+        name: 'Card with content (50 instances)',
+        time: t2End - t2Start,
+        avgPerComponent: (t2End - t2Start) / 50
+      });
+      container.innerHTML = '';
+
+      // Test 3: Form components (Input)
+      const t3Start = performance.now();
+      for (let i = 0; i < 100; i++) {
+        const input = document.createElement('ha-input');
+        input.setAttribute('label', `Input ${i}`);
+        input.setAttribute('placeholder', 'Enter text...');
+        container.appendChild(input);
+      }
+      const t3End = performance.now();
+      benchmarks.push({
+        name: 'Input (100 instances)',
+        time: t3End - t3Start,
+        avgPerComponent: (t3End - t3Start) / 100
+      });
+      container.innerHTML = '';
+
+      // Test 4: Data-heavy component (DataGrid)
+      const t4Start = performance.now();
+      const grid = document.createElement('ha-datagrid');
+      const data = Array.from({ length: 100 }, (_, i) => ({
+        id: i + 1,
+        name: `Item ${i + 1}`,
+        value: Math.random() * 1000,
+        status: i % 2 === 0 ? 'Active' : 'Inactive'
+      }));
+      grid.data = data;
+      grid.columns = [
+        { key: 'id', header: 'ID' },
+        { key: 'name', header: 'Name' },
+        { key: 'value', header: 'Value' },
+        { key: 'status', header: 'Status' }
+      ];
+      container.appendChild(grid);
+      const t4End = performance.now();
+      benchmarks.push({
+        name: 'DataGrid (100 rows)',
+        time: t4End - t4Start,
+        avgPerComponent: t4End - t4Start
+      });
+      container.innerHTML = '';
+
+      // Display results
+      let html = '';
+      benchmarks.forEach(bench => {
+        const rating = bench.avgPerComponent < 1 ? 'fast' : bench.avgPerComponent < 5 ? 'medium' : 'slow';
+        html += `
+          <div class="result ${rating}">
+            <span>${bench.name}</span>
+            <span class="metric">${bench.time.toFixed(2)} ms total / ${bench.avgPerComponent.toFixed(3)} ms avg</span>
+          </div>
+        `;
+      });
+      results.innerHTML = html;
+    };
+
+    // Memory benchmark
+    window.runMemoryBenchmark = function() {
+      const container = document.getElementById('test-container');
+      const results = document.getElementById('memory-results');
+
+      if (!performance.memory) {
+        results.innerHTML = '<p>Memory API not available in this browser. Use Chrome with --enable-precise-memory-info flag.</p>';
+        return;
+      }
+
+      const initialMemory = performance.memory.usedJSHeapSize;
+
+      // Create many components
+      for (let i = 0; i < 1000; i++) {
+        const btn = document.createElement('ha-button');
+        btn.textContent = `Button ${i}`;
+        container.appendChild(btn);
+      }
+
+      const afterCreateMemory = performance.memory.usedJSHeapSize;
+      const memoryIncrease = afterCreateMemory - initialMemory;
+
+      // Clean up
+      container.innerHTML = '';
+
+      // Force garbage collection (if available)
+      if (window.gc) {
+        window.gc();
+      }
+
+      setTimeout(() => {
+        const afterCleanupMemory = performance.memory.usedJSHeapSize;
+        const memoryReclaimed = afterCreateMemory - afterCleanupMemory;
+
+        results.innerHTML = `
+          <div class="result">
+            <span>Initial Memory</span>
+            <span class="metric">${(initialMemory / 1024 / 1024).toFixed(2)} MB</span>
+          </div>
+          <div class="result ${memoryIncrease < 5 * 1024 * 1024 ? 'fast' : memoryIncrease < 10 * 1024 * 1024 ? 'medium' : 'slow'}">
+            <span>Memory Increase (1000 buttons)</span>
+            <span class="metric">${(memoryIncrease / 1024 / 1024).toFixed(2)} MB</span>
+          </div>
+          <div class="result">
+            <span>Memory After Cleanup</span>
+            <span class="metric">${(afterCleanupMemory / 1024 / 1024).toFixed(2)} MB</span>
+          </div>
+          <div class="result ${memoryReclaimed > memoryIncrease * 0.8 ? 'fast' : memoryReclaimed > memoryIncrease * 0.5 ? 'medium' : 'slow'}">
+            <span>Memory Reclaimed</span>
+            <span class="metric">${(memoryReclaimed / 1024 / 1024).toFixed(2)} MB</span>
+          </div>
+        `;
+      }, 1000);
+    };
+
+    // Re-render benchmark
+    window.runReRenderBenchmark = function() {
+      const container = document.getElementById('test-container');
+      const results = document.getElementById('rerender-results');
+      results.innerHTML = '<p>Running benchmark...</p>';
+
+      // Create a button
+      const btn = document.createElement('ha-button');
+      btn.textContent = 'Initial Text';
+      container.appendChild(btn);
+
+      // Measure attribute changes
+      const t1Start = performance.now();
+      for (let i = 0; i < 1000; i++) {
+        btn.setAttribute('variant', i % 2 === 0 ? 'primary' : 'secondary');
+      }
+      const t1End = performance.now();
+
+      // Measure text content changes
+      const t2Start = performance.now();
+      for (let i = 0; i < 1000; i++) {
+        btn.textContent = `Text ${i}`;
+      }
+      const t2End = performance.now();
+
+      // Clean up
+      container.innerHTML = '';
+
+      results.innerHTML = `
+        <div class="result ${(t1End - t1Start) < 100 ? 'fast' : (t1End - t1Start) < 500 ? 'medium' : 'slow'}">
+          <span>Attribute Changes (1000 times)</span>
+          <span class="metric">${(t1End - t1Start).toFixed(2)} ms / ${((t1End - t1Start) / 1000).toFixed(3)} ms avg</span>
+        </div>
+        <div class="result ${(t2End - t2Start) < 100 ? 'fast' : (t2End - t2Start) < 500 ? 'medium' : 'slow'}">
+          <span>Text Content Changes (1000 times)</span>
+          <span class="metric">${(t2End - t2Start).toFixed(2)} ms / ${((t2End - t2Start) / 1000).toFixed(3)} ms avg</span>
+        </div>
+      `;
+    };
+
+    console.log('Performance benchmark ready. Click buttons to run tests.');
+  </script>
+</body>
+</html>

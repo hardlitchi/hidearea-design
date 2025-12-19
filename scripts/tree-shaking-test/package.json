@@ -1,0 +1,12 @@
+{
+  "name": "tree-shaking-test",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:full": "rollup -c rollup.config.full.js",
+    "build:single": "rollup -c rollup.config.single.js",
+    "build:multiple": "rollup -c rollup.config.multiple.js",
+    "test": "pnpm build:full && pnpm build:single && pnpm build:multiple"
+  }
+}
