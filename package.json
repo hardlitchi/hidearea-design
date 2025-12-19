@@ -21,6 +21,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
     "clean": "turbo run clean && rm -rf node_modules",
+    "docs:api": "tsx scripts/generate-api-docs.ts",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "turbo run build && changeset publish",
@@ -39,6 +40,7 @@
     "axe-core": "^4.11.0",
     "eslint": "^9.17.0",
     "prettier": "^3.7.4",
+    "tsx": "^4.21.0",
     "turbo": "^2.6.3",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.19.1"
