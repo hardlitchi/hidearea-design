@@ -209,12 +209,19 @@ MIT
 4. ✅ コンポーネントAPI ドキュメント（完了）
 5. ✅ デザイントークンドキュメント（完了）
 6. ✅ パフォーマンス最適化分析（完了）
-   - バンドルサイズ分析完了
-   - ツリーシェイキング検証完了
-   - パフォーマンスベンチマーク作成
-   - [詳細レポート](./docs/guides/performance-analysis.md)
+   - バンドルサイズ分析: Core 64 KB (gzip), React 16 KB, Vue 11 KB
+   - ツリーシェイキング検証: Named exports で対応済み
+   - パフォーマンスベンチマーク作成: ブラウザベースのベンチマークツール
+   - [詳細レポート](./docs/guides/performance-analysis.md) | [最適化ガイド](./docs/guides/performance-optimization.md)
+7. 🚧 Per-component imports の実装 - 次のタスク
+   - package.json に exports フィールド追加
+   - 個別インポートパスの提供
+   - 期待効果: 50-80% バンドルサイズ削減
 
 **中期（1-2ヶ月）**:
+- PurgeCSS 導入（CSS最適化）
+- Code splitting 実装（大型コンポーネント）
+- パフォーマンステスト自動化
 - テーマシステムドキュメント
 - 高度なコンポーネントパターン
 - Storybook 機能強化（ビジュアルリグレッション、インタラクションテスト）
