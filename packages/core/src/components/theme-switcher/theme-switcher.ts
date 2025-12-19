@@ -150,7 +150,10 @@ type Variant = 'toggle' | 'dropdown' | 'segmented';
 class ThemeSwitcher extends HTMLElement {
   private _currentTheme: 'light' | 'dark' = 'light';
   private _currentPreference: Theme = 'light';
-  private _themeChangeHandler?: (e: Event) => void;
+  private _themeChangeHandler: (e: Event) => void;
+  private _handleToggleBound: () => void;
+  private _handleSelectBound: (e: Event) => void;
+  private _handleSegmentedClickBound: (e: Event) => void;
 
   static get observedAttributes(): string[] {
     return ['variant', 'size', 'show-label', 'show-auto'];
@@ -162,6 +165,12 @@ class ThemeSwitcher extends HTMLElement {
     this.shadowRoot!.appendChild(template.content.cloneNode(true));
     this._currentTheme = getEffectiveTheme();
     this._currentPreference = getTheme();
+
+    // Bind event handlers once in constructor
+    this._themeChangeHandler = this._handleThemeChange.bind(this);
+    this._handleToggleBound = this._handleToggle.bind(this);
+    this._handleSelectBound = this._handleSelect.bind(this);
+    this._handleSegmentedClickBound = this._handleSegmentedClick.bind(this);
   }
 
   connectedCallback(): void {
@@ -274,29 +283,60 @@ class ThemeSwitcher extends HTMLElement {
   }
 
   private _setupListeners(): void {
+    // Remove existing UI listeners first to prevent duplicates
+    this._removeUIListeners();
+
+    // Add UI event listeners based on variant
     if (this.variant === 'toggle') {
       const btn = this.shadowRoot!.getElementById('toggle-btn');
-      btn?.addEventListener('click', this._handleToggle.bind(this));
+      btn?.addEventListener('click', this._handleToggleBound);
     } else if (this.variant === 'dropdown') {
       const select = this.shadowRoot!.getElementById('theme-select') as HTMLSelectElement;
-      select?.addEventListener('change', this._handleSelect.bind(this));
+      select?.addEventListener('change', this._handleSelectBound);
     } else if (this.variant === 'segmented') {
       this.shadowRoot!.querySelectorAll('button[data-theme]').forEach(btn => {
-        btn.addEventListener('click', this._handleSegmentedClick.bind(this));
+        btn.addEventListener('click', this._handleSegmentedClickBound);
       });
     }
 
-    // Listen for external theme changes (only add once)
-    if (!this._themeChangeHandler) {
-      this._themeChangeHandler = this._handleThemeChange.bind(this);
-      window.addEventListener('theme-change', this._themeChangeHandler);
+    // Listen for external theme changes (only add once in connectedCallback)
+    window.addEventListener('theme-change', this._themeChangeHandler);
+  }
+
+  private _setupUIListeners(): void {
+    // Remove existing UI listeners first to prevent duplicates
+    this._removeUIListeners();
+
+    // Add UI event listeners based on variant
+    if (this.variant === 'toggle') {
+      const btn = this.shadowRoot!.getElementById('toggle-btn');
+      btn?.addEventListener('click', this._handleToggleBound);
+    } else if (this.variant === 'dropdown') {
+      const select = this.shadowRoot!.getElementById('theme-select') as HTMLSelectElement;
+      select?.addEventListener('change', this._handleSelectBound);
+    } else if (this.variant === 'segmented') {
+      this.shadowRoot!.querySelectorAll('button[data-theme]').forEach(btn => {
+        btn.addEventListener('click', this._handleSegmentedClickBound);
+      });
     }
   }
 
+  private _removeUIListeners(): void {
+    // Remove UI event listeners
+    const btn = this.shadowRoot!.getElementById('toggle-btn');
+    btn?.removeEventListener('click', this._handleToggleBound);
+
+    const select = this.shadowRoot!.getElementById('theme-select') as HTMLSelectElement;
+    select?.removeEventListener('change', this._handleSelectBound);
+
+    this.shadowRoot!.querySelectorAll('button[data-theme]').forEach(btn => {
+      btn.removeEventListener('click', this._handleSegmentedClickBound);
+    });
+  }
+
   private _removeListeners(): void {
-    if (this._themeChangeHandler) {
-      window.removeEventListener('theme-change', this._themeChangeHandler);
-    }
+    this._removeUIListeners();
+    window.removeEventListener('theme-change', this._themeChangeHandler);
   }
 
   private _handleToggle(): void {
@@ -338,18 +378,9 @@ class ThemeSwitcher extends HTMLElement {
     this._currentTheme = customEvent.detail.effective;
     this._currentPreference = customEvent.detail.theme;
     this.render();
-    // Re-attach listeners to newly rendered elements
-    if (this.variant === 'toggle') {
-      const btn = this.shadowRoot!.getElementById('toggle-btn');
-      btn?.addEventListener('click', this._handleToggle.bind(this));
-    } else if (this.variant === 'dropdown') {
-      const select = this.shadowRoot!.getElementById('theme-select') as HTMLSelectElement;
-      select?.addEventListener('change', this._handleSelect.bind(this));
-    } else if (this.variant === 'segmented') {
-      this.shadowRoot!.querySelectorAll('button[data-theme]').forEach(btn => {
-        btn.addEventListener('click', this._handleSegmentedClick.bind(this));
-      });
-    }
+    // Re-attach UI listeners to newly rendered elements
+    // Use _setupUIListeners to avoid re-adding window listener
+    this._setupUIListeners();
   }
 }
 
