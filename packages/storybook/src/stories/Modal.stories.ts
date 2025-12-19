@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface ModalArgs {
   open: boolean;
@@ -12,6 +13,8 @@ interface ModalArgs {
   headerContent: string;
   bodyContent: string;
   footerContent: string;
+  onClose?: (e: CustomEvent) => void;
+  onOpen?: (e: CustomEvent) => void;
 }
 
 const meta: Meta<ModalArgs> = {
@@ -102,7 +105,71 @@ type Story = StoryObj<ModalArgs>;
 /**
  * Default modal with medium size
  */
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    onClose: fn(),
+    onOpen: fn(),
+  },
+  render: (args) => html`
+    <button
+      id="open-modal-btn"
+      @click="${(e: Event) => {
+        const modal = (e.target as HTMLElement).nextElementSibling as any;
+        modal?.setAttribute("open", "");
+      }}"
+    >
+      Open Modal
+    </button>
+    <ha-modal
+      ?open="${args.open}"
+      size="${args.size}"
+      variant="${args.variant}"
+      ?closable="${args.closable}"
+      ?close-on-backdrop="${args.closeOnBackdrop}"
+      ?close-on-escape="${args.closeOnEscape}"
+      @ha-modal-close="${args.onClose}"
+      @ha-modal-open="${args.onOpen}"
+    >
+      ${args.headerContent
+        ? html`<div slot="header">${args.headerContent}</div>`
+        : ""}
+      <div>${args.bodyContent}</div>
+      ${args.footerContent
+        ? html`<div slot="footer">${args.footerContent}</div>`
+        : ""}
+    </ha-modal>
+  `,
+  play: async ({ canvasElement, args, step }) => {
+    const canvas = within(canvasElement);
+
+    await step("Open button should be present", async () => {
+      const button = canvasElement.querySelector("#open-modal-btn");
+      await expect(button).toBeTruthy();
+    });
+
+    await step("Modal should not be visible initially", async () => {
+      const modal = canvasElement.querySelector("ha-modal");
+      await expect(modal?.hasAttribute("open")).toBe(false);
+    });
+
+    await step("Clicking button should open modal", async () => {
+      const button = canvasElement.querySelector("#open-modal-btn") as HTMLButtonElement;
+      await userEvent.click(button);
+
+      // Wait a bit for modal to open
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      const modal = canvasElement.querySelector("ha-modal");
+      await expect(modal?.hasAttribute("open")).toBe(true);
+    });
+
+    await step("Modal should have correct size and variant", async () => {
+      const modal = canvasElement.querySelector("ha-modal");
+      await expect(modal?.getAttribute("size")).toBe("md");
+      await expect(modal?.getAttribute("variant")).toBe("default");
+    });
+  },
+};
 
 /**
  * All available sizes
@@ -252,6 +319,7 @@ export const Variants: Story = {
 export const WithFooter: Story = {
   render: () => html`
     <button
+      id="open-footer-modal-btn"
       @click="${(e: Event) => {
         const modal = document.querySelector("#modal-footer") as any;
         modal?.setAttribute("open", "");
@@ -267,6 +335,7 @@ export const WithFooter: Story = {
       </div>
       <div slot="footer" style="display: flex; gap: 0.5rem; justify-content: flex-end;">
         <button
+          id="cancel-btn"
           @click="${(e: Event) => {
             const modal = document.querySelector("#modal-footer") as any;
             modal?.removeAttribute("open");
@@ -275,6 +344,7 @@ export const WithFooter: Story = {
           Cancel
         </button>
         <button
+          id="confirm-btn"
           style="background: var(--color-primary-600); color: white; padding: 0.5rem 1rem; border: none; border-radius: 0.25rem; cursor: pointer;"
           @click="${(e: Event) => {
             const modal = document.querySelector("#modal-footer") as any;
@@ -286,6 +356,32 @@ export const WithFooter: Story = {
       </div>
     </ha-modal>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Modal should open when button is clicked", async () => {
+      const button = canvasElement.querySelector("#open-footer-modal-btn") as HTMLButtonElement;
+      await userEvent.click(button);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      const modal = canvasElement.querySelector("#modal-footer");
+      await expect(modal?.hasAttribute("open")).toBe(true);
+    });
+
+    await step("Modal should have footer with buttons", async () => {
+      const cancelBtn = canvasElement.querySelector("#cancel-btn");
+      const confirmBtn = canvasElement.querySelector("#confirm-btn");
+      await expect(cancelBtn).toBeTruthy();
+      await expect(confirmBtn).toBeTruthy();
+    });
+
+    await step("Cancel button should close modal", async () => {
+      const cancelBtn = canvasElement.querySelector("#cancel-btn") as HTMLButtonElement;
+      await userEvent.click(cancelBtn);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      const modal = canvasElement.querySelector("#modal-footer");
+      await expect(modal?.hasAttribute("open")).toBe(false);
+    });
+  },
 };
 
 /**
@@ -298,6 +394,7 @@ export const NotClosable: Story = {
   },
   render: (args) => html`
     <button
+      id="open-not-closable-modal-btn"
       @click="${(e: Event) => {
         const modal = document.querySelector("#modal-not-closable") as any;
         modal?.setAttribute("open", "");
@@ -315,6 +412,7 @@ export const NotClosable: Story = {
       <div>This modal doesn't have a close button and won't close on backdrop or escape.</div>
       <div slot="footer">
         <button
+          id="close-not-closable-btn"
           @click="${(e: Event) => {
             const modal = document.querySelector("#modal-not-closable") as any;
             modal?.removeAttribute("open");
@@ -325,6 +423,35 @@ export const NotClosable: Story = {
       </div>
     </ha-modal>
   `,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Modal should be present", async () => {
+      const modal = canvasElement.querySelector("#modal-not-closable");
+      await expect(modal).toBeTruthy();
+    });
+
+    await step("Modal should not have closable attribute", async () => {
+      const modal = canvasElement.querySelector("#modal-not-closable");
+      await expect(modal?.hasAttribute("closable")).toBe(false);
+    });
+
+    await step("Modal should open when button is clicked", async () => {
+      const button = canvasElement.querySelector("#open-not-closable-modal-btn") as HTMLButtonElement;
+      await userEvent.click(button);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      const modal = canvasElement.querySelector("#modal-not-closable");
+      await expect(modal?.hasAttribute("open")).toBe(true);
+    });
+
+    await step("Footer button should close modal", async () => {
+      const closeBtn = canvasElement.querySelector("#close-not-closable-btn") as HTMLButtonElement;
+      await userEvent.click(closeBtn);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      const modal = canvasElement.querySelector("#modal-not-closable");
+      await expect(modal?.hasAttribute("open")).toBe(false);
+    });
+  },
 };
 
 /**
@@ -333,6 +460,7 @@ export const NotClosable: Story = {
 export const WithForm: Story = {
   render: () => html`
     <button
+      id="open-form-modal-btn"
       @click="${(e: Event) => {
         const modal = document.querySelector("#modal-form") as any;
         modal?.setAttribute("open", "");
@@ -360,6 +488,7 @@ export const WithForm: Story = {
       </div>
       <div slot="footer" style="display: flex; gap: 0.5rem; justify-content: flex-end;">
         <button
+          id="form-cancel-btn"
           @click="${(e: Event) => {
             const modal = document.querySelector("#modal-form") as any;
             modal?.removeAttribute("open");
@@ -368,11 +497,11 @@ export const WithForm: Story = {
           Cancel
         </button>
         <button
+          id="form-submit-btn"
           style="background: var(--color-primary-600); color: white; padding: 0.5rem 1rem; border: none; border-radius: 0.25rem; cursor: pointer;"
           @click="${(e: Event) => {
             const modal = document.querySelector("#modal-form") as any;
             modal?.removeAttribute("open");
-            alert("Form submitted!");
           }}"
         >
           Submit
@@ -380,6 +509,45 @@ export const WithForm: Story = {
       </div>
     </ha-modal>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Modal should open when button is clicked", async () => {
+      const button = canvasElement.querySelector("#open-form-modal-btn") as HTMLButtonElement;
+      await userEvent.click(button);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      const modal = canvasElement.querySelector("#modal-form");
+      await expect(modal?.hasAttribute("open")).toBe(true);
+    });
+
+    await step("Form inputs should be present and functional", async () => {
+      const nameInput = canvasElement.querySelector("#name") as HTMLInputElement;
+      const emailInput = canvasElement.querySelector("#email") as HTMLInputElement;
+      const messageTextarea = canvasElement.querySelector("#message") as HTMLTextAreaElement;
+
+      await expect(nameInput).toBeTruthy();
+      await expect(emailInput).toBeTruthy();
+      await expect(messageTextarea).toBeTruthy();
+
+      // Test typing in form fields
+      await userEvent.type(nameInput, "John Doe");
+      await expect(nameInput.value).toBe("John Doe");
+
+      await userEvent.type(emailInput, "john@example.com");
+      await expect(emailInput.value).toBe("john@example.com");
+
+      await userEvent.type(messageTextarea, "Test message");
+      await expect(messageTextarea.value).toBe("Test message");
+    });
+
+    await step("Submit button should close modal", async () => {
+      const submitBtn = canvasElement.querySelector("#form-submit-btn") as HTMLButtonElement;
+      await userEvent.click(submitBtn);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      const modal = canvasElement.querySelector("#modal-form");
+      await expect(modal?.hasAttribute("open")).toBe(false);
+    });
+  },
 };
 
 /**
