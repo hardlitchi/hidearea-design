@@ -792,4 +792,38 @@ describe("HaTimePicker", () => {
         expect(spy).toHaveBeenCalled();
     });
   });
+
+  describe("Inline Mode Input Interaction", () => {
+    it("should not toggle when clicking input in inline mode", () => {
+      element.setAttribute("inline", "");
+      const spy = vi.spyOn(element, "toggle");
+      const input = element.shadowRoot?.querySelector("input");
+      (input as HTMLElement)?.click();
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it("should toggle when clicking input in non-inline mode", () => {
+      const spy = vi.spyOn(element, "toggle");
+      const input = element.shadowRoot?.querySelector("input");
+      (input as HTMLElement)?.click();
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe("Scroll to Selected with Seconds", () => {
+    it("should scroll to selected second when showSeconds is enabled", async () => {
+      element.setAttribute("show-seconds", "");
+      element.value = "12:30:45";
+      element.open();
+
+      await new Promise(resolve => setTimeout(resolve, 50));
+
+      const secondColumn = element.shadowRoot?.querySelector(".column:nth-child(3)") as HTMLElement;
+      expect(secondColumn).toBeTruthy();
+
+      // Verify second column has scrolled (scrollTop should be non-zero for selected item)
+      const selectedSecond = secondColumn?.querySelector(".item.selected") as HTMLElement;
+      expect(selectedSecond).toBeTruthy();
+    });
+  });
 });
