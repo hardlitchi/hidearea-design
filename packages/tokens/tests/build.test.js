@@ -286,7 +286,9 @@ function getAllCssFiles(dir) {
 
       if (entry.isDirectory()) {
         traverse(fullPath);
-      } else if (entry.name.endsWith('.css') && entry.name !== 'all.css') {
+      } else if (entry.name.endsWith('.css') &&
+                 entry.name !== 'all.css' &&
+                 entry.name !== 'all.min.css') {
         files.push(fullPath);
       }
     }

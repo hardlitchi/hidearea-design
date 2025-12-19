@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Optimization Demo - Hidearea Design</title>
+
+  <!-- ❌ BAD: 全CSSを読み込み (188 KB) -->
+  <!-- <link rel="stylesheet" href="../../packages/tokens/build/css/all.css"> -->
+
+  <!-- ✅ GOOD: 必要なCSSのみ読み込み (~25 KB) -->
+  <link rel="stylesheet" href="../../packages/tokens/build/css/variables.css">
+  <link rel="stylesheet" href="../../packages/tokens/build/css/components/layout/button.css">
+  <link rel="stylesheet" href="../../packages/tokens/build/css/components/forms/input.css">
+  <link rel="stylesheet" href="../../packages/tokens/build/css/components/feedback/alert.css">
+
+  <style>
+    body {
+      font-family: var(--font-family-base);
+      padding: 2rem;
+      background: var(--color-background);
+      color: var(--color-text);
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+
+    .stats {
+      background: var(--color-background-secondary);
+      padding: 1rem;
+      border-radius: var(--border-radius-md);
+      margin-bottom: 2rem;
+    }
+
+    .stats h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .comparison-item {
+      padding: 1rem;
+      border-radius: var(--border-radius-sm);
+    }
+
+    .bad {
+      background: var(--color-error-light);
+      border: 2px solid var(--color-error);
+    }
+
+    .good {
+      background: var(--color-success-light);
+      border: 2px solid var(--color-success);
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+  </style>
+
+  <script type="module">
+    // コンポーネントを個別にインポート
+    import { HaButton } from '../../packages/core/dist/components/button/button.js';
+    import { HaInput } from '../../packages/core/dist/components/input/input.js';
+    import { HaAlert } from '../../packages/core/dist/components/alert/alert.js';
+
+    // ページ読み込み時の統計を表示
+    window.addEventListener('load', () => {
+      const perfData = performance.getEntriesByType('resource');
+      const cssFiles = perfData.filter(r => r.name.endsWith('.css'));
+
+      const totalSize = cssFiles.reduce((sum, file) => sum + (file.transferSize || 0), 0);
+
+      document.getElementById('css-count').textContent = cssFiles.length;
+      document.getElementById('css-size').textContent = (totalSize / 1024).toFixed(2) + ' KB';
+
+      // 個別のCSSファイル情報
+      const fileList = document.getElementById('file-list');
+      cssFiles.forEach(file => {
+        const li = document.createElement('li');
+        const fileName = file.name.split('/').pop();
+        const size = ((file.transferSize || 0) / 1024).toFixed(2);
+        li.textContent = `${fileName}: ${size} KB`;
+        fileList.appendChild(li);
+      });
+    });
+
+    // フォーム送信のデモ
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('demo-form');
+      const alert = document.querySelector('ha-alert');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert.setAttribute('variant', 'success');
+        alert.textContent = 'フォームが送信されました！';
+        alert.style.display = 'block';
+
+        setTimeout(() => {
+          alert.style.display = 'none';
+        }, 3000);
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 CSS 最適化デモ</h1>
+
+    <div class="stats">
+      <h2>📊 読み込み統計</h2>
+      <p><strong>CSSファイル数:</strong> <span id="css-count">-</span></p>
+      <p><strong>合計サイズ:</strong> <span id="css-size">-</span></p>
+      <ul id="file-list"></ul>
+    </div>
+
+    <div class="comparison">
+      <div class="comparison-item bad">
+        <h3>❌ 全CSS読み込み</h3>
+        <p><strong>188 KB</strong></p>
+        <p>すべてのコンポーネントスタイル</p>
+      </div>
+      <div class="comparison-item good">
+        <h3>✅ Per-component CSS</h3>
+        <p><strong>~25 KB</strong></p>
+        <p>必要なスタイルのみ</p>
+      </div>
+    </div>
+
+    <ha-alert variant="info" style="margin-bottom: 1.5rem;">
+      このページは <strong>per-component CSS imports</strong> を使用しています。
+      <br>
+      削減効果: <strong>87% (188 KB → 25 KB)</strong>
+    </ha-alert>
+
+    <h2>デモフォーム</h2>
+    <form id="demo-form">
+      <div class="form-group">
+        <label for="name">お名前</label>
+        <ha-input
+          id="name"
+          name="name"
+          placeholder="山田太郎"
+          required>
+        </ha-input>
+      </div>
+
+      <div class="form-group">
+        <label for="email">メールアドレス</label>
+        <ha-input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="example@email.com"
+          required>
+        </ha-input>
+      </div>
+
+      <ha-button type="submit" variant="primary">
+        送信
+      </ha-button>
+    </form>
+
+    <ha-alert variant="success" style="display: none; margin-top: 1rem;"></ha-alert>
+
+    <div style="margin-top: 2rem; padding: 1rem; background: var(--color-background-secondary); border-radius: var(--border-radius-sm);">
+      <h3>💡 この例で使用しているCSS</h3>
+      <pre><code>&lt;link rel="stylesheet" href="variables.css"&gt;
+&lt;link rel="stylesheet" href="components/layout/button.css"&gt;
+&lt;link rel="stylesheet" href="components/forms/input.css"&gt;
+&lt;link rel="stylesheet" href="components/feedback/alert.css"&gt;</code></pre>
+
+      <p><strong>合計: 約25 KB</strong>（変数 + 3コンポーネント）</p>
+    </div>
+  </div>
+</body>
+</html>
