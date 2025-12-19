@@ -182,7 +182,23 @@ MIT
 
 ### Guides
 
+#### 使用ガイド
 - **[使用例](./docs/guides/examples.md)** - ログインフォーム、検索、設定パネルなどの実装例
+- **[Per-component Imports](./docs/guides/per-component-imports.md)** - 個別コンポーネントインポートによるバンドルサイズ最適化
+- **[CSS最適化](./docs/guides/css-optimization.md)** - CSSバンドルサイズの最適化戦略
+
+#### テーマ・デザイントークン
+- **[Theme System Guide](./docs/guides/theme-system.md)** - テーマシステムの総合ガイド（ライト・ダークモード、カスタマイズ）
+- **[Design Tokens Usage](./docs/guides/design-tokens-usage.md)** - デザイントークンの使い方と命名規則
+- **[Theme Customization Recipes](./docs/guides/theme-customization-recipes.md)** - 実践的なテーマカスタマイズレシピ集
+- **[Theme Migration Guide](./docs/guides/theme-migration-guide.md)** - テーマシステムのバージョン移行ガイド
+
+#### パフォーマンス
+- **[Performance Analysis](./docs/guides/performance-analysis.md)** - パフォーマンス分析レポート
+- **[Performance Optimization](./docs/guides/performance-optimization.md)** - パフォーマンス最適化ガイド
+- **[Performance Testing](./docs/guides/performance-testing.md)** - 自動パフォーマンステストガイド
+
+#### 開発ガイド
 - **[コントリビューティング](./CONTRIBUTING.md)** ([日本語](./CONTRIBUTING.ja.md)) - プロジェクトへの貢献方法
 
 ### Changelog
@@ -236,8 +252,11 @@ MIT
   - ✅ パフォーマンス予算チェッカー
   - ✅ パフォーマンスダッシュボード
   - [テストガイド](./docs/guides/performance-testing.md)
-- Code splitting 実装（大型コンポーネント）
-- テーマシステムドキュメント
+- ✅ テーマシステムドキュメント（完了）
+  - ✅ テーマシステム総合ガイド: [Theme System Guide](./docs/guides/theme-system.md)
+  - ✅ デザイントークン使用ガイド: [Design Tokens Usage](./docs/guides/design-tokens-usage.md)
+  - ✅ テーマカスタマイズレシピ: [Theme Customization Recipes](./docs/guides/theme-customization-recipes.md)
+  - ✅ 移行ガイド: [Theme Migration Guide](./docs/guides/theme-migration-guide.md)
 - 高度なコンポーネントパターン
 - Storybook 機能強化（ビジュアルリグレッション、インタラクションテスト）
 
