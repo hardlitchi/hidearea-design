@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface RadioArgs {
   size: "sm" | "md" | "lg";
@@ -75,6 +76,7 @@ export const Default: Story = {
   },
   render: (args) => html`
     <ha-radio
+      id="test-radio"
       size="${args.size}"
       ?checked="${args.checked}"
       ?disabled="${args.disabled}"
@@ -84,8 +86,37 @@ export const Default: Story = {
       value="${args.value}"
       label="${args.label}"
       description="${args.description}"
+      @change="${fn()}"
     ></ha-radio>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Radio should be present", async () => {
+      const radio = canvasElement.querySelector("#test-radio");
+      await expect(radio).toBeTruthy();
+    });
+
+    await step("Radio should have correct attributes", async () => {
+      const radio = canvasElement.querySelector("#test-radio");
+      await expect(radio?.getAttribute("size")).toBe("md");
+      await expect(radio?.getAttribute("name")).toBe("example");
+      await expect(radio?.getAttribute("value")).toBe("option1");
+    });
+
+    await step("Radio should not be checked initially", async () => {
+      const radio = canvasElement.querySelector("#test-radio") as any;
+      await expect(radio?.checked).toBe(false);
+    });
+
+    await step("Clicking radio should check it", async () => {
+      const radio = canvasElement.querySelector("#test-radio") as HTMLElement;
+      const nativeInput = radio.querySelector("input[type='radio']") as HTMLInputElement;
+
+      await userEvent.click(radio);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(nativeInput?.checked).toBe(true);
+    });
+  },
 };
 
 export const Checked: Story = {
@@ -194,6 +225,7 @@ export const AllStates: Story = {
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Normal</h4>
         <ha-radio
+          id="normal-radio"
           name="states-normal"
           value="normal"
           label="Normal radio"
@@ -202,6 +234,7 @@ export const AllStates: Story = {
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Checked</h4>
         <ha-radio
+          id="checked-radio"
           name="states-checked"
           value="checked"
           label="Checked radio"
@@ -211,6 +244,7 @@ export const AllStates: Story = {
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Disabled</h4>
         <ha-radio
+          id="disabled-radio"
           name="states-disabled"
           value="disabled"
           label="Disabled radio"
@@ -220,6 +254,7 @@ export const AllStates: Story = {
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Disabled Checked</h4>
         <ha-radio
+          id="disabled-checked-radio"
           name="states-disabled-checked"
           value="disabled-checked"
           label="Disabled checked radio"
@@ -230,6 +265,7 @@ export const AllStates: Story = {
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Error</h4>
         <ha-radio
+          id="error-radio"
           name="states-error"
           value="error"
           label="Error radio"
@@ -238,6 +274,44 @@ export const AllStates: Story = {
       </div>
     </div>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Normal radio should not be checked", async () => {
+      const radio = canvasElement.querySelector("#normal-radio") as any;
+      await expect(radio?.checked).toBe(false);
+      await expect(radio?.hasAttribute("disabled")).toBe(false);
+    });
+
+    await step("Checked radio should be checked", async () => {
+      const radio = canvasElement.querySelector("#checked-radio") as any;
+      await expect(radio?.checked).toBe(true);
+    });
+
+    await step("Disabled radio should have disabled attribute", async () => {
+      const radio = canvasElement.querySelector("#disabled-radio");
+      await expect(radio?.hasAttribute("disabled")).toBe(true);
+    });
+
+    await step("Disabled checked radio should be both checked and disabled", async () => {
+      const radio = canvasElement.querySelector("#disabled-checked-radio") as any;
+      await expect(radio?.checked).toBe(true);
+      await expect(radio?.hasAttribute("disabled")).toBe(true);
+    });
+
+    await step("Error radio should have error attribute", async () => {
+      const radio = canvasElement.querySelector("#error-radio");
+      await expect(radio?.hasAttribute("error")).toBe(true);
+    });
+
+    await step("Error radio should still be functional", async () => {
+      const radio = canvasElement.querySelector("#error-radio") as HTMLElement;
+      const nativeInput = radio.querySelector("input[type='radio']") as HTMLInputElement;
+
+      await userEvent.click(radio);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(nativeInput?.checked).toBe(true);
+    });
+  },
 };
 
 export const WithSlots: Story = {
@@ -257,20 +331,66 @@ export const RadioGroup: Story = {
     <div style="display: flex; flex-direction: column; gap: 1rem;">
       <h4 style="margin: 0;">Select your preferred contact method</h4>
       <ha-radio
+        id="email-radio"
         name="contact-method"
         value="email"
         label="Email"
         checked
       ></ha-radio>
-      <ha-radio name="contact-method" value="phone" label="Phone"></ha-radio>
-      <ha-radio name="contact-method" value="sms" label="SMS"></ha-radio>
+      <ha-radio id="phone-radio" name="contact-method" value="phone" label="Phone"></ha-radio>
+      <ha-radio id="sms-radio" name="contact-method" value="sms" label="SMS"></ha-radio>
       <ha-radio
+        id="mail-radio"
         name="contact-method"
         value="mail"
         label="Postal Mail"
       ></ha-radio>
     </div>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("All radio buttons should be present", async () => {
+      const radios = canvasElement.querySelectorAll("ha-radio");
+      await expect(radios.length).toBe(4);
+    });
+
+    await step("All radios should have same name attribute", async () => {
+      const email = canvasElement.querySelector("#email-radio");
+      const phone = canvasElement.querySelector("#phone-radio");
+
+      await expect(email?.getAttribute("name")).toBe("contact-method");
+      await expect(phone?.getAttribute("name")).toBe("contact-method");
+    });
+
+    await step("Email radio should be checked initially", async () => {
+      const emailRadio = canvasElement.querySelector("#email-radio") as any;
+      await expect(emailRadio?.checked).toBe(true);
+    });
+
+    await step("Clicking phone radio should check it and uncheck email", async () => {
+      const phoneRadio = canvasElement.querySelector("#phone-radio") as HTMLElement;
+      const phoneInput = phoneRadio.querySelector("input[type='radio']") as HTMLInputElement;
+
+      await userEvent.click(phoneRadio);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(phoneInput?.checked).toBe(true);
+
+      // Email radio should now be unchecked (radio button behavior)
+      const emailRadio = canvasElement.querySelector("#email-radio") as HTMLElement;
+      const emailInput = emailRadio.querySelector("input[type='radio']") as HTMLInputElement;
+      await expect(emailInput?.checked).toBe(false);
+    });
+
+    await step("Clicking SMS radio should work", async () => {
+      const smsRadio = canvasElement.querySelector("#sms-radio") as HTMLElement;
+      const smsInput = smsRadio.querySelector("input[type='radio']") as HTMLInputElement;
+
+      await userEvent.click(smsRadio);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(smsInput?.checked).toBe(true);
+    });
+  },
 };
 
 export const RadioGroupWithDescriptions: Story = {
