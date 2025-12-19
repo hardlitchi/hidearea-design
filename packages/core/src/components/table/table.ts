@@ -105,11 +105,20 @@ export class HaTable extends HTMLElement {
     // Apply styles to slotted Light DOM elements
     // This is needed because ::slotted() doesn't penetrate nested structures
     const applyStyles = () => {
-      const thead = this.querySelector("thead");
-      const tbody = this.querySelector("tbody");
-      const ths = this.querySelectorAll("th");
-      const tds = this.querySelectorAll("td");
-      const trs = this.querySelectorAll("tr");
+      // Find the table element in Light DOM
+      const table = this.querySelector("table");
+      if (!table) return;
+
+      // Apply table base styles
+      table.style.width = "100%";
+      table.style.borderCollapse = "collapse";
+      table.style.borderSpacing = "0";
+
+      const thead = table.querySelector("thead");
+      const tbody = table.querySelector("tbody");
+      const ths = table.querySelectorAll("th");
+      const tds = table.querySelectorAll("td");
+      const trs = table.querySelectorAll("tr");
 
       // Apply inline styles via CSS custom properties
       if (thead) {
