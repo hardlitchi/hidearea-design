@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { ref, createRef, Ref } from "lit/directives/ref.js";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface CheckboxArgs {
   size: "sm" | "md" | "lg";
@@ -81,6 +82,7 @@ export const Default: Story = {
 
     return html`
       <ha-checkbox
+        id="test-checkbox"
         ${ref(checkboxRef)}
         size="${args.size}"
         ?disabled="${args.disabled}"
@@ -88,13 +90,47 @@ export const Default: Story = {
         ?error="${args.error}"
         label="${args.label}"
         description="${args.description}"
-        @change="${(e: CustomEvent) => {
-          console.log("Change:", e.detail.checked);
-          updateArgs({ checked: e.detail.checked, indeterminate: false });
-        }}"
+        @change="${fn()}"
       >
       </ha-checkbox>
     `;
+  },
+  play: async ({ canvasElement, step }) => {
+    await step("Checkbox should be present", async () => {
+      const checkbox = canvasElement.querySelector("#test-checkbox");
+      await expect(checkbox).toBeTruthy();
+    });
+
+    await step("Checkbox should have correct size", async () => {
+      const checkbox = canvasElement.querySelector("#test-checkbox");
+      await expect(checkbox?.getAttribute("size")).toBe("md");
+    });
+
+    await step("Checkbox should not be checked initially", async () => {
+      const checkbox = canvasElement.querySelector("#test-checkbox") as any;
+      await expect(checkbox?.checked).toBe(false);
+    });
+
+    await step("Clicking checkbox should toggle checked state", async () => {
+      const checkbox = canvasElement.querySelector("#test-checkbox") as HTMLElement;
+      const nativeInput = checkbox.querySelector("input[type='checkbox']") as HTMLInputElement;
+
+      await userEvent.click(checkbox);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      // Verify native input is checked
+      await expect(nativeInput?.checked).toBe(true);
+    });
+
+    await step("Clicking again should uncheck", async () => {
+      const checkbox = canvasElement.querySelector("#test-checkbox") as HTMLElement;
+      const nativeInput = checkbox.querySelector("input[type='checkbox']") as HTMLInputElement;
+
+      await userEvent.click(checkbox);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(nativeInput?.checked).toBe(false);
+    });
   },
 };
 
@@ -186,14 +222,57 @@ export const AllSizes: Story = {
 export const AllStates: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: 1rem;">
-      <ha-checkbox label="Unchecked"></ha-checkbox>
-      <ha-checkbox checked label="Checked"></ha-checkbox>
-      <ha-checkbox indeterminate label="Indeterminate"></ha-checkbox>
-      <ha-checkbox disabled label="Disabled"></ha-checkbox>
-      <ha-checkbox checked disabled label="Checked & Disabled"></ha-checkbox>
-      <ha-checkbox error label="Error state"></ha-checkbox>
+      <ha-checkbox id="unchecked-cb" label="Unchecked"></ha-checkbox>
+      <ha-checkbox id="checked-cb" checked label="Checked"></ha-checkbox>
+      <ha-checkbox id="indeterminate-cb" indeterminate label="Indeterminate"></ha-checkbox>
+      <ha-checkbox id="disabled-cb" disabled label="Disabled"></ha-checkbox>
+      <ha-checkbox id="checked-disabled-cb" checked disabled label="Checked & Disabled"></ha-checkbox>
+      <ha-checkbox id="error-cb" error label="Error state"></ha-checkbox>
     </div>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Unchecked checkbox should not be checked", async () => {
+      const checkbox = canvasElement.querySelector("#unchecked-cb") as any;
+      await expect(checkbox?.checked).toBe(false);
+      await expect(checkbox?.hasAttribute("disabled")).toBe(false);
+    });
+
+    await step("Checked checkbox should be checked", async () => {
+      const checkbox = canvasElement.querySelector("#checked-cb") as any;
+      await expect(checkbox?.checked).toBe(true);
+    });
+
+    await step("Indeterminate checkbox should have indeterminate state", async () => {
+      const checkbox = canvasElement.querySelector("#indeterminate-cb") as any;
+      await expect(checkbox?.indeterminate).toBe(true);
+    });
+
+    await step("Disabled checkbox should be disabled", async () => {
+      const checkbox = canvasElement.querySelector("#disabled-cb");
+      await expect(checkbox?.hasAttribute("disabled")).toBe(true);
+    });
+
+    await step("Checked disabled checkbox should be both checked and disabled", async () => {
+      const checkbox = canvasElement.querySelector("#checked-disabled-cb") as any;
+      await expect(checkbox?.checked).toBe(true);
+      await expect(checkbox?.hasAttribute("disabled")).toBe(true);
+    });
+
+    await step("Error checkbox should have error attribute", async () => {
+      const checkbox = canvasElement.querySelector("#error-cb");
+      await expect(checkbox?.hasAttribute("error")).toBe(true);
+    });
+
+    await step("Error checkbox should still be functional", async () => {
+      const checkbox = canvasElement.querySelector("#error-cb") as HTMLElement;
+      const nativeInput = checkbox.querySelector("input[type='checkbox']") as HTMLInputElement;
+
+      await userEvent.click(checkbox);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(nativeInput?.checked).toBe(true);
+    });
+  },
 };
 
 export const WithSlots: Story = {
@@ -223,7 +302,7 @@ export const WithSlots: Story = {
 
 export const CheckboxGroup: Story = {
   render: () => html`
-    <form style="max-width: 400px;">
+    <form id="checkbox-group-form" style="max-width: 400px;">
       <fieldset
         style="border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 1rem;"
       >
@@ -232,21 +311,25 @@ export const CheckboxGroup: Story = {
         </legend>
         <div style="display: flex; flex-direction: column; gap: 1rem;">
           <ha-checkbox
+            id="design-cb"
             name="interests"
             value="design"
             label="Design"
           ></ha-checkbox>
           <ha-checkbox
+            id="development-cb"
             name="interests"
             value="development"
             label="Development"
           ></ha-checkbox>
           <ha-checkbox
+            id="marketing-cb"
             name="interests"
             value="marketing"
             label="Marketing"
           ></ha-checkbox>
           <ha-checkbox
+            id="sales-cb"
             name="interests"
             value="sales"
             label="Sales"
@@ -255,6 +338,45 @@ export const CheckboxGroup: Story = {
       </fieldset>
     </form>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("All checkboxes should be present", async () => {
+      const checkboxes = canvasElement.querySelectorAll("ha-checkbox");
+      await expect(checkboxes.length).toBe(4);
+    });
+
+    await step("All checkboxes should have same name attribute", async () => {
+      const design = canvasElement.querySelector("#design-cb");
+      const development = canvasElement.querySelector("#development-cb");
+
+      await expect(design?.getAttribute("name")).toBe("interests");
+      await expect(development?.getAttribute("name")).toBe("interests");
+    });
+
+    await step("Checking multiple checkboxes should work", async () => {
+      const designCb = canvasElement.querySelector("#design-cb") as HTMLElement;
+      const devCb = canvasElement.querySelector("#development-cb") as HTMLElement;
+
+      await userEvent.click(designCb);
+      await userEvent.click(devCb);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      const designInput = designCb.querySelector("input[type='checkbox']") as HTMLInputElement;
+      const devInput = devCb.querySelector("input[type='checkbox']") as HTMLInputElement;
+
+      await expect(designInput?.checked).toBe(true);
+      await expect(devInput?.checked).toBe(true);
+    });
+
+    await step("Unchecking a checkbox should work", async () => {
+      const designCb = canvasElement.querySelector("#design-cb") as HTMLElement;
+
+      await userEvent.click(designCb);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      const designInput = designCb.querySelector("input[type='checkbox']") as HTMLInputElement;
+      await expect(designInput?.checked).toBe(false);
+    });
+  },
 };
 
 export const FormExample: Story = {
