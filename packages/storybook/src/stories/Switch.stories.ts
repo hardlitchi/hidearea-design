@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface SwitchArgs {
   size: "sm" | "md" | "lg";
@@ -75,6 +76,7 @@ export const Default: Story = {
   },
   render: (args) => html`
     <ha-switch
+      id="test-switch"
       size="${args.size}"
       ?checked="${args.checked}"
       ?disabled="${args.disabled}"
@@ -84,8 +86,47 @@ export const Default: Story = {
       value="${args.value}"
       label="${args.label}"
       description="${args.description}"
+      @change="${fn()}"
     ></ha-switch>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Switch should be present", async () => {
+      const switchElem = canvasElement.querySelector("#test-switch");
+      await expect(switchElem).toBeTruthy();
+    });
+
+    await step("Switch should have correct attributes", async () => {
+      const switchElem = canvasElement.querySelector("#test-switch");
+      await expect(switchElem?.getAttribute("size")).toBe("md");
+      await expect(switchElem?.getAttribute("name")).toBe("example");
+      await expect(switchElem?.getAttribute("value")).toBe("on");
+    });
+
+    await step("Switch should not be checked initially", async () => {
+      const switchElem = canvasElement.querySelector("#test-switch") as any;
+      await expect(switchElem?.checked).toBe(false);
+    });
+
+    await step("Clicking switch should toggle it on", async () => {
+      const switchElem = canvasElement.querySelector("#test-switch") as HTMLElement;
+      const nativeInput = switchElem.querySelector("input[type='checkbox']") as HTMLInputElement;
+
+      await userEvent.click(switchElem);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(nativeInput?.checked).toBe(true);
+    });
+
+    await step("Clicking again should toggle it off", async () => {
+      const switchElem = canvasElement.querySelector("#test-switch") as HTMLElement;
+      const nativeInput = switchElem.querySelector("input[type='checkbox']") as HTMLInputElement;
+
+      await userEvent.click(switchElem);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(nativeInput?.checked).toBe(false);
+    });
+  },
 };
 
 export const Checked: Story = {
@@ -178,26 +219,74 @@ export const AllStates: Story = {
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Normal (Off)</h4>
-        <ha-switch label="Normal switch"></ha-switch>
+        <ha-switch id="normal-switch" label="Normal switch"></ha-switch>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Checked (On)</h4>
-        <ha-switch label="Checked switch" checked></ha-switch>
+        <ha-switch id="checked-switch" label="Checked switch" checked></ha-switch>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Disabled (Off)</h4>
-        <ha-switch label="Disabled switch" disabled></ha-switch>
+        <ha-switch id="disabled-switch" label="Disabled switch" disabled></ha-switch>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Disabled (On)</h4>
-        <ha-switch label="Disabled checked switch" disabled checked></ha-switch>
+        <ha-switch id="disabled-checked-switch" label="Disabled checked switch" disabled checked></ha-switch>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Error</h4>
-        <ha-switch label="Error switch" error></ha-switch>
+        <ha-switch id="error-switch" label="Error switch" error></ha-switch>
       </div>
     </div>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Normal switch should not be checked", async () => {
+      const switchElem = canvasElement.querySelector("#normal-switch") as any;
+      await expect(switchElem?.checked).toBe(false);
+      await expect(switchElem?.hasAttribute("disabled")).toBe(false);
+    });
+
+    await step("Checked switch should be checked", async () => {
+      const switchElem = canvasElement.querySelector("#checked-switch") as any;
+      await expect(switchElem?.checked).toBe(true);
+    });
+
+    await step("Disabled switch should have disabled attribute", async () => {
+      const switchElem = canvasElement.querySelector("#disabled-switch");
+      await expect(switchElem?.hasAttribute("disabled")).toBe(true);
+    });
+
+    await step("Disabled checked switch should be both checked and disabled", async () => {
+      const switchElem = canvasElement.querySelector("#disabled-checked-switch") as any;
+      await expect(switchElem?.checked).toBe(true);
+      await expect(switchElem?.hasAttribute("disabled")).toBe(true);
+    });
+
+    await step("Error switch should have error attribute", async () => {
+      const switchElem = canvasElement.querySelector("#error-switch");
+      await expect(switchElem?.hasAttribute("error")).toBe(true);
+    });
+
+    await step("Error switch should still be functional", async () => {
+      const switchElem = canvasElement.querySelector("#error-switch") as HTMLElement;
+      const nativeInput = switchElem.querySelector("input[type='checkbox']") as HTMLInputElement;
+
+      await userEvent.click(switchElem);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(nativeInput?.checked).toBe(true);
+    });
+
+    await step("Normal switch should be toggleable", async () => {
+      const switchElem = canvasElement.querySelector("#normal-switch") as HTMLElement;
+      const nativeInput = switchElem.querySelector("input[type='checkbox']") as HTMLInputElement;
+
+      await userEvent.click(switchElem);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(nativeInput?.checked).toBe(true);
+    });
+  },
 };
 
 export const WithSlots: Story = {
