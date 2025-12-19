@@ -35,9 +35,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "node config.mjs && pnpm run build:purge",
-    "build:nopurge": "node config.mjs",
-    "build:purge": "postcss build/css/all.css -o build/css/all.min.css && postcss build/css/html/all.css -o build/css/html/all.min.css",
+    "build": "node config.mjs",
+    "build:purge": "NODE_ENV=production postcss build/css/all.css -o build/css/all.min.css && NODE_ENV=production postcss build/css/html/all.css -o build/css/html/all.min.css",
     "clean": "rm -rf build node_modules",
     "test": "vitest run",
     "test:watch": "vitest",
