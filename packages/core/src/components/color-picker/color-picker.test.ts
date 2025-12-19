@@ -938,4 +938,105 @@ describe("HaColorPicker", () => {
     });
   });
 
+  describe("Input Change Handling", () => {
+    it("should update color when hex input is changed", () => {
+      const picker = document.createElement("ha-color-picker") as HaColorPicker;
+      picker.value = "#ff0000";
+      document.body.appendChild(picker);
+
+      const input = picker.shadowRoot?.querySelector('input[type="text"]') as HTMLInputElement;
+      if (input) {
+        input.value = "#00ff00";
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+
+        expect(picker.value).toBe("#00ff00");
+      }
+      document.body.removeChild(picker);
+    });
+
+    it("should not update color when input changes if disabled", () => {
+      const picker = document.createElement("ha-color-picker") as HaColorPicker;
+      picker.value = "#ff0000";
+      picker.disabled = true;
+      document.body.appendChild(picker);
+
+      const input = picker.shadowRoot?.querySelector('input[type="text"]') as HTMLInputElement;
+      if (input) {
+        const originalValue = picker.value;
+        input.value = "#00ff00";
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+
+        expect(picker.value).toBe(originalValue);
+      }
+      document.body.removeChild(picker);
+    });
+
+    it("should not update color when input changes if readonly", () => {
+      const picker = document.createElement("ha-color-picker") as HaColorPicker;
+      picker.value = "#ff0000";
+      picker.readonly = true;
+      document.body.appendChild(picker);
+
+      const input = picker.shadowRoot?.querySelector('input[type="text"]') as HTMLInputElement;
+      if (input) {
+        const originalValue = picker.value;
+        input.value = "#00ff00";
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+
+        expect(picker.value).toBe(originalValue);
+      }
+      document.body.removeChild(picker);
+    });
+  });
+
+  describe("Swatch Click Handling", () => {
+    it("should update color when swatch is clicked", () => {
+      const picker = document.createElement("ha-color-picker") as HaColorPicker;
+      picker.setAttribute("show-swatches", "");
+      picker.setAttribute("swatches", "#ff0000,#00ff00,#0000ff");
+      document.body.appendChild(picker);
+
+      const swatches = picker.shadowRoot?.querySelectorAll(".swatch");
+      if (swatches && swatches.length > 1) {
+        (swatches[1] as HTMLElement).click();
+        expect(picker.value).toBe("#00ff00");
+      }
+      document.body.removeChild(picker);
+    });
+
+    it("should not update color when swatch is clicked if disabled", () => {
+      const picker = document.createElement("ha-color-picker") as HaColorPicker;
+      picker.setAttribute("show-swatches", "");
+      picker.setAttribute("swatches", "#ff0000,#00ff00,#0000ff");
+      picker.disabled = true;
+      picker.value = "#ff0000";
+      document.body.appendChild(picker);
+
+      const originalValue = picker.value;
+      const swatches = picker.shadowRoot?.querySelectorAll(".swatch");
+      if (swatches && swatches.length > 1) {
+        (swatches[1] as HTMLElement).click();
+        expect(picker.value).toBe(originalValue);
+      }
+      document.body.removeChild(picker);
+    });
+
+    it("should not update color when swatch is clicked if readonly", () => {
+      const picker = document.createElement("ha-color-picker") as HaColorPicker;
+      picker.setAttribute("show-swatches", "");
+      picker.setAttribute("swatches", "#ff0000,#00ff00,#0000ff");
+      picker.readonly = true;
+      picker.value = "#ff0000";
+      document.body.appendChild(picker);
+
+      const originalValue = picker.value;
+      const swatches = picker.shadowRoot?.querySelectorAll(".swatch");
+      if (swatches && swatches.length > 1) {
+        (swatches[1] as HTMLElement).click();
+        expect(picker.value).toBe(originalValue);
+      }
+      document.body.removeChild(picker);
+    });
+  });
+
 });
