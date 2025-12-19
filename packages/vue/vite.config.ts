@@ -14,6 +14,7 @@ export default defineConfig({
     rollupOptions: {
       external: ["vue", "@hidearea-design/core"],
       output: {
+        exports: "named",
         globals: {
           vue: "Vue",
           "@hidearea-design/core": "HideareaDesignCore",
