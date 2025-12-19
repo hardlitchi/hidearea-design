@@ -14,16 +14,17 @@ import { join } from 'path';
  * 必要なすべてのファイルが期待通りに生成されることを確認します。
  *
  * 検証内容:
- * - Pattern 1: WebComponents (44 files with :host selectors)
+ * - Pattern 1: WebComponents (46 files with :host selectors)
  *   Shadow DOM対応のWeb Components用CSS
- * - Pattern 2: HTML (44 files with .ha-* class selectors)
+ * - Pattern 2: HTML (46 files with .ha-* class selectors)
  *   プレーンHTMLで使用可能なクラスベースCSS
- * - Pattern 3: React/Vue (88 JS/TS exports)
+ * - Pattern 3: React/Vue (92 JS/TS exports)
  *   JavaScriptフレームワーク用のスタイルエクスポート
  * - Pattern 4: Unified CSS (2 files)
  *   全コンポーネントを含む統合CSSファイル
  *
- * Total expected: 183 files (44 + 44 + 88 + 2 + metadata files)
+ * Total expected: 187 files (46 + 46 + 92 + 2 + metadata files)
+ * Note: tabs component split into 3 files (tabs, tab-item, tab-panel)
  *
  * @example
  * // テストの実行方法
@@ -35,7 +36,7 @@ import { join } from 'path';
  */
 
 const BUILD_DIR = './build';
-const EXPECTED_COMPONENT_COUNT = 44;
+const EXPECTED_COMPONENT_COUNT = 46; // 44 base components + 2 additional (tab-item, tab-panel split from tabs)
 
 describe('Build System Tests', () => {
   beforeAll(() => {
@@ -244,12 +245,13 @@ describe('Build System Tests', () => {
   });
 
   describe('Total File Count', () => {
-    it('should generate approximately 183 files total', () => {
+    it('should generate approximately 187 files total', () => {
       const totalFiles = countAllFiles(BUILD_DIR);
 
-      // Allow some variance for metadata files, but should be around 183
-      expect(totalFiles, 'Total build files').toBeGreaterThanOrEqual(178);
-      expect(totalFiles, 'Total build files').toBeLessThanOrEqual(188);
+      // Allow some variance for metadata files, but should be around 187
+      // (46 + 46 + 92 + 2 + metadata files)
+      expect(totalFiles, 'Total build files').toBeGreaterThanOrEqual(182);
+      expect(totalFiles, 'Total build files').toBeLessThanOrEqual(192);
     });
 
     it('should have correct file distribution', () => {

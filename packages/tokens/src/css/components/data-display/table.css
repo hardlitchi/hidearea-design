@@ -22,6 +22,7 @@
 }
 
 .table {
+  display: table;
   width: 100%;
   border-collapse: collapse;
   font-size: var(--font-size-base);
@@ -32,17 +33,36 @@
   width: 100%;
 }
 
-/* Table cells */
+/* Slotted content needs styling via global scope since ::slotted() only works on direct children */
+.table ::slotted(thead),
+.table ::slotted(tbody),
+.table ::slotted(tfoot) {
+  display: table-row-group;
+}
+
 .table ::slotted(thead) {
+  display: table-header-group;
   background-color: var(--component-table-header-background);
-  font-weight: var(--font-weight-semibold);
+}
+
+.table ::slotted(tfoot) {
+  display: table-footer-group;
+}
+
+.table ::slotted(tr) {
+  display: table-row;
 }
 
 .table ::slotted(th),
 .table ::slotted(td) {
+  display: table-cell;
   padding: var(--component-table-padding-default);
   text-align: left;
   vertical-align: middle;
+}
+
+.table ::slotted(th) {
+  font-weight: var(--font-weight-semibold);
 }
 
 /* Compact mode */
@@ -61,13 +81,5 @@
   border: 1px solid var(--component-table-border-color);
 }
 
-/* Striped */
-.table--striped ::slotted(tbody tr:nth-child(even)) {
-  background-color: var(--component-table-striped-background);
-}
-
-/* Hoverable */
-.table--hoverable ::slotted(tbody tr:hover) {
-  background-color: var(--component-table-row-hover-background);
-  cursor: pointer;
-}
+/* Striped and Hoverable require Light DOM styling or JavaScript */
+/* These are best handled via part selectors or Light DOM CSS */

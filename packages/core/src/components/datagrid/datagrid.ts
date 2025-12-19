@@ -182,6 +182,22 @@ export class HaDataGrid extends HTMLElement {
       th.className = "datagrid-cell datagrid-cell--checkbox";
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
+
+      // Set checkbox state based on current selection
+      const totalRows = this._data.length;
+      const selectedCount = this._selectedRows.size;
+
+      if (selectedCount === 0) {
+        checkbox.checked = false;
+        checkbox.indeterminate = false;
+      } else if (selectedCount === totalRows) {
+        checkbox.checked = true;
+        checkbox.indeterminate = false;
+      } else {
+        checkbox.checked = false;
+        checkbox.indeterminate = true;
+      }
+
       checkbox.addEventListener("change", (e) => {
         this.handleSelectAll((e.target as HTMLInputElement).checked);
       });

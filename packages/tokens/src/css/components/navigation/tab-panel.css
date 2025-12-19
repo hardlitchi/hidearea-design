@@ -1,0 +1,28 @@
+/**
+ * Tab Panel Component Styles
+ *
+ * Styles for tab panel content containers (ha-tab-panel)
+ */
+
+:host {
+  display: none;
+}
+
+:host([active]) {
+  display: block;
+}
+
+.tab-panel {
+  animation: fadeIn var(--animation-duration-base) ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

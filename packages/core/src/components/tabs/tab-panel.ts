@@ -1,4 +1,4 @@
-import { tabsStyles } from "@hidearea-design/tokens/styles";
+import { tabPanelStyles } from "@hidearea-design/tokens/styles";
 
 /**
  * Tab panel component
@@ -23,7 +23,7 @@ export class HaTabPanel extends HTMLElement {
 
     // Create styles
     const style = document.createElement("style");
-    style.textContent = tabsStyles;
+    style.textContent = tabPanelStyles;
 
     // Create panel wrapper
     const panel = document.createElement("div");
