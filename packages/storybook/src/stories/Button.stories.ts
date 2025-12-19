@@ -104,48 +104,156 @@ export const Secondary: Story = {
   args: {
     ...Primary.args,
     variant: "secondary",
+    onClick: fn(),
   },
   render: Primary.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Button should be present in the document", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button).toBeTruthy();
+    });
+
+    await step("Button should have secondary variant", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button?.getAttribute("variant")).toBe("secondary");
+    });
+
+    await step("Button should be clickable", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await userEvent.click(button!);
+      await expect(args.onClick).toHaveBeenCalledTimes(1);
+    });
+  },
 };
 
 export const Outline: Story = {
   args: {
     ...Primary.args,
     variant: "outline",
+    onClick: fn(),
   },
   render: Primary.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Button should be present in the document", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button).toBeTruthy();
+    });
+
+    await step("Button should have outline variant", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button?.getAttribute("variant")).toBe("outline");
+    });
+
+    await step("Button should be clickable", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await userEvent.click(button!);
+      await expect(args.onClick).toHaveBeenCalledTimes(1);
+    });
+  },
 };
 
 export const Ghost: Story = {
   args: {
     ...Primary.args,
     variant: "ghost",
+    onClick: fn(),
   },
   render: Primary.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Button should be present in the document", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button).toBeTruthy();
+    });
+
+    await step("Button should have ghost variant", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button?.getAttribute("variant")).toBe("ghost");
+    });
+
+    await step("Button should be clickable", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await userEvent.click(button!);
+      await expect(args.onClick).toHaveBeenCalledTimes(1);
+    });
+  },
 };
 
 export const Danger: Story = {
   args: {
     ...Primary.args,
     variant: "danger",
+    onClick: fn(),
   },
   render: Primary.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Button should be present in the document", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button).toBeTruthy();
+    });
+
+    await step("Button should have danger variant", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button?.getAttribute("variant")).toBe("danger");
+    });
+
+    await step("Button should be clickable", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await userEvent.click(button!);
+      await expect(args.onClick).toHaveBeenCalledTimes(1);
+    });
+  },
 };
 
 export const Small: Story = {
   args: {
     ...Primary.args,
     size: "sm",
+    onClick: fn(),
   },
   render: Primary.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Button should be present in the document", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button).toBeTruthy();
+    });
+
+    await step("Button should have small size", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button?.getAttribute("size")).toBe("sm");
+    });
+
+    await step("Button should be clickable", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await userEvent.click(button!);
+      await expect(args.onClick).toHaveBeenCalledTimes(1);
+    });
+  },
 };
 
 export const Large: Story = {
   args: {
     ...Primary.args,
     size: "lg",
+    onClick: fn(),
   },
   render: Primary.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Button should be present in the document", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button).toBeTruthy();
+    });
+
+    await step("Button should have large size", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button?.getAttribute("size")).toBe("lg");
+    });
+
+    await step("Button should be clickable", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await userEvent.click(button!);
+      await expect(args.onClick).toHaveBeenCalledTimes(1);
+    });
+  },
 };
 
 export const Disabled: Story = {
@@ -178,14 +286,48 @@ export const Loading: Story = {
     loading: true,
   },
   render: Primary.render,
+  play: async ({ canvasElement, step }) => {
+    await step("Loading button should be present", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button).toBeTruthy();
+    });
+
+    await step("Button should have loading attribute", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button?.hasAttribute("loading")).toBe(true);
+    });
+
+    await step("Button should have correct variant", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button?.getAttribute("variant")).toBe("primary");
+    });
+  },
 };
 
 export const FullWidth: Story = {
   args: {
     ...Primary.args,
     fullWidth: true,
+    onClick: fn(),
   },
   render: Primary.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Button should be present in the document", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button).toBeTruthy();
+    });
+
+    await step("Button should have full-width attribute", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button?.hasAttribute("full-width")).toBe(true);
+    });
+
+    await step("Button should be clickable", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await userEvent.click(button!);
+      await expect(args.onClick).toHaveBeenCalledTimes(1);
+    });
+  },
 };
 
 export const AllVariants: Story = {
