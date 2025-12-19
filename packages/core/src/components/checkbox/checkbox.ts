@@ -213,6 +213,16 @@ export class HaCheckbox extends HTMLElement {
       this.setAttribute("size", "md");
     }
 
+    // Make component focusable
+    if (!this.hasAttribute("tabindex") && !this.disabled) {
+      this.setAttribute("tabindex", "0");
+    }
+
+    // Set ARIA role
+    if (!this.hasAttribute("role")) {
+      this.setAttribute("role", "checkbox");
+    }
+
     this.updateCheckboxAttributes();
     this.updateLabelContent();
   }

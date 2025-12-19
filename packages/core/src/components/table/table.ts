@@ -62,6 +62,7 @@ export class HaTable extends HTMLElement {
 
   connectedCallback() {
     this.updateClasses();
+    this.applyTableStyles();
   }
 
   attributeChangedCallback(
@@ -98,6 +99,87 @@ export class HaTable extends HTMLElement {
     if (this.hasAttribute("full-width")) {
       this.tableElement.classList.add("table--full-width");
     }
+  }
+
+  private applyTableStyles() {
+    // Apply styles to slotted Light DOM elements
+    // This is needed because ::slotted() doesn't penetrate nested structures
+    const applyStyles = () => {
+      const thead = this.querySelector("thead");
+      const tbody = this.querySelector("tbody");
+      const ths = this.querySelectorAll("th");
+      const tds = this.querySelectorAll("td");
+      const trs = this.querySelectorAll("tr");
+
+      // Apply inline styles via CSS custom properties
+      if (thead) {
+        thead.style.backgroundColor = "var(--component-table-header-background)";
+      }
+
+      ths.forEach((th) => {
+        th.style.padding = "var(--component-table-padding-default)";
+        th.style.textAlign = "left";
+        th.style.verticalAlign = "middle";
+        th.style.fontWeight = "var(--font-weight-semibold)";
+
+        if (this.hasAttribute("bordered")) {
+          th.style.border = "1px solid var(--component-table-border-color)";
+        }
+        if (this.hasAttribute("compact")) {
+          th.style.padding = "var(--component-table-padding-compact)";
+        }
+      });
+
+      tds.forEach((td) => {
+        td.style.padding = "var(--component-table-padding-default)";
+        td.style.textAlign = "left";
+        td.style.verticalAlign = "middle";
+
+        if (this.hasAttribute("bordered")) {
+          td.style.border = "1px solid var(--component-table-border-color)";
+        }
+        if (this.hasAttribute("compact")) {
+          td.style.padding = "var(--component-table-padding-compact)";
+        }
+      });
+
+      // Striped rows
+      if (this.hasAttribute("striped") && tbody) {
+        const rows = tbody.querySelectorAll("tr");
+        rows.forEach((row, index) => {
+          if (index % 2 === 1) {
+            (row as HTMLElement).style.backgroundColor = "var(--component-table-striped-background)";
+          }
+        });
+      }
+
+      // Hoverable rows
+      if (this.hasAttribute("hoverable")) {
+        trs.forEach((tr) => {
+          tr.addEventListener("mouseenter", () => {
+            (tr as HTMLElement).style.backgroundColor = "var(--component-table-row-hover-background)";
+            (tr as HTMLElement).style.cursor = "pointer";
+          });
+          tr.addEventListener("mouseleave", () => {
+            // Only reset if not a striped even row
+            const isStriped = this.hasAttribute("striped");
+            const isEvenRow = Array.from(tr.parentElement?.children || []).indexOf(tr) % 2 === 1;
+            if (!isStriped || !isEvenRow) {
+              (tr as HTMLElement).style.backgroundColor = "";
+            } else {
+              (tr as HTMLElement).style.backgroundColor = "var(--component-table-striped-background)";
+            }
+            (tr as HTMLElement).style.cursor = "";
+          });
+        });
+      }
+    };
+
+    // Apply styles immediately
+    applyStyles();
+
+    // Also apply when slot content changes
+    this.contentSlot.addEventListener("slotchange", applyStyles);
   }
 }
 
