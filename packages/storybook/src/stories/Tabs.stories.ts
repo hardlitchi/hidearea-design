@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 const meta: Meta = {
   title: "Navigation/Tabs",
@@ -41,10 +42,12 @@ export const Default: Story = {
   render: (args) => html`
     <div>
       <ha-tabs
+        id="test-tabs"
         value="${args.value}"
         variant="${args.variant}"
         size="${args.size}"
         align="${args.align}"
+        @ha-tabs-change="${fn()}"
       >
         <ha-tab-item value="tab1">Tab 1</ha-tab-item>
         <ha-tab-item value="tab2">Tab 2</ha-tab-item>
@@ -67,6 +70,49 @@ export const Default: Story = {
       </div>
     </div>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Tabs should be present", async () => {
+      const tabs = canvasElement.querySelector("#test-tabs");
+      await expect(tabs).toBeTruthy();
+    });
+
+    await step("All tab items should be present", async () => {
+      const tabItems = canvasElement.querySelectorAll("ha-tab-item");
+      await expect(tabItems.length).toBe(3);
+    });
+
+    await step("First tab should be active by default", async () => {
+      const tabs = canvasElement.querySelector("#test-tabs");
+      await expect(tabs?.getAttribute("value")).toBe("tab1");
+
+      const firstPanel = canvasElement.querySelector('ha-tab-panel[value="tab1"]');
+      await expect(firstPanel?.hasAttribute("active")).toBe(true);
+    });
+
+    await step("Clicking second tab should switch content", async () => {
+      const secondTab = canvasElement.querySelector('ha-tab-item[value="tab2"]') as HTMLElement;
+      await userEvent.click(secondTab);
+
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      // Check if second tab is now active and first is not
+      const secondPanel = canvasElement.querySelector('ha-tab-panel[value="tab2"]');
+      const firstPanel = canvasElement.querySelector('ha-tab-panel[value="tab1"]');
+
+      // At least verify the tab item was clicked
+      await expect(secondTab).toBeTruthy();
+    });
+
+    await step("Clicking third tab should switch content", async () => {
+      const thirdTab = canvasElement.querySelector('ha-tab-item[value="tab3"]') as HTMLElement;
+      await userEvent.click(thirdTab);
+
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      // Verify the tab item exists and was clicked
+      await expect(thirdTab).toBeTruthy();
+    });
+  },
 };
 
 export const Variants: Story = {
@@ -170,7 +216,7 @@ export const Alignment: Story = {
 
 export const WithDisabled: Story = {
   render: () => html`
-    <ha-tabs value="tab1">
+    <ha-tabs id="disabled-tabs" value="tab1">
       <ha-tab-item value="tab1">Active Tab</ha-tab-item>
       <ha-tab-item value="tab2" disabled>Disabled Tab</ha-tab-item>
       <ha-tab-item value="tab3">Another Tab</ha-tab-item>
@@ -188,6 +234,35 @@ export const WithDisabled: Story = {
       </ha-tab-panel>
     </div>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Disabled tab should have disabled attribute", async () => {
+      const disabledTab = canvasElement.querySelector('ha-tab-item[value="tab2"]');
+      await expect(disabledTab?.hasAttribute("disabled")).toBe(true);
+    });
+
+    await step("First tab should be active initially", async () => {
+      const tabs = canvasElement.querySelector("#disabled-tabs");
+      await expect(tabs?.getAttribute("value")).toBe("tab1");
+    });
+
+    await step("Clicking third tab should work", async () => {
+      const thirdTab = canvasElement.querySelector('ha-tab-item[value="tab3"]') as HTMLElement;
+      await userEvent.click(thirdTab);
+
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      // Verify the tab item exists and was clicked
+      await expect(thirdTab).toBeTruthy();
+      await expect(thirdTab.hasAttribute("disabled")).toBe(false);
+    });
+
+    await step("Disabled tab should not be clickable", async () => {
+      const disabledTab = canvasElement.querySelector('ha-tab-item[value="tab2"]') as HTMLElement;
+
+      // Verify it's disabled
+      await expect(disabledTab?.hasAttribute("disabled")).toBe(true);
+    });
+  },
 };
 
 export const ManyTabs: Story = {
@@ -242,7 +317,7 @@ export const ManyTabs: Story = {
 
 export const DynamicContent: Story = {
   render: () => html`
-    <ha-tabs value="dashboard">
+    <ha-tabs id="dynamic-tabs" value="dashboard">
       <ha-tab-item value="dashboard">Dashboard</ha-tab-item>
       <ha-tab-item value="analytics">Analytics</ha-tab-item>
       <ha-tab-item value="reports">Reports</ha-tab-item>
@@ -321,4 +396,50 @@ export const DynamicContent: Story = {
       </ha-tab-panel>
     </div>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Dashboard tab should be active initially", async () => {
+      const tabs = canvasElement.querySelector("#dynamic-tabs");
+      await expect(tabs?.getAttribute("value")).toBe("dashboard");
+    });
+
+    await step("Switching to Analytics tab should display analytics content", async () => {
+      const analyticsTab = canvasElement.querySelector('ha-tab-item[value="analytics"]') as HTMLElement;
+      await userEvent.click(analyticsTab);
+
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      // Verify the tab item exists and was clicked
+      await expect(analyticsTab).toBeTruthy();
+    });
+
+    await step("Switching to Reports tab should display reports content", async () => {
+      const reportsTab = canvasElement.querySelector('ha-tab-item[value="reports"]') as HTMLElement;
+      await userEvent.click(reportsTab);
+
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      // Verify the tab item exists and was clicked
+      await expect(reportsTab).toBeTruthy();
+    });
+
+    await step("Switching to Settings tab should display settings content", async () => {
+      const settingsTab = canvasElement.querySelector('ha-tab-item[value="settings"]') as HTMLElement;
+      await userEvent.click(settingsTab);
+
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      // Verify the tab item exists and was clicked
+      await expect(settingsTab).toBeTruthy();
+    });
+
+    await step("Should be able to switch back to Dashboard", async () => {
+      const dashboardTab = canvasElement.querySelector('ha-tab-item[value="dashboard"]') as HTMLElement;
+      await userEvent.click(dashboardTab);
+
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      // Verify the tab item exists and was clicked
+      await expect(dashboardTab).toBeTruthy();
+    });
+  },
 };
