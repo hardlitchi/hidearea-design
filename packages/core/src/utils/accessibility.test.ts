@@ -278,12 +278,24 @@ describe('isElementVisible', () => {
     document.body.removeChild(element);
   });
 
-  // Note: This test is skipped because JSDOM doesn't accurately calculate
-  // offsetWidth/offsetHeight for elements with display:none or visibility:hidden
-  it.skip('should return false for hidden element', () => {
+  it('should return false for hidden element', () => {
     const element = document.createElement('div');
     element.style.display = 'none';
     document.body.appendChild(element);
+
+    // Mock offsetWidth and offsetHeight to 0 for hidden elements
+    // JSDOM doesn't accurately calculate these values, so we mock them
+    Object.defineProperty(element, 'offsetWidth', {
+      configurable: true,
+      value: 0,
+    });
+    Object.defineProperty(element, 'offsetHeight', {
+      configurable: true,
+      value: 0,
+    });
+    vi.spyOn(element, 'getClientRects').mockReturnValue({
+      length: 0,
+    } as DOMRectList);
 
     expect(isElementVisible(element)).toBe(false);
 

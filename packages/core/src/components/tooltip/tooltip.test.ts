@@ -330,11 +330,7 @@ describe("HaTooltip", () => {
   });
 
   describe("Keyboard Interactions", () => {
-    // Note: handleKeydown is not bound in constructor, so it doesn't work correctly
-    // This is a bug in the implementation that should be fixed by adding:
-    // this.handleKeydown = this.handleKeydown.bind(this);
-    // in the constructor
-    it.skip("should close on Escape key when trigger is click", async () => {
+    it("should close on Escape key when trigger is click", async () => {
       tooltip.triggerMode = "click";
       tooltip.content = "Test";
       tooltip.showTooltip();
@@ -352,7 +348,7 @@ describe("HaTooltip", () => {
       expect(hideHandler).toHaveBeenCalled();
     });
 
-    it.skip("should not close on Escape when trigger is not click", async () => {
+    it("should not close on Escape when trigger is not click", async () => {
       tooltip.triggerMode = "hover";
       tooltip.content = "Test";
       tooltip.showTooltip();

@@ -29,7 +29,7 @@
     "test": "vitest run",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
-    "lint": "eslint src --ext .ts,.tsx --ignore-pattern '**/*.test.ts' --ignore-pattern '**/*.test.tsx' --ignore-pattern '**/*.spec.ts' --ignore-pattern '**/*.spec.tsx'",
+    "lint": "eslint src",
     "clean": "rm -rf dist node_modules"
   },
   "keywords": [
@@ -51,7 +51,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^4.0.8",
     "@vitest/ui": "^4.0.8",
-    "eslint": "^8.57.0",
+    
     "happy-dom": "^20.0.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

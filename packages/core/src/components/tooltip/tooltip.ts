@@ -91,6 +91,7 @@ export class HaTooltip extends HTMLElement {
     this.handleTriggerBlur = this.handleTriggerBlur.bind(this);
     this.handleTriggerClick = this.handleTriggerClick.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
+    this.handleKeydown = this.handleKeydown.bind(this);
     this.handleWindowResize = this.handleWindowResize.bind(this);
     this.handleWindowScroll = this.handleWindowScroll.bind(this);
   }
