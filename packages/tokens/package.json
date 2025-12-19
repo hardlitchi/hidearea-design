@@ -35,7 +35,9 @@
     "access": "public"
   },
   "scripts": {
-    "build": "node config.mjs",
+    "build": "node config.mjs && pnpm run build:purge",
+    "build:nopurge": "node config.mjs",
+    "build:purge": "postcss build/css/all.css -o build/css/all.min.css && postcss build/css/html/all.css -o build/css/html/all.min.css",
     "clean": "rm -rf build node_modules",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -58,8 +60,11 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^7.0.2",
     "@vitest/coverage-v8": "^4.0.8",
     "@vitest/ui": "^4.0.8",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
     "style-dictionary": "^4.0.0",
     "vitest": "^4.0.8",
     "yaml": "^2.8.1"

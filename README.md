@@ -222,9 +222,12 @@ MIT
    - **使用例**: `import { HaButton } from '@hidearea-design/core/button';`
 
 **中期（1-2ヶ月）**:
-- 🚧 PurgeCSS 導入（CSS最適化）- 次のタスク
-  - 未使用CSSの自動削除
-  - 期待効果: 30-50% CSS削減
+- ✅ CSS 最適化戦略の策定（完了）
+  - ✅ Per-component CSS imports を推奨（PurgeCSSの代替）
+  - ✅ Web Components に最適化されたアプローチ
+  - ✅ 使用ガイド作成: [CSS最適化ガイド](./docs/guides/css-optimization.md)
+  - **実測効果**: 基本フォーム 87% 削減（188 KB → 25 KB）
+  - **デモ**: [CSS Optimization Demo](./example/css-optimization-demo/)
 - Code splitting 実装（大型コンポーネント）
 - パフォーマンステスト自動化
 - テーマシステムドキュメント
