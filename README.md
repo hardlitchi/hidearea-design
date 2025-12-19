@@ -186,6 +186,8 @@ MIT
 - **[使用例](./docs/guides/examples.md)** - ログインフォーム、検索、設定パネルなどの実装例
 - **[Per-component Imports](./docs/guides/per-component-imports.md)** - 個別コンポーネントインポートによるバンドルサイズ最適化
 - **[CSS最適化](./docs/guides/css-optimization.md)** - CSSバンドルサイズの最適化戦略
+- **[Advanced Component Patterns](./docs/guides/advanced-component-patterns.md)** - 高度なコンポーネント実装パターン（19パターン）
+- **[Component Pattern Recipes](./docs/guides/component-pattern-recipes.md)** - 実践的なパターンレシピ集（13レシピ）
 
 #### テーマ・デザイントークン
 - **[Theme System Guide](./docs/guides/theme-system.md)** - テーマシステムの総合ガイド（ライト・ダークモード、カスタマイズ）
@@ -257,7 +259,15 @@ MIT
   - ✅ デザイントークン使用ガイド: [Design Tokens Usage](./docs/guides/design-tokens-usage.md)
   - ✅ テーマカスタマイズレシピ: [Theme Customization Recipes](./docs/guides/theme-customization-recipes.md)
   - ✅ 移行ガイド: [Theme Migration Guide](./docs/guides/theme-migration-guide.md)
-- 高度なコンポーネントパターン
+- ✅ 高度なコンポーネントパターン（完了）
+  - ✅ コンポーネント構成パターン（親子通信、プロパティ伝播、フォームコンテナ）
+  - ✅ 状態管理パターン（属性ベース、プライベート状態、複雑な状態）
+  - ✅ フォームパターン（ネイティブ統合、カスタムバリデーション）
+  - ✅ イベント処理パターン（カスタムイベント、ハンドラ管理）
+  - ✅ スロット・テンプレートパターン（名前付き、フォールバック、動的）
+  - ✅ アクセシビリティパターン（フォーカストラップ、キーボードナビゲーション、ARIA）
+  - ✅ パフォーマンスパターン（メモリリーク防止、効率的DOM更新、遅延初期化）
+  - [パターンガイド](./docs/guides/advanced-component-patterns.md) | [実践レシピ](./docs/guides/component-pattern-recipes.md)
 - Storybook 機能強化（ビジュアルリグレッション、インタラクションテスト）
 
 **長期（3ヶ月以上）**:
