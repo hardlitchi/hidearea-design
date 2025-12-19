@@ -228,8 +228,15 @@ MIT
   - ✅ 使用ガイド作成: [CSS最適化ガイド](./docs/guides/css-optimization.md)
   - **実測効果**: 基本フォーム 87% 削減（188 KB → 25 KB）
   - **デモ**: [CSS Optimization Demo](./example/css-optimization-demo/)
+- ✅ パフォーマンステスト自動化（完了）
+  - ✅ バンドルサイズ回帰テスト
+  - ✅ レンダリングパフォーマンステスト
+  - ✅ メモリ使用量テスト
+  - ✅ GitHub Actions CI/CD統合
+  - ✅ パフォーマンス予算チェッカー
+  - ✅ パフォーマンスダッシュボード
+  - [テストガイド](./docs/guides/performance-testing.md)
 - Code splitting 実装（大型コンポーネント）
-- パフォーマンステスト自動化
 - テーマシステムドキュメント
 - 高度なコンポーネントパターン
 - Storybook 機能強化（ビジュアルリグレッション、インタラクションテスト）
