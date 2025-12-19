@@ -38,7 +38,8 @@ npm install @hidearea-design/core @hidearea-design/tokens
   <head>
     <script type="module">
       import '@hidearea-design/tokens/css';
-      import '@hidearea-design/core/components/button';
+      // Per-component import for optimal bundle size
+      import { HaButton } from '@hidearea-design/core/button';
     </script>
   </head>
   <body>
@@ -213,13 +214,17 @@ MIT
    - ツリーシェイキング検証: Named exports で対応済み
    - パフォーマンスベンチマーク作成: ブラウザベースのベンチマークツール
    - [詳細レポート](./docs/guides/performance-analysis.md) | [最適化ガイド](./docs/guides/performance-optimization.md)
-7. 🚧 Per-component imports の実装 - 次のタスク
-   - package.json に exports フィールド追加
-   - 個別インポートパスの提供
-   - 期待効果: 50-80% バンドルサイズ削減
+7. ✅ Per-component imports の実装（完了）
+   - ✅ 43個のエクスポートエントリを追加（全コンポーネント + utils）
+   - ✅ `sideEffects: false` を設定（ツリーシェイキング最適化）
+   - ✅ 使用ガイド作成: [Per-component imports ガイド](./docs/guides/per-component-imports.md)
+   - **実測効果**: Button 5.86 KB (メインバンドルの 1.4%), Input 9.10 KB (2.2%)
+   - **使用例**: `import { HaButton } from '@hidearea-design/core/button';`
 
 **中期（1-2ヶ月）**:
-- PurgeCSS 導入（CSS最適化）
+- 🚧 PurgeCSS 導入（CSS最適化）- 次のタスク
+  - 未使用CSSの自動削除
+  - 期待効果: 30-50% CSS削減
 - Code splitting 実装（大型コンポーネント）
 - パフォーマンステスト自動化
 - テーマシステムドキュメント

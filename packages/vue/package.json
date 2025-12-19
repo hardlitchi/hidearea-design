@@ -48,7 +48,6 @@
     "@vitest/coverage-v8": "^4.0.8",
     "@vitest/ui": "^4.0.8",
     "@vue/test-utils": "^2.4.6",
-    
     "happy-dom": "^20.0.10",
     "typescript": "^5.7.2",
     "vite": "^5.2.0",
@@ -57,5 +56,6 @@
   },
   "dependencies": {
     "@hidearea-design/core": "workspace:*"
-  }
+  },
+  "sideEffects": false
 }
