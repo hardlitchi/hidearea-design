@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface InputArgs {
   variant: "default" | "filled" | "outlined";
@@ -14,6 +15,8 @@ interface InputArgs {
   error: boolean;
   fullWidth: boolean;
   name: string;
+  onInput?: (e: CustomEvent) => void;
+  onChange?: (e: CustomEvent) => void;
 }
 
 const meta: Meta<InputArgs> = {
@@ -86,6 +89,8 @@ export const Default: Story = {
     error: false,
     fullWidth: false,
     name: "",
+    onInput: fn(),
+    onChange: fn(),
   },
   render: (args) => html`
     <ha-input
@@ -100,43 +105,151 @@ export const Default: Story = {
       ?error="${args.error}"
       ?full-width="${args.fullWidth}"
       name="${args.name}"
-      @input="${(e: CustomEvent) => console.log("Input:", e.detail.value)}"
-      @change="${(e: CustomEvent) => console.log("Change:", e.detail.value)}"
+      @input="${args.onInput}"
+      @change="${args.onChange}"
     >
     </ha-input>
   `,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Input should be present in the document", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input).toBeTruthy();
+    });
+
+    await step("Input should have correct variant", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input?.getAttribute("variant")).toBe("default");
+    });
+
+    await step("Input should accept text input", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement).toBeTruthy();
+
+      await userEvent.type(inputElement!, "Test input");
+      await expect(args.onInput).toHaveBeenCalled();
+    });
+  },
 };
 
 export const Filled: Story = {
   args: {
     ...Default.args,
     variant: "filled",
+    onInput: fn(),
+    onChange: fn(),
   },
   render: Default.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Input should be present in the document", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input).toBeTruthy();
+    });
+
+    await step("Input should have filled variant", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input?.getAttribute("variant")).toBe("filled");
+    });
+
+    await step("Input should accept text input", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement).toBeTruthy();
+
+      await userEvent.type(inputElement!, "Test");
+      await expect(args.onInput).toHaveBeenCalled();
+    });
+  },
 };
 
 export const Outlined: Story = {
   args: {
     ...Default.args,
     variant: "outlined",
+    onInput: fn(),
+    onChange: fn(),
   },
   render: Default.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Input should be present in the document", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input).toBeTruthy();
+    });
+
+    await step("Input should have outlined variant", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input?.getAttribute("variant")).toBe("outlined");
+    });
+
+    await step("Input should accept text input", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement).toBeTruthy();
+
+      await userEvent.type(inputElement!, "Test");
+      await expect(args.onInput).toHaveBeenCalled();
+    });
+  },
 };
 
 export const Small: Story = {
   args: {
     ...Default.args,
     size: "sm",
+    onInput: fn(),
+    onChange: fn(),
   },
   render: Default.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Input should be present in the document", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input).toBeTruthy();
+    });
+
+    await step("Input should have small size", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input?.getAttribute("size")).toBe("sm");
+    });
+
+    await step("Input should accept text input", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement).toBeTruthy();
+
+      await userEvent.type(inputElement!, "Test");
+      await expect(args.onInput).toHaveBeenCalled();
+    });
+  },
 };
 
 export const Large: Story = {
   args: {
     ...Default.args,
     size: "lg",
+    onInput: fn(),
+    onChange: fn(),
   },
   render: Default.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Input should be present in the document", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input).toBeTruthy();
+    });
+
+    await step("Input should have large size", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input?.getAttribute("size")).toBe("lg");
+    });
+
+    await step("Input should accept text input", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement).toBeTruthy();
+
+      await userEvent.type(inputElement!, "Test");
+      await expect(args.onInput).toHaveBeenCalled();
+    });
+  },
 };
 
 export const Disabled: Story = {
@@ -146,6 +259,23 @@ export const Disabled: Story = {
     disabled: true,
   },
   render: Default.render,
+  play: async ({ canvasElement, step }) => {
+    await step("Disabled input should be present", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input).toBeTruthy();
+    });
+
+    await step("Input should have disabled attribute", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input?.hasAttribute("disabled")).toBe(true);
+    });
+
+    await step("Input element should be disabled", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement?.disabled).toBe(true);
+    });
+  },
 };
 
 export const Readonly: Story = {
@@ -155,6 +285,23 @@ export const Readonly: Story = {
     readonly: true,
   },
   render: Default.render,
+  play: async ({ canvasElement, step }) => {
+    await step("Readonly input should be present", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input).toBeTruthy();
+    });
+
+    await step("Input should have readonly attribute", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input?.hasAttribute("readonly")).toBe(true);
+    });
+
+    await step("Input element should be readonly", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement?.readOnly).toBe(true);
+    });
+  },
 };
 
 export const Required: Story = {
@@ -162,8 +309,30 @@ export const Required: Story = {
     ...Default.args,
     placeholder: "Required field",
     required: true,
+    onInput: fn(),
+    onChange: fn(),
   },
   render: Default.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Required input should be present", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input).toBeTruthy();
+    });
+
+    await step("Input should have required attribute", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input?.hasAttribute("required")).toBe(true);
+    });
+
+    await step("Input should accept text input", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement).toBeTruthy();
+
+      await userEvent.type(inputElement!, "Required value");
+      await expect(args.onInput).toHaveBeenCalled();
+    });
+  },
 };
 
 export const Error: Story = {
@@ -171,16 +340,61 @@ export const Error: Story = {
     ...Default.args,
     value: "Invalid input",
     error: true,
+    onInput: fn(),
+    onChange: fn(),
   },
   render: Default.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Error input should be present", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input).toBeTruthy();
+    });
+
+    await step("Input should have error attribute", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input?.hasAttribute("error")).toBe(true);
+    });
+
+    await step("Input should still accept text input", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement).toBeTruthy();
+
+      await userEvent.clear(inputElement!);
+      await userEvent.type(inputElement!, "Corrected");
+      await expect(args.onInput).toHaveBeenCalled();
+    });
+  },
 };
 
 export const FullWidth: Story = {
   args: {
     ...Default.args,
     fullWidth: true,
+    onInput: fn(),
+    onChange: fn(),
   },
   render: Default.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("FullWidth input should be present", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input).toBeTruthy();
+    });
+
+    await step("Input should have full-width attribute", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input?.hasAttribute("full-width")).toBe(true);
+    });
+
+    await step("Input should accept text input", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement).toBeTruthy();
+
+      await userEvent.type(inputElement!, "Full width test");
+      await expect(args.onInput).toHaveBeenCalled();
+    });
+  },
 };
 
 export const WithPrefix: Story = {
@@ -213,8 +427,31 @@ export const Password: Story = {
     ...Default.args,
     type: "password",
     placeholder: "Enter password",
+    onInput: fn(),
+    onChange: fn(),
   },
   render: Default.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Password input should be present", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input).toBeTruthy();
+    });
+
+    await step("Input should have password type", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement?.type).toBe("password");
+    });
+
+    await step("Input should accept password input", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement).toBeTruthy();
+
+      await userEvent.type(inputElement!, "SecretPassword123");
+      await expect(args.onInput).toHaveBeenCalled();
+    });
+  },
 };
 
 export const Email: Story = {
@@ -222,8 +459,31 @@ export const Email: Story = {
     ...Default.args,
     type: "email",
     placeholder: "Enter email",
+    onInput: fn(),
+    onChange: fn(),
   },
   render: Default.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Email input should be present", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input).toBeTruthy();
+    });
+
+    await step("Input should have email type", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement?.type).toBe("email");
+    });
+
+    await step("Input should accept email input", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement).toBeTruthy();
+
+      await userEvent.type(inputElement!, "user@example.com");
+      await expect(args.onInput).toHaveBeenCalled();
+    });
+  },
 };
 
 export const Number: Story = {
@@ -231,8 +491,31 @@ export const Number: Story = {
     ...Default.args,
     type: "number",
     placeholder: "Enter number",
+    onInput: fn(),
+    onChange: fn(),
   },
   render: Default.render,
+  play: async ({ canvasElement, args, step }) => {
+    await step("Number input should be present", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      await expect(input).toBeTruthy();
+    });
+
+    await step("Input should have number type", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement?.type).toBe("number");
+    });
+
+    await step("Input should accept number input", async () => {
+      const input = canvasElement.querySelector("ha-input");
+      const inputElement = input?.shadowRoot?.querySelector("input");
+      await expect(inputElement).toBeTruthy();
+
+      await userEvent.type(inputElement!, "12345");
+      await expect(args.onInput).toHaveBeenCalled();
+    });
+  },
 };
 
 export const AllVariants: Story = {
