@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
+import { expect, fn, userEvent, within } from "@storybook/test";
 import "@hidearea-design/core";
 
 interface ButtonArgs {
@@ -10,6 +11,7 @@ interface ButtonArgs {
   fullWidth: boolean;
   type: "button" | "submit" | "reset";
   label: string;
+  onClick?: () => void;
 }
 
 const meta: Meta<ButtonArgs> = {
@@ -62,6 +64,7 @@ export const Primary: Story = {
     fullWidth: false,
     type: "button",
     label: "Button",
+    onClick: fn(),
   },
   render: (args) => html`
     <ha-button
@@ -71,11 +74,30 @@ export const Primary: Story = {
       ?loading="${args.loading}"
       ?full-width="${args.fullWidth}"
       type="${args.type}"
-      @click="${() => console.log("Button clicked")}"
+      @click="${args.onClick}"
     >
       ${args.label}
     </ha-button>
   `,
+  play: async ({ canvasElement, args, step }) => {
+    const canvas = within(canvasElement);
+
+    await step("Button should be present in the document", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button).toBeTruthy();
+    });
+
+    await step("Button should have correct variant", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button?.getAttribute("variant")).toBe(args.variant);
+    });
+
+    await step("Button should be clickable", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await userEvent.click(button!);
+      await expect(args.onClick).toHaveBeenCalledTimes(1);
+    });
+  },
 };
 
 export const Secondary: Story = {
@@ -132,6 +154,22 @@ export const Disabled: Story = {
     disabled: true,
   },
   render: Primary.render,
+  play: async ({ canvasElement, step }) => {
+    await step("Disabled button should be present", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button).toBeTruthy();
+    });
+
+    await step("Button should have disabled attribute", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button?.hasAttribute("disabled")).toBe(true);
+    });
+
+    await step("Button should have correct variant", async () => {
+      const button = canvasElement.querySelector("ha-button");
+      await expect(button?.getAttribute("variant")).toBe("primary");
+    });
+  },
 };
 
 export const Loading: Story = {
