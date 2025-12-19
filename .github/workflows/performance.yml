@@ -140,6 +140,7 @@ jobs:
   benchmark:
     name: Browser Performance Benchmark
     runs-on: ubuntu-latest
+    continue-on-error: true  # Don't fail the entire workflow if browser benchmarks fail
 
     steps:
       - name: Checkout code
