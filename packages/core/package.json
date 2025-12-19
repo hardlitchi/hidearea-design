@@ -223,5 +223,8 @@
   "dependencies": {
     "@hidearea-design/tokens": "workspace:*"
   },
-  "sideEffects": false
+  "sideEffects": [
+    "**/*.js",
+    "**/*.ts"
+  ]
 }

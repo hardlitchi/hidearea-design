@@ -302,11 +302,49 @@ export const BrandColorPicker: Story = {
 
 export const ThemeGenerator: Story = {
   render: () => {
+    // Helper function to convert HSLA to HEX
+    const hslaToHex = (h: number, s: number, l: number, a: number): string => {
+      const lightness = l / 100;
+      const saturation = s / 100;
+      const chroma = (1 - Math.abs(2 * lightness - 1)) * saturation;
+      const x = chroma * (1 - Math.abs(((h / 60) % 2) - 1));
+      const m = lightness - chroma / 2;
+
+      let r = 0, g = 0, b = 0;
+
+      if (h >= 0 && h < 60) {
+        r = chroma; g = x; b = 0;
+      } else if (h >= 60 && h < 120) {
+        r = x; g = chroma; b = 0;
+      } else if (h >= 120 && h < 180) {
+        r = 0; g = chroma; b = x;
+      } else if (h >= 180 && h < 240) {
+        r = 0; g = x; b = chroma;
+      } else if (h >= 240 && h < 300) {
+        r = x; g = 0; b = chroma;
+      } else if (h >= 300 && h < 360) {
+        r = chroma; g = 0; b = x;
+      }
+
+      const red = Math.round((r + m) * 255);
+      const green = Math.round((g + m) * 255);
+      const blue = Math.round((b + m) * 255);
+
+      const toHex = (n: number) => n.toString(16).padStart(2, '0');
+
+      if (a < 1) {
+        const alpha = Math.round(a * 255);
+        return `#${toHex(red)}${toHex(green)}${toHex(blue)}${toHex(alpha)}`;
+      }
+
+      return `#${toHex(red)}${toHex(green)}${toHex(blue)}`;
+    };
+
     const container = document.createElement("div");
     container.style.padding = "1.5rem";
     container.style.border = "1px solid #e5e7eb";
     container.style.borderRadius = "0.5rem";
-    container.style.maxWidth = "400px";
+    container.style.maxWidth = "500px";
 
     const title = document.createElement("h3");
     title.textContent = "Theme Generator";
@@ -340,11 +378,20 @@ export const ThemeGenerator: Story = {
       labelText.textContent = label;
       labelText.style.fontSize = "0.875rem";
       labelText.style.fontWeight = "500";
+      labelText.style.minWidth = "60px";
+
+      const colorCode = document.createElement("span");
+      colorCode.textContent = bgColor;
+      colorCode.style.fontSize = "0.75rem";
+      colorCode.style.fontFamily = "monospace";
+      colorCode.style.color = "#6b7280";
+      colorCode.style.marginLeft = "auto";
 
       item.appendChild(colorBox);
       item.appendChild(labelText);
+      item.appendChild(colorCode);
 
-      return { item, colorBox };
+      return { item, colorBox, colorCode };
     };
 
     const primary = createPreviewItem("Primary", "#3b82f6");
@@ -357,9 +404,26 @@ export const ThemeGenerator: Story = {
 
     picker.addEventListener("color-change", ((e: CustomEvent) => {
       const color = e.detail;
-      primary.colorBox.style.background = `hsla(${color.h}, ${color.s}%, ${color.l}%, ${color.a})`;
-      light.colorBox.style.background = `hsla(${color.h}, ${Math.min(color.s + 20, 100)}%, ${Math.min(color.l + 20, 95)}%, ${color.a})`;
-      dark.colorBox.style.background = `hsla(${color.h}, ${Math.max(color.s - 20, 0)}%, ${Math.max(color.l - 30, 10)}%, ${color.a})`;
+
+      // Primary color
+      const primaryH = color.h;
+      const primaryS = color.s;
+      const primaryL = color.l;
+      const primaryA = color.a;
+      primary.colorBox.style.background = `hsla(${primaryH}, ${primaryS}%, ${primaryL}%, ${primaryA})`;
+      primary.colorCode.textContent = hslaToHex(primaryH, primaryS, primaryL, primaryA).toUpperCase();
+
+      // Light variant
+      const lightS = Math.min(primaryS + 20, 100);
+      const lightL = Math.min(primaryL + 20, 95);
+      light.colorBox.style.background = `hsla(${primaryH}, ${lightS}%, ${lightL}%, ${primaryA})`;
+      light.colorCode.textContent = hslaToHex(primaryH, lightS, lightL, primaryA).toUpperCase();
+
+      // Dark variant
+      const darkS = Math.max(primaryS - 20, 0);
+      const darkL = Math.max(primaryL - 30, 10);
+      dark.colorBox.style.background = `hsla(${primaryH}, ${darkS}%, ${darkL}%, ${primaryA})`;
+      dark.colorCode.textContent = hslaToHex(primaryH, darkS, darkL, primaryA).toUpperCase();
     }) as EventListener);
 
     container.appendChild(title);

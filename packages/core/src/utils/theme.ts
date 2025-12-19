@@ -38,13 +38,21 @@ export function getEffectiveTheme(theme: Theme = getTheme()): 'light' | 'dark' {
 export function setTheme(theme: Theme): void {
   if (typeof window === 'undefined') return;
 
+  const currentTheme = getTheme();
+  const currentEffective = getEffectiveTheme(currentTheme);
+  const newEffective = getEffectiveTheme(theme);
+
+  // Only update if the theme actually changed
+  if (currentTheme === theme && currentEffective === newEffective) {
+    return;
+  }
+
   localStorage.setItem(THEME_STORAGE_KEY, theme);
-  const effective = getEffectiveTheme(theme);
-  document.documentElement.setAttribute(THEME_ATTRIBUTE, effective);
+  document.documentElement.setAttribute(THEME_ATTRIBUTE, newEffective);
 
   // Dispatch custom event for listeners
   window.dispatchEvent(new CustomEvent('theme-change', {
-    detail: { theme, effective }
+    detail: { theme, effective: newEffective }
   }));
 }
 

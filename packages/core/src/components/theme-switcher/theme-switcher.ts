@@ -283,21 +283,8 @@ class ThemeSwitcher extends HTMLElement {
   }
 
   private _setupListeners(): void {
-    // Remove existing UI listeners first to prevent duplicates
-    this._removeUIListeners();
-
-    // Add UI event listeners based on variant
-    if (this.variant === 'toggle') {
-      const btn = this.shadowRoot!.getElementById('toggle-btn');
-      btn?.addEventListener('click', this._handleToggleBound);
-    } else if (this.variant === 'dropdown') {
-      const select = this.shadowRoot!.getElementById('theme-select') as HTMLSelectElement;
-      select?.addEventListener('change', this._handleSelectBound);
-    } else if (this.variant === 'segmented') {
-      this.shadowRoot!.querySelectorAll('button[data-theme]').forEach(btn => {
-        btn.addEventListener('click', this._handleSegmentedClickBound);
-      });
-    }
+    // Add UI event listeners
+    this._setupUIListeners();
 
     // Listen for external theme changes (only add once in connectedCallback)
     window.addEventListener('theme-change', this._themeChangeHandler);
@@ -370,13 +357,16 @@ class ThemeSwitcher extends HTMLElement {
   private _handleThemeChange(e: Event): void {
     const customEvent = e as CustomEvent<{ theme: Theme; effective: 'light' | 'dark' }>;
 
-    // Don't re-dispatch events that originated from this component
-    if (e.target === this) {
+    const newTheme = customEvent.detail.effective;
+    const newPreference = customEvent.detail.theme;
+
+    // Only update if the theme actually changed
+    if (this._currentTheme === newTheme && this._currentPreference === newPreference) {
       return;
     }
 
-    this._currentTheme = customEvent.detail.effective;
-    this._currentPreference = customEvent.detail.theme;
+    this._currentTheme = newTheme;
+    this._currentPreference = newPreference;
     this.render();
     // Re-attach UI listeners to newly rendered elements
     // Use _setupUIListeners to avoid re-adding window listener
