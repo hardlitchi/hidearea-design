@@ -195,6 +195,10 @@
     "test": "vitest run",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
+    "test:perf": "vitest run tests/performance",
+    "test:perf:bundle": "vitest run tests/performance/bundle-regression.test.ts",
+    "test:perf:render": "vitest run tests/performance/render-performance.test.ts",
+    "test:perf:memory": "vitest run tests/performance/memory-usage.test.ts",
     "lint": "eslint src",
     "clean": "rm -rf dist node_modules",
     "metadata": "node scripts/collect-metadata.mjs"

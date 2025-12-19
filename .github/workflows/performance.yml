@@ -1,0 +1,255 @@
+name: Performance Tests
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/core/**'
+      - 'packages/react/**'
+      - 'packages/vue/**'
+      - 'packages/tokens/**'
+      - 'scripts/**'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  bundle-size:
+    name: Bundle Size Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Analyze bundle sizes
+        run: pnpm --filter @hidearea-design/core exec tsx ../../scripts/analyze-bundle-sizes.ts > bundle-report.md
+
+      - name: Upload bundle report
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle-analysis
+          path: bundle-report.md
+
+      - name: Comment PR with bundle size
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('bundle-report.md', 'utf8');
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '## 📦 Bundle Size Analysis\n\n' + report
+            });
+
+  performance-tests:
+    name: Performance Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run bundle size regression tests
+        run: pnpm --filter @hidearea-design/core test:perf:bundle
+
+      - name: Run render performance tests
+        run: pnpm --filter @hidearea-design/core test:perf:render
+
+      - name: Run memory usage tests
+        run: pnpm --filter @hidearea-design/core test:perf:memory
+
+      - name: Upload performance metrics
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-metrics
+          path: packages/core/tests/performance/bundle-metrics.json
+        if: always()
+
+  performance-budget:
+    name: Performance Budget Check
+    runs-on: ubuntu-latest
+    needs: [bundle-size]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Check performance budgets
+        run: pnpm --filter @hidearea-design/core exec tsx ../../scripts/check-performance-budget.ts
+
+      - name: Fail if budget exceeded
+        if: failure()
+        run: |
+          echo "::error::Performance budget exceeded! Please optimize bundle sizes."
+          exit 1
+
+  benchmark:
+    name: Browser Performance Benchmark
+    runs-on: ubuntu-latest
+    continue-on-error: true  # Don't fail the entire workflow if browser benchmarks fail
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Install Playwright
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Start development server
+        run: pnpm dev &
+        env:
+          CI: true
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:5173 --timeout 60000
+
+      - name: Run browser benchmarks
+        run: pnpm exec playwright test scripts/performance-benchmark.spec.ts
+
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: benchmark-results.json
+        if: always()
+
+  compare-with-base:
+    name: Compare with Base Branch
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    needs: [bundle-size]
+
+    steps:
+      - name: Checkout PR code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build PR packages
+        run: pnpm build
+
+      - name: Save PR bundle sizes
+        run: |
+          mkdir -p /tmp/pr-bundles
+          cp -r packages/core/dist /tmp/pr-bundles/core-dist
+          cp -r packages/react/dist /tmp/pr-bundles/react-dist
+          cp -r packages/vue/dist /tmp/pr-bundles/vue-dist
+
+      - name: Checkout base branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+
+      - name: Install base dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build base packages
+        run: pnpm build
+
+      - name: Compare bundle sizes
+        run: |
+          echo "## Bundle Size Comparison" > comparison.md
+          echo "" >> comparison.md
+
+          # Compare core package
+          PR_SIZE=$(du -sb /tmp/pr-bundles/core-dist | cut -f1)
+          BASE_SIZE=$(du -sb packages/core/dist | cut -f1)
+          DIFF=$((PR_SIZE - BASE_SIZE))
+          PERCENT=$(awk "BEGIN {printf \"%.2f\", ($DIFF / $BASE_SIZE) * 100}")
+
+          echo "### @hidearea-design/core" >> comparison.md
+          echo "- Base: $(numfmt --to=iec-i --suffix=B $BASE_SIZE)" >> comparison.md
+          echo "- PR: $(numfmt --to=iec-i --suffix=B $PR_SIZE)" >> comparison.md
+          echo "- Change: $(numfmt --to=iec-i --suffix=B $DIFF) ($PERCENT%)" >> comparison.md
+          echo "" >> comparison.md
+
+      - name: Comment comparison
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const comparison = fs.readFileSync('comparison.md', 'utf8');
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comparison
+            });
