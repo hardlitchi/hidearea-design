@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface DrawerArgs {
   placement: "left" | "right" | "top" | "bottom";
@@ -55,6 +56,7 @@ type Story = StoryObj<DrawerArgs>;
 export const Default: Story = {
   render: (args) => html`
     <button
+      id="open-drawer-btn"
       @click="${(e: Event) => {
         const drawer = document.querySelector("#drawer-default") as any;
         drawer?.setAttribute("open", "");
@@ -77,6 +79,7 @@ export const Default: Story = {
       </div>
       <div slot="footer">
         <ha-button
+          id="close-drawer-btn"
           size="sm"
           variant="outline"
           @click="${() => {
@@ -89,6 +92,41 @@ export const Default: Story = {
       </div>
     </ha-drawer>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Open button should be present", async () => {
+      const button = canvasElement.querySelector("#open-drawer-btn");
+      await expect(button).toBeTruthy();
+    });
+
+    await step("Drawer should not be visible initially", async () => {
+      const drawer = canvasElement.querySelector("#drawer-default");
+      await expect(drawer?.hasAttribute("open")).toBe(false);
+    });
+
+    await step("Drawer should have correct attributes", async () => {
+      const drawer = canvasElement.querySelector("#drawer-default");
+      await expect(drawer?.getAttribute("placement")).toBe("right");
+      await expect(drawer?.getAttribute("size")).toBe("md");
+    });
+
+    await step("Clicking button should open drawer", async () => {
+      const button = canvasElement.querySelector("#open-drawer-btn") as HTMLButtonElement;
+      await userEvent.click(button);
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      const drawer = canvasElement.querySelector("#drawer-default");
+      await expect(drawer?.hasAttribute("open")).toBe(true);
+    });
+
+    await step("Close button should close drawer", async () => {
+      const closeBtn = canvasElement.querySelector("#close-drawer-btn") as HTMLElement;
+      await userEvent.click(closeBtn);
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      const drawer = canvasElement.querySelector("#drawer-default");
+      await expect(drawer?.hasAttribute("open")).toBe(false);
+    });
+  },
 };
 
 /**
@@ -98,6 +136,7 @@ export const Placements: Story = {
   render: () => html`
     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
       <ha-button
+        id="open-left-btn"
         @click="${() => {
           const drawer = document.querySelector("#drawer-left") as any;
           drawer?.setAttribute("open", "");
@@ -106,6 +145,7 @@ export const Placements: Story = {
         Open Left
       </ha-button>
       <ha-button
+        id="open-right-btn"
         @click="${() => {
           const drawer = document.querySelector("#drawer-right") as any;
           drawer?.setAttribute("open", "");
@@ -114,6 +154,7 @@ export const Placements: Story = {
         Open Right
       </ha-button>
       <ha-button
+        id="open-top-btn"
         @click="${() => {
           const drawer = document.querySelector("#drawer-top") as any;
           drawer?.setAttribute("open", "");
@@ -122,6 +163,7 @@ export const Placements: Story = {
         Open Top
       </ha-button>
       <ha-button
+        id="open-bottom-btn"
         @click="${() => {
           const drawer = document.querySelector("#drawer-bottom") as any;
           drawer?.setAttribute("open", "");
@@ -151,6 +193,28 @@ export const Placements: Story = {
       <p>This drawer slides in from the bottom.</p>
     </ha-drawer>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("All placement drawers should have correct placement attributes", async () => {
+      const leftDrawer = canvasElement.querySelector("#drawer-left");
+      const rightDrawer = canvasElement.querySelector("#drawer-right");
+      const topDrawer = canvasElement.querySelector("#drawer-top");
+      const bottomDrawer = canvasElement.querySelector("#drawer-bottom");
+
+      await expect(leftDrawer?.getAttribute("placement")).toBe("left");
+      await expect(rightDrawer?.getAttribute("placement")).toBe("right");
+      await expect(topDrawer?.getAttribute("placement")).toBe("top");
+      await expect(bottomDrawer?.getAttribute("placement")).toBe("bottom");
+    });
+
+    await step("Opening left drawer should work", async () => {
+      const button = canvasElement.querySelector("#open-left-btn") as HTMLElement;
+      await userEvent.click(button);
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      const drawer = canvasElement.querySelector("#drawer-left");
+      await expect(drawer?.hasAttribute("open")).toBe(true);
+    });
+  },
 };
 
 /**
