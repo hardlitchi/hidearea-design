@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 const meta: Meta = {
   title: "Feedback/Tooltip",
@@ -75,6 +76,7 @@ export const Default: Story = {
   render: (args) => html`
     <div style="padding: 100px; text-align: center;">
       <ha-tooltip
+        id="test-tooltip"
         content="${args.content}"
         placement="${args.placement}"
         trigger="${args.trigger}"
@@ -88,6 +90,27 @@ export const Default: Story = {
       </ha-tooltip>
     </div>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Tooltip should be present", async () => {
+      const tooltip = canvasElement.querySelector("#test-tooltip");
+      await expect(tooltip).toBeTruthy();
+    });
+
+    await step("Tooltip should have correct content", async () => {
+      const tooltip = canvasElement.querySelector("#test-tooltip");
+      await expect(tooltip?.getAttribute("content")).toBe("This is a tooltip");
+    });
+
+    await step("Tooltip should have correct placement", async () => {
+      const tooltip = canvasElement.querySelector("#test-tooltip");
+      await expect(tooltip?.getAttribute("placement")).toBe("top");
+    });
+
+    await step("Tooltip should have correct variant", async () => {
+      const tooltip = canvasElement.querySelector("#test-tooltip");
+      await expect(tooltip?.getAttribute("variant")).toBe("default");
+    });
+  },
 };
 
 export const Placements: Story = {

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 const meta: Meta = {
   title: "Navigation/Breadcrumb",
@@ -28,7 +29,7 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: (args) => html`
-    <ha-breadcrumb separator="${args.separator}" size="${args.size}">
+    <ha-breadcrumb id="test-breadcrumb" separator="${args.separator}" size="${args.size}">
       <ha-breadcrumb-item href="/">Home</ha-breadcrumb-item>
       <ha-breadcrumb-item href="/products">Products</ha-breadcrumb-item>
       <ha-breadcrumb-item href="/products/electronics"
@@ -37,6 +38,27 @@ export const Default: Story = {
       <ha-breadcrumb-item current>Laptop</ha-breadcrumb-item>
     </ha-breadcrumb>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Breadcrumb should be present", async () => {
+      const breadcrumb = canvasElement.querySelector("#test-breadcrumb");
+      await expect(breadcrumb).toBeTruthy();
+    });
+
+    await step("Breadcrumb should have correct separator", async () => {
+      const breadcrumb = canvasElement.querySelector("#test-breadcrumb");
+      await expect(breadcrumb?.getAttribute("separator")).toBe("slash");
+    });
+
+    await step("Breadcrumb should have correct size", async () => {
+      const breadcrumb = canvasElement.querySelector("#test-breadcrumb");
+      await expect(breadcrumb?.getAttribute("size")).toBe("md");
+    });
+
+    await step("Breadcrumb should have correct number of items", async () => {
+      const items = canvasElement.querySelectorAll("ha-breadcrumb-item");
+      await expect(items.length).toBe(4);
+    });
+  },
 };
 
 export const Separators: Story = {

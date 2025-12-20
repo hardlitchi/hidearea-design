@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface ToastArgs {
   variant: "info" | "success" | "warning" | "error";
@@ -74,6 +75,7 @@ type Story = StoryObj<ToastArgs>;
 export const Default: Story = {
   render: (args) => html`
     <button
+      id="test-toast-button"
       @click="${() => {
         const container =
           document.querySelector("ha-toast-container") ||
@@ -85,6 +87,7 @@ export const Default: Story = {
           })();
 
         const toast = document.createElement("ha-toast");
+        toast.setAttribute("id", "test-toast");
         toast.setAttribute("variant", args.variant);
         toast.setAttribute("message", args.message);
         if (args.closable) toast.setAttribute("closable", "");
@@ -97,6 +100,26 @@ export const Default: Story = {
       Show Toast
     </button>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Toast button should be present", async () => {
+      const button = canvasElement.querySelector("#test-toast-button");
+      await expect(button).toBeTruthy();
+    });
+
+    await step("Clicking button should create toast", async () => {
+      const button = canvasElement.querySelector("#test-toast-button") as HTMLElement;
+      await userEvent.click(button);
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      const toast = document.querySelector("#test-toast");
+      await expect(toast).toBeTruthy();
+    });
+
+    await step("Toast should have correct variant", async () => {
+      const toast = document.querySelector("#test-toast");
+      await expect(toast?.getAttribute("variant")).toBe("info");
+    });
+  },
 };
 
 /**
