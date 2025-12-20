@@ -423,11 +423,30 @@ export const FormExample: Story = {
 
 export const IndeterminateExample: Story = {
   render: () => {
-    const updateParent = () => {
+    // Use a single container to scope queries
+    const containerId = "indeterminate-container-" + Math.random().toString(36).substr(2, 9);
+
+    const handleParentChange = (e: Event) => {
+      const parent = e.target as any;
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      const children = container.querySelectorAll(".child-checkbox");
+      children.forEach((child: any) => {
+        child.checked = parent.checked;
+      });
+      parent.indeterminate = false;
+    };
+
+    const handleChildChange = () => {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      const parent = container.querySelector("#parent-checkbox") as any;
       const children = Array.from(
-        document.querySelectorAll(".child-checkbox"),
+        container.querySelectorAll(".child-checkbox"),
       ) as any[];
-      const parent = document.querySelector("#parent") as any;
+
       if (!parent) return;
 
       const checkedCount = children.filter((child) => child.checked).length;
@@ -445,20 +464,11 @@ export const IndeterminateExample: Story = {
     };
 
     return html`
-      <div style="max-width: 400px;">
+      <div id="${containerId}" style="max-width: 400px;">
         <ha-checkbox
-          id="parent"
+          id="parent-checkbox"
           indeterminate
-          @change="${(e: CustomEvent) => {
-            const parent = e.target as any;
-            const children = document.querySelectorAll(
-              ".child-checkbox",
-            ) as any;
-            children.forEach((child: any) => {
-              child.checked = parent.checked;
-            });
-            parent.indeterminate = false;
-          }}"
+          @change="${handleParentChange}"
         >
           Select all
         </ha-checkbox>
@@ -470,17 +480,17 @@ export const IndeterminateExample: Story = {
             class="child-checkbox"
             label="Option 1"
             checked
-            @change="${updateParent}"
+            @change="${handleChildChange}"
           ></ha-checkbox>
           <ha-checkbox
             class="child-checkbox"
             label="Option 2"
-            @change="${updateParent}"
+            @change="${handleChildChange}"
           ></ha-checkbox>
           <ha-checkbox
             class="child-checkbox"
             label="Option 3"
-            @change="${updateParent}"
+            @change="${handleChildChange}"
           ></ha-checkbox>
         </div>
       </div>
