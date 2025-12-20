@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface ColorPickerArgs {
   value: string;
@@ -54,8 +55,11 @@ const meta: Meta<ColorPickerArgs> = {
 export default meta;
 type Story = StoryObj<ColorPickerArgs>;
 
-const createColorPicker = (args: ColorPickerArgs) => {
+const createColorPicker = (args: ColorPickerArgs, id?: string) => {
   const picker = document.createElement("ha-color-picker");
+  if (id) {
+    picker.id = id;
+  }
   picker.setAttribute("value", args.value);
   picker.setAttribute("format", args.format);
 
@@ -78,6 +82,8 @@ const createColorPicker = (args: ColorPickerArgs) => {
     picker.setAttribute("readonly", "");
   }
 
+  picker.addEventListener("color-change", fn());
+
   return picker;
 };
 
@@ -92,7 +98,23 @@ export const Default: Story = {
     disabled: false,
     readonly: false,
   },
-  render: (args) => createColorPicker(args),
+  render: (args) => createColorPicker(args, "test-color-picker"),
+  play: async ({ canvasElement, step }) => {
+    await step("Color picker should be present", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker");
+      await expect(picker).toBeTruthy();
+    });
+
+    await step("Color picker should have correct initial value", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker");
+      await expect(picker?.getAttribute("value")).toBe("#3b82f6");
+    });
+
+    await step("Color picker should have correct format", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker");
+      await expect(picker?.getAttribute("format")).toBe("hex");
+    });
+  },
 };
 
 export const WithInput: Story = {
@@ -106,7 +128,24 @@ export const WithInput: Story = {
     disabled: false,
     readonly: false,
   },
-  render: (args) => createColorPicker(args),
+  render: (args) => createColorPicker(args, "test-color-picker-input"),
+  play: async ({ canvasElement, step }) => {
+    await step("Color picker with input should be present", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker-input");
+      await expect(picker).toBeTruthy();
+    });
+
+    await step("Color picker should have show-input attribute", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker-input");
+      await expect(picker?.hasAttribute("show-input")).toBe(true);
+    });
+
+    await step("Color picker should display input field", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker-input") as any;
+      const input = picker?.shadowRoot?.querySelector("input[type='text']");
+      await expect(input).toBeTruthy();
+    });
+  },
 };
 
 export const WithAlpha: Story = {
@@ -120,7 +159,23 @@ export const WithAlpha: Story = {
     disabled: false,
     readonly: false,
   },
-  render: (args) => createColorPicker(args),
+  render: (args) => createColorPicker(args, "test-color-picker-alpha"),
+  play: async ({ canvasElement, step }) => {
+    await step("Color picker with alpha should be present", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker-alpha");
+      await expect(picker).toBeTruthy();
+    });
+
+    await step("Color picker should have show-alpha attribute", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker-alpha");
+      await expect(picker?.hasAttribute("show-alpha")).toBe(true);
+    });
+
+    await step("Color picker should have show-input attribute", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker-alpha");
+      await expect(picker?.hasAttribute("show-input")).toBe(true);
+    });
+  },
 };
 
 export const WithSwatches: Story = {
@@ -135,7 +190,25 @@ export const WithSwatches: Story = {
     disabled: false,
     readonly: false,
   },
-  render: (args) => createColorPicker(args),
+  render: (args) => createColorPicker(args, "test-color-picker-swatches"),
+  play: async ({ canvasElement, step }) => {
+    await step("Color picker with swatches should be present", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker-swatches");
+      await expect(picker).toBeTruthy();
+    });
+
+    await step("Color picker should have show-swatches attribute", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker-swatches");
+      await expect(picker?.hasAttribute("show-swatches")).toBe(true);
+    });
+
+    await step("Color picker should have swatches attribute", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker-swatches");
+      const swatchesAttr = picker?.getAttribute("swatches");
+      await expect(swatchesAttr).toBeTruthy();
+      await expect(swatchesAttr?.includes("#ef4444")).toBe(true);
+    });
+  },
 };
 
 export const RGBFormat: Story = {
@@ -177,7 +250,18 @@ export const Disabled: Story = {
     disabled: true,
     readonly: false,
   },
-  render: (args) => createColorPicker(args),
+  render: (args) => createColorPicker(args, "test-color-picker-disabled"),
+  play: async ({ canvasElement, step }) => {
+    await step("Disabled color picker should be present", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker-disabled");
+      await expect(picker).toBeTruthy();
+    });
+
+    await step("Color picker should have disabled attribute", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker-disabled");
+      await expect(picker?.hasAttribute("disabled")).toBe(true);
+    });
+  },
 };
 
 export const Readonly: Story = {
@@ -191,7 +275,18 @@ export const Readonly: Story = {
     disabled: false,
     readonly: true,
   },
-  render: (args) => createColorPicker(args),
+  render: (args) => createColorPicker(args, "test-color-picker-readonly"),
+  play: async ({ canvasElement, step }) => {
+    await step("Readonly color picker should be present", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker-readonly");
+      await expect(picker).toBeTruthy();
+    });
+
+    await step("Color picker should have readonly attribute", async () => {
+      const picker = canvasElement.querySelector("#test-color-picker-readonly");
+      await expect(picker?.hasAttribute("readonly")).toBe(true);
+    });
+  },
 };
 
 export const MaterialDesignColors: Story = {
