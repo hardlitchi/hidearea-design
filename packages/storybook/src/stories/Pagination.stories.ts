@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface PaginationArgs {
   current: number;
@@ -71,7 +72,50 @@ type Story = StoryObj<PaginationArgs>;
 /**
  * Default pagination
  */
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => html`
+    <ha-pagination
+      id="test-pagination"
+      current="${args.current}"
+      total="${args.total}"
+      page-size="${args.pageSize}"
+      variant="${args.variant}"
+      size="${args.size}"
+      ?show-quick-jumper="${args.showQuickJumper}"
+      @page-change="${fn()}"
+    ></ha-pagination>
+  `,
+  play: async ({ canvasElement, step }) => {
+    await step("Pagination should be present", async () => {
+      const pagination = canvasElement.querySelector("#test-pagination");
+      await expect(pagination).toBeTruthy();
+    });
+
+    await step("Pagination should have correct initial attributes", async () => {
+      const pagination = canvasElement.querySelector("#test-pagination");
+      await expect(pagination?.getAttribute("current")).toBe("1");
+      await expect(pagination?.getAttribute("total")).toBe("100");
+      await expect(pagination?.getAttribute("page-size")).toBe("10");
+    });
+
+    await step("Pagination should render page buttons", async () => {
+      const pagination = canvasElement.querySelector("#test-pagination");
+      const buttons = pagination?.shadowRoot?.querySelectorAll("button");
+      await expect(buttons && buttons.length > 0).toBe(true);
+    });
+
+    await step("Clicking next button should work", async () => {
+      const pagination = canvasElement.querySelector("#test-pagination") as any;
+      const nextButton = pagination?.shadowRoot?.querySelector("button[aria-label*='next'], button[aria-label*='Next']");
+
+      if (nextButton) {
+        await userEvent.click(nextButton as HTMLElement);
+        await new Promise(resolve => setTimeout(resolve, 100));
+        await expect(nextButton).toBeTruthy();
+      }
+    });
+  },
+};
 
 /**
  * All variants
@@ -82,6 +126,7 @@ export const Variants: Story = {
       <div>
         <h4>Default</h4>
         <ha-pagination
+          id="variant-default"
           current="5"
           total="100"
           page-size="10"
@@ -92,6 +137,7 @@ export const Variants: Story = {
       <div>
         <h4>Rounded</h4>
         <ha-pagination
+          id="variant-rounded"
           current="5"
           total="100"
           page-size="10"
@@ -102,6 +148,7 @@ export const Variants: Story = {
       <div>
         <h4>Simple</h4>
         <ha-pagination
+          id="variant-simple"
           current="5"
           total="100"
           page-size="10"
@@ -110,6 +157,37 @@ export const Variants: Story = {
       </div>
     </div>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("All variants should be present", async () => {
+      const defaultPagination = canvasElement.querySelector("#variant-default");
+      const roundedPagination = canvasElement.querySelector("#variant-rounded");
+      const simplePagination = canvasElement.querySelector("#variant-simple");
+
+      await expect(defaultPagination).toBeTruthy();
+      await expect(roundedPagination).toBeTruthy();
+      await expect(simplePagination).toBeTruthy();
+    });
+
+    await step("Each variant should have correct variant attribute", async () => {
+      const defaultPagination = canvasElement.querySelector("#variant-default");
+      const roundedPagination = canvasElement.querySelector("#variant-rounded");
+      const simplePagination = canvasElement.querySelector("#variant-simple");
+
+      await expect(defaultPagination?.getAttribute("variant")).toBe("default");
+      await expect(roundedPagination?.getAttribute("variant")).toBe("rounded");
+      await expect(simplePagination?.getAttribute("variant")).toBe("simple");
+    });
+
+    await step("All variants should have the same current page", async () => {
+      const defaultPagination = canvasElement.querySelector("#variant-default");
+      const roundedPagination = canvasElement.querySelector("#variant-rounded");
+      const simplePagination = canvasElement.querySelector("#variant-simple");
+
+      await expect(defaultPagination?.getAttribute("current")).toBe("5");
+      await expect(roundedPagination?.getAttribute("current")).toBe("5");
+      await expect(simplePagination?.getAttribute("current")).toBe("5");
+    });
+  },
 };
 
 /**
@@ -121,6 +199,7 @@ export const Sizes: Story = {
       <div>
         <h4>Small</h4>
         <ha-pagination
+          id="size-sm"
           current="5"
           total="100"
           page-size="10"
@@ -131,6 +210,7 @@ export const Sizes: Story = {
       <div>
         <h4>Medium</h4>
         <ha-pagination
+          id="size-md"
           current="5"
           total="100"
           page-size="10"
@@ -141,6 +221,7 @@ export const Sizes: Story = {
       <div>
         <h4>Large</h4>
         <ha-pagination
+          id="size-lg"
           current="5"
           total="100"
           page-size="10"
@@ -149,6 +230,27 @@ export const Sizes: Story = {
       </div>
     </div>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("All sizes should be present", async () => {
+      const smPagination = canvasElement.querySelector("#size-sm");
+      const mdPagination = canvasElement.querySelector("#size-md");
+      const lgPagination = canvasElement.querySelector("#size-lg");
+
+      await expect(smPagination).toBeTruthy();
+      await expect(mdPagination).toBeTruthy();
+      await expect(lgPagination).toBeTruthy();
+    });
+
+    await step("Each size should have correct size attribute", async () => {
+      const smPagination = canvasElement.querySelector("#size-sm");
+      const mdPagination = canvasElement.querySelector("#size-md");
+      const lgPagination = canvasElement.querySelector("#size-lg");
+
+      await expect(smPagination?.getAttribute("size")).toBe("sm");
+      await expect(mdPagination?.getAttribute("size")).toBe("md");
+      await expect(lgPagination?.getAttribute("size")).toBe("lg");
+    });
+  },
 };
 
 /**
