@@ -308,7 +308,15 @@ export class HaCheckbox extends HTMLElement {
     if (label && labelElement) {
       const slot = labelElement.querySelector("slot") as HTMLSlotElement | null;
       if (slot && !slot.assignedNodes().length) {
-        // Only set text if slot is empty
+        // Remove any existing text nodes before the slot
+        const childNodes = Array.from(labelElement.childNodes);
+        childNodes.forEach((node) => {
+          if (node !== slot && node.nodeType === Node.TEXT_NODE) {
+            labelElement.removeChild(node);
+          }
+        });
+
+        // Add new text node
         const textNode = document.createTextNode(label);
         labelElement.insertBefore(textNode, slot);
       }
@@ -320,6 +328,15 @@ export class HaCheckbox extends HTMLElement {
         'slot[name="description"]',
       ) as HTMLSlotElement | null;
       if (slot && !slot.assignedNodes().length) {
+        // Remove any existing text nodes before the slot
+        const childNodes = Array.from(descriptionElement.childNodes);
+        childNodes.forEach((node) => {
+          if (node !== slot && node.nodeType === Node.TEXT_NODE) {
+            descriptionElement.removeChild(node);
+          }
+        });
+
+        // Add new text node
         const textNode = document.createTextNode(descriptionAttr);
         descriptionElement.insertBefore(textNode, slot);
       }
