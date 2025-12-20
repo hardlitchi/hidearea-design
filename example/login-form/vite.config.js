@@ -19,7 +19,7 @@ export default defineConfig(({ command, mode }) => {
     },
     server: {
       host: '0.0.0.0',
-      port: parseInt(env.LOGIN_FORM_PORT) || 5274,
+      port: parseInt(env.LOGIN_FORM_PORT) || 40001,
       strictPort: true,
       // すべてのホストからのアクセスを許可
       allowedHosts: [

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface BadgeArgs {
   variant: "primary" | "secondary" | "success" | "warning" | "error" | "info";
@@ -77,7 +78,37 @@ type Story = StoryObj<BadgeArgs>;
 /**
  * Default badge with primary variant
  */
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => html`
+    <ha-badge
+      id="test-badge"
+      variant="${args.variant}"
+      style-variant="${args.styleVariant}"
+      size="${args.size}"
+      ?pill="${args.pill}"
+      ?dot="${args.dot}"
+      ?removable="${args.removable}"
+    >
+      ${args.label}
+    </ha-badge>
+  `,
+  play: async ({ canvasElement, step }) => {
+    await step("Badge should be present", async () => {
+      const badge = canvasElement.querySelector("#test-badge");
+      await expect(badge).toBeTruthy();
+    });
+
+    await step("Badge should have correct variant", async () => {
+      const badge = canvasElement.querySelector("#test-badge");
+      await expect(badge?.getAttribute("variant")).toBe("primary");
+    });
+
+    await step("Badge should have correct size", async () => {
+      const badge = canvasElement.querySelector("#test-badge");
+      await expect(badge?.getAttribute("size")).toBe("md");
+    });
+  },
+};
 
 /**
  * All color variants in filled style

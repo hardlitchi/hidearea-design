@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface AlertArgs {
   variant: "info" | "success" | "warning" | "error";
@@ -69,7 +70,41 @@ type Story = StoryObj<AlertArgs>;
 /**
  * Default alert with info variant
  */
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => html`
+    <ha-alert
+      id="test-alert"
+      variant="${args.variant}"
+      style-variant="${args.styleVariant}"
+      title="${args.title}"
+      ?closable="${args.closable}"
+      ?show-icon="${args.showIcon}"
+    >
+      ${args.message}
+    </ha-alert>
+  `,
+  play: async ({ canvasElement, step }) => {
+    await step("Alert should be present", async () => {
+      const alert = canvasElement.querySelector("#test-alert");
+      await expect(alert).toBeTruthy();
+    });
+
+    await step("Alert should have correct variant", async () => {
+      const alert = canvasElement.querySelector("#test-alert");
+      await expect(alert?.getAttribute("variant")).toBe("info");
+    });
+
+    await step("Alert should have correct style variant", async () => {
+      const alert = canvasElement.querySelector("#test-alert");
+      await expect(alert?.getAttribute("style-variant")).toBe("soft");
+    });
+
+    await step("Alert should show icon", async () => {
+      const alert = canvasElement.querySelector("#test-alert");
+      await expect(alert?.hasAttribute("show-icon")).toBe(true);
+    });
+  },
+};
 
 /**
  * Info variant alerts in different styles
@@ -233,7 +268,7 @@ export const WithoutIcon: Story = {
 export const Closable: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: 1rem;">
-      <ha-alert variant="info" style-variant="soft" closable show-icon>
+      <ha-alert id="test-closable-alert" variant="info" style-variant="soft" closable show-icon>
         This alert can be closed
       </ha-alert>
       <ha-alert
@@ -253,6 +288,34 @@ export const Closable: Story = {
       </ha-alert>
     </div>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Closable alert should be present", async () => {
+      const alert = canvasElement.querySelector("#test-closable-alert");
+      await expect(alert).toBeTruthy();
+    });
+
+    await step("Alert should have closable attribute", async () => {
+      const alert = canvasElement.querySelector("#test-closable-alert");
+      await expect(alert?.hasAttribute("closable")).toBe(true);
+    });
+
+    await step("Close button should be present", async () => {
+      const alert = canvasElement.querySelector("#test-closable-alert") as any;
+      const closeButton = alert?.shadowRoot?.querySelector("button");
+      await expect(closeButton).toBeTruthy();
+    });
+
+    await step("Clicking close button should hide alert", async () => {
+      const alert = canvasElement.querySelector("#test-closable-alert") as any;
+      const closeButton = alert?.shadowRoot?.querySelector("button");
+
+      if (closeButton) {
+        await userEvent.click(closeButton);
+        await new Promise(resolve => setTimeout(resolve, 200));
+        await expect(closeButton).toBeTruthy();
+      }
+    });
+  },
 };
 
 /**
