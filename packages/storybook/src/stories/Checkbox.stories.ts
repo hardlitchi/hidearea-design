@@ -425,17 +425,30 @@ export const IndeterminateExample: Story = {
   render: () => {
     // Use a single container to scope queries
     const containerId = "indeterminate-container-" + Math.random().toString(36).substr(2, 9);
+    let isUpdatingChildren = false;
 
     const handleParentChange = (e: Event) => {
+      if (isUpdatingChildren) return;
+
       const parent = e.target as any;
       const container = document.getElementById(containerId);
       if (!container) return;
 
       const children = container.querySelectorAll(".child-checkbox");
+
+      // Set flag to prevent recursive updates
+      isUpdatingChildren = true;
+
       children.forEach((child: any) => {
         child.checked = parent.checked;
       });
-      parent.indeterminate = false;
+
+      // Clear indeterminate state after updating children
+      if (parent.indeterminate) {
+        parent.indeterminate = false;
+      }
+
+      isUpdatingChildren = false;
     };
 
     const handleChildChange = () => {
@@ -451,16 +464,33 @@ export const IndeterminateExample: Story = {
 
       const checkedCount = children.filter((child) => child.checked).length;
 
+      // Set flag to prevent parent change event from triggering
+      isUpdatingChildren = true;
+
       if (checkedCount === 0) {
-        parent.checked = false;
-        parent.indeterminate = false;
+        if (parent.hasAttribute("checked")) {
+          parent.removeAttribute("checked");
+        }
+        if (parent.hasAttribute("indeterminate")) {
+          parent.removeAttribute("indeterminate");
+        }
       } else if (checkedCount === children.length) {
-        parent.checked = true;
-        parent.indeterminate = false;
+        if (!parent.hasAttribute("checked")) {
+          parent.setAttribute("checked", "");
+        }
+        if (parent.hasAttribute("indeterminate")) {
+          parent.removeAttribute("indeterminate");
+        }
       } else {
-        parent.checked = false;
-        parent.indeterminate = true;
+        if (parent.hasAttribute("checked")) {
+          parent.removeAttribute("checked");
+        }
+        if (!parent.hasAttribute("indeterminate")) {
+          parent.setAttribute("indeterminate", "");
+        }
       }
+
+      isUpdatingChildren = false;
     };
 
     return html`
