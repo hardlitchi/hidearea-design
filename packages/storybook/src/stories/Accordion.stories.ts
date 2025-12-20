@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface AccordionArgs {
   allowMultiple: boolean;
@@ -26,23 +27,24 @@ const meta: Meta<AccordionArgs> = {
   },
   render: (args) => html`
     <ha-accordion
+      id="test-accordion"
       ?allow-multiple="${args.allowMultiple}"
       ?collapsible="${args.collapsible}"
     >
-      <ha-accordion-item header="What is a Web Component?" open>
+      <ha-accordion-item id="item-1" header="What is a Web Component?" open>
         <p>
           Web Components are a set of web platform APIs that allow you to
           create new custom, reusable, encapsulated HTML tags to use in web
           pages and web apps.
         </p>
       </ha-accordion-item>
-      <ha-accordion-item header="How do I use this component?">
+      <ha-accordion-item id="item-2" header="How do I use this component?">
         <p>
           Simply include the component in your HTML and use the custom element
           tag. You can customize it using attributes and slots.
         </p>
       </ha-accordion-item>
-      <ha-accordion-item header="What browsers are supported?">
+      <ha-accordion-item id="item-3" header="What browsers are supported?">
         <p>
           All modern browsers support Web Components, including Chrome, Firefox,
           Safari, and Edge.
@@ -58,7 +60,50 @@ type Story = StoryObj<AccordionArgs>;
 /**
  * Default accordion with single item open
  */
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvasElement, step }) => {
+    await step("Accordion should be present", async () => {
+      const accordion = canvasElement.querySelector("#test-accordion");
+      await expect(accordion).toBeTruthy();
+    });
+
+    await step("First item should be open initially", async () => {
+      const item1 = canvasElement.querySelector("#item-1");
+      await expect(item1?.hasAttribute("open")).toBe(true);
+    });
+
+    await step("Other items should be closed", async () => {
+      const item2 = canvasElement.querySelector("#item-2");
+      const item3 = canvasElement.querySelector("#item-3");
+      await expect(item2?.hasAttribute("open")).toBe(false);
+      await expect(item3?.hasAttribute("open")).toBe(false);
+    });
+
+    await step("Clicking second item should open it and close first", async () => {
+      const item2 = canvasElement.querySelector("#item-2") as HTMLElement;
+      const header2 = item2.shadowRoot?.querySelector("button") as HTMLElement;
+
+      await userEvent.click(header2);
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      await expect(item2?.hasAttribute("open")).toBe(true);
+
+      // First item should now be closed (single mode)
+      const item1 = canvasElement.querySelector("#item-1");
+      await expect(item1?.hasAttribute("open")).toBe(false);
+    });
+
+    await step("Clicking third item should work", async () => {
+      const item3 = canvasElement.querySelector("#item-3") as HTMLElement;
+      const header3 = item3.shadowRoot?.querySelector("button") as HTMLElement;
+
+      await userEvent.click(header3);
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      await expect(item3?.hasAttribute("open")).toBe(true);
+    });
+  },
+};
 
 /**
  * Accordion allowing multiple items to be open
@@ -66,6 +111,40 @@ export const Default: Story = {};
 export const AllowMultiple: Story = {
   args: {
     allowMultiple: true,
+  },
+  play: async ({ canvasElement, step }) => {
+    await step("Accordion should have allow-multiple attribute", async () => {
+      const accordion = canvasElement.querySelector("#test-accordion");
+      await expect(accordion?.hasAttribute("allow-multiple")).toBe(true);
+    });
+
+    await step("Multiple items can be open simultaneously", async () => {
+      const item2 = canvasElement.querySelector("#item-2") as HTMLElement;
+      const header2 = item2.shadowRoot?.querySelector("button") as HTMLElement;
+
+      await userEvent.click(header2);
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      // Both item 1 and item 2 should be open
+      const item1 = canvasElement.querySelector("#item-1");
+      await expect(item1?.hasAttribute("open")).toBe(true);
+      await expect(item2?.hasAttribute("open")).toBe(true);
+    });
+
+    await step("Opening third item keeps others open", async () => {
+      const item3 = canvasElement.querySelector("#item-3") as HTMLElement;
+      const header3 = item3.shadowRoot?.querySelector("button") as HTMLElement;
+
+      await userEvent.click(header3);
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      // All three items should be open
+      const item1 = canvasElement.querySelector("#item-1");
+      const item2 = canvasElement.querySelector("#item-2");
+      await expect(item1?.hasAttribute("open")).toBe(true);
+      await expect(item2?.hasAttribute("open")).toBe(true);
+      await expect(item3?.hasAttribute("open")).toBe(true);
+    });
   },
 };
 
