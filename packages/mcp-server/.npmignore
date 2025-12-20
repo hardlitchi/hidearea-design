@@ -1,0 +1,50 @@
+# Source files (only ship compiled build)
+src/
+*.ts
+!*.d.ts
+
+# Development files
+tsconfig.json
+.turbo/
+node_modules/
+
+# Documentation (keep README.md and USAGE_GUIDE.md)
+# These will be included by default
+
+# Git files
+.git
+.gitignore
+
+# CI/CD
+.github/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+test/
+tests/
+*.test.ts
+*.spec.ts
+
+# Build artifacts (except the main build directory)
+dist/
+tmp/
+temp/
