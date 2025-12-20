@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
+import { expect, fn, userEvent, within } from "@storybook/test";
 import { html } from "lit";
 import "@hidearea-design/core";
 
@@ -12,11 +13,11 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: () => html`
-    <ha-dropdown placement="bottom-start">
+    <ha-dropdown id="test-dropdown" placement="bottom-start">
       <button slot="trigger" style="padding: 8px 16px; cursor: pointer;">
         Open Menu
       </button>
-      <ha-menu>
+      <ha-menu id="test-menu">
         <ha-menu-item value="new">New File</ha-menu-item>
         <ha-menu-item value="open">Open</ha-menu-item>
         <ha-menu-item value="save">Save</ha-menu-item>
@@ -25,6 +26,16 @@ export const Default: Story = {
       </ha-menu>
     </ha-dropdown>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Dropdown should be present", async () => {
+      const dropdown = canvasElement.querySelector("#test-dropdown");
+      await expect(dropdown).toBeTruthy();
+    });
+    await step("Menu should be present", async () => {
+      const menu = canvasElement.querySelector("#test-menu");
+      await expect(menu).toBeTruthy();
+    });
+  },
 };
 
 export const WithIcons: Story = {

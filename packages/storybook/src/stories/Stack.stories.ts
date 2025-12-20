@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
+import { expect, fn, userEvent, within } from "@storybook/test";
 import { html } from "lit";
 import "@hidearea-design/core";
 
@@ -97,6 +98,7 @@ export const Default: Story = {
   },
   render: (args) => html`
     <ha-stack
+      id="test-stack"
       direction="${args.direction}"
       gap="${args.gap}"
       ${args.align ? `align="${args.align}"` : ""}
@@ -106,6 +108,20 @@ export const Default: Story = {
       ${Array.from({ length: 4 }, (_, i) => stackItem(i + 1))}
     </ha-stack>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Stack should be present", async () => {
+      const stack = canvasElement.querySelector("#test-stack");
+      await expect(stack).toBeTruthy();
+    });
+    await step("Stack should have correct direction", async () => {
+      const stack = canvasElement.querySelector("#test-stack");
+      await expect(stack?.getAttribute("direction")).toBe("vertical");
+    });
+    await step("Stack should have correct gap", async () => {
+      const stack = canvasElement.querySelector("#test-stack");
+      await expect(stack?.getAttribute("gap")).toBe("4");
+    });
+  },
 };
 
 export const Vertical: Story = {

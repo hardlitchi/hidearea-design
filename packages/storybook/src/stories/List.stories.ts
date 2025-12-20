@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
+import { expect, fn, userEvent, within } from "@storybook/test";
 import { html } from "lit";
 import "@hidearea-design/core";
 
@@ -50,7 +51,31 @@ type Story = StoryObj<ListArgs>;
 /**
  * Default list
  */
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => html`
+    <ha-list
+      id="test-list"
+      ?bordered="${args.bordered}"
+      ?hoverable="${args.hoverable}"
+      ?divided="${args.divided}"
+    >
+      <ha-list-item>First item</ha-list-item>
+      <ha-list-item>Second item</ha-list-item>
+      <ha-list-item>Third item</ha-list-item>
+      <ha-list-item>Fourth item</ha-list-item>
+    </ha-list>
+  `,
+  play: async ({ canvasElement, step }) => {
+    await step("List should be present", async () => {
+      const list = canvasElement.querySelector("#test-list");
+      await expect(list).toBeTruthy();
+    });
+    await step("List should have correct number of items", async () => {
+      const items = canvasElement.querySelectorAll("ha-list-item");
+      await expect(items.length).toBe(4);
+    });
+  },
+};
 
 /**
  * Bordered list with border around it

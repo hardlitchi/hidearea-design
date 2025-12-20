@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
+import { expect, fn, userEvent, within } from "@storybook/test";
 import { html } from "lit";
 import "@hidearea-design/core";
 
@@ -90,7 +91,59 @@ type Story = StoryObj<TableArgs>;
 /**
  * Default table with full width
  */
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => html`
+    <ha-table
+      id="test-table"
+      ?striped="${args.striped}"
+      ?bordered="${args.bordered}"
+      ?hoverable="${args.hoverable}"
+      ?compact="${args.compact}"
+      ?full-width="${args.fullWidth}"
+    >
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>John Doe</td>
+            <td>john@example.com</td>
+            <td>Admin</td>
+            <td>Active</td>
+          </tr>
+          <tr>
+            <td>Jane Smith</td>
+            <td>jane@example.com</td>
+            <td>Editor</td>
+            <td>Active</td>
+          </tr>
+          <tr>
+            <td>Bob Johnson</td>
+            <td>bob@example.com</td>
+            <td>Viewer</td>
+            <td>Inactive</td>
+          </tr>
+        </tbody>
+      </table>
+    </ha-table>
+  `,
+  play: async ({ canvasElement, step }) => {
+    await step("Table should be present", async () => {
+      const table = canvasElement.querySelector("#test-table");
+      await expect(table).toBeTruthy();
+    });
+    await step("Table should have full-width attribute", async () => {
+      const table = canvasElement.querySelector("#test-table");
+      await expect(table?.hasAttribute("full-width")).toBe(true);
+    });
+  },
+};
 
 /**
  * Striped table with alternating row colors
