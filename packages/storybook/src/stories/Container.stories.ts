@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface ContainerArgs {
   maxWidth: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
@@ -54,6 +55,7 @@ export const Default: Story = {
   },
   render: (args) => html`
     <ha-container
+      id="test-container"
       max-width="${args.maxWidth}"
       ?centered="${args.centered}"
       padding="${args.padding}"
@@ -61,6 +63,27 @@ export const Default: Story = {
       ${demoContent}
     </ha-container>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Container should be present", async () => {
+      const container = canvasElement.querySelector("#test-container");
+      await expect(container).toBeTruthy();
+    });
+
+    await step("Container should have correct max-width", async () => {
+      const container = canvasElement.querySelector("#test-container");
+      await expect(container?.getAttribute("max-width")).toBe("lg");
+    });
+
+    await step("Container should have correct padding", async () => {
+      const container = canvasElement.querySelector("#test-container");
+      await expect(container?.getAttribute("padding")).toBe("md");
+    });
+
+    await step("Container should be centered", async () => {
+      const container = canvasElement.querySelector("#test-container");
+      await expect(container?.hasAttribute("centered")).toBe(true);
+    });
+  },
 };
 
 export const Small: Story = {

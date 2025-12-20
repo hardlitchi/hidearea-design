@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface ThemeSwitcherArgs {
   variant: "toggle" | "dropdown" | "segmented";
@@ -54,7 +55,33 @@ type Story = StoryObj<ThemeSwitcherArgs>;
 /**
  * Default toggle button style
  */
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => html`
+    <ha-theme-switcher
+      id="test-theme-switcher"
+      variant="${args.variant}"
+      size="${args.size}"
+      ?show-label="${args.showLabel}"
+      ?show-auto="${args.showAuto}"
+    ></ha-theme-switcher>
+  `,
+  play: async ({ canvasElement, step }) => {
+    await step("ThemeSwitcher should be present", async () => {
+      const switcher = canvasElement.querySelector("#test-theme-switcher");
+      await expect(switcher).toBeTruthy();
+    });
+
+    await step("ThemeSwitcher should have correct variant", async () => {
+      const switcher = canvasElement.querySelector("#test-theme-switcher");
+      await expect(switcher?.getAttribute("variant")).toBe("toggle");
+    });
+
+    await step("ThemeSwitcher should have correct size", async () => {
+      const switcher = canvasElement.querySelector("#test-theme-switcher");
+      await expect(switcher?.getAttribute("size")).toBe("md");
+    });
+  },
+};
 
 /**
  * Toggle variant (default)

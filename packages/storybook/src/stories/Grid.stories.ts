@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface GridArgs {
   columns: string;
@@ -119,6 +120,7 @@ export const Default: Story = {
   },
   render: (args) => html`
     <ha-grid
+      id="test-grid"
       columns="${args.columns}"
       gap="${args.gap}"
       ${args.rowGap ? `row-gap="${args.rowGap}"` : ""}
@@ -129,6 +131,22 @@ export const Default: Story = {
       ${Array.from({ length: 6 }, (_, i) => gridItem(i + 1))}
     </ha-grid>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Grid should be present", async () => {
+      const grid = canvasElement.querySelector("#test-grid");
+      await expect(grid).toBeTruthy();
+    });
+
+    await step("Grid should have correct columns", async () => {
+      const grid = canvasElement.querySelector("#test-grid");
+      await expect(grid?.getAttribute("columns")).toBe("3");
+    });
+
+    await step("Grid should have correct gap", async () => {
+      const grid = canvasElement.querySelector("#test-grid");
+      await expect(grid?.getAttribute("gap")).toBe("4");
+    });
+  },
 };
 
 export const TwoColumns: Story = {
