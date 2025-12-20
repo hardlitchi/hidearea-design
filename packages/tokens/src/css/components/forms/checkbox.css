@@ -121,7 +121,7 @@ input[type="checkbox"]:indeterminate + .checkbox-box {
 }
 
 input[type="checkbox"]:indeterminate + .checkbox-box .checkbox-icon {
-  display: block;
+  opacity: 1;
 }
 
 /* ========================================
