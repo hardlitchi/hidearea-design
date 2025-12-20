@@ -439,8 +439,17 @@ export const IndeterminateExample: Story = {
       // Set flag to prevent recursive updates
       isUpdatingChildren = true;
 
+      // Update children using attributes to avoid triggering their change events
       children.forEach((child: any) => {
-        child.checked = parent.checked;
+        if (parent.checked) {
+          if (!child.hasAttribute("checked")) {
+            child.setAttribute("checked", "");
+          }
+        } else {
+          if (child.hasAttribute("checked")) {
+            child.removeAttribute("checked");
+          }
+        }
       });
 
       // Clear indeterminate state after updating children
