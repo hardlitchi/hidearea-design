@@ -1,11 +1,12 @@
 import { defineConfig, devices } from '@playwright/test';
 
 /**
- * Playwright configuration for visual regression testing
+ * Playwright configuration for visual regression and E2E testing
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  testDir: './tests',
+  testDir: './',
+  testMatch: ['tests/**/*.visual.spec.ts', 'e2e/**/*.e2e.spec.ts'],
 
   /* Run tests in files in parallel */
   fullyParallel: true,
