@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface ChipArgs {
   size: "small" | "medium" | "large";
@@ -69,7 +70,36 @@ type Story = StoryObj<ChipArgs>;
 /**
  * Default chip with default color
  */
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => html`
+    <ha-chip
+      id="test-chip"
+      size="${args.size}"
+      color="${args.color}"
+      ?deletable="${args.deletable}"
+      ?interactive="${args.interactive}"
+      ?disabled="${args.disabled}"
+    >
+      ${args.label}
+    </ha-chip>
+  `,
+  play: async ({ canvasElement, step }) => {
+    await step("Chip should be present", async () => {
+      const chip = canvasElement.querySelector("#test-chip");
+      await expect(chip).toBeTruthy();
+    });
+
+    await step("Chip should have correct size", async () => {
+      const chip = canvasElement.querySelector("#test-chip");
+      await expect(chip?.getAttribute("size")).toBe("medium");
+    });
+
+    await step("Chip should have correct color", async () => {
+      const chip = canvasElement.querySelector("#test-chip");
+      await expect(chip?.getAttribute("color")).toBe("default");
+    });
+  },
+};
 
 /**
  * All color variants

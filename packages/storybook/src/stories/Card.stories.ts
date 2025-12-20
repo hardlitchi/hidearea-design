@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface CardArgs {
   variant: "default" | "outlined" | "elevated";
@@ -61,7 +62,40 @@ type Story = StoryObj<CardArgs>;
 /**
  * Default card with medium padding
  */
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => html`
+    <ha-card
+      id="test-card"
+      variant="${args.variant}"
+      padding="${args.padding}"
+      ?hoverable="${args.hoverable}"
+      ?clickable="${args.clickable}"
+    >
+      <h3 slot="header">Card Title</h3>
+      <p>This is the card content. It can contain any HTML elements.</p>
+      <div slot="footer">
+        <ha-button size="sm" variant="outline">Cancel</ha-button>
+        <ha-button size="sm" variant="primary">Confirm</ha-button>
+      </div>
+    </ha-card>
+  `,
+  play: async ({ canvasElement, step }) => {
+    await step("Card should be present", async () => {
+      const card = canvasElement.querySelector("#test-card");
+      await expect(card).toBeTruthy();
+    });
+
+    await step("Card should have correct variant", async () => {
+      const card = canvasElement.querySelector("#test-card");
+      await expect(card?.getAttribute("variant")).toBe("default");
+    });
+
+    await step("Card should have correct padding", async () => {
+      const card = canvasElement.querySelector("#test-card");
+      await expect(card?.getAttribute("padding")).toBe("md");
+    });
+  },
+};
 
 /**
  * All card variants

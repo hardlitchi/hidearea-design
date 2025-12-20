@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 const meta: Meta = {
   title: "Feedback/Skeleton",
@@ -33,8 +34,14 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: () => html`
-    <ha-skeleton></ha-skeleton>
+    <ha-skeleton id="test-skeleton"></ha-skeleton>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Skeleton should be present", async () => {
+      const skeleton = canvasElement.querySelector("#test-skeleton");
+      await expect(skeleton).toBeTruthy();
+    });
+  },
 };
 
 export const Variants: Story = {
