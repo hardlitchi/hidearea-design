@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface ProgressArgs {
   value: number;
@@ -51,8 +52,9 @@ const meta: Meta<ProgressArgs> = {
 export default meta;
 type Story = StoryObj<ProgressArgs>;
 
-const createProgress = (args: ProgressArgs) => {
+const createProgress = (args: ProgressArgs, id?: string) => {
   const progress = document.createElement("ha-progress");
+  if (id) { progress.id = id; }
   progress.setAttribute("value", args.value.toString());
   progress.setAttribute("max", args.max.toString());
   progress.setAttribute("variant", args.variant);
@@ -79,7 +81,23 @@ export const Default: Story = {
     size: "md",
     showLabel: false,
   },
-  render: (args) => createProgress(args),
+  render: (args) => createProgress(args, "test-progress"),
+  play: async ({ canvasElement, step }) => {
+    await step("Progress should be present", async () => {
+      const progress = canvasElement.querySelector("#test-progress");
+      await expect(progress).toBeTruthy();
+    });
+
+    await step("Progress should have correct value", async () => {
+      const progress = canvasElement.querySelector("#test-progress");
+      await expect(progress?.getAttribute("value")).toBe("60");
+    });
+
+    await step("Progress should have correct color", async () => {
+      const progress = canvasElement.querySelector("#test-progress");
+      await expect(progress?.getAttribute("color")).toBe("primary");
+    });
+  },
 };
 
 export const WithLabel: Story = {
@@ -111,6 +129,7 @@ export const Sizes: Story = {
       label.style.fontWeight = "600";
 
       const progress = document.createElement("ha-progress");
+  if (id) { progress.id = id; }
       progress.setAttribute("value", "65");
       progress.setAttribute("size", size);
       progress.setAttribute("color", "primary");
@@ -141,6 +160,7 @@ export const Colors: Story = {
       label.style.fontWeight = "600";
 
       const progress = document.createElement("ha-progress");
+  if (id) { progress.id = id; }
       progress.setAttribute("value", "70");
       progress.setAttribute("color", color);
 
@@ -173,6 +193,7 @@ export const Variants: Story = {
       label.style.fontWeight = "600";
 
       const progress = document.createElement("ha-progress");
+  if (id) { progress.id = id; }
       progress.setAttribute("value", "75");
       progress.setAttribute("variant", variant);
       progress.setAttribute("color", "primary");
@@ -203,6 +224,7 @@ export const ProgressSteps: Story = {
 
     steps.forEach((step) => {
       const progress = document.createElement("ha-progress");
+  if (id) { progress.id = id; }
       progress.setAttribute("value", step.value.toString());
       progress.setAttribute("show-label", "");
       progress.setAttribute(
@@ -234,6 +256,7 @@ export const FileUpload: Story = {
     title.style.margin = "0 0 1rem 0";
 
     const progress = document.createElement("ha-progress");
+  if (id) { progress.id = id; }
     progress.setAttribute("value", "45");
     progress.setAttribute("variant", "animated");
     progress.setAttribute("color", "info");
@@ -279,6 +302,7 @@ export const MultipleProgress: Story = {
 
     tasks.forEach((task) => {
       const progress = document.createElement("ha-progress");
+  if (id) { progress.id = id; }
       progress.setAttribute("value", task.value.toString());
       progress.setAttribute("color", task.color);
       progress.setAttribute("show-label", "");
@@ -307,6 +331,7 @@ export const AnimatedDemo: Story = {
     container.style.gap = "1rem";
 
     const progress = document.createElement("ha-progress");
+  if (id) { progress.id = id; }
     progress.setAttribute("value", "0");
     progress.setAttribute("variant", "animated");
     progress.setAttribute("color", "primary");
