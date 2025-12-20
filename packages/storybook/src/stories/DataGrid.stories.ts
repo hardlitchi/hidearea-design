@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 import type { DataGridColumn, DataGridRow } from "@hidearea-design/core";
 
 const meta: Meta = {
@@ -54,6 +55,13 @@ export const Default: Story = {
     }, 0);
 
     return html`<ha-datagrid></ha-datagrid>`;
+  },
+  play: async ({ canvasElement, step }) => {
+    await step("DataGrid should be present", async () => {
+      await new Promise(resolve => setTimeout(resolve, 100));
+      const grid = canvasElement.querySelector("ha-datagrid");
+      await expect(grid).toBeTruthy();
+    });
   },
 };
 
