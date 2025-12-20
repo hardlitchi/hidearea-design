@@ -190,9 +190,12 @@ export class HaCheckbox extends HTMLElement {
       return;
     }
 
-    // Toggle the checkbox
+    // Prevent the event from bubbling to avoid double-toggle
+    e.stopPropagation();
     e.preventDefault();
-    this.input.click();
+
+    // Toggle the checkbox by directly updating the checked state
+    this.checked = !this.checked;
   }
 
   private handleKeydown(e: KeyboardEvent) {
@@ -337,10 +340,34 @@ export class HaCheckbox extends HTMLElement {
   }
 
   set checked(value: boolean) {
+    const oldValue = this.hasAttribute("checked");
     if (value) {
       this.setAttribute("checked", "");
     } else {
       this.removeAttribute("checked");
+    }
+
+    // Manually dispatch change and input events when checked state changes programmatically
+    if (oldValue !== value) {
+      this.dispatchEvent(
+        new CustomEvent("change", {
+          bubbles: true,
+          composed: true,
+          detail: {
+            checked: value,
+          },
+        }),
+      );
+
+      this.dispatchEvent(
+        new CustomEvent("input", {
+          bubbles: true,
+          composed: true,
+          detail: {
+            checked: value,
+          },
+        }),
+      );
     }
   }
 
