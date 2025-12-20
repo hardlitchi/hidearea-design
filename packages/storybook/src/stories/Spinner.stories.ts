@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface SpinnerArgs {
   size: "xs" | "sm" | "md" | "lg" | "xl";
@@ -36,8 +37,11 @@ const meta: Meta<SpinnerArgs> = {
 export default meta;
 type Story = StoryObj<SpinnerArgs>;
 
-const createSpinner = (args: SpinnerArgs) => {
+const createSpinner = (args: SpinnerArgs, id?: string) => {
   const spinner = document.createElement("ha-spinner");
+  if (id) {
+    spinner.id = id;
+  }
   spinner.setAttribute("size", args.size);
   spinner.setAttribute("color", args.color);
   spinner.setAttribute("variant", args.variant);
@@ -54,7 +58,28 @@ export const Default: Story = {
     variant: "circular",
     speed: "0.8s",
   },
-  render: (args) => createSpinner(args),
+  render: (args) => createSpinner(args, "test-spinner"),
+  play: async ({ canvasElement, step }) => {
+    await step("Spinner should be present", async () => {
+      const spinner = canvasElement.querySelector("#test-spinner");
+      await expect(spinner).toBeTruthy();
+    });
+
+    await step("Spinner should have correct size", async () => {
+      const spinner = canvasElement.querySelector("#test-spinner");
+      await expect(spinner?.getAttribute("size")).toBe("md");
+    });
+
+    await step("Spinner should have correct color", async () => {
+      const spinner = canvasElement.querySelector("#test-spinner");
+      await expect(spinner?.getAttribute("color")).toBe("primary");
+    });
+
+    await step("Spinner should have correct variant", async () => {
+      const spinner = canvasElement.querySelector("#test-spinner");
+      await expect(spinner?.getAttribute("variant")).toBe("circular");
+    });
+  },
 };
 
 export const Sizes: Story = {

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface AvatarArgs {
   src: string;
@@ -69,7 +70,35 @@ type Story = StoryObj<AvatarArgs>;
 /**
  * Default avatar with initials
  */
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => html`
+    <ha-avatar
+      id="test-avatar"
+      src="${args.src || undefined}"
+      alt="${args.alt}"
+      size="${args.size}"
+      variant="${args.variant}"
+      initials="${args.initials || undefined}"
+      status="${args.status || undefined}"
+    ></ha-avatar>
+  `,
+  play: async ({ canvasElement, step }) => {
+    await step("Avatar should be present", async () => {
+      const avatar = canvasElement.querySelector("#test-avatar");
+      await expect(avatar).toBeTruthy();
+    });
+
+    await step("Avatar should have correct size", async () => {
+      const avatar = canvasElement.querySelector("#test-avatar");
+      await expect(avatar?.getAttribute("size")).toBe("md");
+    });
+
+    await step("Avatar should have correct variant", async () => {
+      const avatar = canvasElement.querySelector("#test-avatar");
+      await expect(avatar?.getAttribute("variant")).toBe("circle");
+    });
+  },
+};
 
 /**
  * With image
