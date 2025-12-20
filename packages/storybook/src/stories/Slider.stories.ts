@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/html";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface SliderArgs {
   min: number;
@@ -79,8 +80,11 @@ const meta: Meta<SliderArgs> = {
 export default meta;
 type Story = StoryObj<SliderArgs>;
 
-const createSlider = (args: SliderArgs) => {
+const createSlider = (args: SliderArgs, id?: string) => {
   const slider = document.createElement("ha-slider");
+  if (id) {
+    slider.id = id;
+  }
   slider.setAttribute("min", args.min.toString());
   slider.setAttribute("max", args.max.toString());
   slider.setAttribute("step", args.step.toString());
@@ -111,6 +115,8 @@ const createSlider = (args: SliderArgs) => {
     slider.setAttribute("marks", args.marks);
   }
 
+  slider.addEventListener("ha-slider-change", fn());
+
   return slider;
 };
 
@@ -130,7 +136,31 @@ export const Default: Story = {
     showTooltip: false,
     marks: "",
   },
-  render: (args) => createSlider(args),
+  render: (args) => createSlider(args, "test-slider"),
+  play: async ({ canvasElement, step }) => {
+    await step("Slider should be present", async () => {
+      const slider = canvasElement.querySelector("#test-slider");
+      await expect(slider).toBeTruthy();
+    });
+
+    await step("Slider should have correct attributes", async () => {
+      const slider = canvasElement.querySelector("#test-slider");
+      await expect(slider?.getAttribute("min")).toBe("0");
+      await expect(slider?.getAttribute("max")).toBe("100");
+      await expect(slider?.getAttribute("value")).toBe("50");
+      await expect(slider?.getAttribute("orientation")).toBe("horizontal");
+    });
+
+    await step("Slider should not be disabled", async () => {
+      const slider = canvasElement.querySelector("#test-slider");
+      await expect(slider?.hasAttribute("disabled")).toBe(false);
+    });
+
+    await step("Slider should have correct initial value", async () => {
+      const slider = canvasElement.querySelector("#test-slider") as any;
+      await expect(slider?.value).toBe(50);
+    });
+  },
 };
 
 export const Range: Story = {
@@ -149,7 +179,30 @@ export const Range: Story = {
     showTooltip: false,
     marks: "",
   },
-  render: (args) => createSlider(args),
+  render: (args) => createSlider(args, "range-slider"),
+  play: async ({ canvasElement, step }) => {
+    await step("Range slider should be present", async () => {
+      const slider = canvasElement.querySelector("#range-slider");
+      await expect(slider).toBeTruthy();
+    });
+
+    await step("Range slider should have range attribute", async () => {
+      const slider = canvasElement.querySelector("#range-slider");
+      await expect(slider?.hasAttribute("range")).toBe(true);
+    });
+
+    await step("Range slider should have correct range values", async () => {
+      const slider = canvasElement.querySelector("#range-slider");
+      await expect(slider?.getAttribute("range-start")).toBe("25");
+      await expect(slider?.getAttribute("range-end")).toBe("75");
+    });
+
+    await step("Range slider should have correct initial range", async () => {
+      const slider = canvasElement.querySelector("#range-slider") as any;
+      await expect(slider?.rangeStart).toBe(25);
+      await expect(slider?.rangeEnd).toBe(75);
+    });
+  },
 };
 
 export const WithMarks: Story = {
@@ -168,7 +221,23 @@ export const WithMarks: Story = {
     showTooltip: false,
     marks: "0,25,50,75,100",
   },
-  render: (args) => createSlider(args),
+  render: (args) => createSlider(args, "marks-slider"),
+  play: async ({ canvasElement, step }) => {
+    await step("Slider with marks should be present", async () => {
+      const slider = canvasElement.querySelector("#marks-slider");
+      await expect(slider).toBeTruthy();
+    });
+
+    await step("Slider should have show-marks attribute", async () => {
+      const slider = canvasElement.querySelector("#marks-slider");
+      await expect(slider?.hasAttribute("show-marks")).toBe(true);
+    });
+
+    await step("Slider should have marks attribute with correct values", async () => {
+      const slider = canvasElement.querySelector("#marks-slider");
+      await expect(slider?.getAttribute("marks")).toBe("0,25,50,75,100");
+    });
+  },
 };
 
 export const WithTooltip: Story = {
