@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import "@hidearea-design/core";
+import { expect, fn, userEvent, within } from "@storybook/test";
 
 interface TextareaArgs {
   variant: "default" | "filled" | "outlined";
@@ -83,6 +84,7 @@ export const Default: Story = {
   },
   render: (args) => html`
     <ha-textarea
+      id="test-textarea"
       variant="${args.variant}"
       size="${args.size}"
       placeholder="${args.placeholder}"
@@ -93,8 +95,48 @@ export const Default: Story = {
       ?full-width="${args.fullWidth}"
       resize="${args.resize}"
       rows="${args.rows}"
+      @input="${fn()}"
     ></ha-textarea>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Textarea should be present", async () => {
+      const textarea = canvasElement.querySelector("#test-textarea");
+      await expect(textarea).toBeTruthy();
+    });
+
+    await step("Textarea should have correct attributes", async () => {
+      const textarea = canvasElement.querySelector("#test-textarea");
+      await expect(textarea?.getAttribute("variant")).toBe("default");
+      await expect(textarea?.getAttribute("size")).toBe("md");
+      await expect(textarea?.getAttribute("rows")).toBe("4");
+    });
+
+    await step("Textarea should not be disabled", async () => {
+      const textarea = canvasElement.querySelector("#test-textarea");
+      await expect(textarea?.hasAttribute("disabled")).toBe(false);
+    });
+
+    await step("Typing in textarea should update value", async () => {
+      const textarea = canvasElement.querySelector("#test-textarea");
+      const nativeTextarea = textarea?.querySelector("textarea") as HTMLTextAreaElement;
+
+      await userEvent.type(nativeTextarea, "Hello, World!");
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(nativeTextarea?.value).toBe("Hello, World!");
+    });
+
+    await step("Clearing and typing new text should work", async () => {
+      const textarea = canvasElement.querySelector("#test-textarea");
+      const nativeTextarea = textarea?.querySelector("textarea") as HTMLTextAreaElement;
+
+      await userEvent.clear(nativeTextarea);
+      await userEvent.type(nativeTextarea, "New text");
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(nativeTextarea?.value).toBe("New text");
+    });
+  },
 };
 
 export const Variants: Story = {
@@ -164,11 +206,12 @@ export const States: Story = {
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Normal</h4>
-        <ha-textarea placeholder="Normal textarea" full-width></ha-textarea>
+        <ha-textarea id="normal-textarea" placeholder="Normal textarea" full-width></ha-textarea>
       </div>
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Error</h4>
         <ha-textarea
+          id="error-textarea"
           placeholder="Error textarea"
           error
           full-width
@@ -177,6 +220,7 @@ export const States: Story = {
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Disabled</h4>
         <ha-textarea
+          id="disabled-textarea"
           placeholder="Disabled textarea"
           disabled
           full-width
@@ -185,6 +229,7 @@ export const States: Story = {
       <div>
         <h4 style="margin: 0 0 0.5rem 0;">Readonly</h4>
         <ha-textarea
+          id="readonly-textarea"
           value="This is readonly text that cannot be modified."
           readonly
           full-width
@@ -192,6 +237,50 @@ export const States: Story = {
       </div>
     </div>
   `,
+  play: async ({ canvasElement, step }) => {
+    await step("Normal textarea should not have error or disabled attributes", async () => {
+      const textarea = canvasElement.querySelector("#normal-textarea");
+      await expect(textarea?.hasAttribute("error")).toBe(false);
+      await expect(textarea?.hasAttribute("disabled")).toBe(false);
+    });
+
+    await step("Error textarea should have error attribute", async () => {
+      const textarea = canvasElement.querySelector("#error-textarea");
+      await expect(textarea?.hasAttribute("error")).toBe(true);
+    });
+
+    await step("Error textarea should still be functional", async () => {
+      const textarea = canvasElement.querySelector("#error-textarea");
+      const nativeTextarea = textarea?.querySelector("textarea") as HTMLTextAreaElement;
+
+      await userEvent.type(nativeTextarea, "Testing error state");
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      await expect(nativeTextarea?.value).toBe("Testing error state");
+    });
+
+    await step("Disabled textarea should have disabled attribute", async () => {
+      const textarea = canvasElement.querySelector("#disabled-textarea");
+      await expect(textarea?.hasAttribute("disabled")).toBe(true);
+    });
+
+    await step("Disabled textarea native element should be disabled", async () => {
+      const textarea = canvasElement.querySelector("#disabled-textarea");
+      const nativeTextarea = textarea?.querySelector("textarea") as HTMLTextAreaElement;
+      await expect(nativeTextarea?.disabled).toBe(true);
+    });
+
+    await step("Readonly textarea should have readonly attribute", async () => {
+      const textarea = canvasElement.querySelector("#readonly-textarea");
+      await expect(textarea?.hasAttribute("readonly")).toBe(true);
+    });
+
+    await step("Readonly textarea should have initial value", async () => {
+      const textarea = canvasElement.querySelector("#readonly-textarea");
+      const nativeTextarea = textarea?.querySelector("textarea") as HTMLTextAreaElement;
+      await expect(nativeTextarea?.value).toBe("This is readonly text that cannot be modified.");
+    });
+  },
 };
 
 export const FullWidth: Story = {
