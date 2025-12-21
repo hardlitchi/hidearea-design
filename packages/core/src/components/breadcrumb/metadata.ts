@@ -6,7 +6,8 @@ export const metadata: ComponentMetadata = {
   description: 'Breadcrumb navigation component for showing current location',
   category: 'Navigation',
   props: [
-    { name: 'separator', type: 'string', default: "'/'", required: false, description: 'Separator between items' },
+    { name: 'separator', type: "'slash' | 'chevron' | 'arrow' | 'dot'", default: "'slash'", required: false, description: 'Separator between items' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", required: false, description: 'Breadcrumb size' },
   ],
   events: [],
   slots: [
@@ -25,7 +26,7 @@ export const metadata: ComponentMetadata = {
     {
       title: 'Custom Separator',
       description: 'Breadcrumb with custom separator',
-      code: `<ha-breadcrumb separator=">">
+      code: `<ha-breadcrumb separator="chevron">
   <ha-breadcrumb-item href="/">Home</ha-breadcrumb-item>
   <ha-breadcrumb-item>Current</ha-breadcrumb-item>
 </ha-breadcrumb>`,

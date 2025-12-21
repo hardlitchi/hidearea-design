@@ -10,13 +10,20 @@ export const metadata: ComponentMetadata = {
     { name: 'min', type: 'number', default: '0', required: false, description: 'Minimum value' },
     { name: 'max', type: 'number', default: '100', required: false, description: 'Maximum value' },
     { name: 'step', type: 'number', default: '1', required: false, description: 'Step increment' },
+    { name: 'range', type: 'boolean', default: 'false', required: false, description: 'Enable range selection mode' },
+    { name: 'range-start', type: 'number', required: false, description: 'Start value for range mode' },
+    { name: 'range-end', type: 'number', required: false, description: 'End value for range mode' },
+    { name: 'orientation', type: "'horizontal' | 'vertical'", default: "'horizontal'", required: false, description: 'Slider orientation' },
     { name: 'disabled', type: 'boolean', default: 'false', required: false, description: 'Disables the slider' },
+    { name: 'readonly', type: 'boolean', default: 'false', required: false, description: 'Makes slider read-only' },
+    { name: 'show-marks', type: 'boolean', default: 'false', required: false, description: 'Show step marks' },
+    { name: 'show-tooltip', type: 'boolean', default: 'false', required: false, description: 'Show value tooltip on drag' },
+    { name: 'marks', type: 'string', required: false, description: 'Comma-separated list of mark values' },
     { name: 'label', type: 'string', required: false, description: 'Slider label' },
-    { name: 'showValue', type: 'boolean', default: 'true', required: false, description: 'Show current value' },
   ],
   events: [
-    { name: 'ha-change', detail: '{ value: number }', description: 'Emitted when value changes' },
-    { name: 'ha-input', detail: '{ value: number }', description: 'Emitted during dragging' },
+    { name: 'slider-change', detail: '{ value: number | { start: number, end: number } }', description: 'Emitted when value changes' },
+    { name: 'slider-input', detail: '{ value: number | { start: number, end: number } }', description: 'Emitted during dragging' },
   ],
   examples: [
     {

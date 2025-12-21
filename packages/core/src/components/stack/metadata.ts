@@ -7,9 +7,10 @@ export const metadata: ComponentMetadata = {
   category: 'Layout',
   props: [
     { name: 'direction', type: "'horizontal' | 'vertical'", default: "'vertical'", required: false, description: 'Stack direction' },
-    { name: 'gap', type: "'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", required: false, description: 'Gap between items' },
+    { name: 'gap', type: 'string', default: "'4'", required: false, description: 'Gap between items (0-12 spacing tokens)' },
     { name: 'align', type: "'start' | 'center' | 'end' | 'stretch'", default: "'start'", required: false, description: 'Alignment of items' },
-    { name: 'justify', type: "'start' | 'center' | 'end' | 'between' | 'around'", default: "'start'", required: false, description: 'Justification of items' },
+    { name: 'justify', type: "'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly'", default: "'start'", required: false, description: 'Justification of items' },
+    { name: 'wrap', type: 'boolean', default: 'false', required: false, description: 'Whether to wrap items' },
   ],
   events: [],
   slots: [
@@ -19,7 +20,7 @@ export const metadata: ComponentMetadata = {
     {
       title: 'Vertical Stack',
       description: 'Items stacked vertically',
-      code: `<ha-stack direction="vertical" gap="md">
+      code: `<ha-stack direction="vertical" gap="4">
   <ha-button>Button 1</ha-button>
   <ha-button>Button 2</ha-button>
   <ha-button>Button 3</ha-button>
@@ -28,7 +29,7 @@ export const metadata: ComponentMetadata = {
     {
       title: 'Horizontal Stack',
       description: 'Items arranged horizontally',
-      code: `<ha-stack direction="horizontal" gap="sm" align="center">
+      code: `<ha-stack direction="horizontal" gap="2" align="center">
   <ha-avatar></ha-avatar>
   <div>
     <h4>John Doe</h4>

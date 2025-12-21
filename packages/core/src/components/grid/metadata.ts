@@ -6,8 +6,12 @@ export const metadata: ComponentMetadata = {
   description: 'Grid layout component for creating responsive grid layouts',
   category: 'Layout',
   props: [
-    { name: 'columns', type: 'number | string', default: '12', required: false, description: 'Number of columns or responsive breakpoint object' },
-    { name: 'gap', type: "'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", required: false, description: 'Gap between grid items' },
+    { name: 'columns', type: 'string', default: "'12'", required: false, description: 'Number of columns (1-12, auto-fit, auto-fill)' },
+    { name: 'gap', type: 'string', default: "'4'", required: false, description: 'Gap between grid items (0-12 spacing tokens)' },
+    { name: 'row-gap', type: 'string', required: false, description: 'Row gap (0-12 spacing tokens)' },
+    { name: 'column-gap', type: 'string', required: false, description: 'Column gap (0-12 spacing tokens)' },
+    { name: 'align-items', type: "'start' | 'center' | 'end' | 'stretch'", required: false, description: 'Align items' },
+    { name: 'justify-items', type: "'start' | 'center' | 'end' | 'stretch'", required: false, description: 'Justify items' },
   ],
   events: [],
   slots: [
@@ -17,7 +21,7 @@ export const metadata: ComponentMetadata = {
     {
       title: 'Basic Usage',
       description: 'Simple grid layout',
-      code: `<ha-grid columns="3" gap="md">
+      code: `<ha-grid columns="3" gap="4">
   <div>Item 1</div>
   <div>Item 2</div>
   <div>Item 3</div>
