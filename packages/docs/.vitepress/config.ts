@@ -5,6 +5,47 @@ export default defineConfig({
   description: 'モダンなWebコンポーネントライブラリ',
   lang: 'ja',
 
+  vite: {
+    build: {
+      chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            // Split vendor libraries for better caching
+            if (id.includes('node_modules')) {
+              // VitePress core dependencies
+              if (id.includes('vue')) return 'vendor-vue';
+              if (id.includes('vitepress')) return 'vendor-vitepress';
+
+              // Design system packages
+              if (id.includes('@hidearea-design/core')) return 'vendor-core';
+              if (id.includes('@hidearea-design/react')) return 'vendor-react';
+              if (id.includes('@hidearea-design/tokens')) return 'vendor-tokens';
+
+              // Other vendor code
+              return 'vendor-other';
+            }
+
+            // Split component documentation pages into separate chunks
+            if (id.includes('/components/')) {
+              // Extract component name from path
+              const match = id.match(/\/components\/([^/]+)\.md/);
+              if (match) {
+                return `page-component-${match[1]}`;
+              }
+              return 'page-components';
+            }
+
+            // Split guide pages
+            if (id.includes('/guide/')) {
+              return 'page-guide';
+            }
+          },
+        },
+      },
+    },
+  },
+
   themeConfig: {
     nav: [
       { text: 'ガイド', link: '/guide/getting-started' },
