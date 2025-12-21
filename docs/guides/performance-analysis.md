@@ -1,60 +1,60 @@
-# Performance Optimization Analysis
+# パフォーマンス最適化分析
 
-Complete performance analysis and optimization recommendations for Hidearea Design System.
+Hidearea Design System の完全なパフォーマンス分析と最適化の推奨事項。
 
-**Generated:** 2025-12-19
+**生成日:** 2025-12-19
 
-**Status:** ✅ Analysis Complete
+**ステータス:** ✅ 分析完了
 
 ---
 
-## Executive Summary
+## エグゼクティブサマリー
 
-This document provides a comprehensive performance analysis of the Hidearea Design System, covering bundle sizes, tree-shaking effectiveness, and performance optimization opportunities.
+このドキュメントは、Hidearea Design System の包括的なパフォーマンス分析を提供し、bundle サイズ、tree-shaking の有効性、およびパフォーマンス最適化の機会をカバーしています。
 
-### Key Findings
+### 主な調査結果
 
-✅ **Excellent Compression Ratios**
-- Core bundle gzips to **15.4%** of original size (64.49 KB gzipped from 417.94 KB)
-- React wrapper: **23.1%** ratio (15.69 KB gzipped)
-- Vue wrapper: **15.3%** ratio (11.20 KB gzipped)
+✅ **優れた圧縮率**
+- Core bundle は元のサイズの **15.4%** に gzip 圧縮（417.94 KB から 64.49 KB に圧縮）
+- React wrapper: **23.1%** の圧縮率（15.69 KB gzipped）
+- Vue wrapper: **15.3%** の圧縮率（11.20 KB gzipped）
 
-✅ **Tree-shaking Fully Supported**
-- Individual component imports available
-- ES modules properly configured
-- Per-component bundles: 8-15 KB each
+✅ **Tree-shaking を完全サポート**
+- 個別コンポーネントインポートが利用可能
+- ES modules が適切に設定されている
+- コンポーネントごとの bundle: 8-15 KB
 
-⚠️ **Optimization Opportunities**
-- Add `"sideEffects": false` to package.json
-- Implement CSS purging for production builds
-- Consider code splitting for complex components
+⚠️ **最適化の機会**
+- package.json に `"sideEffects": false` を追加
+- 本番ビルド用の CSS purging を実装
+- 複雑なコンポーネントの code splitting を検討
 
-### Quick Recommendations
+### クイック推奨事項
 
-| Priority | Action | Expected Impact |
+| 優先度 | アクション | 期待される効果 |
 |----------|--------|-----------------|
-| High | Add `sideEffects: false` to package.json | Better tree-shaking |
-| High | Document per-component import patterns | 50-80% bundle reduction |
-| Medium | Implement CSS purging | 30-50% CSS reduction |
-| Medium | Add bundle size CI checks | Prevent regressions |
-| Low | Create performance dashboard | Long-term monitoring |
+| 高 | package.json に `sideEffects: false` を追加 | より良い tree-shaking |
+| 高 | per-component import パターンをドキュメント化 | 50-80% の bundle 削減 |
+| 中 | CSS purging を実装 | 30-50% の CSS 削減 |
+| 中 | bundle サイズの CI チェックを追加 | リグレッションの防止 |
+| 低 | パフォーマンスダッシュボードを作成 | 長期的な監視 |
 
 ---
 
-## Table of Contents
+## 目次
 
-1. [Bundle Size Analysis](#bundle-size-analysis-report)
-2. [Tree-shaking Configuration](#tree-shaking-configuration-analysis)
-3. [Performance Benchmarks](#performance-benchmark-suite)
-4. [Action Items](#action-items)
+1. [Bundle サイズ分析](#bundle-サイズ分析レポート)
+2. [Tree-shaking 設定](#tree-shaking-設定分析)
+3. [パフォーマンスベンチマーク](#パフォーマンスベンチマークスイート)
+4. [アクションアイテム](#アクションアイテム)
 
 ---
 
-# Bundle Size Analysis Report
+# Bundle サイズ分析レポート
 
-Generated: 2025-12-19T05:08:50.630Z
+生成日: 2025-12-19T05:08:50.630Z
 
-## Package Overview
+## パッケージ概要
 
 | Package | Total Size | Main Bundle (ES) | Main Bundle (UMD) |
 |---------|------------|------------------|-------------------|
@@ -64,11 +64,11 @@ Generated: 2025-12-19T05:08:50.630Z
 | @hidearea-design/tokens | 1.51 MB | N/A | N/A |
 | @hidearea-design/mcp-server | 90.11 KB | N/A | N/A |
 
-## Detailed Bundle Breakdown
+## 詳細な Bundle の内訳
 
 ### @hidearea-design/core
 
-**Total**: 3.66 MB
+**合計**: 3.66 MB
 
 | File | Size | Type |
 |------|------|------|
@@ -85,7 +85,7 @@ Generated: 2025-12-19T05:08:50.630Z
 
 ### @hidearea-design/react
 
-**Total**: 586.30 KB
+**合計**: 586.30 KB
 
 | File | Size | Type |
 |------|------|------|
@@ -94,7 +94,7 @@ Generated: 2025-12-19T05:08:50.630Z
 
 ### @hidearea-design/vue
 
-**Total**: 420.77 KB
+**合計**: 420.77 KB
 
 | File | Size | Type |
 |------|------|------|
@@ -103,7 +103,7 @@ Generated: 2025-12-19T05:08:50.630Z
 
 ### @hidearea-design/tokens
 
-**Total**: 1.51 MB
+**合計**: 1.51 MB
 
 | File | Size | Type |
 |------|------|------|
@@ -120,7 +120,7 @@ Generated: 2025-12-19T05:08:50.630Z
 
 ### @hidearea-design/mcp-server
 
-**Total**: 90.11 KB
+**合計**: 90.11 KB
 
 | File | Size | Type |
 |------|------|------|
@@ -128,7 +128,7 @@ Generated: 2025-12-19T05:08:50.630Z
 | index.d.ts | 66.00 B | other |
 
 
-## Component Source Sizes
+## コンポーネントソースサイズ
 
 | Component | Source Size | Type Definitions |
 |-----------|-------------|------------------|
@@ -170,90 +170,90 @@ Generated: 2025-12-19T05:08:50.630Z
 | spinner | 2.88 KB | 1.68 KB |
 | container | 2.20 KB | 1.82 KB |
 
-**Total Source Size**: 443.18 KB
+**総ソースサイズ**: 443.18 KB
 
-## Optimization Opportunities
+## 最適化の機会
 
-### 1. Core Bundle Size
+### 1. Core Bundle サイズ
 
-- Current ES module size: 408.44 KB
-- Recommendation: Implement per-component imports
-- Expected improvement: 50-80% reduction for typical use cases
+- 現在の ES module サイズ: 408.44 KB
+- 推奨: per-component imports を実装
+- 期待される改善: 一般的な使用例で 50-80% の削減
 
-### 2. CSS Token Size
+### 2. CSS Token サイズ
 
-- Total CSS size: 841.79 KB
-- Number of CSS files: 95
-- Recommendation: Enable CSS purging for unused tokens
-- Expected improvement: 30-50% reduction in production
+- 総 CSS サイズ: 841.79 KB
+- CSS ファイル数: 95
+- 推奨: 未使用の token の CSS purging を有効化
+- 期待される改善: 本番環境で 30-50% の削減
 
-### 3. Tree-shaking Verification
+### 3. Tree-shaking 検証
 
-- Action needed: Test tree-shaking with common use cases
-- Tools: Use bundlephobia.com or bundle analyzer plugins
-- Expected result: Individual components should be ~10-30 KB
+- 必要なアクション: 一般的な使用例で tree-shaking をテスト
+- ツール: bundlephobia.com または bundle analyzer プラグインを使用
+- 期待される結果: 個別コンポーネントは約 10-30 KB になるべき
 
-### 4. Code Splitting Opportunities
+### 4. Code Splitting の機会
 
-- Consider splitting:
-  - Complex components (DataGrid, DatePicker, ColorPicker)
-  - Rarely used components (ThemeSwitcher, FileUpload)
-  - Utility functions and helpers
+- 以下の分割を検討:
+  - 複雑なコンポーネント (DataGrid, DatePicker, ColorPicker)
+  - 稀に使用されるコンポーネント (ThemeSwitcher, FileUpload)
+  - ユーティリティ関数とヘルパー
 
-## Compression Ratios
+## 圧縮率
 
-Based on Vite build output:
+Vite ビルド出力に基づく:
 
-| Package | Uncompressed | Gzipped | Ratio |
+| Package | 非圧縮 | Gzipped | 圧縮率 |
 |---------|--------------|---------|-------|
 | @hidearea-design/core (ES) | 417.94 KB | 64.49 KB | 15.4% |
 | @hidearea-design/core (UMD) | 370.84 KB | 60.78 KB | 16.4% |
 | @hidearea-design/react (ES) | 67.79 KB | 15.69 KB | 23.1% |
 | @hidearea-design/vue (ES) | 73.33 KB | 11.20 KB | 15.3% |
 
-# Tree-shaking Verification Report
+# Tree-shaking 検証レポート
 
-Generated: 2025-12-19T05:09:33.550Z
+生成日: 2025-12-19T05:09:33.550Z
 
-## Test Results
+## テスト結果
 
 | Test Case | Bundle Size (ES) | Bundle Size (Gzipped) | Components |
 |-----------|------------------|----------------------|------------|
 
-## Analysis
+## 分析
 
-### Recommendations
+### 推奨事項
 
-1. **Use per-component imports** for optimal bundle size
+1. **最適な bundle サイズのために per-component imports を使用**
    ```js
    import '@hidearea-design/core/components/button';
    ```
 
-2. **Avoid full package imports** unless using many components
+2. **多数のコンポーネントを使用する場合を除き、フルパッケージインポートを避ける**
    ```js
-   // Avoid: import '@hidearea-design/core';
-   // Better: import specific components
+   // 避ける: import '@hidearea-design/core';
+   // より良い: 特定のコンポーネントをインポート
    ```
 
-3. **Use build tools with tree-shaking** (Vite, Rollup, Webpack 4+)
+3. **tree-shaking をサポートするビルドツールを使用** (Vite, Rollup, Webpack 4+)
 
 
-## Size Comparison Chart
+## サイズ比較チャート
 
 ```
-Bundle Size Comparison:
+Bundle サイズ比較:
 ```
 
-## Cleanup
+## クリーンアップ
 
-Removing test builds...
+テストビルドを削除中...
 
-✅ Test builds cleaned up
+✅ テストビルドをクリーンアップしました
 
 
-# Tree-shaking Configuration Analysis
+# Tree-shaking 設定分析
 
-## Package Export Configuration
+## パッケージエクスポート設定
 
 ### @hidearea-design/core
 
@@ -280,106 +280,106 @@ Removing test builds...
 }
 ```
 
-**module field:** ✅ Present
-**type field:** module
+**module フィールド:** ✅ 存在
+**type フィールド:** module
 
-### Current Capabilities
+### 現在の機能
 
-Based on package.json configuration:
+package.json 設定に基づく:
 
-1. **Full import** (imports all components):
+1. **フルインポート** (すべてのコンポーネントをインポート):
    ```js
    import '@hidearea-design/core';
    ```
-   - Bundle size: ~408 KB (ES) / ~363 KB (UMD)
-   - Gzipped: ~64 KB (ES) / ~61 KB (UMD)
+   - Bundle サイズ: 約408 KB (ES) / 約363 KB (UMD)
+   - Gzipped: 約64 KB (ES) / 約61 KB (UMD)
 
-2. **Per-component import** (recommended):
+2. **Per-component import** (推奨):
    ```js
    import '@hidearea-design/core/components/button';
    ```
-   - Estimated bundle size: ~8-15 KB per component
-   - Gzipped: ~2-4 KB per component
+   - 推定 bundle サイズ: コンポーネントあたり約8-15 KB
+   - Gzipped: コンポーネントあたり約2-4 KB
 
-## Tree-shaking Status
+## Tree-shaking ステータス
 
-### ✅ Supports Tree-shaking
+### ✅ Tree-shaking をサポート
 
-- ES module format (`.es.js`) is provided
-- Individual component files in `dist/components/`
-- No side effects in most components
+- ES module 形式 (`.es.js`) を提供
+- `dist/components/` 内の個別コンポーネントファイル
+- ほとんどのコンポーネントには副作用なし
 
-### 📊 Current Build Output Analysis
+### 📊 現在のビルド出力分析
 
-**Individual component files:** 37 components
+**個別コンポーネントファイル:** 37 コンポーネント
 
-This allows bundlers to:
-- Import only needed components
-- Eliminate unused code automatically
-- Reduce final bundle size significantly
+これにより bundler は以下が可能:
+- 必要なコンポーネントのみをインポート
+- 未使用コードを自動的に削除
+- 最終的な bundle サイズを大幅に削減
 
-## Optimization Recommendations
+## 最適化の推奨事項
 
-### 1. Add Explicit Side Effects Declaration
+### 1. 明示的な副作用宣言を追加
 
-**Current state:** Not explicitly declared
+**現在の状態:** 明示的に宣言されていない
 
-**Recommendation:** Add to package.json:
+**推奨:** package.json に追加:
 ```json
 {
   "sideEffects": false
 }
 ```
 
-This tells bundlers that no files have side effects and can be safely tree-shaken.
+これは bundler にファイルに副作用がなく、安全に tree-shake できることを伝えます。
 
-### 2. Verify Import Paths
+### 2. インポートパスの検証
 
-**Current recommendation for users:**
+**ユーザーへの現在の推奨:**
 ```js
-// Recommended: Import individual components
+// 推奨: 個別コンポーネントをインポート
 import '@hidearea-design/core/components/button';
 import '@hidearea-design/core/components/input';
 
-// Or use from wrappers:
+// または wrapper から使用:
 import { Button } from '@hidearea-design/react';
 ```
 
-### 3. Bundle Size Expectations
+### 3. Bundle サイズの期待値
 
-| Usage Pattern | Expected Size (ES) | Expected Size (Gzipped) |
+| 使用パターン | 期待サイズ (ES) | 期待サイズ (Gzipped) |
 |---------------|-------------------|------------------------|
-| 1 component (Button) | ~8-10 KB | ~2-3 KB |
-| 5 components | ~40-50 KB | ~10-15 KB |
-| 10 components | ~80-100 KB | ~20-30 KB |
-| All components (full import) | 408 KB | 64 KB |
+| 1 コンポーネント (Button) | 約8-10 KB | 約2-3 KB |
+| 5 コンポーネント | 約40-50 KB | 約10-15 KB |
+| 10 コンポーネント | 約80-100 KB | 約20-30 KB |
+| すべてのコンポーネント (フルインポート) | 408 KB | 64 KB |
 
-## Framework-Specific Tree-shaking
+## フレームワーク固有の Tree-shaking
 
 ### React Wrapper
 
-- Package size: ~66 KB (ES) / 16 KB (gzipped)
-- Wrapper overhead: ~10-15 KB
-- Tree-shaking: ✅ Supported via named exports
+- パッケージサイズ: 約66 KB (ES) / 16 KB (gzipped)
+- Wrapper オーバーヘッド: 約10-15 KB
+- Tree-shaking: ✅ named exports でサポート
 
 ### Vue Wrapper
 
-- Package size: ~72 KB (ES) / 11 KB (gzipped)
-- Wrapper overhead: ~10-15 KB
-- Tree-shaking: ✅ Supported via named exports
+- パッケージサイズ: 約72 KB (ES) / 11 KB (gzipped)
+- Wrapper オーバーヘッド: 約10-15 KB
+- Tree-shaking: ✅ named exports でサポート
 
-## Real-World Usage Examples
+## 実際の使用例
 
-### Example 1: Simple Form (3 components)
+### 例1: シンプルなフォーム (3 コンポーネント)
 
 ```js
 import '@hidearea-design/core/components/button';
 import '@hidearea-design/core/components/input';
 import '@hidearea-design/core/components/form-group';
 ```
-**Expected bundle:** ~25-30 KB (ES) / ~6-8 KB (gzipped)
+**期待される bundle:** 約25-30 KB (ES) / 約6-8 KB (gzipped)
 
-### Example 2: Data Table (5 components)
+### 例2: データテーブル (5 コンポーネント)
 
 ```js
 import '@hidearea-design/core/components/table';
@@ -388,109 +388,109 @@ import '@hidearea-design/core/components/input';
 import '@hidearea-design/core/components/pagination';
 import '@hidearea-design/core/components/spinner';
 ```
-**Expected bundle:** ~50-60 KB (ES) / ~12-15 KB (gzipped)
+**期待される bundle:** 約50-60 KB (ES) / 約12-15 KB (gzipped)
 
-### Example 3: Dashboard (10+ components)
+### 例3: ダッシュボード (10+ コンポーネント)
 
 ```js
-// When using many components, full import may be acceptable
+// 多数のコンポーネントを使用する場合、フルインポートが許容される場合があります
 import '@hidearea-design/core';
 ```
-**Expected bundle:** 408 KB (ES) / 64 KB (gzipped)
+**期待される bundle:** 408 KB (ES) / 64 KB (gzipped)
 
-## Verification Steps for Users
+## ユーザーのための検証手順
 
-1. **Check your bundle analyzer:**
+1. **bundle analyzer を確認:**
    ```bash
    npx vite-bundle-visualizer
-   # or
+   # または
    npx webpack-bundle-analyzer
    ```
 
-2. **Verify in production build:**
-   - Individual components should be in separate chunks
-   - Unused components should not appear in bundle
-   - Final size should match expected ranges above
+2. **本番ビルドで検証:**
+   - 個別コンポーネントは別々のチャンクにあるべき
+   - 未使用のコンポーネントは bundle に表示されないべき
+   - 最終サイズは上記の期待範囲と一致するべき
 
-3. **Test with bundlephobia:**
-   - Visit: https://bundlephobia.com/
-   - Enter: @hidearea-design/core
-   - Check reported bundle size
+3. **bundlephobia でテスト:**
+   - アクセス: https://bundlephobia.com/
+   - 入力: @hidearea-design/core
+   - 報告された bundle サイズを確認
 
-## Summary
+## まとめ
 
-✅ **Tree-shaking is supported and recommended**
+✅ **Tree-shaking はサポートされており、推奨されています**
 
-**Best practices:**
-- Import individual components for optimal bundle size
-- Use full import only when using 10+ components
-- Always enable tree-shaking in your bundler
-- Use production builds with minification
+**ベストプラクティス:**
+- 最適な bundle サイズのために個別コンポーネントをインポート
+- 10+ コンポーネントを使用する場合のみフルインポートを使用
+- bundler で常に tree-shaking を有効化
+- minification を使用した本番ビルドを使用
 
-**Potential improvements:**
-- Add `"sideEffects": false` to package.json
-- Document recommended import patterns in docs
-- Add bundle size badges to README
-- Create bundle size regression tests
+**潜在的な改善:**
+- package.json に `"sideEffects": false` を追加
+- 推奨されるインポートパターンをドキュメントに記載
+- README に bundle サイズバッジを追加
+- bundle サイズリグレッションテストを作成
 
 
-# Performance Benchmark Suite
+# パフォーマンスベンチマークスイート
 
-Generated: 2025-12-19T05:11:15.771Z
+生成日: 2025-12-19T05:11:15.771Z
 
-## Component Performance Categories
+## コンポーネントパフォーマンスカテゴリー
 
-### Simple Components
+### シンプルなコンポーネント
 
-**Expected render time:** < 1ms
-**Characteristics:** Minimal DOM manipulation, simple styling
+**期待されるレンダリング時間:** < 1ms
+**特徴:** 最小限の DOM 操作、シンプルなスタイリング
 
-**Components:**
+**コンポーネント:**
 `button`, `badge`, `spinner`, `skeleton`, `container`
 
 
-### Form Components
+### フォームコンポーネント
 
-**Expected render time:** 1-3ms
-**Characteristics:** Form state management, event handling
+**期待されるレンダリング時間:** 1-3ms
+**特徴:** フォーム状態管理、イベント処理
 
-**Components:**
+**コンポーネント:**
 `input`, `checkbox`, `radio`, `switch`, `textarea`, `select`
 
 
-### Complex Components
+### 複雑なコンポーネント
 
-**Expected render time:** 3-10ms
-**Characteristics:** Heavy DOM manipulation, complex state
+**期待されるレンダリング時間:** 3-10ms
+**特徴:** 大量の DOM 操作、複雑な状態
 
-**Components:**
+**コンポーネント:**
 `datagrid`, `date-picker`, `time-picker`, `color-picker`, `file-upload`
 
 
-### Overlay Components
+### オーバーレイコンポーネント
 
-**Expected render time:** 2-5ms
-**Characteristics:** Portal rendering, focus management
+**期待されるレンダリング時間:** 2-5ms
+**特徴:** Portal レンダリング、フォーカス管理
 
-**Components:**
+**コンポーネント:**
 `modal`, `drawer`, `tooltip`, `toast`
 
 
-## Performance Expectations
+## パフォーマンス期待値
 
-| Operation | Target | Good | Needs Optimization |
+| 操作 | 目標 | 良好 | 最適化が必要 |
 |-----------|--------|------|--------------------|
-| Component Registration | < 1ms | < 5ms | > 10ms |
-| First Render | < 10ms | < 50ms | > 100ms |
-| Re-render | < 5ms | < 20ms | > 50ms |
-| Attribute Change | < 1ms | < 5ms | > 10ms |
-| Event Handler | < 1ms | < 3ms | > 5ms |
+| コンポーネント登録 | < 1ms | < 5ms | > 10ms |
+| 初回レンダリング | < 10ms | < 50ms | > 100ms |
+| 再レンダリング | < 5ms | < 20ms | > 50ms |
+| 属性変更 | < 1ms | < 5ms | > 10ms |
+| イベントハンドラ | < 1ms | < 3ms | > 5ms |
 
-## Recommended Benchmark Setup
+## 推奨されるベンチマーク設定
 
-### Browser-based Benchmarks
+### ブラウザベースのベンチマーク
 
-Use Playwright or Puppeteer for real browser performance:
+実際のブラウザパフォーマンスのために Playwright または Puppeteer を使用:
 
 ```typescript
 import { chromium } from 'playwright';
@@ -500,36 +500,36 @@ const page = await browser.newPage();
 
 await page.goto('http://localhost:5173');
 
-// Measure component creation
+// コンポーネント作成を測定
 const createTime = await page.evaluate(() => {
   const start = performance.now();
   const button = document.createElement('ha-button');
-  button.textContent = 'Click me';
+  button.textContent = 'クリックしてください';
   document.body.appendChild(button);
   return performance.now() - start;
 });
 ```
 
-### Memory Profiling
+### メモリプロファイリング
 
 ```typescript
-// Before creating components
+// コンポーネント作成前
 const memBefore = performance.memory.usedJSHeapSize;
 
-// Create 1000 components
+// 1000 個のコンポーネントを作成
 for (let i = 0; i < 1000; i++) {
   const el = document.createElement('ha-button');
   document.body.appendChild(el);
 }
 
-// After creating components
+// コンポーネント作成後
 const memAfter = performance.memory.usedJSHeapSize;
 const memUsedPerComponent = (memAfter - memBefore) / 1000;
 ```
 
-## Component-Specific Benchmarks
+## コンポーネント固有のベンチマーク
 
-### Table Component (Large Datasets)
+### Table コンポーネント (大規模データセット)
 
 ```typescript
 const rows = 1000;
@@ -537,47 +537,47 @@ const cols = 10;
 
 const start = performance.now();
 const table = document.createElement('ha-table');
-// Populate table...
+// テーブルにデータを入力...
 const renderTime = performance.now() - start;
 
-// Target: < 50ms for 1000 rows
+// 目標: 1000 行で < 50ms
 ```
 
-### DataGrid Component (Virtualization)
+### DataGrid コンポーネント (仮想化)
 
 ```typescript
 const data = Array.from({ length: 10000 }, (_, i) => ({
   id: i,
-  name: `Item ${i}`,
+  name: `アイテム ${i}`,
 }));
 
 const grid = document.createElement('ha-datagrid');
 grid.data = data;
 
-// Should only render visible rows (virtualization)
-// Target: < 100ms regardless of total rows
+// 表示されている行のみをレンダリングする必要があります（仮想化）
+// 目標: 総行数に関係なく < 100ms
 ```
 
-### Form Components (User Input)
+### フォームコンポーネント (ユーザー入力)
 
 ```typescript
 const input = document.createElement('ha-input');
 document.body.appendChild(input);
 
-// Measure input event handling
+// input イベント処理を測定
 const start = performance.now();
-input.value = 'test';
+input.value = 'テスト';
 input.dispatchEvent(new Event('input'));
 const eventTime = performance.now() - start;
 
-// Target: < 3ms per input event
+// 目標: input イベントごとに < 3ms
 ```
 
-## Performance Testing Tools
+## パフォーマンステストツール
 
 ### 1. Lighthouse CI
 
-Automate performance testing in CI/CD:
+CI/CD でのパフォーマンステストを自動化:
 
 ```bash
 npm install -g @lhci/cli
@@ -586,7 +586,7 @@ lhci autorun --config=lighthouserc.json
 
 ### 2. Web Vitals
 
-Monitor Core Web Vitals:
+Core Web Vitals を監視:
 
 ```typescript
 import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
@@ -600,37 +600,37 @@ getTTFB(console.log);
 
 ### 3. Bundle Analyzer
 
-Visualize bundle composition:
+bundle の構成を視覚化:
 
 ```bash
 npm install -D rollup-plugin-visualizer
-# Add to vite.config.ts
+# vite.config.ts に追加
 ```
 
-## Estimated Performance Metrics
+## 推定パフォーマンス指標
 
-Based on component complexity and Web Components standards:
+コンポーネントの複雑さと Web Components 標準に基づく:
 
-| Component | Registration | First Render | Re-render | Memory (per instance) |
+| Component | 登録 | 初回レンダリング | 再レンダリング | メモリ (インスタンスごと) |
 |-----------|--------------|--------------|-----------|----------------------|
 | Button | 0.5ms | 2ms | 0.5ms | 1-2 KB |
 | Input | 0.8ms | 3ms | 1ms | 2-3 KB |
 | Select | 1ms | 5ms | 2ms | 3-5 KB |
-| Table (100 rows) | 1ms | 30ms | 15ms | 50-100 KB |
-| DataGrid (1000 rows) | 2ms | 80ms | 40ms | 100-200 KB |
+| Table (100 行) | 1ms | 30ms | 15ms | 50-100 KB |
+| DataGrid (1000 行) | 2ms | 80ms | 40ms | 100-200 KB |
 | DatePicker | 2ms | 10ms | 5ms | 10-15 KB |
 | ColorPicker | 2ms | 12ms | 6ms | 15-20 KB |
 | Modal | 1ms | 8ms | 3ms | 5-8 KB |
 
-*Note: These are estimates. Actual performance depends on:*
-- Browser and version
-- Device capabilities
-- DOM complexity
-- Other scripts running on page
+*注意: これらは推定値です。実際のパフォーマンスは以下に依存します:*
+- ブラウザとバージョン
+- デバイスの性能
+- DOM の複雑さ
+- ページ上で実行されている他のスクリプト
 
-## Performance Budget
+## パフォーマンス予算
 
-Recommended performance budget for the design system:
+デザインシステムの推奨されるパフォーマンス予算:
 
 ```json
 {
@@ -651,17 +651,17 @@ Recommended performance budget for the design system:
 }
 ```
 
-## Next Steps
+## 次のステップ
 
-1. **Implement browser-based benchmarks** using Playwright
-2. **Add performance CI checks** to prevent regressions
-3. **Create performance dashboard** for tracking over time
-4. **Set up alerts** for performance degradation
-5. **Document performance characteristics** for each component
+1. **Playwright を使用したブラウザベースのベンチマークを実装**
+2. **リグレッションを防ぐためのパフォーマンス CI チェックを追加**
+3. **時系列で追跡するためのパフォーマンスダッシュボードを作成**
+4. **パフォーマンス低下のアラートを設定**
+5. **各コンポーネントのパフォーマンス特性をドキュメント化**
 
-## Integration with CI/CD
+## CI/CD との統合
 
-Example GitHub Actions workflow:
+GitHub Actions ワークフローの例:
 
 ```yaml
 name: Performance Tests
@@ -677,68 +677,68 @@ jobs:
       - run: pnpm install
       - run: pnpm build
       - run: pnpm perf:benchmark
-      - name: Compare bundle size
+      - name: Bundle サイズを比較
         run: pnpm perf:size-compare
 ```
 
 
 ---
 
-# Action Items
+# アクションアイテム
 
-Based on this performance analysis, here are the recommended action items organized by priority and effort.
+このパフォーマンス分析に基づいて、優先度と労力別に整理された推奨アクションアイテムです。
 
-## Immediate Actions (High Priority, Low Effort)
+## 即座のアクション (高優先度、低労力)
 
-### 1. Add Side Effects Declaration
+### 1. 副作用宣言の追加
 
-**File:** `packages/core/package.json`
+**ファイル:** `packages/core/package.json`
 
-Add the following to inform bundlers that tree-shaking is safe:
+tree-shaking が安全であることを bundler に通知するために以下を追加:
 ```json
 {
   "sideEffects": false
 }
 ```
 
-**Impact:** Improves tree-shaking effectiveness for all bundlers
+**影響:** すべての bundler の tree-shaking 有効性を向上
 
-### 2. Update Documentation with Import Patterns
+### 2. インポートパターンでドキュメントを更新
 
-**Files:** 
+**ファイル:**
 - `README.md`
 - `docs/getting-started/usage-guide.md`
-- Component API docs
+- コンポーネント API ドキュメント
 
-Add clear examples:
+明確な例を追加:
 ```js
-// ✅ Recommended: Per-component imports
+// ✅ 推奨: Per-component imports
 import '@hidearea-design/core/components/button';
 import '@hidearea-design/core/components/input';
 
-// ⚠️ Use only when needed: Full import
-import '@hidearea-design/core'; // ~64 KB gzipped
+// ⚠️ 必要な場合のみ使用: フルインポート
+import '@hidearea-design/core'; // 約64 KB gzipped
 ```
 
-**Impact:** Helps users achieve 50-80% bundle size reduction
+**影響:** ユーザーが 50-80% の bundle サイズ削減を達成するのに役立つ
 
-### 3. Add Bundle Size Badges
+### 3. Bundle サイズバッジの追加
 
-**File:** `README.md`
+**ファイル:** `README.md`
 
-Add badges for transparency:
+透明性のためのバッジを追加:
 ```markdown
 [![npm bundle size](https://img.shields.io/bundlephobia/min/@hidearea-design/core)](https://bundlephobia.com/package/@hidearea-design/core)
 [![npm bundle size (gzip)](https://img.shields.io/bundlephobia/minzip/@hidearea-design/core)](https://bundlephobia.com/package/@hidearea-design/core)
 ```
 
-**Impact:** Users can see bundle costs upfront
+**影響:** ユーザーが事前に bundle コストを確認できる
 
-## Short-term Actions (Medium Priority, Medium Effort)
+## 短期アクション (中優先度、中労力)
 
-### 4. Implement Bundle Size CI Checks
+### 4. Bundle サイズ CI チェックの実装
 
-Create `.github/workflows/bundle-size.yml`:
+`.github/workflows/bundle-size.yml` を作成:
 ```yaml
 name: Bundle Size Check
 
@@ -755,13 +755,13 @@ jobs:
           pattern: './packages/*/dist/**/*.{js,css}'
 ```
 
-**Impact:** Prevent bundle size regressions
+**影響:** bundle サイズのリグレッションを防止
 
-### 5. Add CSS Purging Documentation
+### 5. CSS Purging ドキュメントの追加
 
-**File:** `docs/guides/performance-optimization.md` (new)
+**ファイル:** `docs/guides/performance-optimization.md` (新規)
 
-Document how to purge unused CSS in production:
+本番環境で未使用 CSS を purge する方法をドキュメント化:
 ```js
 // vite.config.ts
 import { defineConfig } from 'vite';
@@ -773,7 +773,7 @@ export default defineConfig({
       plugins: [
         purgecss({
           content: ['./src/**/*.{js,jsx,ts,tsx,vue,html}'],
-          safelist: [/^ha-/], // Preserve component classes
+          safelist: [/^ha-/], // コンポーネントクラスを保持
         }),
       ],
     },
@@ -781,27 +781,27 @@ export default defineConfig({
 });
 ```
 
-**Impact:** 30-50% CSS size reduction
+**影響:** 30-50% の CSS サイズ削減
 
-### 6. Create Performance Benchmark Scripts
+### 6. パフォーマンスベンチマークスクリプトの作成
 
-**Files:**
-- `scripts/benchmark-render.ts` - Component render benchmarks
-- `scripts/benchmark-memory.ts` - Memory usage benchmarks
-- Add to `package.json`: `"perf:benchmark": "tsx scripts/benchmark-*.ts"`
+**ファイル:**
+- `scripts/benchmark-render.ts` - コンポーネントレンダリングベンチマーク
+- `scripts/benchmark-memory.ts` - メモリ使用量ベンチマーク
+- `package.json` に追加: `"perf:benchmark": "tsx scripts/benchmark-*.ts"`
 
-**Impact:** Baseline metrics for future optimization
+**影響:** 将来の最適化のためのベースラインメトリクス
 
-## Medium-term Actions (Medium Priority, High Effort)
+## 中期アクション (中優先度、高労力)
 
-### 7. Implement Bundle Analyzer in Storybook
+### 7. Storybook に Bundle Analyzer を実装
 
-Add bundle visualization:
+bundle 視覚化を追加:
 ```bash
 pnpm add -D rollup-plugin-visualizer
 ```
 
-Update `packages/storybook/.storybook/main.ts`:
+`packages/storybook/.storybook/main.ts` を更新:
 ```ts
 import { visualizer } from 'rollup-plugin-visualizer';
 
@@ -818,118 +818,118 @@ export default {
 };
 ```
 
-**Impact:** Visual bundle analysis for developers
+**影響:** 開発者向けの視覚的 bundle 分析
 
-### 8. Code Splitting for Complex Components
+### 8. 複雑なコンポーネントの Code Splitting
 
-Identify candidates:
+候補の特定:
 - `date-picker` (24.76 KB)
 - `time-picker` (26.17 KB)
 - `color-picker` (23.72 KB)
 - `datagrid` (12.73 KB)
 - `file-upload` (17.64 KB)
 
-Consider lazy-loading internal dependencies.
+内部依存関係の遅延読み込みを検討。
 
-**Impact:** Reduce initial bundle for apps using these components
+**影響:** これらのコンポーネントを使用するアプリの初期 bundle を削減
 
-### 9. Performance Testing Suite
+### 9. パフォーマンステストスイート
 
-Implement browser-based benchmarks using Playwright:
+Playwright を使用したブラウザベースのベンチマークを実装:
 ```typescript
 // tests/performance/render.spec.ts
 import { test, expect } from '@playwright/test';
 
-test('button renders in < 10ms', async ({ page }) => {
+test('button が 10ms 未満でレンダリング', async ({ page }) => {
   const time = await page.evaluate(() => {
     const start = performance.now();
     const btn = document.createElement('ha-button');
     document.body.appendChild(btn);
     return performance.now() - start;
   });
-  
+
   expect(time).toBeLessThan(10);
 });
 ```
 
-**Impact:** Prevent performance regressions
+**影響:** パフォーマンスのリグレッションを防止
 
-## Long-term Actions (Low Priority, High Effort)
+## 長期アクション (低優先度、高労力)
 
-### 10. Performance Dashboard
+### 10. パフォーマンスダッシュボード
 
-Create a dashboard to track:
-- Bundle size trends
-- Component render times
-- Memory usage
+以下を追跡するダッシュボードを作成:
+- Bundle サイズのトレンド
+- コンポーネントのレンダリング時間
+- メモリ使用量
 - Core Web Vitals
 
-Tools: Grafana, Lighthouse CI, Web Vitals
+ツール: Grafana, Lighthouse CI, Web Vitals
 
-**Impact:** Long-term performance monitoring
+**影響:** 長期的なパフォーマンス監視
 
-### 11. Advanced Optimizations
+### 11. 高度な最適化
 
-- **Dynamic imports** for rarely-used features
-- **Virtual scrolling** optimization for Table/DataGrid
-- **Memoization** for expensive computations
-- **Web Workers** for heavy processing
+- 稀に使用される機能の**動的インポート**
+- Table/DataGrid の**仮想スクロール**の最適化
+- 高コストな計算の**メモ化**
+- 重い処理のための **Web Workers**
 
-**Impact:** Enhanced performance for edge cases
+**影響:** エッジケースのパフォーマンス向上
 
-## Summary Checklist
+## まとめチェックリスト
 
-### Immediate (Do This Week)
-- [ ] Add `"sideEffects": false` to package.json
-- [ ] Update docs with import patterns
-- [ ] Add bundle size badges to README
+### 即座 (今週中に実施)
+- [ ] package.json に `"sideEffects": false` を追加
+- [ ] インポートパターンでドキュメントを更新
+- [ ] README に bundle サイズバッジを追加
 
-### Short-term (Do This Month)
-- [ ] Set up bundle size CI checks
-- [ ] Document CSS purging
-- [ ] Create benchmark scripts
+### 短期 (今月中に実施)
+- [ ] bundle サイズ CI チェックを設定
+- [ ] CSS purging をドキュメント化
+- [ ] ベンチマークスクリプトを作成
 
-### Medium-term (Next Quarter)
-- [ ] Add bundle analyzer to Storybook
-- [ ] Implement code splitting for complex components
-- [ ] Create performance testing suite
+### 中期 (次四半期)
+- [ ] Storybook に bundle analyzer を追加
+- [ ] 複雑なコンポーネントの code splitting を実装
+- [ ] パフォーマンステストスイートを作成
 
-### Long-term (Future)
-- [ ] Build performance dashboard
-- [ ] Implement advanced optimizations
+### 長期 (将来)
+- [ ] パフォーマンスダッシュボードを構築
+- [ ] 高度な最適化を実装
 
 ---
 
-## Performance Metrics Reference
+## パフォーマンス指標リファレンス
 
-### Current Baseline
+### 現在のベースライン
 
-| Metric | Value | Target |
+| 指標 | 値 | 目標 |
 |--------|-------|--------|
 | Core bundle (gzipped) | 64.49 KB | < 100 KB ✅ |
 | React wrapper (gzipped) | 15.69 KB | < 20 KB ✅ |
 | Vue wrapper (gzipped) | 11.20 KB | < 20 KB ✅ |
-| Total CSS (all components) | 841.79 KB | - |
-| Individual component | 8-15 KB | < 20 KB ✅ |
+| 総 CSS (すべてのコンポーネント) | 841.79 KB | - |
+| 個別コンポーネント | 8-15 KB | < 20 KB ✅ |
 
-### Expected Results After Optimizations
+### 最適化後の期待される結果
 
-| Metric | Before | After | Improvement |
+| 指標 | 前 | 後 | 改善 |
 |--------|--------|-------|-------------|
-| Typical app bundle (5 components) | 50 KB | 25-30 KB | 40-50% |
-| CSS (with purging) | 190 KB | 95-130 KB | 30-50% |
-| Tree-shaking effectiveness | Good | Excellent | Better |
+| 一般的なアプリの bundle (5 コンポーネント) | 50 KB | 25-30 KB | 40-50% |
+| CSS (purging 使用) | 190 KB | 95-130 KB | 30-50% |
+| Tree-shaking の有効性 | 良好 | 優秀 | より良い |
 
 ---
 
-## Related Documentation
+## 関連ドキュメント
 
-- [Design Tokens Guide](./design-tokens.md)
-- [Migration Guide](./migration-guide.md)
-- [Installation Guide](../getting-started/installation.md)
-- [Component API Reference](../api/)
+- [Design Tokens ガイド](./design-tokens.md)
+- [移行ガイド](./migration-guide.md)
+- [インストールガイド](../getting-started/installation.md)
+- [コンポーネント API リファレンス](../api/)
 
 ---
 
-**Last Updated:** 2025-12-19  
-**Next Review:** 2026-01-19
+**最終更新:** 2025-12-19
+**次回レビュー:** 2026-01-19

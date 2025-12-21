@@ -6,15 +6,16 @@ export const metadata: ComponentMetadata = {
   description: 'Progress bar component for showing completion status',
   category: 'Feedback',
   props: [
-    { name: 'value', type: 'number', default: '0', required: false, description: 'Current value (0-100)' },
+    { name: 'value', type: 'number', default: '0', required: false, description: 'Current value' },
     { name: 'max', type: 'number', default: '100', required: false, description: 'Maximum value' },
-    { name: 'variant', type: "'default' | 'success' | 'warning' | 'danger'", default: "'default'", required: false, description: 'Progress bar color variant' },
-    { name: 'size', type: "'small' | 'medium' | 'large'", default: "'medium'", required: false, description: 'Progress bar size' },
-    { name: 'showValue', type: 'boolean', default: 'false', required: false, description: 'Show percentage text' },
-    { name: 'indeterminate', type: 'boolean', default: 'false', required: false, description: 'Indeterminate loading state' },
+    { name: 'variant', type: "'default' | 'striped' | 'animated'", default: "'default'", required: false, description: 'Progress bar variant' },
+    { name: 'color', type: "'primary' | 'success' | 'warning' | 'error' | 'info'", default: "'primary'", required: false, description: 'Progress bar color' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", required: false, description: 'Progress bar size' },
+    { name: 'show-label', type: 'boolean', default: 'false', required: false, description: 'Show progress label and percentage' },
   ],
-  events: [
-    { name: 'ha-complete', detail: '{}', description: 'Emitted when progress reaches 100%' },
+  events: [],
+  slots: [
+    { name: 'label', description: 'Custom label content' },
   ],
   examples: [
     {
@@ -25,12 +26,12 @@ export const metadata: ComponentMetadata = {
     {
       title: 'With Value Display',
       description: 'Progress bar showing percentage',
-      code: `<ha-progress value="75" show-value></ha-progress>`,
+      code: `<ha-progress value="75" show-label></ha-progress>`,
     },
     {
-      title: 'Indeterminate',
-      description: 'Indeterminate progress',
-      code: `<ha-progress indeterminate></ha-progress>`,
+      title: 'Striped Variant',
+      description: 'Progress with striped variant',
+      code: `<ha-progress value="50" variant="striped"></ha-progress>`,
     },
   ],
   accessibility: {

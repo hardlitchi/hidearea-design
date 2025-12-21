@@ -6,44 +6,48 @@ export const metadata: ComponentMetadata = {
   description: 'Data table component for displaying structured data',
   category: 'Data Display',
   props: [
-    { name: 'data', type: 'Array<Record<string, any>>', required: true, description: 'Table data' },
-    { name: 'columns', type: 'Array<Column>', required: true, description: 'Column definitions' },
-    { name: 'sortable', type: 'boolean', default: 'false', required: false, description: 'Enable column sorting' },
-    { name: 'selectable', type: 'boolean', default: 'false', required: false, description: 'Enable row selection' },
-    { name: 'striped', type: 'boolean', default: 'false', required: false, description: 'Striped rows' },
-    { name: 'hoverable', type: 'boolean', default: 'false', required: false, description: 'Hover effect on rows' },
-    { name: 'bordered', type: 'boolean', default: 'false', required: false, description: 'Show borders' },
+    { name: 'striped', type: 'boolean', default: 'false', required: false, description: 'Enable striped rows' },
+    { name: 'bordered', type: 'boolean', default: 'false', required: false, description: 'Enable borders' },
+    { name: 'hoverable', type: 'boolean', default: 'false', required: false, description: 'Enable row hover effect' },
+    { name: 'compact', type: 'boolean', default: 'false', required: false, description: 'Enable compact mode' },
+    { name: 'full-width', type: 'boolean', default: 'false', required: false, description: 'Enable full width table' },
   ],
-  events: [
-    { name: 'ha-sort', detail: '{ column: string, direction: "asc" | "desc" }', description: 'Emitted when column is sorted' },
-    { name: 'ha-select', detail: '{ selectedRows: Array<any> }', description: 'Emitted when rows are selected' },
-    { name: 'ha-row-click', detail: '{ row: any, index: number }', description: 'Emitted when row is clicked' },
-  ],
+  events: [],
   slots: [
-    { name: 'default', description: 'Custom cell content' },
+    { name: 'default', description: 'Table content (thead, tbody, tfoot)' },
   ],
   examples: [
     {
       title: 'Basic Usage',
-      description: 'Simple data table',
-      code: `<ha-table
-  :data="users"
-  :columns="[
-    { key: 'name', label: 'Name' },
-    { key: 'email', label: 'Email' },
-    { key: 'role', label: 'Role' }
-  ]"
-></ha-table>`,
+      description: 'Simple table',
+      code: `<ha-table striped hoverable>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John Doe</td>
+        <td>john@example.com</td>
+        <td>Admin</td>
+      </tr>
+    </tbody>
+  </table>
+</ha-table>`,
     },
     {
-      title: 'Sortable Table',
-      description: 'Table with sortable columns',
-      code: `<ha-table
-  :data="products"
-  :columns="columns"
-  sortable
-  hoverable
-></ha-table>`,
+      title: 'Bordered Table',
+      description: 'Table with borders',
+      code: `<ha-table bordered>
+  <table>
+    <thead><tr><th>Column</th></tr></thead>
+    <tbody><tr><td>Data</td></tr></tbody>
+  </table>
+</ha-table>`,
     },
   ],
   accessibility: {

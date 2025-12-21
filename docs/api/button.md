@@ -1,39 +1,39 @@
-# Button
+# Button（ボタン）
 
-> A customizable button component with multiple variants and sizes
+> 複数のバリアントとサイズをサポートするカスタマイズ可能なボタンコンポーネント
 
-**Tag**: `<ha-button>`
+**タグ**: `<ha-button>`
 
-**Category**: Form Controls
+**カテゴリ**: フォームコントロール
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `variant` | `'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'` | `'primary'` |  | Visual style variant |
-| `size` | `'small' | 'medium' | 'large'` | `'medium'` |  | Button size |
-| `disabled` | `boolean` | `false` |  | Disables the button |
-| `loading` | `boolean` | `false` |  | Shows loading state |
-| `fullWidth` | `boolean` | `false` |  | Makes button full width |
+| `variant` | `'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'` | `'primary'` |  | ボタンのスタイルバリアント |
+| `size` | `'small' | 'medium' | 'large'` | `'medium'` |  | ボタンのサイズ |
+| `disabled` | `boolean` | `false` |  | ボタンを無効化 |
+| `loading` | `boolean` | `false` |  | ローディング状態を表示 |
+| `fullWidth` | `boolean` | `false` |  | ボタンを全幅に |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-click` | `{ originalEvent: MouseEvent }` | Emitted when button is clicked |
+| `ha-click` | `{ originalEvent: MouseEvent }` | ボタンがクリックされたときに発火 |
 
-### Usage
+### 使用方法
 
 ```javascript
 const element = document.querySelector('ha-button');
@@ -42,119 +42,119 @@ element.addEventListener('ha-click', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Button content |
-| `prefix` | Content before button text (e.g., icon) |
-| `suffix` | Content after button text |
+| `default` | ボタンのコンテンツ |
+| `prefix` | ボタンテキストの前に表示するコンテンツ（アイコンなど） |
+| `suffix` | ボタンテキストの後に表示するコンテンツ |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple button with text
+シンプルなテキストボタン
 
 ```html
-<ha-button>Click me</ha-button>
+<ha-button>クリック</ha-button>
 ```
 
 ---
 
-### With Variant
+### バリアント指定
 
-Different button styles
+異なるボタンスタイル
 
 ```html
-<ha-button variant="primary">Primary</ha-button>
-<ha-button variant="secondary">Secondary</ha-button>
-<ha-button variant="outline">Outline</ha-button>
+<ha-button variant="primary">プライマリ</ha-button>
+<ha-button variant="secondary">セカンダリ</ha-button>
+<ha-button variant="outline">アウトライン</ha-button>
 ```
 
 ---
 
-### With Icon
+### アイコン付き
 
-Button with icon prefix
+アイコンプレフィックス付きボタン
 
 ```html
 <ha-button>
   <svg slot="prefix" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
     <path d="M8 0L10 6H16L11 10L13 16L8 12L3 16L5 10L0 6H6L8 0Z"/>
   </svg>
-  Star
+  スター
 </ha-button>
 ```
 
 ---
 
-### Loading State
+### ローディング状態
 
-Button with loading indicator
+ローディングインジケーター付きボタン
 
 ```html
-<ha-button loading>Loading...</ha-button>
+<ha-button loading>読み込み中...</ha-button>
 ```
 
 ---
 
-### Disabled State
+### 無効状態
 
-Disabled button
+無効化されたボタン
 
 ```html
-<ha-button disabled>Disabled</ha-button>
+<ha-button disabled>無効</ha-button>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `button`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | 動作 |
 |-----|--------|
-| `Enter` | Activates button |
-| `Space` | Activates button |
+| `Enter` | ボタンを有効化 |
+| `Space` | ボタンを有効化 |
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-disabled`
-- `aria-pressed (for toggle buttons)`
+- `aria-pressed`（トグルボタンの場合）
 - `aria-label`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-button-primary-background-default`
 - `--component-button-primary-text-default`
 - `--component-button-primary-border-default`
 
-### Spacing
+### スペーシング
 
 - `--spacing-sm`
 - `--spacing-md`
 - `--spacing-lg`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 - `--font-weight-medium`
 
-### Other
+### その他
 
 - `--border-radius-md`
 - `--interaction-transition-fast-duration`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

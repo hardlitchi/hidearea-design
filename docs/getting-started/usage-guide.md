@@ -1,4 +1,4 @@
-# Usage Guide
+# 使い方ガイド
 
 hidearea-designデザインシステムの基本的な使い方を説明します。
 
@@ -81,7 +81,7 @@ console.log(tokens.typography.fontSize.base);
 - **shadow** - ドロップシャドウ
 - **animation** - アニメーション時間とイージング
 
-詳細は [トークンリファレンス](../tokens/README.md) を参照してください。
+詳細は [デザイントークンガイド](../guides/design-tokens.md) を参照してください。
 
 ## コンポーネントの使用
 
@@ -422,6 +422,6 @@ import '@hidearea-design/core/components/input';
 ## 次のステップ
 
 - [実用例](../guides/examples.md) - 実際のユースケース
-- [コンポーネントリファレンス](../components/README.md) - 全コンポーネントのAPI
-- [アクセシビリティガイド](../guides/accessibility.md) - アクセシブルな実装方法
-- [カスタマイズガイド](../guides/customization.md) - 高度なカスタマイズ
+- [コンポーネントリファレンス](../api/README.md) - 全コンポーネントのAPI
+- [アクセシビリティガイド](../guides/accessibility-guide.md) - アクセシブルな実装方法
+- [デザイントークン](../guides/design-tokens.md) - トークンシステムの詳細

@@ -1,29 +1,29 @@
-# Installation
+# インストール
 
-## Requirements
+## 必要要件
 
-- Node.js 18.x or higher
-- npm, yarn, or pnpm package manager
+- Node.js 18.x 以上
+- npm, yarn, または pnpm パッケージマネージャー
 
-## Installation Methods
+## インストール方法
 
-### Using npm
+### npm を使用
 
 ```bash
-# Install core Web Components
+# コア Web Components をインストール
 npm install @hidearea-design/core
 
-# Install React wrapper
+# React ラッパーをインストール
 npm install @hidearea-design/react
 
-# Install Vue wrapper
+# Vue ラッパーをインストール
 npm install @hidearea-design/vue
 
-# Install design tokens
+# デザイントークンをインストール
 npm install @hidearea-design/tokens
 ```
 
-### Using pnpm
+### pnpm を使用
 
 ```bash
 pnpm add @hidearea-design/core
@@ -32,7 +32,7 @@ pnpm add @hidearea-design/vue
 pnpm add @hidearea-design/tokens
 ```
 
-### Using yarn
+### yarn を使用
 
 ```bash
 yarn add @hidearea-design/core
@@ -41,56 +41,56 @@ yarn add @hidearea-design/vue
 yarn add @hidearea-design/tokens
 ```
 
-## Package Overview
+## パッケージ概要
 
 ### @hidearea-design/core
 
-The core Web Components package. Works with any JavaScript framework or vanilla JS.
+コア Web Components パッケージです。任意の JavaScript フレームワークまたはバニラ JS で動作します。
 
-**Features:**
+**機能:**
 
-- Framework-agnostic Web Components
-- Shadow DOM encapsulation
-- Customizable via CSS custom properties
-- Full TypeScript support
-- Accessible by default (WCAG AA compliant)
+- フレームワーク非依存の Web Components
+- Shadow DOM カプセル化
+- CSS カスタムプロパティによるカスタマイズ可能
+- 完全な TypeScript サポート
+- デフォルトでアクセシブル（WCAG AA 準拠）
 
 ### @hidearea-design/react
 
-React wrapper components with full TypeScript support.
+完全な TypeScript サポート付きの React ラッパーコンポーネントです。
 
-**Features:**
+**機能:**
 
-- Native React component API
-- Forward refs support
-- Full TypeScript definitions
-- React 18+ compatible
+- ネイティブな React コンポーネント API
+- Forward refs サポート
+- 完全な TypeScript 定義
+- React 18+ 互換
 
 ### @hidearea-design/vue
 
-Vue 3 wrapper components with Composition API support.
+Composition API サポート付きの Vue 3 ラッパーコンポーネントです。
 
-**Features:**
+**機能:**
 
 - Vue 3 Composition API
-- v-model support
-- Full TypeScript definitions
-- Template type checking
+- v-model サポート
+- 完全な TypeScript 定義
+- テンプレート型チェック
 
 ### @hidearea-design/tokens
 
-Design tokens for colors, spacing, typography, and more.
+色、スペーシング、タイポグラフィなどのデザイントークンです。
 
-**Features:**
+**機能:**
 
-- CSS custom properties
-- JavaScript/TypeScript exports
-- Style Dictionary based
-- Consistent design language
+- CSS カスタムプロパティ
+- JavaScript/TypeScript エクスポート
+- Style Dictionary ベース
+- 一貫したデザイン言語
 
-## Quick Start
+## クイックスタート
 
-### Vanilla JavaScript
+### バニラ JavaScript
 
 ```html
 <!DOCTYPE html>
@@ -102,14 +102,14 @@ Design tokens for colors, spacing, typography, and more.
     />
   </head>
   <body>
-    <ha-button variant="primary">Click me</ha-button>
+    <ha-button variant="primary">クリックしてください</ha-button>
 
     <script type="module">
       import "@hidearea-design/core";
 
       const button = document.querySelector("ha-button");
       button.addEventListener("click", () => {
-        console.log("Button clicked!");
+        console.log("ボタンがクリックされました！");
       });
     </script>
   </body>
@@ -124,8 +124,8 @@ import { Button } from "@hidearea-design/react";
 
 function App() {
   return (
-    <Button variant="primary" onClick={() => console.log("Clicked!")}>
-      Click me
+    <Button variant="primary" onClick={() => console.log("クリックされました！")}>
+      クリックしてください
     </Button>
   );
 }
@@ -137,7 +137,7 @@ export default App;
 
 ```vue
 <template>
-  <HaButton variant="primary" @click="handleClick"> Click me </HaButton>
+  <HaButton variant="primary" @click="handleClick"> クリックしてください </HaButton>
 </template>
 
 <script setup lang="ts">
@@ -145,29 +145,29 @@ import "@hidearea-design/tokens/dist/tokens.css";
 import { HaButton } from "@hidearea-design/vue";
 
 const handleClick = () => {
-  console.log("Clicked!");
+  console.log("クリックされました！");
 };
 </script>
 ```
 
-## CSS Setup
+## CSS セットアップ
 
-Import the design tokens CSS in your application:
+アプリケーションにデザイントークンの CSS をインポートします：
 
 ```js
-// In your main entry file
+// メインエントリーファイルで
 import "@hidearea-design/tokens/dist/tokens.css";
 ```
 
-Or link it in your HTML:
+または HTML でリンクします：
 
 ```html
 <link rel="stylesheet" href="path/to/@hidearea-design/tokens/dist/tokens.css" />
 ```
 
-## TypeScript Configuration
+## TypeScript 設定
 
-If using TypeScript, ensure your `tsconfig.json` includes:
+TypeScript を使用する場合、`tsconfig.json` に以下を含めてください：
 
 ```json
 {
@@ -182,9 +182,9 @@ If using TypeScript, ensure your `tsconfig.json` includes:
 }
 ```
 
-## Next Steps
+## 次のステップ
 
-- [Component API Reference](../components/README.md)
-- [Usage Examples](../guides/examples.md)
-- [Customization Guide](../guides/customization.md)
-- [Accessibility Guide](../guides/accessibility.md)
+- [コンポーネント API リファレンス](../api/README.md)
+- [使用例](../guides/examples.md)
+- [デザイントークン](../guides/design-tokens.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)

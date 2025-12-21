@@ -1,38 +1,38 @@
-# Alert
+# Alert（アラート）
 
-> Alert component for displaying important messages and notifications
+> 重要なメッセージや通知を表示するためのアラートコンポーネント
 
-**Tag**: `<ha-alert>`
+**タグ**: `<ha-alert>`
 
-**Category**: Feedback
+**カテゴリ**: フィードバック
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `variant` | `'info' | 'success' | 'warning' | 'danger'` | `'info'` |  | Alert type |
-| `title` | `string` | `undefined` |  | Alert title |
-| `closable` | `boolean` | `false` |  | Show close button |
-| `icon` | `boolean` | `true` |  | Show icon |
+| `variant` | `'info' | 'success' | 'warning' | 'danger'` | `'info'` |  | アラートの種類 |
+| `title` | `string` | `undefined` |  | アラートのタイトル |
+| `closable` | `boolean` | `false` |  | 閉じるボタンを表示 |
+| `icon` | `boolean` | `true` |  | アイコンを表示 |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-close` | `{}` | Emitted when alert is closed |
+| `ha-close` | `{}` | アラートが閉じられたときに発火 |
 
-### Usage
+### 使用方法
 
 ```javascript
 const element = document.querySelector('ha-alert');
@@ -41,95 +41,95 @@ element.addEventListener('ha-close', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Alert content |
-| `icon` | Custom icon |
+| `default` | アラートのコンテンツ |
+| `icon` | カスタムアイコン |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Different alert variants
+異なるアラートバリアント
 
 ```html
-<ha-alert variant="info">This is an informational message</ha-alert>
-<ha-alert variant="success">Operation completed successfully</ha-alert>
-<ha-alert variant="warning">Please be careful</ha-alert>
-<ha-alert variant="danger">An error occurred</ha-alert>
+<ha-alert variant="info">これは情報メッセージです</ha-alert>
+<ha-alert variant="success">操作が正常に完了しました</ha-alert>
+<ha-alert variant="warning">注意してください</ha-alert>
+<ha-alert variant="danger">エラーが発生しました</ha-alert>
 ```
 
 ---
 
-### With Title
+### タイトル付き
 
-Alert with title
+タイトル付きアラート
 
 ```html
-<ha-alert variant="warning" title="Warning">
-  This action cannot be undone.
+<ha-alert variant="warning" title="警告">
+  この操作は取り消せません。
 </ha-alert>
 ```
 
 ---
 
-### Closable Alert
+### 閉じるボタン付き
 
-Alert with close button
+閉じるボタン付きアラート
 
 ```html
 <ha-alert variant="info" closable>
-  This alert can be dismissed.
+  このアラートは閉じることができます。
 </ha-alert>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `alert`
 - `status`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | 動作 |
 |-----|--------|
-| `Escape` | Close alert (if closable) |
+| `Escape` | アラートを閉じる（閉じるボタンがある場合） |
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-live`
 - `aria-atomic`
 - `aria-label`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-alert-info-background`
 - `--component-alert-info-border`
 - `--component-alert-info-text`
 
-### Spacing
+### スペーシング
 
 - `--spacing-md`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 - `--font-weight-medium`
 
-### Other
+### その他
 
 - `--border-radius-md`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

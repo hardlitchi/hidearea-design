@@ -6,18 +6,23 @@ export const metadata: ComponentMetadata = {
   description: 'Radio button for selecting a single option from a group',
   category: 'Form Controls',
   props: [
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", required: false, description: 'Radio size' },
     { name: 'checked', type: 'boolean', default: 'false', required: false, description: 'Whether the radio is selected' },
-    { name: 'value', type: 'string', required: true, description: 'Value of the radio button' },
-    { name: 'name', type: 'string', required: true, description: 'Name attribute for grouping radios' },
+    { name: 'value', type: 'string', required: false, description: 'Value of the radio button' },
+    { name: 'name', type: 'string', required: false, description: 'Name attribute for grouping radios' },
     { name: 'disabled', type: 'boolean', default: 'false', required: false, description: 'Disables the radio button' },
     { name: 'required', type: 'boolean', default: 'false', required: false, description: 'Makes radio required' },
+    { name: 'error', type: 'boolean', default: 'false', required: false, description: 'Error state' },
     { name: 'label', type: 'string', required: false, description: 'Radio label' },
+    { name: 'description', type: 'string', required: false, description: 'Radio description' },
   ],
   events: [
-    { name: 'ha-change', detail: '{ value: string }', description: 'Emitted when radio is selected' },
+    { name: 'change', detail: '{ checked: boolean, value: string }', description: 'Emitted when radio state changes' },
+    { name: 'input', detail: '{ checked: boolean, value: string }', description: 'Emitted when radio state changes' },
   ],
   slots: [
-    { name: 'default', description: 'Radio label content' },
+    { name: 'default', description: 'Radio label content (alternative to label attribute)' },
+    { name: 'description', description: 'Slot for description content' },
   ],
   examples: [
     {

@@ -6,14 +6,16 @@ export const metadata: ComponentMetadata = {
   description: 'Accordion component for collapsible content sections',
   category: 'Data Display',
   props: [
-    { name: 'multiple', type: 'boolean', default: 'false', required: false, description: 'Allow multiple panels to be open' },
-    { name: 'collapsible', type: 'boolean', default: 'true', required: false, description: 'Allow panels to be collapsed' },
+    { name: 'allow-multiple', type: 'boolean', default: 'false', required: false, description: 'Allow multiple items to be open simultaneously' },
+    { name: 'collapsible', type: 'boolean', default: 'false', required: false, description: 'Allow all items to be collapsed' },
   ],
   events: [
-    { name: 'ha-change', detail: '{ openPanels: string[] }', description: 'Emitted when panels are opened/closed' },
+    { name: 'accordion-toggle', detail: '{ open: boolean }', description: 'Emitted when item is toggled' },
+    { name: 'accordion-open', detail: '{}', description: 'Emitted when item is opened' },
+    { name: 'accordion-close', detail: '{}', description: 'Emitted when item is closed' },
   ],
   slots: [
-    { name: 'default', description: 'Accordion panels' },
+    { name: 'default', description: 'Accordion items (ha-accordion-item elements)' },
   ],
   examples: [
     {
@@ -31,7 +33,7 @@ export const metadata: ComponentMetadata = {
     {
       title: 'Multiple Open',
       description: 'Allow multiple panels open',
-      code: `<ha-accordion multiple>
+      code: `<ha-accordion allow-multiple>
   <ha-accordion-panel value="a" title="Panel A">Content A</ha-accordion-panel>
   <ha-accordion-panel value="b" title="Panel B">Content B</ha-accordion-panel>
 </ha-accordion>`,

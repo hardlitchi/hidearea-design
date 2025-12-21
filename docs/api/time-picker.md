@@ -1,40 +1,40 @@
-# TimePicker
+# TimePicker（タイムピッカー）
 
-> Time picker component for selecting time values
+> 時刻値を選択するためのタイムピッカーコンポーネント
 
-**Tag**: `<ha-time-picker>`
+**タグ**: `<ha-time-picker>`
 
-**Category**: Form Controls
+**カテゴリ**: フォームコントロール
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `value` | `string` | `undefined` |  | Selected time value (HH:mm format) |
-| `format` | `'12h' | '24h'` | `'24h'` |  | Time format |
-| `disabled` | `boolean` | `false` |  | Disables the time picker |
-| `placeholder` | `string` | `undefined` |  | Placeholder text |
-| `label` | `string` | `undefined` |  | Time picker label |
-| `step` | `number` | `1` |  | Minute step increment |
+| `value` | `string` | `undefined` |  | 選択された時刻値（HH:mm形式） |
+| `format` | `'12h' | '24h'` | `'24h'` |  | 時刻フォーマット |
+| `disabled` | `boolean` | `false` |  | タイムピッカーを無効化 |
+| `placeholder` | `string` | `undefined` |  | プレースホルダーテキスト |
+| `label` | `string` | `undefined` |  | タイムピッカーのラベル |
+| `step` | `number` | `1` |  | 分の刻み幅 |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-change` | `{ value: string }` | Emitted when time changes |
+| `ha-change` | `{ value: string }` | 時刻が変更されたときに発行 |
 
-### Usage
+### 使用方法
 
 ```javascript
 const element = document.querySelector('ha-time-picker');
@@ -43,88 +43,88 @@ element.addEventListener('ha-change', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-This component has no slots.
+このコンポーネントにはスロットがありません。
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple time picker
+シンプルなタイムピッカー
 
 ```html
-<ha-time-picker label="Select time" placeholder="HH:mm"></ha-time-picker>
+<ha-time-picker label="時刻を選択" placeholder="HH:mm"></ha-time-picker>
 ```
 
 ---
 
-### 12-hour Format
+### 12時間形式
 
-Time picker with AM/PM
+AM/PM付きタイムピッカー
 
 ```html
-<ha-time-picker label="Appointment time" format="12h"></ha-time-picker>
+<ha-time-picker label="予約時刻" format="12h"></ha-time-picker>
 ```
 
 ---
 
-### With Step
+### 刻み幅の指定
 
-Time picker with 15-minute intervals
+15分間隔のタイムピッカー
 
 ```html
-<ha-time-picker label="Meeting time" :step="15"></ha-time-picker>
+<ha-time-picker label="会議時刻" :step="15"></ha-time-picker>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `button`
 - `listbox`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Arrow keys` | Adjust time |
-| `Enter` | Confirm selection |
-| `Escape` | Close picker |
+| `矢印キー` | 時刻を調整 |
+| `Enter` | 選択を確定 |
+| `Escape` | ピッカーを閉じる |
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-label`
 - `aria-expanded`
 - `aria-activedescendant`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-time-picker-background`
 - `--component-time-picker-selected`
 - `--component-time-picker-text`
 
-### Spacing
+### スペーシング
 
 - `--spacing-sm`
 - `--spacing-md`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-md`
 - `--surface-overlay-elevation`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネントの使用例](../guides/examples.md)

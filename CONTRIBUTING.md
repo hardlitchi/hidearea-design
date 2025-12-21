@@ -1,115 +1,115 @@
-# Contributing to hidearea-design
+# hidearea-design への貢献
 
-Thank you for your interest in contributing to hidearea-design! This document provides guidelines and instructions for contributing.
+hidearea-design への貢献に興味を持っていただき、ありがとうございます！このドキュメントは、貢献のためのガイドラインと手順を提供します。
 
-## Table of Contents
+## 目次
 
-- [Code of Conduct](#code-of-conduct)
-- [Getting Started](#getting-started)
-- [Development Workflow](#development-workflow)
-- [Project Structure](#project-structure)
-- [Coding Standards](#coding-standards)
-- [Testing](#testing)
-- [Submitting Changes](#submitting-changes)
-- [Release Process](#release-process)
+- [行動規範](#行動規範)
+- [はじめに](#はじめに)
+- [開発ワークフロー](#開発ワークフロー)
+- [プロジェクト構造](#プロジェクト構造)
+- [コーディング規約](#コーディング規約)
+- [テスト](#テスト)
+- [変更の提出](#変更の提出)
+- [リリースプロセス](#リリースプロセス)
 
-## Code of Conduct
+## 行動規範
 
-This project follows a Code of Conduct to ensure a welcoming and inclusive environment for all contributors. Please be respectful and professional in all interactions.
+このプロジェクトは、すべての貢献者にとって歓迎的で包括的な環境を確保するための行動規範に従います。すべてのやり取りにおいて、敬意を持ち、プロフェッショナルであることをお願いします。
 
-## Getting Started
+## はじめに
 
-### Prerequisites
+### 必要要件
 
-- Node.js 18.x or higher
-- pnpm 10.x or higher
+- Node.js 18.x 以上
+- pnpm 10.x 以上
 - Git
 
-### Setup
+### セットアップ
 
-1. Fork the repository on GitHub
-2. Clone your fork locally:
+1. GitHub でリポジトリをフォーク
+2. ローカルにフォークをクローン：
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/hidearea-design.git
 cd hidearea-design
 ```
 
-3. Install dependencies:
+3. 依存関係をインストール：
 
 ```bash
 pnpm install
 ```
 
-4. Build all packages:
+4. すべてのパッケージをビルド：
 
 ```bash
 pnpm build
 ```
 
-5. Run tests to ensure everything works:
+5. すべてが動作することを確認するためテストを実行：
 
 ```bash
 pnpm test
 ```
 
-## Development Workflow
+## 開発ワークフロー
 
-### Creating a Branch
+### ブランチの作成
 
-Create a new branch for your feature or bug fix:
+機能やバグ修正のために新しいブランチを作成：
 
 ```bash
 git checkout -b feature/your-feature-name
-# or
+# または
 git checkout -b fix/your-bug-fix
 ```
 
-Branch naming conventions:
+ブランチ命名規則：
 
-- `feature/` - New features
-- `fix/` - Bug fixes
-- `docs/` - Documentation changes
-- `test/` - Test additions or changes
-- `refactor/` - Code refactoring
+- `feature/` - 新機能
+- `fix/` - バグ修正
+- `docs/` - ドキュメントの変更
+- `test/` - テストの追加または変更
+- `refactor/` - コードのリファクタリング
 
-### Development Commands
+### 開発コマンド
 
 ```bash
-# Start development mode (watch mode)
+# 開発モード開始（ウォッチモード）
 pnpm dev
 
-# Run tests
+# テスト実行
 pnpm test
 
-# Run tests with UI
+# UI付きテスト実行
 pnpm --filter @hidearea-design/core test:ui
 
-# Run linting
+# Lint実行
 pnpm lint
 
-# Build all packages
+# すべてのパッケージをビルド
 pnpm build
 
-# Format code
+# コードフォーマット
 pnpm format
 ```
 
-### Working on Specific Packages
+### 特定のパッケージで作業
 
 ```bash
-# Work on core package
+# core パッケージで作業
 cd packages/core
 pnpm dev
 
-# Run tests for specific package
+# 特定パッケージのテスト実行
 pnpm --filter @hidearea-design/core test
 
-# Build specific package
+# 特定パッケージをビルド
 pnpm --filter @hidearea-design/react build
 ```
 
-## Project Structure
+## プロジェクト構造
 
 ```
 hidearea-design/
@@ -120,33 +120,33 @@ hidearea-design/
 │   │   │   ├── styles/
 │   │   │   └── index.ts
 │   │   └── package.json
-│   ├── react/          # React wrappers
-│   ├── vue/            # Vue wrappers
-│   ├── tokens/         # Design tokens
-│   ├── storybook/      # Component documentation
-│   └── docs/           # VitePress documentation
-├── docs/               # Markdown documentation
-├── .changeset/         # Changesets for versioning
-└── .github/            # GitHub Actions workflows
+│   ├── react/          # React ラッパー
+│   ├── vue/            # Vue ラッパー
+│   ├── tokens/         # デザイントークン
+│   ├── storybook/      # コンポーネントドキュメント
+│   └── docs/           # VitePress ドキュメント
+├── docs/               # Markdown ドキュメント
+├── .changeset/         # バージョニング用 Changesets
+└── .github/            # GitHub Actions ワークフロー
 ```
 
-## Coding Standards
+## コーディング規約
 
 ### TypeScript
 
-- Use TypeScript for all code
-- Provide proper type definitions
-- Avoid `any` types when possible
-- Use interfaces for public APIs
+- すべてのコードに TypeScript を使用
+- 適切な型定義を提供
+- 可能な限り `any` 型を避ける
+- パブリック API にはインターフェースを使用
 
 ### Web Components
 
-- Follow Web Components best practices
-- Use Shadow DOM for encapsulation
-- Provide CSS custom properties for theming
-- Include proper ARIA attributes
+- Web Components のベストプラクティスに従う
+- カプセル化には Shadow DOM を使用
+- テーマ用の CSS カスタムプロパティを提供
+- 適切な ARIA 属性を含める
 
-Example component structure:
+コンポーネント構造の例：
 
 ```typescript
 export class HaMyComponent extends HTMLElement {
@@ -168,7 +168,7 @@ export class HaMyComponent extends HTMLElement {
     this.render();
   }
 
-  // Public API
+  // パブリック API
   get prop1(): string {
     return this.getAttribute("prop1") || "";
   }
@@ -177,14 +177,14 @@ export class HaMyComponent extends HTMLElement {
     this.setAttribute("prop1", value);
   }
 
-  // Methods
+  // メソッド
   private render() {
-    // Rendering logic
+    // レンダリングロジック
   }
 }
 ```
 
-### React Wrappers
+### React ラッパー
 
 ```typescript
 export const MyComponent = forwardRef<MyComponentRef, MyComponentProps>(
@@ -193,7 +193,7 @@ export const MyComponent = forwardRef<MyComponentRef, MyComponentProps>(
 
     useImperativeHandle(ref, () => ({
       focus: () => elementRef.current?.focus(),
-      // other methods
+      // その他のメソッド
     }));
 
     useEffect(() => {
@@ -213,7 +213,7 @@ export const MyComponent = forwardRef<MyComponentRef, MyComponentProps>(
 );
 ```
 
-### Vue Wrappers
+### Vue ラッパー
 
 ```vue
 <template>
@@ -254,27 +254,27 @@ watch(
 </script>
 ```
 
-### Code Style
+### コードスタイル
 
-- Use ESLint and Prettier (configured in the project)
-- 2 spaces for indentation
-- Single quotes for strings
-- Semicolons required
-- Trailing commas in multi-line objects/arrays
+- ESLint と Prettier を使用（プロジェクトで設定済み）
+- インデントは2スペース
+- 文字列にはシングルクォート
+- セミコロン必須
+- 複数行のオブジェクト/配列には末尾カンマ
 
-Run formatting:
+フォーマット実行：
 
 ```bash
 pnpm format
 ```
 
-## Testing
+## テスト
 
-### Writing Tests
+### テストの作成
 
-All new features and bug fixes should include tests.
+すべての新機能とバグ修正にはテストを含める必要があります。
 
-#### Unit Tests (Core Package)
+#### ユニットテスト（Core パッケージ）
 
 ```typescript
 import { describe, it, expect, beforeEach } from "vitest";
@@ -292,90 +292,143 @@ describe("HaMyComponent", () => {
     document.body.removeChild(component);
   });
 
-  it("should render with default props", () => {
+  it("デフォルトプロパティでレンダリングする", () => {
     expect(component.prop1).toBe("default");
   });
 
-  it("should update when prop changes", () => {
+  it("プロパティ変更時に更新する", () => {
     component.prop1 = "new value";
     expect(component.prop1).toBe("new value");
   });
 });
 ```
 
-#### React Component Tests
+#### React コンポーネントテスト
 
 ```typescript
 import { render } from '@testing-library/react';
 import { MyComponent } from './MyComponent';
 
 describe('MyComponent', () => {
-  it('should render with props', () => {
-    render(<MyComponent prop1="test">Content</MyComponent>);
+  it('プロパティ付きでレンダリングする', () => {
+    render(<MyComponent prop1="test">内容</MyComponent>);
     const element = document.querySelector('ha-my-component');
     expect(element).toBeInTheDocument();
   });
 });
 ```
 
-### Running Tests
+### テストの実行
 
 ```bash
-# Run all tests
+# すべてのテスト実行
 pnpm test
 
-# Run tests with coverage
+# カバレッジ付きでテスト実行
 pnpm test:coverage
 
-# Run tests in watch mode
+# ウォッチモードでテスト実行
 pnpm --filter @hidearea-design/core test
 
-# Run specific test file
+# 特定のテストファイルを実行
 pnpm --filter @hidearea-design/core test src/components/button/button.test.ts
 ```
 
-### Coverage Requirements
+#### Tokensパッケージのテスト
 
-- Minimum 80% coverage for all metrics (lines, functions, branches, statements)
-- All new code must include tests
-- Update tests when modifying existing code
+Tokensパッケージには、ビルドシステムとドキュメントの品質を保証する包括的なテストスイートがあります：
 
-## Submitting Changes
+```bash
+# Tokensパッケージのテスト実行
+pnpm --filter @hidearea-design/tokens test
 
-### Commit Messages
+# UIダッシュボード付きでテスト実行
+pnpm --filter @hidearea-design/tokens test:ui
 
-Follow Conventional Commits specification:
+# 特定のテストスイートを実行
+pnpm --filter @hidearea-design/tokens test tests/build.test.js
+pnpm --filter @hidearea-design/tokens test tests/css-validation.test.js
+pnpm --filter @hidearea-design/tokens test tests/token-consistency.test.js
+pnpm --filter @hidearea-design/tokens test tests/documentation-consistency.test.js
+```
+
+**Tokensテストの種類:**
+
+1. **ビルドシステムテスト** (`tests/build.test.js`)
+   - 4つのビルドパターンの生成を検証
+   - ファイル数とディレクトリ構造を確認
+   - デザイントークンの出力を検証
+
+2. **CSS検証テスト** (`tests/css-validation.test.js`)
+   - CSS構文の正しさを検証
+   - セレクタの使用（`:host` vs `.ha-*`）を確認
+   - デザイントークン参照を検証
+
+3. **トークン整合性テスト** (`tests/token-consistency.test.js`)
+   - トークン参照の解決可能性を確認
+   - 循環参照を検出
+   - ライト/ダークテーマの対称性を検証
+
+4. **ドキュメント整合性テスト** (`tests/documentation-consistency.test.js`)
+   - コンポーネントドキュメントの存在を確認
+   - Pattern 2実装例を検証
+   - CSS実装との整合性を確認
+
+**新しいコンポーネントを追加する場合:**
+
+1. CSSファイルを `src/css/components/` に追加
+2. `docs/components/` に対応するMarkdownドキュメントを作成
+3. Pattern 2の実装例をドキュメントに含める
+4. `.ha-{component}` ラッパークラスを使用
+5. テストを実行して整合性を確認：
+   ```bash
+   pnpm --filter @hidearea-design/tokens build
+   pnpm --filter @hidearea-design/tokens test
+   ```
+
+### カバレッジ要件
+
+- **Core/React/Vue**: すべてのメトリクス（行、関数、分岐、ステートメント）で最低80%のカバレッジ
+- **Tokens**: ビルド出力検証テストのため、カバレッジ要件は適用されません
+- すべての新しいコードにはテストを含める
+- 既存のコードを変更する場合はテストを更新
+
+## 変更の提出
+
+### コミットメッセージ
+
+Conventional Commits 仕様に従う：
 
 ```
 type(scope): description
 
-[optional body]
+[オプション本文]
 
-[optional footer]
+[オプションフッター]
 ```
 
-Types:
+タイプ：
 
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation changes
-- `style`: Code style changes (formatting, etc.)
-- `refactor`: Code refactoring
-- `test`: Test additions or changes
-- `chore`: Maintenance tasks
+- `feat`: 新機能
+- `fix`: バグ修正
+- `docs`: ドキュメント変更
+- `style`: コードスタイル変更（フォーマットなど）
+- `refactor`: コードのリファクタリング
+- `test`: テストの追加または変更
+- `chore`: メンテナンスタスク
 
-Examples:
+例：
 
 ```
-feat(button): add loading state
-fix(input): correct validation error display
-docs: update installation guide
-test(checkbox): add indeterminate state tests
+feat(button): ローディング状態を追加
+fix(input): バリデーションエラー表示を修正
+docs: インストールガイドを更新
+test(checkbox): 不確定状態のテストを追加
 ```
 
-### Creating a Pull Request
+### プルリクエストの作成
 
-1. Ensure all tests pass:
+1. すべてのテストが通ることを確認：
 
 ```bash
 pnpm test
@@ -383,47 +436,52 @@ pnpm lint
 pnpm build
 ```
 
-2. Create a changeset (for version bumps):
+2. changeset を作成（バージョンバンプ用）：
 
 ```bash
 pnpm changeset
 ```
 
-Select packages to version and provide a summary of changes.
+バージョン変更するパッケージを選択し、変更の要約を提供します。
 
-3. Push your branch:
+3. ブランチをプッシュ：
 
 ```bash
 git push origin feature/your-feature-name
 ```
 
-4. Create a Pull Request on GitHub with:
-   - Clear title and description
-   - Reference any related issues
-   - Screenshots/GIFs for UI changes
-   - Test results
+4. GitHub でプルリクエストを作成：
+   - 明確なタイトルと説明
+   - 関連する issue を参照
+   - UI変更のスクリーンショット/GIF
+   - テスト結果
 
-### Pull Request Checklist
+### プルリクエストチェックリスト
 
-- [ ] Code follows project coding standards
-- [ ] Tests added/updated and passing
-- [ ] Documentation updated
-- [ ] Changeset created (if applicable)
-- [ ] No linting errors
-- [ ] All CI checks passing
+- [ ] コードがプロジェクトのコーディング規約に従っている
+- [ ] テストが追加/更新され、通過している
+- [ ] ドキュメントが更新されている
+- [ ] Changeset が作成されている（該当する場合）
+- [ ] Lint エラーがない
+- [ ] すべての CI チェックが通過している
 
-## Release Process
+## リリースプロセス
 
+<<<<<<< HEAD
 Releases are automated using Changesets and GitHub Actions:
 
 ### For Contributors
+=======
+リリースは Changesets を使用して自動化されています：
+>>>>>>> aa11b29ebaa6ea0f39db30688b5f7e0bd90ab3b7
 
-1. Create changesets during development:
+1. 開発中に changesets を作成：
 
 ```bash
 pnpm changeset
 ```
 
+<<<<<<< HEAD
 Follow the prompts to:
 - Select which packages have changed (use space to select, enter to confirm)
 - Choose the version bump type:
@@ -475,12 +533,21 @@ The MCP server package includes automatic validation before publishing:
 # - README.md (documentation)
 # - LICENSE (MIT license)
 ```
+=======
+2. Release ワークフローが：
+   - "Version Packages" PR を作成
+   - package.json のバージョンを更新
+   - CHANGELOG.md エントリーを生成
 
-### Manual Release (Maintainers Only)
+3. "Version Packages" PR をマージして npm パブリッシュをトリガー
+>>>>>>> aa11b29ebaa6ea0f39db30688b5f7e0bd90ab3b7
+
+### 手動リリース（メンテナーのみ）
 
 If automated release fails or manual intervention is needed:
 
 ```bash
+<<<<<<< HEAD
 # 1. Update versions based on changesets
 pnpm changeset version
 
@@ -494,6 +561,15 @@ git commit -m "chore: version packages"
 pnpm build
 
 # 5. Publish to npm (requires NPM_TOKEN)
+=======
+# バージョン更新
+pnpm changeset version
+
+# パッケージをビルド
+pnpm build
+
+# npm に公開
+>>>>>>> aa11b29ebaa6ea0f39db30688b5f7e0bd90ab3b7
 pnpm release
 
 # 6. Create Git tag
@@ -534,18 +610,18 @@ git push origin hotfix/critical-bug
 # 6. Automated release will follow
 ```
 
-## Additional Resources
+## 追加リソース
 
-- [Component API Documentation](./docs/components/README.md)
-- [Usage Examples](./docs/guides/examples.md)
-- [Project Notes](./notes/README.md)
+- [コンポーネント API ドキュメント](./docs/ja/components/README.md)
+- [使用例](./docs/ja/guides/examples.md)
+- [プロジェクトノート](./notes/README.md)
 
-## Questions?
+## 質問がありますか？
 
-If you have questions, feel free to:
+質問がある場合は、お気軽に：
 
-- Open an issue on GitHub
-- Start a discussion in GitHub Discussions
-- Reach out to maintainers
+- GitHub で issue を開く
+- GitHub Discussions でディスカッションを開始
+- メンテナーに連絡
 
-Thank you for contributing!
+貢献いただきありがとうございます！

@@ -1,39 +1,39 @@
-# Avatar
+# Avatar（アバター）
 
-> User avatar component for displaying profile pictures or initials
+> プロフィール画像やイニシャルを表示するユーザーアバターコンポーネント
 
-**Tag**: `<ha-avatar>`
+**タグ**: `<ha-avatar>`
 
-**Category**: Data Display
+**カテゴリ**: データ表示
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `src` | `string` | `undefined` |  | Image source URL |
-| `alt` | `string` | `undefined` |  | Alternative text for image |
-| `initials` | `string` | `undefined` |  | Text initials to display |
-| `size` | `'small' | 'medium' | 'large' | 'xlarge'` | `'medium'` |  | Avatar size |
-| `shape` | `'circle' | 'square'` | `'circle'` |  | Avatar shape |
+| `src` | `string` | `undefined` |  | 画像のURL |
+| `alt` | `string` | `undefined` |  | 画像の代替テキスト |
+| `initials` | `string` | `undefined` |  | 表示するイニシャルテキスト |
+| `size` | `'small' | 'medium' | 'large' | 'xlarge'` | `'medium'` |  | アバターのサイズ |
+| `shape` | `'circle' | 'square'` | `'circle'` |  | アバターの形状 |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-error` | `{ error: Error }` | Emitted when image fails to load |
+| `ha-error` | `{ error: Error }` | 画像の読み込みに失敗したときに発火 |
 
-### Usage
+### 使用方法
 
 ```javascript
 const element = document.querySelector('ha-avatar');
@@ -42,78 +42,78 @@ element.addEventListener('ha-error', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Custom avatar content (e.g., icon) |
+| `default` | カスタムアバターコンテンツ（アイコンなど） |
 
-## Examples
+## 使用例
 
-### With Image
+### 画像を使用
 
-Avatar with image source
+画像ソースを指定したアバター
 
 ```html
-<ha-avatar src="/user.jpg" alt="John Doe"></ha-avatar>
+<ha-avatar src="/user.jpg" alt="山田太郎"></ha-avatar>
 ```
 
 ---
 
-### With Initials
+### イニシャルを使用
 
-Avatar with text initials
+テキストイニシャルを使用したアバター
 
 ```html
-<ha-avatar initials="JD"></ha-avatar>
+<ha-avatar initials="山田"></ha-avatar>
 ```
 
 ---
 
-### Different Sizes
+### サイズの種類
 
-Various avatar sizes
+様々なアバターサイズ
 
 ```html
-<ha-avatar size="small" initials="S"></ha-avatar>
-<ha-avatar size="medium" initials="M"></ha-avatar>
-<ha-avatar size="large" initials="L"></ha-avatar>
+<ha-avatar size="small" initials="小"></ha-avatar>
+<ha-avatar size="medium" initials="中"></ha-avatar>
+<ha-avatar size="large" initials="大"></ha-avatar>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `img`
 
-### Keyboard Support
+### キーボードサポート
 
-Standard keyboard navigation.
+標準的なキーボードナビゲーション
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-label`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-avatar-background`
 - `--component-avatar-text`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-full`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

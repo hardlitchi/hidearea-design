@@ -1,39 +1,39 @@
-# Tooltip
+# Tooltip（ツールチップ）
 
-> Tooltip component for displaying contextual information on hover
+> ホバー時にコンテキスト情報を表示するツールチップコンポーネント
 
-**Tag**: `<ha-tooltip>`
+**タグ**: `<ha-tooltip>`
 
-**Category**: Overlay
+**カテゴリ**: オーバーレイ
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `content` | `string` | `undefined` | ✅ | Tooltip content |
-| `placement` | `'top' | 'bottom' | 'left' | 'right'` | `'top'` |  | Tooltip placement |
-| `trigger` | `'hover' | 'focus' | 'click'` | `'hover'` |  | Trigger behavior |
-| `delay` | `number` | `0` |  | Show delay in milliseconds |
+| `content` | `string` | `undefined` | ✅ | ツールチップのコンテンツ |
+| `placement` | `'top' | 'bottom' | 'left' | 'right'` | `'top'` |  | ツールチップの配置 |
+| `trigger` | `'hover' | 'focus' | 'click'` | `'hover'` |  | トリガー動作 |
+| `delay` | `number` | `0` |  | 表示遅延時間（ミリ秒） |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-show` | `{}` | Emitted when tooltip shows |
-| `ha-hide` | `{}` | Emitted when tooltip hides |
+| `ha-show` | `{}` | ツールチップが表示されたときに発行 |
+| `ha-hide` | `{}` | ツールチップが非表示になったときに発行 |
 
-### Usage
+### 使用方法
 
 ```javascript
 const element = document.querySelector('ha-tooltip');
@@ -42,81 +42,81 @@ element.addEventListener('ha-show', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Element that triggers tooltip |
+| `default` | ツールチップをトリガーする要素 |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple tooltip
+シンプルなツールチップ
 
 ```html
-<ha-tooltip content="This is a tooltip">
-  <ha-button>Hover me</ha-button>
+<ha-tooltip content="これはツールチップです">
+  <ha-button>ホバーしてください</ha-button>
 </ha-tooltip>
 ```
 
 ---
 
-### Different Placements
+### 異なる配置
 
-Tooltip positioning
+ツールチップの位置指定
 
 ```html
-<ha-tooltip content="Top tooltip" placement="top">
-  <ha-button>Top</ha-button>
+<ha-tooltip content="上部のツールチップ" placement="top">
+  <ha-button>上部</ha-button>
 </ha-tooltip>
-<ha-tooltip content="Bottom tooltip" placement="bottom">
-  <ha-button>Bottom</ha-button>
+<ha-tooltip content="下部のツールチップ" placement="bottom">
+  <ha-button>下部</ha-button>
 </ha-tooltip>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `tooltip`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Escape` | Hide tooltip |
+| `Escape` | ツールチップを非表示 |
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-describedby`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-tooltip-background`
 - `--component-tooltip-text`
 
-### Spacing
+### スペーシング
 
 - `--spacing-xs`
 - `--spacing-sm`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-small-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-sm`
 - `--surface-overlay-elevation`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネントの使用例](../guides/examples.md)

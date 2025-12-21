@@ -6,25 +6,26 @@ export const metadata: ComponentMetadata = {
   description: 'Pagination component for navigating through pages of content',
   category: 'Navigation',
   props: [
-    { name: 'currentPage', type: 'number', default: '1', required: false, description: 'Current active page' },
-    { name: 'totalPages', type: 'number', required: true, description: 'Total number of pages' },
-    { name: 'siblingCount', type: 'number', default: '1', required: false, description: 'Number of siblings shown on each side' },
-    { name: 'showFirstLast', type: 'boolean', default: 'true', required: false, description: 'Show first/last page buttons' },
-    { name: 'disabled', type: 'boolean', default: 'false', required: false, description: 'Disable pagination' },
+    { name: 'total', type: 'number', default: '0', required: false, description: 'Total number of items' },
+    { name: 'page', type: 'number', default: '1', required: false, description: 'Current page number (1-indexed)' },
+    { name: 'page-size', type: 'number', default: '10', required: false, description: 'Number of items per page' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", required: false, description: 'Pagination size' },
+    { name: 'variant', type: "'default' | 'simple' | 'compact'", default: "'default'", required: false, description: 'Pagination variant' },
+    { name: 'show-info', type: 'boolean', default: 'false', required: false, description: 'Show info text' },
   ],
   events: [
-    { name: 'ha-change', detail: '{ page: number }', description: 'Emitted when page changes' },
+    { name: 'page-change', detail: '{ page: number }', description: 'Emitted when page changes' },
   ],
   examples: [
     {
       title: 'Basic Usage',
       description: 'Simple pagination',
-      code: `<ha-pagination :current-page="1" :total-pages="10"></ha-pagination>`,
+      code: `<ha-pagination total="100" page="1" page-size="10"></ha-pagination>`,
     },
     {
-      title: 'Without First/Last',
-      description: 'Pagination without first/last buttons',
-      code: `<ha-pagination :current-page="5" :total-pages="20" :show-first-last="false"></ha-pagination>`,
+      title: 'Simple Variant',
+      description: 'Simple pagination variant',
+      code: `<ha-pagination total="100" page="5" variant="simple"></ha-pagination>`,
     },
   ],
   accessibility: {

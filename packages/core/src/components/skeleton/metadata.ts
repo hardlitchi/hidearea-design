@@ -7,9 +7,9 @@ export const metadata: ComponentMetadata = {
   category: 'Feedback',
   props: [
     { name: 'variant', type: "'text' | 'circular' | 'rectangular'", default: "'text'", required: false, description: 'Skeleton shape' },
-    { name: 'width', type: 'string | number', required: false, description: 'Skeleton width' },
-    { name: 'height', type: 'string | number', required: false, description: 'Skeleton height' },
-    { name: 'animated', type: 'boolean', default: 'true', required: false, description: 'Animated pulse effect' },
+    { name: 'width', type: 'string', required: false, description: 'Skeleton width' },
+    { name: 'height', type: 'string', required: false, description: 'Skeleton height' },
+    { name: 'animation', type: "'pulse' | 'wave' | 'none'", default: "'pulse'", required: false, description: 'Animation type' },
   ],
   events: [],
   examples: [
@@ -48,8 +48,8 @@ export const metadata: ComponentMetadata = {
       const className = attributes.class || '';
       let variant = 'text';
 
-      if (className.includes('circle')) variant = 'circle';
-      else if (className.includes('rectangle') || className.includes('rect')) variant = 'rectangle';
+      if (className.includes('circle')) variant = 'circular';
+      else if (className.includes('rectangle') || className.includes('rect')) variant = 'rectangular';
 
       return `<ha-skeleton variant="${variant}"></ha-skeleton>`;
     },

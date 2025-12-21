@@ -30,6 +30,7 @@ const COMPONENT_CATEGORIES: ComponentCategory[] = [
   "Navigation",
   "Layout",
   "Overlay",
+  "Utility",
 ];
 
 // Create MCP server instance
@@ -127,6 +128,20 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
   }
 
   if (uri === "hidearea://tokens/semantic") {
+    // Dynamically generate component tokens from component metadata
+    const componentTokens: Record<string, { colors: string[]; spacing: string[]; typography: string[]; other: string[] }> = {};
+
+    for (const comp of ALL_COMPONENT_METADATA) {
+      if (comp.tokens) {
+        componentTokens[comp.name.toLowerCase()] = {
+          colors: comp.tokens.colors || [],
+          spacing: comp.tokens.spacing || [],
+          typography: comp.tokens.typography || [],
+          other: comp.tokens.other || [],
+        };
+      }
+    }
+
     return {
       contents: [
         {
@@ -134,18 +149,19 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
           mimeType: "application/json",
           text: JSON.stringify(
             {
-              component: {
-                button: ["background", "text", "border"],
-                input: ["background", "text", "border"],
-                card: ["background", "border"],
-              },
+              component: componentTokens,
               state: {
-                focus: ["ring-color", "ring-width", "ring-offset"],
-                hover: ["elevation", "background"],
-                disabled: ["opacity", "cursor"],
+                focus: ["state-focus-ring-color", "state-focus-ring-width", "state-focus-ring-offset"],
+                hover: ["state-hover-overlay", "state-hover-background"],
+                disabled: ["state-disabled-opacity", "state-disabled-cursor"],
+                active: ["state-active-background", "state-active-scale"],
               },
               surface: {
-                levels: ["base", "raised", "overlay", "sunken"],
+                levels: ["surface-base-background", "surface-raised-background", "surface-overlay-background", "surface-sunken-background"],
+                elevation: ["surface-card-elevation", "surface-modal-elevation", "surface-overlay-elevation"],
+              },
+              interaction: {
+                transition: ["interaction-transition-fast-duration", "interaction-transition-normal-duration", "interaction-transition-slow-duration"],
               },
             },
             null,

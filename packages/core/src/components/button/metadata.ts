@@ -60,12 +60,12 @@ export const metadata: ComponentMetadata = {
       description: 'Button content',
     },
     {
-      name: 'prefix',
-      description: 'Content before button text (e.g., icon)',
+      name: 'icon-left',
+      description: 'Icon displayed before button content',
     },
     {
-      name: 'suffix',
-      description: 'Content after button text',
+      name: 'icon-right',
+      description: 'Icon displayed after button content',
     },
   ],
   examples: [
@@ -83,9 +83,9 @@ export const metadata: ComponentMetadata = {
     },
     {
       title: 'With Icon',
-      description: 'Button with icon prefix',
+      description: 'Button with icon on the left',
       code: `<ha-button>
-  <svg slot="prefix" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+  <svg slot="icon-left" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
     <path d="M8 0L10 6H16L11 10L13 16L8 12L3 16L5 10L0 6H6L8 0Z"/>
   </svg>
   Star

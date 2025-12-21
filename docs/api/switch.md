@@ -1,37 +1,37 @@
-# Switch
+# Switch（スイッチ）
 
-> Toggle switch for binary on/off states
+> バイナリのオン/オフ状態を切り替えるトグルスイッチ
 
 **Tag**: `<ha-switch>`
 
 **Category**: Form Controls
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `checked` | `boolean` | `false` |  | Whether the switch is on |
-| `disabled` | `boolean` | `false` |  | Disables the switch |
-| `required` | `boolean` | `false` |  | Makes switch required |
-| `label` | `string` | `undefined` |  | Switch label |
-| `size` | `'small' | 'medium' | 'large'` | `'medium'` |  | Switch size |
+| `checked` | `boolean` | `false` |  | スイッチがオンかどうか |
+| `disabled` | `boolean` | `false` |  | スイッチを無効化する |
+| `required` | `boolean` | `false` |  | スイッチを必須にする |
+| `label` | `string` | `undefined` |  | スイッチのラベル |
+| `size` | `'small' | 'medium' | 'large'` | `'medium'` |  | スイッチのサイズ |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-change` | `{ checked: boolean }` | Emitted when switch state changes |
+| `ha-change` | `{ checked: boolean }` | スイッチの状態が変更されたときに発火 |
 
 ### Usage
 
@@ -42,45 +42,45 @@ element.addEventListener('ha-change', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Switch label content |
+| `default` | スイッチのラベルコンテンツ |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple switch
+シンプルなスイッチ
 
 ```html
-<ha-switch label="Enable notifications"></ha-switch>
+<ha-switch label="通知を有効にする"></ha-switch>
 ```
 
 ---
 
-### Checked State
+### チェック状態
 
-Pre-checked switch
+事前にチェックされたスイッチ
 
 ```html
-<ha-switch label="Dark mode" checked></ha-switch>
+<ha-switch label="ダークモード" checked></ha-switch>
 ```
 
 ---
 
-### Different Sizes
+### 異なるサイズ
 
-Switch sizes
+スイッチのサイズ
 
 ```html
-<ha-switch label="Small" size="small"></ha-switch>
-<ha-switch label="Medium" size="medium"></ha-switch>
-<ha-switch label="Large" size="large"></ha-switch>
+<ha-switch label="小" size="small"></ha-switch>
+<ha-switch label="中" size="medium"></ha-switch>
+<ha-switch label="大" size="large"></ha-switch>
 ```
 
-## Accessibility
+## アクセシビリティ
 
 ### ARIA Roles
 
@@ -90,8 +90,8 @@ Switch sizes
 
 | Key | Action |
 |-----|--------|
-| `Space` | Toggle switch |
-| `Enter` | Toggle switch |
+| `Space` | スイッチを切り替える |
+| `Enter` | スイッチを切り替える |
 
 ### ARIA Attributes
 
@@ -99,9 +99,9 @@ Switch sizes
 - `aria-disabled`
 - `aria-required`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
 ### Colors
 
@@ -124,7 +124,7 @@ This component uses the following design tokens:
 
 ---
 
-**Related**:
+**関連ドキュメント**:
 - [Migration Guide](../guides/migration-guide.md)
 - [Accessibility Guide](../guides/accessibility-guide.md)
 - [Component Examples](../guides/examples.md)

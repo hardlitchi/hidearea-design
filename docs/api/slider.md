@@ -1,42 +1,42 @@
-# Slider
+# Slider（スライダー）
 
-> Slider component for selecting numeric values from a range
+> 範囲から数値を選択するためのスライダーコンポーネント
 
-**Tag**: `<ha-slider>`
+**タグ**: `<ha-slider>`
 
-**Category**: Form Controls
+**カテゴリー**: フォームコントロール
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `value` | `number` | `0` |  | Current value |
-| `min` | `number` | `0` |  | Minimum value |
-| `max` | `number` | `100` |  | Maximum value |
-| `step` | `number` | `1` |  | Step increment |
-| `disabled` | `boolean` | `false` |  | Disables the slider |
-| `label` | `string` | `undefined` |  | Slider label |
-| `showValue` | `boolean` | `true` |  | Show current value |
+| `value` | `number` | `0` |  | 現在の値 |
+| `min` | `number` | `0` |  | 最小値 |
+| `max` | `number` | `100` |  | 最大値 |
+| `step` | `number` | `1` |  | ステップ増分 |
+| `disabled` | `boolean` | `false` |  | スライダーを無効化 |
+| `label` | `string` | `undefined` |  | スライダーのラベル |
+| `showValue` | `boolean` | `true` |  | 現在の値を表示 |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-change` | `{ value: number }` | Emitted when value changes |
-| `ha-input` | `{ value: number }` | Emitted during dragging |
+| `ha-change` | `{ value: number }` | 値が変更されたときに発火 |
+| `ha-input` | `{ value: number }` | ドラッグ中に発火 |
 
-### Usage
+### 使い方
 
 ```javascript
 const element = document.querySelector('ha-slider');
@@ -45,87 +45,87 @@ element.addEventListener('ha-change', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-This component has no slots.
+このコンポーネントにはスロットがありません。
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple slider
+シンプルなスライダー
 
 ```html
-<ha-slider label="Volume" value="50"></ha-slider>
+<ha-slider label="音量" value="50"></ha-slider>
 ```
 
 ---
 
-### Custom Range
+### カスタム範囲
 
-Slider with custom min/max
+カスタムの最小/最大値を持つスライダー
 
 ```html
-<ha-slider label="Temperature" min="-20" max="40" value="20"></ha-slider>
+<ha-slider label="温度" min="-20" max="40" value="20"></ha-slider>
 ```
 
 ---
 
-### With Step
+### ステップ指定
 
-Slider with step increment
+ステップ増分を持つスライダー
 
 ```html
-<ha-slider label="Rating" min="0" max="5" step="0.5" value="3.5"></ha-slider>
+<ha-slider label="評価" min="0" max="5" step="0.5" value="3.5"></ha-slider>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `slider`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Arrow keys` | Adjust value |
-| `Home` | Set to minimum |
-| `End` | Set to maximum |
-| `Page Up/Down` | Large increment/decrement |
+| `矢印キー` | 値を調整 |
+| `Home` | 最小値に設定 |
+| `End` | 最大値に設定 |
+| `Page Up/Down` | 大幅に増減 |
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-valuenow`
 - `aria-valuemin`
 - `aria-valuemax`
 - `aria-disabled`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-slider-track`
 - `--component-slider-fill`
 - `--component-slider-thumb`
 
-### Spacing
+### スペーシング
 
 - `--spacing-sm`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-small-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-full`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

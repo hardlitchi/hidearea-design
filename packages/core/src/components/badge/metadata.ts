@@ -7,13 +7,18 @@ export const metadata: ComponentMetadata = {
   category: 'Data Display',
   props: [
     { name: 'variant', type: "'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info'", default: "'primary'", required: false, description: 'Badge color variant' },
-    { name: 'size', type: "'small' | 'medium' | 'large'", default: "'medium'", required: false, description: 'Badge size' },
+    { name: 'style-variant', type: "'filled' | 'outlined' | 'soft'", default: "'filled'", required: false, description: 'Badge style variant' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", required: false, description: 'Badge size' },
     { name: 'dot', type: 'boolean', default: 'false', required: false, description: 'Show as dot indicator' },
     { name: 'pill', type: 'boolean', default: 'false', required: false, description: 'Pill-shaped badge' },
+    { name: 'removable', type: 'boolean', default: 'false', required: false, description: 'Show remove button' },
   ],
-  events: [],
+  events: [
+    { name: 'badge-remove', detail: '{}', description: 'Emitted when remove button is clicked' },
+  ],
   slots: [
     { name: 'default', description: 'Badge content' },
+    { name: 'icon', description: 'Custom icon' },
   ],
   examples: [
     {

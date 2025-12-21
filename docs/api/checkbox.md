@@ -1,40 +1,40 @@
-# Checkbox
+# Checkbox（チェックボックス）
 
-> Checkbox input for selecting one or multiple options
+> 1つまたは複数のオプションを選択するためのチェックボックス入力
 
-**Tag**: `<ha-checkbox>`
+**タグ**: `<ha-checkbox>`
 
-**Category**: Form Controls
+**カテゴリ**: フォームコントロール
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `checked` | `boolean` | `false` |  | Whether the checkbox is checked |
-| `value` | `string` | `undefined` |  | Value of the checkbox |
-| `disabled` | `boolean` | `false` |  | Disables the checkbox |
-| `indeterminate` | `boolean` | `false` |  | Shows indeterminate state |
-| `required` | `boolean` | `false` |  | Makes checkbox required |
-| `label` | `string` | `undefined` |  | Checkbox label |
+| `checked` | `boolean` | `false` |  | チェック状態かどうか |
+| `value` | `string` | `undefined` |  | チェックボックスの値 |
+| `disabled` | `boolean` | `false` |  | チェックボックスを無効化 |
+| `indeterminate` | `boolean` | `false` |  | 不確定状態を表示 |
+| `required` | `boolean` | `false` |  | 必須にする |
+| `label` | `string` | `undefined` |  | チェックボックスのラベル |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-change` | `{ checked: boolean, value: string }` | Emitted when checkbox state changes |
+| `ha-change` | `{ checked: boolean, value: string }` | チェック状態が変更されたときに発火 |
 
-### Usage
+### 使用方法
 
 ```javascript
 const element = document.querySelector('ha-checkbox');
@@ -43,86 +43,86 @@ element.addEventListener('ha-change', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Checkbox label content |
+| `default` | チェックボックスのラベルコンテンツ |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple checkbox
+シンプルなチェックボックス
 
 ```html
-<ha-checkbox label="Accept terms and conditions"></ha-checkbox>
+<ha-checkbox label="利用規約に同意する"></ha-checkbox>
 ```
 
 ---
 
-### Checked State
+### チェック済み状態
 
-Pre-checked checkbox
+事前にチェックされたチェックボックス
 
 ```html
-<ha-checkbox label="Subscribe to newsletter" checked></ha-checkbox>
+<ha-checkbox label="ニュースレターを購読" checked></ha-checkbox>
 ```
 
 ---
 
-### Indeterminate State
+### 不確定状態
 
-Checkbox in indeterminate state
+不確定状態のチェックボックス
 
 ```html
-<ha-checkbox label="Select all" indeterminate></ha-checkbox>
+<ha-checkbox label="すべて選択" indeterminate></ha-checkbox>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `checkbox`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | 動作 |
 |-----|--------|
-| `Space` | Toggle checkbox |
+| `Space` | チェックを切り替え |
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-checked`
 - `aria-disabled`
 - `aria-required`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-checkbox-background`
 - `--component-checkbox-border`
 - `--component-checkbox-check`
 
-### Spacing
+### スペーシング
 
 - `--spacing-sm`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-sm`
 - `--interaction-transition-fast-duration`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

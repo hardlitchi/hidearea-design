@@ -1,40 +1,40 @@
-# Chip
+# Chip（チップ）
 
-> Compact element representing an input, attribute, or action
+> 入力、属性、アクションを表すコンパクトな要素
 
-**Tag**: `<ha-chip>`
+**タグ**: `<ha-chip>`
 
-**Category**: Data Display
+**カテゴリ**: データ表示
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `size` | `'small' | 'medium' | 'large'` | `'medium'` |  | Chip size |
-| `color` | `'default' | 'primary' | 'success' | 'warning' | 'error' | 'info'` | `'default'` |  | Chip color variant |
-| `deletable` | `boolean` | `false` |  | Show delete button |
-| `interactive` | `boolean` | `false` |  | Make chip interactive (clickable) |
-| `disabled` | `boolean` | `false` |  | Disable the chip |
+| `size` | `'small' | 'medium' | 'large'` | `'medium'` |  | チップのサイズ |
+| `color` | `'default' | 'primary' | 'success' | 'warning' | 'error' | 'info'` | `'default'` |  | チップのカラーバリアント |
+| `deletable` | `boolean` | `false` |  | 削除ボタンを表示 |
+| `interactive` | `boolean` | `false` |  | インタラクティブ（クリック可能）にする |
+| `disabled` | `boolean` | `false` |  | チップを無効化 |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `chip-click` | `{ originalEvent: MouseEvent }` | Emitted when chip is clicked (if interactive) |
-| `chip-delete` | `{ chip: HaChip }` | Emitted when delete button is clicked |
+| `chip-click` | `{ originalEvent: MouseEvent }` | チップがクリックされたときに発火（interactiveの場合） |
+| `chip-delete` | `{ chip: HaChip }` | 削除ボタンがクリックされたときに発火 |
 
-### Usage
+### 使用方法
 
 ```javascript
 const element = document.querySelector('ha-chip');
@@ -43,104 +43,104 @@ element.addEventListener('chip-click', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Chip text content |
-| `icon` | Leading icon |
+| `default` | チップのテキストコンテンツ |
+| `icon` | 先頭アイコン |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple chips
+シンプルなチップ
 
 ```html
-<ha-chip>Default</ha-chip>
-<ha-chip color="primary">Primary</ha-chip>
-<ha-chip color="success">Success</ha-chip>
+<ha-chip>デフォルト</ha-chip>
+<ha-chip color="primary">プライマリ</ha-chip>
+<ha-chip color="success">成功</ha-chip>
 ```
 
 ---
 
-### Interactive Chip
+### インタラクティブチップ
 
-Clickable chips
+クリック可能なチップ
 
 ```html
-<ha-chip interactive>Click me</ha-chip>
+<ha-chip interactive>クリックしてください</ha-chip>
 ```
 
 ---
 
-### Deletable Chip
+### 削除可能なチップ
 
-Chips with delete button
+削除ボタン付きチップ
 
 ```html
-<ha-chip deletable>Remove me</ha-chip>
+<ha-chip deletable>削除可能</ha-chip>
 ```
 
 ---
 
-### Chip with Icon
+### アイコン付きチップ
 
-Chips with leading icon
+先頭アイコン付きチップ
 
 ```html
 <ha-chip>
   <svg slot="icon" width="16" height="16">...</svg>
-  With Icon
+  アイコン付き
 </ha-chip>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `button`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | 動作 |
 |-----|--------|
-| `Enter` |  |
-| `Space` |  |
+| `Enter` | チップをアクティブ化 |
+| `Space` | チップをアクティブ化 |
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-label`
 - `aria-disabled`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-chip-default-background`
 - `--component-chip-primary-background`
 
-### Spacing
+### スペーシング
 
 - `--spacing-xs`
 - `--spacing-sm`
 - `--spacing-md`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-small-fontSize`
 - `--font-weight-medium`
 
-### Other
+### その他
 
 - `--radius-full`
 - `--component-chip-interactive-transition-properties`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

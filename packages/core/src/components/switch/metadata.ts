@@ -9,14 +9,20 @@ export const metadata: ComponentMetadata = {
     { name: 'checked', type: 'boolean', default: 'false', required: false, description: 'Whether the switch is on' },
     { name: 'disabled', type: 'boolean', default: 'false', required: false, description: 'Disables the switch' },
     { name: 'required', type: 'boolean', default: 'false', required: false, description: 'Makes switch required' },
+    { name: 'error', type: 'boolean', default: 'false', required: false, description: 'Shows error state' },
     { name: 'label', type: 'string', required: false, description: 'Switch label' },
-    { name: 'size', type: "'small' | 'medium' | 'large'", default: "'medium'", required: false, description: 'Switch size' },
+    { name: 'description', type: 'string', required: false, description: 'Switch description' },
+    { name: 'name', type: 'string', required: false, description: 'Switch name for forms' },
+    { name: 'value', type: 'string', required: false, description: 'Switch value for forms' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", required: false, description: 'Switch size' },
   ],
   events: [
-    { name: 'ha-change', detail: '{ checked: boolean }', description: 'Emitted when switch state changes' },
+    { name: 'change', detail: '{ checked: boolean, value: string }', description: 'Emitted when switch state changes' },
+    { name: 'input', detail: '{ checked: boolean, value: string }', description: 'Emitted when switch state changes' },
   ],
   slots: [
     { name: 'default', description: 'Switch label content' },
+    { name: 'description', description: 'Description content' },
   ],
   examples: [
     {
@@ -32,9 +38,9 @@ export const metadata: ComponentMetadata = {
     {
       title: 'Different Sizes',
       description: 'Switch sizes',
-      code: `<ha-switch label="Small" size="small"></ha-switch>
-<ha-switch label="Medium" size="medium"></ha-switch>
-<ha-switch label="Large" size="large"></ha-switch>`,
+      code: `<ha-switch label="Small" size="sm"></ha-switch>
+<ha-switch label="Medium" size="md"></ha-switch>
+<ha-switch label="Large" size="lg"></ha-switch>`,
     },
   ],
   accessibility: {

@@ -17,7 +17,8 @@ export const metadata: ComponentMetadata = {
     { name: 'ha-change', detail: '{ checked: boolean, value: string }', description: 'Emitted when checkbox state changes' },
   ],
   slots: [
-    { name: 'default', description: 'Checkbox label content' },
+    { name: 'default', description: 'Checkbox label content (alternative to label attribute)' },
+    { name: 'description', description: 'Slot for description content' },
   ],
   examples: [
     {

@@ -1,44 +1,44 @@
-# Skeleton
+# Skeleton（スケルトン）
 
-> Skeleton loader component for displaying placeholder content during loading
+> 読み込み中にプレースホルダーコンテンツを表示するスケルトンローダーコンポーネント
 
-**Tag**: `<ha-skeleton>`
+**タグ**: `<ha-skeleton>`
 
-**Category**: Feedback
+**カテゴリー**: フィードバック
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `variant` | `'text' | 'circular' | 'rectangular'` | `'text'` |  | Skeleton shape |
-| `width` | `string | number` | `undefined` |  | Skeleton width |
-| `height` | `string | number` | `undefined` |  | Skeleton height |
-| `animated` | `boolean` | `true` |  | Animated pulse effect |
+| `variant` | `'text' | 'circular' | 'rectangular'` | `'text'` |  | スケルトンの形状 |
+| `width` | `string | number` | `undefined` |  | スケルトンの幅 |
+| `height` | `string | number` | `undefined` |  | スケルトンの高さ |
+| `animated` | `boolean` | `true` |  | アニメーションパルスエフェクト |
 
-## Events
+## イベント
 
-This component emits no custom events.
+このコンポーネントはカスタムイベントを発火しません。
 
-## Slots
+## スロット
 
-This component has no slots.
+このコンポーネントにはスロットがありません。
 
-## Examples
+## 使用例
 
-### Text Skeleton
+### テキストスケルトン
 
-Loading skeleton for text
+テキスト用の読み込みスケルトン
 
 ```html
 <ha-skeleton variant="text"></ha-skeleton>
@@ -48,9 +48,9 @@ Loading skeleton for text
 
 ---
 
-### Circular Skeleton
+### 円形スケルトン
 
-Loading skeleton for avatars
+アバター用の読み込みスケルトン
 
 ```html
 <ha-skeleton variant="circular" width="48px" height="48px"></ha-skeleton>
@@ -58,46 +58,46 @@ Loading skeleton for avatars
 
 ---
 
-### Rectangular Skeleton
+### 矩形スケルトン
 
-Loading skeleton for images/cards
+画像/カード用の読み込みスケルトン
 
 ```html
 <ha-skeleton variant="rectangular" width="100%" height="200px"></ha-skeleton>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `status`
 
-### Keyboard Support
+### キーボードサポート
 
-Standard keyboard navigation.
+標準的なキーボードナビゲーション。
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-busy`
 - `aria-live`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-skeleton-background`
 - `--component-skeleton-highlight`
 
-### Other
+### その他
 
 - `--border-radius-md`
 - `--interaction-transition-fast-duration`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

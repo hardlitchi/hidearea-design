@@ -1,98 +1,98 @@
-# Card
+# Card（カード）
 
-> Container component for grouping related content
+> 関連するコンテンツをグループ化するためのコンテナコンポーネント
 
-**Tag**: `<ha-card>`
+**タグ**: `<ha-card>`
 
-**Category**: Layout
+**カテゴリ**: レイアウト
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `variant` | `'filled' | 'outlined' | 'elevated'` | `'filled'` |  | Card style variant |
-| `padding` | `'none' | 'small' | 'medium' | 'large'` | `'medium'` |  | Internal padding |
-| `hoverable` | `boolean` | `false` |  | Adds hover effect |
+| `variant` | `'filled' | 'outlined' | 'elevated'` | `'filled'` |  | カードのスタイルバリアント |
+| `padding` | `'none' | 'small' | 'medium' | 'large'` | `'medium'` |  | 内部の余白 |
+| `hoverable` | `boolean` | `false` |  | ホバー効果を追加 |
 
-## Events
+## イベント
 
-This component emits no custom events.
+このコンポーネントはカスタムイベントを発火しません。
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Card content |
-| `header` | Card header content |
-| `footer` | Card footer content |
+| `default` | カードのコンテンツ |
+| `header` | カードのヘッダーコンテンツ |
+| `footer` | カードのフッターコンテンツ |
 
-## Examples
+## 使用例
 
-### Basic Card
+### 基本的なカード
 
-Simple card with content
+コンテンツを含むシンプルなカード
 
 ```html
 <ha-card>
   <div slot="header">
-    <h3>Card Title</h3>
+    <h3>カードタイトル</h3>
   </div>
-  <p>Card content goes here</p>
+  <p>カードのコンテンツをここに記述</p>
   <div slot="footer">
-    <ha-button variant="primary">Action</ha-button>
+    <ha-button variant="primary">アクション</ha-button>
   </div>
 </ha-card>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `article`
 - `region`
 
-### Keyboard Support
+### キーボードサポート
 
-Standard keyboard navigation.
+標準的なキーボードナビゲーション
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-labelledby`
 - `aria-describedby`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-card-background`
 - `--component-card-border`
 
-### Spacing
+### スペーシング
 
 - `--spacing-md`
 - `--spacing-lg`
 
-### Other
+### その他
 
 - `--border-radius-lg`
 - `--surface-raised-elevation`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

@@ -7,16 +7,18 @@ export const metadata: ComponentMetadata = {
   category: 'Form Controls',
   props: [
     { name: 'label', type: 'string', required: false, description: 'Form group label' },
-    { name: 'description', type: 'string', required: false, description: 'Helper text' },
-    { name: 'error', type: 'boolean', default: 'false', required: false, description: 'Shows error state' },
-    { name: 'errorMessage', type: 'string', required: false, description: 'Error message to display' },
+    { name: 'helper-text', type: 'string', required: false, description: 'Helper text shown below the input' },
+    { name: 'error-text', type: 'string', required: false, description: 'Error text shown when error is true' },
     { name: 'required', type: 'boolean', default: 'false', required: false, description: 'Shows required indicator' },
+    { name: 'error', type: 'boolean', default: 'false', required: false, description: 'Shows error state' },
+    { name: 'disabled', type: 'boolean', default: 'false', required: false, description: 'Disabled state' },
   ],
   events: [],
   slots: [
-    { name: 'default', description: 'Form field content' },
+    { name: 'default', description: 'Form control (input, select, textarea, etc.)' },
     { name: 'label', description: 'Custom label content' },
-    { name: 'description', description: 'Custom description content' },
+    { name: 'helper-text', description: 'Custom helper text content' },
+    { name: 'error-text', description: 'Custom error text content' },
   ],
   examples: [
     {

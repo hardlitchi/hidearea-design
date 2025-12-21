@@ -6,8 +6,9 @@ export const metadata: ComponentMetadata = {
   description: 'Container component for centering and constraining content width',
   category: 'Layout',
   props: [
-    { name: 'maxWidth', type: "'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'", default: "'lg'", required: false, description: 'Maximum container width' },
-    { name: 'padding', type: 'boolean', default: 'true', required: false, description: 'Apply horizontal padding' },
+    { name: 'max-width', type: "'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'", default: "'lg'", required: false, description: 'Maximum container width' },
+    { name: 'centered', type: 'boolean', default: 'false', required: false, description: 'Center the container horizontally' },
+    { name: 'padding', type: "'none' | 'sm' | 'md' | 'lg'", default: "'md'", required: false, description: 'Padding size' },
   ],
   events: [],
   slots: [

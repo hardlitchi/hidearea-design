@@ -1,40 +1,40 @@
-# Progress
+# Progress（プログレス）
 
-> Progress bar component for showing completion status
+> 完了状態を表示するプログレスバーコンポーネント
 
-**Tag**: `<ha-progress>`
+**タグ**: `<ha-progress>`
 
-**Category**: Feedback
+**カテゴリ**: Feedback
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `value` | `number` | `0` |  | Current value (0-100) |
-| `max` | `number` | `100` |  | Maximum value |
-| `variant` | `'default' | 'success' | 'warning' | 'danger'` | `'default'` |  | Progress bar color variant |
-| `size` | `'small' | 'medium' | 'large'` | `'medium'` |  | Progress bar size |
-| `showValue` | `boolean` | `false` |  | Show percentage text |
-| `indeterminate` | `boolean` | `false` |  | Indeterminate loading state |
+| `value` | `number` | `0` |  | 現在の値（0-100） |
+| `max` | `number` | `100` |  | 最大値 |
+| `variant` | `'default' | 'success' | 'warning' | 'danger'` | `'default'` |  | プログレスバーの色バリアント |
+| `size` | `'small' | 'medium' | 'large'` | `'medium'` |  | プログレスバーのサイズ |
+| `showValue` | `boolean` | `false` |  | パーセンテージテキストを表示 |
+| `indeterminate` | `boolean` | `false` |  | 不確定な読み込み状態 |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-complete` | `{}` | Emitted when progress reaches 100% |
+| `ha-complete` | `{}` | プログレスが100%に達したときに発火 |
 
-### Usage
+### 使用方法
 
 ```javascript
 const element = document.querySelector('ha-progress');
@@ -43,15 +43,15 @@ element.addEventListener('ha-complete', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-This component has no slots.
+このコンポーネントにはスロットがありません。
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使用方法
 
-Simple progress bar
+シンプルなプログレスバー
 
 ```html
 <ha-progress value="60"></ha-progress>
@@ -59,9 +59,9 @@ Simple progress bar
 
 ---
 
-### With Value Display
+### 値を表示
 
-Progress bar showing percentage
+パーセンテージを表示するプログレスバー
 
 ```html
 <ha-progress value="75" show-value></ha-progress>
@@ -69,51 +69,51 @@ Progress bar showing percentage
 
 ---
 
-### Indeterminate
+### 不確定
 
-Indeterminate progress
+不確定なプログレス
 
 ```html
 <ha-progress indeterminate></ha-progress>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIA ロール
 
 - `progressbar`
 
-### Keyboard Support
+### キーボードサポート
 
-Standard keyboard navigation.
+標準的なキーボードナビゲーション。
 
-### ARIA Attributes
+### ARIA 属性
 
 - `aria-valuenow`
 - `aria-valuemin`
 - `aria-valuemax`
 - `aria-label`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-progress-background`
 - `--component-progress-fill`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-small-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-full`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [移行ガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント例](../guides/examples.md)
