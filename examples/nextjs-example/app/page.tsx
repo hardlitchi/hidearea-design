@@ -1,9 +1,10 @@
 'use client';
 
-'use client';
-
-import { Button } from '@hidearea-design/react';
+import dynamic from 'next/dynamic';
 import { useState } from 'react';
+
+// Dynamic import to avoid SSR issues with Web Components (HTMLElement not defined)
+const Button = dynamic(() => import('@hidearea-design/react').then(mod => mod.Button), { ssr: false });
 
 export default function Home() {
   const [count, setCount] = useState(0);

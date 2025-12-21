@@ -1,18 +1,17 @@
 'use client';
 
-'use client';
-
-import {
-  Button,
-  Input,
-  Textarea,
-  Select,
-  Checkbox,
-  Radio,
-  Alert,
-} from '@hidearea-design/react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useState, FormEvent } from 'react';
+
+// Dynamic import to avoid SSR issues with Web Components (HTMLElement not defined)
+const Button = dynamic(() => import('@hidearea-design/react').then(mod => mod.Button), { ssr: false });
+const Input = dynamic(() => import('@hidearea-design/react').then(mod => mod.Input), { ssr: false });
+const Textarea = dynamic(() => import('@hidearea-design/react').then(mod => mod.Textarea), { ssr: false });
+const Select = dynamic(() => import('@hidearea-design/react').then(mod => mod.Select), { ssr: false });
+const Checkbox = dynamic(() => import('@hidearea-design/react').then(mod => mod.Checkbox), { ssr: false });
+const Radio = dynamic(() => import('@hidearea-design/react').then(mod => mod.Radio), { ssr: false });
+const Alert = dynamic(() => import('@hidearea-design/react').then(mod => mod.Alert), { ssr: false });
 
 export default function FormsPage() {
   const [formData, setFormData] = useState({

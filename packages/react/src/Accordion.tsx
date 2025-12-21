@@ -79,7 +79,7 @@ export const Accordion = forwardRef<AccordionRef, AccordionProps>(
 
 Accordion.displayName = "Accordion";
 
-export interface AccordionItemProps extends React.HTMLAttributes<HTMLElement> {
+export interface AccordionItemProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onToggle'> {
   /**
    * Item open state
    * @default false

@@ -164,7 +164,7 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
 
       - name: Start development server
-        run: pnpm dev &
+        run: pnpm --filter example dev &
         env:
           CI: true
 

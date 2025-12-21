@@ -5,8 +5,9 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "declaration": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "types": ["react"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/custom-elements.d.ts"],
   "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
 }

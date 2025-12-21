@@ -2,26 +2,26 @@
 import '@hidearea-design/tokens/css';
 
 // Import all components for showcase
-import '@hidearea-design/core/components/button';
-import '@hidearea-design/core/components/input';
-import '@hidearea-design/core/components/textarea';
-import '@hidearea-design/core/components/checkbox';
-import '@hidearea-design/core/components/radio';
-import '@hidearea-design/core/components/switch';
-import '@hidearea-design/core/components/avatar';
-import '@hidearea-design/core/components/badge';
-import '@hidearea-design/core/components/chip';
-import '@hidearea-design/core/components/card';
-import '@hidearea-design/core/components/alert';
-import '@hidearea-design/core/components/progress';
-import '@hidearea-design/core/components/spinner';
-import '@hidearea-design/core/components/breadcrumb';
-import '@hidearea-design/core/components/tabs';
-import '@hidearea-design/core/components/pagination';
-import '@hidearea-design/core/components/container';
-import '@hidearea-design/core/components/stack';
-import '@hidearea-design/core/components/accordion';
-import '@hidearea-design/core/components/theme-switcher';
+import '@hidearea-design/core/button';
+import '@hidearea-design/core/input';
+import '@hidearea-design/core/textarea';
+import '@hidearea-design/core/checkbox';
+import '@hidearea-design/core/radio';
+import '@hidearea-design/core/switch';
+import '@hidearea-design/core/avatar';
+import '@hidearea-design/core/badge';
+import '@hidearea-design/core/chip';
+import '@hidearea-design/core/card';
+import '@hidearea-design/core/alert';
+import '@hidearea-design/core/progress';
+import '@hidearea-design/core/spinner';
+import '@hidearea-design/core/breadcrumb';
+import '@hidearea-design/core/tabs';
+import '@hidearea-design/core/pagination';
+import '@hidearea-design/core/container';
+import '@hidearea-design/core/stack';
+import '@hidearea-design/core/accordion';
+import '@hidearea-design/core/theme-switcher';
 
 // Import theme utilities
 import { initTheme } from '@hidearea-design/core';
