@@ -1,0 +1,31 @@
+{
+  "name": "remix-example",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Example integration of Hidearea Design System with Remix",
+  "scripts": {
+    "dev": "remix vite:dev",
+    "build": "remix vite:build",
+    "start": "remix-serve build/server/index.js",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@hidearea-design/core": "workspace:*",
+    "@hidearea-design/react": "workspace:*",
+    "@hidearea-design/tokens": "workspace:*",
+    "@remix-run/node": "^2.16.1",
+    "@remix-run/react": "^2.16.1",
+    "@remix-run/serve": "^2.16.1",
+    "isbot": "^4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.16.1",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  }
+}

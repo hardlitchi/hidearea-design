@@ -364,11 +364,11 @@ Phase 10.4のすべてのタスクが完了しました。
   - [ ] ビルド時間短縮
 
 #### 完了済み ✅
-- ✅ **Examples Repository（進行中 - 3/6完了）**
+- ✅ **Examples Repository（進行中 - 4/6完了）**
   - ✅ Next.js統合例（3ページ、包括的ドキュメント、TypeScript完全対応）
   - ✅ Nuxt.js統合例（3ページ、Vue 3 Composition API、SSR対応、TypeScript）
   - ✅ カスタムテーマ例（3テーマ×ダークモード、インタラクティブスイッチャー、包括的ガイド）
-  - [ ] Remix統合例
+  - ✅ Remix統合例（4ルート、SSR対応、Remixローダー、TypeScript）
   - [ ] SvelteKit統合例
   - [ ] パフォーマンス最適化例
 
@@ -453,13 +453,32 @@ Phase 10.4のすべてのタスクが完了しました。
 
 **Phase 11 進捗**:
 - ✅ Phase 11.1 完了（100% - npmパッケージ・CI/CD・ドキュメント・リリース準備完了）
-- 🚧 Phase 11.2 進行中（50% - Examples Repository: Next.js & Nuxt.js & Custom Themes完了、他3例予定）
+- 🚧 Phase 11.2 進行中（67% - Examples Repository: Next.js & Nuxt.js & Custom Themes & Remix完了、他2例予定）
 
 ---
 
 ## 📝 変更履歴
 
-### 2025-12-21（最新 - Custom Themes Example完了）
+### 2025-12-21（最新 - Remix Example完了）
+- ✅ Remix統合例完了:
+  - 4つの完全なルート実装（Home、Components、Forms、Loader Demo）
+  - Remixローダーデモ（サーバーサイドデータフェッチ）
+  - SSR完全対応（ssr.noExternal設定）
+  - TypeScript完全対応（strict mode）
+  - 包括的なREADME（Vite設定、SSR、ローダー、フォーム処理ガイド）
+  - 13コンポーネントの実例（Button、Input、Alert、Card、Badge、Select、Checkbox等）
+  - CSS importパターン（links関数）
+  - フォームバリデーション例
+  - デザイントークン使用例
+- Remixの特徴を活用:
+  - Server-side rendering完全対応
+  - Loader/Action パターン実装
+  - Progressive enhancement対応
+  - Code splittingサポート
+  - Type-safe loaders with TypeScript
+- 全体進捗更新（Phase 11.2: 50% → 67%）
+
+### 2025-12-21（Custom Themes Example完了）
 - ✅ カスタムテーマ例完了:
   - 3つのプリビルトテーマ（Corporate、Ocean、Forest）
   - 各テーマにダークモード対応
