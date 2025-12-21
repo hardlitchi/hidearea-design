@@ -15,8 +15,10 @@ export const metadata: ComponentMetadata = {
     { name: 'ha-close', detail: '{}', description: 'Emitted when alert is closed' },
   ],
   slots: [
-    { name: 'default', description: 'Alert content' },
+    { name: 'default', description: 'Alert message content' },
+    { name: 'title', description: 'Custom title content' },
     { name: 'icon', description: 'Custom icon' },
+    { name: 'actions', description: 'Action buttons' },
   ],
   examples: [
     {
