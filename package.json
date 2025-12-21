@@ -55,8 +55,10 @@
   "packageManager": "pnpm@10.25.0",
   "pnpm": {
     "overrides": {
-      "@types/react": "^18.3.18",
-      "@types/react-dom": "^18.3.5"
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0",
+      "@types/react": "^19.0.0",
+      "@types/react-dom": "^19.0.0"
     }
   },
   "dependencies": {
