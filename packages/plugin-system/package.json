@@ -1,0 +1,56 @@
+{
+  "name": "@hidearea-design/plugin-system",
+  "version": "0.1.0",
+  "description": "Plugin system for Hidearea Design System - extensibility framework",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src --ext .ts",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "design-system",
+    "plugin",
+    "extensibility",
+    "web-components",
+    "hidearea"
+  ],
+  "author": "hidearea",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hardlitchi/hidearea-design.git",
+    "directory": "packages/plugin-system"
+  },
+  "dependencies": {
+    "@hidearea-design/core": "workspace:*",
+    "@hidearea-design/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@vitest/coverage-v8": "^2.1.8",
+    "jsdom": "^25.0.1",
+    "lit": "^3.2.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
