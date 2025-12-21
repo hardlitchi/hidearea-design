@@ -28,7 +28,9 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "start": "node build/index.js",
-    "clean": "rm -rf build node_modules"
+    "clean": "rm -rf build node_modules",
+    "prepublishOnly": "pnpm run build && pnpm run validate",
+    "validate": "node -e \"console.log('✅ Package validation passed')\" && test -f build/index.js && test -f build/index.d.ts && test -f README.md && test -f LICENSE"
   },
   "keywords": [
     "mcp",

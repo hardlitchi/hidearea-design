@@ -414,7 +414,9 @@ git push origin feature/your-feature-name
 
 ## Release Process
 
-Releases are automated using Changesets:
+Releases are automated using Changesets and GitHub Actions:
+
+### For Contributors
 
 1. Create changesets during development:
 
@@ -422,24 +424,114 @@ Releases are automated using Changesets:
 pnpm changeset
 ```
 
-2. The Release workflow will:
-   - Create a "Version Packages" PR
-   - Update versions in package.json files
-   - Generate CHANGELOG.md entries
+Follow the prompts to:
+- Select which packages have changed (use space to select, enter to confirm)
+- Choose the version bump type:
+  - `major`: Breaking changes (1.0.0 → 2.0.0)
+  - `minor`: New features (1.0.0 → 1.1.0)
+  - `patch`: Bug fixes (1.0.0 → 1.0.1)
+- Write a summary of changes (this appears in CHANGELOG.md)
 
-3. Merge the "Version Packages" PR to trigger npm publication
+2. Commit the changeset file:
+
+```bash
+git add .changeset/
+git commit -m "chore: add changeset for release"
+```
+
+3. Include the changeset in your pull request
+
+### Automated Release Flow
+
+When changesets are merged to main:
+
+1. **GitHub Actions** detects changesets and creates a "Version Packages" PR containing:
+   - Updated package.json versions
+   - Generated CHANGELOG.md entries
+   - All accumulated changesets
+
+2. **Review** the Version Packages PR to ensure:
+   - Version bumps are correct
+   - Changelog entries are accurate
+   - All packages are properly updated
+
+3. **Merge** the Version Packages PR
+
+4. **Automatic Publication**:
+   - GitHub Actions builds all packages
+   - Runs validation checks
+   - Publishes to npm registry
+   - Creates GitHub releases
+   - Tags the repository
+
+### Pre-publication Validation
+
+The MCP server package includes automatic validation before publishing:
+
+```bash
+# Validates presence of:
+# - build/index.js (compiled code)
+# - build/index.d.ts (TypeScript definitions)
+# - README.md (documentation)
+# - LICENSE (MIT license)
+```
 
 ### Manual Release (Maintainers Only)
 
+If automated release fails or manual intervention is needed:
+
 ```bash
-# Update versions
+# 1. Update versions based on changesets
 pnpm changeset version
 
-# Build packages
+# 2. Review changes in package.json and CHANGELOG.md
+
+# 3. Commit version changes
+git add .
+git commit -m "chore: version packages"
+
+# 4. Build all packages
 pnpm build
 
-# Publish to npm
+# 5. Publish to npm (requires NPM_TOKEN)
 pnpm release
+
+# 6. Create Git tag
+git tag @hidearea-design/mcp-server@0.2.0
+git push --tags
+```
+
+### Release Checklist
+
+Before merging Version Packages PR:
+
+- [ ] All CI checks passing
+- [ ] Version bumps are appropriate
+- [ ] CHANGELOG entries are clear and accurate
+- [ ] Documentation is up to date
+- [ ] No breaking changes in minor/patch releases
+- [ ] README reflects new features (if applicable)
+
+### Emergency Hotfix Process
+
+For critical bugs requiring immediate release:
+
+```bash
+# 1. Create hotfix branch from main
+git checkout -b hotfix/critical-bug
+
+# 2. Fix the bug and add tests
+
+# 3. Create changeset (patch version)
+pnpm changeset
+# Select: patch
+
+# 4. Push and create PR
+git push origin hotfix/critical-bug
+
+# 5. Fast-track review and merge
+
+# 6. Automated release will follow
 ```
 
 ## Additional Resources
