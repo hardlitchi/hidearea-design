@@ -1,0 +1,30 @@
+{
+  "name": "performance-optimization-example",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Performance optimization examples for Hidearea Design System",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "analyze": "vite-bundle-visualizer"
+  },
+  "dependencies": {
+    "@hidearea-design/core": "workspace:*",
+    "@hidearea-design/react": "workspace:*",
+    "@hidearea-design/tokens": "workspace:*",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7",
+    "vite-bundle-visualizer": "^1.2.1",
+    "vite-plugin-compression": "^0.5.1"
+  }
+}

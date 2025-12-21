@@ -1,0 +1,83 @@
+@import '@hidearea-design/tokens/css/variables';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--ha-font-family-base);
+  background-color: var(--ha-color-background-primary);
+  color: var(--ha-color-text-primary);
+}
+
+a {
+  color: var(--ha-color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--ha-spacing-8);
+}
+
+.section {
+  margin-bottom: var(--ha-spacing-8);
+}
+
+.section-title {
+  font-size: var(--ha-font-size-2xl);
+  font-weight: var(--ha-font-weight-semibold);
+  margin-bottom: var(--ha-spacing-4);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--ha-spacing-4);
+}
+
+.metric-card {
+  background-color: var(--ha-color-background-secondary);
+  padding: var(--ha-spacing-6);
+  border-radius: var(--ha-border-radius-lg);
+  border: 1px solid var(--ha-color-border-primary);
+}
+
+.metric-value {
+  font-size: var(--ha-font-size-3xl);
+  font-weight: var(--ha-font-weight-bold);
+  color: var(--ha-color-primary);
+  margin-bottom: var(--ha-spacing-2);
+}
+
+.metric-label {
+  font-size: var(--ha-font-size-sm);
+  color: var(--ha-color-text-secondary);
+}
+
+.code-block {
+  background-color: var(--ha-color-background-secondary);
+  padding: var(--ha-spacing-4);
+  border-radius: var(--ha-border-radius-md);
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+  font-size: var(--ha-font-size-sm);
+  margin: var(--ha-spacing-4) 0;
+}
+
+.nav {
+  display: flex;
+  gap: var(--ha-spacing-3);
+  margin-bottom: var(--ha-spacing-6);
+  flex-wrap: wrap;
+}
