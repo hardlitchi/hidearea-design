@@ -2,12 +2,12 @@
 import '@hidearea-design/tokens/css';
 
 // Import components
-import '@hidearea-design/core/components/button';
-import '@hidearea-design/core/components/input';
-import '@hidearea-design/core/components/checkbox';
-import '@hidearea-design/core/components/card';
-import '@hidearea-design/core/components/alert';
-import '@hidearea-design/core/components/theme-switcher';
+import '@hidearea-design/core/button';
+import '@hidearea-design/core/input';
+import '@hidearea-design/core/checkbox';
+import '@hidearea-design/core/card';
+import '@hidearea-design/core/alert';
+import '@hidearea-design/core/theme-switcher';
 
 // Import theme utilities
 import { initTheme } from '@hidearea-design/core';
