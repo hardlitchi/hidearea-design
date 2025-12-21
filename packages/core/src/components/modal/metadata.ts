@@ -7,15 +7,16 @@ export const metadata: ComponentMetadata = {
   category: 'Feedback',
   props: [
     { name: 'open', type: 'boolean', default: 'false', required: false, description: 'Whether modal is open' },
-    { name: 'size', type: "'small' | 'medium' | 'large' | 'fullscreen'", default: "'medium'", required: false, description: 'Modal size' },
-    { name: 'title', type: 'string', required: false, description: 'Modal title' },
-    { name: 'closeOnOverlay', type: 'boolean', default: 'true', required: false, description: 'Close when clicking overlay' },
-    { name: 'closeOnEscape', type: 'boolean', default: 'true', required: false, description: 'Close when pressing Escape' },
+    { name: 'size', type: "'sm' | 'md' | 'lg' | 'xl' | 'full'", default: "'md'", required: false, description: 'Modal size' },
+    { name: 'variant', type: "'default' | 'centered' | 'fullscreen'", default: "'default'", required: false, description: 'Modal variant' },
     { name: 'closable', type: 'boolean', default: 'true', required: false, description: 'Show close button' },
+    { name: 'close-on-backdrop', type: 'boolean', default: 'true', required: false, description: 'Close when clicking backdrop' },
+    { name: 'close-on-escape', type: 'boolean', default: 'true', required: false, description: 'Close when pressing Escape' },
   ],
   events: [
-    { name: 'ha-open', detail: '{}', description: 'Emitted when modal opens' },
-    { name: 'ha-close', detail: '{}', description: 'Emitted when modal closes' },
+    { name: 'modal-open', detail: '{}', description: 'Emitted when modal opens' },
+    { name: 'modal-close', detail: '{}', description: 'Emitted when modal closes' },
+    { name: 'backdrop-click', detail: '{}', description: 'Emitted when backdrop is clicked' },
   ],
   slots: [
     { name: 'default', description: 'Modal content' },
