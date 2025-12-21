@@ -48,7 +48,8 @@ describe('DatePicker (React Wrapper)', () => {
     expect(webComponent.required).toBe(true);
     expect(webComponent.error).toBe(false); // Check for false
     expect(webComponent.readonly).toBe(true);
-    expect(webComponent.placeholder).toBe('Select Date');
+    // React 19 makes some properties read-only, check attribute instead
+    expect(webComponent.getAttribute('placeholder')).toBe('Select Date');
 
     await waitFor(() => {
       expect(queryShadow(webComponent, '.date-picker__label')?.textContent).toBe('Date');

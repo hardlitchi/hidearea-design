@@ -282,6 +282,12 @@ export const DatePicker = forwardRef<DatePickerRef, DatePickerProps>(
       if (disabledDaysOfWeek) {
         element.disabledDaysOfWeek = disabledDaysOfWeek;
       }
+
+      // Set attributes for text properties to avoid React 19 read-only property issues
+      if (placeholder !== undefined) element.setAttribute('placeholder', placeholder);
+      if (label !== undefined) element.setAttribute('label', label);
+      if (helperText !== undefined) element.setAttribute('helper-text', helperText);
+      if (errorText !== undefined) element.setAttribute('error-text', errorText);
     }, [
       mode,
       value,
@@ -300,6 +306,10 @@ export const DatePicker = forwardRef<DatePickerRef, DatePickerProps>(
       required,
       error,
       readonly,
+      placeholder,
+      label,
+      helperText,
+      errorText,
     ]);
 
     useEffect(() => {
@@ -350,10 +360,6 @@ export const DatePicker = forwardRef<DatePickerRef, DatePickerProps>(
 
     return <ha-date-picker
       ref={elementRef}
-      label={label}
-      placeholder={placeholder}
-      helper-text={helperText}
-      error-text={errorText}
       {...restProps}
     />;
   }
