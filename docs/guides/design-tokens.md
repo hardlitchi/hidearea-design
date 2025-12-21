@@ -1,65 +1,65 @@
-# Design Tokens
+# デザイントークン
 
-Hidearea Design System uses a comprehensive design token system to maintain consistency across all components and enable easy theming.
+Hidearea Design Systemは、すべてのコンポーネント間で一貫性を維持し、簡単なテーマ設定を可能にする包括的なデザイントークンシステムを使用しています。
 
-## Table of Contents
+## 目次
 
-- [Overview](#overview)
-- [Token Architecture](#token-architecture)
-- [Color Tokens](#color-tokens)
-- [Spacing Tokens](#spacing-tokens)
-- [Typography Tokens](#typography-tokens)
-- [Border & Shadow Tokens](#border--shadow-tokens)
-- [Animation Tokens](#animation-tokens)
-- [Semantic Tokens](#semantic-tokens)
-- [Component Tokens](#component-tokens)
-- [Using Tokens](#using-tokens)
-- [Custom Theming](#custom-theming)
-
----
-
-## Overview
-
-Design tokens are named entities that store visual design attributes. They provide a single source of truth for design decisions and enable consistent styling across the entire design system.
-
-### Benefits
-
-- **Consistency**: Unified visual language
-- **Maintainability**: Update values in one place
-- **Theming**: Easy light/dark mode switching
-- **Scalability**: Add new themes without changing components
-- **Type Safety**: CSS custom properties with fallbacks
-
-### Token Levels
-
-Hidearea Design uses a three-tier token architecture:
-
-1. **Base Tokens**: Raw values (colors, sizes)
-2. **Semantic Tokens**: Purpose-based tokens (primary, background)
-3. **Component Tokens**: Component-specific tokens (button-background)
+- [概要](#概要)
+- [トークンアーキテクチャ](#トークンアーキテクチャ)
+- [カラートークン](#カラートークン)
+- [スペーシングトークン](#スペーシングトークン)
+- [タイポグラフィトークン](#タイポグラフィトークン)
+- [ボーダーとシャドウトークン](#ボーダーとシャドウトークン)
+- [アニメーショントークン](#アニメーショントークン)
+- [セマンティックトークン](#セマンティックトークン)
+- [コンポーネントトークン](#コンポーネントトークン)
+- [トークンの使用方法](#トークンの使用方法)
+- [カスタムテーマ設定](#カスタムテーマ設定)
 
 ---
 
-## Token Architecture
+## 概要
 
-### Base Tokens
-Raw, primitive values:
+デザイントークンは、視覚的なデザイン属性を格納する名前付きエンティティです。デザインの決定に対する単一の信頼できる情報源を提供し、デザインシステム全体で一貫したスタイリングを可能にします。
+
+### メリット
+
+- **一貫性**: 統一されたビジュアル言語
+- **保守性**: 一箇所で値を更新
+- **テーマ設定**: ライト/ダークモードの簡単な切り替え
+- **スケーラビリティ**: コンポーネントを変更せずに新しいテーマを追加
+- **型安全性**: フォールバック付きのCSS変数
+
+### トークンレベル
+
+Hidearea Designは3層のトークンアーキテクチャを使用しています:
+
+1. **ベーストークン**: 生の値（色、サイズ）
+2. **セマンティックトークン**: 目的ベースのトークン（primary、background）
+3. **コンポーネントトークン**: コンポーネント固有のトークン（button-background）
+
+---
+
+## トークンアーキテクチャ
+
+### ベーストークン
+生の、プリミティブな値:
 ```css
 --color-blue-500: #3b82f6;
 --spacing-4: 1rem;
 --font-size-base: 16px;
 ```
 
-### Semantic Tokens
-Purpose-based, reference base tokens:
+### セマンティックトークン
+目的ベースで、ベーストークンを参照:
 ```css
 --color-primary: var(--color-blue-600);
 --color-background-surface: var(--color-white);
 --spacing-md: var(--spacing-4);
 ```
 
-### Component Tokens
-Component-specific, reference semantic tokens:
+### コンポーネントトークン
+コンポーネント固有で、セマンティックトークンを参照:
 ```css
 --component-button-primary-background: var(--color-primary);
 --component-button-padding: var(--spacing-md);
@@ -67,60 +67,60 @@ Component-specific, reference semantic tokens:
 
 ---
 
-## Color Tokens
+## カラートークン
 
-### Base Color Palette
+### ベースカラーパレット
 
-Complete color scales from 50 (lightest) to 900 (darkest):
+50（最も明るい）から900（最も暗い）までの完全なカラースケール:
 
-#### Gray Scale
+#### グレースケール
 ```css
---color-gray-50: #fafafa;   /* Lightest */
+--color-gray-50: #fafafa;   /* 最も明るい */
 --color-gray-100: #f5f5f5;
 --color-gray-200: #e5e5e5;
 --color-gray-300: #d4d4d4;
 --color-gray-400: #a3a3a3;
---color-gray-500: #737373;  /* Mid-tone */
+--color-gray-500: #737373;  /* ミッドトーン */
 --color-gray-600: #525252;
 --color-gray-700: #404040;
 --color-gray-800: #262626;
---color-gray-900: #171717;  /* Darkest */
+--color-gray-900: #171717;  /* 最も暗い */
 ```
 
-#### Blue (Primary)
+#### ブルー（プライマリ）
 ```css
 --color-blue-50: #eff6ff;
 --color-blue-100: #dbeafe;
 --color-blue-200: #bfdbfe;
 --color-blue-300: #93c5fd;
 --color-blue-400: #60a5fa;
---color-blue-500: #3b82f6;  /* Base */
---color-blue-600: #2563eb;  /* Primary */
+--color-blue-500: #3b82f6;  /* ベース */
+--color-blue-600: #2563eb;  /* プライマリ */
 --color-blue-700: #1d4ed8;
 --color-blue-800: #1e40af;
 --color-blue-900: #1e3a8a;
 ```
 
-#### Other Colors
-- **Green**: Success states (#22c55e base)
-- **Red**: Error/danger states (#ef4444 base)
-- **Yellow**: Warning states (#eab308 base)
-- **Purple**: Info/accent (#a855f7 base)
-- **Cyan**: Additional accent (#06b6d4 base)
+#### その他の色
+- **グリーン**: 成功状態（#22c55e ベース）
+- **レッド**: エラー/危険状態（#ef4444 ベース）
+- **イエロー**: 警告状態（#eab308 ベース）
+- **パープル**: 情報/アクセント（#a855f7 ベース）
+- **シアン**: 追加アクセント（#06b6d4 ベース）
 
-### Semantic Color Tokens
+### セマンティックカラートークン
 
-#### Text Colors
+#### テキストカラー
 ```css
---color-text-primary: #171717;        /* Main text (21:1 contrast) */
---color-text-secondary: #525252;      /* Secondary text (7:1 contrast) */
---color-text-tertiary: #737373;       /* Disabled/placeholder (4.5:1) */
---color-text-inverse: #ffffff;        /* Text on dark backgrounds */
+--color-text-primary: #171717;        /* メインテキスト（21:1 コントラスト） */
+--color-text-secondary: #525252;      /* セカンダリテキスト（7:1 コントラスト） */
+--color-text-tertiary: #737373;       /* 無効/プレースホルダー（4.5:1） */
+--color-text-inverse: #ffffff;        /* 暗い背景上のテキスト */
 --color-text-link: var(--color-blue-600);
 --color-text-link-hover: var(--color-blue-700);
 ```
 
-#### Background Colors
+#### 背景カラー
 ```css
 --color-background-primary: #ffffff;
 --color-background-secondary: #f5f5f5;
@@ -129,7 +129,7 @@ Complete color scales from 50 (lightest) to 900 (darkest):
 --color-background-overlay: rgba(0, 0, 0, 0.5);
 ```
 
-#### State Colors
+#### 状態カラー
 ```css
 --color-success: var(--color-green-600);
 --color-success-background: var(--color-green-50);
@@ -141,19 +141,19 @@ Complete color scales from 50 (lightest) to 900 (darkest):
 --color-info-background: var(--color-blue-50);
 ```
 
-#### Border Colors
+#### ボーダーカラー
 ```css
---color-border-default: #d4d4d4;      /* 3:1 contrast */
+--color-border-default: #d4d4d4;      /* 3:1 コントラスト */
 --color-border-strong: #a3a3a3;
 --color-border-subtle: #e5e5e5;
 --color-border-focus: var(--color-blue-500);
 ```
 
-### Contrast Ratios
+### コントラスト比
 
-All color combinations meet WCAG AA standards:
+すべての色の組み合わせはWCAG AA基準を満たしています:
 
-| Token | Background | Contrast | WCAG |
+| トークン | 背景 | コントラスト | WCAG |
 |-------|------------|----------|------|
 | `text-primary` | `background-primary` | 21:1 | AAA ✅ |
 | `text-secondary` | `background-primary` | 7:1 | AAA ✅ |
@@ -162,11 +162,11 @@ All color combinations meet WCAG AA standards:
 
 ---
 
-## Spacing Tokens
+## スペーシングトークン
 
-### Base Spacing Scale
+### ベーススペーシングスケール
 
-Based on 0.25rem (4px) increments:
+0.25rem（4px）単位:
 
 ```css
 --spacing-0: 0;
@@ -186,33 +186,33 @@ Based on 0.25rem (4px) increments:
 --spacing-24: 6rem;        /* 96px */
 ```
 
-### Semantic Spacing
+### セマンティックスペーシング
 
 ```css
---spacing-xs: var(--spacing-1);    /* 4px - Tight spacing */
---spacing-sm: var(--spacing-2);    /* 8px - Compact spacing */
---spacing-md: var(--spacing-4);    /* 16px - Default spacing */
---spacing-lg: var(--spacing-6);    /* 24px - Loose spacing */
---spacing-xl: var(--spacing-8);    /* 32px - Extra loose */
---spacing-2xl: var(--spacing-12);  /* 48px - Section spacing */
+--spacing-xs: var(--spacing-1);    /* 4px - 密なスペース */
+--spacing-sm: var(--spacing-2);    /* 8px - コンパクトなスペース */
+--spacing-md: var(--spacing-4);    /* 16px - デフォルトスペース */
+--spacing-lg: var(--spacing-6);    /* 24px - ゆったりしたスペース */
+--spacing-xl: var(--spacing-8);    /* 32px - 特にゆったりしたスペース */
+--spacing-2xl: var(--spacing-12);  /* 48px - セクションスペース */
 ```
 
-### Usage Guidelines
+### 使用ガイドライン
 
-| Token | Use Case | Example |
+| トークン | ユースケース | 例 |
 |-------|----------|---------|
-| `xs` (4px) | Icon spacing, tight gaps | Badge padding |
-| `sm` (8px) | Component padding | Chip padding |
-| `md` (16px) | Default padding/margin | Button padding |
-| `lg` (24px) | Card padding | Modal padding |
-| `xl` (32px) | Section spacing | Page margins |
-| `2xl` (48px) | Major sections | Hero padding |
+| `xs` (4px) | アイコンスペース、密なギャップ | バッジのパディング |
+| `sm` (8px) | コンポーネントパディング | チップのパディング |
+| `md` (16px) | デフォルトパディング/マージン | ボタンのパディング |
+| `lg` (24px) | カードのパディング | モーダルのパディング |
+| `xl` (32px) | セクションスペース | ページのマージン |
+| `2xl` (48px) | 主要セクション | ヒーローのパディング |
 
 ---
 
-## Typography Tokens
+## タイポグラフィトークン
 
-### Font Families
+### フォントファミリー
 
 ```css
 --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -221,7 +221,7 @@ Based on 0.25rem (4px) increments:
                      "Roboto Mono", Consolas, monospace;
 ```
 
-### Font Sizes
+### フォントサイズ
 
 ```css
 --font-size-xs: 0.75rem;    /* 12px */
@@ -235,7 +235,7 @@ Based on 0.25rem (4px) increments:
 --font-size-5xl: 3rem;      /* 48px */
 ```
 
-### Font Weights
+### フォントウェイト
 
 ```css
 --font-weight-light: 300;
@@ -245,7 +245,7 @@ Based on 0.25rem (4px) increments:
 --font-weight-bold: 700;
 ```
 
-### Line Heights
+### 行の高さ
 
 ```css
 --line-height-none: 1;
@@ -255,12 +255,12 @@ Based on 0.25rem (4px) increments:
 --line-height-loose: 2;
 ```
 
-### Text Styles
+### テキストスタイル
 
-Predefined text style combinations:
+事前定義されたテキストスタイルの組み合わせ:
 
 ```css
-/* Headings */
+/* 見出し */
 --text-heading-1-fontSize: var(--font-size-4xl);
 --text-heading-1-lineHeight: var(--line-height-tight);
 --text-heading-1-fontWeight: var(--font-weight-bold);
@@ -269,7 +269,7 @@ Predefined text style combinations:
 --text-heading-2-lineHeight: var(--line-height-tight);
 --text-heading-2-fontWeight: var(--font-weight-bold);
 
-/* Body */
+/* 本文 */
 --text-body-default-fontSize: var(--font-size-base);
 --text-body-default-lineHeight: var(--line-height-normal);
 --text-body-default-fontWeight: var(--font-weight-normal);
@@ -281,9 +281,9 @@ Predefined text style combinations:
 
 ---
 
-## Border & Shadow Tokens
+## ボーダーとシャドウトークン
 
-### Border Radius
+### ボーダー半径
 
 ```css
 --border-radius-none: 0;
@@ -292,10 +292,10 @@ Predefined text style combinations:
 --border-radius-lg: 0.5rem;    /* 8px */
 --border-radius-xl: 0.75rem;   /* 12px */
 --border-radius-2xl: 1rem;     /* 16px */
---border-radius-full: 9999px;  /* Fully rounded */
+--border-radius-full: 9999px;  /* 完全に丸い */
 ```
 
-### Border Widths
+### ボーダー幅
 
 ```css
 --border-width-0: 0;
@@ -304,7 +304,7 @@ Predefined text style combinations:
 --border-width-4: 4px;
 ```
 
-### Shadows
+### シャドウ
 
 ```css
 --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -317,9 +317,9 @@ Predefined text style combinations:
 
 ---
 
-## Animation Tokens
+## アニメーショントークン
 
-### Durations
+### 継続時間
 
 ```css
 --animation-duration-fast: 150ms;
@@ -327,7 +327,7 @@ Predefined text style combinations:
 --animation-duration-slow: 500ms;
 ```
 
-### Easing Functions
+### イージング関数
 
 ```css
 --animation-easing-linear: linear;
@@ -336,7 +336,7 @@ Predefined text style combinations:
 --animation-easing-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 ```
 
-### Transitions
+### トランジション
 
 ```css
 --transition-fast: all 150ms ease-in-out;
@@ -346,30 +346,30 @@ Predefined text style combinations:
 
 ---
 
-## Semantic Tokens
+## セマンティックトークン
 
-Semantic tokens provide meaning-based naming:
+セマンティックトークンは意味ベースの命名を提供します:
 
-### Interactive States
+### インタラクティブ状態
 
 ```css
-/* Hover */
+/* ホバー */
 --color-interactive-hover-background: var(--color-gray-100);
 
-/* Active/Pressed */
+/* アクティブ/押下 */
 --color-interactive-active-background: var(--color-gray-200);
 
-/* Focus */
+/* フォーカス */
 --color-interactive-focus-outline: var(--color-blue-500);
 --color-interactive-focus-outline-width: 2px;
 --color-interactive-focus-outline-offset: 2px;
 
-/* Disabled */
+/* 無効 */
 --color-interactive-disabled-background: var(--color-gray-100);
 --color-interactive-disabled-text: var(--color-gray-400);
 ```
 
-### Form States
+### フォーム状態
 
 ```css
 --color-form-valid-border: var(--color-success);
@@ -383,31 +383,31 @@ Semantic tokens provide meaning-based naming:
 
 ---
 
-## Component Tokens
+## コンポーネントトークン
 
-Each component has its own set of tokens:
+各コンポーネントには独自のトークンセットがあります:
 
-### Button Example
+### ボタンの例
 
 ```css
-/* Primary Variant */
+/* プライマリバリアント */
 --component-button-primary-background-default: var(--color-primary);
 --component-button-primary-background-hover: var(--color-blue-700);
 --component-button-primary-background-active: var(--color-blue-800);
 --component-button-primary-text-default: var(--color-white);
 --component-button-primary-border-default: transparent;
 
-/* Sizes */
+/* サイズ */
 --component-button-padding-small: var(--spacing-2) var(--spacing-3);
 --component-button-padding-medium: var(--spacing-3) var(--spacing-5);
 --component-button-padding-large: var(--spacing-4) var(--spacing-6);
 
-/* Typography */
+/* タイポグラフィ */
 --component-button-fontSize: var(--font-size-base);
 --component-button-fontWeight: var(--font-weight-medium);
 ```
 
-### Input Example
+### インプットの例
 
 ```css
 --component-input-background: var(--color-white);
@@ -420,20 +420,20 @@ Each component has its own set of tokens:
 
 ---
 
-## Using Tokens
+## トークンの使用方法
 
-### In CSS
+### CSSでの使用
 
 ```css
 .my-component {
-  /* Use semantic tokens */
+  /* セマンティックトークンを使用 */
   color: var(--color-text-primary);
   background: var(--color-background-surface);
   padding: var(--spacing-md);
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-md);
 
-  /* Transitions */
+  /* トランジション */
   transition: var(--transition-fast);
 }
 
@@ -442,38 +442,38 @@ Each component has its own set of tokens:
 }
 ```
 
-### In JavaScript
+### JavaScriptでの使用
 
 ```javascript
-// Get token value
+// トークン値を取得
 const primaryColor = getComputedStyle(document.documentElement)
   .getPropertyValue('--color-primary');
 
-// Set token value
+// トークン値を設定
 document.documentElement.style.setProperty(
   '--color-primary',
   '#3b82f6'
 );
 ```
 
-### In Components
+### コンポーネントでの使用
 
 ```html
 <ha-button style="
   --component-button-primary-background-default: #9333ea;
   --component-button-padding-medium: 1rem 2rem;
 ">
-  Custom Styled Button
+  カスタムスタイルボタン
 </ha-button>
 ```
 
 ---
 
-## Custom Theming
+## カスタムテーマ設定
 
-### Creating a Custom Theme
+### カスタムテーマの作成
 
-1. **Override base tokens**:
+1. **ベーストークンを上書き**:
 ```css
 :root {
   --color-blue-600: #your-brand-color;
@@ -481,7 +481,7 @@ document.documentElement.style.setProperty(
 }
 ```
 
-2. **Override semantic tokens**:
+2. **セマンティックトークンを上書き**:
 ```css
 :root {
   --color-primary: #your-brand-color;
@@ -489,7 +489,7 @@ document.documentElement.style.setProperty(
 }
 ```
 
-3. **Override component tokens**:
+3. **コンポーネントトークンを上書き**:
 ```css
 :root {
   --component-button-primary-background-default: #your-button-color;
@@ -497,9 +497,9 @@ document.documentElement.style.setProperty(
 }
 ```
 
-### Dark Mode
+### ダークモード
 
-Use the `data-theme="dark"` attribute:
+`data-theme="dark"` 属性を使用:
 
 ```css
 [data-theme="dark"] {
@@ -511,12 +511,12 @@ Use the `data-theme="dark"` attribute:
 }
 ```
 
-Toggle dark mode:
+ダークモードの切り替え:
 ```javascript
 document.documentElement.setAttribute('data-theme', 'dark');
 ```
 
-### Theme Switcher Component
+### テーマスイッチャーコンポーネント
 
 ```html
 <ha-theme-switcher variant="toggle"></ha-theme-switcher>
@@ -524,66 +524,66 @@ document.documentElement.setAttribute('data-theme', 'dark');
 
 ---
 
-## Token Reference
+## トークンリファレンス
 
-### Complete Token List
+### 完全なトークンリスト
 
-For a complete list of all available tokens, see:
-- [Base Tokens](../../packages/tokens/src/)
-- [Semantic Tokens](../../packages/tokens/src/semantic/)
-- [Component Tokens](../../packages/tokens/src/components/)
+利用可能なすべてのトークンの完全なリストについては、以下を参照してください:
+- [ベーストークン](../../packages/tokens/src/)
+- [セマンティックトークン](../../packages/tokens/src/semantic/)
+- [コンポーネントトークン](../../packages/tokens/src/components/)
 
-### Token Naming Convention
+### トークンの命名規則
 
-Tokens follow the format: `--{category}-{property}-{variant}-{state}`
+トークンは次の形式に従います: `--{カテゴリ}-{プロパティ}-{バリアント}-{状態}`
 
-Examples:
+例:
 ```css
---color-text-primary           /* category-property-variant */
---component-button-primary-background-hover  /* component-variant-property-state */
---spacing-md                   /* category-size */
+--color-text-primary           /* カテゴリ-プロパティ-バリアント */
+--component-button-primary-background-hover  /* コンポーネント-バリアント-プロパティ-状態 */
+--spacing-md                   /* カテゴリ-サイズ */
 ```
 
 ---
 
-## Best Practices
+## ベストプラクティス
 
-### 1. Use Semantic Tokens
-✅ **Do**: `color: var(--color-text-primary);`
-❌ **Don't**: `color: var(--color-gray-900);`
+### 1. セマンティックトークンを使用する
+✅ **推奨**: `color: var(--color-text-primary);`
+❌ **非推奨**: `color: var(--color-gray-900);`
 
-### 2. Avoid Hardcoded Values
-✅ **Do**: `padding: var(--spacing-md);`
-❌ **Don't**: `padding: 16px;`
+### 2. ハードコードされた値を避ける
+✅ **推奨**: `padding: var(--spacing-md);`
+❌ **非推奨**: `padding: 16px;`
 
-### 3. Use Component Tokens for Components
-✅ **Do**: `background: var(--component-button-primary-background-default);`
-❌ **Don't**: `background: var(--color-blue-600);`
+### 3. コンポーネントにはコンポーネントトークンを使用する
+✅ **推奨**: `background: var(--component-button-primary-background-default);`
+❌ **非推奨**: `background: var(--color-blue-600);`
 
-### 4. Respect the Token Hierarchy
-- Base tokens → Semantic tokens → Component tokens
-- Each level references the level above it
+### 4. トークンの階層を尊重する
+- ベーストークン → セマンティックトークン → コンポーネントトークン
+- 各レベルは上のレベルを参照します
 
-### 5. Test Contrast Ratios
-Always verify color combinations meet WCAG standards:
-- Normal text: 4.5:1 minimum
-- Large text: 3:1 minimum
-- UI components: 3:1 minimum
-
----
-
-## Resources
-
-### Tools
-- [Contrast Checker](https://webaim.org/resources/contrastchecker/)
-- [CSS Custom Properties Browser Support](https://caniuse.com/css-variables)
-
-### Further Reading
-- [Design Tokens Usage Guide (Japanese)](./design-tokens-usage.md) - 日本語での使い方ガイド
-- [Accessibility Guide](./accessibility-guide.md)
-- [Component API Reference](../api/README.md)
-- [Migration Guide](./migration-guide.md)
+### 5. コントラスト比をテストする
+常に色の組み合わせがWCAG基準を満たしていることを確認してください:
+- 通常のテキスト: 最低4.5:1
+- 大きなテキスト: 最低3:1
+- UIコンポーネント: 最低3:1
 
 ---
 
-**Note**: Tokens are automatically generated from source files in `packages/tokens/src/`. To regenerate, run `pnpm build` in the tokens package.
+## リソース
+
+### ツール
+- [コントラストチェッカー](https://webaim.org/resources/contrastchecker/)
+- [CSS変数のブラウザサポート](https://caniuse.com/css-variables)
+
+### 関連ドキュメント
+- [デザイントークン使用ガイド（日本語）](./design-tokens-usage.md) - 日本語での使い方ガイド
+- [アクセシビリティガイド](./accessibility-guide.md)
+- [コンポーネントAPIリファレンス](../api/README.md)
+- [移行ガイド](./migration-guide.md)
+
+---
+
+**注意**: トークンは `packages/tokens/src/` のソースファイルから自動生成されます。再生成するには、tokensパッケージで `pnpm build` を実行してください。

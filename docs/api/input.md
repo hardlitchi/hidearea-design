@@ -1,47 +1,47 @@
-# Input
+# Input（入力フィールド）
 
-> Text input field with validation and various types
+> バリデーションと様々なタイプをサポートするテキスト入力フィールド
 
-**Tag**: `<ha-input>`
+**タグ**: `<ha-input>`
 
-**Category**: Form Controls
+**カテゴリ**: フォームコントロール
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `type` | `'text' | 'email' | 'password' | 'number' | 'tel' | 'url'` | `'text'` |  | Input type |
-| `value` | `string` | `''` |  | Input value |
-| `placeholder` | `string` | `undefined` |  | Placeholder text |
-| `disabled` | `boolean` | `false` |  | Disables the input |
-| `readonly` | `boolean` | `false` |  | Makes input read-only |
-| `required` | `boolean` | `false` |  | Makes input required |
-| `error` | `boolean` | `false` |  | Shows error state |
-| `label` | `string` | `undefined` |  | Input label |
-| `description` | `string` | `undefined` |  | Help text |
-| `errorMessage` | `string` | `undefined` |  | Error message to display |
+| `type` | `'text' | 'email' | 'password' | 'number' | 'tel' | 'url'` | `'text'` |  | 入力タイプ |
+| `value` | `string` | `''` |  | 入力値 |
+| `placeholder` | `string` | `undefined` |  | プレースホルダーテキスト |
+| `disabled` | `boolean` | `false` |  | 入力フィールドを無効化 |
+| `readonly` | `boolean` | `false` |  | 入力フィールドを読み取り専用にする |
+| `required` | `boolean` | `false` |  | 入力フィールドを必須にする |
+| `error` | `boolean` | `false` |  | エラー状態を表示 |
+| `label` | `string` | `undefined` |  | 入力ラベル |
+| `description` | `string` | `undefined` |  | ヘルプテキスト |
+| `errorMessage` | `string` | `undefined` |  | 表示するエラーメッセージ |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-input` | `{ value: string }` | Emitted on input |
-| `ha-change` | `{ value: string }` | Emitted on change (blur) |
-| `ha-focus` | `{}` | Emitted on focus |
-| `ha-blur` | `{}` | Emitted on blur |
+| `ha-input` | `{ value: string }` | 入力時に発行される |
+| `ha-change` | `{ value: string }` | 変更時（ブラー）に発行される |
+| `ha-focus` | `{}` | フォーカス時に発行される |
+| `ha-blur` | `{}` | ブラー時に発行される |
 
-### Usage
+### 使い方
 
 ```javascript
 const element = document.querySelector('ha-input');
@@ -50,88 +50,88 @@ element.addEventListener('ha-input', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-This component has no slots.
+このコンポーネントにはスロットがありません。
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple text input
+シンプルなテキスト入力
 
 ```html
-<ha-input label="Name" placeholder="Enter your name"></ha-input>
+<ha-input label="名前" placeholder="お名前を入力してください"></ha-input>
 ```
 
 ---
 
-### With Error
+### エラー状態
 
-Input with error state
+エラー状態の入力フィールド
 
 ```html
-<ha-input label="Email" type="email" error error-message="Please enter a valid email"></ha-input>
+<ha-input label="メールアドレス" type="email" error error-message="有効なメールアドレスを入力してください"></ha-input>
 ```
 
 ---
 
-### Disabled
+### 無効化
 
-Disabled input
+無効化された入力フィールド
 
 ```html
-<ha-input label="Username" value="johndoe" disabled></ha-input>
+<ha-input label="ユーザー名" value="johndoe" disabled></ha-input>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIA ロール
 
 - `textbox`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Tab` | Move focus |
-| `Type` | Enter text |
+| `Tab` | フォーカスを移動 |
+| `Type` | テキストを入力 |
 
-### ARIA Attributes
+### ARIA 属性
 
 - `aria-label`
 - `aria-required`
 - `aria-invalid`
 - `aria-describedby`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します:
 
-### Colors
+### カラー
 
 - `--component-input-background`
 - `--component-input-border`
 - `--component-input-text`
 - `--state-error-border`
 
-### Spacing
+### スペーシング
 
 - `--spacing-sm`
 - `--spacing-md`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-md`
 - `--interaction-transition-fast-duration`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

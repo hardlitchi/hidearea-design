@@ -1,72 +1,72 @@
-# Migration Guide
+# 移行ガイド
 
-This guide provides practical examples for migrating from other UI libraries to Hidearea Design System, as well as upgrading between versions.
+このガイドは、他の UI ライブラリから Hidearea Design システムへの移行、およびバージョン間のアップグレードに関する実践的な例を提供します。
 
-## Table of Contents
+## 目次
 
-- [Migrating from Plain HTML](#migrating-from-plain-html)
-- [Migrating from Bootstrap](#migrating-from-bootstrap)
-- [Migrating from Material-UI](#migrating-from-material-ui)
-- [Framework-Specific Migration](#framework-specific-migration)
-- [Version Upgrades](#version-upgrades)
+- [プレーン HTML からの移行](#プレーン-html-からの移行)
+- [Bootstrap からの移行](#bootstrap-からの移行)
+- [Material-UI からの移行](#material-ui-からの移行)
+- [フレームワーク固有の移行](#フレームワーク固有の移行)
+- [バージョンアップグレード](#バージョンアップグレード)
 
 ---
 
-## Migrating from Plain HTML
+## プレーン HTML からの移行
 
-### Basic Form
+### 基本フォーム
 
-**Before (Plain HTML):**
+**移行前（プレーン HTML）:**
 ```html
 <form>
   <div class="form-group">
-    <label for="email">Email</label>
+    <label for="email">メールアドレス</label>
     <input type="email" id="email" name="email" required>
   </div>
 
   <div class="form-group">
-    <label for="password">Password</label>
+    <label for="password">パスワード</label>
     <input type="password" id="password" name="password" required>
   </div>
 
-  <button type="submit">Login</button>
+  <button type="submit">ログイン</button>
 </form>
 ```
 
-**After (Hidearea Design):**
+**移行後（Hidearea Design）:**
 ```html
 <form>
-  <ha-form-group label="Email" required>
+  <ha-form-group label="メールアドレス" required>
     <ha-input
       type="email"
       name="email"
-      placeholder="Enter your email"
+      placeholder="メールアドレスを入力"
       required>
     </ha-input>
   </ha-form-group>
 
-  <ha-form-group label="Password" required>
+  <ha-form-group label="パスワード" required>
     <ha-input
       type="password"
       name="password"
-      placeholder="Enter your password"
+      placeholder="パスワードを入力"
       required>
     </ha-input>
   </ha-form-group>
 
-  <ha-button type="submit" variant="primary">Login</ha-button>
+  <ha-button type="submit" variant="primary">ログイン</ha-button>
 </form>
 ```
 
-### Modal Dialog
+### モーダルダイアログ
 
-**Before (Plain HTML + JavaScript):**
+**移行前（プレーン HTML + JavaScript）:**
 ```html
 <div class="modal" id="myModal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <h2>Modal Title</h2>
-    <p>Modal content here</p>
+    <h2>モーダルタイトル</h2>
+    <p>モーダルコンテンツはこちら</p>
   </div>
 </div>
 
@@ -81,15 +81,15 @@ This guide provides practical examples for migrating from other UI libraries to 
 </script>
 ```
 
-**After (Hidearea Design):**
+**移行後（Hidearea Design）:**
 ```html
-<ha-button id="openBtn">Open Modal</ha-button>
+<ha-button id="openBtn">モーダルを開く</ha-button>
 
-<ha-modal id="myModal" title="Modal Title">
-  <p>Modal content here</p>
+<ha-modal id="myModal" title="モーダルタイトル">
+  <p>モーダルコンテンツはこちら</p>
   <div slot="footer">
-    <ha-button variant="secondary" id="cancelBtn">Cancel</ha-button>
-    <ha-button variant="primary" id="confirmBtn">Confirm</ha-button>
+    <ha-button variant="secondary" id="cancelBtn">キャンセル</ha-button>
+    <ha-button variant="primary" id="confirmBtn">確認</ha-button>
   </div>
 </ha-modal>
 
@@ -107,200 +107,200 @@ This guide provides practical examples for migrating from other UI libraries to 
 
 ---
 
-## Migrating from Bootstrap
+## Bootstrap からの移行
 
-### Alerts
+### アラート
 
-**Before (Bootstrap):**
+**移行前（Bootstrap）:**
 ```html
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>Success!</strong> Your changes have been saved.
+  <strong>成功!</strong> 変更が保存されました。
   <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 </div>
 ```
 
-**After (Hidearea Design):**
+**移行後（Hidearea Design）:**
 ```html
 <ha-alert variant="success" closable>
-  <strong>Success!</strong> Your changes have been saved.
+  <strong>成功!</strong> 変更が保存されました。
 </ha-alert>
 ```
 
-### Buttons
+### ボタン
 
-**Before (Bootstrap):**
+**移行前（Bootstrap）:**
 ```html
-<button type="button" class="btn btn-primary btn-lg">Large Button</button>
-<button type="button" class="btn btn-outline-secondary" disabled>Disabled</button>
+<button type="button" class="btn btn-primary btn-lg">大きいボタン</button>
+<button type="button" class="btn btn-outline-secondary" disabled>無効</button>
 ```
 
-**After (Hidearea Design):**
+**移行後（Hidearea Design）:**
 ```html
-<ha-button variant="primary" size="large">Large Button</ha-button>
-<ha-button variant="secondary" outline disabled>Disabled</ha-button>
+<ha-button variant="primary" size="large">大きいボタン</ha-button>
+<ha-button variant="secondary" outline disabled>無効</ha-button>
 ```
 
-### Cards
+### カード
 
-**Before (Bootstrap):**
+**移行前（Bootstrap）:**
 ```html
 <div class="card">
   <div class="card-header">
-    Card Header
+    カードヘッダー
   </div>
   <div class="card-body">
-    <h5 class="card-title">Card Title</h5>
-    <p class="card-text">Card content goes here.</p>
-    <a href="#" class="btn btn-primary">Action</a>
+    <h5 class="card-title">カードタイトル</h5>
+    <p class="card-text">カードコンテンツはこちらです。</p>
+    <a href="#" class="btn btn-primary">アクション</a>
   </div>
   <div class="card-footer text-muted">
-    2 days ago
+    2日前
   </div>
 </div>
 ```
 
-**After (Hidearea Design):**
+**移行後（Hidearea Design）:**
 ```html
 <ha-card>
-  <div slot="header">Card Header</div>
-  <div slot="title">Card Title</div>
-  <p>Card content goes here.</p>
-  <ha-button variant="primary">Action</ha-button>
-  <div slot="footer">2 days ago</div>
+  <div slot="header">カードヘッダー</div>
+  <div slot="title">カードタイトル</div>
+  <p>カードコンテンツはこちらです。</p>
+  <ha-button variant="primary">アクション</ha-button>
+  <div slot="footer">2日前</div>
 </ha-card>
 ```
 
-### Grid System
+### グリッドシステム
 
-**Before (Bootstrap):**
+**移行前（Bootstrap）:**
 ```html
 <div class="container">
   <div class="row">
-    <div class="col-md-4">Column 1</div>
-    <div class="col-md-4">Column 2</div>
-    <div class="col-md-4">Column 3</div>
+    <div class="col-md-4">カラム 1</div>
+    <div class="col-md-4">カラム 2</div>
+    <div class="col-md-4">カラム 3</div>
   </div>
 </div>
 ```
 
-**After (Hidearea Design):**
+**移行後（Hidearea Design）:**
 ```html
 <ha-container>
   <ha-grid columns="3" gap="md">
-    <div>Column 1</div>
-    <div>Column 2</div>
-    <div>Column 3</div>
+    <div>カラム 1</div>
+    <div>カラム 2</div>
+    <div>カラム 3</div>
   </ha-grid>
 </ha-container>
 ```
 
 ---
 
-## Migrating from Material-UI
+## Material-UI からの移行
 
-### Text Fields
+### テキストフィールド
 
-**Before (Material-UI React):**
+**移行前（Material-UI React）:**
 ```jsx
 import TextField from '@mui/material/TextField';
 
 <TextField
-  label="Username"
+  label="ユーザー名"
   variant="outlined"
   required
-  helperText="Enter your username"
+  helperText="ユーザー名を入力してください"
   error={hasError}
 />
 ```
 
-**After (Hidearea Design React):**
+**移行後（Hidearea Design React）:**
 ```jsx
 import { FormGroup, Input } from '@hidearea-design/react';
 
 <FormGroup
-  label="Username"
+  label="ユーザー名"
   required
-  helperText="Enter your username"
-  error={hasError ? "Invalid username" : undefined}
+  helperText="ユーザー名を入力してください"
+  error={hasError ? "無効なユーザー名" : undefined}
 >
   <Input
     name="username"
-    placeholder="Enter your username"
+    placeholder="ユーザー名を入力してください"
   />
 </FormGroup>
 ```
 
-### Checkboxes
+### チェックボックス
 
-**Before (Material-UI React):**
+**移行前（Material-UI React）:**
 ```jsx
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 <FormControlLabel
   control={<Checkbox checked={checked} onChange={handleChange} />}
-  label="Accept terms and conditions"
+  label="利用規約に同意します"
 />
 ```
 
-**After (Hidearea Design React):**
+**移行後（Hidearea Design React）:**
 ```jsx
 import { Checkbox } from '@hidearea-design/react';
 
 <Checkbox
   checked={checked}
   onChange={(e) => handleChange(e.target.checked)}
-  label="Accept terms and conditions"
+  label="利用規約に同意します"
 />
 ```
 
-### Buttons with Icons
+### アイコン付きボタン
 
-**Before (Material-UI React):**
+**移行前（Material-UI React）:**
 ```jsx
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 
 <Button variant="contained" endIcon={<SendIcon />}>
-  Send
+  送信
 </Button>
 ```
 
-**After (Hidearea Design React):**
+**移行後（Hidearea Design React）:**
 ```jsx
 import { Button } from '@hidearea-design/react';
 
 <Button variant="primary">
-  Send
+  送信
   <svg slot="suffix" width="16" height="16" viewBox="0 0 16 16">
-    {/* Icon SVG path */}
+    {/* アイコン SVG パス */}
   </svg>
 </Button>
 ```
 
 ---
 
-## Framework-Specific Migration
+## フレームワーク固有の移行
 
 ### React
 
-**Setup:**
+**セットアップ:**
 ```jsx
-// Before: Import from other library
+// 移行前: 他のライブラリからインポート
 import { Button, Input } from 'other-ui-library';
 
-// After: Import from Hidearea Design
+// 移行後: Hidearea Design からインポート
 import { Button, Input } from '@hidearea-design/react';
 ```
 
-**Event Handling:**
+**イベント処理:**
 ```jsx
-// Hidearea Design uses native web component events
+// Hidearea Design はネイティブ Web コンポーネントイベントを使用
 import { Input } from '@hidearea-design/react';
 
 function MyComponent() {
   const handleChange = (e) => {
-    console.log('Value:', e.target.value);
+    console.log('値:', e.target.value);
   };
 
   return (
@@ -315,7 +315,7 @@ function MyComponent() {
 
 ### Vue 3
 
-**Setup:**
+**セットアップ:**
 ```js
 // main.js
 import { createApp } from 'vue';
@@ -324,10 +324,10 @@ import App from './App.vue';
 
 const app = createApp(App);
 
-// Option 1: Install all components globally
+// オプション 1: すべてのコンポーネントをグローバルにインストール
 app.use(HideareaDesignVue);
 
-// Option 2: Import individual components
+// オプション 2: 個別のコンポーネントをインポート
 import { Button, Input } from '@hidearea-design/vue';
 app.component('HaButton', Button);
 app.component('HaInput', Input);
@@ -335,20 +335,20 @@ app.component('HaInput', Input);
 app.mount('#app');
 ```
 
-**Component Usage:**
+**コンポーネントの使用:**
 ```vue
 <template>
-  <HaFormGroup label="Email" required>
+  <HaFormGroup label="メールアドレス" required>
     <HaInput
       v-model="email"
       type="email"
-      placeholder="Enter your email"
+      placeholder="メールアドレスを入力"
       @change="handleChange"
     />
   </HaFormGroup>
 
   <HaButton @click="submit" variant="primary">
-    Submit
+    送信
   </HaButton>
 </template>
 
@@ -358,18 +358,18 @@ import { ref } from 'vue';
 const email = ref('');
 
 const handleChange = (e) => {
-  console.log('Email:', e.target.value);
+  console.log('メール:', e.target.value);
 };
 
 const submit = () => {
-  console.log('Submitted:', email.value);
+  console.log('送信:', email.value);
 };
 </script>
 ```
 
 ### Vanilla JavaScript
 
-**Setup:**
+**セットアップ:**
 ```html
 <!DOCTYPE html>
 <html>
@@ -377,14 +377,14 @@ const submit = () => {
   <link rel="stylesheet" href="https://unpkg.com/@hidearea-design/core/dist/index.css">
 </head>
 <body>
-  <ha-button id="myButton" variant="primary">Click Me</ha-button>
+  <ha-button id="myButton" variant="primary">クリックしてください</ha-button>
 
   <script type="module">
     import '@hidearea-design/core';
 
     const button = document.getElementById('myButton');
     button.addEventListener('click', () => {
-      console.log('Button clicked!');
+      console.log('ボタンがクリックされました!');
     });
   </script>
 </body>
@@ -393,35 +393,35 @@ const submit = () => {
 
 ---
 
-## Version Upgrades
+## バージョンアップグレード
 
-### Breaking Changes by Version
+### バージョン別の破壊的変更
 
-#### v0.1.0 → v0.2.0 (Future)
+#### v0.1.0 → v0.2.0（今後リリース予定）
 
-Stay tuned for migration guides when new versions are released.
+新しいバージョンがリリースされたら移行ガイドをご確認ください。
 
-### Deprecation Warnings
+### 非推奨の警告
 
-Hidearea Design follows semantic versioning. When features are deprecated:
+Hidearea Design はセマンティックバージョニングに従います。機能が非推奨になる場合:
 
-1. **Minor version**: Deprecation warnings are added
-2. **Next major version**: Deprecated features are removed
+1. **マイナーバージョン**: 非推奨警告が追加される
+2. **次のメジャーバージョン**: 非推奨機能が削除される
 
-Always check the CHANGELOG.md for deprecation notices and upgrade paths.
+非推奨の通知とアップグレードパスについては、常に CHANGELOG.md を確認してください。
 
 ---
 
-## Common Migration Patterns
+## 一般的な移行パターン
 
-### Form Validation
+### フォーム検証
 
-**Pattern:**
+**パターン:**
 ```html
 <ha-form-group
-  label="Email"
+  label="メールアドレス"
   required
-  error="Please enter a valid email"
+  error="有効なメールアドレスを入力してください"
 >
   <ha-input
     type="email"
@@ -432,21 +432,21 @@ Always check the CHANGELOG.md for deprecation notices and upgrade paths.
 </ha-form-group>
 ```
 
-### Loading States
+### ローディング状態
 
-**Pattern:**
+**パターン:**
 ```html
 <ha-button variant="primary" loading disabled>
-  Processing...
+  処理中...
 </ha-button>
 
-<!-- Or use spinner separately -->
+<!-- またはスピナーを別々に使用 -->
 <ha-spinner size="small"></ha-spinner>
 ```
 
-### Responsive Design
+### レスポンシブデザイン
 
-**Pattern:**
+**パターン:**
 ```html
 <ha-grid
   columns="1"
@@ -455,39 +455,39 @@ Always check the CHANGELOG.md for deprecation notices and upgrade paths.
   columns-lg="4"
   gap="md"
 >
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-  <div>Item 4</div>
+  <div>アイテム 1</div>
+  <div>アイテム 2</div>
+  <div>アイテム 3</div>
+  <div>アイテム 4</div>
 </ha-grid>
 ```
 
 ---
 
-## Tips for Smooth Migration
+## スムーズな移行のためのヒント
 
-### 1. Start Small
-Begin with simple components like buttons and inputs before tackling complex layouts.
+### 1. 小さく始める
+ボタンや入力などのシンプルなコンポーネントから始めて、複雑なレイアウトに取り組む前に慣れましょう。
 
-### 2. Use Type Safety
-If using TypeScript, import types for better development experience:
+### 2. 型安全性を使用
+TypeScript を使用している場合は、より良い開発体験のために型をインポートしてください:
 ```typescript
 import type { ButtonProps, InputProps } from '@hidearea-design/react';
 ```
 
-### 3. Test Incrementally
-Migrate one page or component at a time and test thoroughly.
+### 3. 段階的にテスト
+一度に1つのページまたはコンポーネントを移行し、徹底的にテストしてください。
 
-### 4. Check Accessibility
-Hidearea Design components are built with accessibility in mind, but always verify:
-- Keyboard navigation works
-- Screen readers announce correctly
-- Color contrast meets WCAG standards
+### 4. アクセシビリティを確認
+Hidearea Design コンポーネントはアクセシビリティを考慮して構築されていますが、常に以下を確認してください:
+- キーボードナビゲーションが機能する
+- スクリーンリーダーが正しく読み上げる
+- 色のコントラストが WCAG 標準を満たす
 
-### 5. Review Design Tokens
-Familiarize yourself with available design tokens for consistent theming:
+### 5. デザイントークンを確認
+一貫したテーマ設定のために利用可能なデザイントークンに慣れてください:
 ```css
-/* Use design tokens instead of hardcoded values */
+/* ハードコードされた値の代わりにデザイントークンを使用 */
 .custom-element {
   color: var(--color-text-primary);
   background: var(--color-background-surface);
@@ -497,19 +497,19 @@ Familiarize yourself with available design tokens for consistent theming:
 
 ---
 
-## Getting Help
+## ヘルプ
 
-- **Documentation**: Check component-specific docs for detailed API reference
-- **Examples**: See `docs/guides/examples.md` for more code samples
-- **Issues**: Report migration difficulties on GitHub
-- **Community**: Join discussions for migration support
+- **ドキュメント**: 詳細な API リファレンスについては、コンポーネント固有のドキュメントを確認してください
+- **例**: より多くのコードサンプルについては `docs/guides/examples.md` を参照してください
+- **問題**: 移行の困難について GitHub で報告してください
+- **コミュニティ**: 移行サポートのためにディスカッションに参加してください
 
 ---
 
-## Next Steps
+## 次のステップ
 
-After completing your migration:
+移行を完了した後:
 
-1. Review [Accessibility Guide](./accessibility-guide.md) for best practices
-2. Explore [Design Tokens](../tokens/README.md) for theming
-3. Check [Examples](./examples.md) for advanced patterns
+1. ベストプラクティスについては[アクセシビリティガイド](./accessibility-guide.md)を確認してください
+2. テーマ設定については[デザイントークン](../tokens/README.md)を探索してください
+3. 高度なパターンについては[例](./examples.md)を確認してください

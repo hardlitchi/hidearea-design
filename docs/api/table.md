@@ -1,41 +1,41 @@
-# Table
+# Table（テーブル）
 
-> Data table component for displaying structured data
+> 構造化されたデータを表示するためのデータテーブルコンポーネント
 
 **Tag**: `<ha-table>`
 
 **Category**: Data Display
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `data` | `Array<Record<string, any>>` | `undefined` | ✅ | Table data |
-| `columns` | `Array<Column>` | `undefined` | ✅ | Column definitions |
-| `sortable` | `boolean` | `false` |  | Enable column sorting |
-| `selectable` | `boolean` | `false` |  | Enable row selection |
-| `striped` | `boolean` | `false` |  | Striped rows |
-| `hoverable` | `boolean` | `false` |  | Hover effect on rows |
-| `bordered` | `boolean` | `false` |  | Show borders |
+| `data` | `Array<Record<string, any>>` | `undefined` | ✅ | テーブルデータ |
+| `columns` | `Array<Column>` | `undefined` | ✅ | カラム定義 |
+| `sortable` | `boolean` | `false` |  | カラムのソートを有効化 |
+| `selectable` | `boolean` | `false` |  | 行の選択を有効化 |
+| `striped` | `boolean` | `false` |  | ストライプ行 |
+| `hoverable` | `boolean` | `false` |  | 行のホバーエフェクト |
+| `bordered` | `boolean` | `false` |  | ボーダーを表示 |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-sort` | `{ column: string, direction: "asc" | "desc" }` | Emitted when column is sorted |
-| `ha-select` | `{ selectedRows: Array<any> }` | Emitted when rows are selected |
-| `ha-row-click` | `{ row: any, index: number }` | Emitted when row is clicked |
+| `ha-sort` | `{ column: string, direction: "asc" | "desc" }` | カラムがソートされたときに発火 |
+| `ha-select` | `{ selectedRows: Array<any> }` | 行が選択されたときに発火 |
+| `ha-row-click` | `{ row: any, index: number }` | 行がクリックされたときに発火 |
 
 ### Usage
 
@@ -46,34 +46,34 @@ element.addEventListener('ha-sort', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Custom cell content |
+| `default` | カスタムセルコンテンツ |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple data table
+シンプルなデータテーブル
 
 ```html
 <ha-table
   :data="users"
   :columns="[
-    { key: 'name', label: 'Name' },
-    { key: 'email', label: 'Email' },
-    { key: 'role', label: 'Role' }
+    { key: 'name', label: '名前' },
+    { key: 'email', label: 'メール' },
+    { key: 'role', label: '役割' }
   ]"
 ></ha-table>
 ```
 
 ---
 
-### Sortable Table
+### ソート可能なテーブル
 
-Table with sortable columns
+ソート可能なカラムを持つテーブル
 
 ```html
 <ha-table
@@ -84,7 +84,7 @@ Table with sortable columns
 ></ha-table>
 ```
 
-## Accessibility
+## アクセシビリティ
 
 ### ARIA Roles
 
@@ -98,8 +98,8 @@ Table with sortable columns
 
 | Key | Action |
 |-----|--------|
-| `Arrow keys` | Navigate cells |
-| `Tab` | Move to next focusable element |
+| `Arrow keys` | セルを移動 |
+| `Tab` | 次のフォーカス可能な要素に移動 |
 
 ### ARIA Attributes
 
@@ -107,9 +107,9 @@ Table with sortable columns
 - `aria-selected`
 - `aria-label`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
 ### Colors
 
@@ -133,7 +133,7 @@ This component uses the following design tokens:
 
 ---
 
-**Related**:
+**関連ドキュメント**:
 - [Migration Guide](../guides/migration-guide.md)
 - [Accessibility Guide](../guides/accessibility-guide.md)
 - [Component Examples](../guides/examples.md)

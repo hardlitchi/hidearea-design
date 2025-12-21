@@ -1,39 +1,39 @@
-# Pagination
+# Pagination（ページネーション）
 
-> Pagination component for navigating through pages of content
+> コンテンツのページ間を移動するためのページネーションコンポーネント
 
-**Tag**: `<ha-pagination>`
+**タグ**: `<ha-pagination>`
 
-**Category**: Navigation
+**カテゴリ**: Navigation
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `currentPage` | `number` | `1` |  | Current active page |
-| `totalPages` | `number` | `undefined` | ✅ | Total number of pages |
-| `siblingCount` | `number` | `1` |  | Number of siblings shown on each side |
-| `showFirstLast` | `boolean` | `true` |  | Show first/last page buttons |
-| `disabled` | `boolean` | `false` |  | Disable pagination |
+| `currentPage` | `number` | `1` |  | 現在アクティブなページ |
+| `totalPages` | `number` | `undefined` | ✅ | 総ページ数 |
+| `siblingCount` | `number` | `1` |  | 各側に表示される兄弟ページの数 |
+| `showFirstLast` | `boolean` | `true` |  | 最初/最後のページボタンを表示 |
+| `disabled` | `boolean` | `false` |  | ページネーションを無効化 |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-change` | `{ page: number }` | Emitted when page changes |
+| `ha-change` | `{ page: number }` | ページが変更されたときに発火 |
 
-### Usage
+### 使用方法
 
 ```javascript
 const element = document.querySelector('ha-pagination');
@@ -42,15 +42,15 @@ element.addEventListener('ha-change', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-This component has no slots.
+このコンポーネントにはスロットがありません。
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使用方法
 
-Simple pagination
+シンプルなページネーション
 
 ```html
 <ha-pagination :current-page="1" :total-pages="10"></ha-pagination>
@@ -58,57 +58,57 @@ Simple pagination
 
 ---
 
-### Without First/Last
+### 最初/最後のボタンなし
 
-Pagination without first/last buttons
+最初/最後のページボタンを表示しないページネーション
 
 ```html
 <ha-pagination :current-page="5" :total-pages="20" :show-first-last="false"></ha-pagination>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIA ロール
 
 - `navigation`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Arrow keys` | Navigate pages |
-| `Enter` | Select page |
+| `矢印キー` | ページを移動 |
+| `Enter` | ページを選択 |
 
-### ARIA Attributes
+### ARIA 属性
 
 - `aria-label`
 - `aria-current`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-pagination-background`
 - `--component-pagination-active`
 - `--component-pagination-text`
 
-### Spacing
+### スペーシング
 
 - `--spacing-sm`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-md`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [移行ガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント例](../guides/examples.md)

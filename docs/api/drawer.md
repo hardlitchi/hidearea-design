@@ -1,41 +1,41 @@
-# Drawer
+# Drawer（ドロワー）
 
-> Drawer component for side panel content
+> サイドパネルコンテンツ用のドロワーコンポーネント
 
-**Tag**: `<ha-drawer>`
+**タグ**: `<ha-drawer>`
 
-**Category**: Overlay
+**カテゴリー**: Overlay
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `open` | `boolean` | `false` |  | Whether drawer is open |
-| `position` | `'left' | 'right' | 'top' | 'bottom'` | `'right'` |  | Drawer position |
-| `size` | `'small' | 'medium' | 'large'` | `'medium'` |  | Drawer size |
-| `title` | `string` | `undefined` |  | Drawer title |
-| `closeOnOverlay` | `boolean` | `true` |  | Close when clicking overlay |
-| `closeOnEscape` | `boolean` | `true` |  | Close when pressing Escape |
+| `open` | `boolean` | `false` |  | ドロワーが開いているかどうか |
+| `position` | `'left' | 'right' | 'top' | 'bottom'` | `'right'` |  | ドロワーの位置 |
+| `size` | `'small' | 'medium' | 'large'` | `'medium'` |  | ドロワーのサイズ |
+| `title` | `string` | `undefined` |  | ドロワーのタイトル |
+| `closeOnOverlay` | `boolean` | `true` |  | オーバーレイクリック時に閉じる |
+| `closeOnEscape` | `boolean` | `true` |  | Escape キー押下時に閉じる |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-open` | `{}` | Emitted when drawer opens |
-| `ha-close` | `{}` | Emitted when drawer closes |
+| `ha-open` | `{}` | ドロワーが開いたときに発火 |
+| `ha-close` | `{}` | ドロワーが閉じたときに発火 |
 
-### Usage
+### 使い方
 
 ```javascript
 const element = document.querySelector('ha-drawer');
@@ -44,85 +44,85 @@ element.addEventListener('ha-open', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Drawer content |
-| `header` | Custom header content |
-| `footer` | Drawer footer |
+| `default` | ドロワーのコンテンツ |
+| `header` | カスタムヘッダーコンテンツ |
+| `footer` | ドロワーのフッター |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple drawer
+シンプルなドロワー
 
 ```html
-<ha-drawer title="Settings" open>
-  <p>Drawer content goes here</p>
+<ha-drawer title="設定" open>
+  <p>ドロワーのコンテンツがここに入ります</p>
 </ha-drawer>
 ```
 
 ---
 
-### Left Position
+### 左側配置
 
-Drawer from left side
+左側から表示されるドロワー
 
 ```html
-<ha-drawer position="left" title="Menu" open>
+<ha-drawer position="left" title="メニュー" open>
   <ha-menu>
-    <ha-menu-item>Home</ha-menu-item>
-    <ha-menu-item>About</ha-menu-item>
+    <ha-menu-item>ホーム</ha-menu-item>
+    <ha-menu-item>概要</ha-menu-item>
   </ha-menu>
 </ha-drawer>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIA ロール
 
 - `dialog`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Escape` | Close drawer |
-| `Tab` | Navigate focusable elements |
+| `Escape` | ドロワーを閉じる |
+| `Tab` | フォーカス可能な要素を移動 |
 
-### ARIA Attributes
+### ARIA 属性
 
 - `aria-modal`
 - `aria-labelledby`
 - `aria-describedby`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します:
 
-### Colors
+### 色
 
 - `--component-drawer-background`
 - `--component-drawer-overlay`
 
-### Spacing
+### 間隔
 
 - `--spacing-lg`
 
-### Typography
+### タイポグラフィ
 
 - `--text-heading-h3-fontSize`
 - `--font-weight-bold`
 
-### Other
+### その他
 
 - `--surface-overlay-elevation`
 
 ---
 
-**Related**:
+**関連ドキュメント**:
 - [Migration Guide](../guides/migration-guide.md)
 - [Accessibility Guide](../guides/accessibility-guide.md)
 - [Component Examples](../guides/examples.md)

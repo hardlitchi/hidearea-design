@@ -1,34 +1,34 @@
-# Tabs
+# Tabs（タブ）
 
-> Tabs component for organizing content into different views
+> コンテンツを異なるビューに整理するためのタブコンポーネント
 
 **Tag**: `<ha-tabs>`
 
 **Category**: Navigation
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `value` | `string` | `undefined` |  | Active tab value |
-| `variant` | `'default' | 'pills' | 'underline'` | `'default'` |  | Tab style variant |
+| `value` | `string` | `undefined` |  | アクティブなタブの値 |
+| `variant` | `'default' | 'pills' | 'underline'` | `'default'` |  | タブのスタイルバリアント |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-change` | `{ value: string }` | Emitted when active tab changes |
+| `ha-change` | `{ value: string }` | アクティブなタブが変更されたときに発火 |
 
 ### Usage
 
@@ -39,44 +39,44 @@ element.addEventListener('ha-change', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Tab and panel elements |
+| `default` | タブとパネル要素 |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple tabs
+シンプルなタブ
 
 ```html
 <ha-tabs>
-  <ha-tab value="profile">Profile</ha-tab>
-  <ha-tab value="settings">Settings</ha-tab>
-  <ha-tab value="notifications">Notifications</ha-tab>
+  <ha-tab value="profile">プロフィール</ha-tab>
+  <ha-tab value="settings">設定</ha-tab>
+  <ha-tab value="notifications">通知</ha-tab>
 
-  <ha-tab-panel value="profile">Profile content</ha-tab-panel>
-  <ha-tab-panel value="settings">Settings content</ha-tab-panel>
-  <ha-tab-panel value="notifications">Notifications content</ha-tab-panel>
+  <ha-tab-panel value="profile">プロフィールコンテンツ</ha-tab-panel>
+  <ha-tab-panel value="settings">設定コンテンツ</ha-tab-panel>
+  <ha-tab-panel value="notifications">通知コンテンツ</ha-tab-panel>
 </ha-tabs>
 ```
 
 ---
 
-### Pills Variant
+### ピルスタイルバリアント
 
-Tabs with pills style
+ピルスタイルのタブ
 
 ```html
 <ha-tabs variant="pills">
-  <ha-tab value="overview">Overview</ha-tab>
-  <ha-tab value="analytics">Analytics</ha-tab>
+  <ha-tab value="overview">概要</ha-tab>
+  <ha-tab value="analytics">分析</ha-tab>
 </ha-tabs>
 ```
 
-## Accessibility
+## アクセシビリティ
 
 ### ARIA Roles
 
@@ -88,9 +88,9 @@ Tabs with pills style
 
 | Key | Action |
 |-----|--------|
-| `Arrow keys` | Navigate between tabs |
-| `Home` | First tab |
-| `End` | Last tab |
+| `Arrow keys` | タブ間を移動 |
+| `Home` | 最初のタブ |
+| `End` | 最後のタブ |
 
 ### ARIA Attributes
 
@@ -98,9 +98,9 @@ Tabs with pills style
 - `aria-controls`
 - `aria-labelledby`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
 ### Colors
 
@@ -123,7 +123,7 @@ This component uses the following design tokens:
 
 ---
 
-**Related**:
+**関連ドキュメント**:
 - [Migration Guide](../guides/migration-guide.md)
 - [Accessibility Guide](../guides/accessibility-guide.md)
 - [Component Examples](../guides/examples.md)

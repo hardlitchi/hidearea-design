@@ -1,18 +1,18 @@
-# Usage Examples
+# 使用例
 
-Complete examples showing common patterns and use cases with hidearea-design components.
+hidearea-design コンポーネントの一般的なパターンと使用例の完全な例を示します。
 
-## Table of Contents
+## 目次
 
-- [Login Form](#login-form)
-- [Registration Form](#registration-form)
-- [Search Interface](#search-interface)
-- [Settings Panel](#settings-panel)
-- [Modal Dialog](#modal-dialog)
+- [ログインフォーム](#ログインフォーム)
+- [登録フォーム](#登録フォーム)
+- [検索インターフェース](#検索インターフェース)
+- [設定パネル](#設定パネル)
+- [モーダルダイアログ](#モーダルダイアログ)
 
-## Login Form
+## ログインフォーム
 
-### React Example
+### React の例
 
 ```tsx
 import { useState } from "react";
@@ -32,15 +32,15 @@ function LoginForm() {
     const newErrors: Record<string, string> = {};
 
     if (!formData.email) {
-      newErrors.email = "Email is required";
+      newErrors.email = "メールアドレスは必須です";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid";
+      newErrors.email = "メールアドレスの形式が正しくありません";
     }
 
     if (!formData.password) {
-      newErrors.password = "Password is required";
+      newErrors.password = "パスワードは必須です";
     } else if (formData.password.length < 8) {
-      newErrors.password = "Password must be at least 8 characters";
+      newErrors.password = "パスワードは8文字以上である必要があります";
     }
 
     setErrors(newErrors);
@@ -54,14 +54,14 @@ function LoginForm() {
 
     setLoading(true);
     try {
-      // API call
+      // API 呼び出し
       await fetch("/api/login", {
         method: "POST",
         body: JSON.stringify(formData),
       });
-      console.log("Login successful");
+      console.log("ログイン成功");
     } catch (error) {
-      console.error("Login failed:", error);
+      console.error("ログイン失敗:", error);
     } finally {
       setLoading(false);
     }
@@ -69,14 +69,14 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} style={{ maxWidth: "400px" }}>
-      <h2>Login</h2>
+      <h2>ログイン</h2>
 
       <div style={{ marginBottom: "1rem" }}>
         <label
           htmlFor="email"
           style={{ display: "block", marginBottom: "0.5rem" }}
         >
-          Email
+          メールアドレス
         </label>
         <Input
           id="email"
@@ -109,12 +109,12 @@ function LoginForm() {
           htmlFor="password"
           style={{ display: "block", marginBottom: "0.5rem" }}
         >
-          Password
+          パスワード
         </label>
         <Input
           id="password"
           type="password"
-          placeholder="Enter your password"
+          placeholder="パスワードを入力"
           fullWidth
           required
           error={!!errors.password}
@@ -144,7 +144,7 @@ function LoginForm() {
             setFormData({ ...formData, remember: e.detail.checked })
           }
         >
-          Remember me
+          ログイン状態を保持する
         </Checkbox>
       </div>
 
@@ -155,7 +155,7 @@ function LoginForm() {
         loading={loading}
         disabled={loading}
       >
-        {loading ? "Logging in..." : "Login"}
+        {loading ? "ログイン中..." : "ログイン"}
       </Button>
     </form>
   );
@@ -164,15 +164,15 @@ function LoginForm() {
 export default LoginForm;
 ```
 
-### Vue Example
+### Vue の例
 
 ```vue
 <template>
   <form @submit.prevent="handleSubmit" class="login-form">
-    <h2>Login</h2>
+    <h2>ログイン</h2>
 
     <div class="form-group">
-      <label for="email">Email</label>
+      <label for="email">メールアドレス</label>
       <HaInput
         id="email"
         v-model="formData.email"
@@ -187,12 +187,12 @@ export default LoginForm;
     </div>
 
     <div class="form-group">
-      <label for="password">Password</label>
+      <label for="password">パスワード</label>
       <HaInput
         id="password"
         v-model="formData.password"
         type="password"
-        placeholder="Enter your password"
+        placeholder="パスワードを入力"
         full-width
         required
         :error="!!errors.password"
@@ -202,7 +202,7 @@ export default LoginForm;
     </div>
 
     <div class="form-group">
-      <HaCheckbox v-model="formData.remember"> Remember me </HaCheckbox>
+      <HaCheckbox v-model="formData.remember"> ログイン状態を保持する </HaCheckbox>
     </div>
 
     <HaButton
@@ -212,7 +212,7 @@ export default LoginForm;
       :loading="loading"
       :disabled="loading"
     >
-      {{ loading ? "Logging in..." : "Login" }}
+      {{ loading ? "ログイン中..." : "ログイン" }}
     </HaButton>
   </form>
 </template>
@@ -235,15 +235,15 @@ const validate = () => {
   const newErrors: Record<string, string> = {};
 
   if (!formData.email) {
-    newErrors.email = "Email is required";
+    newErrors.email = "メールアドレスは必須です";
   } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-    newErrors.email = "Email is invalid";
+    newErrors.email = "メールアドレスの形式が正しくありません";
   }
 
   if (!formData.password) {
-    newErrors.password = "Password is required";
+    newErrors.password = "パスワードは必須です";
   } else if (formData.password.length < 8) {
-    newErrors.password = "Password must be at least 8 characters";
+    newErrors.password = "パスワードは8文字以上である必要があります";
   }
 
   Object.assign(errors, newErrors);
@@ -259,9 +259,9 @@ const handleSubmit = async () => {
       method: "POST",
       body: JSON.stringify(formData),
     });
-    console.log("Login successful");
+    console.log("ログイン成功");
   } catch (error) {
-    console.error("Login failed:", error);
+    console.error("ログイン失敗:", error);
   } finally {
     loading.value = false;
   }
@@ -290,7 +290,7 @@ const handleSubmit = async () => {
 </style>
 ```
 
-## Registration Form
+## 登録フォーム
 
 ```tsx
 // React
@@ -311,16 +311,16 @@ function RegistrationForm() {
   const validate = () => {
     const newErrors: Record<string, string> = {};
 
-    if (!formData.username) newErrors.username = "Username is required";
-    if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.password) newErrors.password = "Password is required";
+    if (!formData.username) newErrors.username = "ユーザー名は必須です";
+    if (!formData.email) newErrors.email = "メールアドレスは必須です";
+    if (!formData.password) newErrors.password = "パスワードは必須です";
 
     if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword = "パスワードが一致しません";
     }
 
     if (!formData.terms) {
-      newErrors.terms = "You must accept the terms";
+      newErrors.terms = "利用規約に同意する必要があります";
     }
 
     setErrors(newErrors);
@@ -330,14 +330,14 @@ function RegistrationForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      console.log("Form submitted:", formData);
+      console.log("フォーム送信:", formData);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <Input
-        placeholder="Username"
+        placeholder="ユーザー名"
         fullWidth
         error={!!errors.username}
         onInput={(e) => setFormData({ ...formData, username: e.detail.value })}
@@ -345,7 +345,7 @@ function RegistrationForm() {
 
       <Input
         type="email"
-        placeholder="Email"
+        placeholder="メールアドレス"
         fullWidth
         error={!!errors.email}
         onInput={(e) => setFormData({ ...formData, email: e.detail.value })}
@@ -353,7 +353,7 @@ function RegistrationForm() {
 
       <Input
         type="password"
-        placeholder="Password"
+        placeholder="パスワード"
         fullWidth
         error={!!errors.password}
         onInput={(e) => setFormData({ ...formData, password: e.detail.value })}
@@ -361,7 +361,7 @@ function RegistrationForm() {
 
       <Input
         type="password"
-        placeholder="Confirm Password"
+        placeholder="パスワード（確認）"
         fullWidth
         error={!!errors.confirmPassword}
         onInput={(e) =>
@@ -375,18 +375,18 @@ function RegistrationForm() {
         checked={formData.terms}
         onChange={(e) => setFormData({ ...formData, terms: e.detail.checked })}
       >
-        I agree to the <a href="/terms">Terms and Conditions</a>
+        <a href="/terms">利用規約</a>に同意します
       </Checkbox>
 
       <Button type="submit" variant="primary" fullWidth>
-        Register
+        登録
       </Button>
     </form>
   );
 }
 ```
 
-## Search Interface
+## 検索インターフェース
 
 ```tsx
 // React
@@ -413,7 +413,7 @@ function SearchInterface() {
         const data = await response.json();
         setResults(data);
       } catch (error) {
-        console.error("Search failed:", error);
+        console.error("検索に失敗しました:", error);
       } finally {
         setLoading(false);
       }
@@ -426,7 +426,7 @@ function SearchInterface() {
     <div>
       <Input
         type="search"
-        placeholder="Search..."
+        placeholder="検索..."
         fullWidth
         value={query}
         onInput={(e) => setQuery(e.detail.value)}
@@ -436,7 +436,7 @@ function SearchInterface() {
         </svg>
       </Input>
 
-      {loading && <p>Searching...</p>}
+      {loading && <p>検索中...</p>}
 
       <div>
         {results.map((result) => (
@@ -451,7 +451,7 @@ function SearchInterface() {
 }
 ```
 
-## Settings Panel
+## 設定パネル
 
 ```tsx
 // React
@@ -483,12 +483,12 @@ function SettingsPanel() {
   };
 
   const handleSave = () => {
-    console.log("Saving settings:", settings);
+    console.log("設定を保存:", settings);
   };
 
   return (
     <div style={{ maxWidth: "500px" }}>
-      <h2>Notification Settings</h2>
+      <h2>通知設定</h2>
 
       <Checkbox
         checked={allNotifications}
@@ -496,7 +496,7 @@ function SettingsPanel() {
         onChange={toggleAll}
         size="lg"
       >
-        <strong>Enable all notifications</strong>
+        <strong>すべての通知を有効にする</strong>
       </Checkbox>
 
       <div style={{ marginLeft: "2rem" }}>
@@ -506,8 +506,8 @@ function SettingsPanel() {
             setSettings({ ...settings, emailNotifications: e.detail.checked })
           }
         >
-          Email notifications
-          <span slot="description">Receive updates via email</span>
+          メール通知
+          <span slot="description">メールで更新情報を受け取る</span>
         </Checkbox>
 
         <Checkbox
@@ -516,8 +516,8 @@ function SettingsPanel() {
             setSettings({ ...settings, pushNotifications: e.detail.checked })
           }
         >
-          Push notifications
-          <span slot="description">Get instant updates on your device</span>
+          プッシュ通知
+          <span slot="description">デバイスで即座に更新情報を受け取る</span>
         </Checkbox>
 
         <Checkbox
@@ -526,9 +526,9 @@ function SettingsPanel() {
             setSettings({ ...settings, smsNotifications: e.detail.checked })
           }
         >
-          SMS notifications
+          SMS通知
           <span slot="description">
-            Receive text messages for important updates
+            重要な更新情報をテキストメッセージで受け取る
           </span>
         </Checkbox>
 
@@ -538,8 +538,8 @@ function SettingsPanel() {
             setSettings({ ...settings, newsletter: e.detail.checked })
           }
         >
-          Newsletter
-          <span slot="description">Weekly digest of updates and news</span>
+          ニュースレター
+          <span slot="description">週次の更新情報とニュースのダイジェスト</span>
         </Checkbox>
 
         <Checkbox
@@ -548,54 +548,54 @@ function SettingsPanel() {
             setSettings({ ...settings, updates: e.detail.checked })
           }
         >
-          Product updates
+          製品アップデート
           <span slot="description">
-            Learn about new features and improvements
+            新機能と改善点について学ぶ
           </span>
         </Checkbox>
       </div>
 
       <div style={{ marginTop: "2rem", display: "flex", gap: "1rem" }}>
         <Button variant="primary" onClick={handleSave}>
-          Save Changes
+          変更を保存
         </Button>
-        <Button variant="outline">Reset</Button>
+        <Button variant="outline">リセット</Button>
       </div>
     </div>
   );
 }
 ```
 
-## Best Practices
+## ベストプラクティス
 
-### Form Validation
+### フォーム検証
 
-1. **Validate on blur and submit**: Check fields when user leaves them and on form submission
-2. **Clear errors on input**: Remove error messages as user types
-3. **Show specific error messages**: Tell users exactly what's wrong
-4. **Use native validation**: Leverage HTML5 validation attributes
+1. **ブラーと送信時に検証**: ユーザーがフィールドを離れたときとフォーム送信時にチェック
+2. **入力時にエラーをクリア**: ユーザーが入力しているときにエラーメッセージを削除
+3. **具体的なエラーメッセージを表示**: 何が問題なのかを正確にユーザーに伝える
+4. **ネイティブ検証を使用**: HTML5 検証属性を活用
 
-### Loading States
+### ローディング状態
 
-1. **Show loading indicators**: Use loading prop on buttons during async operations
-2. **Disable during loading**: Prevent multiple submissions
-3. **Provide feedback**: Update button text to show progress
+1. **ローディングインジケーターを表示**: 非同期操作中はボタンのローディングプロップを使用
+2. **ローディング中は無効化**: 複数回の送信を防ぐ
+3. **フィードバックを提供**: 進捗を示すためにボタンテキストを更新
 
-### Accessibility
+### アクセシビリティ
 
-1. **Use proper labels**: Associate labels with inputs
-2. **Provide descriptions**: Use description slots for additional context
-3. **Indicate required fields**: Use required attribute and visual indicators
-4. **Keyboard navigation**: Ensure all interactions work with keyboard
+1. **適切なラベルを使用**: ラベルを入力欄に関連付ける
+2. **説明を提供**: 追加のコンテキストには description スロットを使用
+3. **必須フィールドを示す**: required 属性と視覚的なインジケーターを使用
+4. **キーボードナビゲーション**: すべてのインタラクションがキーボードで機能することを確認
 
-### Performance
+### パフォーマンス
 
-1. **Debounce search**: Delay API calls during typing
-2. **Lazy load options**: Load select options on demand
-3. **Optimize re-renders**: Use React.memo or Vue's reactive system wisely
+1. **検索のデバウンス**: 入力中の API 呼び出しを遅延
+2. **選択肢を遅延読み込み**: セレクトの選択肢をオンデマンドで読み込む
+3. **再レンダリングを最適化**: React.memo や Vue のリアクティブシステムを賢く使用
 
-## Related Documentation
+## 関連ドキュメント
 
-- [Component API Reference](../components/README.md)
-- [Customization Guide](./customization.md)
-- [Accessibility Guide](./accessibility.md)
+- [コンポーネント API リファレンス](../components/README.md)
+- [カスタマイズガイド](./customization.md)
+- [アクセシビリティガイド](./accessibility.md)

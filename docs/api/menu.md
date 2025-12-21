@@ -1,37 +1,37 @@
-# Menu
+# Menu（メニュー）
 
-> Menu component for displaying lists of actions or options
+> アクションやオプションのリストを表示するメニューコンポーネント
 
-**Tag**: `<ha-menu>`
+**タグ**: `<ha-menu>`
 
-**Category**: Navigation
+**カテゴリ**: Navigation
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `open` | `boolean` | `false` |  | Whether menu is open |
+| `open` | `boolean` | `false` |  | メニューが開いているかどうか |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-select` | `{ value: string }` | Emitted when menu item is selected |
-| `ha-open` | `{}` | Emitted when menu opens |
-| `ha-close` | `{}` | Emitted when menu closes |
+| `ha-select` | `{ value: string }` | メニュー項目が選択されたときに発火 |
+| `ha-open` | `{}` | メニューが開いたときに発火 |
+| `ha-close` | `{}` | メニューが閉じたときに発火 |
 
-### Usage
+### 使用方法
 
 ```javascript
 const element = document.querySelector('ha-menu');
@@ -40,74 +40,74 @@ element.addEventListener('ha-select', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Menu items |
-| `trigger` | Element that triggers the menu |
+| `default` | メニュー項目 |
+| `trigger` | メニューをトリガーする要素 |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使用方法
 
-Simple dropdown menu
+シンプルなドロップダウンメニュー
 
 ```html
 <ha-menu>
-  <ha-button slot="trigger">Actions</ha-button>
-  <ha-menu-item value="edit">Edit</ha-menu-item>
-  <ha-menu-item value="duplicate">Duplicate</ha-menu-item>
-  <ha-menu-item value="delete">Delete</ha-menu-item>
+  <ha-button slot="trigger">アクション</ha-button>
+  <ha-menu-item value="edit">編集</ha-menu-item>
+  <ha-menu-item value="duplicate">複製</ha-menu-item>
+  <ha-menu-item value="delete">削除</ha-menu-item>
 </ha-menu>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIA ロール
 
 - `menu`
 - `menuitem`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Arrow keys` | Navigate items |
-| `Enter/Space` | Select item |
-| `Escape` | Close menu |
+| `矢印キー` | 項目を移動 |
+| `Enter/Space` | 項目を選択 |
+| `Escape` | メニューを閉じる |
 
-### ARIA Attributes
+### ARIA 属性
 
 - `aria-haspopup`
 - `aria-expanded`
 - `aria-activedescendant`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-menu-background`
 - `--component-menu-item-hover`
 
-### Spacing
+### スペーシング
 
 - `--spacing-sm`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-md`
 - `--surface-overlay-elevation`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [移行ガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント例](../guides/examples.md)

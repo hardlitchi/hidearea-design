@@ -1,40 +1,40 @@
-# Radio
+# Radio（ラジオボタン）
 
-> Radio button for selecting a single option from a group
+> グループから単一のオプションを選択するためのラジオボタン
 
-**Tag**: `<ha-radio>`
+**タグ**: `<ha-radio>`
 
-**Category**: Form Controls
+**カテゴリ**: Form Controls
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `checked` | `boolean` | `false` |  | Whether the radio is selected |
-| `value` | `string` | `undefined` | ✅ | Value of the radio button |
-| `name` | `string` | `undefined` | ✅ | Name attribute for grouping radios |
-| `disabled` | `boolean` | `false` |  | Disables the radio button |
-| `required` | `boolean` | `false` |  | Makes radio required |
-| `label` | `string` | `undefined` |  | Radio label |
+| `checked` | `boolean` | `false` |  | ラジオボタンが選択されているかどうか |
+| `value` | `string` | `undefined` | ✅ | ラジオボタンの値 |
+| `name` | `string` | `undefined` | ✅ | ラジオボタンをグループ化するためのname属性 |
+| `disabled` | `boolean` | `false` |  | ラジオボタンを無効化 |
+| `required` | `boolean` | `false` |  | ラジオボタンを必須にする |
+| `label` | `string` | `undefined` |  | ラジオボタンのラベル |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-change` | `{ value: string }` | Emitted when radio is selected |
+| `ha-change` | `{ value: string }` | ラジオボタンが選択されたときに発火 |
 
-### Usage
+### 使用方法
 
 ```javascript
 const element = document.querySelector('ha-radio');
@@ -43,79 +43,79 @@ element.addEventListener('ha-change', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Radio label content |
+| `default` | ラジオボタンのラベルコンテンツ |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使用方法
 
-Radio button group
+ラジオボタングループ
 
 ```html
-<ha-radio name="size" value="small" label="Small"></ha-radio>
-<ha-radio name="size" value="medium" label="Medium" checked></ha-radio>
-<ha-radio name="size" value="large" label="Large"></ha-radio>
+<ha-radio name="size" value="small" label="小"></ha-radio>
+<ha-radio name="size" value="medium" label="中" checked></ha-radio>
+<ha-radio name="size" value="large" label="大"></ha-radio>
 ```
 
 ---
 
-### Disabled State
+### 無効状態
 
-Disabled radio button
+無効化されたラジオボタン
 
 ```html
-<ha-radio name="option" value="disabled" label="Disabled option" disabled></ha-radio>
+<ha-radio name="option" value="disabled" label="無効なオプション" disabled></ha-radio>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIA ロール
 
 - `radio`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Arrow keys` | Navigate between radio buttons in group |
-| `Space` | Select radio button |
+| `矢印キー` | グループ内のラジオボタン間を移動 |
+| `Space` | ラジオボタンを選択 |
 
-### ARIA Attributes
+### ARIA 属性
 
 - `aria-checked`
 - `aria-disabled`
 - `aria-required`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-radio-background`
 - `--component-radio-border`
 - `--component-radio-dot`
 
-### Spacing
+### スペーシング
 
 - `--spacing-sm`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-full`
 - `--interaction-transition-fast-duration`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [移行ガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント例](../guides/examples.md)

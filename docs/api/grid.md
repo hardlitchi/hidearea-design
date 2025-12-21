@@ -1,87 +1,87 @@
-# Grid
+# Grid（グリッド）
 
-> Grid layout component for creating responsive grid layouts
+> レスポンシブなグリッドレイアウトを作成するためのグリッドレイアウトコンポーネント
 
-**Tag**: `<ha-grid>`
+**タグ**: `<ha-grid>`
 
-**Category**: Layout
+**カテゴリ**: レイアウト
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `columns` | `number | string` | `12` |  | Number of columns or responsive breakpoint object |
-| `gap` | `'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'` | `'md'` |  | Gap between grid items |
+| `columns` | `number | string` | `12` |  | カラム数またはレスポンシブブレークポイントオブジェクト |
+| `gap` | `'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'` | `'md'` |  | グリッドアイテム間のギャップ |
 
-## Events
+## イベント
 
-This component emits no custom events.
+このコンポーネントはカスタムイベントを発行しません。
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Grid items |
+| `default` | グリッドアイテム |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple grid layout
+シンプルなグリッドレイアウト
 
 ```html
 <ha-grid columns="3" gap="md">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
+  <div>アイテム 1</div>
+  <div>アイテム 2</div>
+  <div>アイテム 3</div>
 </ha-grid>
 ```
 
 ---
 
-### Responsive Grid
+### レスポンシブグリッド
 
-Grid with responsive columns
+レスポンシブなカラムを持つグリッド
 
 ```html
 <ha-grid :columns="{ sm: 1, md: 2, lg: 4 }">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-  <div>Item 4</div>
+  <div>アイテム 1</div>
+  <div>アイテム 2</div>
+  <div>アイテム 3</div>
+  <div>アイテム 4</div>
 </ha-grid>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIA ロール
 
-No specific roles defined.
+特定のロールは定義されていません。
 
-### Keyboard Support
+### キーボードサポート
 
-Standard keyboard navigation.
+標準的なキーボードナビゲーション。
 
-### ARIA Attributes
+### ARIA 属性
 
-No specific ARIA attributes required.
+特定の ARIA 属性は不要です。
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します:
 
-### Spacing
+### スペーシング
 
 - `--spacing-xs`
 - `--spacing-sm`
@@ -91,7 +91,7 @@ This component uses the following design tokens:
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

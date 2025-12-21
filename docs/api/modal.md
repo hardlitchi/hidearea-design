@@ -1,41 +1,41 @@
-# Modal
+# Modal（モーダル）
 
-> Modal dialog component for displaying content in an overlay
+> オーバーレイでコンテンツを表示するモーダルダイアログコンポーネント
 
-**Tag**: `<ha-modal>`
+**タグ**: `<ha-modal>`
 
-**Category**: Feedback
+**カテゴリ**: Feedback
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `open` | `boolean` | `false` |  | Whether modal is open |
-| `size` | `'small' | 'medium' | 'large' | 'fullscreen'` | `'medium'` |  | Modal size |
-| `title` | `string` | `undefined` |  | Modal title |
-| `closeOnOverlay` | `boolean` | `true` |  | Close when clicking overlay |
-| `closeOnEscape` | `boolean` | `true` |  | Close when pressing Escape |
-| `closable` | `boolean` | `true` |  | Show close button |
+| `open` | `boolean` | `false` |  | モーダルが開いているかどうか |
+| `size` | `'small' | 'medium' | 'large' | 'fullscreen'` | `'medium'` |  | モーダルのサイズ |
+| `title` | `string` | `undefined` |  | モーダルのタイトル |
+| `closeOnOverlay` | `boolean` | `true` |  | オーバーレイクリックで閉じる |
+| `closeOnEscape` | `boolean` | `true` |  | Escapeキー押下で閉じる |
+| `closable` | `boolean` | `true` |  | 閉じるボタンを表示 |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-open` | `{}` | Emitted when modal opens |
-| `ha-close` | `{}` | Emitted when modal closes |
+| `ha-open` | `{}` | モーダルが開いたときに発火 |
+| `ha-close` | `{}` | モーダルが閉じたときに発火 |
 
-### Usage
+### 使用方法
 
 ```javascript
 const element = document.querySelector('ha-modal');
@@ -44,89 +44,89 @@ element.addEventListener('ha-open', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Modal content |
-| `header` | Custom header content |
-| `footer` | Modal footer (usually buttons) |
+| `default` | モーダルコンテンツ |
+| `header` | カスタムヘッダーコンテンツ |
+| `footer` | モーダルフッター（通常はボタン） |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使用方法
 
-Simple modal
+シンプルなモーダル
 
 ```html
-<ha-modal title="Confirm Action" open>
-  Are you sure you want to continue?
+<ha-modal title="アクションの確認" open>
+  続行してもよろしいですか？
   <div slot="footer">
-    <ha-button variant="outline">Cancel</ha-button>
-    <ha-button variant="primary">Confirm</ha-button>
+    <ha-button variant="outline">キャンセル</ha-button>
+    <ha-button variant="primary">確認</ha-button>
   </div>
 </ha-modal>
 ```
 
 ---
 
-### Large Modal
+### 大きいモーダル
 
-Modal with large size
+大きいサイズのモーダル
 
 ```html
-<ha-modal title="Details" size="large" open>
-  <p>Modal content goes here...</p>
+<ha-modal title="詳細" size="large" open>
+  <p>モーダルのコンテンツがここに入ります...</p>
 </ha-modal>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIA ロール
 
 - `dialog`
 - `alertdialog`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Escape` | Close modal |
-| `Tab` | Navigate focusable elements |
+| `Escape` | モーダルを閉じる |
+| `Tab` | フォーカス可能な要素を移動 |
 
-### ARIA Attributes
+### ARIA 属性
 
 - `aria-modal`
 - `aria-labelledby`
 - `aria-describedby`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-modal-background`
 - `--component-modal-overlay`
 
-### Spacing
+### スペーシング
 
 - `--spacing-lg`
 - `--spacing-xl`
 
-### Typography
+### タイポグラフィ
 
 - `--text-heading-h3-fontSize`
 - `--font-weight-bold`
 
-### Other
+### その他
 
 - `--border-radius-lg`
 - `--surface-overlay-elevation`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [移行ガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント例](../guides/examples.md)

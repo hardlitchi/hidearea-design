@@ -1,36 +1,36 @@
-# Accordion
+# Accordion（アコーディオン）
 
-> Accordion component for collapsible content sections
+> 折りたたみ可能なコンテンツセクション用のアコーディオンコンポーネント
 
-**Tag**: `<ha-accordion>`
+**タグ**: `<ha-accordion>`
 
-**Category**: Data Display
+**カテゴリ**: データ表示
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `multiple` | `boolean` | `false` |  | Allow multiple panels to be open |
-| `collapsible` | `boolean` | `true` |  | Allow panels to be collapsed |
+| `multiple` | `boolean` | `false` |  | 複数のパネルを同時に開くことを許可 |
+| `collapsible` | `boolean` | `true` |  | パネルを折りたたむことを許可 |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-change` | `{ openPanels: string[] }` | Emitted when panels are opened/closed |
+| `ha-change` | `{ openPanels: string[] }` | パネルの開閉時に発火 |
 
-### Usage
+### 使用方法
 
 ```javascript
 const element = document.querySelector('ha-accordion');
@@ -39,86 +39,86 @@ element.addEventListener('ha-change', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Accordion panels |
+| `default` | アコーディオンパネル |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple accordion
+シンプルなアコーディオン
 
 ```html
 <ha-accordion>
-  <ha-accordion-panel value="panel1" title="Section 1">
-    <p>Content for section 1</p>
+  <ha-accordion-panel value="panel1" title="セクション 1">
+    <p>セクション 1 のコンテンツ</p>
   </ha-accordion-panel>
-  <ha-accordion-panel value="panel2" title="Section 2">
-    <p>Content for section 2</p>
+  <ha-accordion-panel value="panel2" title="セクション 2">
+    <p>セクション 2 のコンテンツ</p>
   </ha-accordion-panel>
 </ha-accordion>
 ```
 
 ---
 
-### Multiple Open
+### 複数パネルを開く
 
-Allow multiple panels open
+複数のパネルを同時に開く設定
 
 ```html
 <ha-accordion multiple>
-  <ha-accordion-panel value="a" title="Panel A">Content A</ha-accordion-panel>
-  <ha-accordion-panel value="b" title="Panel B">Content B</ha-accordion-panel>
+  <ha-accordion-panel value="a" title="パネル A">コンテンツ A</ha-accordion-panel>
+  <ha-accordion-panel value="b" title="パネル B">コンテンツ B</ha-accordion-panel>
 </ha-accordion>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `region`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | 動作 |
 |-----|--------|
-| `Enter/Space` | Toggle panel |
-| `Arrow keys` | Navigate panels |
+| `Enter/Space` | パネルの開閉を切り替え |
+| `矢印キー` | パネル間を移動 |
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-expanded`
 - `aria-controls`
 - `aria-labelledby`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-accordion-header-background`
 - `--component-accordion-border`
 
-### Spacing
+### スペーシング
 
 - `--spacing-md`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 - `--font-weight-medium`
 
-### Other
+### その他
 
 - `--border-radius-md`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)
