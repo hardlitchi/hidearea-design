@@ -1,24 +1,24 @@
-# CI/CD Optimization Guide
+# CI/CD最適化ガイド
 
-This document describes the CI/CD optimizations implemented in the Hidearea Design System monorepo.
+このドキュメントは、Hidearea Design Systemモノレポに実装されたCI/CD最適化について説明します。
 
-## Overview
+## 概要
 
-The CI/CD pipeline has been optimized to significantly reduce build times and resource usage through:
+CI/CDパイプラインは、以下の手法によりビルド時間とリソース使用量を大幅に削減するよう最適化されています：
 
-1. **Turborepo caching** - Intelligent build caching across the monorepo
-2. **Conditional execution** - Skip unnecessary jobs based on file changes
-3. **GitHub Actions caching** - Cache dependencies and build outputs
-4. **Parallel execution** - Run independent jobs in parallel
-5. **Incremental builds** - Build only changed packages
+1. **Turborepoキャッシング** - モノレポ全体でのインテリジェントなビルドキャッシング
+2. **条件付き実行** - ファイル変更に基づいて不要なジョブをスキップ
+3. **GitHub Actionsキャッシング** - 依存関係とビルド出力のキャッシュ
+4. **並列実行** - 独立したジョブを並列で実行
+5. **インクリメンタルビルド** - 変更されたパッケージのみをビルド
 
-## Optimizations Implemented
+## 実装された最適化
 
-### 1. Turborepo Configuration
+### 1. Turborepo設定
 
-**File**: `turbo.json`
+**ファイル**: `turbo.json`
 
-Enhanced Turborepo configuration with explicit caching for all tasks:
+すべてのタスクで明示的なキャッシングを有効にした、強化されたTurborepo設定：
 
 ```json
 {
@@ -39,16 +39,16 @@ Enhanced Turborepo configuration with explicit caching for all tasks:
 }
 ```
 
-**Benefits**:
-- 80-95% faster subsequent builds (cache hit)
-- Shared cache across developers
-- Automatic cache invalidation on file changes
+**メリット**:
+- 2回目以降のビルドが80-95%高速化（キャッシュヒット時）
+- 開発者間でキャッシュを共有
+- ファイル変更時の自動キャッシュ無効化
 
-### 2. Change Detection
+### 2. 変更検知
 
-**File**: `.github/workflows/ci-optimized.yml`
+**ファイル**: `.github/workflows/ci-optimized.yml`
 
-Uses `dorny/paths-filter` to detect which packages changed:
+`dorny/paths-filter`を使用して、どのパッケージが変更されたかを検知：
 
 ```yaml
 - name: Detect changed files
@@ -60,14 +60,14 @@ Uses `dorny/paths-filter` to detect which packages changed:
       vue: 'packages/vue/**'
 ```
 
-**Benefits**:
-- Skip tests for unchanged packages
-- Reduce CI time by 40-60% on average
-- Only run necessary jobs
+**メリット**:
+- 変更されていないパッケージのテストをスキップ
+- CI時間を平均40-60%削減
+- 必要なジョブのみを実行
 
-### 3. Conditional Job Execution
+### 3. 条件付きジョブ実行
 
-Jobs only run when relevant files change:
+関連ファイルが変更された場合のみジョブを実行：
 
 ```yaml
 test:
@@ -75,14 +75,14 @@ test:
   if: needs.changes.outputs.core == 'true' || needs.changes.outputs.react == 'true'
 ```
 
-**Benefits**:
-- Documentation changes don't trigger full test suite
-- Faster PR feedback for focused changes
-- Reduced GitHub Actions minutes usage
+**メリット**:
+- ドキュメント変更時に完全なテストスイートをトリガーしない
+- 焦点を絞った変更に対するPRフィードバックの高速化
+- GitHub Actionsの使用分数を削減
 
-### 4. Build Output Caching
+### 4. ビルド出力のキャッシング
 
-Cache build outputs between jobs:
+ジョブ間でビルド出力をキャッシュ：
 
 ```yaml
 - name: Cache build outputs
@@ -94,14 +94,14 @@ Cache build outputs between jobs:
     key: ${{ runner.os }}-build-${{ github.sha }}
 ```
 
-**Benefits**:
-- Share build artifacts across jobs
-- Avoid rebuilding in downstream jobs
-- 2-3x faster performance monitoring
+**メリット**:
+- ジョブ間でビルド成果物を共有
+- 下流のジョブでの再ビルドを回避
+- パフォーマンス監視が2-3倍高速化
 
-### 5. Turbo Cache in CI
+### 5. CIでのTurboキャッシュ
 
-Persist Turbo cache across workflow runs:
+ワークフロー実行間でTurboキャッシュを永続化：
 
 ```yaml
 - name: Cache Turbo
@@ -113,14 +113,14 @@ Persist Turbo cache across workflow runs:
     key: ${{ runner.os }}-turbo-${{ hashFiles('pnpm-lock.yaml') }}
 ```
 
-**Benefits**:
-- Reuse build outputs from previous runs
-- Dramatically faster rebuilds
-- Works across branches
+**メリット**:
+- 以前の実行からビルド出力を再利用
+- 再ビルドが劇的に高速化
+- ブランチ間でも機能
 
-### 6. Concurrency Control
+### 6. 並行実行制御
 
-Cancel outdated workflow runs:
+古いワークフロー実行をキャンセル：
 
 ```yaml
 concurrency:
@@ -128,178 +128,178 @@ concurrency:
   cancel-in-progress: true
 ```
 
-**Benefits**:
-- Cancel superseded workflow runs
-- Save CI resources
-- Faster feedback on latest push
+**メリット**:
+- 古くなったワークフロー実行をキャンセル
+- CIリソースを節約
+- 最新のプッシュへのフィードバックが高速化
 
-## Performance Improvements
+## パフォーマンス改善
 
-### Before Optimization
+### 最適化前
 
-| Workflow | Duration | GitHub Actions Minutes |
-|----------|----------|----------------------|
-| Full CI | 15-20 min | 60-80 min |
-| Test only | 8-10 min | 32-40 min |
-| Build only | 5-7 min | 20-28 min |
+| ワークフロー | 実行時間 | GitHub Actions使用分数 |
+|-------------|---------|---------------------|
+| フルCI | 15-20分 | 60-80分 |
+| テストのみ | 8-10分 | 32-40分 |
+| ビルドのみ | 5-7分 | 20-28分 |
 
-### After Optimization
+### 最適化後
 
-| Workflow | Duration (cache miss) | Duration (cache hit) | Savings |
-|----------|----------------------|---------------------|---------|
-| Full CI | 10-12 min | 3-5 min | 70-75% |
-| Test only | 5-6 min | 1-2 min | 75-80% |
-| Build only | 3-4 min | 30-60 sec | 85-90% |
+| ワークフロー | 実行時間（キャッシュミス） | 実行時間（キャッシュヒット） | 削減率 |
+|-------------|------------------------|------------------------|--------|
+| フルCI | 10-12分 | 3-5分 | 70-75% |
+| テストのみ | 5-6分 | 1-2分 | 75-80% |
+| ビルドのみ | 3-4分 | 30-60秒 | 85-90% |
 
-### Real-World Scenarios
+### 実際のシナリオ
 
-**Scenario 1: Documentation Change**
-- Before: 15 min (full CI)
-- After: 2 min (skip tests/build)
-- **Improvement: 87%**
+**シナリオ1: ドキュメント変更のみ**
+- 最適化前: 15分（フルCI）
+- 最適化後: 2分（テスト/ビルドをスキップ）
+- **改善率: 87%**
 
-**Scenario 2: Core Package Change**
-- Before: 18 min (full test + build)
-- After: 8 min (cache miss), 3 min (cache hit)
-- **Improvement: 56-83%**
+**シナリオ2: コアパッケージの変更**
+- 最適化前: 18分（フルテスト + ビルド）
+- 最適化後: 8分（キャッシュミス）、3分（キャッシュヒット）
+- **改善率: 56-83%**
 
-**Scenario 3: Subsequent PR Push**
-- Before: 15 min (rebuild everything)
-- After: 3 min (turbo cache + build cache)
-- **Improvement: 80%**
+**シナリオ3: 後続のPRプッシュ**
+- 最適化前: 15分（すべて再ビルド）
+- 最適化後: 3分（turboキャッシュ + ビルドキャッシュ）
+- **改善率: 80%**
 
-## Usage
+## 使用方法
 
-### Using the Optimized Workflow
+### 最適化されたワークフローの使用
 
-The optimized workflow is in `.github/workflows/ci-optimized.yml`. To use it:
+最適化されたワークフローは`.github/workflows/ci-optimized.yml`にあります。使用するには：
 
-1. **Rename the file**:
+1. **ファイル名を変更**:
    ```bash
    mv .github/workflows/ci.yml .github/workflows/ci-old.yml
    mv .github/workflows/ci-optimized.yml .github/workflows/ci.yml
    ```
 
-2. **Commit and push**:
+2. **コミットしてプッシュ**:
    ```bash
    git add .github/workflows/
-   git commit -m "feat: optimize CI/CD pipeline"
+   git commit -m "feat: CI/CDパイプラインを最適化"
    git push
    ```
 
-### Local Development
+### ローカル開発
 
-Leverage Turbo cache locally:
+ローカルでもTurboキャッシュを活用：
 
 ```bash
-# Build with cache
+# キャッシュを使用してビルド
 pnpm build
 
-# Subsequent builds are much faster
-pnpm build  # Cached!
+# 2回目以降のビルドは非常に高速
+pnpm build  # キャッシュされている！
 
-# Force rebuild (skip cache)
+# 強制的に再ビルド（キャッシュをスキップ）
 pnpm build --force
 
-# Build only changed packages
+# 変更されたパッケージのみビルド
 pnpm turbo build --filter=...[HEAD^]
 ```
 
-### Monitoring Cache Performance
+### キャッシュパフォーマンスの監視
 
-Check Turbo cache hit rate:
+Turboキャッシュのヒット率を確認：
 
 ```bash
-# After running a build
+# ビルド実行後
 pnpm turbo build --summarize
 
-# Output shows cache hit/miss for each task
+# 出力には各タスクのキャッシュヒット/ミスが表示される
 ```
 
-## Best Practices
+## ベストプラクティス
 
-### 1. Commit Small, Focused Changes
+### 1. 小さく焦点を絞った変更をコミット
 
-Smaller changesets benefit more from selective execution:
+小さな変更セットは選択的実行の恩恵を大きく受けます：
 
 ```bash
-# Good: Only tests core package
+# 良い例: コアパッケージのみテスト
 git add packages/core/
-git commit -m "fix: core component bug"
+git commit -m "fix: コアコンポーネントのバグ修正"
 
-# Less optimal: Tests everything
+# 最適でない例: すべてをテスト
 git add .
-git commit -m "fix: various fixes"
+git commit -m "fix: 様々な修正"
 ```
 
-### 2. Use Turbo for Local Builds
+### 2. ローカルビルドにTurboを使用
 
-Always use `pnpm build` (which uses Turbo) instead of:
+常に`pnpm build`（Turboを使用）を使用し、以下は避けてください：
 
 ```bash
-# ❌ Don't
+# ❌ 避ける
 cd packages/core && npm run build
 
-# ✅ Do
+# ✅ 推奨
 pnpm --filter @hidearea-design/core build
-# or
+# または
 pnpm build
 ```
 
-### 3. Leverage Filters
+### 3. フィルターを活用
 
-Build only what you need:
+必要なものだけをビルド：
 
 ```bash
-# Build core and its dependents
+# coreとその依存先をビルド
 pnpm turbo build --filter=@hidearea-design/core...
 
-# Build everything changed since main
+# mainから変更されたすべてをビルド
 pnpm turbo build --filter=...[origin/main]
 
-# Build for specific package
+# 特定のパッケージのみビルド
 pnpm turbo build --filter=@hidearea-design/react
 ```
 
-### 4. Clear Cache When Needed
+### 4. 必要に応じてキャッシュをクリア
 
-If you encounter build issues:
+ビルドの問題が発生した場合：
 
 ```bash
-# Clear Turbo cache
+# Turboキャッシュをクリア
 rm -rf .turbo
 
-# Clear all caches and rebuild
+# すべてのキャッシュをクリアして再ビルド
 pnpm clean
 pnpm install
 pnpm build --force
 ```
 
-## Advanced Configuration
+## 高度な設定
 
-### Remote Caching (Future Enhancement)
+### リモートキャッシング（将来の機能強化）
 
-For even better performance, consider Vercel Remote Cache:
+さらなるパフォーマンス向上のため、Vercel Remote Cacheの検討：
 
 ```bash
-# Install Turbo globally
+# Turboをグローバルにインストール
 npm install -g turbo
 
-# Login to Vercel
+# Vercelにログイン
 turbo login
 
-# Link repository
+# リポジトリをリンク
 turbo link
 ```
 
-**Benefits**:
-- Share cache across team members
-- Faster CI for everyone
-- Persistent cache across machines
+**メリット**:
+- チームメンバー間でキャッシュを共有
+- 全員のCIが高速化
+- マシン間で永続的なキャッシュ
 
-### Custom Cache Keys
+### カスタムキャッシュキー
 
-Customize what invalidates cache:
+キャッシュを無効化する条件をカスタマイズ：
 
 ```json
 {
@@ -314,115 +314,115 @@ Customize what invalidates cache:
 }
 ```
 
-### Pipeline Visualization
+### パイプラインの可視化
 
-Visualize task dependencies:
+タスクの依存関係を可視化：
 
 ```bash
 pnpm turbo build --graph
-# Generates a DOT file for Graphviz
+# Graphviz用のDOTファイルを生成
 ```
 
-## Troubleshooting
+## トラブルシューティング
 
-### Cache Not Working
+### キャッシュが機能しない
 
-**Symptom**: Builds always run from scratch
+**症状**: ビルドが常にゼロから実行される
 
-**Solutions**:
-1. Check cache directory exists: `ls -la .turbo`
-2. Verify turbo.json syntax
-3. Ensure outputs are correctly specified
-4. Check file permissions
+**解決策**:
+1. キャッシュディレクトリの存在確認: `ls -la .turbo`
+2. turbo.jsonの構文を確認
+3. outputsが正しく指定されているか確認
+4. ファイルパーミッションを確認
 
-### GitHub Actions Cache Miss
+### GitHub Actionsのキャッシュミス
 
-**Symptom**: GitHub Actions always cache miss
+**症状**: GitHub Actionsで常にキャッシュミス
 
-**Solutions**:
-1. Verify cache key includes correct hash
-2. Check cache path is correct
-3. Ensure lockfile is committed
-4. Review cache limits (10GB per repo)
+**解決策**:
+1. キャッシュキーに正しいハッシュが含まれているか確認
+2. キャッシュパスが正しいか確認
+3. ロックファイルがコミットされているか確認
+4. キャッシュ制限を確認（リポジトリあたり10GB）
 
-### Incorrect Conditional Execution
+### 不適切な条件付き実行
 
-**Symptom**: Jobs skipped when they shouldn't be
+**症状**: 実行されるべきジョブがスキップされる
 
-**Solutions**:
-1. Check paths-filter configuration
-2. Verify file paths in filters
-3. Test with actual file changes
-4. Review job dependencies (needs)
+**解決策**:
+1. paths-filter設定を確認
+2. フィルター内のファイルパスを確認
+3. 実際のファイル変更でテスト
+4. ジョブの依存関係（needs）を確認
 
-## Metrics and Monitoring
+## メトリクスと監視
 
-### Track CI Performance
+### CIパフォーマンスの追跡
 
-Monitor these metrics over time:
+時間とともに以下のメトリクスを監視：
 
-1. **Average build time**: `sum(workflow_duration) / count(workflows)`
-2. **Cache hit rate**: `cache_hits / total_builds`
-3. **GitHub Actions minutes**: Monthly usage
-4. **P95 build time**: 95th percentile duration
+1. **平均ビルド時間**: `sum(workflow_duration) / count(workflows)`
+2. **キャッシュヒット率**: `cache_hits / total_builds`
+3. **GitHub Actions使用分数**: 月間使用量
+4. **P95ビルド時間**: 95パーセンタイルの実行時間
 
-### GitHub Actions Insights
+### GitHub Actionsインサイト
 
-View performance in GitHub:
-- Actions tab → Workflow runs
-- Click on workflow → Summary
-- Check timing for each job
+GitHubでパフォーマンスを確認：
+- Actionsタブ → Workflow runs
+- ワークフローをクリック → Summary
+- 各ジョブのタイミングを確認
 
-### Turbo Summary
+### Turboサマリー
 
-After each build:
+各ビルド後：
 
 ```bash
 pnpm turbo build --summarize
 ```
 
-Output includes:
-- Tasks run
-- Cache hit/miss
-- Execution time
-- Hash information
+出力には以下が含まれます：
+- 実行されたタスク
+- キャッシュヒット/ミス
+- 実行時間
+- ハッシュ情報
 
-## Future Optimizations
+## 今後の最適化
 
-### Planned Enhancements
+### 計画されている機能強化
 
-1. **Remote caching** - Vercel Remote Cache for team-wide caching
-2. **Matrix builds** - Parallel testing across Node versions
-3. **Dependency caching** - Separate cache for node_modules
-4. **Artifact sharing** - Reuse test artifacts across jobs
-5. **Smart test selection** - Run only tests for changed code
+1. **リモートキャッシング** - チーム全体でのキャッシング用にVercel Remote Cache
+2. **マトリックスビルド** - Nodeバージョン間での並列テスト
+3. **依存関係キャッシング** - node_modules用の個別キャッシュ
+4. **成果物の共有** - ジョブ間でテスト成果物を再利用
+5. **スマートテスト選択** - 変更されたコードのテストのみ実行
 
-### Experimental Features
+### 実験的機能
 
-1. **Distributed task execution** - Run tasks across multiple machines
-2. **Predictive caching** - Pre-warm cache based on patterns
-3. **Build profiling** - Detailed performance analysis
+1. **分散タスク実行** - 複数マシンでタスクを実行
+2. **予測的キャッシング** - パターンに基づいてキャッシュを事前にウォーム
+3. **ビルドプロファイリング** - 詳細なパフォーマンス分析
 
-## References
+## リファレンス
 
-- [Turborepo Documentation](https://turbo.build/repo/docs)
-- [GitHub Actions Caching](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows)
-- [pnpm Filtering](https://pnpm.io/filtering)
-- [Monorepo Best Practices](https://monorepo.tools/)
+- [Turborepoドキュメント](https://turbo.build/repo/docs)
+- [GitHub Actionsキャッシング](https://docs.github.com/ja/actions/using-workflows/caching-dependencies-to-speed-up-workflows)
+- [pnpmフィルタリング](https://pnpm.io/ja/filtering)
+- [モノレポのベストプラクティス](https://monorepo.tools/)
 
-## Changelog
+## 変更履歴
 
-### 2025-12-21 - Initial Optimization
+### 2025-12-21 - 初期最適化
 
-- ✅ Implemented Turborepo task caching
-- ✅ Added change detection with paths-filter
-- ✅ Implemented conditional job execution
-- ✅ Added build output caching
-- ✅ Added Turbo cache in CI
-- ✅ Implemented concurrency control
-- **Result**: 70-87% reduction in CI time
+- ✅ Turborepoタスクキャッシングを実装
+- ✅ paths-filterを使用した変更検知を追加
+- ✅ 条件付きジョブ実行を実装
+- ✅ ビルド出力キャッシングを追加
+- ✅ CIにTurboキャッシュを追加
+- ✅ 並行実行制御を実装
+- **結果**: CI時間を70-87%削減
 
 ---
 
-**Last Updated**: 2025-12-21
-**Maintained By**: Hidearea Design System Team
+**最終更新**: 2025-12-21
+**メンテナンス**: Hidearea Design System チーム
