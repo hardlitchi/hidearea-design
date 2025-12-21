@@ -364,9 +364,9 @@ Phase 10.4のすべてのタスクが完了しました。
   - [ ] ビルド時間短縮
 
 #### 完了済み ✅
-- ✅ **Examples Repository（進行中 - 1/6完了）**
+- ✅ **Examples Repository（進行中 - 2/6完了）**
   - ✅ Next.js統合例（3ページ、包括的ドキュメント、TypeScript完全対応）
-  - [ ] Nuxt.js統合例
+  - ✅ Nuxt.js統合例（3ページ、Vue 3 Composition API、SSR対応、TypeScript）
   - [ ] Remix統合例
   - [ ] SvelteKit統合例
   - [ ] パフォーマンス最適化例
@@ -453,13 +453,25 @@ Phase 10.4のすべてのタスクが完了しました。
 
 **Phase 11 進捗**:
 - ✅ Phase 11.1 完了（100% - npmパッケージ・CI/CD・ドキュメント・リリース準備完了）
-- 🚧 Phase 11.2 進行中（17% - Examples Repository: Next.js完了、他5例予定）
+- 🚧 Phase 11.2 進行中（33% - Examples Repository: Next.js & Nuxt.js完了、他4例予定）
 
 ---
 
 ## 📝 変更履歴
 
-### 2025-12-21（最新 - Phase 11.2開始、Next.js Example完了）
+### 2025-12-21（最新 - Nuxt.js Example完了）
+- ✅ Nuxt.js統合例完了:
+  - 3つの完全なページ実装（Home、Components、Forms）
+  - Vue 3 Composition API使用（ref, reactive）
+  - TypeScript完全対応（strict mode、型キャスト）
+  - 包括的なREADME（Nuxt設定、SSR考慮事項、トラブルシューティング）
+  - 13コンポーネントの実例（同Next.js例と同等のカバレッジ）
+  - グローバルWeb Components登録（app.vue）
+  - Vite最適化設定
+  - SSR/静的生成対応
+- 全体進捗更新（Phase 11.2: 17% → 33%）
+
+### 2025-12-21（Phase 11.2開始、Next.js Example完了）
 - 🚧 Phase 11.2開始: Examples Repository作成
 - ✅ Next.js統合例完了:
   - 3つの完全なページ実装（Home、Components、Forms）
