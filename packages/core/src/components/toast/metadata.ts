@@ -6,16 +6,19 @@ export const metadata: ComponentMetadata = {
   description: 'Toast notification component for temporary messages',
   category: 'Feedback',
   props: [
-    { name: 'variant', type: "'info' | 'success' | 'warning' | 'danger'", default: "'info'", required: false, description: 'Toast type' },
-    { name: 'duration', type: 'number', default: '3000', required: false, description: 'Auto-dismiss duration in ms (0 = no auto-dismiss)' },
-    { name: 'position', type: "'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'", default: "'top-right'", required: false, description: 'Toast position' },
-    { name: 'closable', type: 'boolean', default: 'true', required: false, description: 'Show close button' },
+    { name: 'variant', type: "'info' | 'success' | 'warning' | 'error'", default: "'info'", required: false, description: 'Toast type' },
+    { name: 'message', type: 'string', required: false, description: 'Toast message' },
+    { name: 'duration', type: 'number', default: '0', required: false, description: 'Auto-close duration in ms (0 = no auto-close)' },
+    { name: 'closable', type: 'boolean', default: 'false', required: false, description: 'Show close button' },
+    { name: 'show-progress', type: 'boolean', default: 'false', required: false, description: 'Show progress bar' },
   ],
   events: [
-    { name: 'ha-close', detail: '{}', description: 'Emitted when toast is closed' },
+    { name: 'toast-close', detail: '{}', description: 'Emitted when toast is closed' },
   ],
   slots: [
-    { name: 'default', description: 'Toast content' },
+    { name: 'default', description: 'Toast message content' },
+    { name: 'icon', description: 'Custom icon' },
+    { name: 'action', description: 'Action button' },
   ],
   examples: [
     {

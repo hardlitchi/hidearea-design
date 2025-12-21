@@ -7,15 +7,16 @@ export const metadata: ComponentMetadata = {
   category: 'Overlay',
   props: [
     { name: 'open', type: 'boolean', default: 'false', required: false, description: 'Whether drawer is open' },
-    { name: 'position', type: "'left' | 'right' | 'top' | 'bottom'", default: "'right'", required: false, description: 'Drawer position' },
-    { name: 'size', type: "'small' | 'medium' | 'large'", default: "'medium'", required: false, description: 'Drawer size' },
-    { name: 'title', type: 'string', required: false, description: 'Drawer title' },
-    { name: 'closeOnOverlay', type: 'boolean', default: 'true', required: false, description: 'Close when clicking overlay' },
-    { name: 'closeOnEscape', type: 'boolean', default: 'true', required: false, description: 'Close when pressing Escape' },
+    { name: 'placement', type: "'left' | 'right' | 'top' | 'bottom'", default: "'right'", required: false, description: 'Drawer placement' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", required: false, description: 'Drawer size' },
+    { name: 'overlay', type: 'boolean', default: 'true', required: false, description: 'Show backdrop overlay' },
+    { name: 'close-on-backdrop', type: 'boolean', default: 'true', required: false, description: 'Close when clicking backdrop' },
+    { name: 'close-on-escape', type: 'boolean', default: 'true', required: false, description: 'Close when pressing Escape' },
   ],
   events: [
-    { name: 'ha-open', detail: '{}', description: 'Emitted when drawer opens' },
-    { name: 'ha-close', detail: '{}', description: 'Emitted when drawer closes' },
+    { name: 'drawer-open', detail: '{}', description: 'Emitted when drawer opens' },
+    { name: 'drawer-close', detail: '{}', description: 'Emitted when drawer closes' },
+    { name: 'backdrop-click', detail: '{}', description: 'Emitted when backdrop is clicked' },
   ],
   slots: [
     { name: 'default', description: 'Drawer content' },
@@ -26,14 +27,14 @@ export const metadata: ComponentMetadata = {
     {
       title: 'Basic Usage',
       description: 'Simple drawer',
-      code: `<ha-drawer title="Settings" open>
+      code: `<ha-drawer open>
   <p>Drawer content goes here</p>
 </ha-drawer>`,
     },
     {
       title: 'Left Position',
       description: 'Drawer from left side',
-      code: `<ha-drawer position="left" title="Menu" open>
+      code: `<ha-drawer placement="left" open>
   <ha-menu>
     <ha-menu-item>Home</ha-menu-item>
     <ha-menu-item>About</ha-menu-item>

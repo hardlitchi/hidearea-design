@@ -6,8 +6,10 @@ export const metadata: ComponentMetadata = {
   description: 'Loading spinner component for indicating progress',
   category: 'Feedback',
   props: [
-    { name: 'size', type: "'small' | 'medium' | 'large'", default: "'medium'", required: false, description: 'Spinner size' },
-    { name: 'color', type: 'string', required: false, description: 'Spinner color' },
+    { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", required: false, description: 'Spinner size' },
+    { name: 'color', type: "'primary' | 'success' | 'warning' | 'error' | 'info' | 'neutral'", default: "'primary'", required: false, description: 'Spinner color' },
+    { name: 'variant', type: "'circular' | 'dots' | 'pulse'", default: "'circular'", required: false, description: 'Spinner variant' },
+    { name: 'speed', type: 'string', default: "'0.8s'", required: false, description: 'Animation speed' },
   ],
   events: [],
   examples: [
@@ -19,9 +21,9 @@ export const metadata: ComponentMetadata = {
     {
       title: 'Different Sizes',
       description: 'Various spinner sizes',
-      code: `<ha-spinner size="small"></ha-spinner>
-<ha-spinner size="medium"></ha-spinner>
-<ha-spinner size="large"></ha-spinner>`,
+      code: `<ha-spinner size="sm"></ha-spinner>
+<ha-spinner size="md"></ha-spinner>
+<ha-spinner size="lg"></ha-spinner>`,
     },
   ],
   accessibility: {
@@ -41,8 +43,8 @@ export const metadata: ComponentMetadata = {
       const className = attributes.class || '';
       let size = 'medium';
 
-      if (className.includes('small') || className.includes('sm')) size = 'small';
-      else if (className.includes('large') || className.includes('lg')) size = 'large';
+      if (className.includes('small') || className.includes('sm')) size = 'sm';
+      else if (className.includes('large') || className.includes('lg')) size = 'lg';
 
       const label = attributes['aria-label'] || 'Loading...';
 

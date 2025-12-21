@@ -6,11 +6,13 @@ export const metadata: ComponentMetadata = {
   description: 'Tabs component for organizing content into different views',
   category: 'Navigation',
   props: [
-    { name: 'value', type: 'string', required: false, description: 'Active tab value' },
-    { name: 'variant', type: "'default' | 'pills' | 'underline'", default: "'default'", required: false, description: 'Tab style variant' },
+    { name: 'value', type: 'string', required: false, description: 'Currently active tab value' },
+    { name: 'variant', type: "'default' | 'outlined' | 'pills'", default: "'default'", required: false, description: 'Tab style variant' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", required: false, description: 'Tab size' },
+    { name: 'align', type: "'start' | 'center' | 'end'", default: "'start'", required: false, description: 'Tab alignment' },
   ],
   events: [
-    { name: 'ha-change', detail: '{ value: string }', description: 'Emitted when active tab changes' },
+    { name: 'tab-change', detail: '{ value: string, oldValue: string }', description: 'Emitted when active tab changes' },
   ],
   slots: [
     { name: 'default', description: 'Tab and panel elements' },

@@ -6,15 +6,19 @@ export const metadata: ComponentMetadata = {
   description: 'Container component for grouping related content',
   category: 'Layout',
   props: [
-    { name: 'variant', type: "'filled' | 'outlined' | 'elevated'", default: "'filled'", required: false, description: 'Card style variant' },
-    { name: 'padding', type: "'none' | 'small' | 'medium' | 'large'", default: "'medium'", required: false, description: 'Internal padding' },
+    { name: 'variant', type: "'default' | 'outlined' | 'elevated'", default: "'default'", required: false, description: 'Card style variant' },
+    { name: 'padding', type: "'none' | 'sm' | 'md' | 'lg'", default: "'md'", required: false, description: 'Internal padding' },
     { name: 'hoverable', type: 'boolean', default: 'false', required: false, description: 'Adds hover effect' },
+    { name: 'clickable', type: 'boolean', default: 'false', required: false, description: 'Enable clickable state' },
   ],
-  events: [],
+  events: [
+    { name: 'card-click', detail: '{ originalEvent: MouseEvent }', description: 'Emitted when card is clicked (if clickable)' },
+  ],
   slots: [
-    { name: 'default', description: 'Card content' },
+    { name: 'default', description: 'Card body content' },
     { name: 'header', description: 'Card header content' },
     { name: 'footer', description: 'Card footer content' },
+    { name: 'media', description: 'Media content (images, videos)' },
   ],
   examples: [
     {

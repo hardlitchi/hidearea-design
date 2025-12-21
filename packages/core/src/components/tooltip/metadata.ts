@@ -6,17 +6,22 @@ export const metadata: ComponentMetadata = {
   description: 'Tooltip component for displaying contextual information on hover',
   category: 'Overlay',
   props: [
-    { name: 'content', type: 'string', required: true, description: 'Tooltip content' },
-    { name: 'placement', type: "'top' | 'bottom' | 'left' | 'right'", default: "'top'", required: false, description: 'Tooltip placement' },
+    { name: 'content', type: 'string', required: false, description: 'Tooltip content text' },
+    { name: 'placement', type: "'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'", default: "'top'", required: false, description: 'Tooltip placement' },
     { name: 'trigger', type: "'hover' | 'focus' | 'click'", default: "'hover'", required: false, description: 'Trigger behavior' },
-    { name: 'delay', type: 'number', default: '0', required: false, description: 'Show delay in milliseconds' },
+    { name: 'variant', type: "'default' | 'dark' | 'light'", default: "'default'", required: false, description: 'Tooltip variant' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", required: false, description: 'Tooltip size' },
+    { name: 'show-arrow', type: 'boolean', default: 'false', required: false, description: 'Show arrow indicator' },
+    { name: 'delay', type: 'number', default: '200', required: false, description: 'Show delay in milliseconds' },
+    { name: 'disabled', type: 'boolean', default: 'false', required: false, description: 'Disabled state' },
   ],
   events: [
-    { name: 'ha-show', detail: '{}', description: 'Emitted when tooltip shows' },
-    { name: 'ha-hide', detail: '{}', description: 'Emitted when tooltip hides' },
+    { name: 'show', detail: '{}', description: 'Emitted when tooltip is shown' },
+    { name: 'hide', detail: '{}', description: 'Emitted when tooltip is hidden' },
   ],
   slots: [
-    { name: 'default', description: 'Element that triggers tooltip' },
+    { name: 'default', description: 'Trigger element (default slot)' },
+    { name: 'content', description: 'Custom tooltip content' },
   ],
   examples: [
     {
