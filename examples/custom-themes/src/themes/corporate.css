@@ -1,0 +1,76 @@
+/**
+ * Corporate Theme
+ * Professional and conservative color scheme for business applications
+ */
+
+:root[data-theme="corporate"] {
+  /* Primary Colors - Navy Blue */
+  --ha-color-primary: #1e3a8a;
+  --ha-color-primary-hover: #1e40af;
+  --ha-color-primary-active: #1e3a8a;
+
+  /* Secondary Colors - Steel Gray */
+  --ha-color-secondary: #475569;
+  --ha-color-secondary-hover: #64748b;
+  --ha-color-secondary-active: #475569;
+
+  /* Success - Professional Green */
+  --ha-color-success: #059669;
+  --ha-color-success-hover: #10b981;
+  --ha-color-success-active: #047857;
+
+  /* Danger - Muted Red */
+  --ha-color-danger: #dc2626;
+  --ha-color-danger-hover: #ef4444;
+  --ha-color-danger-active: #b91c1c;
+
+  /* Warning - Gold */
+  --ha-color-warning: #d97706;
+  --ha-color-warning-hover: #f59e0b;
+  --ha-color-warning-active: #b45309;
+
+  /* Info - Cool Blue */
+  --ha-color-info: #0284c7;
+  --ha-color-info-hover: #0ea5e9;
+  --ha-color-info-active: #0369a1;
+
+  /* Backgrounds - Light and Professional */
+  --ha-color-background-primary: #ffffff;
+  --ha-color-background-secondary: #f8fafc;
+  --ha-color-background-tertiary: #f1f5f9;
+
+  /* Text Colors */
+  --ha-color-text-primary: #0f172a;
+  --ha-color-text-secondary: #475569;
+  --ha-color-text-tertiary: #94a3b8;
+
+  /* Border Colors */
+  --ha-color-border-primary: #e2e8f0;
+  --ha-color-border-secondary: #cbd5e1;
+
+  /* Shadows - Subtle */
+  --ha-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ha-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --ha-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="corporate-dark"] {
+  /* Primary Colors - Lighter Navy for dark mode */
+  --ha-color-primary: #3b82f6;
+  --ha-color-primary-hover: #60a5fa;
+  --ha-color-primary-active: #2563eb;
+
+  /* Backgrounds - Dark */
+  --ha-color-background-primary: #0f172a;
+  --ha-color-background-secondary: #1e293b;
+  --ha-color-background-tertiary: #334155;
+
+  /* Text Colors - Light */
+  --ha-color-text-primary: #f1f5f9;
+  --ha-color-text-secondary: #cbd5e1;
+  --ha-color-text-tertiary: #94a3b8;
+
+  /* Border Colors - Darker */
+  --ha-color-border-primary: #334155;
+  --ha-color-border-secondary: #475569;
+}

@@ -1,0 +1,76 @@
+/**
+ * Ocean Theme
+ * Calming blue and teal color scheme inspired by the ocean
+ */
+
+:root[data-theme="ocean"] {
+  /* Primary Colors - Deep Ocean Blue */
+  --ha-color-primary: #0ea5e9;
+  --ha-color-primary-hover: #38bdf8;
+  --ha-color-primary-active: #0284c7;
+
+  /* Secondary Colors - Teal */
+  --ha-color-secondary: #14b8a6;
+  --ha-color-secondary-hover: #2dd4bf;
+  --ha-color-secondary-active: #0d9488;
+
+  /* Success - Aqua Green */
+  --ha-color-success: #10b981;
+  --ha-color-success-hover: #34d399;
+  --ha-color-success-active: #059669;
+
+  /* Danger - Coral Red */
+  --ha-color-danger: #f43f5e;
+  --ha-color-danger-hover: #fb7185;
+  --ha-color-danger-active: #e11d48;
+
+  /* Warning - Sunset Orange */
+  --ha-color-warning: #f59e0b;
+  --ha-color-warning-hover: #fbbf24;
+  --ha-color-warning-active: #d97706;
+
+  /* Info - Sky Blue */
+  --ha-color-info: #06b6d4;
+  --ha-color-info-hover: #22d3ee;
+  --ha-color-info-active: #0891b2;
+
+  /* Backgrounds - Light Ocean */
+  --ha-color-background-primary: #f0f9ff;
+  --ha-color-background-secondary: #e0f2fe;
+  --ha-color-background-tertiary: #bae6fd;
+
+  /* Text Colors */
+  --ha-color-text-primary: #0c4a6e;
+  --ha-color-text-secondary: #075985;
+  --ha-color-text-tertiary: #0284c7;
+
+  /* Border Colors */
+  --ha-color-border-primary: #7dd3fc;
+  --ha-color-border-secondary: #38bdf8;
+
+  /* Shadows - Ocean Glow */
+  --ha-shadow-sm: 0 1px 2px 0 rgba(14, 165, 233, 0.1);
+  --ha-shadow-md: 0 4px 6px -1px rgba(14, 165, 233, 0.2);
+  --ha-shadow-lg: 0 10px 15px -3px rgba(14, 165, 233, 0.3);
+}
+
+:root[data-theme="ocean-dark"] {
+  /* Primary Colors - Bright Ocean for dark */
+  --ha-color-primary: #0ea5e9;
+  --ha-color-primary-hover: #38bdf8;
+  --ha-color-primary-active: #0284c7;
+
+  /* Backgrounds - Deep Ocean */
+  --ha-color-background-primary: #082f49;
+  --ha-color-background-secondary: #0c4a6e;
+  --ha-color-background-tertiary: #075985;
+
+  /* Text Colors - Light */
+  --ha-color-text-primary: #e0f2fe;
+  --ha-color-text-secondary: #bae6fd;
+  --ha-color-text-tertiary: #7dd3fc;
+
+  /* Border Colors */
+  --ha-color-border-primary: #075985;
+  --ha-color-border-secondary: #0c4a6e;
+}

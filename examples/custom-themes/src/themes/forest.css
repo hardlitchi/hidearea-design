@@ -1,0 +1,76 @@
+/**
+ * Forest Theme
+ * Natural green and earth tones inspired by nature
+ */
+
+:root[data-theme="forest"] {
+  /* Primary Colors - Forest Green */
+  --ha-color-primary: #059669;
+  --ha-color-primary-hover: #10b981;
+  --ha-color-primary-active: #047857;
+
+  /* Secondary Colors - Earth Brown */
+  --ha-color-secondary: #92400e;
+  --ha-color-secondary-hover: #b45309;
+  --ha-color-secondary-active: #78350f;
+
+  /* Success - Bright Green */
+  --ha-color-success: #22c55e;
+  --ha-color-success-hover: #4ade80;
+  --ha-color-success-active: #16a34a;
+
+  /* Danger - Autumn Red */
+  --ha-color-danger: #dc2626;
+  --ha-color-danger-hover: #ef4444;
+  --ha-color-danger-active: #b91c1c;
+
+  /* Warning - Amber */
+  --ha-color-warning: #f59e0b;
+  --ha-color-warning-hover: #fbbf24;
+  --ha-color-warning-active: #d97706;
+
+  /* Info - Moss Green */
+  --ha-color-info: #14b8a6;
+  --ha-color-info-hover: #2dd4bf;
+  --ha-color-info-active: #0d9488;
+
+  /* Backgrounds - Natural Light */
+  --ha-color-background-primary: #f0fdf4;
+  --ha-color-background-secondary: #dcfce7;
+  --ha-color-background-tertiary: #bbf7d0;
+
+  /* Text Colors */
+  --ha-color-text-primary: #14532d;
+  --ha-color-text-secondary: #166534;
+  --ha-color-text-tertiary: #16a34a;
+
+  /* Border Colors */
+  --ha-color-border-primary: #86efac;
+  --ha-color-border-secondary: #4ade80;
+
+  /* Shadows - Soft Natural */
+  --ha-shadow-sm: 0 1px 2px 0 rgba(5, 150, 105, 0.1);
+  --ha-shadow-md: 0 4px 6px -1px rgba(5, 150, 105, 0.2);
+  --ha-shadow-lg: 0 10px 15px -3px rgba(5, 150, 105, 0.3);
+}
+
+:root[data-theme="forest-dark"] {
+  /* Primary Colors - Bright Green for dark */
+  --ha-color-primary: #10b981;
+  --ha-color-primary-hover: #34d399;
+  --ha-color-primary-active: #059669;
+
+  /* Backgrounds - Deep Forest */
+  --ha-color-background-primary: #052e16;
+  --ha-color-background-secondary: #14532d;
+  --ha-color-background-tertiary: #166534;
+
+  /* Text Colors - Light */
+  --ha-color-text-primary: #dcfce7;
+  --ha-color-text-secondary: #bbf7d0;
+  --ha-color-text-tertiary: #86efac;
+
+  /* Border Colors */
+  --ha-color-border-primary: #166534;
+  --ha-color-border-secondary: #14532d;
+}
