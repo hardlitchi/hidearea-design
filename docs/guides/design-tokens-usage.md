@@ -920,6 +920,7 @@ debugCategory('spacing');
 
 詳細は以下のドキュメントも参照してください：
 
+- [Design Tokens Reference (English)](./design-tokens.md) - 英語での完全なリファレンス
 - [Theme System Guide](./theme-system.md)
 - [セマンティックトークンガイド](../../packages/tokens/docs/セマンティックトークンガイド.md)
 - [アーキテクチャガイド](../../packages/tokens/docs/アーキテクチャガイド.md)

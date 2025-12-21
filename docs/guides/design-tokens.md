@@ -579,6 +579,7 @@ Always verify color combinations meet WCAG standards:
 - [CSS Custom Properties Browser Support](https://caniuse.com/css-variables)
 
 ### Further Reading
+- [Design Tokens Usage Guide (Japanese)](./design-tokens-usage.md) - 日本語での使い方ガイド
 - [Accessibility Guide](./accessibility-guide.md)
 - [Component API Reference](../api/README.md)
 - [Migration Guide](./migration-guide.md)

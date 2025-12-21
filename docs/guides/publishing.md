@@ -210,6 +210,40 @@ GitHubのウェブUIで：
    - CHANGELOGへのリンク
 5. "Publish release" をクリック
 
+## npmトークンの設定
+
+### npmトークンの生成
+
+⚠️ **重要**: 2FA（二要素認証）が有効な場合、特別な設定が必要です
+
+#### Granular Access Token（推奨 - 2FA対応）
+
+**2FAが有効なアカウントで公開する場合はこちらを使用してください**
+
+1. [npmjs.com](https://www.npmjs.com/)にログイン
+2. 右上のプロフィール → **Access Tokens** をクリック
+3. **Generate New Token** → **Granular Access Token** をクリック
+4. 以下の設定を行う:
+   - **Token name**: `hidearea-design-ci` と入力
+   - **Expiration**: 有効期限を設定（推奨: 1年以上）
+   - **Packages and scopes**:
+     - **Permissions**: `Read and write` を選択
+   - 🔑 **重要**: **"Require two-factor authentication for this token"** のチェックを**外す**
+     - これにより、CI/CDでの公開時に2FAをバイパスできます
+5. **Generate Token** をクリック
+6. 2FA認証コードを入力
+7. トークンをコピー（一度しか表示されません！）
+
+### GitHub Secretsへの登録
+
+1. GitHubリポジトリページを開く
+2. **Settings** → **Secrets and variables** → **Actions** をクリック
+3. **New repository secret** をクリック
+4. 以下を入力:
+   - **Name**: `NPM_TOKEN`
+   - **Secret**: 生成したnpmトークンを貼り付け
+5. **Add secret** をクリック
+
 ## トラブルシューティング
 
 ### npm認証エラー
@@ -221,6 +255,15 @@ npm login
 # 認証トークンの確認
 cat ~/.npmrc | grep _authToken
 ```
+
+### 2FA認証エラー
+
+**エラー**: `Two-factor authentication or granular access token with bypass 2fa enabled is required`
+
+**解決方法**:
+1. 新しいGranular Access Tokenを生成
+2. 「Require two-factor authentication for this token」のチェックを**外す**
+3. GitHub Secretsの`NPM_TOKEN`を更新
 
 ### パッケージが見つからない
 
