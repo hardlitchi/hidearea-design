@@ -5,28 +5,41 @@
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "build/**", ".next/**", "storybook-static/**", ".vitepress/dist/**", ".svelte-kit/**"],
-      "env": ["NODE_ENV"]
+      "env": ["NODE_ENV"],
+      "cache": true
     },
     "dev": {
       "cache": false,
       "persistent": true
     },
     "lint": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "outputs": [],
+      "cache": true
     },
     "test": {
       "dependsOn": ["^build"],
-      "cache": false
+      "outputs": ["coverage/**"],
+      "cache": true
+    },
+    "test:coverage": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"],
+      "cache": true
     },
     "test:e2e": {
       "dependsOn": ["^build"],
-      "cache": false
+      "outputs": ["test-results/**", "playwright-report/**"],
+      "cache": true
     },
     "clean": {
       "cache": false
     },
     "tokens:build": {
-      "outputs": ["packages/tokens/build/**"]
+      "outputs": ["packages/tokens/build/**"],
+      "cache": true
     }
-  }
+  },
+  "ui": "tui",
+  "cacheDir": ".turbo"
 }

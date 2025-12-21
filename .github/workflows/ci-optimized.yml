@@ -1,0 +1,331 @@
+name: CI (Optimized)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel in-progress runs for same workflow + PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Detect changed files to skip unnecessary jobs
+  changes:
+    name: Detect Changes
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.filter.outputs.changes }}
+      core: ${{ steps.filter.outputs.core }}
+      react: ${{ steps.filter.outputs.react }}
+      vue: ${{ steps.filter.outputs.vue }}
+      tokens: ${{ steps.filter.outputs.tokens }}
+      mcp: ${{ steps.filter.outputs.mcp }}
+      storybook: ${{ steps.filter.outputs.storybook }}
+      docs: ${{ steps.filter.outputs.docs }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Detect changed files
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            core:
+              - 'packages/core/**'
+            react:
+              - 'packages/react/**'
+              - 'packages/core/**'
+            vue:
+              - 'packages/vue/**'
+              - 'packages/core/**'
+            tokens:
+              - 'packages/tokens/**'
+            mcp:
+              - 'packages/mcp-server/**'
+            storybook:
+              - 'packages/storybook/**'
+              - 'packages/core/**'
+              - 'packages/react/**'
+            docs:
+              - 'packages/docs/**'
+              - 'packages/core/**'
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: changes
+    if: needs.changes.outputs.core == 'true' || needs.changes.outputs.react == 'true' || needs.changes.outputs.vue == 'true' || needs.changes.outputs.tokens == 'true'
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+
+      # Cache Turbo build outputs
+      - name: Cache Turbo
+        uses: actions/cache@v4
+        with:
+          path: |
+            .turbo
+            node_modules/.cache
+          key: ${{ runner.os }}-turbo-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('**/*.ts', '**/*.tsx', '**/*.js') }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-${{ hashFiles('pnpm-lock.yaml') }}-
+            ${{ runner.os }}-turbo-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Use Turbo to build only changed packages
+      - name: Build packages
+        run: pnpm turbo build --filter=...[HEAD^] --cache-dir=.turbo
+
+      # Run tests only for changed packages
+      - name: Run tests (Tokens)
+        if: needs.changes.outputs.tokens == 'true'
+        run: pnpm --filter @hidearea-design/tokens test:coverage
+
+      - name: Run tests (Core)
+        if: needs.changes.outputs.core == 'true'
+        run: pnpm --filter @hidearea-design/core test:coverage
+
+      - name: Run tests (React)
+        if: needs.changes.outputs.react == 'true'
+        run: pnpm --filter @hidearea-design/react test:coverage
+
+      - name: Run tests (Vue)
+        if: needs.changes.outputs.vue == 'true'
+        run: pnpm --filter @hidearea-design/vue test:coverage
+
+      # Upload coverage only for changed packages
+      - name: Upload coverage reports to Codecov (Tokens)
+        if: needs.changes.outputs.tokens == 'true'
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./packages/tokens/coverage/coverage-final.json
+          flags: tokens
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+
+      - name: Upload coverage reports to Codecov (Core)
+        if: needs.changes.outputs.core == 'true'
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./packages/core/coverage/coverage-final.json
+          flags: core
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+
+      - name: Upload coverage reports to Codecov (React)
+        if: needs.changes.outputs.react == 'true'
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./packages/react/coverage/coverage-final.json
+          flags: react
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+
+      - name: Upload coverage reports to Codecov (Vue)
+        if: needs.changes.outputs.vue == 'true'
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./packages/vue/coverage/coverage-final.json
+          flags: vue
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    needs: changes
+    if: needs.changes.outputs.core == 'true' || needs.changes.outputs.react == 'true' || needs.changes.outputs.vue == 'true'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: "pnpm"
+
+      - name: Cache Turbo
+        uses: actions/cache@v4
+        with:
+          path: |
+            .turbo
+            node_modules/.cache
+          key: ${{ runner.os }}-turbo-lint-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('**/*.ts', '**/*.tsx', '**/*.js') }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-lint-${{ hashFiles('pnpm-lock.yaml') }}-
+            ${{ runner.os }}-turbo-lint-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Use Turbo to lint only changed packages
+      - name: Run lint
+        run: pnpm turbo lint --filter=...[HEAD^] --cache-dir=.turbo
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: changes
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: "pnpm"
+
+      - name: Cache Turbo
+        uses: actions/cache@v4
+        with:
+          path: |
+            .turbo
+            node_modules/.cache
+          key: ${{ runner.os }}-turbo-build-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('**/*.ts', '**/*.tsx', '**/*.js') }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-build-${{ hashFiles('pnpm-lock.yaml') }}-
+            ${{ runner.os }}-turbo-build-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Use Turbo to build all packages with caching
+      - name: Build all packages
+        run: pnpm turbo build --cache-dir=.turbo
+
+      # Cache build outputs for downstream jobs
+      - name: Cache build outputs
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            packages/*/dist
+            packages/*/build
+            packages/*/.next
+            packages/*/storybook-static
+            packages/*/.vitepress/dist
+          key: ${{ runner.os }}-build-${{ github.sha }}
+
+      - name: Check build artifacts
+        run: |
+          test -d packages/core/dist || exit 1
+          test -d packages/react/dist || exit 1
+          test -d packages/vue/dist || exit 1
+          test -d packages/tokens/build || exit 1
+          echo "All build artifacts present"
+
+  performance:
+    name: Performance Monitoring
+    runs-on: ubuntu-latest
+    needs: [changes, build]
+    if: needs.changes.outputs.tokens == 'true' || needs.changes.outputs.core == 'true'
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: "pnpm"
+
+      # Restore build cache
+      - name: Restore build outputs
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            packages/*/dist
+            packages/*/build
+          key: ${{ runner.os }}-build-${{ github.sha }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Build tokens if not in cache
+      - name: Build tokens package (if needed)
+        run: |
+          if [ ! -d "packages/tokens/build" ]; then
+            pnpm --filter @hidearea-design/tokens build
+          fi
+
+      - name: Measure bundle size
+        id: bundle-size
+        run: |
+          cd packages/tokens
+          npm run perf:bundle
+          npm run perf:report
+
+      - name: Upload performance reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: performance-reports
+          path: packages/tokens/.performance/
+          retention-days: 30
+
+      - name: Comment PR with performance results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            const reportPath = path.join(process.env.GITHUB_WORKSPACE, 'packages/tokens/.performance/performance-report.md');
+
+            if (fs.existsSync(reportPath)) {
+              const report = fs.readFileSync(reportPath, 'utf8');
+
+              const comment = `## 📊 Performance Report\n\n${report}\n\n---\n*Automated performance monitoring*`;
+
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            }
