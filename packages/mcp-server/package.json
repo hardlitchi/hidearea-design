@@ -19,7 +19,11 @@
     "hidearea-mcp": "./build/index.js"
   },
   "files": [
-    "build"
+    "build",
+    "README.md",
+    "USAGE_GUIDE.md",
+    "CHANGELOG.md",
+    "LICENSE"
   ],
   "publishConfig": {
     "access": "public"
