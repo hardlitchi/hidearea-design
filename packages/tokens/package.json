@@ -18,6 +18,7 @@
     },
     "./css": "./build/css/variables.css",
     "./css/variables": "./build/css/variables.css",
+    "./dist/css/variables.css": "./build/css/variables.css",
     "./css/components/*": "./build/css/components/*.css",
     "./styles": {
       "types": "./build/js/styles/index.d.ts",

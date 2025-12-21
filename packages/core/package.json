@@ -17,6 +17,8 @@
       "import": "./dist/index.js"
     },
     "./package.json": "./package.json",
+    "./dist/hidearea-design.css": "./dist/hidearea-design.css",
+    "./hidearea-design.css": "./dist/hidearea-design.css",
     "./accordion": {
       "types": "./dist/components/accordion/accordion.d.ts",
       "import": "./dist/components/accordion/accordion.js"

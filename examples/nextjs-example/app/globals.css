@@ -1,0 +1,22 @@
+/* Import Hidearea Design System tokens */
+@import '@hidearea-design/tokens/css/variables';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--ha-font-family-base);
+  background-color: var(--ha-color-background-primary);
+  color: var(--ha-color-text-primary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
