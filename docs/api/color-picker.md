@@ -1,39 +1,39 @@
-# ColorPicker
+# ColorPicker（カラーピッカー）
 
-> Color picker component for selecting colors
+> 色を選択するためのカラーピッカーコンポーネント
 
-**Tag**: `<ha-color-picker>`
+**タグ**: `<ha-color-picker>`
 
-**Category**: Form Controls
+**カテゴリー**: Form Controls
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `value` | `string` | `'#000000'` |  | Selected color value (hex, rgb, hsl) |
-| `format` | `'hex' | 'rgb' | 'hsl'` | `'hex'` |  | Color format |
-| `disabled` | `boolean` | `false` |  | Disables the color picker |
-| `swatches` | `string[]` | `undefined` |  | Predefined color swatches |
-| `label` | `string` | `undefined` |  | Color picker label |
+| `value` | `string` | `'#000000'` |  | 選択された色の値（hex、rgb、hsl） |
+| `format` | `'hex' | 'rgb' | 'hsl'` | `'hex'` |  | 色のフォーマット |
+| `disabled` | `boolean` | `false` |  | カラーピッカーを無効化 |
+| `swatches` | `string[]` | `undefined` |  | 定義済みカラースウォッチ |
+| `label` | `string` | `undefined` |  | カラーピッカーのラベル |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-change` | `{ value: string }` | Emitted when color changes |
+| `ha-change` | `{ value: string }` | 色が変更されたときに発火 |
 
-### Usage
+### 使い方
 
 ```javascript
 const element = document.querySelector('ha-color-picker');
@@ -42,25 +42,25 @@ element.addEventListener('ha-change', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-This component has no slots.
+このコンポーネントにはスロットがありません。
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple color picker
+シンプルなカラーピッカー
 
 ```html
-<ha-color-picker label="Choose color" value="#3498db"></ha-color-picker>
+<ha-color-picker label="色を選択" value="#3498db"></ha-color-picker>
 ```
 
 ---
 
-### With Swatches
+### スウォッチ付き
 
-Color picker with predefined swatches
+定義済みスウォッチ付きカラーピッカー
 
 ```html
 <ha-color-picker
@@ -68,49 +68,49 @@ Color picker with predefined swatches
 ></ha-color-picker>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIA ロール
 
 - `button`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Enter/Space` | Open color picker |
-| `Arrow keys` | Adjust color |
+| `Enter/Space` | カラーピッカーを開く |
+| `矢印キー` | 色を調整 |
 
-### ARIA Attributes
+### ARIA 属性
 
 - `aria-label`
 - `aria-valuetext`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します:
 
-### Colors
+### 色
 
 - `--component-color-picker-background`
 - `--component-color-picker-border`
 
-### Spacing
+### 間隔
 
 - `--spacing-sm`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-md`
 - `--surface-overlay-elevation`
 
 ---
 
-**Related**:
+**関連ドキュメント**:
 - [Migration Guide](../guides/migration-guide.md)
 - [Accessibility Guide](../guides/accessibility-guide.md)
 - [Component Examples](../guides/examples.md)

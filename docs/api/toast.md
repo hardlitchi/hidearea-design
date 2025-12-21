@@ -1,38 +1,38 @@
-# Toast
+# Toast（トースト）
 
-> Toast notification component for temporary messages
+> 一時的なメッセージを表示するトースト通知コンポーネント
 
-**Tag**: `<ha-toast>`
+**タグ**: `<ha-toast>`
 
-**Category**: Feedback
+**カテゴリ**: フィードバック
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `variant` | `'info' | 'success' | 'warning' | 'danger'` | `'info'` |  | Toast type |
-| `duration` | `number` | `3000` |  | Auto-dismiss duration in ms (0 = no auto-dismiss) |
-| `position` | `'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'` | `'top-right'` |  | Toast position |
-| `closable` | `boolean` | `true` |  | Show close button |
+| `variant` | `'info' | 'success' | 'warning' | 'danger'` | `'info'` |  | トーストのタイプ |
+| `duration` | `number` | `3000` |  | 自動非表示までの時間（ミリ秒、0=自動非表示なし） |
+| `position` | `'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'` | `'top-right'` |  | トーストの表示位置 |
+| `closable` | `boolean` | `true` |  | 閉じるボタンを表示 |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-close` | `{}` | Emitted when toast is closed |
+| `ha-close` | `{}` | トーストが閉じられたときに発行 |
 
-### Usage
+### 使用方法
 
 ```javascript
 const element = document.querySelector('ha-toast');
@@ -41,79 +41,79 @@ element.addEventListener('ha-close', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Toast content |
+| `default` | トーストのコンテンツ |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Show toast notification
+トースト通知を表示
 
 ```html
 <ha-toast variant="success">
-  Changes saved successfully!
+  変更が正常に保存されました！
 </ha-toast>
 ```
 
 ---
 
-### Custom Duration
+### カスタム表示時間
 
-Toast with custom duration
+カスタム表示時間を持つトースト
 
 ```html
 <ha-toast variant="info" duration="5000">
-  This message will stay for 5 seconds.
+  このメッセージは5秒間表示されます。
 </ha-toast>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `status`
 - `alert`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Escape` | Close toast |
+| `Escape` | トーストを閉じる |
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-live`
 - `aria-atomic`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-toast-background`
 - `--component-toast-text`
 
-### Spacing
+### スペーシング
 
 - `--spacing-md`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-md`
 - `--surface-overlay-elevation`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネントの使用例](../guides/examples.md)

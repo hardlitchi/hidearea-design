@@ -1,104 +1,104 @@
-# Breadcrumb
+# Breadcrumb（パンくずリスト）
 
-> Breadcrumb navigation component for showing current location
+> 現在の位置を表示するパンくずナビゲーションコンポーネント
 
-**Tag**: `<ha-breadcrumb>`
+**タグ**: `<ha-breadcrumb>`
 
-**Category**: Navigation
+**カテゴリ**: ナビゲーション
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `separator` | `string` | `'/'` |  | Separator between items |
+| `separator` | `string` | `'/'` |  | アイテム間の区切り文字 |
 
-## Events
+## イベント
 
-This component emits no custom events.
+このコンポーネントはカスタムイベントを発火しません。
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Breadcrumb items |
+| `default` | パンくずアイテム |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple breadcrumb
+シンプルなパンくずリスト
 
 ```html
 <ha-breadcrumb>
-  <ha-breadcrumb-item href="/">Home</ha-breadcrumb-item>
-  <ha-breadcrumb-item href="/products">Products</ha-breadcrumb-item>
-  <ha-breadcrumb-item>Details</ha-breadcrumb-item>
+  <ha-breadcrumb-item href="/">ホーム</ha-breadcrumb-item>
+  <ha-breadcrumb-item href="/products">製品</ha-breadcrumb-item>
+  <ha-breadcrumb-item>詳細</ha-breadcrumb-item>
 </ha-breadcrumb>
 ```
 
 ---
 
-### Custom Separator
+### カスタム区切り文字
 
-Breadcrumb with custom separator
+カスタム区切り文字を使用したパンくずリスト
 
 ```html
 <ha-breadcrumb separator=">">
-  <ha-breadcrumb-item href="/">Home</ha-breadcrumb-item>
-  <ha-breadcrumb-item>Current</ha-breadcrumb-item>
+  <ha-breadcrumb-item href="/">ホーム</ha-breadcrumb-item>
+  <ha-breadcrumb-item>現在のページ</ha-breadcrumb-item>
 </ha-breadcrumb>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `navigation`
 - `list`
 - `listitem`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | 動作 |
 |-----|--------|
-| `Tab` | Navigate links |
+| `Tab` | リンク間を移動 |
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-label`
 - `aria-current`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-breadcrumb-text`
 - `--component-breadcrumb-separator`
 
-### Spacing
+### スペーシング
 
 - `--spacing-sm`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

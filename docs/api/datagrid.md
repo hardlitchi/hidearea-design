@@ -1,44 +1,44 @@
-# DataGrid
+# DataGrid（データグリッド）
 
-> Advanced data grid component with sorting, filtering, and pagination
+> ソート、フィルタリング、ページネーション機能を備えた高度なデータグリッドコンポーネント
 
-**Tag**: `<ha-datagrid>`
+**タグ**: `<ha-datagrid>`
 
-**Category**: Data Display
+**カテゴリー**: Data Display
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `data` | `Array<Record<string, any>>` | `undefined` | ✅ | Grid data |
-| `columns` | `Array<Column>` | `undefined` | ✅ | Column definitions |
-| `sortable` | `boolean` | `true` |  | Enable column sorting |
-| `filterable` | `boolean` | `false` |  | Enable column filtering |
-| `paginate` | `boolean` | `false` |  | Enable pagination |
-| `pageSize` | `number` | `10` |  | Items per page |
-| `selectable` | `boolean` | `false` |  | Enable row selection |
+| `data` | `Array<Record<string, any>>` | `undefined` | ✅ | グリッドデータ |
+| `columns` | `Array<Column>` | `undefined` | ✅ | カラム定義 |
+| `sortable` | `boolean` | `true` |  | カラムのソートを有効化 |
+| `filterable` | `boolean` | `false` |  | カラムのフィルタリングを有効化 |
+| `paginate` | `boolean` | `false` |  | ページネーションを有効化 |
+| `pageSize` | `number` | `10` |  | 1ページあたりのアイテム数 |
+| `selectable` | `boolean` | `false` |  | 行の選択を有効化 |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-sort` | `{ column: string, direction: "asc" | "desc" }` | Emitted when sorted |
-| `ha-filter` | `{ filters: Record<string, any> }` | Emitted when filtered |
-| `ha-page-change` | `{ page: number }` | Emitted when page changes |
-| `ha-selection-change` | `{ selectedRows: Array<any> }` | Emitted when selection changes |
+| `ha-sort` | `{ column: string, direction: "asc" | "desc" }` | ソート時に発火 |
+| `ha-filter` | `{ filters: Record<string, any> }` | フィルタリング時に発火 |
+| `ha-page-change` | `{ page: number }` | ページ変更時に発火 |
+| `ha-selection-change` | `{ selectedRows: Array<any> }` | 選択変更時に発火 |
 
-### Usage
+### 使い方
 
 ```javascript
 const element = document.querySelector('ha-datagrid');
@@ -47,17 +47,17 @@ element.addEventListener('ha-sort', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Custom cell content |
+| `default` | カスタムセルコンテンツ |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-DataGrid with sorting and pagination
+ソートとページネーション付きDataGrid
 
 ```html
 <ha-datagrid
@@ -69,9 +69,9 @@ DataGrid with sorting and pagination
 ></ha-datagrid>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIA ロール
 
 - `grid`
 - `rowgroup`
@@ -79,47 +79,47 @@ DataGrid with sorting and pagination
 - `columnheader`
 - `gridcell`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Arrow keys` | Navigate cells |
-| `Enter` | Edit cell |
-| `Tab` | Move focus |
+| `矢印キー` | セルを移動 |
+| `Enter` | セルを編集 |
+| `Tab` | フォーカスを移動 |
 
-### ARIA Attributes
+### ARIA 属性
 
 - `aria-sort`
 - `aria-rowcount`
 - `aria-colcount`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します:
 
-### Colors
+### 色
 
 - `--component-datagrid-header-background`
 - `--component-datagrid-border`
 - `--component-datagrid-row-hover`
 
-### Spacing
+### 間隔
 
 - `--spacing-sm`
 - `--spacing-md`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 - `--font-weight-medium`
 
-### Other
+### その他
 
 - `--border-radius-md`
 
 ---
 
-**Related**:
+**関連ドキュメント**:
 - [Migration Guide](../guides/migration-guide.md)
 - [Accessibility Guide](../guides/accessibility-guide.md)
 - [Component Examples](../guides/examples.md)

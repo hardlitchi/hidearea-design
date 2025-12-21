@@ -1,44 +1,44 @@
-# Select
+# Select（セレクト）
 
-> Dropdown select component for choosing from a list of options
+> オプションのリストから選択するためのドロップダウンセレクトコンポーネント
 
-**Tag**: `<ha-select>`
+**タグ**: `<ha-select>`
 
-**Category**: Form Controls
+**カテゴリー**: フォームコントロール
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `value` | `string | string[]` | `undefined` |  | Selected value(s) |
-| `multiple` | `boolean` | `false` |  | Allow multiple selections |
-| `disabled` | `boolean` | `false` |  | Disables the select |
-| `required` | `boolean` | `false` |  | Makes select required |
-| `placeholder` | `string` | `undefined` |  | Placeholder text |
-| `label` | `string` | `undefined` |  | Select label |
-| `error` | `boolean` | `false` |  | Shows error state |
-| `errorMessage` | `string` | `undefined` |  | Error message to display |
+| `value` | `string | string[]` | `undefined` |  | 選択された値 |
+| `multiple` | `boolean` | `false` |  | 複数選択を許可 |
+| `disabled` | `boolean` | `false` |  | セレクトを無効化 |
+| `required` | `boolean` | `false` |  | セレクトを必須にする |
+| `placeholder` | `string` | `undefined` |  | プレースホルダーテキスト |
+| `label` | `string` | `undefined` |  | セレクトのラベル |
+| `error` | `boolean` | `false` |  | エラー状態を表示 |
+| `errorMessage` | `string` | `undefined` |  | 表示するエラーメッセージ |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-change` | `{ value: string | string[] }` | Emitted when selection changes |
-| `ha-open` | `{}` | Emitted when dropdown opens |
-| `ha-close` | `{}` | Emitted when dropdown closes |
+| `ha-change` | `{ value: string | string[] }` | 選択が変更されたときに発火 |
+| `ha-open` | `{}` | ドロップダウンが開いたときに発火 |
+| `ha-close` | `{}` | ドロップダウンが閉じたときに発火 |
 
-### Usage
+### 使い方
 
 ```javascript
 const element = document.querySelector('ha-select');
@@ -47,89 +47,89 @@ element.addEventListener('ha-change', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Option elements |
+| `default` | オプション要素 |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple select dropdown
+シンプルなセレクトドロップダウン
 
 ```html
-<ha-select label="Choose a country" placeholder="Select...">
-  <option value="us">United States</option>
-  <option value="uk">United Kingdom</option>
-  <option value="jp">Japan</option>
+<ha-select label="国を選択" placeholder="選択してください...">
+  <option value="us">アメリカ合衆国</option>
+  <option value="uk">イギリス</option>
+  <option value="jp">日本</option>
 </ha-select>
 ```
 
 ---
 
-### Multiple Selection
+### 複数選択
 
-Select with multiple values
+複数の値を選択できるセレクト
 
 ```html
-<ha-select label="Choose languages" multiple>
-  <option value="en">English</option>
-  <option value="es">Spanish</option>
-  <option value="fr">French</option>
+<ha-select label="言語を選択" multiple>
+  <option value="en">英語</option>
+  <option value="es">スペイン語</option>
+  <option value="fr">フランス語</option>
 </ha-select>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `combobox`
 - `listbox`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Arrow keys` | Navigate options |
-| `Enter/Space` | Select option |
-| `Escape` | Close dropdown |
+| `矢印キー` | オプションをナビゲート |
+| `Enter/Space` | オプションを選択 |
+| `Escape` | ドロップダウンを閉じる |
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-expanded`
 - `aria-haspopup`
 - `aria-activedescendant`
 - `aria-required`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-select-background`
 - `--component-select-border`
 - `--component-select-text`
 
-### Spacing
+### スペーシング
 
 - `--spacing-sm`
 - `--spacing-md`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-md`
 - `--surface-overlay-elevation`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

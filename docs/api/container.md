@@ -1,89 +1,89 @@
-# Container
+# Container（コンテナ）
 
-> Container component for centering and constraining content width
+> コンテンツを中央揃えし、幅を制限するためのコンテナコンポーネント
 
-**Tag**: `<ha-container>`
+**タグ**: `<ha-container>`
 
-**Category**: Layout
+**カテゴリー**: Layout
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `maxWidth` | `'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'` | `'lg'` |  | Maximum container width |
-| `padding` | `boolean` | `true` |  | Apply horizontal padding |
+| `maxWidth` | `'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'` | `'lg'` |  | コンテナの最大幅 |
+| `padding` | `boolean` | `true` |  | 水平方向のパディングを適用 |
 
-## Events
+## イベント
 
-This component emits no custom events.
+このコンポーネントはカスタムイベントを発火しません。
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Container content |
+| `default` | コンテナのコンテンツ |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Centered container
+中央揃えコンテナ
 
 ```html
 <ha-container>
-  <p>Content is centered and constrained to max-width</p>
+  <p>コンテンツは中央揃えされ、最大幅に制限されます</p>
 </ha-container>
 ```
 
 ---
 
-### Different Sizes
+### 異なるサイズ
 
-Various container sizes
+様々なコンテナサイズ
 
 ```html
-<ha-container max-width="sm">Small container</ha-container>
-<ha-container max-width="lg">Large container</ha-container>
-<ha-container max-width="full">Full width container</ha-container>
+<ha-container max-width="sm">小さいコンテナ</ha-container>
+<ha-container max-width="lg">大きいコンテナ</ha-container>
+<ha-container max-width="full">全幅コンテナ</ha-container>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIA ロール
 
-No specific roles defined.
+特定のロールは定義されていません。
 
-### Keyboard Support
+### キーボードサポート
 
-Standard keyboard navigation.
+標準的なキーボードナビゲーション。
 
-### ARIA Attributes
+### ARIA 属性
 
-No specific ARIA attributes required.
+特定の ARIA 属性は必要ありません。
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します:
 
-### Spacing
+### 間隔
 
 - `--spacing-md`
 - `--spacing-lg`
 
 ---
 
-**Related**:
+**関連ドキュメント**:
 - [Migration Guide](../guides/migration-guide.md)
 - [Accessibility Guide](../guides/accessibility-guide.md)
 - [Component Examples](../guides/examples.md)

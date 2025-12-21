@@ -1,99 +1,99 @@
-# FormGroup
+# FormGroup（フォームグループ）
 
-> Form group component for organizing form fields with labels and descriptions
+> ラベルと説明を含むフォームフィールドを整理するためのフォームグループコンポーネント
 
-**Tag**: `<ha-form-group>`
+**タグ**: `<ha-form-group>`
 
-**Category**: Form Controls
+**カテゴリ**: フォームコントロール
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `label` | `string` | `undefined` |  | Form group label |
-| `description` | `string` | `undefined` |  | Helper text |
-| `error` | `boolean` | `false` |  | Shows error state |
-| `errorMessage` | `string` | `undefined` |  | Error message to display |
-| `required` | `boolean` | `false` |  | Shows required indicator |
+| `label` | `string` | `undefined` |  | フォームグループラベル |
+| `description` | `string` | `undefined` |  | ヘルプテキスト |
+| `error` | `boolean` | `false` |  | エラー状態を表示 |
+| `errorMessage` | `string` | `undefined` |  | 表示するエラーメッセージ |
+| `required` | `boolean` | `false` |  | 必須インジケータを表示 |
 
-## Events
+## イベント
 
-This component emits no custom events.
+このコンポーネントはカスタムイベントを発行しません。
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Form field content |
-| `label` | Custom label content |
-| `description` | Custom description content |
+| `default` | フォームフィールドのコンテンツ |
+| `label` | カスタムラベルコンテンツ |
+| `description` | カスタム説明コンテンツ |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Form group with input
+入力フィールドを持つフォームグループ
 
 ```html
-<ha-form-group label="Email" description="We'll never share your email" required>
+<ha-form-group label="メールアドレス" description="メールアドレスは共有されません" required>
   <ha-input type="email" placeholder="email@example.com"></ha-input>
 </ha-form-group>
 ```
 
 ---
 
-### With Error
+### エラー状態
 
-Form group showing error state
+エラー状態を表示するフォームグループ
 
 ```html
-<ha-form-group label="Username" error error-message="Username is already taken">
+<ha-form-group label="ユーザー名" error error-message="このユーザー名は既に使用されています">
   <ha-input value="john"></ha-input>
 </ha-form-group>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIA ロール
 
-No specific roles defined.
+特定のロールは定義されていません。
 
-### Keyboard Support
+### キーボードサポート
 
-Standard keyboard navigation.
+標準的なキーボードナビゲーション。
 
-### ARIA Attributes
+### ARIA 属性
 
 - `aria-describedby`
 - `aria-invalid`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します:
 
-### Colors
+### カラー
 
 - `--component-form-group-label`
 - `--component-form-group-description`
 - `--state-error-text`
 
-### Spacing
+### スペーシング
 
 - `--spacing-xs`
 - `--spacing-sm`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 - `--text-body-small-fontSize`
@@ -101,7 +101,7 @@ This component uses the following design tokens:
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

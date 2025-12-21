@@ -1,58 +1,58 @@
-# Badge
+# Badge（バッジ）
 
-> Small label for displaying status, counts, or categories
+> ステータス、カウント、カテゴリを表示する小さなラベル
 
-**Tag**: `<ha-badge>`
+**タグ**: `<ha-badge>`
 
-**Category**: Data Display
+**カテゴリ**: データ表示
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `variant` | `'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info'` | `'primary'` |  | Badge color variant |
-| `size` | `'small' | 'medium' | 'large'` | `'medium'` |  | Badge size |
-| `dot` | `boolean` | `false` |  | Show as dot indicator |
-| `pill` | `boolean` | `false` |  | Pill-shaped badge |
+| `variant` | `'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info'` | `'primary'` |  | バッジのカラーバリアント |
+| `size` | `'small' | 'medium' | 'large'` | `'medium'` |  | バッジのサイズ |
+| `dot` | `boolean` | `false` |  | ドットインジケーターとして表示 |
+| `pill` | `boolean` | `false` |  | ピル形状のバッジ |
 
-## Events
+## イベント
 
-This component emits no custom events.
+このコンポーネントはカスタムイベントを発火しません。
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Badge content |
+| `default` | バッジのコンテンツ |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple badges
+シンプルなバッジ
 
 ```html
-<ha-badge>Default</ha-badge>
-<ha-badge variant="success">Success</ha-badge>
-<ha-badge variant="warning">Warning</ha-badge>
+<ha-badge>デフォルト</ha-badge>
+<ha-badge variant="success">成功</ha-badge>
+<ha-badge variant="warning">警告</ha-badge>
 ```
 
 ---
 
-### Pill Badge
+### ピル形状バッジ
 
-Pill-shaped badges
+ピル形状のバッジ
 
 ```html
 <ha-badge pill>99+</ha-badge>
@@ -60,54 +60,54 @@ Pill-shaped badges
 
 ---
 
-### Dot Indicator
+### ドットインジケーター
 
-Dot badge for notifications
+通知用のドットバッジ
 
 ```html
 <ha-badge dot variant="danger"></ha-badge>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `status`
 
-### Keyboard Support
+### キーボードサポート
 
-Standard keyboard navigation.
+標準的なキーボードナビゲーション
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-label`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-badge-primary-background`
 - `--component-badge-primary-text`
 
-### Spacing
+### スペーシング
 
 - `--spacing-xs`
 - `--spacing-sm`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-small-fontSize`
 - `--font-weight-medium`
 
-### Other
+### その他
 
 - `--border-radius-sm`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

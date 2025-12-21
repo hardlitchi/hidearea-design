@@ -1,90 +1,90 @@
-# Stack
+# Stack（スタック）
 
-> Stack layout component for arranging items vertically or horizontally
+> アイテムを垂直または水平に配置するためのスタックレイアウトコンポーネント
 
-**Tag**: `<ha-stack>`
+**タグ**: `<ha-stack>`
 
-**Category**: Layout
+**カテゴリー**: レイアウト
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `direction` | `'horizontal' | 'vertical'` | `'vertical'` |  | Stack direction |
-| `gap` | `'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'` | `'md'` |  | Gap between items |
-| `align` | `'start' | 'center' | 'end' | 'stretch'` | `'start'` |  | Alignment of items |
-| `justify` | `'start' | 'center' | 'end' | 'between' | 'around'` | `'start'` |  | Justification of items |
+| `direction` | `'horizontal' | 'vertical'` | `'vertical'` |  | スタックの方向 |
+| `gap` | `'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'` | `'md'` |  | アイテム間のギャップ |
+| `align` | `'start' | 'center' | 'end' | 'stretch'` | `'start'` |  | アイテムの配置 |
+| `justify` | `'start' | 'center' | 'end' | 'between' | 'around'` | `'start'` |  | アイテムの整列 |
 
-## Events
+## イベント
 
-This component emits no custom events.
+このコンポーネントはカスタムイベントを発火しません。
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Stack items |
+| `default` | スタックアイテム |
 
-## Examples
+## 使用例
 
-### Vertical Stack
+### 垂直スタック
 
-Items stacked vertically
+垂直に積み重ねられたアイテム
 
 ```html
 <ha-stack direction="vertical" gap="md">
-  <ha-button>Button 1</ha-button>
-  <ha-button>Button 2</ha-button>
-  <ha-button>Button 3</ha-button>
+  <ha-button>ボタン 1</ha-button>
+  <ha-button>ボタン 2</ha-button>
+  <ha-button>ボタン 3</ha-button>
 </ha-stack>
 ```
 
 ---
 
-### Horizontal Stack
+### 水平スタック
 
-Items arranged horizontally
+水平に配置されたアイテム
 
 ```html
 <ha-stack direction="horizontal" gap="sm" align="center">
   <ha-avatar></ha-avatar>
   <div>
-    <h4>John Doe</h4>
-    <p>john@example.com</p>
+    <h4>山田太郎</h4>
+    <p>yamada@example.com</p>
   </div>
 </ha-stack>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
-No specific roles defined.
+特定のロールは定義されていません。
 
-### Keyboard Support
+### キーボードサポート
 
-Standard keyboard navigation.
+標準的なキーボードナビゲーション。
 
-### ARIA Attributes
+### ARIA属性
 
-No specific ARIA attributes required.
+特定のARIA属性は不要です。
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Spacing
+### スペーシング
 
 - `--spacing-xs`
 - `--spacing-sm`
@@ -94,7 +94,7 @@ This component uses the following design tokens:
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

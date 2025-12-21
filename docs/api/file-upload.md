@@ -1,42 +1,42 @@
-# FileUpload
+# FileUpload（ファイルアップロード）
 
-> File upload component for selecting and uploading files
+> ファイルを選択してアップロードするためのファイルアップロードコンポーネント
 
-**Tag**: `<ha-file-upload>`
+**タグ**: `<ha-file-upload>`
 
-**Category**: Form Controls
+**カテゴリ**: フォームコントロール
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `accept` | `string` | `undefined` |  | Accepted file types (e.g., "image/*") |
-| `multiple` | `boolean` | `false` |  | Allow multiple file selection |
-| `maxSize` | `number` | `undefined` |  | Maximum file size in bytes |
-| `maxFiles` | `number` | `undefined` |  | Maximum number of files |
-| `disabled` | `boolean` | `false` |  | Disables the file upload |
-| `dragDrop` | `boolean` | `true` |  | Enable drag and drop |
-| `label` | `string` | `undefined` |  | Upload label |
+| `accept` | `string` | `undefined` |  | 受け入れるファイルタイプ（例: "image/*"） |
+| `multiple` | `boolean` | `false` |  | 複数ファイルの選択を許可 |
+| `maxSize` | `number` | `undefined` |  | 最大ファイルサイズ（バイト単位） |
+| `maxFiles` | `number` | `undefined` |  | 最大ファイル数 |
+| `disabled` | `boolean` | `false` |  | ファイルアップロードを無効化 |
+| `dragDrop` | `boolean` | `true` |  | ドラッグアンドドロップを有効化 |
+| `label` | `string` | `undefined` |  | アップロードラベル |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-change` | `{ files: FileList }` | Emitted when files are selected |
-| `ha-error` | `{ error: string }` | Emitted when validation fails |
+| `ha-change` | `{ files: FileList }` | ファイルが選択されたときに発行される |
+| `ha-error` | `{ error: string }` | バリデーションが失敗したときに発行される |
 
-### Usage
+### 使い方
 
 ```javascript
 const element = document.querySelector('ha-file-upload');
@@ -45,31 +45,31 @@ element.addEventListener('ha-change', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | Custom upload area content |
+| `default` | カスタムアップロードエリアのコンテンツ |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple file upload
+シンプルなファイルアップロード
 
 ```html
-<ha-file-upload label="Upload files" accept="image/*"></ha-file-upload>
+<ha-file-upload label="ファイルをアップロード" accept="image/*"></ha-file-upload>
 ```
 
 ---
 
-### Multiple Files
+### 複数ファイル
 
-Upload multiple files with drag and drop
+ドラッグアンドドロップで複数ファイルをアップロード
 
 ```html
 <ha-file-upload
-  label="Upload images"
+  label="画像をアップロード"
   multiple
   :max-files="5"
   accept="image/*"
@@ -77,49 +77,49 @@ Upload multiple files with drag and drop
 ></ha-file-upload>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIA ロール
 
 - `button`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Enter/Space` | Open file dialog |
+| `Enter/Space` | ファイルダイアログを開く |
 
-### ARIA Attributes
+### ARIA 属性
 
 - `aria-label`
 - `aria-describedby`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します:
 
-### Colors
+### カラー
 
 - `--component-file-upload-background`
 - `--component-file-upload-border`
 - `--component-file-upload-hover`
 
-### Spacing
+### スペーシング
 
 - `--spacing-md`
 - `--spacing-lg`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-md`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

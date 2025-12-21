@@ -1,42 +1,42 @@
-# Spinner
+# Spinner（スピナー）
 
-> Loading spinner component for indicating progress
+> 進行状況を示すための読み込みスピナーコンポーネント
 
-**Tag**: `<ha-spinner>`
+**タグ**: `<ha-spinner>`
 
-**Category**: Feedback
+**カテゴリー**: フィードバック
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `size` | `'small' | 'medium' | 'large'` | `'medium'` |  | Spinner size |
-| `color` | `string` | `undefined` |  | Spinner color |
+| `size` | `'small' | 'medium' | 'large'` | `'medium'` |  | スピナーのサイズ |
+| `color` | `string` | `undefined` |  | スピナーの色 |
 
-## Events
+## イベント
 
-This component emits no custom events.
+このコンポーネントはカスタムイベントを発火しません。
 
-## Slots
+## スロット
 
-This component has no slots.
+このコンポーネントにはスロットがありません。
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple spinner
+シンプルなスピナー
 
 ```html
 <ha-spinner></ha-spinner>
@@ -44,9 +44,9 @@ Simple spinner
 
 ---
 
-### Different Sizes
+### 異なるサイズ
 
-Various spinner sizes
+様々なスピナーのサイズ
 
 ```html
 <ha-spinner size="small"></ha-spinner>
@@ -54,36 +54,36 @@ Various spinner sizes
 <ha-spinner size="large"></ha-spinner>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIAロール
 
 - `status`
 
-### Keyboard Support
+### キーボードサポート
 
-Standard keyboard navigation.
+標準的なキーボードナビゲーション。
 
-### ARIA Attributes
+### ARIA属性
 
 - `aria-label`
 - `aria-live`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
-### Colors
+### カラー
 
 - `--component-spinner-color`
 
-### Other
+### その他
 
 - `--interaction-transition-fast-duration`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)

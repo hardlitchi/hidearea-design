@@ -1,46 +1,46 @@
-# Textarea
+# Textarea（テキストエリア）
 
-> Multi-line text input component
+> 複数行テキスト入力コンポーネント
 
 **Tag**: `<ha-textarea>`
 
 **Category**: Form Controls
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `value` | `string` | `''` |  | Textarea value |
-| `placeholder` | `string` | `undefined` |  | Placeholder text |
-| `disabled` | `boolean` | `false` |  | Disables the textarea |
-| `readonly` | `boolean` | `false` |  | Makes textarea read-only |
-| `required` | `boolean` | `false` |  | Makes textarea required |
-| `rows` | `number` | `3` |  | Number of visible rows |
-| `maxlength` | `number` | `undefined` |  | Maximum character length |
-| `resize` | `'none' | 'vertical' | 'horizontal' | 'both'` | `'vertical'` |  | Resize behavior |
-| `label` | `string` | `undefined` |  | Textarea label |
-| `error` | `boolean` | `false` |  | Shows error state |
-| `errorMessage` | `string` | `undefined` |  | Error message to display |
+| `value` | `string` | `''` |  | テキストエリアの値 |
+| `placeholder` | `string` | `undefined` |  | プレースホルダーテキスト |
+| `disabled` | `boolean` | `false` |  | テキストエリアを無効化する |
+| `readonly` | `boolean` | `false` |  | テキストエリアを読み取り専用にする |
+| `required` | `boolean` | `false` |  | テキストエリアを必須にする |
+| `rows` | `number` | `3` |  | 表示される行数 |
+| `maxlength` | `number` | `undefined` |  | 最大文字数 |
+| `resize` | `'none' | 'vertical' | 'horizontal' | 'both'` | `'vertical'` |  | リサイズ動作 |
+| `label` | `string` | `undefined` |  | テキストエリアのラベル |
+| `error` | `boolean` | `false` |  | エラー状態を表示 |
+| `errorMessage` | `string` | `undefined` |  | 表示するエラーメッセージ |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-input` | `{ value: string }` | Emitted on input |
-| `ha-change` | `{ value: string }` | Emitted on change (blur) |
-| `ha-focus` | `{}` | Emitted on focus |
-| `ha-blur` | `{}` | Emitted on blur |
+| `ha-input` | `{ value: string }` | 入力時に発火 |
+| `ha-change` | `{ value: string }` | 変更時（blur）に発火 |
+| `ha-focus` | `{}` | フォーカス時に発火 |
+| `ha-blur` | `{}` | ブラー時に発火 |
 
 ### Usage
 
@@ -51,31 +51,31 @@ element.addEventListener('ha-input', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-This component has no slots.
+このコンポーネントにはスロットがありません。
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple textarea
+シンプルなテキストエリア
 
 ```html
-<ha-textarea label="Comments" placeholder="Enter your comments..."></ha-textarea>
+<ha-textarea label="コメント" placeholder="コメントを入力してください..."></ha-textarea>
 ```
 
 ---
 
-### With Character Limit
+### 文字数制限付き
 
-Textarea with maxlength
+最大文字数付きテキストエリア
 
 ```html
-<ha-textarea label="Bio" maxlength="200" rows="5"></ha-textarea>
+<ha-textarea label="自己紹介" maxlength="200" rows="5"></ha-textarea>
 ```
 
-## Accessibility
+## アクセシビリティ
 
 ### ARIA Roles
 
@@ -85,8 +85,8 @@ Textarea with maxlength
 
 | Key | Action |
 |-----|--------|
-| `Standard textarea keyboard shortcuts` |  |
-| `Tab` | Move focus |
+| `標準的なテキストエリアのキーボードショートカット` |  |
+| `Tab` | フォーカスを移動 |
 
 ### ARIA Attributes
 
@@ -95,9 +95,9 @@ Textarea with maxlength
 - `aria-invalid`
 - `aria-describedby`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します：
 
 ### Colors
 
@@ -121,7 +121,7 @@ This component uses the following design tokens:
 
 ---
 
-**Related**:
+**関連ドキュメント**:
 - [Migration Guide](../guides/migration-guide.md)
 - [Accessibility Guide](../guides/accessibility-guide.md)
 - [Component Examples](../guides/examples.md)

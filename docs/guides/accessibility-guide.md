@@ -1,130 +1,130 @@
-# Accessibility Guide
+# アクセシビリティガイド
 
-Hidearea Design System is built with accessibility as a core principle. This guide provides best practices and implementation details for creating accessible web applications.
+Hidearea Design Systemは、アクセシビリティを核となる原則として構築されています。このガイドでは、アクセシブルなWebアプリケーションを作成するためのベストプラクティスと実装の詳細を提供します。
 
-## Table of Contents
+## 目次
 
-- [Overview](#overview)
-- [WCAG Compliance](#wcag-compliance)
-- [Keyboard Navigation](#keyboard-navigation)
-- [Screen Reader Support](#screen-reader-support)
-- [Color and Contrast](#color-and-contrast)
-- [Component-Specific Guidelines](#component-specific-guidelines)
-- [Testing Accessibility](#testing-accessibility)
-- [Common Patterns](#common-patterns)
-
----
-
-## Overview
-
-### Accessibility Standards
-
-Hidearea Design System follows:
-- **WCAG 2.1 Level AA** compliance
-- **WAI-ARIA 1.2** authoring practices
-- **Section 508** requirements
-
-### Core Principles
-
-1. **Perceivable**: Content is available to all users
-2. **Operable**: Users can interact via keyboard and assistive tech
-3. **Understandable**: Clear, consistent interface and behavior
-4. **Robust**: Works with current and future assistive technologies
+- [概要](#概要)
+- [WCAG準拠](#wcag準拠)
+- [キーボードナビゲーション](#キーボードナビゲーション)
+- [スクリーンリーダーサポート](#スクリーンリーダーサポート)
+- [色とコントラスト](#色とコントラスト)
+- [コンポーネント別ガイドライン](#コンポーネント別ガイドライン)
+- [アクセシビリティのテスト](#アクセシビリティのテスト)
+- [一般的なパターン](#一般的なパターン)
 
 ---
 
-## WCAG Compliance
+## 概要
 
-### Success Criteria Coverage
+### アクセシビリティ標準
 
-| Level | Coverage | Status |
+Hidearea Design Systemは以下に準拠しています：
+- **WCAG 2.1 Level AA** 準拠
+- **WAI-ARIA 1.2** オーサリングプラクティス
+- **Section 508** 要件
+
+### 基本原則
+
+1. **知覚可能**: コンテンツはすべてのユーザーが利用可能
+2. **操作可能**: ユーザーはキーボードと支援技術で操作可能
+3. **理解可能**: 明確で一貫性のあるインターフェースと動作
+4. **堅牢**: 現在および将来の支援技術で動作
+
+---
+
+## WCAG準拠
+
+### 達成基準カバレッジ
+
+| レベル | カバレッジ | ステータス |
 |-------|----------|--------|
-| A | 100% | ✅ Compliant |
-| AA | 100% | ✅ Compliant |
-| AAA | Partial | 🚧 In Progress |
+| A | 100% | ✅ 準拠 |
+| AA | 100% | ✅ 準拠 |
+| AAA | 部分的 | 🚧 進行中 |
 
-### Key Requirements Met
+### 満たしている主要な要件
 
-#### 1.4.3 Contrast (Minimum) - Level AA
-All text and interactive elements meet minimum contrast ratios:
-- **Normal text**: 4.5:1
-- **Large text**: 3:1
-- **UI components**: 3:1
+#### 1.4.3 コントラスト（最小） - Level AA
+すべてのテキストとインタラクティブ要素は最小コントラスト比を満たしています：
+- **通常のテキスト**: 4.5:1
+- **大きなテキスト**: 3:1
+- **UIコンポーネント**: 3:1
 
-#### 2.1.1 Keyboard - Level A
-All functionality is available via keyboard:
+#### 2.1.1 キーボード - Level A
+すべての機能はキーボードから利用可能：
 ```html
-<!-- Tab navigation works out of the box -->
-<ha-button>Accessible via Tab</ha-button>
-<ha-input label="Accessible via Tab" />
+<!-- Tabナビゲーションはデフォルトで動作 -->
+<ha-button>Tabでアクセス可能</ha-button>
+<ha-input label="Tabでアクセス可能" />
 
-<!-- Custom focus management -->
+<!-- カスタムフォーカス管理 -->
 <ha-modal id="modal">
-  <!-- Focus trapped within modal when open -->
-  <ha-button>Button in Modal</ha-button>
+  <!-- モーダルが開いている時はフォーカスがトラップされる -->
+  <ha-button>モーダル内のボタン</ha-button>
 </ha-modal>
 ```
 
-#### 4.1.2 Name, Role, Value - Level A
-All components have proper ARIA attributes:
+#### 4.1.2 名前（name）、役割（role）、値（value） - Level A
+すべてのコンポーネントは適切なARIA属性を持っています：
 ```html
-<!-- Semantic roles -->
-<ha-button role="button">Action</ha-button>
+<!-- セマンティックロール -->
+<ha-button role="button">アクション</ha-button>
 
-<!-- Accessible names -->
-<ha-input aria-label="Search" placeholder="Search..." />
+<!-- アクセシブルネーム -->
+<ha-input aria-label="検索" placeholder="検索..." />
 
-<!-- State information -->
-<ha-checkbox checked aria-checked="true">Accepted</ha-checkbox>
+<!-- 状態情報 -->
+<ha-checkbox checked aria-checked="true">同意する</ha-checkbox>
 ```
 
 ---
 
-## Keyboard Navigation
+## キーボードナビゲーション
 
-### Standard Keyboard Shortcuts
+### 標準キーボードショートカット
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Tab` | Move focus forward |
-| `Shift + Tab` | Move focus backward |
-| `Enter` | Activate button/link |
-| `Space` | Activate button/toggle checkbox |
-| `Esc` | Close modal/drawer/dropdown |
-| `Arrow Keys` | Navigate within component (tabs, menus, etc.) |
+| `Tab` | フォーカスを前方に移動 |
+| `Shift + Tab` | フォーカスを後方に移動 |
+| `Enter` | ボタン/リンクを実行 |
+| `Space` | ボタンを実行/チェックボックスを切り替え |
+| `Esc` | モーダル/ドロワー/ドロップダウンを閉じる |
+| `矢印キー` | コンポーネント内を移動（タブ、メニューなど） |
 
-### Focus Management
+### フォーカス管理
 
-#### Focus Indicators
-All components have visible focus indicators:
+#### フォーカスインジケーター
+すべてのコンポーネントは視認可能なフォーカスインジケーターを持っています：
 ```css
-/* Focus styles are built-in */
+/* フォーカススタイルは組み込み済み */
 ha-button:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 ```
 
-#### Focus Trapping
-Modals and drawers automatically trap focus:
+#### フォーカストラップ
+モーダルとドロワーは自動的にフォーカスをトラップします：
 ```html
 <ha-modal id="dialog" open>
-  <!-- Focus cycles within these elements -->
-  <ha-input label="Name" />
-  <ha-button>Save</ha-button>
-  <ha-button>Cancel</ha-button>
+  <!-- フォーカスはこれらの要素内を循環 -->
+  <ha-input label="名前" />
+  <ha-button>保存</ha-button>
+  <ha-button>キャンセル</ha-button>
 </ha-modal>
 ```
 
-#### Skip Links
-Implement skip links for better navigation:
+#### スキップリンク
+より良いナビゲーションのためにスキップリンクを実装：
 ```html
 <a href="#main-content" class="skip-link">
-  Skip to main content
+  メインコンテンツへスキップ
 </a>
 
 <main id="main-content">
-  <!-- Main content here -->
+  <!-- メインコンテンツ -->
 </main>
 
 <style>
@@ -147,61 +147,61 @@ Implement skip links for better navigation:
 
 ---
 
-## Screen Reader Support
+## スクリーンリーダーサポート
 
-### Semantic HTML
+### セマンティックHTML
 
-Always use semantic elements:
+常にセマンティック要素を使用：
 ```html
-<!-- Good: Semantic structure -->
-<nav aria-label="Main navigation">
+<!-- 良い例: セマンティック構造 -->
+<nav aria-label="メインナビゲーション">
   <ha-menu>
-    <ha-menu-item>Home</ha-menu-item>
-    <ha-menu-item>About</ha-menu-item>
+    <ha-menu-item>ホーム</ha-menu-item>
+    <ha-menu-item>概要</ha-menu-item>
   </ha-menu>
 </nav>
 
 <main>
   <ha-card>
-    <h2 slot="title">Article Title</h2>
-    <p>Article content...</p>
+    <h2 slot="title">記事タイトル</h2>
+    <p>記事の内容...</p>
   </ha-card>
 </main>
 ```
 
-### ARIA Labels
+### ARIAラベル
 
 #### aria-label
-Provide accessible names when visual labels aren't sufficient:
+視覚的なラベルが不十分な場合にアクセシブルネームを提供：
 ```html
-<!-- Icon-only button -->
-<ha-button aria-label="Close dialog">
-  <svg><!-- X icon --></svg>
+<!-- アイコンのみのボタン -->
+<ha-button aria-label="ダイアログを閉じる">
+  <svg><!-- X アイコン --></svg>
 </ha-button>
 
-<!-- Search input -->
+<!-- 検索入力 -->
 <ha-input
   type="search"
-  aria-label="Search products"
-  placeholder="Search..."
+  aria-label="商品を検索"
+  placeholder="検索..."
 />
 ```
 
 #### aria-labelledby
-Reference existing text as the label:
+既存のテキストをラベルとして参照：
 ```html
-<h2 id="dialog-title">Confirm Action</h2>
+<h2 id="dialog-title">アクションの確認</h2>
 <ha-modal aria-labelledby="dialog-title">
-  <p>Are you sure you want to proceed?</p>
+  <p>続行してもよろしいですか？</p>
 </ha-modal>
 ```
 
 #### aria-describedby
-Provide additional context:
+追加の文脈を提供：
 ```html
 <ha-form-group
-  label="Password"
-  helper-text="Must be at least 8 characters"
+  label="パスワード"
+  helper-text="8文字以上"
 >
   <ha-input
     type="password"
@@ -209,39 +209,39 @@ Provide additional context:
   />
 </ha-form-group>
 <span id="password-hint" class="sr-only">
-  Must contain uppercase, lowercase, and numbers
+  大文字、小文字、数字を含める必要があります
 </span>
 ```
 
-### Live Regions
+### ライブリージョン
 
-Announce dynamic changes:
+動的な変更を通知：
 ```html
-<!-- Polite announcements (non-interrupting) -->
+<!-- 丁寧なアナウンス（中断しない） -->
 <div aria-live="polite" aria-atomic="true">
-  <!-- Updated content announced after current speech -->
+  <!-- 更新されたコンテンツは現在の読み上げの後に通知される -->
 </div>
 
-<!-- Assertive announcements (interrupting) -->
+<!-- 積極的なアナウンス（中断する） -->
 <div aria-live="assertive" aria-atomic="true">
-  <!-- Critical updates announced immediately -->
+  <!-- 重要な更新は即座に通知される -->
 </div>
 ```
 
-Example with Toast:
+Toastの例：
 ```html
 <ha-toast
   variant="success"
   aria-live="polite"
   role="status"
 >
-  Changes saved successfully
+  変更が正常に保存されました
 </ha-toast>
 ```
 
-### Screen Reader Only Text
+### スクリーンリーダー専用テキスト
 
-Hide content visually but keep it accessible:
+視覚的に隠してもアクセシブルな状態を保つ：
 ```css
 .sr-only {
   position: absolute;
@@ -256,54 +256,54 @@ Hide content visually but keep it accessible:
 }
 ```
 
-Usage:
+使用例：
 ```html
 <ha-button>
-  Delete
-  <span class="sr-only">user account</span>
+  削除
+  <span class="sr-only">ユーザーアカウント</span>
 </ha-button>
-<!-- Announces: "Delete user account" -->
+<!-- 読み上げ: "ユーザーアカウントを削除" -->
 ```
 
 ---
 
-## Color and Contrast
+## 色とコントラスト
 
-### Contrast Ratios
+### コントラスト比
 
-Hidearea Design tokens ensure proper contrast:
+Hidearea Designトークンは適切なコントラストを保証：
 ```css
-/* Text on background */
---color-text-primary: #1a1a1a;      /* 15.8:1 on white */
---color-text-secondary: #666666;    /* 5.7:1 on white */
+/* 背景上のテキスト */
+--color-text-primary: #1a1a1a;      /* 白上で15.8:1 */
+--color-text-secondary: #666666;    /* 白上で5.7:1 */
 
-/* Interactive elements */
---color-primary: #0066cc;           /* 4.5:1 on white */
---color-primary-hover: #0052a3;     /* 5.9:1 on white */
+/* インタラクティブ要素 */
+--color-primary: #0066cc;           /* 白上で4.5:1 */
+--color-primary-hover: #0052a3;     /* 白上で5.9:1 */
 
-/* Borders and separators */
---color-border: #d1d5db;            /* 3:1 on white */
+/* ボーダーと区切り線 */
+--color-border: #d1d5db;            /* 白上で3:1 */
 ```
 
-### Don't Rely on Color Alone
+### 色だけに頼らない
 
-Always provide additional indicators:
+常に追加のインジケーターを提供：
 ```html
-<!-- Bad: Color only -->
+<!-- 悪い例: 色のみ -->
 <ha-alert variant="error">
-  Error occurred
+  エラーが発生しました
 </ha-alert>
 
-<!-- Good: Icon + Color -->
+<!-- 良い例: アイコン + 色 -->
 <ha-alert variant="error">
-  <svg slot="prefix"><!-- Error icon --></svg>
-  Error occurred: Invalid email format
+  <svg slot="prefix"><!-- エラーアイコン --></svg>
+  エラーが発生しました: メールアドレスの形式が無効です
 </ha-alert>
 
-<!-- Form validation -->
+<!-- フォームバリデーション -->
 <ha-form-group
-  label="Email"
-  error="Please enter a valid email"
+  label="メールアドレス"
+  error="有効なメールアドレスを入力してください"
   required
 >
   <ha-input
@@ -314,42 +314,42 @@ Always provide additional indicators:
 </ha-form-group>
 ```
 
-### Color Blind Accessibility
+### 色覚障害へのアクセシビリティ
 
-Test with color blindness simulators and ensure:
-- Red/green combinations have sufficient brightness difference
-- Important information isn't conveyed by color alone
-- Use patterns, icons, or text alongside color
+色覚異常シミュレーターでテストし、以下を確保：
+- 赤/緑の組み合わせは十分な明度差がある
+- 重要な情報は色だけで伝えない
+- 色と一緒にパターン、アイコン、またはテキストを使用
 
 ---
 
-## Component-Specific Guidelines
+## コンポーネント別ガイドライン
 
-### Buttons
+### ボタン
 
 ```html
-<!-- Text buttons -->
+<!-- テキストボタン -->
 <ha-button variant="primary">
-  Save Changes
+  変更を保存
 </ha-button>
 
-<!-- Icon buttons need labels -->
-<ha-button variant="ghost" aria-label="Delete item">
-  <svg><!-- Trash icon --></svg>
+<!-- アイコンボタンにはラベルが必要 -->
+<ha-button variant="ghost" aria-label="アイテムを削除">
+  <svg><!-- ゴミ箱アイコン --></svg>
 </ha-button>
 
-<!-- Loading state -->
+<!-- ローディング状態 -->
 <ha-button loading disabled aria-busy="true">
-  Processing...
+  処理中...
 </ha-button>
 ```
 
-### Forms
+### フォーム
 
 ```html
 <form>
-  <!-- Always use labels -->
-  <ha-form-group label="Full Name" required>
+  <!-- 常にラベルを使用 -->
+  <ha-form-group label="氏名" required>
     <ha-input
       name="name"
       required
@@ -357,10 +357,10 @@ Test with color blindness simulators and ensure:
     />
   </ha-form-group>
 
-  <!-- Error states -->
+  <!-- エラー状態 -->
   <ha-form-group
-    label="Email"
-    error="Please enter a valid email address"
+    label="メールアドレス"
+    error="有効なメールアドレスを入力してください"
   >
     <ha-input
       type="email"
@@ -370,77 +370,77 @@ Test with color blindness simulators and ensure:
     />
   </ha-form-group>
   <span id="email-error" role="alert">
-    Please enter a valid email address
+    有効なメールアドレスを入力してください
   </span>
 
-  <!-- Fieldsets for groups -->
+  <!-- グループ化にはfieldsetを使用 -->
   <fieldset>
-    <legend>Notification Preferences</legend>
-    <ha-checkbox name="email">Email notifications</ha-checkbox>
-    <ha-checkbox name="sms">SMS notifications</ha-checkbox>
+    <legend>通知設定</legend>
+    <ha-checkbox name="email">メール通知</ha-checkbox>
+    <ha-checkbox name="sms">SMS通知</ha-checkbox>
   </fieldset>
 </form>
 ```
 
-### Modals and Dialogs
+### モーダルとダイアログ
 
 ```html
 <ha-modal
   id="confirmDialog"
-  title="Confirm Action"
+  title="アクションの確認"
   role="alertdialog"
   aria-modal="true"
   aria-labelledby="dialog-title"
   aria-describedby="dialog-description"
 >
-  <h2 id="dialog-title" slot="title">Delete Account</h2>
+  <h2 id="dialog-title" slot="title">アカウントの削除</h2>
   <p id="dialog-description">
-    This action cannot be undone. Are you sure?
+    この操作は取り消せません。よろしいですか？
   </p>
 
   <div slot="footer">
-    <ha-button variant="secondary">Cancel</ha-button>
-    <ha-button variant="danger">Delete</ha-button>
+    <ha-button variant="secondary">キャンセル</ha-button>
+    <ha-button variant="danger">削除</ha-button>
   </div>
 </ha-modal>
 
 <script>
-// Focus management
+// フォーカス管理
 const modal = document.getElementById('confirmDialog');
 const previousFocus = document.activeElement;
 
 modal.addEventListener('close', () => {
-  // Return focus to trigger element
+  // トリガー要素にフォーカスを戻す
   previousFocus?.focus();
 });
 </script>
 ```
 
-### Tables
+### テーブル
 
 ```html
 <ha-table>
   <table>
-    <caption>User List</caption>
+    <caption>ユーザーリスト</caption>
     <thead>
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Role</th>
+        <th scope="col">名前</th>
+        <th scope="col">メール</th>
+        <th scope="col">役割</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <th scope="row">John Doe</th>
-        <td>john@example.com</td>
-        <td>Admin</td>
+        <th scope="row">山田太郎</th>
+        <td>yamada@example.com</td>
+        <td>管理者</td>
       </tr>
     </tbody>
   </table>
 </ha-table>
 ```
 
-### Tabs
+### タブ
 
 ```html
 <ha-tabs>
@@ -450,7 +450,7 @@ modal.addEventListener('close', () => {
     role="tab"
     aria-selected="true"
   >
-    Profile
+    プロフィール
   </ha-tab-item>
   <ha-tab-item
     slot="tabs"
@@ -458,83 +458,83 @@ modal.addEventListener('close', () => {
     role="tab"
     aria-selected="false"
   >
-    Settings
+    設定
   </ha-tab-item>
 
   <ha-tab-panel id="panel1" role="tabpanel">
-    Profile content
+    プロフィールの内容
   </ha-tab-panel>
   <ha-tab-panel id="panel2" role="tabpanel">
-    Settings content
+    設定の内容
   </ha-tab-panel>
 </ha-tabs>
 ```
 
 ---
 
-## Testing Accessibility
+## アクセシビリティのテスト
 
-### Automated Testing
+### 自動テスト
 
-Use the built-in accessibility test utilities:
+組み込みのアクセシビリティテストユーティリティを使用：
 ```typescript
 import { expectNoA11yViolations } from '@hidearea-design/core/test-utils';
 
-it('should have no accessibility violations', async () => {
+it('アクセシビリティ違反がないこと', async () => {
   const button = document.createElement('ha-button');
-  button.textContent = 'Click me';
+  button.textContent = 'クリックしてください';
   document.body.appendChild(button);
 
   await expectNoA11yViolations(button);
 });
 ```
 
-### Manual Testing Checklist
+### 手動テストチェックリスト
 
-- [ ] Navigate entire page using only keyboard
-- [ ] Test with screen reader (NVDA, JAWS, VoiceOver)
-- [ ] Check color contrast with tools
-- [ ] Verify focus indicators are visible
-- [ ] Test with browser zoom at 200%
-- [ ] Check responsive behavior on mobile
-- [ ] Verify form validation messages are announced
+- [ ] キーボードのみでページ全体をナビゲート
+- [ ] スクリーンリーダーでテスト（NVDA、JAWS、VoiceOver）
+- [ ] ツールで色のコントラストを確認
+- [ ] フォーカスインジケーターが見えることを確認
+- [ ] ブラウザのズームを200%でテスト
+- [ ] モバイルでレスポンシブ動作を確認
+- [ ] フォームバリデーションメッセージが通知されることを確認
 
-### Testing Tools
+### テストツール
 
-1. **axe DevTools**: Browser extension for automated checks
-2. **Lighthouse**: Built into Chrome DevTools
-3. **WAVE**: Web accessibility evaluation tool
-4. **Screen Readers**:
-   - Windows: NVDA (free), JAWS
-   - macOS: VoiceOver (built-in)
+1. **axe DevTools**: 自動チェック用ブラウザ拡張
+2. **Lighthouse**: Chrome DevToolsに組み込み
+3. **WAVE**: Webアクセシビリティ評価ツール
+4. **スクリーンリーダー**:
+   - Windows: NVDA（無料）、JAWS
+   - macOS: VoiceOver（組み込み）
    - Linux: Orca
 
 ---
 
-## Common Patterns
+## 一般的なパターン
 
-### Loading States
+### ローディング状態
 
 ```html
-<!-- Button loading -->
+<!-- ボタンのローディング -->
 <ha-button loading disabled aria-busy="true">
-  <span aria-live="polite">Loading...</span>
+  <span aria-live="polite">読み込み中...</span>
 </ha-button>
 
-<!-- Content loading -->
+<!-- コンテンツのローディング -->
 <div role="status" aria-live="polite" aria-busy="true">
   <ha-spinner></ha-spinner>
-  <span class="sr-only">Loading content...</span>
+  <span class="sr-only">コンテンツを読み込んでいます...</span>
 </div>
 ```
 
-### Error Messages
+### エラーメッセージ
 
 ```html
-<!-- Inline validation -->
+<!-- インラインバリデーション -->
 <ha-form-group
-  label="Username"
-  error="Username is already taken"
+  label="ユーザー名"
+  error="このユーザー名は既に使用されています"
 >
   <ha-input
     invalid
@@ -543,43 +543,43 @@ it('should have no accessibility violations', async () => {
   />
 </ha-form-group>
 <div id="username-error" role="alert" aria-live="assertive">
-  Username is already taken
+  このユーザー名は既に使用されています
 </div>
 
-<!-- Toast notification -->
+<!-- トースト通知 -->
 <ha-toast
   variant="error"
   role="alert"
   aria-live="assertive"
 >
-  Failed to save changes
+  変更の保存に失敗しました
 </ha-toast>
 ```
 
-### Progressive Disclosure
+### プログレッシブディスクロージャー
 
 ```html
-<!-- Accordion -->
+<!-- アコーディオン -->
 <ha-accordion>
   <ha-accordion-item
     aria-expanded="false"
     aria-controls="panel1"
   >
-    <span slot="title">Section 1</span>
-    <div id="panel1">Hidden content until expanded</div>
+    <span slot="title">セクション1</span>
+    <div id="panel1">展開されるまで隠されている内容</div>
   </ha-accordion-item>
 </ha-accordion>
 
-<!-- Expandable details -->
+<!-- 展開可能な詳細 -->
 <details>
   <summary>
-    <ha-button variant="ghost">Show more</ha-button>
+    <ha-button variant="ghost">もっと見る</ha-button>
   </summary>
-  <p>Additional content...</p>
+  <p>追加コンテンツ...</p>
 </details>
 ```
 
-### Data Tables with Sorting
+### ソート可能なデータテーブル
 
 ```html
 <ha-table>
@@ -590,9 +590,9 @@ it('should have no accessibility violations', async () => {
           <ha-button
             variant="ghost"
             aria-sort="ascending"
-            aria-label="Sort by name, ascending"
+            aria-label="名前で昇順にソート"
           >
-            Name
+            名前
           </ha-button>
         </th>
       </tr>
@@ -603,33 +603,33 @@ it('should have no accessibility violations', async () => {
 
 ---
 
-## Resources
+## リソース
 
-### Guidelines and Standards
+### ガイドラインと標準
 - [WCAG 2.1](https://www.w3.org/WAI/WCAG21/quickref/)
 - [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/)
 - [Section 508](https://www.section508.gov/)
 
-### Tools
+### ツール
 - [axe DevTools](https://www.deque.com/axe/devtools/)
 - [WAVE](https://wave.webaim.org/)
 - [Color Contrast Checker](https://webaim.org/resources/contrastchecker/)
 
-### Further Reading
-- [Accessibility Testing Guide](./accessibility-testing.md)
-- [Inline Styles Rationale](./inline-styles-rationale.md)
-- [Migration Guide](./migration-guide.md)
+### 参考資料
+- [アクセシビリティテストガイド](./accessibility-testing.md)
+- [インラインスタイルの根拠](./inline-styles-rationale.md)
+- [移行ガイド](./migration-guide.md)
 
 ---
 
-## Getting Help
+## サポートを受ける
 
-If you encounter accessibility issues:
+アクセシビリティの問題に遭遇した場合：
 
-1. Check component documentation for ARIA attributes
-2. Review this guide for common patterns
-3. Report issues on GitHub with:
-   - Component name
-   - Screen reader and browser used
-   - Expected vs actual behavior
-4. Join community discussions for support
+1. コンポーネントドキュメントでARIA属性を確認
+2. 一般的なパターンについてこのガイドを確認
+3. GitHubで以下の情報と共に問題を報告：
+   - コンポーネント名
+   - 使用したスクリーンリーダーとブラウザ
+   - 期待される動作と実際の動作
+4. サポートのためにコミュニティディスカッションに参加

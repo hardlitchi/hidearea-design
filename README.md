@@ -38,12 +38,12 @@ npm install @hidearea-design/core @hidearea-design/tokens
   <head>
     <script type="module">
       import '@hidearea-design/tokens/css';
-      // Per-component import for optimal bundle size
+      // バンドルサイズ最適化のための個別コンポーネントインポート
       import { HaButton } from '@hidearea-design/core/button';
     </script>
   </head>
   <body>
-    <ha-button variant="primary">Click me</ha-button>
+    <ha-button variant="primary">クリック</ha-button>
   </body>
 </html>
 ```
@@ -59,7 +59,7 @@ import '@hidearea-design/tokens/css';
 import { Button } from '@hidearea-design/react';
 
 function App() {
-  return <Button variant="primary">Click me</Button>;
+  return <Button variant="primary">クリック</Button>;
 }
 ```
 
@@ -76,7 +76,7 @@ import { HaButton } from '@hidearea-design/vue';
 </script>
 
 <template>
-  <HaButton variant="primary">Click me</HaButton>
+  <HaButton variant="primary">クリック</HaButton>
 </template>
 ```
 
@@ -103,7 +103,7 @@ Modal, Drawer
 ### その他
 Accordion, Form Group, File Upload, Date Picker, Time Picker, Color Picker
 
-詳細は [コンポーネントドキュメント](./docs/components/) を参照してください。
+詳細は [コンポーネントドキュメント](./docs/api/) を参照してください。
 
 ## 開発環境
 
@@ -175,10 +175,10 @@ MIT
 
 ### Components
 
-- **[Button](./docs/components/button.md)** - ボタンコンポーネントのAPI とサンプル
-- **[Input](./docs/components/input.md)** - インプットコンポーネントのAPI とサンプル
-- **[Checkbox](./docs/components/checkbox.md)** - チェックボックスコンポーネントのAPI とサンプル
-- **[全コンポーネント一覧](./docs/components/)** - 38+ コンポーネントのドキュメント
+- **[Button](./docs/api/button.md)** - ボタンコンポーネントのAPI とサンプル
+- **[Input](./docs/api/input.md)** - インプットコンポーネントのAPI とサンプル
+- **[Checkbox](./docs/api/checkbox.md)** - チェックボックスコンポーネントのAPI とサンプル
+- **[全コンポーネント一覧](./docs/api/)** - 38+ コンポーネントのドキュメント
 
 ### Guides
 
@@ -204,7 +204,7 @@ MIT
 - **[Storybook Testing Guide](./docs/guides/storybook-testing-guide.md)** - Storybookテスト戦略（インタラクション、ビジュアルリグレッション、アクセシビリティ）
 
 #### 開発ガイド
-- **[コントリビューティング](./CONTRIBUTING.md)** ([日本語](./CONTRIBUTING.ja.md)) - プロジェクトへの貢献方法
+- **[コントリビューティング](./CONTRIBUTING.md)** - プロジェクトへの貢献方法
 
 ### Changelog
 

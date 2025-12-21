@@ -1,41 +1,41 @@
-# DatePicker
+# DatePicker（日付ピッカー）
 
-> Date picker component for selecting dates
+> 日付を選択するための日付ピッカーコンポーネント
 
-**Tag**: `<ha-date-picker>`
+**タグ**: `<ha-date-picker>`
 
-**Category**: Form Controls
+**カテゴリー**: Form Controls
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `value` | `string | Date` | `undefined` |  | Selected date value |
-| `min` | `string | Date` | `undefined` |  | Minimum selectable date |
-| `max` | `string | Date` | `undefined` |  | Maximum selectable date |
-| `disabled` | `boolean` | `false` |  | Disables the date picker |
-| `placeholder` | `string` | `undefined` |  | Placeholder text |
-| `format` | `string` | `'YYYY-MM-DD'` |  | Date format |
-| `label` | `string` | `undefined` |  | Date picker label |
+| `value` | `string | Date` | `undefined` |  | 選択された日付の値 |
+| `min` | `string | Date` | `undefined` |  | 選択可能な最小日付 |
+| `max` | `string | Date` | `undefined` |  | 選択可能な最大日付 |
+| `disabled` | `boolean` | `false` |  | 日付ピッカーを無効化 |
+| `placeholder` | `string` | `undefined` |  | プレースホルダーテキスト |
+| `format` | `string` | `'YYYY-MM-DD'` |  | 日付のフォーマット |
+| `label` | `string` | `undefined` |  | 日付ピッカーのラベル |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-change` | `{ value: Date }` | Emitted when date changes |
+| `ha-change` | `{ value: Date }` | 日付が変更されたときに発火 |
 
-### Usage
+### 使い方
 
 ```javascript
 const element = document.querySelector('ha-date-picker');
@@ -44,83 +44,83 @@ element.addEventListener('ha-change', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-This component has no slots.
+このコンポーネントにはスロットがありません。
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple date picker
+シンプルな日付ピッカー
 
 ```html
-<ha-date-picker label="Select date" placeholder="Choose a date"></ha-date-picker>
+<ha-date-picker label="日付を選択" placeholder="日付を選んでください"></ha-date-picker>
 ```
 
 ---
 
-### With Min/Max
+### 最小値/最大値付き
 
-Date picker with date range
+日付範囲付き日付ピッカー
 
 ```html
 <ha-date-picker
-  label="Appointment date"
+  label="予約日"
   min="2024-01-01"
   max="2024-12-31"
 ></ha-date-picker>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIA ロール
 
 - `button`
 - `dialog`
 - `grid`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Arrow keys` | Navigate dates |
-| `Enter` | Select date |
-| `Escape` | Close picker |
+| `矢印キー` | 日付を移動 |
+| `Enter` | 日付を選択 |
+| `Escape` | ピッカーを閉じる |
 
-### ARIA Attributes
+### ARIA 属性
 
 - `aria-label`
 - `aria-expanded`
 - `aria-selected`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します:
 
-### Colors
+### 色
 
 - `--component-date-picker-background`
 - `--component-date-picker-selected`
 - `--component-date-picker-text`
 
-### Spacing
+### 間隔
 
 - `--spacing-sm`
 - `--spacing-md`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-md`
 - `--surface-overlay-elevation`
 
 ---
 
-**Related**:
+**関連ドキュメント**:
 - [Migration Guide](../guides/migration-guide.md)
 - [Accessibility Guide](../guides/accessibility-guide.md)
 - [Component Examples](../guides/examples.md)

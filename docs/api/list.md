@@ -1,37 +1,37 @@
-# List
+# List（リスト）
 
-> List component for displaying a collection of items
+> アイテムのコレクションを表示するためのリストコンポーネント
 
-**Tag**: `<ha-list>`
+**タグ**: `<ha-list>`
 
-**Category**: Data Display
+**カテゴリ**: データ表示
 
-## Table of Contents
+## 目次
 
-- [Props](#props)
-- [Events](#events)
-- [Slots](#slots)
-- [Examples](#examples)
-- [Accessibility](#accessibility)
-- [Design Tokens](#design-tokens)
+- [プロパティ](#プロパティ)
+- [イベント](#イベント)
+- [スロット](#スロット)
+- [使用例](#使用例)
+- [アクセシビリティ](#アクセシビリティ)
+- [デザイントークン](#デザイントークン)
 
 ---
 
-## Props
+## プロパティ
 
-| Name | Type | Default | Required | Description |
+| 名前 | 型 | デフォルト | 必須 | 説明 |
 |------|------|---------|----------|-------------|
-| `variant` | `'default' | 'bordered' | 'divided'` | `'default'` |  | List style variant |
-| `hoverable` | `boolean` | `false` |  | Add hover effect |
-| `clickable` | `boolean` | `false` |  | Make items clickable |
+| `variant` | `'default' | 'bordered' | 'divided'` | `'default'` |  | リストのスタイルバリアント |
+| `hoverable` | `boolean` | `false` |  | ホバー効果を追加 |
+| `clickable` | `boolean` | `false` |  | アイテムをクリック可能にする |
 
-## Events
+## イベント
 
-| Name | Detail | Description |
+| 名前 | 詳細 | 説明 |
 |------|--------|-------------|
-| `ha-item-click` | `{ item: any, index: number }` | Emitted when item is clicked |
+| `ha-item-click` | `{ item: any, index: number }` | アイテムがクリックされたときに発行される |
 
-### Usage
+### 使い方
 
 ```javascript
 const element = document.querySelector('ha-list');
@@ -40,89 +40,89 @@ element.addEventListener('ha-item-click', (event) => {
 });
 ```
 
-## Slots
+## スロット
 
-| Name | Description |
+| 名前 | 説明 |
 |------|-------------|
-| `default` | List items |
+| `default` | リストアイテム |
 
-## Examples
+## 使用例
 
-### Basic Usage
+### 基本的な使い方
 
-Simple list
+シンプルなリスト
 
 ```html
 <ha-list>
-  <ha-list-item>Item 1</ha-list-item>
-  <ha-list-item>Item 2</ha-list-item>
-  <ha-list-item>Item 3</ha-list-item>
+  <ha-list-item>アイテム 1</ha-list-item>
+  <ha-list-item>アイテム 2</ha-list-item>
+  <ha-list-item>アイテム 3</ha-list-item>
 </ha-list>
 ```
 
 ---
 
-### Divided List
+### 区切り線付きリスト
 
-List with dividers
+区切り線のあるリスト
 
 ```html
 <ha-list variant="divided" hoverable>
   <ha-list-item>
-    <h4>Title</h4>
-    <p>Description text</p>
+    <h4>タイトル</h4>
+    <p>説明テキスト</p>
   </ha-list-item>
   <ha-list-item>
-    <h4>Another Title</h4>
-    <p>More description</p>
+    <h4>別のタイトル</h4>
+    <p>さらに説明</p>
   </ha-list-item>
 </ha-list>
 ```
 
-## Accessibility
+## アクセシビリティ
 
-### ARIA Roles
+### ARIA ロール
 
 - `list`
 - `listitem`
 
-### Keyboard Support
+### キーボードサポート
 
-| Key | Action |
+| キー | アクション |
 |-----|--------|
-| `Arrow keys` | Navigate items |
-| `Enter` | Select item (if clickable) |
+| `矢印キー` | アイテムをナビゲート |
+| `Enter` | アイテムを選択（クリック可能な場合） |
 
-### ARIA Attributes
+### ARIA 属性
 
 - `aria-label`
 
-## Design Tokens
+## デザイントークン
 
-This component uses the following design tokens:
+このコンポーネントは以下のデザイントークンを使用します:
 
-### Colors
+### カラー
 
 - `--component-list-item-background`
 - `--component-list-item-hover`
 - `--component-list-border`
 
-### Spacing
+### スペーシング
 
 - `--spacing-sm`
 - `--spacing-md`
 
-### Typography
+### タイポグラフィ
 
 - `--text-body-default-fontSize`
 
-### Other
+### その他
 
 - `--border-radius-md`
 
 ---
 
-**Related**:
-- [Migration Guide](../guides/migration-guide.md)
-- [Accessibility Guide](../guides/accessibility-guide.md)
-- [Component Examples](../guides/examples.md)
+**関連ドキュメント**:
+- [マイグレーションガイド](../guides/migration-guide.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
+- [コンポーネント使用例](../guides/examples.md)
