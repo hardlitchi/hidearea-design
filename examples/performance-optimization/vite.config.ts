@@ -1,19 +1,11 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { visualizer } from 'vite-bundle-visualizer';
 import viteCompression from 'vite-plugin-compression';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    // Generate bundle size visualization
-    visualizer({
-      filename: './dist/stats.html',
-      open: false,
-      gzipSize: true,
-      brotliSize: true,
-    }),
     // Gzip compression
     viteCompression({
       verbose: true,
