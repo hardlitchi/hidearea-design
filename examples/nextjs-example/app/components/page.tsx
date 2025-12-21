@@ -1,18 +1,19 @@
 'use client';
 
-import {
-  Button,
-  Input,
-  Card,
-  Badge,
-  Alert,
-  Checkbox,
-  Radio,
-  Switch,
-  Tooltip,
-} from '@hidearea-design/react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useState } from 'react';
+
+// Dynamic import to avoid SSR issues with Web Components (HTMLElement not defined)
+const Button = dynamic(() => import('@hidearea-design/react').then(mod => mod.Button), { ssr: false });
+const Input = dynamic(() => import('@hidearea-design/react').then(mod => mod.Input), { ssr: false });
+const Card = dynamic(() => import('@hidearea-design/react').then(mod => mod.Card), { ssr: false });
+const Badge = dynamic(() => import('@hidearea-design/react').then(mod => mod.Badge), { ssr: false });
+const Alert = dynamic(() => import('@hidearea-design/react').then(mod => mod.Alert), { ssr: false });
+const Checkbox = dynamic(() => import('@hidearea-design/react').then(mod => mod.Checkbox), { ssr: false });
+const Radio = dynamic(() => import('@hidearea-design/react').then(mod => mod.Radio), { ssr: false });
+const Switch = dynamic(() => import('@hidearea-design/react').then(mod => mod.Switch), { ssr: false });
+const Tooltip = dynamic(() => import('@hidearea-design/react').then(mod => mod.Tooltip), { ssr: false });
 
 export default function ComponentsPage() {
   const [inputValue, setInputValue] = useState('');
