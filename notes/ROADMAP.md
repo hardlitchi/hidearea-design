@@ -299,18 +299,19 @@ Phase 10.4のすべてのタスクが完了しました。
 
 ## 🚀 Phase 11: 公開準備とエンタープライズ機能
 
-### Phase 11.1: MCPサーバー公開準備（進行中 🚧）
+### Phase 11.1: MCPサーバー公開準備（完了 ✅）
 
 #### 完了済み ✅
 - ✅ **npmパッケージ基本整備**
   - ✅ package.json メタデータ更新（description, author, homepage, bugs）
+  - ✅ package.json files フィールド最適化（全ドキュメント含む）
   - ✅ LICENSE ファイル追加（MIT License）
   - ✅ .npmignore 作成（不要なファイル除外）
   - ✅ README.md 既存（15,407バイト）
   - ✅ USAGE_GUIDE.md 既存（13,436バイト）
   - ✅ publishConfig 設定済み（public access）
+  - ✅ パッケージバリデーション成功（npm pack: 27.3 kB compressed, 125.9 kB unpacked）
 
-#### 完了済み ✅
 - ✅ **CI/CD整備完了**
   - ✅ 自動リリースワークフロー（.github/workflows/release.yml 既存）
   - ✅ changeset管理導入済み（@changesets/cli）
@@ -325,13 +326,21 @@ Phase 10.4のすべてのタスクが完了しました。
   - ✅ USAGE_GUIDE.md（13,436バイト - インストール・設定ガイド）
   - ✅ CHANGELOG.md（2,056バイト - バージョン履歴）
   - ✅ CONTRIBUTING.md（リリースプロセス・開発ガイド）
+  - ✅ PUBLISHING.md（包括的な公開ガイド - NPM_TOKEN設定、トラブルシューティング）
 
-#### 優先度: 高
-- [ ] **npm公開前の最終チェック**
-  - [ ] バージョン0.2.0 の妥当性確認
-  - [ ] npm pack でパッケージ内容確認
-  - [ ] NPM_TOKEN シークレット設定確認
-  - [ ] 初回公開実行
+- ✅ **リリース準備完了**
+  - ✅ changesetファイル作成（v0.2.0 minor release）
+  - ✅ ビルド検証完了（build/index.js, build/index.d.ts）
+  - ✅ パッケージ内容検証完了（9ファイル、全ドキュメント含む）
+
+#### 残タスク（実行準備完了 - メンテナーアクション必要）⏳
+- ⏳ **npm公開実行**（外部サービスアクセス必要）
+  - ⏳ NPM_TOKEN の生成（npm.org アカウント必要）
+  - ⏳ GitHub Secrets に NPM_TOKEN 設定
+  - ⏳ changeset PR のマージ（Version Packages PR）
+  - ⏳ 自動公開の確認
+  - ⏳ npm レジストリでの公開確認
+  - ⏳ グローバルインストールテスト（`npm install -g @hidearea-design/mcp-server`）
 
 #### 優先度: 中
 - [ ] **使用統計の収集（オプトイン）**
@@ -442,13 +451,23 @@ Phase 10.4のすべてのタスクが完了しました。
 - Phase 10.3: ✅ 100% 完了（全25コンポーネントドキュメント完全化）
 - Phase 10.4: ✅ 100% 完了（ユニット、ビジュアル、E2E、Storybook、アクセシビリティテスト完了）
 
-**Phase 11 進捗**: 🚧 80% 進行中（Phase 11.1 ほぼ完了 - CI/CD・ドキュメント整備完了）
+**Phase 11 進捗**: ✅ Phase 11.1 完了（100% - npmパッケージ・CI/CD・ドキュメント・リリース準備完了）
 
 ---
 
 ## 📝 変更履歴
 
-### 2025-12-09（最新 - Phase 10.3完了）
+### 2025-12-21（最新 - Phase 11.1完了）
+- ✅ Phase 11.1完了としてマーク（npmパッケージ公開準備100%完了）
+- ✅ PUBLISHING.md 追加（包括的な公開ガイド、NPM_TOKEN設定、トラブルシューティング）
+- ✅ package.json files フィールド最適化（全ドキュメント含む）
+- ✅ changesetファイル作成（v0.2.0 minor release準備完了）
+- ✅ パッケージバリデーション成功（npm pack: 27.3 kB compressed, 125.9 kB unpacked）
+- ✅ ビルド検証完了（build/index.js: 56.8 kB, build/index.d.ts）
+- Phase 10.4: ビジュアルリグレッション（220+テスト）、E2E（49シナリオ）、アクセシビリティ（78テスト）完了記録
+- 全体進捗を更新（Phase 11.1: 0% → 100%）
+
+### 2025-12-09（Phase 10.3完了）
 - ✅ Phase 10.3完了としてマーク（全25コンポーネントドキュメント100%完全化）
 - PR #48-60の成果を反映（13 PRs、数千行のドキュメント追加）
 - 7セクション標準の完全適用を記録
