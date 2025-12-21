@@ -1,6 +1,6 @@
 {
   "name": "@hidearea-design/mcp-server",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Model Context Protocol (MCP) server for Hidearea Design System - Provides AI-powered component generation, HTML conversion, and design system integration tools",
   "author": "Hidearea Design Team",
   "homepage": "https://github.com/hardlitchi/hidearea-design#readme",
