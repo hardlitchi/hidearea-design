@@ -363,9 +363,9 @@ Phase 10.4のすべてのタスクが完了しました。
   - [ ] キャッシュ戦略改善
   - [ ] ビルド時間短縮
 
-#### 優先度: 低
-- [ ] **Examples Repository**
-  - [ ] Next.js統合例
+#### 完了済み ✅
+- ✅ **Examples Repository（進行中 - 1/6完了）**
+  - ✅ Next.js統合例（3ページ、包括的ドキュメント、TypeScript完全対応）
   - [ ] Nuxt.js統合例
   - [ ] Remix統合例
   - [ ] SvelteKit統合例
@@ -451,13 +451,31 @@ Phase 10.4のすべてのタスクが完了しました。
 - Phase 10.3: ✅ 100% 完了（全25コンポーネントドキュメント完全化）
 - Phase 10.4: ✅ 100% 完了（ユニット、ビジュアル、E2E、Storybook、アクセシビリティテスト完了）
 
-**Phase 11 進捗**: ✅ Phase 11.1 完了（100% - npmパッケージ・CI/CD・ドキュメント・リリース準備完了）
+**Phase 11 進捗**:
+- ✅ Phase 11.1 完了（100% - npmパッケージ・CI/CD・ドキュメント・リリース準備完了）
+- 🚧 Phase 11.2 進行中（17% - Examples Repository: Next.js完了、他5例予定）
 
 ---
 
 ## 📝 変更履歴
 
-### 2025-12-21（最新 - Phase 11.1完了）
+### 2025-12-21（最新 - Phase 11.2開始、Next.js Example完了）
+- 🚧 Phase 11.2開始: Examples Repository作成
+- ✅ Next.js統合例完了:
+  - 3つの完全なページ実装（Home、Components、Forms）
+  - TypeScript完全対応とフル型チェック
+  - 包括的なREADME（統合ガイド、トラブルシューティング、既知の制限事項）
+  - 13コンポーネントの実例（Button、Input、Alert、Card、Badge、Checkbox、Radio、Switch、Tooltip等）
+  - フォームバリデーション例
+  - デザイントークン使用例
+- パッケージエクスポート改善:
+  - @hidearea-design/core: CSSファイルエクスポート追加
+  - @hidearea-design/tokens: CSS変数パスエクスポート追加
+  - @hidearea-design/react: ES/UMDモジュールパス修正
+- pnpm-workspace.yaml更新: examples/*追加
+- 全体進捗更新（Phase 11.2: 0% → 17%）
+
+### 2025-12-21（Phase 11.1完了）
 - ✅ Phase 11.1完了としてマーク（npmパッケージ公開準備100%完了）
 - ✅ PUBLISHING.md 追加（包括的な公開ガイド、NPM_TOKEN設定、トラブルシューティング）
 - ✅ package.json files フィールド最適化（全ドキュメント含む）
