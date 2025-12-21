@@ -596,6 +596,6 @@ function SettingsPanel() {
 
 ## 関連ドキュメント
 
-- [コンポーネント API リファレンス](../components/README.md)
-- [カスタマイズガイド](./customization.md)
-- [アクセシビリティガイド](./accessibility.md)
+- [コンポーネント API リファレンス](../api/README.md)
+- [デザイントークン](./design-tokens.md)
+- [アクセシビリティガイド](./accessibility-guide.md)

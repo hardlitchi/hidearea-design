@@ -184,7 +184,7 @@ TypeScript を使用する場合、`tsconfig.json` に以下を含めてくだ�
 
 ## 次のステップ
 
-- [コンポーネント API リファレンス](../components/README.md)
+- [コンポーネント API リファレンス](../api/README.md)
 - [使用例](../guides/examples.md)
-- [カスタマイズガイド](../guides/customization.md)
-- [アクセシビリティガイド](../guides/accessibility.md)
+- [デザイントークン](../guides/design-tokens.md)
+- [アクセシビリティガイド](../guides/accessibility-guide.md)
