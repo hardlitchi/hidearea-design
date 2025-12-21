@@ -67,6 +67,19 @@ importers:
         specifier: ^8.19.1
         version: 8.50.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
 
+  example:
+    dependencies:
+      '@hidearea-design/core':
+        specifier: workspace:*
+        version: link:../packages/core
+      '@hidearea-design/tokens':
+        specifier: workspace:*
+        version: link:../packages/tokens
+    devDependencies:
+      vite:
+        specifier: ^5.0.0
+        version: 5.4.21(@types/node@22.19.3)(terser@5.44.1)
+
   examples/custom-themes:
     dependencies:
       '@hidearea-design/core':
@@ -232,7 +245,7 @@ importers:
     devDependencies:
       '@remix-run/dev':
         specifier: ^2.16.1
-        version: 2.17.2(@remix-run/react@2.17.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(@remix-run/serve@2.17.2(typescript@5.9.3))(@types/node@22.19.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(typescript@5.9.3)(vite@6.4.1(@types/node@22.19.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2))(yaml@2.8.2)
+        version: 2.17.2(@remix-run/react@2.17.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(@remix-run/serve@2.17.2(typescript@5.9.3))(@types/node@22.19.3)(terser@5.44.1)(typescript@5.9.3)(vite@6.4.1(@types/node@22.19.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2))
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.7
@@ -10330,7 +10343,7 @@ snapshots:
 
   '@poppinss/exception@1.2.3': {}
 
-  '@remix-run/dev@2.17.2(@remix-run/react@2.17.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(@remix-run/serve@2.17.2(typescript@5.9.3))(@types/node@22.19.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(typescript@5.9.3)(vite@6.4.1(@types/node@22.19.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2))(yaml@2.8.2)':
+  '@remix-run/dev@2.17.2(@remix-run/react@2.17.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(@remix-run/serve@2.17.2(typescript@5.9.3))(@types/node@22.19.3)(terser@5.44.1)(typescript@5.9.3)(vite@6.4.1(@types/node@22.19.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2))':
     dependencies:
       '@babel/core': 7.28.5
       '@babel/generator': 7.28.5
@@ -10387,7 +10400,7 @@ snapshots:
       tar-fs: 2.1.4
       tsconfig-paths: 4.2.0
       valibot: 0.41.0(typescript@5.9.3)
-      vite-node: 3.2.4(@types/node@22.19.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)
+      vite-node: 3.2.4(@types/node@22.19.3)(terser@5.44.1)
       ws: 7.5.10
     optionalDependencies:
       '@remix-run/serve': 2.17.2(typescript@5.9.3)
@@ -10398,7 +10411,6 @@ snapshots:
       - babel-plugin-macros
       - bluebird
       - bufferutil
-      - jiti
       - less
       - lightningcss
       - sass
@@ -10408,9 +10420,7 @@ snapshots:
       - supports-color
       - terser
       - ts-node
-      - tsx
       - utf-8-validate
-      - yaml
 
   '@remix-run/express@2.17.2(express@4.22.1)(typescript@5.9.3)':
     dependencies:
@@ -17300,16 +17310,15 @@ snapshots:
       - supports-color
       - terser
 
-  vite-node@3.2.4(@types/node@22.19.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2):
+  vite-node@3.2.4(@types/node@22.19.3)(terser@5.44.1):
     dependencies:
       cac: 6.7.14
       debug: 4.4.3
       es-module-lexer: 1.7.0
       pathe: 2.0.3
-      vite: 6.4.1(@types/node@22.19.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)
+      vite: 5.4.21(@types/node@22.19.3)(terser@5.44.1)
     transitivePeerDependencies:
       - '@types/node'
-      - jiti
       - less
       - lightningcss
       - sass
@@ -17318,8 +17327,6 @@ snapshots:
       - sugarss
       - supports-color
       - terser
-      - tsx
-      - yaml
 
   vite-node@5.2.0(@types/node@22.19.3)(jiti@2.6.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2):
     dependencies:
