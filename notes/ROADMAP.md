@@ -364,13 +364,13 @@ Phase 10.4のすべてのタスクが完了しました。
   - [ ] ビルド時間短縮
 
 #### 完了済み ✅
-- ✅ **Examples Repository（進行中 - 2/6完了）**
+- ✅ **Examples Repository（進行中 - 3/6完了）**
   - ✅ Next.js統合例（3ページ、包括的ドキュメント、TypeScript完全対応）
   - ✅ Nuxt.js統合例（3ページ、Vue 3 Composition API、SSR対応、TypeScript）
+  - ✅ カスタムテーマ例（3テーマ×ダークモード、インタラクティブスイッチャー、包括的ガイド）
   - [ ] Remix統合例
   - [ ] SvelteKit統合例
   - [ ] パフォーマンス最適化例
-  - [ ] カスタムテーマ例
 
 - [ ] **プラグインシステム**
   - [ ] サードパーティ拡張機能サポート
@@ -453,13 +453,30 @@ Phase 10.4のすべてのタスクが完了しました。
 
 **Phase 11 進捗**:
 - ✅ Phase 11.1 完了（100% - npmパッケージ・CI/CD・ドキュメント・リリース準備完了）
-- 🚧 Phase 11.2 進行中（33% - Examples Repository: Next.js & Nuxt.js完了、他4例予定）
+- 🚧 Phase 11.2 進行中（50% - Examples Repository: Next.js & Nuxt.js & Custom Themes完了、他3例予定）
 
 ---
 
 ## 📝 変更履歴
 
-### 2025-12-21（最新 - Nuxt.js Example完了）
+### 2025-12-21（最新 - Custom Themes Example完了）
+- ✅ カスタムテーマ例完了:
+  - 3つのプリビルトテーマ（Corporate、Ocean、Forest）
+  - 各テーマにダークモード対応
+  - インタラクティブテーマスイッチャー実装
+  - リアルタイムデザイントークン値表示
+  - コンポーネントショーケース（Buttons、Alerts、Badges、Forms、Cards）
+  - TypeScript ThemeManagerクラス
+  - localStorage永続化
+- テーマ作成ガイド:
+  - 利用可能なデザイントークンリファレンス
+  - カラーコントラストガイドライン（WCAG AA/AAA）
+  - ダークモード実装ベストプラクティス
+  - Next.js/Nuxt.js統合例
+  - トラブルシューティング
+- 全体進捗更新（Phase 11.2: 33% → 50%）
+
+### 2025-12-21（Nuxt.js Example完了）
 - ✅ Nuxt.js統合例完了:
   - 3つの完全なページ実装（Home、Components、Forms）
   - Vue 3 Composition API使用（ref, reactive）
