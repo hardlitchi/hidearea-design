@@ -53,6 +53,12 @@
     "pnpm": ">=8.0.0"
   },
   "packageManager": "pnpm@10.25.0",
+  "pnpm": {
+    "overrides": {
+      "@types/react": "^18.3.18",
+      "@types/react-dom": "^18.3.5"
+    }
+  },
   "dependencies": {
     "@hidearea-design/core": "link:packages/core",
     "@hidearea-design/mcp-server": "link:packages/mcp-server",
