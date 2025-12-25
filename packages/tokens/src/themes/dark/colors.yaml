@@ -20,11 +20,11 @@ theme:
         value: "{color.gray.50}"
         comment: "主要なテキスト色"
       secondary:
-        value: "{color.gray.400}"
-        comment: "副次的なテキスト色"
+        value: "{color.gray.300}"
+        comment: "副次的なテキスト色 - WCAG AA準拠のためGray-400からGray-300に変更"
       tertiary:
-        value: "{color.gray.500}"
-        comment: "第三のテキスト色"
+        value: "{color.gray.400}"
+        comment: "第三のテキスト色 - WCAG AA準拠のためGray-500からGray-400に変更"
       inverse:
         value: "{color.gray.900}"
         comment: "反転したテキスト色"
