@@ -4,7 +4,7 @@
   "description": "Design tokens for hidearea-design",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hardlitchi/hidearea-design.git",
+    "url": "git+https://github.com/hardlitchi/hidearea-design.git",
     "directory": "packages/tokens"
   },
   "type": "module",
