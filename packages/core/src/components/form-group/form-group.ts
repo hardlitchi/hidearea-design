@@ -113,6 +113,13 @@ export class HaFormGroup extends HTMLElement {
       // Check if slot has content
       const hasSlotContent = labelSlot.assignedNodes().length > 0;
       if (!hasSlotContent) {
+        // Remove any existing text nodes before the slot to prevent duplicates
+        let prevNode = labelSlot.previousSibling;
+        while (prevNode && prevNode.nodeType === Node.TEXT_NODE) {
+          const nodeToRemove = prevNode;
+          prevNode = prevNode.previousSibling;
+          nodeToRemove.remove();
+        }
         const textNode = document.createTextNode(label);
         labelSlot.before(textNode);
       }
@@ -126,6 +133,13 @@ export class HaFormGroup extends HTMLElement {
     if (helperText && helperSlot) {
       const hasSlotContent = helperSlot.assignedNodes().length > 0;
       if (!hasSlotContent) {
+        // Remove any existing text nodes before the slot to prevent duplicates
+        let prevNode = helperSlot.previousSibling;
+        while (prevNode && prevNode.nodeType === Node.TEXT_NODE) {
+          const nodeToRemove = prevNode;
+          prevNode = prevNode.previousSibling;
+          nodeToRemove.remove();
+        }
         const textNode = document.createTextNode(helperText);
         helperSlot.before(textNode);
       }
@@ -139,6 +153,13 @@ export class HaFormGroup extends HTMLElement {
     if (errorText && errorSlot) {
       const hasSlotContent = errorSlot.assignedNodes().length > 0;
       if (!hasSlotContent) {
+        // Remove any existing text nodes before the slot to prevent duplicates
+        let prevNode = errorSlot.previousSibling;
+        while (prevNode && prevNode.nodeType === Node.TEXT_NODE) {
+          const nodeToRemove = prevNode;
+          prevNode = prevNode.previousSibling;
+          nodeToRemove.remove();
+        }
         const textNode = document.createTextNode(errorText);
         errorSlot.before(textNode);
       }
