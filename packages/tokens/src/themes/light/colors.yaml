@@ -23,8 +23,8 @@ theme:
         value: "{color.gray.600}"
         comment: "副次的なテキスト色"
       tertiary:
-        value: "{color.gray.400}"
-        comment: "第三のテキスト色"
+        value: "{color.gray.500}"
+        comment: "第三のテキスト色 - WCAG AA準拠のためGray-400からGray-500に変更"
       inverse:
         value: "{color.white}"
         comment: "反転したテキスト色"

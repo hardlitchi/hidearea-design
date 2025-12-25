@@ -9,7 +9,7 @@
       "foreground": {
         "primary": { "value": "{color.gray.900.value}" },
         "secondary": { "value": "{color.gray.600.value}" },
-        "tertiary": { "value": "{color.gray.400.value}" },
+        "tertiary": { "value": "{color.gray.500.value}" },
         "inverse": { "value": "{color.white.value}" }
       },
       "border": {
