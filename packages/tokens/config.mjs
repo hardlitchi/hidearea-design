@@ -213,6 +213,18 @@ await sd.buildAllPlatforms();
 console.log('✅ Design tokens built successfully!');
 
 /**
+ * Copy global.css to build directory
+ */
+const globalCssSrc = 'src/css/global.css';
+const globalCssDest = 'build/css/global.css';
+try {
+  copyFileSync(globalCssSrc, globalCssDest);
+  console.log('✅ Global styles copied successfully!');
+} catch (error) {
+  console.warn('⚠️  Warning: Could not copy global.css:', error.message);
+}
+
+/**
  * Build component CSS files in 4 patterns:
  * 1. WebComponents: CSS with :host selectors (src/css/components/)
  * 2. HTML: Plain CSS with class selectors (build/css/html/)

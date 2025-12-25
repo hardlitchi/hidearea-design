@@ -1,0 +1,161 @@
+/**
+ * Global styles for hidearea-design
+ *
+ * These styles should be imported once at the application level
+ * to set up base document styles.
+ *
+ * Usage:
+ *   import '@hidearea-design/tokens/css/global';
+ */
+
+/* Reset box-sizing for all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Base document styles */
+html {
+  /* Use semantic background and foreground tokens */
+  background-color: var(--background-primary);
+  color: var(--foreground-primary);
+
+  /* Typography tokens */
+  font-family: var(--font-family-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif);
+  font-size: var(--font-size-base, 16px);
+  line-height: var(--font-line-height-normal, 1.5);
+
+  /* Smooth scrolling for modern browsers */
+  scroll-behavior: smooth;
+
+  /* Better font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Respect user's reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  /* Inherit from html */
+  margin: 0;
+  padding: 0;
+
+  /* Ensure body takes full viewport */
+  min-height: 100vh;
+
+  /* Prevent horizontal scrolling */
+  overflow-x: hidden;
+}
+
+/* Better defaults for headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--foreground-primary);
+  margin-top: 0;
+  font-weight: var(--font-weight-semibold, 600);
+  line-height: var(--font-line-height-tight, 1.25);
+}
+
+/* Paragraph spacing */
+p {
+  margin-top: 0;
+  margin-bottom: var(--spacing-4, 1rem);
+}
+
+/* Link styles */
+a {
+  color: var(--primary-default);
+  text-decoration: none;
+  transition: color var(--animation-duration-fast, 150ms) var(--animation-easing-ease-out, ease-out);
+}
+
+a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--primary-default);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm, 0.125rem);
+}
+
+/* List styles */
+ul, ol {
+  margin-top: 0;
+  padding-left: var(--spacing-6, 1.5rem);
+}
+
+/* Code and pre */
+code {
+  font-family: var(--font-family-mono, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace);
+  font-size: 0.875em;
+  background-color: var(--background-tertiary);
+  padding: var(--spacing-1, 0.25rem) var(--spacing-2, 0.5rem);
+  border-radius: var(--border-radius-sm, 0.125rem);
+}
+
+pre {
+  font-family: var(--font-family-mono, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace);
+  background-color: var(--background-tertiary);
+  padding: var(--spacing-4, 1rem);
+  border-radius: var(--border-radius-md, 0.375rem);
+  overflow-x: auto;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Image defaults */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Button reset */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Input defaults */
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--primary-default);
+  outline-offset: 2px;
+}
+
+/* Remove default focus for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Utility class for screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

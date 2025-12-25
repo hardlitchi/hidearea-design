@@ -1,5 +1,6 @@
 // Import styles from tokens
 import '@hidearea-design/tokens/css';
+import '@hidearea-design/tokens/css/global';
 
 // Import all components for showcase
 import '@hidearea-design/core/components/button';
@@ -20,6 +21,7 @@ import '@hidearea-design/core/components/tabs';
 import '@hidearea-design/core/components/pagination';
 import '@hidearea-design/core/components/container';
 import '@hidearea-design/core/components/stack';
+import '@hidearea-design/core/components/grid';
 import '@hidearea-design/core/components/accordion';
 import '@hidearea-design/core/components/theme-switcher';
 

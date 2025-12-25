@@ -7,291 +7,292 @@
   <script type="module" src="./main.js"></script>
 </head>
 <body>
-  <div class="container">
+  <ha-container max-width="2xl" padding="lg">
     <!-- Header -->
-    <div class="header">
+    <ha-stack gap="2">
       <h1>Component Showcase</h1>
       <p>hidearea-designの全コンポーネント</p>
-    </div>
+    </ha-stack>
 
     <!-- Theme Switcher -->
-    <div class="theme-switcher">
+    <ha-stack gap="4">
       <ha-theme-switcher variant="segmented" show-auto></ha-theme-switcher>
-    </div>
+    </ha-stack>
 
-    <!-- Buttons -->
-    <section class="section">
-      <h2 class="section-title">Buttons</h2>
-      <div class="component-grid">
-        <div class="component-demo">
-          <h3>Variants</h3>
-          <div class="demo-content">
-            <ha-button variant="primary">Primary</ha-button>
-            <ha-button variant="secondary">Secondary</ha-button>
-            <ha-button variant="outline">Outline</ha-button>
-            <ha-button variant="ghost">Ghost</ha-button>
-            <ha-button variant="danger">Danger</ha-button>
-          </div>
-        </div>
-
-        <div class="component-demo">
-          <h3>Sizes</h3>
-          <div class="demo-content">
-            <ha-button size="sm">Small</ha-button>
-            <ha-button size="md">Medium</ha-button>
-            <ha-button size="lg">Large</ha-button>
-          </div>
-        </div>
-
-        <div class="component-demo">
-          <h3>States</h3>
-          <div class="demo-content">
-            <ha-button>Normal</ha-button>
-            <ha-button disabled>Disabled</ha-button>
-            <ha-button loading>Loading</ha-button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Inputs -->
-    <section class="section">
-      <h2 class="section-title">Inputs</h2>
-      <div class="component-grid">
-        <div class="component-demo">
-          <h3>Basic Inputs</h3>
-          <div class="demo-content demo-vertical">
-            <ha-input label="Text Input" placeholder="Enter text..."></ha-input>
-            <ha-input label="Email" type="email" placeholder="email@example.com"></ha-input>
-            <ha-input label="Password" type="password" placeholder="••••••••"></ha-input>
-            <ha-input label="Disabled" disabled value="Disabled input"></ha-input>
-            <ha-input label="Error State" error helper-text="This field has an error"></ha-input>
-          </div>
-        </div>
-
-        <div class="component-demo">
-          <h3>Textarea</h3>
-          <div class="demo-content demo-vertical">
-            <ha-textarea label="Message" placeholder="Enter your message..." rows="4"></ha-textarea>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Form Controls -->
-    <section class="section">
-      <h2 class="section-title">Form Controls</h2>
-      <div class="component-grid">
-        <div class="component-demo">
-          <h3>Checkbox</h3>
-          <div class="demo-content demo-vertical">
-            <ha-checkbox>Default checkbox</ha-checkbox>
-            <ha-checkbox checked>Checked checkbox</ha-checkbox>
-            <ha-checkbox disabled>Disabled checkbox</ha-checkbox>
-            <ha-checkbox checked disabled>Checked & disabled</ha-checkbox>
-          </div>
-        </div>
-
-        <div class="component-demo">
-          <h3>Radio</h3>
-          <div class="demo-content demo-vertical">
-            <ha-radio name="demo" value="1" checked>Option 1</ha-radio>
-            <ha-radio name="demo" value="2">Option 2</ha-radio>
-            <ha-radio name="demo" value="3">Option 3</ha-radio>
-          </div>
-        </div>
-
-        <div class="component-demo">
-          <h3>Switch</h3>
-          <div class="demo-content demo-vertical">
-            <ha-switch>Default switch</ha-switch>
-            <ha-switch checked>Checked switch</ha-switch>
-            <ha-switch disabled>Disabled switch</ha-switch>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Data Display -->
-    <section class="section">
-      <h2 class="section-title">Data Display</h2>
-      <div class="component-grid">
-        <div class="component-demo">
-          <h3>Avatar</h3>
-          <div class="demo-content">
-            <ha-avatar initials="JD"></ha-avatar>
-            <ha-avatar initials="AB" size="sm"></ha-avatar>
-            <ha-avatar initials="XY" size="lg"></ha-avatar>
-          </div>
-        </div>
-
-        <div class="component-demo">
-          <h3>Badge</h3>
-          <div class="demo-content">
-            <ha-badge>Default</ha-badge>
-            <ha-badge variant="primary">Primary</ha-badge>
-            <ha-badge variant="success">Success</ha-badge>
-            <ha-badge variant="warning">Warning</ha-badge>
-            <ha-badge variant="danger">Danger</ha-badge>
-          </div>
-        </div>
-
-        <div class="component-demo">
-          <h3>Chip</h3>
-          <div class="demo-content">
-            <ha-chip>Design</ha-chip>
-            <ha-chip>Development</ha-chip>
-            <ha-chip color="primary">Primary</ha-chip>
-            <ha-chip color="success" deletable>Deletable</ha-chip>
-            <ha-chip color="info" interactive>Interactive</ha-chip>
-          </div>
-        </div>
-
-        <div class="component-demo">
-          <h3>Theme Switcher</h3>
-          <div class="demo-content demo-vertical">
-            <div style="display: flex; gap: 1rem; align-items: center;">
-              <span style="min-width: 100px;">Toggle:</span>
-              <ha-theme-switcher variant="toggle" show-label></ha-theme-switcher>
-            </div>
-            <div style="display: flex; gap: 1rem; align-items: center;">
-              <span style="min-width: 100px;">Dropdown:</span>
-              <ha-theme-switcher variant="dropdown" show-label></ha-theme-switcher>
-            </div>
-            <div style="display: flex; gap: 1rem; align-items: center;">
-              <span style="min-width: 100px;">Segmented:</span>
-              <ha-theme-switcher variant="segmented" show-auto></ha-theme-switcher>
-            </div>
-          </div>
-        </div>
-
-        <div class="component-demo">
-          <h3>Card</h3>
-          <ha-card style="max-width: 400px;">
-            <div slot="header">
-              <h4 style="margin: 0;">Card Title</h4>
-            </div>
-            <p style="margin: 0;">This is the card content. You can put any content here including text, images, and other components.</p>
-            <div slot="footer" style="display: flex; gap: 0.5rem; justify-content: flex-end;">
-              <ha-button variant="ghost" size="sm">Cancel</ha-button>
-              <ha-button variant="primary" size="sm">Save</ha-button>
-            </div>
-          </ha-card>
-        </div>
-      </div>
-    </section>
-
-    <!-- Feedback -->
-    <section class="section">
-      <h2 class="section-title">Feedback</h2>
-      <div class="component-grid">
-        <div class="component-demo">
-          <h3>Alert</h3>
-          <div class="demo-content demo-vertical">
-            <ha-alert open severity="info">This is an info alert</ha-alert>
-            <ha-alert open severity="success">This is a success alert</ha-alert>
-            <ha-alert open severity="warning">This is a warning alert</ha-alert>
-            <ha-alert open severity="error">This is an error alert</ha-alert>
-          </div>
-        </div>
-
-        <div class="component-demo">
-          <h3>Progress</h3>
-          <div class="demo-content demo-vertical">
-            <ha-progress value="30" max="100"></ha-progress>
-            <ha-progress value="65" max="100"></ha-progress>
-            <ha-progress value="100" max="100"></ha-progress>
-          </div>
-        </div>
-
-        <div class="component-demo">
-          <h3>Spinner</h3>
-          <div class="demo-content">
-            <ha-spinner></ha-spinner>
-            <ha-spinner size="sm"></ha-spinner>
-            <ha-spinner size="lg"></ha-spinner>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Navigation -->
-    <section class="section">
-      <h2 class="section-title">Navigation</h2>
-      <div class="component-grid">
-        <div class="component-demo">
-          <h3>Breadcrumb</h3>
-          <ha-breadcrumb>
-            <ha-breadcrumb-item href="#home">Home</ha-breadcrumb-item>
-            <ha-breadcrumb-item href="#products">Products</ha-breadcrumb-item>
-            <ha-breadcrumb-item>Current Page</ha-breadcrumb-item>
-          </ha-breadcrumb>
-        </div>
-
-        <div class="component-demo">
-          <h3>Tabs</h3>
-          <ha-tabs>
-            <ha-tab-item slot="tabs" active>Tab 1</ha-tab-item>
-            <ha-tab-item slot="tabs">Tab 2</ha-tab-item>
-            <ha-tab-item slot="tabs">Tab 3</ha-tab-item>
-
-            <ha-tab-panel active>Content for Tab 1</ha-tab-panel>
-            <ha-tab-panel>Content for Tab 2</ha-tab-panel>
-            <ha-tab-panel>Content for Tab 3</ha-tab-panel>
-          </ha-tabs>
-        </div>
-
-        <div class="component-demo">
-          <h3>Pagination</h3>
-          <ha-pagination total="100" page="1" page-size="10"></ha-pagination>
-        </div>
-      </div>
-    </section>
-
-    <!-- Layout -->
-    <section class="section">
-      <h2 class="section-title">Layout</h2>
-      <div class="component-grid">
-        <div class="component-demo">
-          <h3>Container</h3>
-          <ha-container>
-            <p style="background: var(--background-tertiary); padding: 1rem; border-radius: var(--radius-md);">
-              This content is within a container component.
-            </p>
-          </ha-container>
-        </div>
-
-        <div class="component-demo">
-          <h3>Stack</h3>
-          <ha-stack spacing="md">
-            <ha-button>Item 1</ha-button>
-            <ha-button>Item 2</ha-button>
-            <ha-button>Item 3</ha-button>
+    <!-- Main Content -->
+    <ha-stack gap="8">
+      <!-- Buttons -->
+      <ha-stack gap="4">
+        <h2>Buttons</h2>
+        <ha-grid columns="3" gap="6">
+          <ha-stack gap="3">
+            <h3>Variants</h3>
+            <ha-stack gap="2" direction="horizontal" wrap>
+              <ha-button variant="primary">Primary</ha-button>
+              <ha-button variant="secondary">Secondary</ha-button>
+              <ha-button variant="outline">Outline</ha-button>
+              <ha-button variant="ghost">Ghost</ha-button>
+              <ha-button variant="danger">Danger</ha-button>
+            </ha-stack>
           </ha-stack>
-        </div>
-      </div>
-    </section>
 
-    <!-- Other -->
-    <section class="section">
-      <h2 class="section-title">Other</h2>
-      <div class="component-grid">
-        <div class="component-demo">
+          <ha-stack gap="3">
+            <h3>Sizes</h3>
+            <ha-stack gap="2" direction="horizontal" wrap>
+              <ha-button size="sm">Small</ha-button>
+              <ha-button size="md">Medium</ha-button>
+              <ha-button size="lg">Large</ha-button>
+            </ha-stack>
+          </ha-stack>
+
+          <ha-stack gap="3">
+            <h3>States</h3>
+            <ha-stack gap="2" direction="horizontal" wrap>
+              <ha-button>Normal</ha-button>
+              <ha-button disabled>Disabled</ha-button>
+              <ha-button loading>Loading</ha-button>
+            </ha-stack>
+          </ha-stack>
+        </ha-grid>
+      </ha-stack>
+
+      <!-- Inputs -->
+      <ha-stack gap="4">
+        <h2>Inputs</h2>
+        <ha-grid columns="2" gap="6">
+          <ha-stack gap="3">
+            <h3>Basic Inputs</h3>
+            <ha-stack gap="3">
+              <ha-input label="Text Input" placeholder="Enter text..."></ha-input>
+              <ha-input label="Email" type="email" placeholder="email@example.com"></ha-input>
+              <ha-input label="Password" type="password" placeholder="••••••••"></ha-input>
+              <ha-input label="Disabled" disabled value="Disabled input"></ha-input>
+              <ha-input label="Error State" error helper-text="This field has an error"></ha-input>
+            </ha-stack>
+          </ha-stack>
+
+          <ha-stack gap="3">
+            <h3>Textarea</h3>
+            <ha-stack gap="3">
+              <ha-textarea label="Message" placeholder="Enter your message..." rows="4"></ha-textarea>
+            </ha-stack>
+          </ha-stack>
+        </ha-grid>
+      </ha-stack>
+
+      <!-- Form Controls -->
+      <ha-stack gap="4">
+        <h2>Form Controls</h2>
+        <ha-grid columns="3" gap="6">
+          <ha-stack gap="3">
+            <h3>Checkbox</h3>
+            <ha-stack gap="2">
+              <ha-checkbox>Default checkbox</ha-checkbox>
+              <ha-checkbox checked>Checked checkbox</ha-checkbox>
+              <ha-checkbox disabled>Disabled checkbox</ha-checkbox>
+              <ha-checkbox checked disabled>Checked & disabled</ha-checkbox>
+            </ha-stack>
+          </ha-stack>
+
+          <ha-stack gap="3">
+            <h3>Radio</h3>
+            <ha-stack gap="2">
+              <ha-radio name="demo" value="1" checked>Option 1</ha-radio>
+              <ha-radio name="demo" value="2">Option 2</ha-radio>
+              <ha-radio name="demo" value="3">Option 3</ha-radio>
+            </ha-stack>
+          </ha-stack>
+
+          <ha-stack gap="3">
+            <h3>Switch</h3>
+            <ha-stack gap="2">
+              <ha-switch>Default switch</ha-switch>
+              <ha-switch checked>Checked switch</ha-switch>
+              <ha-switch disabled>Disabled switch</ha-switch>
+            </ha-stack>
+          </ha-stack>
+        </ha-grid>
+      </ha-stack>
+
+      <!-- Data Display -->
+      <ha-stack gap="4">
+        <h2>Data Display</h2>
+        <ha-grid columns="3" gap="6">
+          <ha-stack gap="3">
+            <h3>Avatar</h3>
+            <ha-stack gap="2" direction="horizontal" wrap>
+              <ha-avatar initials="JD"></ha-avatar>
+              <ha-avatar initials="AB" size="sm"></ha-avatar>
+              <ha-avatar initials="XY" size="lg"></ha-avatar>
+            </ha-stack>
+          </ha-stack>
+
+          <ha-stack gap="3">
+            <h3>Badge</h3>
+            <ha-stack gap="2" direction="horizontal" wrap>
+              <ha-badge>Default</ha-badge>
+              <ha-badge variant="primary">Primary</ha-badge>
+              <ha-badge variant="success">Success</ha-badge>
+              <ha-badge variant="warning">Warning</ha-badge>
+              <ha-badge variant="danger">Danger</ha-badge>
+            </ha-stack>
+          </ha-stack>
+
+          <ha-stack gap="3">
+            <h3>Chip</h3>
+            <ha-stack gap="2" direction="horizontal" wrap>
+              <ha-chip>Design</ha-chip>
+              <ha-chip>Development</ha-chip>
+              <ha-chip color="primary">Primary</ha-chip>
+              <ha-chip color="success" deletable>Deletable</ha-chip>
+              <ha-chip color="info" interactive>Interactive</ha-chip>
+            </ha-stack>
+          </ha-stack>
+        </ha-grid>
+
+        <ha-grid columns="2" gap="6">
+          <ha-stack gap="3">
+            <h3>Theme Switcher</h3>
+            <ha-stack gap="2">
+              <ha-stack direction="horizontal" gap="4" align="center">
+                <span>Toggle:</span>
+                <ha-theme-switcher variant="toggle" show-label></ha-theme-switcher>
+              </ha-stack>
+              <ha-stack direction="horizontal" gap="4" align="center">
+                <span>Dropdown:</span>
+                <ha-theme-switcher variant="dropdown" show-label></ha-theme-switcher>
+              </ha-stack>
+              <ha-stack direction="horizontal" gap="4" align="center">
+                <span>Segmented:</span>
+                <ha-theme-switcher variant="segmented" show-auto></ha-theme-switcher>
+              </ha-stack>
+            </ha-stack>
+          </ha-stack>
+
+          <ha-stack gap="3">
+            <h3>Card</h3>
+            <ha-card>
+              <div slot="header">
+                <h4>Card Title</h4>
+              </div>
+              <p>This is the card content. You can put any content here including text, images, and other components.</p>
+              <ha-stack slot="footer" direction="horizontal" gap="2" justify="end">
+                <ha-button variant="ghost" size="sm">Cancel</ha-button>
+                <ha-button variant="primary" size="sm">Save</ha-button>
+              </ha-stack>
+            </ha-card>
+          </ha-stack>
+        </ha-grid>
+      </ha-stack>
+
+      <!-- Feedback -->
+      <ha-stack gap="4">
+        <h2>Feedback</h2>
+        <ha-grid columns="3" gap="6">
+          <ha-stack gap="3">
+            <h3>Alert</h3>
+            <ha-stack gap="2">
+              <ha-alert variant="info">This is an info alert</ha-alert>
+              <ha-alert variant="success">This is a success alert</ha-alert>
+              <ha-alert variant="warning">This is a warning alert</ha-alert>
+              <ha-alert variant="error">This is an error alert</ha-alert>
+            </ha-stack>
+          </ha-stack>
+
+          <ha-stack gap="3">
+            <h3>Progress</h3>
+            <ha-stack gap="2">
+              <ha-progress value="30" max="100"></ha-progress>
+              <ha-progress value="65" max="100"></ha-progress>
+              <ha-progress value="100" max="100"></ha-progress>
+            </ha-stack>
+          </ha-stack>
+
+          <ha-stack gap="3">
+            <h3>Spinner</h3>
+            <ha-stack gap="2" direction="horizontal" wrap>
+              <ha-spinner></ha-spinner>
+              <ha-spinner size="sm"></ha-spinner>
+              <ha-spinner size="lg"></ha-spinner>
+            </ha-stack>
+          </ha-stack>
+        </ha-grid>
+      </ha-stack>
+
+      <!-- Navigation -->
+      <ha-stack gap="4">
+        <h2>Navigation</h2>
+        <ha-grid columns="3" gap="6">
+          <ha-stack gap="3">
+            <h3>Breadcrumb</h3>
+            <ha-breadcrumb>
+              <ha-breadcrumb-item href="#home">Home</ha-breadcrumb-item>
+              <ha-breadcrumb-item href="#products">Products</ha-breadcrumb-item>
+              <ha-breadcrumb-item>Current Page</ha-breadcrumb-item>
+            </ha-breadcrumb>
+          </ha-stack>
+
+          <ha-stack gap="3">
+            <h3>Tabs</h3>
+            <ha-tabs>
+              <ha-tab-item slot="tabs" active>Tab 1</ha-tab-item>
+              <ha-tab-item slot="tabs">Tab 2</ha-tab-item>
+              <ha-tab-item slot="tabs">Tab 3</ha-tab-item>
+
+              <ha-tab-panel active>Content for Tab 1</ha-tab-panel>
+              <ha-tab-panel>Content for Tab 2</ha-tab-panel>
+              <ha-tab-panel>Content for Tab 3</ha-tab-panel>
+            </ha-tabs>
+          </ha-stack>
+
+          <ha-stack gap="3">
+            <h3>Pagination</h3>
+            <ha-pagination total="100" page="1" page-size="10"></ha-pagination>
+          </ha-stack>
+        </ha-grid>
+      </ha-stack>
+
+      <!-- Layout -->
+      <ha-stack gap="4">
+        <h2>Layout</h2>
+        <ha-grid columns="2" gap="6">
+          <ha-stack gap="3">
+            <h3>Container</h3>
+            <ha-container>
+              <p>This content is within a container component.</p>
+            </ha-container>
+          </ha-stack>
+
+          <ha-stack gap="3">
+            <h3>Stack</h3>
+            <ha-stack gap="3">
+              <ha-button>Item 1</ha-button>
+              <ha-button>Item 2</ha-button>
+              <ha-button>Item 3</ha-button>
+            </ha-stack>
+          </ha-stack>
+        </ha-grid>
+      </ha-stack>
+
+      <!-- Other -->
+      <ha-stack gap="4">
+        <h2>Other</h2>
+        <ha-stack gap="3">
           <h3>Accordion</h3>
           <ha-accordion>
-            <ha-accordion-item summary="What is hidearea-design?" open>
+            <ha-accordion-item header="What is hidearea-design?" open>
               hidearea-design is a modern design system built with Web Components.
             </ha-accordion-item>
-            <ha-accordion-item summary="How do I install it?">
+            <ha-accordion-item header="How do I install it?">
               Run: npm install @hidearea-design/core @hidearea-design/tokens
             </ha-accordion-item>
-            <ha-accordion-item summary="Is it framework agnostic?">
+            <ha-accordion-item header="Is it framework agnostic?">
               Yes! It works with React, Vue, Angular, or vanilla JavaScript.
             </ha-accordion-item>
           </ha-accordion>
-        </div>
-      </div>
-    </section>
-  </div>
+        </ha-stack>
+      </ha-stack>
+    </ha-stack>
+  </ha-container>
 </body>
 </html>
