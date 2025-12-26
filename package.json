@@ -59,7 +59,15 @@
       "react-dom": "^19.0.0",
       "@types/react": "^19.0.0",
       "@types/react-dom": "^19.0.0"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "@bundled-es-modules/glob",
+      "@parcel/watcher",
+      "esbuild",
+      "sharp",
+      "style-dictionary",
+      "unrs-resolver"
+    ]
   },
   "dependencies": {
     "@hidearea-design/core": "link:packages/core",
